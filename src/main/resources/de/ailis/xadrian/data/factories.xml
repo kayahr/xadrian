@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<factories>
+  <factory id="advancedSatelliteFactory-argon" race="argon" cycle="864" price="3233208">
+    <product ware="advancedSatellite" quantity="2" />
+    <resource ware="energyCells" quantity="216" />
+    <resource ware="majaglit" quantity="288" />
+    <resource ware="siliconWafers" quantity="9" />
+  </factory>
+  <factory id="advancedSatelliteFactory-paranid" race="paranid" cycle="864" price="2616432">
+    <product ware="advancedSatellite" quantity="2" />
+    <resource ware="energyCells" quantity="216" />
+    <resource ware="majaglit" quantity="288" />
+    <resource ware="siliconWafers" quantity="9" />
+  </factory>
+  <factory id="advancedSatelliteFactory-split" race="split" cycle="864" price="3389028">
+    <product ware="advancedSatellite" quantity="2" />
+    <resource ware="energyCells" quantity="216" />
+    <resource ware="majaglit" quantity="288" />
+    <resource ware="siliconWafers" quantity="9" />
+  </factory>
+  <factory id="ammunitionFactory-argon" race="argon" cycle="168" price="2830680">
+    <product ware="massDriverAmmunition" quantity="8" />
+    <resource ware="energyCells" quantity="42" />
+    <resource ware="meatsteakCahoonas" quantity="28" />
+    <resource ware="ore" quantity="7" />
+  </factory>
+  <factory id="ammunitionFactory-split" race="split" cycle="168" price="2830680">
+    <product ware="massDriverAmmunition" quantity="40" />
+    <resource ware="energyCells" quantity="210" />
+    <resource ware="rastarOil" quantity="21" />
+    <resource ware="ore" quantity="35" />
+  </factory>
+  <factory id="auroraMissileFactory-paranid" race="paranid" cycle="120" price="2155472">
+    <product ware="auroraMissile" quantity="3" />
+    <resource ware="energyCells" quantity="30" />
+    <resource ware="sojaHusk" quantity="4" />
+    <resource ware="ore" quantity="5" />
+  </factory>
+  <factory id="bioGasFactoryM-boron" race="boron" cycle="72" price="224636">
+    <product ware="boGas" quantity="2" />
+    <resource ware="energyCells" quantity="36" />
+  </factory>
+  <factory id="bioGasFactoryL-boron" race="boron" cycle="72" price="561528">
+    <product ware="boGas" quantity="5" />
+    <resource ware="energyCells" quantity="90" />
+  </factory>
+  <factory id="blissPlaceM-teladi" race="teladi" cycle="1080" price="1584144">
+    <product ware="spaceweed" quantity="10" />
+    <resource ware="energyCells" quantity="540" />
+    <resource ware="swampPlant" quantity="72" />
+  </factory>
+  <factory id="blissPlaceL-teladi" race="teladi" cycle="1080" price="3564320">
+    <product ware="spaceweed" quantity="25" />
+    <resource ware="energyCells" quantity="1350" />
+    <resource ware="swampPlant" quantity="180" />
+  </factory>
+  <factory id="bofuChemicalLabM-boron" race="boron" cycle="72" price="809992">
+    <product ware="boFu" quantity="6" />
+    <resource ware="energyCells" quantity="36" />
+    <resource ware="boGas" quantity="2" />
+  </factory>
+  <factory id="bofuChemicalLabL-boron" race="boron" cycle="72" price="2024976">
+    <product ware="boFu" quantity="15" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="boGas" quantity="5" />
+  </factory>
+  <factory id="cahoonaBakeryM-argon" race="argon" cycle="60" price="874980">
+    <product ware="meatsteakCahoonas" quantity="20" />
+    <resource ware="energyCells" quantity="30" />
+    <resource ware="argnubeef" quantity="6" />
+  </factory>
+  <factory id="cahoonaBakeryL-argon" race="argon" cycle="60" price="2187480">
+    <product ware="meatsteakCahoonas" quantity="50" />
+    <resource ware="energyCells" quantity="75" />
+    <resource ware="argnubeef" quantity="15" />
+  </factory>
+  <factory id="cattleRanchM-argon" race="argon" cycle="60" price="275016">
+    <product ware="argnubeef" quantity="6" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="cattleRanchL-argon" race="argon" cycle="60" price="687480">
+    <product ware="argnubeef" quantity="15" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+  <factory id="cheltSpaceAquariumM-split" race="split" cycle="60" price="236972">
+    <product ware="cheltsMeat" quantity="6" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="cheltSpaceAquariumL-split" race="split" cycle="60" price="592496">
+    <product ware="cheltsMeat" quantity="15" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+  <factory id="chipPlant-argon" race="argon" cycle="1440" price="5599036">
+    <product ware="microchips" quantity="4" />
+    <resource ware="energyCells" quantity="360" />
+    <resource ware="meatsteakCahoonas" quantity="240" />
+    <resource ware="siliconWafers" quantity="15" />
+  </factory>
+  <factory id="chipPlant-boron" race="boron" cycle="1440" price="5012124">
+    <product ware="microchips" quantity="4" />
+    <resource ware="energyCells" quantity="360" />
+    <resource ware="boFu" quantity="60" />
+    <resource ware="siliconWafers" quantity="15" />
+  </factory>
+  <factory id="chipPlant-paranid" race="paranid" cycle="1440" price="6778056">
+    <product ware="microchips" quantity="4" />
+    <resource ware="energyCells" quantity="360" />
+    <resource ware="sojaHusk" quantity="48" />
+    <resource ware="siliconWafers" quantity="15" />
+  </factory>
+  <factory id="chipPlant-split" race="split" cycle="1440" price="6487196">
+    <product ware="microchips" quantity="4" />
+    <resource ware="energyCells" quantity="360" />
+    <resource ware="rastarOil" quantity="36" />
+    <resource ware="siliconWafers" quantity="15" />
+  </factory>
+  <factory id="chipPlant-teladi" race="teladi" cycle="1440" price="5599036">
+    <product ware="microchips" quantity="4" />
+    <resource ware="energyCells" quantity="360" />
+    <resource ware="nostropOil" quantity="240" />
+    <resource ware="siliconWafers" quantity="15" />
+  </factory>
+  <factory id="clusterFlakArrayForge-argon" race="argon" cycle="12864" price="12039488">
+    <product ware="clusterFlakArray" quantity="1" />
+    <resource ware="energyCells" quantity="3216" />
+    <resource ware="meatsteakCahoonas" quantity="2144" />
+    <resource ware="ore" quantity="536" />
+  </factory>
+  <factory id="computerPlant-argon" race="argon" cycle="96" price="1733468">
+    <product ware="computerComponents" quantity="2" />
+    <resource ware="energyCells" quantity="24" />
+    <resource ware="meatsteakCahoonas" quantity="16" />
+    <resource ware="siliconWafers" quantity="1" />
+  </factory>
+  <factory id="computerPlant-boron" race="boron" cycle="96" price="1415340">
+    <product ware="computerComponents" quantity="2" />
+    <resource ware="energyCells" quantity="24" />
+    <resource ware="boFu" quantity="4" />
+    <resource ware="siliconWafers" quantity="1" />
+  </factory>
+  <factory id="computerPlant-paranid" race="paranid" cycle="96" price="1733468">
+    <product ware="computerComponents" quantity="10" />
+    <resource ware="energyCells" quantity="120" />
+    <resource ware="sojaHusk" quantity="16" />
+    <resource ware="siliconWafers" quantity="5" />
+  </factory>
+  <factory id="computerPlant-split" race="split" cycle="96" price="1655560">
+    <product ware="computerComponents" quantity="10" />
+    <resource ware="energyCells" quantity="120" />
+    <resource ware="rastarOil" quantity="12" />
+    <resource ware="siliconWafers" quantity="5" />
+  </factory>
+  <factory id="computerPlant-teladi" race="teladi" cycle="96" price="1415340">
+    <product ware="computerComponents" quantity="2" />
+    <resource ware="energyCells" quantity="24" />
+    <resource ware="nostropOil" quantity="16" />
+    <resource ware="siliconWafers" quantity="1" />
+  </factory>
+  <factory id="concussionImpulseGeneratorForge-argon" race="argon" cycle="8232" price="9572120">
+    <product ware="concussionImpulseGenerator" quantity="1" />
+    <resource ware="energyCells" quantity="2058" />
+    <resource ware="meatsteakCahoonas" quantity="1372" />
+    <resource ware="ore" quantity="343" />
+  </factory>
+  <factory id="concussionImpulseGeneratorForge-paranid" race="paranid" cycle="8232" price="9380204">
+    <product ware="concussionImpulseGenerator" quantity="5" />
+    <resource ware="energyCells" quantity="10290" />
+    <resource ware="sojaHusk" quantity="1372" />
+    <resource ware="ore" quantity="1715" />
+  </factory>
+  <factory id="concussionImpulseGeneratorForge-teladi" race="teladi" cycle="8232" price="8997476">
+    <product ware="concussionImpulseGenerator" quantity="1" />
+    <resource ware="energyCells" quantity="2058" />
+    <resource ware="nostropOil" quantity="1372" />
+    <resource ware="ore" quantity="343" />
+  </factory>
+  <factory id="crystalFab-argon" race="argon" cycle="480" price="3129332">
+    <product ware="crystals" quantity="16" />
+    <resource ware="energyCells" quantity="240" />
+    <resource ware="meatsteakCahoonas" quantity="160" />
+    <resource ware="siliconWafers" quantity="10" />
+  </factory>
+  <factory id="crystalFab-boron" race="boron" cycle="480" price="2973516">
+    <product ware="crystals" quantity="16" />
+    <resource ware="energyCells" quantity="240" />
+    <resource ware="boFu" quantity="40" />
+    <resource ware="siliconWafers" quantity="10" />
+  </factory>
+  <factory id="crystalFab-paranid" race="paranid" cycle="480" price="3440968">
+    <product ware="crystals" quantity="16" />
+    <resource ware="energyCells" quantity="240" />
+    <resource ware="sojaHusk" quantity="32" />
+    <resource ware="siliconWafers" quantity="10" />
+  </factory>
+  <factory id="crystalFab-split" race="split" cycle="480" price="3285148">
+    <product ware="crystals" quantity="16" />
+    <resource ware="energyCells" quantity="240" />
+    <resource ware="rastarOil" quantity="24" />
+    <resource ware="siliconWafers" quantity="10" />
+  </factory>
+  <factory id="crystalFab-teladi" race="teladi" cycle="480" price="3129332">
+    <product ware="crystals" quantity="16" />
+    <resource ware="energyCells" quantity="240" />
+    <resource ware="nostropOil" quantity="160" />
+    <resource ware="siliconWafers" quantity="10" />
+  </factory>
+  <factory id="cycloneMissileFactory-boron" race="boron" cycle="360" price="8823156">
+    <product ware="cycloneMissile" quantity="1" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="boFu" quantity="15" />
+    <resource ware="ore" quantity="15" />
+  </factory>
+  <factory id="cycloneMissileFactory-teladi" race="teladi" cycle="360" price="4161620">
+    <product ware="cycloneMissile" quantity="1" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="nostropOil" quantity="60" />
+    <resource ware="ore" quantity="15" />
+  </factory>
+  <factory id="disintegratorRiflesFab-split" race="split" cycle="960" price="2246368">
+    <product ware="disintegratorRifles" quantity="1" />
+    <resource ware="energyCells" quantity="240" />
+    <resource ware="rastarOil" quantity="24" />
+    <resource ware="ore" quantity="40" />
+  </factory>
+  <factory id="dragonflyMissileFactory-boron" race="boron" cycle="72" price="1045276">
+    <product ware="dragonflyMissile" quantity="4" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="boFu" quantity="3" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="dragonflyMissileFactory-split" race="split" cycle="72" price="954380">
+    <product ware="dragonflyMissile" quantity="20" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="rastarOil" quantity="9" />
+    <resource ware="ore" quantity="15" />
+  </factory>
+  <factory id="dreamFarmM-teladi" race="teladi" cycle="60" price="275016">
+    <product ware="swampPlant" quantity="4" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="dreamFarmL-teladi" race="teladi" cycle="60" price="687480">
+    <product ware="swampPlant" quantity="10" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+  <factory id="droneFactory-argon" race="argon" cycle="1056" price="2898204">
+    <product ware="fighterDrone" quantity="8" />
+    <resource ware="energyCells" quantity="264" />
+    <resource ware="massompowder" quantity="352" />
+    <resource ware="siliconWafers" quantity="11" />
+  </factory>
+  <factory id="droneFactory-split" race="split" cycle="1056" price="3035320">
+    <product ware="fighterDrone" quantity="8" />
+    <resource ware="energyCells" quantity="264" />
+    <resource ware="massompowder" quantity="352" />
+    <resource ware="siliconWafers" quantity="11" />
+  </factory>
+  <factory id="droneProductionFacility-teladi" race="teladi" cycle="960" price="2617732">
+    <product ware="freightDrone" quantity="1" />
+    <resource ware="energyCells" quantity="240" />
+    <resource ware="massompowder" quantity="320" />
+    <resource ware="siliconWafers" quantity="10" />
+  </factory>
+  <factory id="e.BoltChaingunAmmunitionForge-teladi" race="teladi" cycle="264" price="3538352">
+    <product ware="energyBoltChaingunAmmunition" quantity="12" />
+    <resource ware="energyCells" quantity="66" />
+    <resource ware="nostropOil" quantity="44" />
+    <resource ware="ore" quantity="11" />
+  </factory>
+  <factory id="energyBoltChaingunForge-teladi" race="teladi" cycle="3024" price="6396300">
+    <product ware="energyBoltChaingun" quantity="1" />
+    <resource ware="energyCells" quantity="756" />
+    <resource ware="nostropOil" quantity="504" />
+    <resource ware="ore" quantity="126" />
+  </factory>
+  <factory id="fireflyMissileFactory-argon" race="argon" cycle="72" price="714764">
+    <product ware="fireflyMissile" quantity="12" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="meatsteakCahoonas" quantity="12" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="firestormTorpedoFactory-argon" race="argon" cycle="1440" price="10952660">
+    <product ware="firestormTorpedo" quantity="1" />
+    <resource ware="energyCells" quantity="360" />
+    <resource ware="meatsteakCahoonas" quantity="240" />
+    <resource ware="ore" quantity="60" />
+  </factory>
+  <factory id="flailMissileProductionFacility-argon" race="argon" cycle="600" price="2876128">
+    <product ware="flailBarrageMissile" quantity="1" />
+    <resource ware="energyCells" quantity="150" />
+    <resource ware="meatsteakCahoonas" quantity="100" />
+    <resource ware="ore" quantity="25" />
+  </factory>
+  <factory id="flailMissileProductionFacility-boron" race="boron" cycle="600" price="2876128">
+    <product ware="flailBarrageMissile" quantity="1" />
+    <resource ware="energyCells" quantity="150" />
+    <resource ware="boFu" quantity="25" />
+    <resource ware="ore" quantity="25" />
+  </factory>
+  <factory id="flailMissileProductionFacility-paranid" race="paranid" cycle="600" price="2876128">
+    <product ware="flailBarrageMissile" quantity="1" />
+    <resource ware="energyCells" quantity="150" />
+    <resource ware="sojaHusk" quantity="20" />
+    <resource ware="ore" quantity="25" />
+  </factory>
+  <factory id="flailMissileProductionFacility-split" race="split" cycle="600" price="2876128">
+    <product ware="flailBarrageMissile" quantity="1" />
+    <resource ware="energyCells" quantity="150" />
+    <resource ware="rastarOil" quantity="15" />
+    <resource ware="ore" quantity="25" />
+  </factory>
+  <factory id="flailMissileProductionFacility-teladi" race="teladi" cycle="600" price="2876128">
+    <product ware="flailBarrageMissile" quantity="1" />
+    <resource ware="energyCells" quantity="150" />
+    <resource ware="nostropOil" quantity="100" />
+    <resource ware="ore" quantity="25" />
+  </factory>
+  <factory id="flakArtilleryArrayForge-teladi" race="teladi" cycle="12600" price="11390248">
+    <product ware="flakArtilleryArray" quantity="1" />
+    <resource ware="energyCells" quantity="3150" />
+    <resource ware="nostropOil" quantity="2100" />
+    <resource ware="ore" quantity="525" />
+  </factory>
+  <factory id="flowerFarmM-teladi" race="teladi" cycle="60" price="360004">
+    <product ware="sunriseFlowers" quantity="30" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="flowerFarmL-teladi" race="teladi" cycle="60" price="899976">
+    <product ware="sunriseFlowers" quantity="75" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+  <factory id="fragmentationBombLauncherForge-paranid" race="paranid" cycle="20640" price="5126392">
+    <product ware="fragmentationBombLauncher" quantity="5" />
+    <resource ware="energyCells" quantity="5160" />
+    <resource ware="sojaHusk" quantity="688" />
+    <resource ware="ore" quantity="860" />
+  </factory>
+  <factory id="gaussCannonAmmunitionForge-teladi" race="teladi" cycle="840" price="4187592">
+    <product ware="gaussCannonAmmunition" quantity="4" />
+    <resource ware="energyCells" quantity="210" />
+    <resource ware="nostropOil" quantity="140" />
+    <resource ware="ore" quantity="35" />
+  </factory>
+  <factory id="gaussCannonForge-teladi" race="teladi" cycle="13752" price="12091424">
+    <product ware="gaussCannon" quantity="1" />
+    <resource ware="energyCells" quantity="3438" />
+    <resource ware="nostropOil" quantity="2292" />
+    <resource ware="ore" quantity="573" />
+  </factory>
+  <factory id="hammerTorpedoFabricationFacility-argon" race="argon" cycle="1800" price="2876128">
+    <product ware="hammerHeavyTorpedo" quantity="2" />
+    <resource ware="energyCells" quantity="450" />
+    <resource ware="meatsteakCahoonas" quantity="300" />
+    <resource ware="ore" quantity="75" />
+  </factory>
+  <factory id="hammerTorpedoFabricationFacility-boron" race="boron" cycle="1800" price="2876128">
+    <product ware="hammerHeavyTorpedo" quantity="2" />
+    <resource ware="energyCells" quantity="450" />
+    <resource ware="boFu" quantity="75" />
+    <resource ware="ore" quantity="75" />
+  </factory>
+  <factory id="hammerTorpedoFabricationFacility-paranid" race="paranid" cycle="1800" price="2876128">
+    <product ware="hammerHeavyTorpedo" quantity="2" />
+    <resource ware="energyCells" quantity="450" />
+    <resource ware="sojaHusk" quantity="60" />
+    <resource ware="ore" quantity="75" />
+  </factory>
+  <factory id="hammerTorpedoFabricationFacility-split" race="split" cycle="1800" price="2876128">
+    <product ware="hammerHeavyTorpedo" quantity="2" />
+    <resource ware="energyCells" quantity="450" />
+    <resource ware="rastarOil" quantity="45" />
+    <resource ware="ore" quantity="75" />
+  </factory>
+  <factory id="hammerTorpedoFabricationFacility-teladi" race="teladi" cycle="1800" price="2876128">
+    <product ware="hammerHeavyTorpedo" quantity="2" />
+    <resource ware="energyCells" quantity="450" />
+    <resource ware="nostropOil" quantity="300" />
+    <resource ware="ore" quantity="75" />
+  </factory>
+  <factory id="highEnergyPlasmaThrowerForge-argon" race="argon" cycle="2880" price="6850768">
+    <product ware="highEnergyPlasmaThrower" quantity="1" />
+    <resource ware="energyCells" quantity="720" />
+    <resource ware="meatsteakCahoonas" quantity="480" />
+    <resource ware="ore" quantity="120" />
+  </factory>
+  <factory id="highEnergyPlasmaThrowerForge-paranid" race="paranid" cycle="2880" price="6713716">
+    <product ware="highEnergyPlasmaThrower" quantity="1" />
+    <resource ware="energyCells" quantity="720" />
+    <resource ware="sojaHusk" quantity="96" />
+    <resource ware="ore" quantity="120" />
+  </factory>
+  <factory id="highEnergyPlasmaThrowerForge-split" race="split" cycle="2880" price="6987760">
+    <product ware="highEnergyPlasmaThrower" quantity="1" />
+    <resource ware="energyCells" quantity="720" />
+    <resource ware="rastarOil" quantity="72" />
+    <resource ware="ore" quantity="120" />
+  </factory>
+  <factory id="highEnergyPlasmaThrowerForge-teladi" race="teladi" cycle="2880" price="6439672">
+    <product ware="highEnergyPlasmaThrower" quantity="1" />
+    <resource ware="energyCells" quantity="720" />
+    <resource ware="nostropOil" quantity="480" />
+    <resource ware="ore" quantity="120" />
+  </factory>
+  <factory id="hornetMissileFactory-paranid" race="paranid" cycle="360" price="2934560">
+    <product ware="hornetMissile" quantity="2" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="sojaHusk" quantity="12" />
+    <resource ware="ore" quantity="15" />
+  </factory>
+  <factory id="hurricaneMissileFactory-paranid" race="paranid" cycle="360" price="2447632">
+    <product ware="hurricaneMissile" quantity="5" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="sojaHusk" quantity="12" />
+    <resource ware="ore" quantity="15" />
+  </factory>
+  <factory id="impulseRayEmitterForge-argon" race="argon" cycle="96" price="2721092">
+    <product ware="impulseRayEmitter" quantity="1" />
+    <resource ware="energyCells" quantity="24" />
+    <resource ware="meatsteakCahoonas" quantity="16" />
+    <resource ware="ore" quantity="4" />
+  </factory>
+  <factory id="impulseRayEmitterForge-boron" race="boron" cycle="96" price="2572804">
+    <product ware="impulseRayEmitter" quantity="1" />
+    <resource ware="energyCells" quantity="24" />
+    <resource ware="boFu" quantity="4" />
+    <resource ware="ore" quantity="4" />
+  </factory>
+  <factory id="impulseRayEmitterForge-split" race="split" cycle="96" price="2362060">
+    <product ware="impulseRayEmitter" quantity="5" />
+    <resource ware="energyCells" quantity="120" />
+    <resource ware="rastarOil" quantity="12" />
+    <resource ware="ore" quantity="20" />
+  </factory>
+  <factory id="impulseRayEmitterForge-teladi" race="teladi" cycle="96" price="2565792">
+    <product ware="impulseRayEmitter" quantity="1" />
+    <resource ware="energyCells" quantity="24" />
+    <resource ware="nostropOil" quantity="16" />
+    <resource ware="ore" quantity="4" />
+  </factory>
+  <factory id="ionCannonForge-boron" race="boron" cycle="17688" price="14096276">
+    <product ware="ionCannon" quantity="1" />
+    <resource ware="energyCells" quantity="4422" />
+    <resource ware="boFu" quantity="737" />
+    <resource ware="ore" quantity="737" />
+  </factory>
+  <factory id="ionDisruptorForge-boron" race="boron" cycle="5160" price="10461836">
+    <product ware="ionDisruptor" quantity="1" />
+    <resource ware="energyCells" quantity="1290" />
+    <resource ware="boFu" quantity="215" />
+    <resource ware="ore" quantity="215" />
+  </factory>
+  <factory id="ionMineFab-boron" race="boron" cycle="2040" price="2246368">
+    <product ware="ionMine" quantity="6" />
+    <resource ware="energyCells" quantity="510" />
+    <resource ware="boFu" quantity="85" />
+    <resource ware="ore" quantity="85" />
+  </factory>
+  <factory id="ionPulseGeneratorForge-boron" race="boron" cycle="8760" price="10434568">
+    <product ware="ionPulseGenerator" quantity="1" />
+    <resource ware="energyCells" quantity="2190" />
+    <resource ware="boFu" quantity="365" />
+    <resource ware="ore" quantity="365" />
+  </factory>
+  <factory id="ionShardRailgunForge-split" race="split" cycle="40440" price="10065800">
+    <product ware="ionShardRailgun" quantity="5" />
+    <resource ware="energyCells" quantity="10110" />
+    <resource ware="rastarOil" quantity="1011" />
+    <resource ware="ore" quantity="1685" />
+  </factory>
+  <factory id="lasertowerFactory-argon" race="argon" cycle="5640" price="1220568">
+    <product ware="lasertower" quantity="1" />
+    <resource ware="energyCells" quantity="1410" />
+    <resource ware="meatsteakCahoonas" quantity="940" />
+    <resource ware="ore" quantity="235" />
+  </factory>
+  <factory id="lasertowerFactory-paranid" race="paranid" cycle="5640" price="1220568">
+    <product ware="lasertower" quantity="1" />
+    <resource ware="energyCells" quantity="1410" />
+    <resource ware="sojaHusk" quantity="188" />
+    <resource ware="ore" quantity="235" />
+  </factory>
+  <factory id="lasertowerFactory-split" race="split" cycle="5640" price="1103708">
+    <product ware="lasertower" quantity="1" />
+    <resource ware="energyCells" quantity="1410" />
+    <resource ware="rastarOil" quantity="141" />
+    <resource ware="ore" quantity="235" />
+  </factory>
+  <factory id="lowYieldSidearmsFab-argon" race="argon" cycle="480" price="2246368">
+    <product ware="lowYieldSidearms" quantity="1" />
+    <resource ware="energyCells" quantity="120" />
+    <resource ware="meatsteakCahoonas" quantity="80" />
+    <resource ware="ore" quantity="20" />
+  </factory>
+  <factory id="lowYieldSidearmsFab-paranid" race="paranid" cycle="480" price="2246368">
+    <product ware="lowYieldSidearms" quantity="1" />
+    <resource ware="energyCells" quantity="120" />
+    <resource ware="sojaHusk" quantity="16" />
+    <resource ware="ore" quantity="20" />
+  </factory>
+  <factory id="lowYieldSidearmsFab-split" race="split" cycle="480" price="2246368">
+    <product ware="lowYieldSidearms" quantity="1" />
+    <resource ware="energyCells" quantity="120" />
+    <resource ware="rastarOil" quantity="12" />
+    <resource ware="ore" quantity="20" />
+  </factory>
+  <factory id="lowYieldSidearmsFab-teladi" race="teladi" cycle="480" price="2246368">
+    <product ware="lowYieldSidearms" quantity="1" />
+    <resource ware="energyCells" quantity="120" />
+    <resource ware="nostropOil" quantity="80" />
+    <resource ware="ore" quantity="20" />
+  </factory>
+  <factory id="massDriverForge-split" race="split" cycle="12840" price="4212260">
+    <product ware="massDriver" quantity="5" />
+    <resource ware="energyCells" quantity="3210" />
+    <resource ware="rastarOil" quantity="321" />
+    <resource ware="ore" quantity="535" />
+  </factory>
+  <factory id="massomMillM-split" race="split" cycle="60" price="804992">
+    <product ware="massompowder" quantity="40" />
+    <resource ware="energyCells" quantity="30" />
+    <resource ware="scruffinFruits" quantity="30" />
+  </factory>
+  <factory id="massomMillL-split" race="split" cycle="60" price="2012512">
+    <product ware="massompowder" quantity="100" />
+    <resource ware="energyCells" quantity="75" />
+    <resource ware="scruffinFruits" quantity="75" />
+  </factory>
+  <factory id="mobileDrillingSystemFactory-paranid" race="paranid" cycle="8640" price="4264200">
+    <product ware="mobileDrillingSystem" quantity="5" />
+    <resource ware="energyCells" quantity="2160" />
+    <resource ware="sojaHusk" quantity="288" />
+    <resource ware="ore" quantity="360" />
+  </factory>
+  <factory id="mobileDrillingSystemFactory-teladi" race="teladi" cycle="8640" price="3682484">
+    <product ware="mobileDrillingSystem" quantity="1" />
+    <resource ware="energyCells" quantity="432" />
+    <resource ware="nostropOil" quantity="288" />
+    <resource ware="ore" quantity="72" />
+  </factory>
+  <factory id="mosquitoMissileFactory-argon" race="argon" cycle="72" price="603792">
+    <product ware="mosquitoMissile" quantity="18" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="meatsteakCahoonas" quantity="12" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="mosquitoMissileFactory-boron" race="boron" cycle="72" price="551852">
+    <product ware="mosquitoMissile" quantity="18" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="boFu" quantity="3" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="mosquitoMissileFactory-teladi" race="teladi" cycle="72" price="525884">
+    <product ware="mosquitoMissile" quantity="18" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="nostropOil" quantity="12" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="oreMineM-argon" race="argon" cycle="72" price="449988" type="mine">
+    <product ware="ore" quantity="6" />
+    <resource ware="energyCells" quantity="36" />
+  </factory>
+  <factory id="oreMineL-argon" race="argon" cycle="72" price="905688" type="mine">
+    <product ware="ore" quantity="15" />
+    <resource ware="energyCells" quantity="90" />
+  </factory>
+  <factory id="oreMineM-boron" race="boron" cycle="72" price="549972" type="mine">
+    <product ware="ore" quantity="6" />
+    <resource ware="energyCells" quantity="36" />
+  </factory>
+  <factory id="oreMineL-boron" race="boron" cycle="72" price="1139416" type="mine">
+    <product ware="ore" quantity="15" />
+    <resource ware="energyCells" quantity="90" />
+  </factory>
+  <factory id="oreMineM-paranid" race="paranid" cycle="72" price="494980" type="mine">
+    <product ware="ore" quantity="6" />
+    <resource ware="energyCells" quantity="36" />
+  </factory>
+  <factory id="oreMineL-paranid" race="paranid" cycle="72" price="993336" type="mine">
+    <product ware="ore" quantity="15" />
+    <resource ware="energyCells" quantity="90" />
+  </factory>
+  <factory id="oreMineM-split" race="split" cycle="72" price="409020" type="mine">
+    <product ware="ore" quantity="6" />
+    <resource ware="energyCells" quantity="36" />
+  </factory>
+  <factory id="oreMineL-split" race="split" cycle="72" price="818040" type="mine">
+    <product ware="ore" quantity="15" />
+    <resource ware="energyCells" quantity="90" />
+  </factory>
+  <factory id="oreMineM-teladi" race="teladi" cycle="72" price="424992" type="mine">
+    <product ware="ore" quantity="6" />
+    <resource ware="energyCells" quantity="36" />
+  </factory>
+  <factory id="oreMineL-teladi" race="teladi" cycle="72" price="849984" type="mine">
+    <product ware="ore" quantity="15" />
+    <resource ware="energyCells" quantity="90" />
+  </factory>
+  <factory id="particleAcceleratorCannonForge-argon" race="argon" cycle="840" price="4196680">
+    <product ware="particleAcceleratorCannon" quantity="1" />
+    <resource ware="energyCells" quantity="210" />
+    <resource ware="meatsteakCahoonas" quantity="140" />
+    <resource ware="ore" quantity="35" />
+  </factory>
+  <factory id="particleAcceleratorCannonForge-boron" race="boron" cycle="840" price="4028788">
+    <product ware="particleAcceleratorCannon" quantity="1" />
+    <resource ware="energyCells" quantity="210" />
+    <resource ware="boFu" quantity="35" />
+    <resource ware="ore" quantity="35" />
+  </factory>
+  <factory id="particleAcceleratorCannonForge-paranid" race="paranid" cycle="840" price="4112732">
+    <product ware="particleAcceleratorCannon" quantity="1" />
+    <resource ware="energyCells" quantity="210" />
+    <resource ware="sojaHusk" quantity="28" />
+    <resource ware="ore" quantity="35" />
+  </factory>
+  <factory id="phasedRepeaterGunForge-argon" race="argon" cycle="3072" price="4856308">
+    <product ware="phasedRepeaterGun" quantity="1" />
+    <resource ware="energyCells" quantity="768" />
+    <resource ware="meatsteakCahoonas" quantity="512" />
+    <resource ware="ore" quantity="128" />
+  </factory>
+  <factory id="phasedShockwaveGeneratorForge-paranid" race="paranid" cycle="11400" price="8917944">
+    <product ware="phasedShockwaveGenerator" quantity="1" />
+    <resource ware="energyCells" quantity="2850" />
+    <resource ware="sojaHusk" quantity="380" />
+    <resource ware="ore" quantity="475" />
+  </factory>
+  <factory id="photonPulseCannonForge-argon" race="argon" cycle="17280" price="12777020">
+    <product ware="photonPulseCannon" quantity="1" />
+    <resource ware="energyCells" quantity="4320" />
+    <resource ware="meatsteakCahoonas" quantity="2880" />
+    <resource ware="ore" quantity="720" />
+  </factory>
+  <factory id="photonPulseCannonForge-boron" race="boron" cycle="17280" price="12265940">
+    <product ware="photonPulseCannon" quantity="1" />
+    <resource ware="energyCells" quantity="4320" />
+    <resource ware="boFu" quantity="720" />
+    <resource ware="ore" quantity="720" />
+  </factory>
+  <factory id="photonPulseCannonForge-paranid" race="paranid" cycle="17280" price="12521480">
+    <product ware="photonPulseCannon" quantity="1" />
+    <resource ware="energyCells" quantity="4320" />
+    <resource ware="sojaHusk" quantity="576" />
+    <resource ware="ore" quantity="720" />
+  </factory>
+  <factory id="photonPulseCannonForge-split" race="split" cycle="17280" price="13032560">
+    <product ware="photonPulseCannon" quantity="1" />
+    <resource ware="energyCells" quantity="4320" />
+    <resource ware="rastarOil" quantity="432" />
+    <resource ware="ore" quantity="720" />
+  </factory>
+  <factory id="planktonFarmM-boron" race="boron" cycle="60" price="320008">
+    <product ware="plankton" quantity="30" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="planktonFarmL-boron" race="boron" cycle="60" price="799992">
+    <product ware="plankton" quantity="75" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+  <factory id="pulsedBeamEmitterForge-split" race="split" cycle="4800" price="9068568">
+    <product ware="pulsedBeamEmitter" quantity="1" />
+    <resource ware="energyCells" quantity="1200" />
+    <resource ware="rastarOil" quantity="120" />
+    <resource ware="ore" quantity="200" />
+  </factory>
+  <factory id="quantumTubeFab-argon" race="argon" cycle="2400" price="4135652">
+    <product ware="quantumTubes" quantity="24" />
+    <resource ware="energyCells" quantity="600" />
+    <resource ware="meatsteakCahoonas" quantity="400" />
+    <resource ware="siliconWafers" quantity="25" />
+  </factory>
+  <factory id="quantumTubeFab-boron" race="boron" cycle="2400" price="5051080">
+    <product ware="quantumTubes" quantity="24" />
+    <resource ware="energyCells" quantity="600" />
+    <resource ware="sojaHusk" quantity="80" />
+    <resource ware="siliconWafers" quantity="25" />
+  </factory>
+  <factory id="quantumTubeFab-paranid" race="paranid" cycle="2400" price="4590120">
+    <product ware="quantumTubes" quantity="24" />
+    <resource ware="energyCells" quantity="600" />
+    <resource ware="sojaHusk" quantity="80" />
+    <resource ware="siliconWafers" quantity="25" />
+  </factory>
+  <factory id="quantumTubeFab-split" race="split" cycle="2400" price="4590120">
+    <product ware="quantumTubes" quantity="24" />
+    <resource ware="energyCells" quantity="600" />
+    <resource ware="rastarOil" quantity="60" />
+    <resource ware="siliconWafers" quantity="25" />
+  </factory>
+  <factory id="quantumTubeFab-teladi" race="teladi" cycle="2400" price="4135652">
+    <product ware="quantumTubes" quantity="24" />
+    <resource ware="energyCells" quantity="600" />
+    <resource ware="nostropOil" quantity="400" />
+    <resource ware="siliconWafers" quantity="25" />
+  </factory>
+  <factory id="rastarRefineryM-split" race="split" cycle="80" price="1116692">
+    <product ware="rastarOil" quantity="4" />
+    <resource ware="energyCells" quantity="40" />
+    <resource ware="cheltsMeat" quantity="8" />
+  </factory>
+  <factory id="rastarRefineryL-split" race="split" cycle="80" price="2512556">
+    <product ware="rastarOil" quantity="10" />
+    <resource ware="energyCells" quantity="100" />
+    <resource ware="cheltsMeat" quantity="20" />
+  </factory>
+  <factory id="reconDroneConstructionFacility-boron" race="boron" cycle="12000" price="2349724">
+    <product ware="reconDrone" quantity="12" />
+    <resource ware="energyCells" quantity="3000" />
+    <resource ware="boFu" quantity="500" />
+    <resource ware="siliconWafers" quantity="125" />
+  </factory>
+  <factory id="rimesFactoryM-argon" race="argon" cycle="72" price="799992">
+    <product ware="clothRimes" quantity="6" />
+    <resource ware="energyCells" quantity="36" />
+    <resource ware="delexianWheat" quantity="24" />
+  </factory>
+  <factory id="rimesFactoryL-argon" race="argon" cycle="72" price="1999980">
+    <product ware="clothRimes" quantity="15" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="delexianWheat" quantity="60" />
+  </factory>
+  <factory id="satelliteFactory-argon" race="argon" cycle="1056" price="746624">
+    <product ware="navigationRelaySatellite" quantity="4" />
+    <resource ware="energyCells" quantity="264" />
+    <resource ware="majaglit" quantity="352" />
+    <resource ware="siliconWafers" quantity="11" />
+  </factory>
+  <factory id="satelliteFactory-boron" race="boron" cycle="1056" price="876472">
+    <product ware="navigationRelaySatellite" quantity="4" />
+    <resource ware="energyCells" quantity="264" />
+    <resource ware="majaglit" quantity="352" />
+    <resource ware="siliconWafers" quantity="11" />
+  </factory>
+  <factory id="satelliteFactory-split" race="split" cycle="1056" price="967364">
+    <product ware="navigationRelaySatellite" quantity="4" />
+    <resource ware="energyCells" quantity="264" />
+    <resource ware="majaglit" quantity="352" />
+    <resource ware="siliconWafers" quantity="11" />
+  </factory>
+  <factory id="satelliteFactory-teladi" race="teladi" cycle="1056" price="831024">
+    <product ware="navigationRelaySatellite" quantity="4" />
+    <resource ware="energyCells" quantity="264" />
+    <resource ware="majaglit" quantity="352" />
+    <resource ware="siliconWafers" quantity="11" />
+  </factory>
+  <factory id="scruffinFarmM-split" race="split" cycle="60" price="320008">
+    <product ware="scruffinFruits" quantity="30" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="scruffinFarmL-split" race="split" cycle="60" price="799992">
+    <product ware="scruffinFruits" quantity="75" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+  <factory id="shieldProductionFacility1GJ-boron" race="boron" cycle="5760" price="8159636">
+    <product ware="1GJShield" quantity="1" />
+    <resource ware="energyCells" quantity="1440" />
+    <resource ware="boFu" quantity="240" />
+    <resource ware="ore" quantity="240" />
+  </factory>
+  <factory id="shieldProductionFacility1GJ-split" race="split" cycle="5760" price="9063376">
+    <product ware="1GJShield" quantity="1" />
+    <resource ware="energyCells" quantity="1440" />
+    <resource ware="rastarOil" quantity="144" />
+    <resource ware="ore" quantity="240" />
+  </factory>
+  <factory id="shieldProductionFacility1MJ-argon" race="argon" cycle="1560" price="1630888">
+    <product ware="1MJShield" quantity="12" />
+    <resource ware="energyCells" quantity="390" />
+    <resource ware="meatsteakCahoonas" quantity="260" />
+    <resource ware="ore" quantity="65" />
+  </factory>
+  <factory id="shieldProductionFacility1MJ-teladi" race="teladi" cycle="1560" price="1485460">
+    <product ware="1MJShield" quantity="12" />
+    <resource ware="energyCells" quantity="390" />
+    <resource ware="nostropOil" quantity="260" />
+    <resource ware="ore" quantity="65" />
+  </factory>
+  <factory id="shieldProductionFacility200MJ-argon" race="argon" cycle="3240" price="6336572">
+    <product ware="200MJShield" quantity="1" />
+    <resource ware="energyCells" quantity="810" />
+    <resource ware="meatsteakCahoonas" quantity="540" />
+    <resource ware="ore" quantity="135" />
+  </factory>
+  <factory id="shieldProductionFacility200MJ-boron" race="boron" cycle="3240" price="5386084">
+    <product ware="200MJShield" quantity="1" />
+    <resource ware="energyCells" quantity="810" />
+    <resource ware="boFu" quantity="135" />
+    <resource ware="ore" quantity="135" />
+  </factory>
+  <factory id="shieldProductionFacility25MJ-paranid" race="paranid" cycle="1920" price="3999312">
+    <product ware="25MJShield" quantity="1" />
+    <resource ware="energyCells" quantity="480" />
+    <resource ware="sojaHusk" quantity="64" />
+    <resource ware="ore" quantity="80" />
+  </factory>
+  <factory id="shieldProductionFacility25MJ-split" race="split" cycle="1920" price="3427980">
+    <product ware="25MJShield" quantity="1" />
+    <resource ware="energyCells" quantity="480" />
+    <resource ware="rastarOil" quantity="48" />
+    <resource ware="ore" quantity="80" />
+  </factory>
+  <factory id="shieldProductionFacility2GJ-argon" race="argon" cycle="15360" price="12268020">
+    <product ware="2GJShield" quantity="1" />
+    <resource ware="energyCells" quantity="3840" />
+    <resource ware="meatsteakCahoonas" quantity="2560" />
+    <resource ware="ore" quantity="640" />
+  </factory>
+  <factory id="shieldProductionFacility2GJ-paranid" race="paranid" cycle="15360" price="13561300">
+    <product ware="2GJShield" quantity="1" />
+    <resource ware="energyCells" quantity="3840" />
+    <resource ware="sojaHusk" quantity="512" />
+    <resource ware="ore" quantity="640" />
+  </factory>
+  <factory id="shieldProductionFacility5MJ-paranid" race="paranid" cycle="3000" price="2150280">
+    <product ware="5MJShield" quantity="6" />
+    <resource ware="energyCells" quantity="750" />
+    <resource ware="sojaHusk" quantity="100" />
+    <resource ware="ore" quantity="125" />
+  </factory>
+  <factory id="shieldProductionFacility5MJ-teladi" race="teladi" cycle="3000" price="2041208">
+    <product ware="5MJShield" quantity="6" />
+    <resource ware="energyCells" quantity="750" />
+    <resource ware="nostropOil" quantity="500" />
+    <resource ware="ore" quantity="125" />
+  </factory>
+  <factory id="siliconMineM-argon" race="argon" cycle="93" price="549972" type="mine">
+    <product ware="siliconWafers" quantity="2" />
+    <resource ware="energyCells" quantity="48" />
+  </factory>
+  <factory id="siliconMineL-argon" race="argon" cycle="93" price="1139416" type="mine">
+    <product ware="siliconWafers" quantity="5" />
+    <resource ware="energyCells" quantity="120" />
+  </factory>
+  <factory id="siliconMineM-boron" race="boron" cycle="93" price="623268" type="mine">
+    <product ware="siliconWafers" quantity="2" />
+    <resource ware="energyCells" quantity="48" />
+  </factory>
+  <factory id="siliconMineL-boron" race="boron" cycle="93" price="1402356" type="mine">
+    <product ware="siliconWafers" quantity="5" />
+    <resource ware="energyCells" quantity="120" />
+  </factory>
+  <factory id="siliconMineM-paranid" race="paranid" cycle="93" price="545360" type="mine">
+    <product ware="siliconWafers" quantity="2" />
+    <resource ware="energyCells" quantity="48" />
+  </factory>
+  <factory id="siliconMineL-paranid" race="paranid" cycle="93" price="1227060" type="mine">
+    <product ware="siliconWafers" quantity="5" />
+    <resource ware="energyCells" quantity="120" />
+  </factory>
+  <factory id="siliconMineM-split" race="split" cycle="93" price="499980" type="mine">
+    <product ware="siliconWafers" quantity="2" />
+    <resource ware="energyCells" quantity="48" />
+  </factory>
+  <factory id="siliconMineL-split" race="split" cycle="93" price="1022552" type="mine">
+    <product ware="siliconWafers" quantity="5" />
+    <resource ware="energyCells" quantity="120" />
+  </factory>
+  <factory id="siliconMineM-teladi" race="teladi" cycle="93" price="449988" type="mine">
+    <product ware="siliconWafers" quantity="2" />
+    <resource ware="energyCells" quantity="48" />
+  </factory>
+  <factory id="siliconMineL-teladi" race="teladi" cycle="93" price="905688" type="mine">
+    <product ware="siliconWafers" quantity="5" />
+    <resource ware="energyCells" quantity="120" />
+  </factory>
+  <factory id="silkwormMissileFactory-argon" race="argon" cycle="360" price="2876128">
+    <product ware="silkwormMissile" quantity="4" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="meatsteakCahoonas" quantity="60" />
+    <resource ware="ore" quantity="15" />
+  </factory>
+  <factory id="silkwormMissileFactory-split" race="split" cycle="360" price="3012468">
+    <product ware="silkwormMissile" quantity="4" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="rastarOil" quantity="9" />
+    <resource ware="ore" quantity="15" />
+  </factory>
+  <factory id="silkwormMissileFactory-teladi" race="teladi" cycle="360" price="2739788">
+    <product ware="silkwormMissile" quantity="4" />
+    <resource ware="energyCells" quantity="90" />
+    <resource ware="nostropOil" quantity="60" />
+    <resource ware="ore" quantity="15" />
+  </factory>
+  <factory id="snailRanchM-paranid" race="paranid" cycle="60" price="300012">
+    <product ware="majaSnails" quantity="4" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="snailRanchL-paranid" race="paranid" cycle="60" price="750000">
+    <product ware="majaSnails" quantity="10" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+  <factory id="solarPowerPlantM-argon" race="argon" cycle="118" price="4895260" type="solar">
+    <product ware="energyCells" quantity="552" />
+    <resource ware="crystals" quantity="4" />
+  </factory>
+  <factory id="solarPowerPlantL-argon" race="argon" cycle="118" price="11014336" type="solar">
+    <product ware="energyCells" quantity="1380" />
+    <resource ware="crystals" quantity="10" />
+  </factory>
+  <factory id="solarPowerPlantXL-argon" race="argon" cycle="118" price="19581044" type="solar">
+    <product ware="energyCells" quantity="2760" />
+    <resource ware="crystals" quantity="20" />
+  </factory>
+  <factory id="solarPowerPlantM-boron" race="boron" cycle="118" price="4401840" type="solar">
+    <product ware="energyCells" quantity="552" />
+    <resource ware="crystals" quantity="4" />
+  </factory>
+  <factory id="solarPowerPlantL-boron" race="boron" cycle="118" price="9904140" type="solar">
+    <product ware="energyCells" quantity="1380" />
+    <resource ware="crystals" quantity="10" />
+  </factory>
+  <factory id="solarPowerPlantXL-boron" race="boron" cycle="118" price="17607360" type="solar">
+    <product ware="energyCells" quantity="2760" />
+    <resource ware="crystals" quantity="20" />
+  </factory>
+  <factory id="solarPowerPlantM-paranid" race="paranid" cycle="118" price="5141972" type="solar">
+    <product ware="energyCells" quantity="552" />
+    <resource ware="crystals" quantity="4" />
+  </factory>
+  <factory id="solarPowerPlantL-paranid" race="paranid" cycle="118" price="11569436" type="solar">
+    <product ware="energyCells" quantity="1380" />
+    <resource ware="crystals" quantity="10" />
+  </factory>
+  <factory id="solarPowerPlantXL-paranid" race="paranid" cycle="118" price="20567888" type="solar">
+    <product ware="energyCells" quantity="2760" />
+    <resource ware="crystals" quantity="20" />
+  </factory>
+  <factory id="solarPowerPlantM-split" race="split" cycle="118" price="5388684" type="solar">
+    <product ware="energyCells" quantity="552" />
+    <resource ware="crystals" quantity="4" />
+  </factory>
+  <factory id="solarPowerPlantL-split" race="split" cycle="118" price="12124536" type="solar">
+    <product ware="energyCells" quantity="1380" />
+    <resource ware="crystals" quantity="10" />
+  </factory>
+  <factory id="solarPowerPlantXL-split" race="split" cycle="118" price="21554732" type="solar">
+    <product ware="energyCells" quantity="2760" />
+    <resource ware="crystals" quantity="20" />
+  </factory>
+  <factory id="solarPowerPlantM-teladi" race="teladi" cycle="118" price="4648552" type="solar">
+    <product ware="energyCells" quantity="552" />
+    <resource ware="crystals" quantity="4" />
+  </factory>
+  <factory id="solarPowerPlantL-teladi" race="teladi" cycle="118" price="10459240" type="solar">
+    <product ware="energyCells" quantity="1380" />
+    <resource ware="crystals" quantity="10" />
+  </factory>
+  <factory id="solarPowerPlantXL-teladi" race="teladi" cycle="118" price="18594200" type="solar">
+    <product ware="energyCells" quantity="2760" />
+    <resource ware="crystals" quantity="20" />
+  </factory>
+  <factory id="soyeryM-paranid" race="paranid" cycle="60" price="1077736">
+    <product ware="sojaHusk" quantity="4" />
+    <resource ware="energyCells" quantity="30" />
+    <resource ware="sojaBeans" quantity="24" />
+  </factory>
+  <factory id="soyeryL-paranid" race="paranid" cycle="60" price="2087496">
+    <product ware="sojaHusk" quantity="10" />
+    <resource ware="energyCells" quantity="75" />
+    <resource ware="sojaBeans" quantity="60" />
+  </factory>
+  <factory id="soyfarmM-paranid" race="paranid" cycle="60" price="479984">
+    <product ware="sojaBeans" quantity="24" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="soyfarmL-paranid" race="paranid" cycle="60" price="1199988">
+    <product ware="sojaBeans" quantity="60" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+  <factory id="spaceFuelDistilleryM-argon" race="argon" cycle="96" price="1999980">
+    <product ware="spaceFuel" quantity="4" />
+    <resource ware="energyCells" quantity="48" />
+    <resource ware="delexianWheat" quantity="32" />
+  </factory>
+  <factory id="spaceFuelDistilleryL-argon" race="argon" cycle="96" price="5500028">
+    <product ware="spaceFuel" quantity="10" />
+    <resource ware="energyCells" quantity="120" />
+    <resource ware="delexianWheat" quantity="80" />
+  </factory>
+  <factory id="spaceJewelleryM-paranid" race="paranid" cycle="60" price="1181616">
+    <product ware="majaglit" quantity="40" />
+    <resource ware="energyCells" quantity="30" />
+    <resource ware="majaSnails" quantity="4" />
+  </factory>
+  <factory id="spaceJewelleryL-paranid" race="paranid" cycle="60" price="2658632">
+    <product ware="majaglit" quantity="100" />
+    <resource ware="energyCells" quantity="75" />
+    <resource ware="majaSnails" quantity="10" />
+  </factory>
+  <factory id="squashMineFactory-paranid" race="paranid" cycle="2040" price="2246368">
+    <product ware="sQUASHMine" quantity="6" />
+    <resource ware="energyCells" quantity="510" />
+    <resource ware="sojaHusk" quantity="68" />
+    <resource ware="ore" quantity="85" />
+  </factory>
+  <factory id="squashMineFactory-split" race="split" cycle="2040" price="2019132">
+    <product ware="sQUASHMine" quantity="6" />
+    <resource ware="energyCells" quantity="510" />
+    <resource ware="rastarOil" quantity="51" />
+    <resource ware="ore" quantity="85" />
+  </factory>
+  <factory id="squashMineFactory-teladi" race="teladi" cycle="2040" price="2473600">
+    <product ware="sQUASHMine" quantity="6" />
+    <resource ware="energyCells" quantity="510" />
+    <resource ware="nostropOil" quantity="340" />
+    <resource ware="ore" quantity="85" />
+  </factory>
+  <factory id="stottMixeryM-boron" race="boron" cycle="60" price="1103708">
+    <product ware="stottSpices" quantity="20" />
+    <resource ware="energyCells" quantity="30" />
+    <resource ware="plankton" quantity="30" />
+  </factory>
+  <factory id="stottMixeryL-boron" race="boron" cycle="60" price="2483340">
+    <product ware="stottSpices" quantity="50" />
+    <resource ware="energyCells" quantity="75" />
+    <resource ware="plankton" quantity="75" />
+  </factory>
+  <factory id="sunOilRefineryM-teladi" race="teladi" cycle="60" price="849984">
+    <product ware="nostropOil" quantity="20" />
+    <resource ware="energyCells" quantity="30" />
+    <resource ware="sunriseFlowers" quantity="30" />
+  </factory>
+  <factory id="sunOilRefineryL-teladi" race="teladi" cycle="60" price="2125024">
+    <product ware="nostropOil" quantity="50" />
+    <resource ware="energyCells" quantity="75" />
+    <resource ware="sunriseFlowers" quantity="75" />
+  </factory>
+  <factory id="teladianiumFoundryM-teladi" race="teladi" cycle="60" price="325008">
+    <product ware="teladianium" quantity="4" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="teladianiumFoundryL-teladi" race="teladi" cycle="60" price="811548">
+    <product ware="teladianium" quantity="10" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+  <factory id="tempestMissileFactory-boron" race="boron" cycle="240" price="7706464">
+    <product ware="tempestMissile" quantity="1" />
+    <resource ware="energyCells" quantity="60" />
+    <resource ware="boFu" quantity="10" />
+    <resource ware="ore" quantity="10" />
+  </factory>
+  <factory id="thunderboltMissileFactory-split" race="split" cycle="600" price="3025452">
+    <product ware="thunderboltMissile" quantity="4" />
+    <resource ware="energyCells" quantity="150" />
+    <resource ware="rastarOil" quantity="15" />
+    <resource ware="ore" quantity="25" />
+  </factory>
+  <factory id="tomahawkMissileManufacturingPlant-argon" race="argon" cycle="1200" price="2876128">
+    <product ware="tomahawkHeavyMissile" quantity="3" />
+    <resource ware="energyCells" quantity="300" />
+    <resource ware="meatsteakCahoonas" quantity="200" />
+    <resource ware="ore" quantity="50" />
+  </factory>
+  <factory id="tomahawkMissileManufacturingPlant-boron" race="boron" cycle="1200" price="2876128">
+    <product ware="tomahawkHeavyMissile" quantity="3" />
+    <resource ware="energyCells" quantity="300" />
+    <resource ware="boFu" quantity="50" />
+    <resource ware="ore" quantity="50" />
+  </factory>
+  <factory id="tomahawkMissileManufacturingPlant-paranid" race="paranid" cycle="1200" price="2876128">
+    <product ware="tomahawkHeavyMissile" quantity="3" />
+    <resource ware="energyCells" quantity="300" />
+    <resource ware="sojaHusk" quantity="40" />
+    <resource ware="ore" quantity="50" />
+  </factory>
+  <factory id="tomahawkMissileManufacturingPlant-split" race="split" cycle="1200" price="2876128">
+    <product ware="tomahawkHeavyMissile" quantity="3" />
+    <resource ware="energyCells" quantity="300" />
+    <resource ware="rastarOil" quantity="30" />
+    <resource ware="ore" quantity="50" />
+  </factory>
+  <factory id="tomahawkMissileManufacturingPlant-teladi" race="teladi" cycle="1200" price="2876128">
+    <product ware="tomahawkHeavyMissile" quantity="3" />
+    <resource ware="energyCells" quantity="300" />
+    <resource ware="nostropOil" quantity="200" />
+    <resource ware="ore" quantity="50" />
+  </factory>
+  <factory id="tornadoMissileFactory-split" race="split" cycle="600" price="5810688">
+    <product ware="tornadoMissile" quantity="2" />
+    <resource ware="energyCells" quantity="150" />
+    <resource ware="rastarOil" quantity="15" />
+    <resource ware="ore" quantity="25" />
+  </factory>
+  <factory id="trackerMineFactory-split" race="split" cycle="2040" price="2246368">
+    <product ware="trackerMine" quantity="3" />
+    <resource ware="energyCells" quantity="510" />
+    <resource ware="rastarOil" quantity="51" />
+    <resource ware="ore" quantity="85" />
+  </factory>
+  <factory id="tractorBeamFactory-paranid" race="paranid" cycle="69960" price="14200152">
+    <product ware="tractorBeam" quantity="5" />
+    <resource ware="energyCells" quantity="17490" />
+    <resource ware="sojaHusk" quantity="2332" />
+    <resource ware="ore" quantity="2915" />
+  </factory>
+  <factory id="typhoonMissileFactory-teladi" race="teladi" cycle="600" price="9141284">
+    <product ware="typhoonMissile" quantity="1" />
+    <resource ware="energyCells" quantity="150" />
+    <resource ware="nostropOil" quantity="100" />
+    <resource ware="ore" quantity="25" />
+  </factory>
+  <factory id="waspMissileFactory-argon" race="argon" cycle="72" price="1525712">
+    <product ware="waspMissile" quantity="3" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="meatsteakCahoonas" quantity="12" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="waspMissileFactory-paranid" race="paranid" cycle="72" price="1447804">
+    <product ware="waspMissile" quantity="5" />
+    <resource ware="energyCells" quantity="30" />
+    <resource ware="sojaHusk" quantity="4" />
+    <resource ware="ore" quantity="5" />
+  </factory>
+  <factory id="waspMissileFactory-split" race="split" cycle="72" price="1675036">
+    <product ware="waspMissile" quantity="5" />
+    <resource ware="energyCells" quantity="30" />
+    <resource ware="rastarOil" quantity="3" />
+    <resource ware="ore" quantity="5" />
+  </factory>
+  <factory id="weaponComponentFactory-argon" race="argon" cycle="72" price="720656">
+    <product ware="warheads" quantity="8" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="clothRimes" quantity="3" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="weaponComponentFactory-boron" race="boron" cycle="72" price="655732">
+    <product ware="warheads" quantity="8" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="clothRimes" quantity="3" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="weaponComponentFactory-paranid" race="paranid" cycle="72" price="623268">
+    <product ware="warheads" quantity="8" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="clothRimes" quantity="3" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="weaponComponentFactory-split" race="split" cycle="72" price="688192">
+    <product ware="warheads" quantity="8" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="clothRimes" quantity="3" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="weaponComponentFactory-teladi" race="teladi" cycle="72" price="655732">
+    <product ware="warheads" quantity="8" />
+    <resource ware="energyCells" quantity="18" />
+    <resource ware="clothRimes" quantity="3" />
+    <resource ware="ore" quantity="3" />
+  </factory>
+  <factory id="wheatFarmM-argon" race="argon" cycle="60" price="367016">
+    <product ware="delexianWheat" quantity="20" />
+    <resource ware="energyCells" quantity="30" />
+  </factory>
+  <factory id="wheatFarmL-argon" race="argon" cycle="60" price="917504">
+    <product ware="delexianWheat" quantity="50" />
+    <resource ware="energyCells" quantity="75" />
+  </factory>
+</factories>

@@ -1,0 +1,89 @@
+body
+{
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    color: #000000;       
+    margin: 5px; 
+}
+
+p
+{
+    margin: 0 0 9px 3px;
+}
+
+h1, h2
+{
+    font-family: Times New Roman, serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 0 9px 3px;
+    text-decoration: underline;
+}
+
+h2
+{
+	font-size: 11px;
+	margin-top: 15px;
+}
+
+table
+{
+	margin: 0 0 9px 0;
+}
+
+td, th
+{
+    text-align: left;
+    vertical-align: center;
+}
+
+tr.odd
+{
+	background-color: #eeeeee;
+}
+
+.factory, .ware
+{
+	text-align: left;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.quantity, .yield, .race
+{
+	text-align: center;
+	margin: 0 0 0 10px;
+	white-space: nowrap;
+}
+
+.price, .units, .missing, .surplus, .balanced, .profit
+{
+    text-align: right;
+    margin: 0 0 0 10px;
+	white-space: nowrap;
+}
+
+.singlePrice
+{
+	text-align: right;
+	white-space: nowrap;
+	margin: 0 0 0 10px;
+}
+
+.buttons
+{
+	text-align: right;
+	white-space: nowrap;
+}
+
+td.missing
+{
+	color: #ff0000;
+	font-weight: bold;
+}
+
+td.surplus
+{
+	color: #00cc00;
+	font-weight: bold;
+}
