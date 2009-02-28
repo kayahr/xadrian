@@ -185,6 +185,26 @@ public class Factory implements Serializable, Comparable<Factory>
     {
         return this.cycle;
     }
+    
+    
+    /**
+     * Returns the production cycle as a human readable time string.
+     * 
+     * @return The production cycle as a string
+     */
+    
+    public String getCycleAsString()
+    {
+        final int cycle = this.cycle;
+        if (cycle >= 24 * 60)
+            return String.format("%d:%02d:%02d", cycle / 24 / 60,
+                cycle % (24 * 60) / 60, cycle % 60);
+        else if (cycle >= 60)
+            return String.format("%d:%02d",
+                cycle / 60, cycle % 60);
+        else 
+            return Integer.toString(cycle);
+    }
 
 
     /**

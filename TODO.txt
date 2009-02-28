@@ -2,6 +2,10 @@
 * Save/Restore window preferences
 * Check all factory data
 * Translate to german 
-* Implement factory info in factory selection screen
 * Add Yes/no-to-all option in close all action.
 * Let user change the buy/sell prices of wares per complex.
+* Add Edit menu with copy/cut/paste stuff.
+* Add suns toolbar button.
+* Start application with open tab but after this point save/restore the tab states.
+* List cheapest factories in addfactory dialog.
+* List factories grouped by product in addfactory dialog.

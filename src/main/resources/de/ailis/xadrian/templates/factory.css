@@ -1,0 +1,31 @@
+body
+{
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    color: #000000;       
+    margin: 0;
+}
+
+p
+{
+    margin: 0 0 9px 0;
+}
+
+h1
+{
+    font-family: Times New Roman, serif;
+    font-size: 9px;
+    font-weight: bold;
+    margin: 0 0 9px 0;
+    text-decoration: underline;
+}
+
+dt
+{
+	font-weight: bold;
+}
+
+dd
+{
+	margin-left: 10px;
+}
