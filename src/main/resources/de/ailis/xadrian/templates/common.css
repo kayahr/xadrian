@@ -31,6 +31,11 @@ table
 	margin: 0 0 9px 0;
 }
 
+tr.sep td
+{
+	font-size: 2px;
+}
+
 td, th
 {
     text-align: left;
@@ -42,7 +47,7 @@ tr.odd
 	background-color: #eeeeee;
 }
 
-tr.auto
+tr.auto, tr.kits
 {
 	color: #888888;
 }

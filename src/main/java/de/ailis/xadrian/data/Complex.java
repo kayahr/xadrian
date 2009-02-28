@@ -38,8 +38,11 @@ public class Complex implements Serializable
     /** Serial version UID */
     private static final long serialVersionUID = 2128684141345704703L;
 
+    /** The single price of a complex construction kit */
+    private static final int KIT_PRICE = 259696;
+    
     /** The complex counter for the complex name generator */
-    private static int complexCounter = 0;
+    private static int complexCounter = 0;    
 
     /** The complex name */
     private String name;
@@ -152,7 +155,7 @@ public class Complex implements Serializable
             price +=
                 ((long) complexFactory.getQuantity())
                     * complexFactory.getFactory().getPrice();
-        return price;
+        return price + getTotalKitPrice();
     }
 
 
@@ -401,6 +404,7 @@ public class Complex implements Serializable
                 Integer.parseInt(element.attributeValue("quantity"));
             complex.addFactory(new ComplexFactory(factory, quantity, yield));
         }
+        complex.calculateBaseComplex();
         return complex;
     }
 
@@ -528,6 +532,42 @@ public class Complex implements Serializable
         }
         return profit;
     }
+    
+    
+    /**
+     * Returns the number of needed complex construction kits in this complex.
+     * 
+     * @return The number of needed complex construction kits.
+     */
+    
+    public int getKitQuantity()
+    {
+        return Math.max(0, getTotalQuantity() - 1);
+    }
+    
+    
+    /**
+     * Returns the price of a single complex construction kit.
+     * 
+     * @return The price of a single complex construction kit
+     */
+    
+    public int getKitPrice()
+    {
+        return KIT_PRICE;
+    }
+    
+    
+    /**
+     * Returns the total price of all needed complex construction kits.
+     * 
+     * @return The total price of all needed complex construction kits
+     */
+    
+    public int getTotalKitPrice()
+    {
+        return getKitQuantity() * getKitPrice();
+    }
 
 
     /**
@@ -537,6 +577,8 @@ public class Complex implements Serializable
 
     private void calculateBaseComplex()
     {
+        if (false) return;
+        
         // First of all remove all automatically added factories
         this.autoFactories.clear();
 
@@ -634,7 +676,7 @@ public class Complex implements Serializable
             final double product = factory.getProductPerHour(this.suns, 0).getQuantity();
             
             // Calculate the number of factories of the current size needed
-            final int quantity = (int) ((need + minProduction - 1) / product);
+            final int quantity = (int) (need + minProduction - 1) / (int) product;
             
             // Add the number of factories and decrease the need
             if (quantity > 0)

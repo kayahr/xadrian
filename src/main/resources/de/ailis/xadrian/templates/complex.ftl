@@ -57,39 +57,53 @@
             </td>
           </tr>
         [/#list]
-        <tr>
-          <td colspan="6"><hr /></td>
-          <td><hr /></td>
-        </tr>
-        [#list autoFactories as complexFactory]
-          [#assign factory=complexFactory.factory]
-          <tr class="auto">
-            <td class="factory">${factory.name}</td>
-            <td class="race">${factory.race.name}</td>
-            <td class="yield">
-              [#if complexFactory.factory.type == 'MINE']
-                ${complexFactory.yield}
-              [/#if]
-            </td>
-            <td class="quantity">
-              [#if complexFactory.factory.type != 'MINE']
-                ${complexFactory.quantity}
-              [#else]
-                ${complexFactory.quantity}
-              [/#if]
-            </td>
-            <td class="singlePrice">${factory.price} Cr</td>
-            <td class="price">${factory.price * complexFactory.quantity} Cr</td>
-            <td></td>       
+        [#if autoFactories?size > 0]
+          <tr class="sep"><td colspan="7"></td></tr>
+          [#list autoFactories as complexFactory]
+            [#assign factory=complexFactory.factory]
+            <tr class="auto">
+              <td class="factory">${factory.name}</td>
+              <td class="race">${factory.race.name}</td>
+              <td class="yield">
+                [#if complexFactory.factory.type == 'MINE']
+                  ${complexFactory.yield}
+                [/#if]
+              </td>
+              <td class="quantity">
+                [#if complexFactory.factory.type != 'MINE']
+                  ${complexFactory.quantity}
+                [#else]
+                  ${complexFactory.quantity}
+                [/#if]
+              </td>
+              <td class="singlePrice">${factory.price} Cr</td>
+              <td class="price">${factory.price * complexFactory.quantity} Cr</td>
+              <td></td>       
+            </tr>
+          [/#list]
+        [/#if]
+        [#if kitQuantity > 0]
+          <tr class="sep"><td colspan="7"></td></tr>
+          <tr class="kits">
+            <td class="factory">[@message key="complex.kit" /]</td>
+            <td colspan="2"></td>
+            <td class="quantity">${kitQuantity}</td>
+            <td class="singlePrice">${kitPrice} Cr</td>
+            <td class="price">${totalKitPrice} Cr</td>
           </tr>
-        [/#list]
+        [/#if]
         <tr>
           <td colspan="6"><hr /></td>
           <td><hr /></td>
         </tr>
         <tr>
           <th colspan="3">[@message key="complex.total" /]</th>
-          <td class="quantity">${totalQuantity}</td>
+          <td class="quantity">
+            ${totalQuantity}
+            [#if kitQuantity > 0]
+            (+${kitQuantity} [@message key="complex.kits" /])
+            [/#if]
+          </td>
           <td></td>
           <td class="price">${totalPrice} Cr</td>
           <td></td>
