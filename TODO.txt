@@ -1,0 +1,9 @@
+* Let user change the buy/sell prices of wares per complex.
+* Let user activate/deactivate base complex creation.
+* Odd/even bg colors for complex kits and auto factories.
+* Print complex.
+* Save/Restore window preferences
+* Check all factory data
+* Translate to german 
+* Implement factory info in factory selection screen
+* Add Yes/no-to-all option in close all action.
