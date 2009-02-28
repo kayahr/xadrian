@@ -178,6 +178,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         final String content = TemplateFactory.processTemplate(template,
             this.complex);
         this.textPane.setText(content);
+        this.textPane.setCaretPosition(0);
     }
 
 

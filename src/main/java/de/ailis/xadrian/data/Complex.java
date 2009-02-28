@@ -235,7 +235,7 @@ public class Complex implements Serializable
 
     public void acceptFactory(final int index)
     {
-        this.factories.add(this.autoFactories.get(index));
+        addFactory(this.autoFactories.get(index));
         calculateBaseComplex();
     }
 

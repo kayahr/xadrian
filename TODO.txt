@@ -1,6 +1,5 @@
 * Let user change the buy/sell prices of wares per complex.
 * Let user activate/deactivate base complex creation.
-* Try to not scroll the text pane on redraw.
 * Print complex.
 * Save/Restore window preferences
 * Check all factory data
