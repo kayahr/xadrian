@@ -468,4 +468,15 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
     {
         return this.changed;
     }
+    
+    
+    /**
+     * Toggles the addition of automatically calculated base complex.
+     */ 
+    
+    public void toggleAddBaseComplex()
+    {
+        this.complex.toggleAddBaseComplex();
+        this.redraw();
+    }
 }

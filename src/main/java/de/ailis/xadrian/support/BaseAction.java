@@ -54,7 +54,33 @@ public abstract class BaseAction extends AbstractAction
         setAccelerator(I18N.getAccelerator("action." + name));
         setToolTip(I18N.getToolTip("action." + name));
     }
-    
+
+
+    /**
+     * Sets the selection state.
+     * 
+     * @param selected
+     *            The selection state
+     */
+
+    protected void setSelected(final boolean selected)
+    {
+        putValue(Action.SELECTED_KEY, selected);
+    }
+
+
+    /**
+     * Checks if this action is selected.
+     * 
+     * @return True if action is selected, false if not
+     */
+
+    protected boolean isSelected()
+    {
+        final Boolean selected = (Boolean) getValue(Action.SELECTED_KEY);
+        return selected == null ? false : selected;
+    }
+
 
     /**
      * Sets the mnemonic.
@@ -67,8 +93,8 @@ public abstract class BaseAction extends AbstractAction
     {
         putValue(Action.MNEMONIC_KEY, mnemonic);
     }
-    
-    
+
+
     /**
      * Sets the tool tip text.
      * 

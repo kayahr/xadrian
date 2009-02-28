@@ -13,12 +13,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.Action;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
@@ -39,6 +41,7 @@ import de.ailis.xadrian.actions.SaveAction;
 import de.ailis.xadrian.actions.SaveAllAction;
 import de.ailis.xadrian.actions.SaveAsAction;
 import de.ailis.xadrian.actions.SetSunsAction;
+import de.ailis.xadrian.actions.ToggleBaseComplexAction;
 import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.dialogs.AboutDialog;
@@ -99,6 +102,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /** The "changeSuns" action */
     private final Action setSunsAction = new SetSunsAction(this);
+    
+    /** The "toggleBaseComplex" action */
+    private final Action toggleBaseComplexAction = new ToggleBaseComplexAction(this);
     
     /** The about dialog */
     private final AboutDialog aboutDialog = new AboutDialog();
@@ -168,6 +174,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         final JMenu complexMenu = I18N.createMenu(menuBar, "complex");
         complexMenu.add(this.addFactoryAction);
         complexMenu.add(this.setSunsAction);
+        complexMenu.add(new JCheckBoxMenuItem(this.toggleBaseComplexAction));
 
         // Create the 'Help' menu
         final JMenu helpMenu = I18N.createMenu(menuBar, "help");
@@ -193,6 +200,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
         toolBar.add(this.printAction);
         toolBar.addSeparator();
         toolBar.add(this.addFactoryAction);
+        final JToggleButton btn = new JToggleButton(this.toggleBaseComplexAction);
+        btn.setHideActionText(true);
+        toolBar.add(btn);
         add(toolBar, BorderLayout.NORTH);
     }
 
