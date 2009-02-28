@@ -83,7 +83,9 @@
               </td>
               <td class="singlePrice">${factory.price} Cr</td>
               <td class="price">${factory.price * complexFactory.quantity} Cr</td>
-              <td></td>       
+            <td>       
+              <a href="file://acceptFactory/${complexFactory_index}"><img src="../images/add.png" border="0" alt="" /></a>
+            </td>
             </tr>
           [/#list]
         [/#if]

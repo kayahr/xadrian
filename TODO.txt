@@ -1,6 +1,5 @@
 * Let user change the buy/sell prices of wares per complex.
 * Let user activate/deactivate base complex creation.
-* Let user convert auto factories to normal factories.
 * Try to not scroll the text pane on redraw.
 * Print complex.
 * Save/Restore window preferences

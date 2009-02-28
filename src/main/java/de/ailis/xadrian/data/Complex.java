@@ -224,6 +224,20 @@ public class Complex implements Serializable
         this.factories.remove(index);
         calculateBaseComplex();
     }
+    
+    
+    /**
+     * Accepts the automatically added factory with the given index.
+     * 
+     * @param index
+     *            The factory index
+     */
+
+    public void acceptFactory(final int index)
+    {
+        this.factories.add(this.autoFactories.get(index));
+        calculateBaseComplex();
+    }
 
 
     /**
