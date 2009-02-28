@@ -71,6 +71,9 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /** The message id */
     private final String messageId;
+    
+    /** The factory size */
+    private final FactorySize size;
 
 
     /**
@@ -78,6 +81,7 @@ public class Factory implements Serializable, Comparable<Factory>
      * 
      * @param id
      *            The factory id
+     *            @param size The factory size
      * @param type
      *            The factory type
      * @param race
@@ -94,11 +98,12 @@ public class Factory implements Serializable, Comparable<Factory>
      *            The needed resources per cycle
      */
 
-    public Factory(final String id, final Type type, final Race race,
+    public Factory(final String id, final FactorySize size, final Type type, final Race race,
         final int cycle, final Product product, final int price,
         final int volume, final Product[] resources)
     {
         this.id = id;
+        this.size = size;
         this.type = type;
         this.race = race;
         this.cycle = cycle;
@@ -119,6 +124,18 @@ public class Factory implements Serializable, Comparable<Factory>
     public String getId()
     {
         return this.id;
+    }
+
+
+    /**
+     * Return the factory size.
+     * 
+     * @return The factory size
+     */
+
+    public FactorySize getSize()
+    {
+        return this.size;
     }
 
 

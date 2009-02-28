@@ -36,57 +36,57 @@
     <resource ware="sojaHusk" quantity="4" />
     <resource ware="ore" quantity="5" />
   </factory>
-  <factory id="bioGasFactoryM-boron" race="boron" cycle="72" price="224636">
+  <factory id="bioGasFactoryM-boron" size="M" race="boron" cycle="72" price="224636">
     <product ware="boGas" quantity="2" />
     <resource ware="energyCells" quantity="36" />
   </factory>
-  <factory id="bioGasFactoryL-boron" race="boron" cycle="72" price="561528">
+  <factory id="bioGasFactoryL-boron" size="L" race="boron" cycle="72" price="561528">
     <product ware="boGas" quantity="5" />
     <resource ware="energyCells" quantity="90" />
   </factory>
-  <factory id="blissPlaceM-teladi" race="teladi" cycle="1080" price="1584144">
+  <factory id="blissPlaceM-teladi" size="M" race="teladi" cycle="1080" price="1584144">
     <product ware="spaceweed" quantity="10" />
     <resource ware="energyCells" quantity="540" />
     <resource ware="swampPlant" quantity="72" />
   </factory>
-  <factory id="blissPlaceL-teladi" race="teladi" cycle="1080" price="3564320">
+  <factory id="blissPlaceL-teladi" size="L" race="teladi" cycle="1080" price="3564320">
     <product ware="spaceweed" quantity="25" />
     <resource ware="energyCells" quantity="1350" />
     <resource ware="swampPlant" quantity="180" />
   </factory>
-  <factory id="bofuChemicalLabM-boron" race="boron" cycle="72" price="809992">
+  <factory id="bofuChemicalLabM-boron" size="M" race="boron" cycle="72" price="809992">
     <product ware="boFu" quantity="6" />
     <resource ware="energyCells" quantity="36" />
     <resource ware="boGas" quantity="2" />
   </factory>
-  <factory id="bofuChemicalLabL-boron" race="boron" cycle="72" price="2024976">
+  <factory id="bofuChemicalLabL-boron" size="L" race="boron" cycle="72" price="2024976">
     <product ware="boFu" quantity="15" />
     <resource ware="energyCells" quantity="90" />
     <resource ware="boGas" quantity="5" />
   </factory>
-  <factory id="cahoonaBakeryM-argon" race="argon" cycle="60" price="874980">
+  <factory id="cahoonaBakeryM-argon" size="M" race="argon" cycle="60" price="874980">
     <product ware="meatsteakCahoonas" quantity="20" />
     <resource ware="energyCells" quantity="30" />
     <resource ware="argnubeef" quantity="6" />
   </factory>
-  <factory id="cahoonaBakeryL-argon" race="argon" cycle="60" price="2187480">
+  <factory id="cahoonaBakeryL-argon" size="L" race="argon" cycle="60" price="2187480">
     <product ware="meatsteakCahoonas" quantity="50" />
     <resource ware="energyCells" quantity="75" />
     <resource ware="argnubeef" quantity="15" />
   </factory>
-  <factory id="cattleRanchM-argon" race="argon" cycle="60" price="275016">
+  <factory id="cattleRanchM-argon" size="M" race="argon" cycle="60" price="275016">
     <product ware="argnubeef" quantity="6" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="cattleRanchL-argon" race="argon" cycle="60" price="687480">
+  <factory id="cattleRanchL-argon" size="L" race="argon" cycle="60" price="687480">
     <product ware="argnubeef" quantity="15" />
     <resource ware="energyCells" quantity="75" />
   </factory>
-  <factory id="cheltSpaceAquariumM-split" race="split" cycle="60" price="236972">
+  <factory id="cheltSpaceAquariumM-split" size="M" race="split" cycle="60" price="236972">
     <product ware="cheltsMeat" quantity="6" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="cheltSpaceAquariumL-split" race="split" cycle="60" price="592496">
+  <factory id="cheltSpaceAquariumL-split" size="L" race="split" cycle="60" price="592496">
     <product ware="cheltsMeat" quantity="15" />
     <resource ware="energyCells" quantity="75" />
   </factory>
@@ -234,11 +234,11 @@
     <resource ware="rastarOil" quantity="9" />
     <resource ware="ore" quantity="15" />
   </factory>
-  <factory id="dreamFarmM-teladi" race="teladi" cycle="60" price="275016">
+  <factory id="dreamFarmM-teladi" size="M" race="teladi" cycle="60" price="275016">
     <product ware="swampPlant" quantity="4" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="dreamFarmL-teladi" race="teladi" cycle="60" price="687480">
+  <factory id="dreamFarmL-teladi" size="L" race="teladi" cycle="60" price="687480">
     <product ware="swampPlant" quantity="10" />
     <resource ware="energyCells" quantity="75" />
   </factory>
@@ -320,11 +320,11 @@
     <resource ware="nostropOil" quantity="2100" />
     <resource ware="ore" quantity="525" />
   </factory>
-  <factory id="flowerFarmM-teladi" race="teladi" cycle="60" price="360004">
+  <factory id="flowerFarmM-teladi" size="M" race="teladi" cycle="60" price="360004">
     <product ware="sunriseFlowers" quantity="30" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="flowerFarmL-teladi" race="teladi" cycle="60" price="899976">
+  <factory id="flowerFarmL-teladi" size="L" race="teladi" cycle="60" price="899976">
     <product ware="sunriseFlowers" quantity="75" />
     <resource ware="energyCells" quantity="75" />
   </factory>
@@ -514,12 +514,12 @@
     <resource ware="rastarOil" quantity="321" />
     <resource ware="ore" quantity="535" />
   </factory>
-  <factory id="massomMillM-split" race="split" cycle="60" price="804992">
+  <factory id="massomMillM-split" size="M" race="split" cycle="60" price="804992">
     <product ware="massompowder" quantity="40" />
     <resource ware="energyCells" quantity="30" />
     <resource ware="scruffinFruits" quantity="30" />
   </factory>
-  <factory id="massomMillL-split" race="split" cycle="60" price="2012512">
+  <factory id="massomMillL-split" size="L" race="split" cycle="60" price="2012512">
     <product ware="massompowder" quantity="100" />
     <resource ware="energyCells" quantity="75" />
     <resource ware="scruffinFruits" quantity="75" />
@@ -554,43 +554,43 @@
     <resource ware="nostropOil" quantity="12" />
     <resource ware="ore" quantity="3" />
   </factory>
-  <factory id="oreMineM-argon" race="argon" cycle="72" price="449988" type="mine">
+  <factory id="oreMineM-argon" size="M" race="argon" cycle="72" price="449988" type="mine">
     <product ware="ore" quantity="6" />
     <resource ware="energyCells" quantity="36" />
   </factory>
-  <factory id="oreMineL-argon" race="argon" cycle="72" price="905688" type="mine">
+  <factory id="oreMineL-argon" size="L" race="argon" cycle="72" price="905688" type="mine">
     <product ware="ore" quantity="15" />
     <resource ware="energyCells" quantity="90" />
   </factory>
-  <factory id="oreMineM-boron" race="boron" cycle="72" price="549972" type="mine">
+  <factory id="oreMineM-boron" size="M" race="boron" cycle="72" price="549972" type="mine">
     <product ware="ore" quantity="6" />
     <resource ware="energyCells" quantity="36" />
   </factory>
-  <factory id="oreMineL-boron" race="boron" cycle="72" price="1139416" type="mine">
+  <factory id="oreMineL-boron" size="L" race="boron" cycle="72" price="1139416" type="mine">
     <product ware="ore" quantity="15" />
     <resource ware="energyCells" quantity="90" />
   </factory>
-  <factory id="oreMineM-paranid" race="paranid" cycle="72" price="494980" type="mine">
+  <factory id="oreMineM-paranid" size="M" race="paranid" cycle="72" price="494980" type="mine">
     <product ware="ore" quantity="6" />
     <resource ware="energyCells" quantity="36" />
   </factory>
-  <factory id="oreMineL-paranid" race="paranid" cycle="72" price="993336" type="mine">
+  <factory id="oreMineL-paranid" size="L" race="paranid" cycle="72" price="993336" type="mine">
     <product ware="ore" quantity="15" />
     <resource ware="energyCells" quantity="90" />
   </factory>
-  <factory id="oreMineM-split" race="split" cycle="72" price="409020" type="mine">
+  <factory id="oreMineM-split" size="M" race="split" cycle="72" price="409020" type="mine">
     <product ware="ore" quantity="6" />
     <resource ware="energyCells" quantity="36" />
   </factory>
-  <factory id="oreMineL-split" race="split" cycle="72" price="818040" type="mine">
+  <factory id="oreMineL-split" size="L" race="split" cycle="72" price="818040" type="mine">
     <product ware="ore" quantity="15" />
     <resource ware="energyCells" quantity="90" />
   </factory>
-  <factory id="oreMineM-teladi" race="teladi" cycle="72" price="424992" type="mine">
+  <factory id="oreMineM-teladi" size="M" race="teladi" cycle="72" price="424992" type="mine">
     <product ware="ore" quantity="6" />
     <resource ware="energyCells" quantity="36" />
   </factory>
-  <factory id="oreMineL-teladi" race="teladi" cycle="72" price="849984" type="mine">
+  <factory id="oreMineL-teladi" size="L" race="teladi" cycle="72" price="849984" type="mine">
     <product ware="ore" quantity="15" />
     <resource ware="energyCells" quantity="90" />
   </factory>
@@ -648,11 +648,11 @@
     <resource ware="rastarOil" quantity="432" />
     <resource ware="ore" quantity="720" />
   </factory>
-  <factory id="planktonFarmM-boron" race="boron" cycle="60" price="320008">
+  <factory id="planktonFarmM-boron" size="M" race="boron" cycle="60" price="320008">
     <product ware="plankton" quantity="30" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="planktonFarmL-boron" race="boron" cycle="60" price="799992">
+  <factory id="planktonFarmL-boron" size="L" race="boron" cycle="60" price="799992">
     <product ware="plankton" quantity="75" />
     <resource ware="energyCells" quantity="75" />
   </factory>
@@ -692,12 +692,12 @@
     <resource ware="nostropOil" quantity="400" />
     <resource ware="siliconWafers" quantity="25" />
   </factory>
-  <factory id="rastarRefineryM-split" race="split" cycle="80" price="1116692">
+  <factory id="rastarRefineryM-split" size="M" race="split" cycle="80" price="1116692">
     <product ware="rastarOil" quantity="4" />
     <resource ware="energyCells" quantity="40" />
     <resource ware="cheltsMeat" quantity="8" />
   </factory>
-  <factory id="rastarRefineryL-split" race="split" cycle="80" price="2512556">
+  <factory id="rastarRefineryL-split" size="L" race="split" cycle="80" price="2512556">
     <product ware="rastarOil" quantity="10" />
     <resource ware="energyCells" quantity="100" />
     <resource ware="cheltsMeat" quantity="20" />
@@ -708,12 +708,12 @@
     <resource ware="boFu" quantity="500" />
     <resource ware="siliconWafers" quantity="125" />
   </factory>
-  <factory id="rimesFactoryM-argon" race="argon" cycle="72" price="799992">
+  <factory id="rimesFactoryM-argon" size="M" race="argon" cycle="72" price="799992">
     <product ware="clothRimes" quantity="6" />
     <resource ware="energyCells" quantity="36" />
     <resource ware="delexianWheat" quantity="24" />
   </factory>
-  <factory id="rimesFactoryL-argon" race="argon" cycle="72" price="1999980">
+  <factory id="rimesFactoryL-argon" size="L" race="argon" cycle="72" price="1999980">
     <product ware="clothRimes" quantity="15" />
     <resource ware="energyCells" quantity="90" />
     <resource ware="delexianWheat" quantity="60" />
@@ -742,11 +742,11 @@
     <resource ware="majaglit" quantity="352" />
     <resource ware="siliconWafers" quantity="11" />
   </factory>
-  <factory id="scruffinFarmM-split" race="split" cycle="60" price="320008">
+  <factory id="scruffinFarmM-split" size="M" race="split" cycle="60" price="320008">
     <product ware="scruffinFruits" quantity="30" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="scruffinFarmL-split" race="split" cycle="60" price="799992">
+  <factory id="scruffinFarmL-split" size="L" race="split" cycle="60" price="799992">
     <product ware="scruffinFruits" quantity="75" />
     <resource ware="energyCells" quantity="75" />
   </factory>
@@ -822,43 +822,43 @@
     <resource ware="nostropOil" quantity="500" />
     <resource ware="ore" quantity="125" />
   </factory>
-  <factory id="siliconMineM-argon" race="argon" cycle="93" price="549972" type="mine">
+  <factory id="siliconMineM-argon" size="M" race="argon" cycle="93" price="549972" type="mine">
     <product ware="siliconWafers" quantity="2" />
     <resource ware="energyCells" quantity="48" />
   </factory>
-  <factory id="siliconMineL-argon" race="argon" cycle="93" price="1139416" type="mine">
+  <factory id="siliconMineL-argon" size="L" race="argon" cycle="93" price="1139416" type="mine">
     <product ware="siliconWafers" quantity="5" />
     <resource ware="energyCells" quantity="120" />
   </factory>
-  <factory id="siliconMineM-boron" race="boron" cycle="93" price="623268" type="mine">
+  <factory id="siliconMineM-boron" size="M" race="boron" cycle="93" price="623268" type="mine">
     <product ware="siliconWafers" quantity="2" />
     <resource ware="energyCells" quantity="48" />
   </factory>
-  <factory id="siliconMineL-boron" race="boron" cycle="93" price="1402356" type="mine">
+  <factory id="siliconMineL-boron" size="L" race="boron" cycle="93" price="1402356" type="mine">
     <product ware="siliconWafers" quantity="5" />
     <resource ware="energyCells" quantity="120" />
   </factory>
-  <factory id="siliconMineM-paranid" race="paranid" cycle="93" price="545360" type="mine">
+  <factory id="siliconMineM-paranid" size="M" race="paranid" cycle="93" price="545360" type="mine">
     <product ware="siliconWafers" quantity="2" />
     <resource ware="energyCells" quantity="48" />
   </factory>
-  <factory id="siliconMineL-paranid" race="paranid" cycle="93" price="1227060" type="mine">
+  <factory id="siliconMineL-paranid" size="L" race="paranid" cycle="93" price="1227060" type="mine">
     <product ware="siliconWafers" quantity="5" />
     <resource ware="energyCells" quantity="120" />
   </factory>
-  <factory id="siliconMineM-split" race="split" cycle="93" price="499980" type="mine">
+  <factory id="siliconMineM-split" size="M" race="split" cycle="93" price="499980" type="mine">
     <product ware="siliconWafers" quantity="2" />
     <resource ware="energyCells" quantity="48" />
   </factory>
-  <factory id="siliconMineL-split" race="split" cycle="93" price="1022552" type="mine">
+  <factory id="siliconMineL-split" size="L" race="split" cycle="93" price="1022552" type="mine">
     <product ware="siliconWafers" quantity="5" />
     <resource ware="energyCells" quantity="120" />
   </factory>
-  <factory id="siliconMineM-teladi" race="teladi" cycle="93" price="449988" type="mine">
+  <factory id="siliconMineM-teladi" size="M" race="teladi" cycle="93" price="449988" type="mine">
     <product ware="siliconWafers" quantity="2" />
     <resource ware="energyCells" quantity="48" />
   </factory>
-  <factory id="siliconMineL-teladi" race="teladi" cycle="93" price="905688" type="mine">
+  <factory id="siliconMineL-teladi" size="L" race="teladi" cycle="93" price="905688" type="mine">
     <product ware="siliconWafers" quantity="5" />
     <resource ware="energyCells" quantity="120" />
   </factory>
@@ -880,108 +880,108 @@
     <resource ware="nostropOil" quantity="60" />
     <resource ware="ore" quantity="15" />
   </factory>
-  <factory id="snailRanchM-paranid" race="paranid" cycle="60" price="300012">
+  <factory id="snailRanchM-paranid" size="M" race="paranid" cycle="60" price="300012">
     <product ware="majaSnails" quantity="4" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="snailRanchL-paranid" race="paranid" cycle="60" price="750000">
+  <factory id="snailRanchL-paranid" size="L" race="paranid" cycle="60" price="750000">
     <product ware="majaSnails" quantity="10" />
     <resource ware="energyCells" quantity="75" />
   </factory>
-  <factory id="solarPowerPlantM-argon" race="argon" cycle="118" price="4895260" type="solar">
+  <factory id="solarPowerPlantM-argon" size="M" race="argon" cycle="118" price="4895260" type="solar">
     <product ware="energyCells" quantity="552" />
     <resource ware="crystals" quantity="4" />
   </factory>
-  <factory id="solarPowerPlantL-argon" race="argon" cycle="118" price="11014336" type="solar">
+  <factory id="solarPowerPlantL-argon" size="L" race="argon" cycle="118" price="11014336" type="solar">
     <product ware="energyCells" quantity="1380" />
     <resource ware="crystals" quantity="10" />
   </factory>
-  <factory id="solarPowerPlantXL-argon" race="argon" cycle="118" price="19581044" type="solar">
+  <factory id="solarPowerPlantXL-argon" size="XL" race="argon" cycle="118" price="19581044" type="solar">
     <product ware="energyCells" quantity="2760" />
     <resource ware="crystals" quantity="20" />
   </factory>
-  <factory id="solarPowerPlantM-boron" race="boron" cycle="118" price="4401840" type="solar">
+  <factory id="solarPowerPlantM-boron" size="M" race="boron" cycle="118" price="4401840" type="solar">
     <product ware="energyCells" quantity="552" />
     <resource ware="crystals" quantity="4" />
   </factory>
-  <factory id="solarPowerPlantL-boron" race="boron" cycle="118" price="9904140" type="solar">
+  <factory id="solarPowerPlantL-boron" size="L" race="boron" cycle="118" price="9904140" type="solar">
     <product ware="energyCells" quantity="1380" />
     <resource ware="crystals" quantity="10" />
   </factory>
-  <factory id="solarPowerPlantXL-boron" race="boron" cycle="118" price="17607360" type="solar">
+  <factory id="solarPowerPlantXL-boron" size="XL" race="boron" cycle="118" price="17607360" type="solar">
     <product ware="energyCells" quantity="2760" />
     <resource ware="crystals" quantity="20" />
   </factory>
-  <factory id="solarPowerPlantM-paranid" race="paranid" cycle="118" price="5141972" type="solar">
+  <factory id="solarPowerPlantM-paranid" size="M" race="paranid" cycle="118" price="5141972" type="solar">
     <product ware="energyCells" quantity="552" />
     <resource ware="crystals" quantity="4" />
   </factory>
-  <factory id="solarPowerPlantL-paranid" race="paranid" cycle="118" price="11569436" type="solar">
+  <factory id="solarPowerPlantL-paranid" size="L" race="paranid" cycle="118" price="11569436" type="solar">
     <product ware="energyCells" quantity="1380" />
     <resource ware="crystals" quantity="10" />
   </factory>
-  <factory id="solarPowerPlantXL-paranid" race="paranid" cycle="118" price="20567888" type="solar">
+  <factory id="solarPowerPlantXL-paranid" size="XL" race="paranid" cycle="118" price="20567888" type="solar">
     <product ware="energyCells" quantity="2760" />
     <resource ware="crystals" quantity="20" />
   </factory>
-  <factory id="solarPowerPlantM-split" race="split" cycle="118" price="5388684" type="solar">
+  <factory id="solarPowerPlantM-split" size="M" race="split" cycle="118" price="5388684" type="solar">
     <product ware="energyCells" quantity="552" />
     <resource ware="crystals" quantity="4" />
   </factory>
-  <factory id="solarPowerPlantL-split" race="split" cycle="118" price="12124536" type="solar">
+  <factory id="solarPowerPlantL-split" size="L" race="split" cycle="118" price="12124536" type="solar">
     <product ware="energyCells" quantity="1380" />
     <resource ware="crystals" quantity="10" />
   </factory>
-  <factory id="solarPowerPlantXL-split" race="split" cycle="118" price="21554732" type="solar">
+  <factory id="solarPowerPlantXL-split" size="XL" race="split" cycle="118" price="21554732" type="solar">
     <product ware="energyCells" quantity="2760" />
     <resource ware="crystals" quantity="20" />
   </factory>
-  <factory id="solarPowerPlantM-teladi" race="teladi" cycle="118" price="4648552" type="solar">
+  <factory id="solarPowerPlantM-teladi" size="M" race="teladi" cycle="118" price="4648552" type="solar">
     <product ware="energyCells" quantity="552" />
     <resource ware="crystals" quantity="4" />
   </factory>
-  <factory id="solarPowerPlantL-teladi" race="teladi" cycle="118" price="10459240" type="solar">
+  <factory id="solarPowerPlantL-teladi" size="L" race="teladi" cycle="118" price="10459240" type="solar">
     <product ware="energyCells" quantity="1380" />
     <resource ware="crystals" quantity="10" />
   </factory>
-  <factory id="solarPowerPlantXL-teladi" race="teladi" cycle="118" price="18594200" type="solar">
+  <factory id="solarPowerPlantXL-teladi" size="XL" race="teladi" cycle="118" price="18594200" type="solar">
     <product ware="energyCells" quantity="2760" />
     <resource ware="crystals" quantity="20" />
   </factory>
-  <factory id="soyeryM-paranid" race="paranid" cycle="60" price="1077736">
+  <factory id="soyeryM-paranid" size="M" race="paranid" cycle="60" price="1077736">
     <product ware="sojaHusk" quantity="4" />
     <resource ware="energyCells" quantity="30" />
     <resource ware="sojaBeans" quantity="24" />
   </factory>
-  <factory id="soyeryL-paranid" race="paranid" cycle="60" price="2087496">
+  <factory id="soyeryL-paranid" size="L" race="paranid" cycle="60" price="2087496">
     <product ware="sojaHusk" quantity="10" />
     <resource ware="energyCells" quantity="75" />
     <resource ware="sojaBeans" quantity="60" />
   </factory>
-  <factory id="soyfarmM-paranid" race="paranid" cycle="60" price="479984">
+  <factory id="soyfarmM-paranid" size="M" race="paranid" cycle="60" price="479984">
     <product ware="sojaBeans" quantity="24" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="soyfarmL-paranid" race="paranid" cycle="60" price="1199988">
+  <factory id="soyfarmL-paranid" size="L" race="paranid" cycle="60" price="1199988">
     <product ware="sojaBeans" quantity="60" />
     <resource ware="energyCells" quantity="75" />
   </factory>
-  <factory id="spaceFuelDistilleryM-argon" race="argon" cycle="96" price="1999980">
+  <factory id="spaceFuelDistilleryM-argon" size="M" race="argon" cycle="96" price="1999980">
     <product ware="spaceFuel" quantity="4" />
     <resource ware="energyCells" quantity="48" />
     <resource ware="delexianWheat" quantity="32" />
   </factory>
-  <factory id="spaceFuelDistilleryL-argon" race="argon" cycle="96" price="5500028">
+  <factory id="spaceFuelDistilleryL-argon" size="L" race="argon" cycle="96" price="5500028">
     <product ware="spaceFuel" quantity="10" />
     <resource ware="energyCells" quantity="120" />
     <resource ware="delexianWheat" quantity="80" />
   </factory>
-  <factory id="spaceJewelleryM-paranid" race="paranid" cycle="60" price="1181616">
+  <factory id="spaceJewelleryM-paranid" size="M" race="paranid" cycle="60" price="1181616">
     <product ware="majaglit" quantity="40" />
     <resource ware="energyCells" quantity="30" />
     <resource ware="majaSnails" quantity="4" />
   </factory>
-  <factory id="spaceJewelleryL-paranid" race="paranid" cycle="60" price="2658632">
+  <factory id="spaceJewelleryL-paranid" size="L" race="paranid" cycle="60" price="2658632">
     <product ware="majaglit" quantity="100" />
     <resource ware="energyCells" quantity="75" />
     <resource ware="majaSnails" quantity="10" />
@@ -1004,31 +1004,31 @@
     <resource ware="nostropOil" quantity="340" />
     <resource ware="ore" quantity="85" />
   </factory>
-  <factory id="stottMixeryM-boron" race="boron" cycle="60" price="1103708">
+  <factory id="stottMixeryM-boron" size="M" race="boron" cycle="60" price="1103708">
     <product ware="stottSpices" quantity="20" />
     <resource ware="energyCells" quantity="30" />
     <resource ware="plankton" quantity="30" />
   </factory>
-  <factory id="stottMixeryL-boron" race="boron" cycle="60" price="2483340">
+  <factory id="stottMixeryL-boron" size="L" race="boron" cycle="60" price="2483340">
     <product ware="stottSpices" quantity="50" />
     <resource ware="energyCells" quantity="75" />
     <resource ware="plankton" quantity="75" />
   </factory>
-  <factory id="sunOilRefineryM-teladi" race="teladi" cycle="60" price="849984">
+  <factory id="sunOilRefineryM-teladi" size="M" race="teladi" cycle="60" price="849984">
     <product ware="nostropOil" quantity="20" />
     <resource ware="energyCells" quantity="30" />
     <resource ware="sunriseFlowers" quantity="30" />
   </factory>
-  <factory id="sunOilRefineryL-teladi" race="teladi" cycle="60" price="2125024">
+  <factory id="sunOilRefineryL-teladi" size="L" race="teladi" cycle="60" price="2125024">
     <product ware="nostropOil" quantity="50" />
     <resource ware="energyCells" quantity="75" />
     <resource ware="sunriseFlowers" quantity="75" />
   </factory>
-  <factory id="teladianiumFoundryM-teladi" race="teladi" cycle="60" price="325008">
+  <factory id="teladianiumFoundryM-teladi" size="M" race="teladi" cycle="60" price="325008">
     <product ware="teladianium" quantity="4" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="teladianiumFoundryL-teladi" race="teladi" cycle="60" price="811548">
+  <factory id="teladianiumFoundryL-teladi" size="L" race="teladi" cycle="60" price="811548">
     <product ware="teladianium" quantity="10" />
     <resource ware="energyCells" quantity="75" />
   </factory>
@@ -1146,11 +1146,11 @@
     <resource ware="clothRimes" quantity="3" />
     <resource ware="ore" quantity="3" />
   </factory>
-  <factory id="wheatFarmM-argon" race="argon" cycle="60" price="367016">
+  <factory id="wheatFarmM-argon" size="M" race="argon" cycle="60" price="367016">
     <product ware="delexianWheat" quantity="20" />
     <resource ware="energyCells" quantity="30" />
   </factory>
-  <factory id="wheatFarmL-argon" race="argon" cycle="60" price="917504">
+  <factory id="wheatFarmL-argon" size="L" race="argon" cycle="60" price="917504">
     <product ware="delexianWheat" quantity="50" />
     <resource ware="energyCells" quantity="75" />
   </factory>

@@ -22,6 +22,7 @@ import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Factory;
+import de.ailis.xadrian.data.FactorySize;
 import de.ailis.xadrian.data.Product;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.Ware;
@@ -89,6 +90,12 @@ public class FactoryFactory
             {
                 final Element element = (Element) item;
                 final String id = element.attributeValue("id");
+                FactorySize size;
+                final String sizeStr = element.attributeValue("size");
+                if (sizeStr == null)
+                    size = FactorySize.S;
+                else
+                    size = FactorySize.valueOf(sizeStr);
                 final Race race =
                     raceFactory.getRace(element.attributeValue("race"));
                 final int cycle =
@@ -97,11 +104,12 @@ public class FactoryFactory
                     Integer.parseInt(element.attributeValue("price"));
                 Type type = Type.STANDARD;
                 final String typeStr = element.attributeValue("type");
-                if (typeStr != null) type = Type.valueOf(typeStr.toUpperCase());
+                if (typeStr != null)
+                    type = Type.valueOf(typeStr.toUpperCase());
                 // TODO implement me
                 // final int volume =
                 // Integer.parseInt(element.attributeValue("volume"));
-                final int volume = 0;                
+                final int volume = 0;
 
                 final Element productElement = element.element("product");
                 final Ware productWare =
@@ -128,8 +136,8 @@ public class FactoryFactory
                 }
 
                 final Factory factory =
-                    new Factory(id, type, race, cycle, product, price, volume,
-                        resources);
+                    new Factory(id, size, type, race, cycle, product, price,
+                        volume, resources);
                 this.factories.add(factory);
                 this.factoryMap.put(id, factory);
             }
@@ -175,7 +183,7 @@ public class FactoryFactory
      * @return The factories of the specified race
      */
 
-    public List<Factory> getFactoriesByRace(final Race race)
+    public List<Factory> getFactories(final Race race)
     {
         final List<Factory> factories = new ArrayList<Factory>();
         for (final Factory factory: this.factories)
@@ -183,5 +191,97 @@ public class FactoryFactory
             if (factory.getRace().equals(race)) factories.add(factory);
         }
         return factories;
+    }
+
+
+    /**
+     * Returns the factories which produces the specified ware.
+     * 
+     * @param ware
+     *            The ware
+     * @return The factories which products the specified ware
+     */
+
+    public List<Factory> getFactories(final Ware ware)
+    {
+        final List<Factory> factories = new ArrayList<Factory>();
+        for (final Factory factory: this.factories)
+        {
+            if (factory.getProduct().getWare().equals(ware))
+                factories.add(factory);
+        }
+        return factories;
+    }
+
+
+    /**
+     * Returns the factories which produces the specified ware and have the
+     * specified size.
+     * 
+     * @param ware
+     *            The ware
+     * @param size
+     *            The factory size
+     * @return The matching factories
+     */
+
+    public List<Factory> getFactories(final Ware ware, final FactorySize size)
+    {
+        final List<Factory> factories = new ArrayList<Factory>();
+        for (final Factory factory: this.factories)
+        {
+            if (factory.getProduct().getWare().equals(ware)
+                && factory.getSize().equals(size)) factories.add(factory);
+        }
+        return factories;
+    }
+
+
+    /**
+     * Returns the available sizes of factories producing the specified ware.
+     * 
+     * @param ware
+     *            The product id ware
+     * @return The set with available factory sizes
+     */
+
+    public SortedSet<FactorySize> getFactorySizes(final Ware ware)
+    {
+        final SortedSet<FactorySize> sizes = new TreeSet<FactorySize>();
+        for (final Factory factory: this.factories)
+        {
+            if (factory.getProduct().getWare().equals(ware))
+                sizes.add(factory.getSize());
+        }
+        return sizes;
+    }
+
+
+    /**
+     * Returns the cheapest factory of the given size which produces the
+     * specified ware. Returns null if none found.
+     * 
+     * @param ware
+     *            The ware
+     * @param size
+     *            The factory size
+     * @return The cheapest matching factory or null if none found.
+     */
+
+    public Factory getCheapestFactory(final Ware ware, final FactorySize size)
+    {
+        Factory cheapestFactory = null;
+        int cheapestPrice = Integer.MAX_VALUE;
+        for (final Factory factory: this.factories)
+        {
+            final int price = factory.getPrice();
+            if (factory.getProduct().getWare().equals(ware)
+                && factory.getSize().equals(size) && price < cheapestPrice)
+            {
+                cheapestFactory = factory;
+                cheapestPrice = price;
+            }
+        }
+        return cheapestFactory;
     }
 }

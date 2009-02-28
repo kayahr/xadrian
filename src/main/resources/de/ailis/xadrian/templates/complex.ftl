@@ -61,6 +61,32 @@
           <td colspan="6"><hr /></td>
           <td><hr /></td>
         </tr>
+        [#list autoFactories as complexFactory]
+          [#assign factory=complexFactory.factory]
+          <tr class="auto">
+            <td class="factory">${factory.name}</td>
+            <td class="race">${factory.race.name}</td>
+            <td class="yield">
+              [#if complexFactory.factory.type == 'MINE']
+                ${complexFactory.yield}
+              [/#if]
+            </td>
+            <td class="quantity">
+              [#if complexFactory.factory.type != 'MINE']
+                ${complexFactory.quantity}
+              [#else]
+                ${complexFactory.quantity}
+              [/#if]
+            </td>
+            <td class="singlePrice">${factory.price} Cr</td>
+            <td class="price">${factory.price * complexFactory.quantity} Cr</td>
+            <td></td>       
+          </tr>
+        [/#list]
+        <tr>
+          <td colspan="6"><hr /></td>
+          <td><hr /></td>
+        </tr>
         <tr>
           <th colspan="3">[@message key="complex.total" /]</th>
           <td class="quantity">${totalQuantity}</td>

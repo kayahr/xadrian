@@ -1,42 +1,192 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.iplabs.xadrian</groupId>
   <artifactId>xadrian</artifactId>
   <name>Xadrian</name>
   <version>1.0.0</version>
-  <description>A complex calculator tool for X3 Terran Conflict.</description>
+  <packaging>jar</packaging>
+  <url>http://www.ailis.de/~k/software/projects/xadrian</url>
+  <description>
+    A complex calculator tool for X3 Terran Conflict.
+  </description>
+  <inceptionYear>2009</inceptionYear>
+  
+  <scm>
+    <url>https://scm.ailis.de/viewvc/java/xadrian/trunk/?root=svn</url>
+    <connection>scm:svn:https://scm.ailis.de/svn/java/xadrian/trunk</connection>
+  </scm>
+  
   <build>
-  	<plugins>
-  		<plugin>
-  			<groupId>org.apache.maven.plugins</groupId>
-  			<artifactId>maven-compiler-plugin</artifactId>
-  			<configuration>
-                <source>1.6</source>
-                <target>1.6</target>
-            </configuration>
-  		</plugin>
-  	</plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+            <archive>
+              <manifest>
+                <mainClass>de.ailis.xadrian.Main</mainClass>
+                <packageName>de.ailis.xadrian</packageName>
+                <addClasspath>true</addClasspath>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+         <plugin> 
+          <artifactId>maven-assembly-plugin</artifactId>
+          <configuration>
+            <descriptors>
+              <descriptor>src/main/assembly/windows-bin.xml</descriptor>
+              <descriptor>src/main/assembly/unix-bin.xml</descriptor>
+              <descriptor>src/main/assembly/macosx-bin.xml</descriptor>
+            </descriptors>
+          </configuration>
+          <executions>
+            <execution>
+              <id>package-assembly</id>
+              <goals>
+                <goal>attached</goal>
+              </goals>
+            </execution>
+          </executions> 
+        </plugin>        
+        <plugin>
+          <artifactId>maven-surefire-report-plugin</artifactId>
+          <groupId>org.apache.maven.plugins</groupId>
+        </plugin>   
+      </plugins>
+    </pluginManagement>
   </build>
+  
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>LICENSE.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jxr-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <links>
+            <link>http://java.sun.com/javase/6/docs/api/</link>
+          </links>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+         <reportSets>
+           <reportSet>
+             <reports>
+               <report>dependencies</report>
+               <report>project-team</report>
+               <report>license</report>
+               <report>scm</report>
+             </reports>
+           </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-pmd-plugin</artifactId>
+         <configuration>
+            <targetJdk>1.6</targetJdk>
+            <rulesets>
+               <ruleset>/rulesets/basic.xml</ruleset>
+            </rulesets>
+            <format>xml</format>
+            <linkXref>true</linkXref>
+            <sourceEncoding>utf-8</sourceEncoding>
+            <minimumTokens>100</minimumTokens>
+         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>changes-maven-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>changes-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+  
+  <developers>
+    <developer>
+      <id>k</id>
+      <name>Klaus Reimer</name>
+      <email>k@ailis.de</email>
+      <roles>
+        <role>Architect</role>
+      </roles>
+      <timezone>+2</timezone>
+      <url>http://www.ailis.de/~k/</url>
+    </developer>        
+  </developers>
+
+  <distributionManagement>
+    <repository>
+      <id>ailis-ssh</id>
+      <name>Ailis Maven Repository</name>
+      <url>scpexe://k@ailis.de/home/k/public_html/software/maven2/</url>
+    </repository>
+    <site>
+      <id>ailis-ssh</id>
+      <url>scpexe://k@ailis.de/home/k/public_html/software/projects/xadrian/</url>
+    </site>
+  </distributionManagement>
+  
   <dependencies>
-  	<dependency>
-  		<groupId>org.freemarker</groupId>
-  		<artifactId>freemarker</artifactId>
-  		<version>2.3.15</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>dom4j</groupId>
-  		<artifactId>dom4j</artifactId>
-  		<version>1.6.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>commons-lang</groupId>
-  		<artifactId>commons-lang</artifactId>
-  		<version>2.4</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>commons-logging</groupId>
-  		<artifactId>commons-logging</artifactId>
-  		<version>1.1.1</version>
-  	</dependency>
+    <dependency>
+        <groupId>org.freemarker</groupId>
+        <artifactId>freemarker</artifactId>
+        <version>2.3.15</version>
+    </dependency>
+    <dependency>
+        <groupId>dom4j</groupId>
+        <artifactId>dom4j</artifactId>
+        <version>1.6.1</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>2.4</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>1.1.1</version>
+    </dependency>
   </dependencies>
 </project>

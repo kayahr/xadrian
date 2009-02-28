@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+
+        <key>CFBundleName</key>
+        <string>Xadrian</string>
+
+        <key>CFBundleVersion</key>
+        <string>1.0.0</string>
+
+        <key>CFBundleExecutable</key>
+        <string>JavaApplicationStub</string>
+
+        <key>CFBundleDevelopmentRegion</key>
+        <string>English</string>
+
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
+
+        <key>CFBundleSignature</key>
+        <string>????</string>
+
+        <key>CFBundleInfoDictionaryVersion</key>
+        <string>6.0</string>
+
+        <key>CFBundleIconFile</key>
+        <string>xadrian.icns</string>
+
+        <key>Java</key>
+        <dict>
+            <key>JVMVersion</key>
+            <string>1.6+</string>
+            <key>MainClass</key>
+            <string>de.ailis.xadrian.Main</string>
+            <key>ClassPath</key>
+            <string>$JAVAROOT/xadrian.jar</string>
+            <key>VMOptions</key>
+            <string></string>
+        </dict>
+
+    </dict>
+</plist>

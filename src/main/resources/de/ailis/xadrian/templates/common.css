@@ -42,6 +42,11 @@ tr.odd
 	background-color: #eeeeee;
 }
 
+tr.auto
+{
+	color: #888888;
+}
+
 .factory, .ware
 {
 	text-align: left;

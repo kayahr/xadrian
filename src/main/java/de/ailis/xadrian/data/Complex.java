@@ -23,6 +23,7 @@ import org.dom4j.Element;
 import de.ailis.xadrian.data.Factory.Type;
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.support.I18N;
+import de.ailis.xadrian.support.MultiCollection;
 
 
 /**
@@ -45,6 +46,9 @@ public class Complex implements Serializable
 
     /** The factories in this complex */
     private final List<ComplexFactory> factories;
+
+    /** Automatically added factories in this complex */
+    private final List<ComplexFactory> autoFactories;
 
     /** The sun power in percent */
     private int suns = 100;
@@ -71,6 +75,7 @@ public class Complex implements Serializable
     {
         this.name = name;
         this.factories = new ArrayList<ComplexFactory>();
+        this.autoFactories = new ArrayList<ComplexFactory>();
     }
 
 
@@ -112,6 +117,7 @@ public class Complex implements Serializable
         this.name = name;
     }
 
+
     /**
      * Returns the total number of factories in the complex
      * 
@@ -122,6 +128,8 @@ public class Complex implements Serializable
     {
         int quantity = 0;
         for (final ComplexFactory factory: this.factories)
+            quantity += factory.getQuantity();
+        for (final ComplexFactory factory: this.autoFactories)
             quantity += factory.getQuantity();
         return quantity;
     }
@@ -137,6 +145,10 @@ public class Complex implements Serializable
     {
         long price = 0;
         for (final ComplexFactory complexFactory: this.factories)
+            price +=
+                ((long) complexFactory.getQuantity())
+                    * complexFactory.getFactory().getPrice();
+        for (final ComplexFactory complexFactory: this.autoFactories)
             price +=
                 ((long) complexFactory.getQuantity())
                     * complexFactory.getFactory().getPrice();
@@ -157,6 +169,18 @@ public class Complex implements Serializable
 
 
     /**
+     * A immutable copy of the automatically added factories in this complex.
+     * 
+     * @return The automatically added factories in this complex
+     */
+
+    public List<ComplexFactory> getAutoFactories()
+    {
+        return Collections.unmodifiableList(this.autoFactories);
+    }
+
+
+    /**
      * @see java.lang.Object#hashCode()
      */
 
@@ -164,7 +188,7 @@ public class Complex implements Serializable
     public int hashCode()
     {
         return new HashCodeBuilder().append(this.name).append(this.factories)
-            .hashCode();
+            .append(this.autoFactories).hashCode();
     }
 
 
@@ -180,7 +204,8 @@ public class Complex implements Serializable
         if (obj.getClass() != getClass()) return false;
         final Complex other = (Complex) obj;
         return new EqualsBuilder().append(this.name, other.name).append(
-            this.factories, other.factories).isEquals();
+            this.factories, other.factories).append(this.suns, other.suns)
+            .isEquals();
     }
 
 
@@ -194,6 +219,7 @@ public class Complex implements Serializable
     public void removeFactory(final int index)
     {
         this.factories.remove(index);
+        calculateBaseComplex();
     }
 
 
@@ -224,6 +250,7 @@ public class Complex implements Serializable
     public void setQuantity(final int index, final int quantity)
     {
         this.factories.get(index).setQuantity(quantity);
+        calculateBaseComplex();
     }
 
 
@@ -254,6 +281,7 @@ public class Complex implements Serializable
     public void setYield(final int index, final int yield)
     {
         this.factories.get(index).setYield(yield);
+        calculateBaseComplex();
     }
 
 
@@ -267,6 +295,7 @@ public class Complex implements Serializable
     public void setSuns(final int suns)
     {
         this.suns = suns;
+        calculateBaseComplex();
     }
 
 
@@ -293,6 +322,7 @@ public class Complex implements Serializable
     {
         addFactory(new ComplexFactory(factory, 1,
             factory.getType() == Type.MINE ? 25 : 0));
+        calculateBaseComplex();
     }
 
 
@@ -376,6 +406,20 @@ public class Complex implements Serializable
 
 
     /**
+     * Returns all factories (Manually and automatically added ones):
+     * 
+     * @return All factories
+     */
+
+    @SuppressWarnings("unchecked")
+    private Collection<ComplexFactory> getAllFactories()
+    {
+        return new MultiCollection<ComplexFactory>(this.factories,
+            this.autoFactories);
+    }
+
+
+    /**
      * Returns the products this complex produces in one hour.
      * 
      * @return The products per hour.
@@ -384,7 +428,7 @@ public class Complex implements Serializable
     public Collection<Product> getProductsPerHour()
     {
         final Map<String, Product> products = new HashMap<String, Product>();
-        for (final ComplexFactory factory: this.factories)
+        for (final ComplexFactory factory: getAllFactories())
         {
             final Product product = factory.getProductPerHour(this.suns);
             final Ware ware = product.getWare();
@@ -409,7 +453,7 @@ public class Complex implements Serializable
     public Collection<Product> getResourcesPerHour()
     {
         final Map<String, Product> resources = new HashMap<String, Product>();
-        for (final ComplexFactory factory: this.factories)
+        for (final ComplexFactory factory: getAllFactories())
         {
             for (final Product resource: factory
                 .getResourcesPerHour(this.suns))
@@ -427,13 +471,13 @@ public class Complex implements Serializable
         return resources.values();
     }
 
-    
+
     /**
      * Returns the list of complex wares (Produced and needed).
      * 
      * @return The list of complex wares
      */
-    
+
     public Collection<ComplexWare> getWares()
     {
         final Map<String, ComplexWare> wares =
@@ -465,23 +509,139 @@ public class Complex implements Serializable
 
         return wares.values();
     }
-    
-    
+
+
     /**
      * Returns the profit of this complex.
      * 
      * @return The profit
      */
-    
+
     public double getProfit()
     {
         double profit;
-        
+
         profit = 0;
         for (final ComplexWare complexWare: getWares())
         {
             profit += complexWare.getProfit();
         }
         return profit;
+    }
+
+
+    /**
+     * Calculates and adds the factories needed to keep the factories of this
+     * complex running stable.
+     */
+
+    private void calculateBaseComplex()
+    {
+        // First of all remove all automatically added factories
+        this.autoFactories.clear();
+
+        // Repeat adding base complex factories until all needs are fulfilled
+        while (addBaseComplex())
+        { 
+            // Empty            
+        }
+    }
+
+
+    /**
+     * Searches for the first unfulfilled resource need (which is not a mineral)
+     * and adds the necessary factories for this. If a need was found (and
+     * fixed) then this method returns true. If all needs are already fulfilled
+     * then it returns false.
+     * 
+     * @return True if a need was found and fixed, false if everything is
+     *         finished
+     */
+
+    private boolean addBaseComplex()
+    {
+        for (final ComplexWare ware: getWares())
+        {
+            // We are not going to add mines
+            if (ware.getWare().getId().equals("siliconWafers")) continue;
+            if (ware.getWare().getId().equals("ore")) continue;
+
+            // If the current ware has missing units then add the necessary
+            // factories for this ware and then restart the adding of factories
+            if (ware.getMissing() > 0)
+            {
+                addBaseComplexForWare(ware);
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+
+    /**
+     * Adds the factories needed to fulfill the need of the specified complex
+     * ware.
+     * 
+     * @param complexWare
+     *            The complex ware for which factories must be added
+     */
+
+    private void addBaseComplexForWare(final ComplexWare complexWare)
+    {
+        final Ware ware = complexWare.getWare();
+        final FactoryFactory factoryFactory = FactoryFactory.getInstance();
+
+        // Remove all automatically added factories which produces the
+        // specified ware and calculate the real need which must be
+        // fulfilled.
+        double need = complexWare.getMissing();
+        for (final ComplexFactory complexFactory: new ArrayList<ComplexFactory>(
+            this.autoFactories))
+        {
+            if (complexFactory.getFactory().getProduct().getWare()
+                .equals(ware))
+            {
+                need +=
+                    complexFactory.getProductPerHour(this.suns).getQuantity();
+                this.autoFactories.remove(complexFactory);
+            }
+        }
+
+        // Determine the available factory sizes
+        final FactorySize[] sizes =
+            factoryFactory.getFactorySizes(ware).toArray(new FactorySize[0]);
+
+        // Get the cheapest factories for the sizes
+        final Map<FactorySize, Factory> factories =
+            new HashMap<FactorySize, Factory>();
+        for (final FactorySize size: sizes)
+        {
+            factories.put(size, factoryFactory.getCheapestFactory(ware, size));
+        }
+
+        // Get the smallest possible production quantity
+        final double minProduction =
+            factories.get(sizes[0]).getProductPerHour(this.suns, 0)
+                .getQuantity();
+
+        // Iterate the available sizes (from largest to smallest) and add
+        // the factories producing an adequate number of products
+        for (int i = sizes.length - 1; i >= 0; i--)
+        {
+            final FactorySize size = sizes[i];
+            final Factory factory = factories.get(size);
+            final double product = factory.getProductPerHour(this.suns, 0).getQuantity();
+            
+            // Calculate the number of factories of the current size needed
+            final int quantity = (int) ((need + minProduction - 1) / product);
+            
+            // Add the number of factories and decrease the need
+            if (quantity > 0)
+            {
+                this.autoFactories.add(new ComplexFactory(factory, quantity, 0));
+                need -= quantity * product;
+            }
+        }
     }
 }
