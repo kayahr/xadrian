@@ -8,10 +8,13 @@ package de.ailis.xadrian.components;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -57,7 +60,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = -582597303446091577L;
-    
+
     /** The logger */
     private static final Log log = LogFactory.getLog(ComplexEditor.class);
 
@@ -76,7 +79,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
 
     /** The file under which this complex was last saved */
     private File file;
-    
+
     /** True if this editor has unsaved changes */
     private boolean changed = false;
 
@@ -114,8 +117,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         // Redraw the content
         redraw();
     }
-    
-    
+
+
     /**
      * Adds an editor state listener.
      * 
@@ -151,14 +154,15 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         final Object[] listeners = this.listenerList.getListenerList();
         for (int i = listeners.length - 2; i >= 0; i -= 2)
             if (listeners[i] == EditorStateListener.class)
-                ((EditorStateListener) listeners[i + 1]).editorStateChanged(this);
+                ((EditorStateListener) listeners[i + 1])
+                    .editorStateChanged(this);
     }
-    
-    
+
+
     /**
      * Mark this editor as changed.
      */
-    
+
     private void doChange()
     {
         if (!this.changed)
@@ -167,7 +171,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
             fireState();
         }
     }
-    
+
 
     /**
      * Redraws the freemarker template.
@@ -175,8 +179,10 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
 
     private void redraw()
     {
-        final String content = TemplateFactory.processTemplate(template,
-            this.complex);
+        final Map<String, Object> model = new HashMap<String, Object>();
+        model.put("complex", this.complex);
+        model.put("print", false);
+        final String content = TemplateFactory.processTemplate(template, model);
         this.textPane.setText(content);
         this.textPane.setCaretPosition(0);
     }
@@ -257,8 +263,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         doChange();
         redraw();
     }
-    
-    
+
+
     /**
      * Accepts an automatically created factory.
      * 
@@ -343,7 +349,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
             save(this.file);
     }
 
-    
+
     /**
      * Prompts for a file name and saves the complex there.
      */
@@ -362,8 +368,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
             if (!file.exists()
                 || JOptionPane.showConfirmDialog(null, I18N
                     .getString("confirm.overwrite"), I18N
-                    .getString("confirm.title"),
-                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+                    .getString("confirm.title"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             {
                 save(file);
             }
@@ -440,8 +445,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
             JOptionPane.showMessageDialog(null, I18N
                 .getString("error.cantWriteComplex"), I18N
                 .getString("error.title"), JOptionPane.ERROR_MESSAGE);
-            log.error(
-                "Unable to save complex to file " + file + ": " + e, e);
+            log.error("Unable to save complex to file " + file + ": " + e, e);
         }
     }
 
@@ -456,27 +460,64 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
     {
         return this.complex;
     }
-    
-    
+
+
     /**
      * Returns true if this editor has unsaved changes. False if not.
      * 
      * @return True if this editor has unsaved changes. False if not.
      */
-    
+
     public boolean isChanged()
     {
         return this.changed;
     }
-    
-    
+
+
     /**
      * Toggles the addition of automatically calculated base complex.
-     */ 
-    
+     */
+
     public void toggleAddBaseComplex()
     {
         this.complex.toggleAddBaseComplex();
+        doChange();
         this.redraw();
+    }
+
+
+    /**
+     * Prints the complex data
+     */
+
+    public void print()
+    {
+        // Prepare model
+        final Map<String, Object> model = new HashMap<String, Object>();
+        model.put("complex", this.complex);
+        model.put("print", true);
+
+        // Generate content
+        final String content = TemplateFactory.processTemplate(template, model);
+
+        // Put content into a text pane component
+        final JTextPane printPane = new JTextPane();
+        printPane.setContentType("text/html");
+        ((HTMLDocument) printPane.getDocument()).setBase(Main.class
+            .getResource("templates/"));
+        printPane.setText(content);
+
+        // Print the text pane
+        try
+        {
+            printPane.print();
+        }
+        catch (final PrinterException e)
+        {
+            JOptionPane.showMessageDialog(null, I18N
+                .getString("error.cantPrint"), I18N.getString("error.title"),
+                JOptionPane.ERROR_MESSAGE);
+            log.error("Unable to print complex: " + e, e);
+        }
     }
 }

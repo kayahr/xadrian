@@ -6,6 +6,11 @@ body
     margin: 5px; 
 }
 
+body.print
+{
+	font-size: 7px;
+}
+
 p
 {
     margin: 0 0 9px 3px;
@@ -26,9 +31,24 @@ h2
 	margin-top: 15px;
 }
 
+.print h1
+{
+	font-size: 10px;
+}
+
+.print h2
+{
+	font-size: 9px;
+}
+
 table
 {
 	margin: 0 0 9px 0;
+}
+
+.print table
+{
+	width: 100%;
 }
 
 tr.sep td
