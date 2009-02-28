@@ -200,6 +200,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         toolBar.add(this.printAction);
         toolBar.addSeparator();
         toolBar.add(this.addFactoryAction);
+        toolBar.add(this.setSunsAction);
         final JToggleButton btn = new JToggleButton(this.toggleBaseComplexAction);
         btn.setHideActionText(true);
         toolBar.add(btn);

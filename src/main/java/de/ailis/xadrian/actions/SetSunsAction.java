@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.frames.MainFrame;
 import de.ailis.xadrian.listeners.MainStateListener;
+import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.FrameAction;
 
 
@@ -38,7 +39,7 @@ public class SetSunsAction extends FrameAction<MainFrame> implements
 
     public SetSunsAction(final MainFrame frame)
     {
-        super(frame, "setSuns", null);
+        super(frame, "setSuns", Icons.SUNS);
         setEnabled(false);
         frame.addStateListener(this);
     }

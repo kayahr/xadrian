@@ -78,6 +78,9 @@ public final class Icons
     /** The WAND icon */
     public static final Icon WAND = createIcon("wand");
 
+    /** The SUNS icon */
+    public static final Icon SUNS = createIcon("suns");
+
 
     /**
      * Private constructor to prevent instantiation.
