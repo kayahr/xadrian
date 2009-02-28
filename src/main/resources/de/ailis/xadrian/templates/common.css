@@ -42,12 +42,12 @@ td, th
     vertical-align: center;
 }
 
-tr.odd
+tr.odd, tr.autoodd, tr.kitsodd
 {
 	background-color: #eeeeee;
 }
 
-tr.auto, tr.kits
+tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
 {
 	color: #888888;
 }

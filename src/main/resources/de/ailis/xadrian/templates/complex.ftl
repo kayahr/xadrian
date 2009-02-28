@@ -60,8 +60,13 @@
         [#if autoFactories?size > 0]
           <tr class="sep"><td colspan="7"></td></tr>
           [#list autoFactories as complexFactory]
+            [#if (factories?size + complexFactory_index) % 2 == 0]
+              [#assign class="autoeven" /]
+            [#else]
+              [#assign class="autoodd" /]
+            [/#if]
             [#assign factory=complexFactory.factory]
-            <tr class="auto">
+            <tr class="${class}">
               <td class="factory">${factory.name}</td>
               <td class="race">${factory.race.name}</td>
               <td class="yield">
@@ -83,8 +88,13 @@
           [/#list]
         [/#if]
         [#if kitQuantity > 0]
+          [#if (autoFactories?size + factories?size) % 2 == 0]
+            [#assign class="kitseven" /]
+          [#else]
+            [#assign class="kitsodd" /]
+          [/#if]
           <tr class="sep"><td colspan="7"></td></tr>
-          <tr class="kits">
+          <tr class="${class}">
             <td class="factory">[@message key="complex.kit" /]</td>
             <td colspan="2"></td>
             <td class="quantity">${kitQuantity}</td>
