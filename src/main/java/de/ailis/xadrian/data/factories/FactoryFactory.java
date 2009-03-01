@@ -40,8 +40,7 @@ import de.ailis.xadrian.exceptions.DataException;
 public class FactoryFactory
 {
     /** The factory map (for quick ID navigation) */
-    private final Map<String, Factory> factoryMap =
-        new HashMap<String, Factory>();
+    private final Map<String, Factory> factoryMap = new HashMap<String, Factory>();
 
     /** The factories (sorted) */
     private final SortedSet<Factory> factories = new TreeSet<Factory>();
@@ -85,7 +84,7 @@ public class FactoryFactory
             final Document document = reader.read(url);
             final WareFactory wareFactory = WareFactory.getInstance();
             final RaceFactory raceFactory = RaceFactory.getInstance();
-            for (final Object item: document.getRootElement().elements(
+            for (final Object item : document.getRootElement().elements(
                 "factory"))
             {
                 final Element element = (Element) item;
@@ -96,48 +95,43 @@ public class FactoryFactory
                     size = FactorySize.S;
                 else
                     size = FactorySize.valueOf(sizeStr);
-                final Race race =
-                    raceFactory.getRace(element.attributeValue("race"));
-                final int cycle =
-                    Integer.parseInt(element.attributeValue("cycle"));
-                final int price =
-                    Integer.parseInt(element.attributeValue("price"));
+                final Race race = raceFactory.getRace(element
+                    .attributeValue("race"));
+                final int cycle = Integer.parseInt(element
+                    .attributeValue("cycle"));
+                final int price = Integer.parseInt(element
+                    .attributeValue("price"));
                 Type type = Type.STANDARD;
                 final String typeStr = element.attributeValue("type");
                 if (typeStr != null)
                     type = Type.valueOf(typeStr.toUpperCase());
-                // TODO implement me
-                // final int volume =
-                // Integer.parseInt(element.attributeValue("volume"));
-                final int volume = 0;
+                final int volume = Integer.parseInt(element
+                    .attributeValue("volume"));
 
                 final Element productElement = element.element("product");
-                final Ware productWare =
-                    wareFactory.getWare(productElement.attributeValue("ware"));
-                final int productQuantity =
-                    Integer
-                        .parseInt(productElement.attributeValue("quantity"));
-                final Product product =
-                    new Product(productWare, productQuantity);
+                final Ware productWare = wareFactory.getWare(productElement
+                    .attributeValue("ware"));
+                final int productQuantity = Integer.parseInt(productElement
+                    .attributeValue("quantity"));
+                final Product product = new Product(productWare,
+                    productQuantity);
 
                 final List<?> resItems = element.elements("resource");
                 final Product[] resources = new Product[resItems.size()];
                 int i = 0;
-                for (final Object resItem: resItems)
+                for (final Object resItem : resItems)
                 {
                     final Element resElement = (Element) resItem;
-                    final Ware resWare =
-                        wareFactory.getWare(resElement.attributeValue("ware"));
-                    final int resQuantity =
-                        Integer
-                            .parseInt(resElement.attributeValue("quantity"));
+                    final Ware resWare = wareFactory.getWare(resElement
+                        .attributeValue("ware"));
+                    final int resQuantity = Integer.parseInt(resElement
+                        .attributeValue("quantity"));
                     resources[i] = new Product(resWare, resQuantity);
                     i++;
                 }
 
-                final Factory factory =
-                    new Factory(id, size, type, race, cycle, product, price,
-                        volume, resources);
+                final Factory factory = new Factory(id, size, type, race,
+                    cycle, product, price, volume, resources);
                 this.factories.add(factory);
                 this.factoryMap.put(id, factory);
             }
@@ -186,7 +180,7 @@ public class FactoryFactory
     public List<Factory> getFactories(final Race race)
     {
         final List<Factory> factories = new ArrayList<Factory>();
-        for (final Factory factory: this.factories)
+        for (final Factory factory : this.factories)
         {
             if (factory.getRace().equals(race)) factories.add(factory);
         }
@@ -205,7 +199,7 @@ public class FactoryFactory
     public List<Factory> getFactories(final Ware ware)
     {
         final List<Factory> factories = new ArrayList<Factory>();
-        for (final Factory factory: this.factories)
+        for (final Factory factory : this.factories)
         {
             if (factory.getProduct().getWare().equals(ware))
                 factories.add(factory);
@@ -228,7 +222,7 @@ public class FactoryFactory
     public List<Factory> getFactories(final Ware ware, final FactorySize size)
     {
         final List<Factory> factories = new ArrayList<Factory>();
-        for (final Factory factory: this.factories)
+        for (final Factory factory : this.factories)
         {
             if (factory.getProduct().getWare().equals(ware)
                 && factory.getSize().equals(size)) factories.add(factory);
@@ -248,7 +242,7 @@ public class FactoryFactory
     public SortedSet<FactorySize> getFactorySizes(final Ware ware)
     {
         final SortedSet<FactorySize> sizes = new TreeSet<FactorySize>();
-        for (final Factory factory: this.factories)
+        for (final Factory factory : this.factories)
         {
             if (factory.getProduct().getWare().equals(ware))
                 sizes.add(factory.getSize());
@@ -272,7 +266,7 @@ public class FactoryFactory
     {
         Factory cheapestFactory = null;
         int cheapestPrice = Integer.MAX_VALUE;
-        for (final Factory factory: this.factories)
+        for (final Factory factory : this.factories)
         {
             final int price = factory.getPrice();
             if (factory.getProduct().getWare().equals(ware)

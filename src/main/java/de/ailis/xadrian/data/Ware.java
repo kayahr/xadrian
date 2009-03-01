@@ -33,8 +33,8 @@ public class Ware implements Serializable, Comparable<Ware>
     /** The minimum price */
     private final int minPrice;
 
-    /** The medium price */
-    private final int medPrice;
+    /** The average price */
+    private final int avgPrice;
 
     /** The maximum price */
     private final int maxPrice;
@@ -56,8 +56,8 @@ public class Ware implements Serializable, Comparable<Ware>
      *            The race id
      * @param minPrice
      *            The minimum price
-     * @param medPrice
-     *            The medium price
+     * @param avgPrice
+     *            The average price
      * @param maxPrice
      *            The maximum price
      * @param volume
@@ -66,12 +66,12 @@ public class Ware implements Serializable, Comparable<Ware>
      *            The container class
      */
 
-    public Ware(final String id, final int minPrice, final int medPrice,
+    public Ware(final String id, final int minPrice, final int avgPrice,
         final int maxPrice, final int volume, final Container container)
     {
         this.id = id;
         this.minPrice = minPrice;
-        this.medPrice = medPrice;
+        this.avgPrice = avgPrice;
         this.maxPrice = maxPrice;
         this.volume = volume;
         this.container = container;
@@ -116,14 +116,14 @@ public class Ware implements Serializable, Comparable<Ware>
 
 
     /**
-     * Returns the medium price.
+     * Returns the average price.
      * 
-     * @return The medium price
+     * @return The average price
      */
 
-    public int getMedPrice()
+    public int getAvgPrice()
     {
-        return this.medPrice;
+        return this.avgPrice;
     }
 
 

@@ -122,7 +122,7 @@ public class ComplexWare implements Serializable
     
     public int getBuyPrice()
     {
-        return this.ware.getMedPrice();
+        return this.ware.getAvgPrice();
     }
     
     
@@ -134,7 +134,7 @@ public class ComplexWare implements Serializable
     
     public int getSellPrice()
     {
-        return this.ware.getMedPrice();
+        return this.ware.getAvgPrice();
     }
     
     

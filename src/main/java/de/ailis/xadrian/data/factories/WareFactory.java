@@ -81,11 +81,11 @@ public class WareFactory
                 final Element element = (Element) item;
                 final String id = element.attributeValue("id");
                 final int minPrice = Integer.parseInt(element.attributeValue("minPrice"));
-                final int medPrice = Integer.parseInt(element.attributeValue("medPrice"));
+                final int avgPrice = Integer.parseInt(element.attributeValue("avgPrice"));
                 final int maxPrice = Integer.parseInt(element.attributeValue("maxPrice"));
                 final int volume = Integer.parseInt(element.attributeValue("volume"));
                 final Container container = Container.valueOf(element.attributeValue("container"));
-                final Ware ware = new Ware(id, minPrice, medPrice, maxPrice, volume, container);
+                final Ware ware = new Ware(id, minPrice, avgPrice, maxPrice, volume, container);
                 this.wares.add(ware);
                 this.wareMap.put(id, ware);
             }
