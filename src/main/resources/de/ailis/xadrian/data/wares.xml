@@ -6,13 +6,13 @@
   <ware id="crystals" minPrice="1432" avgPrice="1684" maxPrice="1936" volume="4" container="M" />
   <ware id="impulseRayEmitter" minPrice="3928" avgPrice="4676" maxPrice="5424" volume="1" container="S" />
   <ware id="ore" minPrice="50" avgPrice="128" maxPrice="206" volume="8" container="XL" />
-  <ware id="boFu" minPrice="190" avgPrice="292" maxPrice="394" volume="5" container="M" />
-  <ware id="boGas" minPrice="266" avgPrice="380" maxPrice="494" volume="6" container="S" />
+  <ware id="bofu" minPrice="190" avgPrice="292" maxPrice="394" volume="5" container="M" />
+  <ware id="bogas" minPrice="266" avgPrice="380" maxPrice="494" volume="6" container="S" />
   <ware id="energyCells" minPrice="12" avgPrice="16" maxPrice="20" volume="1" container="S" />
   <ware id="siliconWafers" minPrice="232" avgPrice="504" maxPrice="776" volume="18" container="XL" />
-  <ware id="lowyieldSidearms" minPrice="9973" avgPrice="13476" maxPrice="16979" volume="7" container="S" />
+  <ware id="lowYieldSidearms" minPrice="9973" avgPrice="13476" maxPrice="16979" volume="7" container="S" />
   <ware id="mosquitoMissile" minPrice="126" avgPrice="168" maxPrice="210" volume="1" container="S" />
-  <ware id="spaceweed" minPrice="903" avgPrice="2912" maxPrice="4921" volume="6" container="S" />
+  <ware id="spaceWeed" minPrice="903" avgPrice="2912" maxPrice="4921" volume="6" container="S" />
   <ware id="warheads" minPrice="168" avgPrice="224" maxPrice="280" volume="4" container="L" />
   <ware id="teladianium" minPrice="57" avgPrice="156" maxPrice="255" volume="5" container="M" />
   <ware id="swampPlant" minPrice="36" avgPrice="156" maxPrice="276" volume="3" container="S" />
@@ -22,7 +22,7 @@
   <ware id="sunriseFlowers" minPrice="5" avgPrice="20" maxPrice="35" volume="1" container="S" />
   <ware id="silkwormMissile" minPrice="4295" avgPrice="5052" maxPrice="5809" volume="2" container="S" />
   <ware id="massDriverAmmunition" minPrice="538" avgPrice="672" maxPrice="806" volume="1" container="S" />
-  <ware id="massompowder" minPrice="17" avgPrice="36" maxPrice="55" volume="1" container="S" />
+  <ware id="massomPowder" minPrice="17" avgPrice="36" maxPrice="55" volume="1" container="S" />
   <ware id="scruffinFruits" minPrice="7" avgPrice="20" maxPrice="33" volume="2" container="S" />
   <ware id="rastarOil" minPrice="252" avgPrice="484" maxPrice="716" volume="6" container="M" />
   <ware id="cheltsMeat" minPrice="50" avgPrice="104" maxPrice="158" volume="2" container="S" />
@@ -32,8 +32,8 @@
   <ware id="quantumTubes" minPrice="2560" avgPrice="3368" maxPrice="4176" volume="5" container="M" />
   <ware id="fighterDrone" minPrice="3195" avgPrice="4044" maxPrice="4893" volume="2" container="M" />
   <ware id="squashMine" minPrice="7379" avgPrice="10108" maxPrice="12837" volume="5" container="L" />
-  <ware id="argnubeef" minPrice="42" avgPrice="104" maxPrice="166" volume="4" container="S" />
-  <ware id="1MJShield" minPrice="4154" avgPrice="5192" maxPrice="6230" volume="1" container="S" />
+  <ware id="argnuBeef" minPrice="42" avgPrice="104" maxPrice="166" volume="4" container="S" />
+  <ware id="1MjShield" minPrice="4154" avgPrice="5192" maxPrice="6230" volume="1" container="S" />
   <ware id="microchips" minPrice="11725" avgPrice="13476" maxPrice="15227" volume="2" container="S" />
   <ware id="clothRimes" minPrice="152" avgPrice="292" maxPrice="432" volume="2" container="S" />
   <ware id="meatsteakCahoonas" minPrice="34" avgPrice="72" maxPrice="110" volume="4" container="M" />
@@ -50,28 +50,28 @@
   <ware id="tomahawkHeavyMissile" minPrice="20888" avgPrice="22460" maxPrice="24032" volume="2" container="M" />
   <ware id="typhoonMissile" minPrice="30323" avgPrice="33692" maxPrice="37061" volume="3" container="M" />
   <ware id="hammerHeavyTorpedo" minPrice="46999" avgPrice="50536" maxPrice="54073" volume="20" container="L" />
-  <ware id="5MJShield" minPrice="17245" avgPrice="20776" maxPrice="24307" volume="3" container="S" />
+  <ware id="5MjShield" minPrice="17245" avgPrice="20776" maxPrice="24307" volume="3" container="S" />
   <ware id="flakArtilleryArray" minPrice="579640" avgPrice="623268" maxPrice="666896" volume="30" container="L" />
   <ware id="flailBarrageMissile" minPrice="26954" avgPrice="33692" maxPrice="40430" volume="5" container="M" />
   <ware id="computerComponents" minPrice="998" avgPrice="1348" maxPrice="1698" volume="1" container="S" />
   <ware id="pulsedBeamEmitter" minPrice="214405" avgPrice="249308" maxPrice="284211" volume="8" container="M" />
-  <ware id="25MJShield" minPrice="74559" avgPrice="85700" maxPrice="96841" volume="10" container="M" />
+  <ware id="25MjShield" minPrice="74559" avgPrice="85700" maxPrice="96841" volume="10" container="M" />
   <ware id="waspMissile" minPrice="1079" avgPrice="1348" maxPrice="1617" volume="1" container="S" />
   <ware id="photonPulseCannon" minPrice="878810" avgPrice="934904" maxPrice="990998" volume="100" container="XL" />
   <ware id="firestormTorpedo" minPrice="75197" avgPrice="80856" maxPrice="86515" volume="7" container="M" />
-  <ware id="2GJShield" minPrice="703049" avgPrice="747924" maxPrice="792799" volume="222" container="XL" />
+  <ware id="2GjShield" minPrice="703049" avgPrice="747924" maxPrice="792799" volume="222" container="XL" />
   <ware id="clusterFlakArray" minPrice="587744" avgPrice="638852" maxPrice="689960" volume="33" container="L" />
-  <ware id="200MJShield" minPrice="140235" avgPrice="155816" maxPrice="171397" volume="25" container="L" />
+  <ware id="200MjShield" minPrice="140235" avgPrice="155816" maxPrice="171397" volume="25" container="L" />
   <ware id="energyBoltChaingunAmmunition" minPrice="1079" avgPrice="1348" maxPrice="1617" volume="1" container="S" />
   <ware id="freightDrone" minPrice="19675" avgPrice="26952" maxPrice="34229" volume="3" container="M" />
   <ware id="gaussCannonAmmunition" minPrice="5392" avgPrice="6740" maxPrice="8088" volume="25" container="L" />
   <ware id="energyBoltChaingun" minPrice="129984" avgPrice="151144" maxPrice="172304" volume="1" container="S" />
   <ware id="dragonflyMissile" minPrice="780" avgPrice="1012" maxPrice="1244" volume="1" container="S" />
-  <ware id="1GJShield" minPrice="275235" avgPrice="299168" maxPrice="323101" volume="77" container="XL" />
+  <ware id="1GjShield" minPrice="275235" avgPrice="299168" maxPrice="323101" volume="77" container="XL" />
   <ware id="disintegratorRifles" minPrice="19945" avgPrice="26952" maxPrice="33959" volume="8" container="S" />
   <ware id="tornadoMissile" minPrice="14992" avgPrice="16844" maxPrice="18696" volume="8" container="M" />
   <ware id="massDriver" minPrice="102841" avgPrice="116864" maxPrice="130887" volume="1" container="S" />
-  <ware id="ionmine" minPrice="14758" avgPrice="20216" maxPrice="25674" volume="6" container="L" />
+  <ware id="ionMine" minPrice="14758" avgPrice="20216" maxPrice="25674" volume="6" container="L" />
   <ware id="majaglit" minPrice="9" avgPrice="36" maxPrice="63" volume="2" container="S" />
   <ware id="hornetMissile" minPrice="8896" avgPrice="10108" maxPrice="11320" volume="3" container="M" />
   <ware id="sojaHusk" minPrice="204" avgPrice="364" maxPrice="524" volume="4" container="S" />
@@ -86,5 +86,5 @@
   <ware id="tempestMissile" minPrice="11859" avgPrice="13476" maxPrice="15093" volume="5" container="M" />
   <ware id="ionDisruptor" minPrice="241206" avgPrice="280472" maxPrice="319738" volume="10" container="M" />
   <ware id="reconDrone" minPrice="20496" avgPrice="28076" maxPrice="35656" volume="2" container="S" />
-  <ware id="trackermine" minPrice="7379" avgPrice="10108" maxPrice="12837" volume="6" container="L" />
+  <ware id="trackerMine" minPrice="7379" avgPrice="10108" maxPrice="12837" volume="6" container="L" />
 </wares>

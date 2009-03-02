@@ -20,18 +20,28 @@
         <strong>[@message key="factoryInfo.size" /]:</strong> ${factory.size}<br />
         <strong>[@message key="factoryInfo.cycle" /]:</strong> ${factory.cycleAsString}<br />
         <br />
+        
         <strong>[@message key="factoryInfo.product" /]:</strong><br />
         ${factory.product.quantity} ${factory.product.ware.name}<br />
         <br />
+        
         <strong>[@message key="factoryInfo.resources" /]:</strong><br />
         [#list factory.resources as resource]
-        ${resource.quantity} ${resource.ware.name}<br />
+          ${resource.quantity} ${resource.ware.name}<br />
         [/#list]
+        <br />
+        
+        <strong>[@message key="factoryInfo.manufacturers" /]:</strong><br />
+        [#list factory.manufacturers as manufacturer]
+          ${manufacturer.sector.name}<br />
+        [/#list]
+        <br />
+        
         [#if factory_has_next]        
-          <br />
           <hr />
           <br />
         [/#if]
+        
       [/#list]
     [/#if]
   </body>

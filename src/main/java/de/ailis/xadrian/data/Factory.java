@@ -68,6 +68,9 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /** The resources this factory needs in one cycle to produce its product */
     private final Product[] resources;
+    
+    /** The manufacturer stations */
+    private final Station[] manufacturers;
 
     /** The message id */
     private final String messageId;
@@ -96,11 +99,13 @@ public class Factory implements Serializable, Comparable<Factory>
      *            The factory volume
      * @param resources
      *            The needed resources per cycle
+     * @param manufacturers
+     *            The manufacturer stations
      */
 
     public Factory(final String id, final FactorySize size, final Type type, final Race race,
         final int cycle, final Product product, final int price,
-        final int volume, final Product[] resources)
+        final int volume, final Product[] resources, final Station[] manufacturers)
     {
         this.id = id;
         this.size = size;
@@ -111,6 +116,7 @@ public class Factory implements Serializable, Comparable<Factory>
         this.price = price;
         this.volume = volume;
         this.resources = resources;
+        this.manufacturers = manufacturers;
         this.messageId = "factory." + id.substring(0, id.lastIndexOf("-"));
     }
 
@@ -196,9 +202,9 @@ public class Factory implements Serializable, Comparable<Factory>
     public String getCycleAsString()
     {
         final int cycle = this.cycle;
-        if (cycle >= 24 * 60)
-            return String.format("%d:%02d:%02d", cycle / 24 / 60,
-                cycle % (24 * 60) / 60, cycle % 60);
+        if (cycle >= 60 * 60)
+            return String.format("%d:%02d:%02d", cycle / 60 / 60,
+                cycle % (60 * 60) / 60, cycle % 60);
         else if (cycle >= 60)
             return String.format("%d:%02d",
                 cycle / 60, cycle % 60);
@@ -254,6 +260,17 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.resources;
     }
 
+
+    /**
+     * Returns the manufacturer stations.
+     * 
+     * @return The manufacturer stations
+     */
+
+    public Station[] getManufacturers()
+    {
+        return this.manufacturers;
+    }
 
     /**
      * @see java.lang.Object#hashCode()

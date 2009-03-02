@@ -25,6 +25,7 @@ import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.FactorySize;
 import de.ailis.xadrian.data.Product;
 import de.ailis.xadrian.data.Race;
+import de.ailis.xadrian.data.Station;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.data.Factory.Type;
 import de.ailis.xadrian.exceptions.DataException;
@@ -130,8 +131,19 @@ public class FactoryFactory
                     i++;
                 }
 
+                final List<?> manuItems = element.elements("manufacturer");
+                final Station[] manufacturers = new Station[manuItems.size()];
+                i = 0;
+                for (final Object manuItem : manuItems)
+                {
+                    final Element manuElement = (Element) manuItem;
+                    manufacturers[i] = StationFactory.getInstance()
+                        .getStation(manuElement.attributeValue("station"),
+                            manuElement.attributeValue("sector"));
+                    i++;
+                }
                 final Factory factory = new Factory(id, size, type, race,
-                    cycle, product, price, volume, resources);
+                    cycle, product, price, volume, resources, manufacturers);
                 this.factories.add(factory);
                 this.factoryMap.put(id, factory);
             }
@@ -141,7 +153,6 @@ public class FactoryFactory
             throw new DataException("Unable to read XML file: " + e, e);
         }
     }
-
 
     /**
      * Returns all factories.
