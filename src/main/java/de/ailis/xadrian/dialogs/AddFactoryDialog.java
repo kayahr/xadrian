@@ -109,12 +109,12 @@ public class AddFactoryDialog extends ModalDialog implements
 
         // Create the factory pane
         final JScrollPane factoryPane = new JScrollPane(this.factoriesTree);
-        factoryPane.setPreferredSize(new Dimension(320, 256));
+        factoryPane.setPreferredSize(new Dimension(320, 340));
 
         // Create the info pane
         this.textPane = new JTextPane();
         final JScrollPane infoPane = new JScrollPane(this.textPane);
-        infoPane.setPreferredSize(new Dimension(196, 256));
+        infoPane.setPreferredSize(new Dimension(196, 340));
         this.textPane.setEditable(false);
         this.textPane.setBackground(new Color(0xff, 0xff, 0xaa));
         this.textPane.setContentType("text/html");
