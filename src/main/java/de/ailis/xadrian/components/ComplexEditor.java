@@ -521,16 +521,17 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         }
     }
 
-    
+
     /**
      * Returns true if this editor is new (and can be replaced with an other
      * editor).
      * 
      * @return True if editor is new
      */
-    
+
     public boolean isNew()
     {
-        return !this.changed && this.complex.getFactories().size() == 0;
+        return !this.changed && this.file == null
+            && this.complex.getFactories().size() == 0;
     }
 }

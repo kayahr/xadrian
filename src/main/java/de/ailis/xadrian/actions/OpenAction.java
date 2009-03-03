@@ -50,7 +50,7 @@ public class OpenAction extends FrameAction<MainFrame>
         final ComplexEditor complexEditor = ComplexEditor.open();
         if (complexEditor != null)
         {
-            this.frame.createComplexTab(complexEditor);
+            this.frame.createLoadedComplexTab(complexEditor);
         }
     }
 }

@@ -1,9 +1,7 @@
-* Save/Restore window preferences
 * Translate to german 
 * Add Yes/no-to-all option in close all action.
 * Let user change the buy/sell prices of wares per complex.
 * Add Edit menu with copy/cut/paste stuff.
-* Start application with open tab but after this point save/restore the tab states.
 * List cheapest factories in addfactory dialog.
 * List factories grouped by product in addfactory dialog.
 * Display storage of factories (and resulting storage of complex)

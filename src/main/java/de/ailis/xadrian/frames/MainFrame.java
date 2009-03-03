@@ -300,20 +300,33 @@ public class MainFrame extends JFrame implements EditorStateListener,
      *            The complex editor
      */
 
-    public void createComplexTab(final ComplexEditor editor)
+    private void createComplexTab(final ComplexEditor editor)
     {
-        // If current tab is new then close this one in favour of the new one.
-        final Component current = getCurrentTab();
-        if (current != null && current instanceof ComplexEditor
-            && ((ComplexEditor) current).isNew()) closeCurrentTab();
-
         this.tabs.addTab(editor.getComplex().getName(), editor);
         this.tabs.setSelectedComponent(editor);
         editor.addStateListener(this);
         this.fireChange();
     }
 
+    
+    /**
+     * Creates a complex editor tab with a loaded complex.
+     * 
+     * @param editor
+     *            The complex editor
+     */
+    
+    public void createLoadedComplexTab(final ComplexEditor editor)
+    {
+        // If current tab is new then close this one in favor of the new one
+        final Component current = getCurrentTab();
+        if (current != null && current instanceof ComplexEditor
+            && ((ComplexEditor) current).isNew()) closeCurrentTab();
 
+        createComplexTab(editor);
+    }
+
+    
     /**
      * Returns the current tab component.
      * 
