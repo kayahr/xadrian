@@ -352,7 +352,7 @@ public class Complex implements Serializable
 
     private void addFactory(final ComplexFactory complexFactory)
     {
-        if (complexFactory.getFactory().isMine())
+        if (!complexFactory.getFactory().isMine())
         {
             for (final ComplexFactory current : this.factories)
             {
