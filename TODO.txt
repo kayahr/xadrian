@@ -1,4 +1,3 @@
-* Translate to german 
 * Add Yes/no-to-all option in close all action.
 * Let user change the buy/sell prices of wares per complex.
 * Add Edit menu with copy/cut/paste stuff.
