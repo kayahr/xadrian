@@ -520,4 +520,17 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
             log.error("Unable to print complex: " + e, e);
         }
     }
+
+    
+    /**
+     * Returns true if this editor is new (and can be replaced with an other
+     * editor).
+     * 
+     * @return True if editor is new
+     */
+    
+    public boolean isNew()
+    {
+        return !this.changed && this.complex.getFactories().size() == 0;
+    }
 }

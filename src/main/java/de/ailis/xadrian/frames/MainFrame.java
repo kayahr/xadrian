@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.prefs.Preferences;
 
 import javax.swing.Action;
 import javax.swing.JCheckBoxMenuItem;
@@ -29,6 +30,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
 
+import de.ailis.xadrian.Main;
 import de.ailis.xadrian.actions.AboutAction;
 import de.ailis.xadrian.actions.AddFactoryAction;
 import de.ailis.xadrian.actions.CloseAction;
@@ -102,10 +104,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /** The "changeSuns" action */
     private final Action setSunsAction = new SetSunsAction(this);
-    
+
     /** The "toggleBaseComplex" action */
-    private final Action toggleBaseComplexAction = new ToggleBaseComplexAction(this);
-    
+    private final Action toggleBaseComplexAction =
+        new ToggleBaseComplexAction(this);
+
     /** The about dialog */
     private final AboutDialog aboutDialog = new AboutDialog();
 
@@ -125,12 +128,14 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
         setSize(800, 600);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter(){
+        addWindowListener(new WindowAdapter()
+        {
             @Override
             public void windowClosing(final WindowEvent e)
             {
                 exit();
-            }});
+            }
+        });
         setLocationRelativeTo(null);
 
         createMenuBar();
@@ -138,7 +143,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
         createContent();
         createStatusBar();
 
+        createComplexTab();
+
         pack();
+
+        loadPreferences();
 
         this.tabs.requestFocus();
     }
@@ -201,7 +210,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
         toolBar.addSeparator();
         toolBar.add(this.addFactoryAction);
         toolBar.add(this.setSunsAction);
-        final JToggleButton btn = new JToggleButton(this.toggleBaseComplexAction);
+        final JToggleButton btn =
+            new JToggleButton(this.toggleBaseComplexAction);
         btn.setHideActionText(true);
         toolBar.add(btn);
         add(toolBar, BorderLayout.NORTH);
@@ -292,6 +302,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     public void createComplexTab(final ComplexEditor editor)
     {
+        // If current tab is new then close this one in favour of the new one.
+        final Component current = getCurrentTab();
+        if (current != null && current instanceof ComplexEditor
+            && ((ComplexEditor) current).isNew()) closeCurrentTab();
+
         this.tabs.addTab(editor.getComplex().getName(), editor);
         this.tabs.setSelectedComponent(editor);
         editor.addStateListener(this);
@@ -313,8 +328,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Closes the current tab. Prompts for saving unsaved changes before
-     * closing. Returns true if the tab was closed or false if it
-     * was not closed.
+     * closing. Returns true if the tab was closed or false if it was not
+     * closed.
      * 
      * @return True if tab was closed, false if not
      */
@@ -327,11 +342,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
             final ComplexEditor editor = (ComplexEditor) current;
             if (editor.isChanged())
             {
-                final int answer = JOptionPane.showConfirmDialog(null, String
-                    .format(I18N.getString("confirm.saveChanges"), editor
-                        .getComplex().getName()), I18N
-                    .getTitle("confirm.saveChanges"),
-                    JOptionPane.YES_NO_CANCEL_OPTION);
+                final int answer =
+                    JOptionPane.showConfirmDialog(null, String.format(I18N
+                        .getString("confirm.saveChanges"), editor.getComplex()
+                        .getName()), I18N.getTitle("confirm.saveChanges"),
+                        JOptionPane.YES_NO_CANCEL_OPTION);
                 if (answer == JOptionPane.CANCEL_OPTION) return false;
                 if (answer == JOptionPane.YES_OPTION)
                 {
@@ -349,8 +364,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
 
     /**
-     * Closes all open tabs. Prompts for unsaved changes. Returns true if
-     * all tabs have been closed or false if at least one tab was not closed.
+     * Closes all open tabs. Prompts for unsaved changes. Returns true if all
+     * tabs have been closed or false if at least one tab was not closed.
      * 
      * @return True if all tabs were closed, false if not.
      */
@@ -409,14 +424,51 @@ public class MainFrame extends JFrame implements EditorStateListener,
     {
         fireChange();
     }
-    
-    
+
+
     /**
      * Exits the application. Prompts for saving unsaved changes before that.
      */
-    
+
     public void exit()
     {
-        if (closeAllTabs()) System.exit(0);
+        if (closeAllTabs())
+        {
+            savePreferences();
+            System.exit(0);
+        }
+    }
+
+
+    /**
+     * Saves the frame preferences.
+     */
+
+    private void savePreferences()
+    {
+        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+
+        // Window preferences are only saved if state is NORMAL
+        if (getExtendedState() == NORMAL)
+        {
+            prefs.putInt("MainFrame.width", getWidth());
+            prefs.putInt("MainFrame.height", getHeight());
+            prefs.putInt("MainFrame.left", getX());
+            prefs.putInt("MainFrame.top", getY());
+        }
+    }
+
+
+    /**
+     * Loads the previously saved preferences.
+     */
+
+    private void loadPreferences()
+    {
+        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+        setSize(prefs.getInt("MainFrame.width", getWidth()), prefs.getInt(
+            "MainFrame.height", getHeight()));
+        setLocation(prefs.getInt("MainFrame.left", getX()), prefs.getInt(
+            "MainFrame.top", getY()));
     }
 }
