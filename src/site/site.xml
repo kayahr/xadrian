@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+
+  <bannerLeft>
+    <name>xadrian</name>
+    <src>images/logo.png</src>
+    <href>http://www.ailis.de/~k/projects/xadrian/</href>
+  </bannerLeft>
+
+  <body>
+    
+    <menu name="Xadrian">
+      <item name="About" href="index.html" />
+      <item name="Download" href="download.html" />
+      <item name="Installation" href="install.html" />
+      <item name="Manual" href="manual.html" />
+      <item name="Report problems" href="problems.html" />
+    </menu>
+    
+    <menu ref="reports" />
+    
+  </body>
+</project>

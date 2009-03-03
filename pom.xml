@@ -13,6 +13,10 @@
     A complex calculator tool for X3 Terran Conflict.
   </description>
   <inceptionYear>2009</inceptionYear>
+  <organization>
+    <name>Klaus Reimer</name>
+    <url>http://www.ailis.de/~k/</url>
+  </organization>
   
   <scm>
     <url>https://scm.ailis.de/viewvc/java/xadrian/trunk/?root=svn</url>
@@ -141,6 +145,10 @@
       </plugin>
     </plugins>
   </reporting>
+  <ciManagement>
+  	<system>Hudson</system>
+  	<url>https://hudson.scm.ailis.de/job/xadrian/</url>
+  </ciManagement>
   
   <developers>
     <developer>
