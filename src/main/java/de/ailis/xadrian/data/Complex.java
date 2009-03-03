@@ -20,7 +20,6 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-import de.ailis.xadrian.data.Factory.Type;
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.MultiCollection;
@@ -339,7 +338,7 @@ public class Complex implements Serializable
     public void addFactory(final Factory factory)
     {
         addFactory(new ComplexFactory(factory, 1,
-            factory.getType() == Type.MINE ? 25 : 0));
+            factory.isMine() ? 25 : 0));
         calculateBaseComplex();
     }
 
@@ -353,7 +352,7 @@ public class Complex implements Serializable
 
     private void addFactory(final ComplexFactory complexFactory)
     {
-        if (complexFactory.getFactory().getType() != Type.MINE)
+        if (complexFactory.getFactory().isMine())
         {
             for (final ComplexFactory current : this.factories)
             {

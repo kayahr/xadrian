@@ -29,27 +29,8 @@ public class Factory implements Serializable, Comparable<Factory>
     /** Serial version UID */
     private static final long serialVersionUID = 4851121299100273466L;
 
-    /**
-     * Factory type.
-     */
-
-    public enum Type
-    {
-        /** A standard factory */
-        STANDARD,
-
-        /** A mine */
-        MINE,
-
-        /** A solar power plant */
-        SOLAR
-    }
-
     /** The factory id */
     private final String id;
-
-    /** The factory type */
-    private final Type type;
 
     /** The manufacturer race */
     private final Race race;
@@ -85,8 +66,6 @@ public class Factory implements Serializable, Comparable<Factory>
      * @param id
      *            The factory id
      *            @param size The factory size
-     * @param type
-     *            The factory type
      * @param race
      *            The race
      * @param cycle
@@ -103,13 +82,12 @@ public class Factory implements Serializable, Comparable<Factory>
      *            The manufacturer stations
      */
 
-    public Factory(final String id, final FactorySize size, final Type type, final Race race,
+    public Factory(final String id, final FactorySize size, final Race race,
         final int cycle, final Product product, final int price,
         final int volume, final Product[] resources, final Station[] manufacturers)
     {
         this.id = id;
         this.size = size;
-        this.type = type;
         this.race = race;
         this.cycle = cycle;
         this.product = product;
@@ -144,16 +122,17 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.size;
     }
 
-
+    
     /**
-     * Return the factory type.
+     * Returns true if this factory is a mine.
      * 
-     * @return The factory type
+     * @return True if this factory is a mine. False if not.
      */
-
-    public Type getType()
+    
+    public boolean isMine()
     {
-        return this.type;
+        final String wareId = this.product.getWare().getId();
+        return wareId.equals("siliconWafers") || wareId.equals("ore");
     }
 
 

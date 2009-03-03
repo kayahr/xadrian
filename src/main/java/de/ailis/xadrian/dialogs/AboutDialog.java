@@ -99,13 +99,14 @@ public class AboutDialog extends ModalDialog
         c.gridx = 1;
         c.gridy = 0;
         c.weighty = 1;
-        contentPanel.add(titleLabel, c);
+        contentPanel.add(titleLabel, c);        
         c.gridy = 1;
         contentPanel.add(copyrightLabel, c);
         c.gridx = 2;
         contentPanel.add(emailLabel, c);
         c.gridy = 2;
         c.gridx = 1;
+        c.gridwidth = 2;
         contentPanel.add(homepageLabel, c);
         c.weighty = 0;
         c.gridy = 3;

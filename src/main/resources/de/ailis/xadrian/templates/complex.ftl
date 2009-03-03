@@ -46,14 +46,14 @@
             <td class="factory">${factory.name}</td>
             <td class="race">${factory.race.name}</td>
             <td class="yield">
-              [#if complexFactory.factory.type == 'MINE']
+              [#if complexFactory.factory.mine]
                 [#if !print]<a href="file://changeYield/${complexFactory_index}">[/#if]
                   ${complexFactory.yield}
                 [#if !print]</a>[/#if]
               [/#if]
             </td>
             <td class="quantity">
-              [#if complexFactory.factory.type != 'MINE' && !print]
+              [#if !complexFactory.factory.mine && !print]
                 <a href="file://changeQuantity/${complexFactory_index}">${complexFactory.quantity}</a>
               [#else]
                 ${complexFactory.quantity}
@@ -81,17 +81,11 @@
               <td class="factory">${factory.name}</td>
               <td class="race">${factory.race.name}</td>
               <td class="yield">
-                [#if complexFactory.factory.type == 'MINE']
+                [#if complexFactory.factory.mine]
                   ${complexFactory.yield}
                 [/#if]
               </td>
-              <td class="quantity">
-                [#if complexFactory.factory.type != 'MINE']
-                  ${complexFactory.quantity}
-                [#else]
-                  ${complexFactory.quantity}
-                [/#if]
-              </td>
+              <td class="quantity">${complexFactory.quantity}</td>
               <td class="singlePrice">${factory.price} Cr</td>
               <td class="price">${factory.price * complexFactory.quantity} Cr</td>
               [#if !print]
@@ -141,20 +135,20 @@
     </p>
     [/#if]
     [#if complex.factories?size > 0]      
-      <h2>Production statistics (per Hour)</h2>
+      <h2>[@message key="complex.productionStats" /]</h2>
       <table>
         <tr>
-          <th class="ware">Ware</th>
-          <th class="units">Produced</th>
-          <th class="units">Needed</th>
-          <th class="units">Surplus</th>
-          <th class="price">Buy</th>
-          <th class="price">Sell</th>
-          <th class="profit">Profit</th>
+          <th class="ware">[@message key="complex.ware" /]</th>
+          <th class="units">[@message key="complex.produced" /]</th>
+          <th class="units">[@message key="complex.needed" /]</th>
+          <th class="units">[@message key="complex.surplus" /]</th>
+          <th class="price">[@message key="complex.buyPrice" /]</th>
+          <th class="price">[@message key="complex.sellPrice" /]</th>
+          <th class="profit">[@message key="complex.profit" /]</th>
         </tr>
         <tr>
           <td colspan="4"><hr /></td>
-          <td colspan="3"><hr /></td
+          <td colspan="3"><hr /></td>
         </tr>
         [#list complex.wares as complexWare]
           [#if complexWare_index %2 == 0]
@@ -169,14 +163,14 @@
             [#assign surplus = complexWare.produced - complexWare.needed]
             [#if surplus > 0]
               [#assign class="surplus"]
-            [#elseif surplus < 0]
+            [#elseif surplus lt 0]
               [#assign class="missing"]
             [#else]
               [#assign class="balanced"]
             [/#if]
             <td class="${class}">${surplus?round}</td>
             <td class="price">
-              [#if surplus < 0]
+              [#if surplus lt 0]
                 ${complexWare.buyPrice} Cr
               [#else]
                 -
@@ -197,7 +191,7 @@
           <td colspan="3"><hr /></td>
         </tr>
         <tr>
-          <th class="profit" colspan="6">Total</th>
+          <th class="profit" colspan="6">[@message key="complex.total" /]</th>
           <td class="profit">${complex.profit?round} Cr</td>          
         </tr>        
       </table>

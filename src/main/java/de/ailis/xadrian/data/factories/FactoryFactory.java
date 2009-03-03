@@ -27,7 +27,6 @@ import de.ailis.xadrian.data.Product;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.Station;
 import de.ailis.xadrian.data.Ware;
-import de.ailis.xadrian.data.Factory.Type;
 import de.ailis.xadrian.exceptions.DataException;
 
 
@@ -102,10 +101,6 @@ public class FactoryFactory
                     .attributeValue("cycle"));
                 final int price = Integer.parseInt(element
                     .attributeValue("price"));
-                Type type = Type.STANDARD;
-                final String typeStr = element.attributeValue("type");
-                if (typeStr != null)
-                    type = Type.valueOf(typeStr.toUpperCase());
                 final int volume = Integer.parseInt(element
                     .attributeValue("volume"));
 
@@ -142,7 +137,7 @@ public class FactoryFactory
                             manuElement.attributeValue("sector"));
                     i++;
                 }
-                final Factory factory = new Factory(id, size, type, race,
+                final Factory factory = new Factory(id, size, race,
                     cycle, product, price, volume, resources, manufacturers);
                 this.factories.add(factory);
                 this.factoryMap.put(id, factory);
