@@ -6,6 +6,8 @@
 
 package de.ailis.xadrian;
 
+import java.util.Locale;
+
 import javax.swing.UIManager;
 
 import de.ailis.xadrian.frames.MainFrame;
@@ -30,6 +32,8 @@ public class Main
     
     public static void main(final String[] args) throws Exception
     {
+        final String language = System.getenv().get("LANG");
+        if (language != null) Locale.setDefault(new Locale(language));
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         new MainFrame().setVisible(true);
     }
