@@ -388,7 +388,7 @@ public class Factory implements Serializable, Comparable<Factory>
         {
             final int baseTime = 2400 / (yield + 1) + 1;
             final int multiple = (int) Math.floor(59.9 / baseTime) + 1;
-            return new Product(ware, multiple * this.product.getQuantity());
+            return new Product(ware, multiple * this.product.getQuantity() / 2);
         }
 
         // Handle ore mines
@@ -396,7 +396,7 @@ public class Factory implements Serializable, Comparable<Factory>
         {
             final int baseTime = 600 / (yield + 1) + 1;
             final int multiple = (int) Math.floor(59.9 / baseTime) + 1;
-            return new Product(ware, multiple * (this.product.getQuantity() / 3));
+            return new Product(ware, multiple * (this.product.getQuantity() / 4));
         }
 
         // Normal factory, return normal product
@@ -438,7 +438,7 @@ public class Factory implements Serializable, Comparable<Factory>
             final int baseTime = 2400 / (yield + 1) + 1;
             final int multiple = (int) Math.floor(59.9 / baseTime) + 1;
             resources[0] = new Product(resource.getWare(), multiple
-                * resource.getQuantity());
+                * resource.getQuantity() / 2);
             return resources;
         }
 
@@ -450,7 +450,7 @@ public class Factory implements Serializable, Comparable<Factory>
             final int baseTime = 600 / (yield + 1) + 1;
             final int multiple = (int) Math.floor(59.9 / baseTime) + 1;
             resources[0] = new Product(resource.getWare(), multiple
-                * (resource.getQuantity() / 3));
+                * (resource.getQuantity() / 4));
             return resources;
         }
 

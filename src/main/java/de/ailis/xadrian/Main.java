@@ -29,12 +29,15 @@ public class Main
      *            Command line arguments
      * @throws Exception
      */
-    
+
     public static void main(final String[] args) throws Exception
     {
         final String language = System.getenv().get("LANG");
         if (language != null) Locale.setDefault(new Locale(language));
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+        final String sysThemeStr = System.getenv().get("SYSTHEME");
+        if (sysThemeStr == null || Boolean.parseBoolean(sysThemeStr))
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         new MainFrame().setVisible(true);
     }
 }
