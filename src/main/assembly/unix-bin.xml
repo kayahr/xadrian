@@ -14,14 +14,11 @@
       <lineEnding>unix</lineEnding>
     </fileSet>
     <fileSet>
-      <directory>src/main/scripts</directory>
+      <directory>src/main/assembly/unix</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>*</include>
       </includes>
-      <excludes>
-        <exclude>*.bat</exclude>
-      </excludes>
       <fileMode>0755</fileMode>
       <lineEnding>unix</lineEnding>
     </fileSet>

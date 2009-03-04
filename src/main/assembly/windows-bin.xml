@@ -14,13 +14,21 @@
       <lineEnding>dos</lineEnding>
     </fileSet>
     <fileSet>
-      <directory>src/main/scripts</directory>
+      <directory>src/main/assembly/windows</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>*.bat</include>
+        <include>*.ini</include>
       </includes>
       <fileMode>0644</fileMode>
       <lineEnding>dos</lineEnding>
+    </fileSet>
+    <fileSet>
+      <directory>src/main/assembly/windows</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>*.exe</include>
+      </includes>
+      <fileMode>0644</fileMode>
     </fileSet>
   </fileSets>
   <files>
