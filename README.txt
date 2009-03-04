@@ -1,1 +1,1 @@
-A factory complex calculator tool for X3 TerRran Conflict.
+A factory complex calculator tool for X3 Terran Conflict.
