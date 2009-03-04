@@ -21,10 +21,8 @@ Installation
   </usr/local>.
 
   Unpacking creates a new directory named <xadrian-x.x.x> containing the
-  shell script (for Unix) or batch file (for Windows) which is used
-  to launch the Java Application. You can rename
-  the folder to <xadrian> if you don't like version numbers in directory
-  names.
+  application. You can rename the folder to <xadrian> if you don't like version
+  numbers in directory names.
 
   Mac OS X users will find a standard application icon in the ZIP file. Just
   drag it into your application folder and that's it.

@@ -44,6 +44,9 @@
       <outputDirectory>/lib</outputDirectory>
       <unpack>false</unpack>
       <scope>runtime</scope>
+      <excludes>
+        <exclude>${groupId}:${artifactId}</exclude>
+      </excludes>      
     </dependencySet>
   </dependencySets>
 </assembly>

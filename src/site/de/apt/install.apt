@@ -20,10 +20,8 @@ Installation
 
   Durch das Entpacken entsteht ein neuer Ordner namens <xadrian-x.x.x>. Der
   Ordner kann nach <xadrian> umbenannt werden, wenn Versions-Nummern in
-  Verzeichnis-Namen nicht gewünscht sind. Der Ordner beinhaltet
-  das Shell-Skript (für Unix) oder die Batch-Datei (Für Windows) zum Starten
-  der Java-Applikation. 
+  Verzeichnis-Namen nicht gewünscht sind.
 
-  Mac OS X Benutzer finden im Binärpaket hingegen ein normales Applikations-Icon
+  Mac OS X Benutzer finden im Binärpaket ein normales Applikations-Icon
   welches per Drag & Drop einfach in den Applikations-Ordner gezogen werden
   kann.
