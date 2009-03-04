@@ -32,7 +32,7 @@ public class JLinkLabel extends JLabel
     private static final long serialVersionUID = -6860272513583477660L;
     
     /** The logger */
-    private static final Log log = LogFactory.getLog(JLinkLabel.class);
+    static final Log log = LogFactory.getLog(JLinkLabel.class);
 
 
     /**
