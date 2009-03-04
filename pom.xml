@@ -139,6 +139,8 @@
         <version>2.0-beta-6</version>
         <configuration>
           <locales>en,de</locales>
+          <inputEncoding>UTF-8</inputEncoding>
+          <outputEncoding>UTF-8</outputEncoding>
         </configuration>
       </plugin>      
       <plugin>

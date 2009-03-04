@@ -4,58 +4,61 @@
 
 Anleitung
 
-  When Xadrian is started then it begins with a fresh new factory complex as
-  shown in this figure:
+  Wenn Xadrian gestartet wird, dann startet es immer mit einem frischen leeren
+  Fabrik-Komplex wie in dieser Abbildung zu sehen:
 
-[../images/screen1s] Starting with a new empty factory complex
+[../images/screen1s] Programm-Start mit einem neuen leeren Fabrik-Komplex
 
-  You can now begin adding factories to this new complex by clicking the
-  <Add a factory> hyperlink or by clicking the corresponding function in
-  the menu or the toolbar. This will open this dialog window:
+  Du kannst nun damit beginnen Fabriken zu diesem neuen Komplex hinzuzufügen,
+  indem du auf den <Fabrik hinzufügen> Link klickst oder die entsprechende 
+  Funktion im Menü oder in der Toolbar anklickst. Dies öffnet dann folgenden
+  Dialog:
 
-[../images/screen2s] Adding a factory
+[../images/screen2s] Eine Fabrik hinzufügen
 
-  Factories are grouped by their races in form of a tree. Select the
-  factory (or multiple factories) you want to add to your complex. On the
-  right side of the dialog window Xadrian will list useful information about
-  the factories. Click OK to add the selected factories to the complex.
+  Fabriken sind gemäß ihrer Rassen gruppiert und werden in einer Baumansicht
+  aufgelistet. Wähle die Fabrik (oder auch mehrere Fabriken), die du zum
+  Komplex hinzufügen möchtest. Auf der rechten Seite des Dialog-Fensters
+  werden nützliche Informationen zu den ausgewählten Fabriken angezeigt.
+  Klicke auf OK um die ausgewählten Fabriken zum Komplex hinzuzufügen.
 
-  In the complex view a red cross icon is drawn right of each factory
-  entry. You can click this icon to remove the factory from the complex.
+  In der Komplex-Ansicht befinden sich rechts neben den hinzugefügten 
+  Fabriken Icons mit einem roten Kreuz. Durch einen Klick darauf können
+  Fabriken wieder aus dem Komplex entfernt werden.
+
+  Um die Anzahl einer Fabrik zu ändern, einfach auf die Anzahl (welche als
+  Link dargestellt ist) klicken und eine neue Anzahl auswählen. Bei Minen kann
+  die Anzahl nicht verändert werden. Da jede Mine eine bestimmte Ausbeute hat
+  lassen sich diese nicht in einen einzelnen Eintrag gruppieren. Daher muss jede
+  Mine einzeln zum Komplex hinzugefügt werden.
   
-  To change the quantity of a factory simply click the quantity (which
-  is a hyperlink). A dialog window will pop up where you can enter the new
-  quantity. Note that you can't change the quantity of mines. If you need
-  multiple mines you have to add them one by one because each mine can have
-  a different yield so they can't be grouped together into a single entry.
+  Um die Ausbeute bei einer Mine zu ändern, einfach auf den Ausbeute-Wert klicken
+  und einen neuen Wert eingeben.
+  
+  Die Sonnenstärke kann mit einem Klick auf den Prozent-Wert oben in der
+  Komplex-Ansicht geändert werden. Dies beinflusst die Effektivität von
+  Kraftwerken. Daher ist es eine gute Idee hier immer den korrekten Wert des
+  Sektors anzugeben, in dem der Komplex später gebaut werden soll. 
 
-  To change the yield of a mine simply click the yield value and enter a
-  new yield.
+  Xadrian kann automatisch einen Grundkomplex berechnen und zum Komplex
+  hinzufügen. Das bedeutet dass Xadrian dann fehlende Fabriken hinzufügt, damit
+  der Komplex selbstversorgend läuft. Diese Funktion kann in der Toolbar oder
+  auch im Menü jederzeit ein- und ausgeschaltet werden. Xadrian kann keine
+  Minen automatisch hinzufügen. Daher wird dem Komplex dann immer noch
+  Silizium-Scheiben oder Erz fehlen. Du musst die Minen dann manuell 
+  hinzufügen, um die Mineralien-Nachfrage zu befriedigen. 
 
-  You can change the sun power by clicking the suns percent value at the
-  top of the complex view. This influences the effectivity of solar power
-  plants so it's always a good idea to set the correct value here depending
-  on the target sector in the game.
+  Automatisch hinzugefügte Fabriken werden grau dargestellt und haben jeweils
+  eine blaues Kreuz am rechten Rand. Ein Klick auf diese Icons konvertiert
+  die automatisch hinzugefügte Fabrik zu einer manuell gepflegten Fabrik.
 
-  Xadrian can automatically calculate the base complex. This means Xadrian can
-  add needed factories automatically to get a self-sustaining complex. You
-  can enable or disable this feature with the <wand> toolbar button or the
-  corresponding item in the <Complex> menu. Xadrian can't add mines to the
-  complex automatically. So you will end up with a complex which still needs
-  Silicon Wafers or Ore. You have to add mines manually to satisfy these needs.
+  Ein fertiger Komplex sieht dann z.B. so aus:
+  
+[../images/screen3s] Ein fertiger Fabrik-Komplex
 
-  Automatically added factories are displayed in gray in the complex view and
-  each factory has a blue plus icon at the right. You can click this icon
-  to convert an automatically generated factory into a manual one. This is
-  useful if you want to <accept> and <fine-tune> the automatically added
-  factories.
+  Wie du in der Produktions-Statistik sehen kannst, ist dieser Komplex 
+  komplett selbstversorgend.
 
-  A finished complex looks like this:
-
-[../images/screen3s] A complete factory complex
-
-  As you can see in the production statistics this complex is completely
-  self-sustaining.
-
-  Now you know the basics. All other stuff like saving, loading and printing
-  should be self-explanatory.
+  Nun kennst du die Grundlagen. Die anderen Funktionen, wie z.B. Speichern,
+  Laden und Drucken, sollten selbsterklärend sein.
+  

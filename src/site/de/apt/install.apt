@@ -4,27 +4,26 @@
 
 Installation
 
-* Installing a JRE
+* Java installieren
 
-  If you not already have a Java Runtime Environment installed then you have 
-  to do it now. {{{http://www.java.com/download/}Download Java SE 6 for your platform}}
-  from Sun and follow the installation instructions.
+  Falls noch keine Java Laufzeitumgebung installiert ist, dann muss dies
+  zuerst gemacht werden. Also {{{http://www.java.com/download/}Java SE 6 herunteladen}}
+  und nach Anleitung installieren.
+
+  Xadrian benötigt mindestens Java 6. Ältere Versionen werden nicht unterstützt.  
   
-  Please note that Xadrian needs at least Java 6. It will not
-  work with Java 5 or the ancient Java 1.4.
-  
-* Installing Xadrian
+* Xadrian installieren
 
-  After you have {{{download.html}downloaded}} the Xadrian binary
-  archive you have to unpack it somewhere on your system. Windows users may choose
-  <C:\Program Files> for it while Unix users may prefer </opt> or 
-  </usr/local>.
+  Nach dem {{{download.html}Download}} das Xadrian Binärpaket
+  irgendwo entpacken. Unter Windows bietet sich z.B.
+  <C:\Programme> an, unter Unix hingegen eher </opt> oder </usr/local>.
 
-  Unpacking creates a new directory named <xadrian-x.x.x> containing the
-  shell script (for Unix) or batch file (for Windows) which is used
-  to launch the Java Application. You can rename
-  the folder to <xadrian> if you don't like version numbers in directory
-  names.
+  Durch das Entpacken entsteht ein neuer Ordner namens <xadrian-x.x.x>. Der
+  Ordner kann nach <xadrian> umbenannt werden, wenn Versions-Nummern in
+  Verzeichnis-Namen nicht gewünscht sind. Der Ordner beinhaltet
+  das Shell-Skript (für Unix) oder die Batch-Datei (Für Windows) zum Starten
+  der Java-Applikation. 
 
-  Mac OS X users will find a standard application icon in the ZIP file. Just
-  drag it into your application folder and that's it.
+  Mac OS X Benutzer finden im Binärpaket hingegen ein normales Applikations-Icon
+  welches per Drag & Drop einfach in den Applikations-Ordner gezogen werden
+  kann.

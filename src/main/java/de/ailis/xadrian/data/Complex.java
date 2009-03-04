@@ -596,9 +596,9 @@ public class Complex implements Serializable
         if (!this.addBaseComplex) return;
 
         // Repeat adding base complex factories until all needs are fulfilled
-        while (addBaseComplex())
+        while (true)
         {
-            // Empty
+            if (!addBaseComplex()) break;
         }
     }
 

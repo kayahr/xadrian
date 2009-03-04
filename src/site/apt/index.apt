@@ -19,14 +19,14 @@ What is Xadrian?
 
     * Load, save and print your complexes.
 
-    * Sun power is confurable per complex.
+    * Sun power is configurable per complex.
     
     * Cross-platform GUI application. Runs on any platform supporting
       {{{http://java.sun.com/javase/6/}Java SE 6}} or higher.
 
     * Native look-and-feel on Windows, Linux and Mac OS X.
 
-    * Open Source (MIT License)
+    * Open Source (MIT License)    
   
     []
       
@@ -38,5 +38,5 @@ Getting started
 
 News
 
-  (2009/03/03) Version 1.0 has been released.
+  2009/03/04 -  Version 1.0.0 has been released.
 

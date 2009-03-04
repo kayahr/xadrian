@@ -64,7 +64,7 @@ public final class Images
      * @return The icon
      */
 
-    private static final Image createImage(final String filename)
+    private static Image createImage(final String filename)
     {
         final URL url = Images.class.getResource("/de/ailis/xadrian/images/"
             + filename);

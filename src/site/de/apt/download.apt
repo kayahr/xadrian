@@ -4,25 +4,25 @@
 
 Download
 
-* Requirements
+* Vorraussetzungen
 
-  Xadrian is written in Java and  you need at least the
-  {{{http://www.java.com/download/}Java SE 6 Runtime Environment}} from Sun.
-  The old Java version 1.5 is <<not>> sufficient.
+  Xadrian ist in Java geschrieben und braucht mindestens die
+  {{{http://www.java.com/download/}Java SE 6 Laufzeitumgebung}} von Sun.
+  Die alte 5er Version ist <<nicht>> ausreichend.
   
 
-* Binaries
+* Binärpakete
 
-  * For Windows: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.0.0/xadrian-1.0.0-win-bin.zip}xadrian-1.0.0-win-bin.zip}}
+  * Für Windows: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.0.0/xadrian-1.0.0-win-bin.zip}xadrian-1.0.0-win-bin.zip}}
   
-  * For Linux/Unix: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.0.0/xadrian-1.0.0-unix-bin.tar.bz2}xadrian-1.0.0-unix-bin.tar.bz2}}
+  * Für Linux/Unix: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.0.0/xadrian-1.0.0-unix-bin.tar.bz2}xadrian-1.0.0-unix-bin.tar.bz2}}
   
-  * For Mac OS X: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.0.0/xadrian-1.0.0-macosx-bin.zip}xadrian-1.0.0-macosx-bin.zip}}
+  * Für Mac OS X: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.0.0/xadrian-1.0.0-macosx-bin.zip}xadrian-1.0.0-macosx-bin.zip}}
 
   []
 
 
-* Sources
+* Quellcode
 
   * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.0.0/xadrian-1.0.0-src.zip}xadrian-1.0.0-src.zip}}
     
@@ -30,5 +30,5 @@ Download
     
   []
   
-  Sources are also available in the {{{source-repository.html}source repository}}.
+  Der Quellcode ist auch im {{{source-repository.html}Quellcodearchiv}} verfügbar.
   

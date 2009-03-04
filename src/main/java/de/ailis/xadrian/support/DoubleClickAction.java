@@ -26,20 +26,20 @@ public class DoubleClickAction extends MouseAdapter
     /** The action to execute on double click */
     private final Action action;
 
-    
+
     /**
      * Constructor
      * 
      * @param action
      *            The action to execute on double click
      */
-    
+
     public DoubleClickAction(final Action action)
     {
         this.action = action;
     }
 
-    
+
     /**
      * @see java.awt.event.MouseAdapter#mouseClicked(java.awt.event.MouseEvent)
      */
@@ -47,12 +47,9 @@ public class DoubleClickAction extends MouseAdapter
     @Override
     public void mouseClicked(final MouseEvent e)
     {
-        if (e.getClickCount() == 2)
+        if (e.getClickCount() == 2 && this.action.isEnabled())
         {
-            if (this.action.isEnabled())
-            {
-                this.action.actionPerformed(null);
-            }
+            this.action.actionPerformed(null);
         }
     }
 }

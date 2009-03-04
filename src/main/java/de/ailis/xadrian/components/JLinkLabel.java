@@ -14,6 +14,9 @@ import java.net.URI;
 
 import javax.swing.JLabel;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 /**
  * Label component which styles the label as a hyperlink and opens a url in an
@@ -27,6 +30,9 @@ public class JLinkLabel extends JLabel
 {
     /** Serial version UID */
     private static final long serialVersionUID = -6860272513583477660L;
+    
+    /** The logger */
+    private static final Log log = LogFactory.getLog(JLinkLabel.class);
 
 
     /**
@@ -45,15 +51,15 @@ public class JLinkLabel extends JLabel
         this.addMouseListener(new MouseAdapter()
         {
             @Override
-            public void mouseClicked(final MouseEvent e)
+            public void mouseClicked(final MouseEvent event)
             {
                 try
                 {
                     Desktop.getDesktop().browse(new URI(url));
                 }
-                catch (final Exception exception)
+                catch (final Exception e)
                 {
-                    // Ignored
+                    log.error("Unable to external browser: " + e, e);
                 }
             }
         });

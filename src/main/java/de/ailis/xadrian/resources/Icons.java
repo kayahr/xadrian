@@ -100,7 +100,7 @@ public final class Icons
      * @return The icon
      */
 
-    private static final ImageIcon createIcon(final String filename)
+    private static ImageIcon createIcon(final String filename)
     {
         final URL url = Icons.class.getResource("/de/ailis/xadrian/images/"
             + filename + ".png");

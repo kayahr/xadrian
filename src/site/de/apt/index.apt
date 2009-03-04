@@ -4,39 +4,39 @@
 
 Was ist Xadrian?
 
-  Xadrian is a factory complex calculator for the game
+  Xadrian ist ein Fabrik-Komplex-Rechner für das Spiel
   {{{http://www.egosoft.com/games/x3tc/info_en.php}X3 Terran Conflict}}.
-  With this tool you can plan your factory complexes before you build them
-  in-game.
+  Mit diesem Programm lässt sich ein Fabrik-Komplex planen bevor er dann im
+  Spiel gebaut wird.
 
 [../images/teaser]
 
-  Notable features:
+  Features:
 
-    * Knows all factories which can be buyed in a regular X3TC game.
+    * Kennt alle Fabriken die in einem regulären X3TC Spiel gekauft werden können.
     
-    * Optional automatic base complex calculation.
+    * Optionale automatische Grundkomplex-Berechnung.
 
-    * Load, save and print your complexes.
+    * Laden, Speichern und Drucken von Fabrik-Komplexen.
 
-    * Sun power is confurable per complex.
+    * Sonnenstärke ist pro Komplex einstellbar.
     
-    * Cross-platform GUI application. Runs on any platform supporting
-      {{{http://java.sun.com/javase/6/}Java SE 6}} or higher.
+    * Plattform-unabhängige Applikation. Läuft auf jeder Platform die
+      {{{http://java.sun.com/javase/6/}Java SE 6}} oder höher unterstützt.
 
-    * Native look-and-feel on Windows, Linux and Mac OS X.
+    * Natives Look-And-Feel unter Windows, Linux und Mac OS X.
 
-    * Open Source (MIT License)
+    * Open Source (MIT Lizenz)
   
     []
       
-Getting started
+Erste Schritte
 
-  {{{download.html}Download}} the latest binary archive of Xadrian, 
-  follow the {{{install.html}installation instructions}} and then
-  read the {{{manual.html}manual}}.
+  Das aktuellste Binärpaket von Xadrian {{{download.html}herunterladen}}, 
+  {{{install.html}installieren}} und dann die
+  {{{manual.html}Anleitung lesen}}.
 
-News
+Neuigkeiten
 
-  (2009/03/03) Version 1.0 has been released.
+  04.03.2009 - Version 1.0.0 veröffentlicht.
 

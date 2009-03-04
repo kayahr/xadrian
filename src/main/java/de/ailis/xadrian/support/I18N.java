@@ -49,7 +49,7 @@ public final class I18N
      * @return The message resource value or null if not found
      */
 
-    private static final String get(final String key)
+    private static String get(final String key)
     {
         try
         {
@@ -71,7 +71,7 @@ public final class I18N
      * @return The message resource value
      */
 
-    public static final String getString(final String key)
+    public static String getString(final String key)
     {
         final String value = get(key);
         if (value == null) return "???" + key + "???";
@@ -87,7 +87,7 @@ public final class I18N
      * @return The title message resource value
      */
 
-    public static final String getTitle(final String key)
+    public static String getTitle(final String key)
     {
         return getString(key + ".title");
     }
@@ -103,7 +103,7 @@ public final class I18N
      * @return The accelerator key stroke or null if not set
      */
 
-    public static final KeyStroke getAccelerator(final String key)
+    public static KeyStroke getAccelerator(final String key)
     {
         final String value = get(key + ".accelerator");
         if (value == null || value.length() == 0) return null;
@@ -121,7 +121,7 @@ public final class I18N
      * @return The mnemonic or 0 if not set
      */
 
-    public static final int getMnemonic(final String key)
+    public static int getMnemonic(final String key)
     {
         final String value = get(key + ".mnemonic");
         if (value == null || value.length() == 0) return 0;
@@ -140,7 +140,7 @@ public final class I18N
      * @return The tooltip message resource value
      */
 
-    public static final String getToolTip(final String key)
+    public static String getToolTip(final String key)
     {
         return get(key + ".tooltip");
     }
@@ -157,7 +157,7 @@ public final class I18N
      * @return The created menu
      */
 
-    public static final JMenu createMenu(final JComponent menuBar,
+    public static JMenu createMenu(final JComponent menuBar,
         final String name)
     {
         final String key = "menu." + name;

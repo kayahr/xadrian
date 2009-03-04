@@ -6,7 +6,7 @@ Installation
 
 * Installing a JRE
 
-  If you not already have a Java Runtime Environment installed then you have 
+  If no Java Runtime Environment is already installed then you have 
   to do it now. {{{http://www.java.com/download/}Download Java SE 6 for your platform}}
   from Sun and follow the installation instructions.
   
