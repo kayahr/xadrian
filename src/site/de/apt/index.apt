@@ -1,0 +1,42 @@
+ -----------------------------------------------------------------------------
+ Info
+ -----------------------------------------------------------------------------
+
+Was ist Xadrian?
+
+  Xadrian is a factory complex calculator for the game
+  {{{http://www.egosoft.com/games/x3tc/info_en.php}X3 Terran Conflict}}.
+  With this tool you can plan your factory complexes before you build them
+  in-game.
+
+[../images/teaser]
+
+  Notable features:
+
+    * Knows all factories which can be buyed in a regular X3TC game.
+    
+    * Optional automatic base complex calculation.
+
+    * Load, save and print your complexes.
+
+    * Sun power is confurable per complex.
+    
+    * Cross-platform GUI application. Runs on any platform supporting
+      {{{http://java.sun.com/javase/6/}Java SE 6}} or higher.
+
+    * Native look-and-feel on Windows, Linux and Mac OS X.
+
+    * Open Source (MIT License)
+  
+    []
+      
+Getting started
+
+  {{{download.html}Download}} the latest binary archive of Xadrian, 
+  follow the {{{install.html}installation instructions}} and then
+  read the {{{manual.html}manual}}.
+
+News
+
+  (2009/03/03) Version 1.0 has been released.
+

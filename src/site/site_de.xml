@@ -3,22 +3,22 @@
 
   <bannerLeft>
     <name>Xadrian</name>
-    <src>images/logo.png</src>
+    <src>../images/logo.png</src>
     <href>http://www.ailis.de/~k/projects/xadrian/</href>
   </bannerLeft>
 
   <body>
     
     <links>
-      <item name="Deutsch" href="de/" />
+      <item name="English" href="../" />
     </links>
     
     <menu name="Xadrian">
-      <item name="About" href="index.html" />
+      <item name="Info" href="index.html" />
       <item name="Download" href="download.html" />
       <item name="Installation" href="install.html" />
-      <item name="Manual" href="manual.html" />
-      <item name="Report problems" href="problems.html" />
+      <item name="Anleitung" href="manual.html" />
+      <item name="Probleme berichten" href="problems.html" />
     </menu>
     
     <menu ref="reports" />
