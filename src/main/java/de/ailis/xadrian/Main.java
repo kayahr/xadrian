@@ -32,7 +32,7 @@ public class Main
 
     public static void main(final String[] args) throws Exception
     {
-        final String language = System.getenv().get("LANG");
+        final String language = System.getenv().get("LANGUAGE");
         if (language != null) Locale.setDefault(new Locale(language));
 
         final String sysThemeStr = System.getenv().get("SYSTHEME");
