@@ -4,5 +4,7 @@
 * List cheapest factories in addfactory dialog.
 * List factories grouped by product in addfactory dialog.
 * Display storage of factories (and resulting storage of complex)
-* Implement "buy" list
+* Implement "buy" list for factories (Grouped to the lowest number of sectors
+  to visit and display the needed total volume per sector)
 * Sort factories in addFactory by their size and not only alphabetical
+* Let user define which races are acceptable for base complex addition.
