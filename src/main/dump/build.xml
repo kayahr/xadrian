@@ -1,0 +1,52 @@
+<project name="x3tc-dump">
+    
+    
+    <target name="build">
+        <copy file="en/log00000.txt" tofile="out/sectors.xml" />
+        <copy file="en/log00002.txt" tofile="out/factories.xml" />
+        <copy file="en/log00004.txt" tofile="out/wares.xml" />
+        
+        <concat destfile="out/game-messages.properties">
+            <fileset dir="en">
+                <include name="log00001.txt" />
+                <include name="log00003.txt" />
+                <include name="log00005.txt" />
+            </fileset>
+        </concat>
+
+        <javac srcdir="lib" destdir="lib" />
+        <java classpath="lib" classname="CorrectMessageKeys">
+            <arg line="en/log00001.txt" />
+            <arg line="de/log00001.txt" />
+            <arg line="out/log00001.txt" />
+        </java>
+        <java classpath="lib" classname="CorrectMessageKeys">
+            <arg line="en/log00003.txt" />
+            <arg line="de/log00003.txt" />
+            <arg line="out/log00003.txt" />
+        </java>
+        <java  classpath="lib" classname="CorrectMessageKeys">
+            <arg line="en/log00005.txt" />
+            <arg line="de/log00005.txt" />
+            <arg line="out/log00005.txt" />
+        </java>
+        
+        <concat destfile="out/game-messages_de.txt">
+            <fileset dir="out">
+                <include name="log00001.txt" />
+                <include name="log00003.txt" />
+                <include name="log00005.txt" />
+            </fileset>
+        </concat>
+            
+        <delete file="out/log00001.txt" />
+        <delete file="out/log00003.txt" />
+        <delete file="out/log00005.txt" />
+        
+        <native2ascii src="out" includes="game-messages_de.txt"
+                      dest="." />
+        <delete file="out/game-messages_de.txt" />
+        <move file="game-messages_de.txt"
+              tofile="out/game-messages_de.properties" />
+    </target>
+</project>

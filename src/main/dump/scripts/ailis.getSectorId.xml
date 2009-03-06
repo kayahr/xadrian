@@ -1,0 +1,118 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.getSectorId</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Returns the  ID of a sector</description>
+<arguments>
+<argument index="1" name="sector" type="Var/Sector" desc="sector" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$x&#160;=&#160;</var><var>$sector&#160;-&gt;</var><text>&#160;get&#160;universe&#160;x&#160;index</text></line>
+<line linenr="002" indent=""><var>$y&#160;=&#160;</var><var>$sector&#160;-&gt;</var><text>&#160;get&#160;universe&#160;y&#160;index</text></line>
+<line linenr="003" indent=""><var>$out&#160;=&#160;</var><var>'sec-'</var></line>
+<line linenr="004" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$x</var></line>
+<line linenr="005" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'-'</var></line>
+<line linenr="006" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$y</var></line>
+<line linenr="007" indent=""><text>return&#160;</text><var>$out</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.getSectorId"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Returns the  ID of a sector"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="4">
+    <sval type="string" val="sector"/>
+    <sval type="string" val="x"/>
+    <sval type="string" val="y"/>
+    <sval type="string" val="out"/>
+  </sval>
+  <sval type="array" size="7">
+    <sval type="array" size="4">
+      <sval type="int" val="804"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="805"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="sec-"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="-"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+    </sval>
+  </sval>
+  <sval type="array" size="1">
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="string" val="sector"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

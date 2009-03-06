@@ -1,0 +1,171 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.dumpAsteroids</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Dumps all asteroids of a sector into a logfile.</description>
+<arguments>
+<argument index="1" name="logfile" type="Var/Number" desc="logfile" />
+<argument index="2" name="sector" type="Var/Sector" desc="sector" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$asteroids&#160;=&#160;</var><var>$sector&#160;-&gt;</var><text>&#160;get&#160;asteroid&#160;array&#160;from&#160;sector</text></line>
+<line linenr="002" indent=""><var>$max&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$asteroids</var></line>
+<line linenr="003" indent=""><var>if&#160;</var><var>$max</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>0</var></line>
+<line linenr="004" indent="&#160;"><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[TRUE]</var><text>&#160;&#160;value=</text><var>'&#160;&#160;&#160;&#160;&lt;asteroids&gt;'</var></line>
+<line linenr="005" indent="&#160;"><var>$i&#160;=&#160;</var><var>0</var></line>
+<line linenr="006" indent="&#160;"><var>while&#160;</var><var>$i</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$max</var></line>
+<line linenr="007" indent="&#160;&#160;"><var>$asteroid&#160;=&#160;</var><var>$asteroids</var><text>[</text><var>$i</var><text>]</text></line>
+<line linenr="008" interruptable="@" indent="&#160;&#160;"><var>=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.dumpAsteroid</call><text>&#160;:&#160;</text><text>&#160;logfile=</text><var>$logfile</var><text>&#160;</text><text>&#160;asteroid=</text><var>$asteroid</var></line>
+<line linenr="009" indent="&#160;&#160;"><text>inc&#160;</text><var>$i&#160;=&#160;</var></line>
+<line linenr="010" indent="&#160;"><text>end</text></line>
+<line linenr="011" indent="&#160;"><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[TRUE]</var><text>&#160;&#160;value=</text><var>'&#160;&#160;&#160;&#160;&lt;/asteroids&gt;'</var></line>
+<line linenr="012" indent=""><text>end</text></line>
+<line linenr="013" indent=""><text>return&#160;</text><var>null</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.dumpAsteroids"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Dumps all asteroids of a sector into a logfile."/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="6">
+    <sval type="string" val="logfile"/>
+    <sval type="string" val="sector"/>
+    <sval type="string" val="asteroids"/>
+    <sval type="string" val="max"/>
+    <sval type="string" val="i"/>
+    <sval type="string" val="asteroid"/>
+  </sval>
+  <sval type="array" size="12">
+    <sval type="array" size="4">
+      <sval type="int" val="1014"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610609917"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="404"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="    &lt;asteroids&gt;"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610610167"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="10">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.dumpAsteroid"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="404"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="    &lt;/asteroids&gt;"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="array" size="2">
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="string" val="logfile"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="string" val="sector"/>
+    </sval>
+  </sval>
+  <sval type="array" size="2">
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="11"/>
+      <sval type="int" val="4"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

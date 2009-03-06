@@ -1,0 +1,131 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.capitalizeString</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Capitalizes a string (First character upper case, the rest lowercase)</description>
+<arguments>
+<argument index="1" name="string" type="Var/String" desc="string" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$max&#160;=&#160;</var><text>&#160;get&#160;length&#160;of&#160;string&#160;</text><var>$string</var></line>
+<line linenr="002" indent=""><var>$first&#160;=&#160;</var><text>&#160;get&#160;substring&#160;of&#160;</text><var>$string</var><text>&#160;offset=</text><var>0</var><text>&#160;length=</text><var>1</var></line>
+<line linenr="003" indent=""><var>$restLen&#160;=&#160;</var><var>$max</var><text>&#160;</text><var>-</var><text>&#160;</text><var>1</var></line>
+<line linenr="004" indent=""><var>$rest&#160;=&#160;</var><text>&#160;get&#160;substring&#160;of&#160;</text><var>$string</var><text>&#160;offset=</text><var>1</var><text>&#160;length=</text><var>$restLen</var></line>
+<line linenr="005" interruptable="@" indent=""><var>$first&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.upperCase</call><text>&#160;:&#160;</text><text>&#160;string=</text><var>$first</var></line>
+<line linenr="006" interruptable="@" indent=""><var>$rest&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.lowerCase</call><text>&#160;:&#160;</text><text>&#160;string=</text><var>$rest</var></line>
+<line linenr="007" indent=""><var>$result&#160;=&#160;</var><var>$first</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$rest</var></line>
+<line linenr="008" indent=""><text>return&#160;</text><var>$result</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.capitalizeString"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Capitalizes a string (First character upper case, the rest lowercase)"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="6">
+    <sval type="string" val="string"/>
+    <sval type="string" val="max"/>
+    <sval type="string" val="first"/>
+    <sval type="string" val="restLen"/>
+    <sval type="string" val="rest"/>
+    <sval type="string" val="result"/>
+  </sval>
+  <sval type="array" size="8">
+    <sval type="array" size="4">
+      <sval type="int" val="1075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="1077"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="1077"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.upperCase"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.lowerCase"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+  </sval>
+  <sval type="array" size="1">
+    <sval type="array" size="2">
+      <sval type="int" val="11"/>
+      <sval type="string" val="string"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

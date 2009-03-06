@@ -1,0 +1,211 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.dumpSectors</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Dumps all sectors into a logfile</description>
+<arguments>
+<argument index="1" name="logfile" type="Nummer" desc="logfile" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[FALSE]</var><text>&#160;&#160;value=</text><var>'&lt;?xml&#160;version=&quot;1.0&quot;&#160;encoding=&quot;UTF-8&quot;&#160;?&gt;'</var></line>
+<line linenr="002" indent=""><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[TRUE]</var><text>&#160;&#160;value=</text><var>'&lt;sectors&gt;'</var></line>
+<line linenr="003" indent=""></line>
+<line linenr="004" indent=""><var>$maxX&#160;=&#160;</var><text>get&#160;max&#160;sectors&#160;in&#160;x&#160;direction</text></line>
+<line linenr="005" indent=""><var>$maxY&#160;=&#160;</var><text>get&#160;max&#160;sectors&#160;in&#160;y&#160;direction</text></line>
+<line linenr="006" indent=""><var>$y&#160;=&#160;</var><var>0</var></line>
+<line linenr="007" indent=""><var>while&#160;</var><var>$y</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$maxY</var></line>
+<line linenr="008" indent="&#160;"><var>$x&#160;=&#160;</var><var>0</var></line>
+<line linenr="009" indent="&#160;"><var>while&#160;</var><var>$x</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$maxX</var></line>
+<line linenr="010" indent="&#160;&#160;"><var>$sector&#160;=&#160;</var><text>get&#160;sector&#160;from&#160;universe&#160;index:&#160;x=</text><var>$x</var><text>,&#160;y=</text><var>$y</var></line>
+<line linenr="011" indent="&#160;&#160;"><var>if&#160;</var><var>$sector</var></line>
+<line linenr="012" interruptable="@" indent="&#160;&#160;&#160;"><var>=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.dumpSector</call><text>&#160;:&#160;</text><text>&#160;logfile=</text><var>$logfile</var><text>&#160;</text><text>&#160;sector=</text><var>$sector</var></line>
+<line linenr="013" indent="&#160;&#160;"><text>end</text></line>
+<line linenr="014" indent="&#160;&#160;"><text>inc&#160;</text><var>$x&#160;=&#160;</var></line>
+<line linenr="015" indent="&#160;"><text>end</text></line>
+<line linenr="016" indent="&#160;"><text>inc&#160;</text><var>$y&#160;=&#160;</var></line>
+<line linenr="017" indent=""><text>end</text></line>
+<line linenr="018" indent=""><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[TRUE]</var><text>&#160;&#160;value=</text><var>'&lt;/sectors&gt;'</var></line>
+<line linenr="019" indent=""><text>return&#160;</text><var>null</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.dumpSectors"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Dumps all sectors into a logfile"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="6">
+    <sval type="string" val="logfile"/>
+    <sval type="string" val="maxX"/>
+    <sval type="string" val="maxY"/>
+    <sval type="string" val="y"/>
+    <sval type="string" val="x"/>
+    <sval type="string" val="sector"/>
+  </sval>
+  <sval type="array" size="17">
+    <sval type="array" size="7">
+      <sval type="int" val="404"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="404"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="&lt;sectors&gt;"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="801"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="802"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610608887"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610609399"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="800"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610609917"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="10">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.dumpSector"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="404"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="&lt;/sectors&gt;"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="array" size="1">
+    <sval type="array" size="2">
+      <sval type="int" val="3"/>
+      <sval type="string" val="logfile"/>
+    </sval>
+  </sval>
+  <sval type="array" size="4">
+    <sval type="array" size="2">
+      <sval type="int" val="2"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="11"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="13"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="15"/>
+      <sval type="int" val="4"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

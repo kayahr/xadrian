@@ -1,0 +1,143 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.findShipyard</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Returns array of all shipyards selling specified station.</description>
+<arguments>
+<argument index="1" name="factory" type="Var/Ware" desc="factory" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$result&#160;=&#160;</var><text>&#160;array&#160;alloc:&#160;size=</text><var>0</var></line>
+<line linenr="002" interruptable="@" indent=""><var>$shipyards&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.getShipyards</call><text>&#160;:&#160;</text></line>
+<line linenr="003" indent=""><var>$max&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$shipyards</var></line>
+<line linenr="004" indent=""><var>$i&#160;=&#160;</var><var>0</var></line>
+<line linenr="005" indent=""><var>while&#160;</var><var>$i</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$max</var></line>
+<line linenr="006" indent="&#160;"><var>$shipyard&#160;=&#160;</var><var>$shipyards</var><text>[</text><var>$i</var><text>]</text></line>
+<line linenr="007" indent="&#160;"><var>if&#160;</var><var>$shipyard&#160;-&gt;</var><text>&#160;uses&#160;ware&#160;</text><var>$factory</var><text>&#160;as&#160;product</text></line>
+<line linenr="008" indent="&#160;&#160;"><text>append&#160;</text><var>$shipyard</var><text>&#160;to&#160;array&#160;</text><var>$result</var></line>
+<line linenr="009" indent="&#160;"><text>end</text></line>
+<line linenr="010" indent="&#160;"><text>inc&#160;</text><var>$i&#160;=&#160;</var></line>
+<line linenr="011" indent=""><text>end</text></line>
+<line linenr="012" indent=""><text>return&#160;</text><var>$result</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.findShipyard"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Returns array of all shipyards selling specified station."/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="6">
+    <sval type="string" val="factory"/>
+    <sval type="string" val="result"/>
+    <sval type="string" val="shipyards"/>
+    <sval type="string" val="max"/>
+    <sval type="string" val="i"/>
+    <sval type="string" val="shipyard"/>
+  </sval>
+  <sval type="array" size="11">
+    <sval type="array" size="4">
+      <sval type="int" val="128"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.getShipyards"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610610167"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="1165"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="-1610610685"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="135"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+    </sval>
+  </sval>
+  <sval type="array" size="1">
+    <sval type="array" size="2">
+      <sval type="int" val="13"/>
+      <sval type="string" val="factory"/>
+    </sval>
+  </sval>
+  <sval type="array" size="2">
+    <sval type="array" size="2">
+      <sval type="int" val="8"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="int" val="4"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

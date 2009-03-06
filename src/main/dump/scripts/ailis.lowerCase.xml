@@ -1,0 +1,223 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.lowerCase</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Converts a string to lower-case.</description>
+<arguments>
+<argument index="1" name="string" type="Var/String" desc="string" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$upper&#160;=&#160;</var><var>'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</var></line>
+<line linenr="002" indent=""><var>$lower&#160;=&#160;</var><var>'abcdefghijklmnopqrstuvwxyz'</var></line>
+<line linenr="003" indent=""><var>$result&#160;=&#160;</var><text>&#160;get&#160;substring&#160;of&#160;</text><var>'&#160;'</var><text>&#160;offset=</text><var>0</var><text>&#160;length=</text><var>0</var></line>
+<line linenr="004" indent=""><var>$max&#160;=&#160;</var><text>&#160;get&#160;length&#160;of&#160;string&#160;</text><var>$string</var></line>
+<line linenr="005" indent=""><var>$i&#160;=&#160;</var><var>0</var></line>
+<line linenr="006" indent=""><var>while&#160;</var><var>$i</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$max</var></line>
+<line linenr="007" indent="&#160;"><var>$char&#160;=&#160;</var><text>&#160;get&#160;substring&#160;of&#160;</text><var>$string</var><text>&#160;offset=</text><var>$i</var><text>&#160;length=</text><var>1</var></line>
+<line linenr="008" indent="&#160;"><var>$pos&#160;=&#160;</var><text>&#160;find&#160;position&#160;of&#160;pattern&#160;</text><var>$char</var><text>&#160;in&#160;</text><var>$upper</var></line>
+<line linenr="009" indent="&#160;"><var>if&#160;</var><var>$pos</var><text>&#160;</text><var>!=</var><text>&#160;</text><var>-1</var></line>
+<line linenr="010" indent="&#160;&#160;"><var>$new&#160;=&#160;</var><text>&#160;get&#160;substring&#160;of&#160;</text><var>$lower</var><text>&#160;offset=</text><var>$pos</var><text>&#160;length=</text><var>1</var></line>
+<line linenr="011" indent="&#160;&#160;"><var>$result&#160;=&#160;</var><var>$result</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$new</var></line>
+<line linenr="012" indent="&#160;"><text>else</text></line>
+<line linenr="013" indent="&#160;&#160;"><var>$result&#160;=&#160;</var><var>$result</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$char</var></line>
+<line linenr="014" indent="&#160;"><text>end</text></line>
+<line linenr="015" indent="&#160;"><text>inc&#160;</text><var>$i&#160;=&#160;</var></line>
+<line linenr="016" indent=""><text>end</text></line>
+<line linenr="017" indent=""><text>return&#160;</text><var>$result</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.lowerCase"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Converts a string to lower-case."/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="9">
+    <sval type="string" val="string"/>
+    <sval type="string" val="upper"/>
+    <sval type="string" val="lower"/>
+    <sval type="string" val="result"/>
+    <sval type="string" val="max"/>
+    <sval type="string" val="i"/>
+    <sval type="string" val="char"/>
+    <sval type="string" val="pos"/>
+    <sval type="string" val="new"/>
+  </sval>
+  <sval type="array" size="16">
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="abcdefghijklmnopqrstuvwxyz"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="1077"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" "/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1075"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610608887"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="1077"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="1076"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610609661"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="1077"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="13"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+    </sval>
+  </sval>
+  <sval type="array" size="1">
+    <sval type="array" size="2">
+      <sval type="int" val="11"/>
+      <sval type="string" val="string"/>
+    </sval>
+  </sval>
+  <sval type="array" size="3">
+    <sval type="array" size="2">
+      <sval type="int" val="12"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="13"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="15"/>
+      <sval type="int" val="4"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

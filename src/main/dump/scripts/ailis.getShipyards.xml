@@ -1,0 +1,203 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.getShipyards</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Returns array with all ship yards</description>
+<arguments>
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$shipyards&#160;=&#160;</var><text>&#160;array&#160;alloc:&#160;size=</text><var>0</var></line>
+<line linenr="002" interruptable="@" indent=""><var>$sectors&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.getSectors</call><text>&#160;:&#160;</text></line>
+<line linenr="003" indent=""><var>$maxSectors&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$sectors</var></line>
+<line linenr="004" indent=""><var>$sectorsPtr&#160;=&#160;</var><var>0</var></line>
+<line linenr="005" indent=""><var>while&#160;</var><var>$sectorsPtr</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$maxSectors</var></line>
+<line linenr="006" indent="&#160;"><var>$sector&#160;=&#160;</var><var>$sectors</var><text>[</text><var>$sectorsPtr</var><text>]</text></line>
+<line linenr="007" indent="&#160;"><var>$stations&#160;=&#160;</var><var>$sector&#160;-&gt;</var><text>&#160;get&#160;station&#160;array&#160;from&#160;sector</text></line>
+<line linenr="008" indent="&#160;"><var>$maxStations&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$stations</var></line>
+<line linenr="009" indent="&#160;"><var>$stationsPtr&#160;=&#160;</var><var>0</var></line>
+<line linenr="010" indent="&#160;"><var>while&#160;</var><var>$stationsPtr</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$maxStations</var></line>
+<line linenr="011" indent="&#160;&#160;"><var>$station&#160;=&#160;</var><var>$stations</var><text>[</text><var>$stationsPtr</var><text>]</text></line>
+<line linenr="012" indent="&#160;&#160;"><var>if&#160;</var><var>$station&#160;-&gt;</var><text>&#160;is&#160;of&#160;class&#160;</text><var>Schiffswerft</var></line>
+<line linenr="013" indent="&#160;&#160;&#160;"><text>append&#160;</text><var>$station</var><text>&#160;to&#160;array&#160;</text><var>$shipyards</var></line>
+<line linenr="014" indent="&#160;&#160;"><text>end</text></line>
+<line linenr="015" indent="&#160;&#160;"><text>inc&#160;</text><var>$stationsPtr&#160;=&#160;</var></line>
+<line linenr="016" indent="&#160;"><text>end</text></line>
+<line linenr="017" indent="&#160;"><text>inc&#160;</text><var>$sectorsPtr&#160;=&#160;</var></line>
+<line linenr="018" indent=""><text>end</text></line>
+<line linenr="019" indent=""><text>return&#160;</text><var>$shipyards</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.getShipyards"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Returns array with all ship yards"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="9">
+    <sval type="string" val="shipyards"/>
+    <sval type="string" val="sectors"/>
+    <sval type="string" val="maxSectors"/>
+    <sval type="string" val="sectorsPtr"/>
+    <sval type="string" val="sector"/>
+    <sval type="string" val="stations"/>
+    <sval type="string" val="maxStations"/>
+    <sval type="string" val="stationsPtr"/>
+    <sval type="string" val="station"/>
+  </sval>
+  <sval type="array" size="18">
+    <sval type="array" size="4">
+      <sval type="int" val="128"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.getSectors"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610608375"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1009"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610608887"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="705"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="-1610609405"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="2037"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="135"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+  <sval type="array" size="3">
+    <sval type="array" size="2">
+      <sval type="int" val="13"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="15"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="17"/>
+      <sval type="int" val="4"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

@@ -1,0 +1,174 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.getPositionAttribs</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Returns the XML atributes for the position of an object</description>
+<arguments>
+<argument index="1" name="object" type="Value" desc="object" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$out&#160;=&#160;</var><var>'x=&quot;'</var></line>
+<line linenr="002" indent=""><var>$x&#160;=&#160;</var><var>$object&#160;-&gt;</var><text>&#160;get&#160;x&#160;position</text></line>
+<line linenr="003" indent=""><var>$y&#160;=&#160;</var><var>$object&#160;-&gt;</var><text>&#160;get&#160;y&#160;position</text></line>
+<line linenr="004" indent=""><var>$z&#160;=&#160;</var><var>$object&#160;-&gt;</var><text>&#160;get&#160;z&#160;position</text></line>
+<line linenr="005" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$x</var></line>
+<line linenr="006" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'&quot;&#160;y=&quot;'</var></line>
+<line linenr="007" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$y</var></line>
+<line linenr="008" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'&quot;&#160;z=&quot;'</var></line>
+<line linenr="009" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$z</var></line>
+<line linenr="010" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'&quot;'</var></line>
+<line linenr="011" indent=""><text>return&#160;</text><var>$out</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.getPositionAttribs"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Returns the XML atributes for the position of an object"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="5">
+    <sval type="string" val="object"/>
+    <sval type="string" val="out"/>
+    <sval type="string" val="x"/>
+    <sval type="string" val="y"/>
+    <sval type="string" val="z"/>
+  </sval>
+  <sval type="array" size="11">
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="x=&quot;"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="740"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="741"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="742"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="&quot; y=&quot;"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="&quot; z=&quot;"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="&quot;"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+    </sval>
+  </sval>
+  <sval type="array" size="1">
+    <sval type="array" size="2">
+      <sval type="int" val="9"/>
+      <sval type="string" val="object"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

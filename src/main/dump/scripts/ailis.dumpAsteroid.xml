@@ -1,0 +1,252 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.dumpAsteroid</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Dumps asteroid data into a log file.</description>
+<arguments>
+<argument index="1" name="logfile" type="Var/Number" desc="logfile" />
+<argument index="2" name="asteroid" type="Var/Asteroid" desc="asteroid" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$out&#160;=&#160;</var><var>'&#160;&#160;&#160;&#160;&#160;&#160;&lt;asteroid&#160;'</var></line>
+<line linenr="002" indent=""><var>$id&#160;=&#160;</var><var>$asteroid&#160;-&gt;</var><text>&#160;get&#160;ID&#160;code</text></line>
+<line linenr="003" interruptable="@" indent=""><var>$id&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.trimLeft</call><text>&#160;:&#160;</text><text>&#160;string=</text><var>$id</var></line>
+<line linenr="004" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'id=&quot;'</var></line>
+<line linenr="005" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$id</var></line>
+<line linenr="006" indent=""><var>$ware&#160;=&#160;</var><var>$asteroid&#160;-&gt;</var><text>&#160;get&#160;resource&#160;waretype&#160;of&#160;asteroid</text></line>
+<line linenr="007" interruptable="@" indent=""><var>$ware&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.idString</call><text>&#160;:&#160;</text><text>&#160;string=</text><var>$ware</var></line>
+<line linenr="008" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'&quot;&#160;ware=&quot;'</var></line>
+<line linenr="009" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$ware</var></line>
+<line linenr="010" indent=""><var>$yield&#160;=&#160;</var><var>$asteroid&#160;-&gt;</var><text>&#160;get&#160;asteroid&#160;yield</text></line>
+<line linenr="011" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'&quot;&#160;yield=&quot;'</var></line>
+<line linenr="012" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$yield</var></line>
+<line linenr="013" interruptable="@" indent=""><var>$attribs&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.getPositionAttribs</call><text>&#160;:&#160;</text><text>&#160;object=</text><var>$asteroid</var></line>
+<line linenr="014" indent=""><var>$out&#160;=&#160;</var><var>$out</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'&quot;&#160;'</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$attribs</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'&#160;/&gt;'</var></line>
+<line linenr="015" indent=""><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[TRUE]</var><text>&#160;&#160;value=</text><var>$out</var></line>
+<line linenr="016" indent=""><text>return&#160;</text><var>null</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.dumpAsteroid"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Dumps asteroid data into a log file."/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="7">
+    <sval type="string" val="logfile"/>
+    <sval type="string" val="asteroid"/>
+    <sval type="string" val="out"/>
+    <sval type="string" val="id"/>
+    <sval type="string" val="ware"/>
+    <sval type="string" val="yield"/>
+    <sval type="string" val="attribs"/>
+  </sval>
+  <sval type="array" size="16">
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="      &lt;asteroid "/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1036"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.trimLeft"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="id=&quot;"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1213"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.idString"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="&quot; ware=&quot;"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1179"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="&quot; yield=&quot;"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.getPositionAttribs"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="25">
+      <sval type="int" val="104"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="&quot; "/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" /&gt;"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-4"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-6"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="404"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="array" size="2">
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="string" val="logfile"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="54"/>
+      <sval type="string" val="asteroid"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

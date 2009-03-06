@@ -1,0 +1,365 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>ailis.dumpFactoryNames</name>
+<version>1</version>
+<engineversion>42</engineversion>
+<description>Dumps all factory names into a logfile</description>
+<arguments>
+<argument index="1" name="logfile" type="Number" desc="logfile" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$seen&#160;=&#160;</var><text>&#160;array&#160;alloc:&#160;size=</text><var>0</var></line>
+<line linenr="002" indent=""><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[FALSE]</var><text>&#160;&#160;value=</text><var>'#&#160;Factory&#160;names'</var></line>
+<line linenr="003" interruptable="@" indent=""><var>$factories&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.getAllFactories</call><text>&#160;:&#160;</text></line>
+<line linenr="004" indent=""><var>$max&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$factories</var></line>
+<line linenr="005" indent=""><var>$i&#160;=&#160;</var><var>0</var></line>
+<line linenr="006" indent=""><var>while&#160;</var><var>$i</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$max</var></line>
+<line linenr="007" indent="&#160;"><var>$factory&#160;=&#160;</var><var>$factories</var><text>[</text><var>$i</var><text>]</text></line>
+<line linenr="008" indent="&#160;"><var>$station&#160;=&#160;</var><text>&#160;create&#160;station:&#160;type=</text><var>$factory</var><text>&#160;owner=</text><var>Player</var><text>&#160;addto=</text><var>Kha'ak&#160;Sector&#160;931</var><text>&#160;x=</text><var>0</var><text>&#160;y=</text><var>0</var><text>&#160;z=</text><var>0</var></line>
+<line linenr="009" interruptable="@" indent="&#160;"><var>$id&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.factoryIdString</call><text>&#160;:&#160;</text><text>&#160;factory=</text><var>$station</var></line>
+<line linenr="010" indent="&#160;"><var>$race&#160;=&#160;</var><var>$station&#160;-&gt;</var><text>&#160;get&#160;maker&#160;race</text></line>
+<line linenr="011" indent="&#160;"><var>$race&#160;=&#160;</var><text>sprintf:&#160;fmt=</text><var>'%s'</var><text>,&#160;</text><var>$race</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var></line>
+<line linenr="012" indent="&#160;"><var>$station&#160;-&gt;</var><text>&#160;destruct:&#160;show&#160;no&#160;explosion=</text><var>[TRUE]</var></line>
+<line linenr="013" indent="&#160;"><var>$name&#160;=&#160;</var><text>sprintf:&#160;fmt=</text><var>'%s'</var><text>,&#160;</text><var>$factory</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var></line>
+<line linenr="014" indent="&#160;"><var>$offset&#160;=&#160;</var><text>&#160;get&#160;length&#160;of&#160;string&#160;</text><var>$race</var></line>
+<line linenr="015" indent="&#160;"><text>inc&#160;</text><var>$offset&#160;=&#160;</var></line>
+<line linenr="016" indent="&#160;"><var>$len&#160;=&#160;</var><text>&#160;get&#160;length&#160;of&#160;string&#160;</text><var>$name</var></line>
+<line linenr="017" indent="&#160;"><var>$len&#160;=&#160;</var><var>$len</var><text>&#160;</text><var>-</var><text>&#160;</text><var>$offset</var></line>
+<line linenr="018" indent="&#160;"><var>$name&#160;=&#160;</var><text>&#160;get&#160;substring&#160;of&#160;</text><var>$name</var><text>&#160;offset=</text><var>$offset</var><text>&#160;length=</text><var>$len</var></line>
+<line linenr="019" indent="&#160;"><var>$len&#160;=&#160;</var><text>&#160;get&#160;length&#160;of&#160;string&#160;</text><var>$id</var></line>
+<line linenr="020" indent="&#160;"><var>$len&#160;=&#160;</var><var>$len</var><text>&#160;</text><var>-</var><text>&#160;</text><var>$offset</var></line>
+<line linenr="021" indent="&#160;"><var>$id&#160;=&#160;</var><text>&#160;get&#160;substring&#160;of&#160;</text><var>$id</var><text>&#160;offset=</text><var>0</var><text>&#160;length=</text><var>$len</var></line>
+<line linenr="022" indent="&#160;"><var>if&#160;not&#160;</var><text>&#160;find&#160;</text><var>$id</var><text>&#160;in&#160;array:&#160;</text><var>$seen</var></line>
+<line linenr="023" indent="&#160;&#160;"><text>append&#160;</text><var>$id</var><text>&#160;to&#160;array&#160;</text><var>$seen</var></line>
+<line linenr="024" indent="&#160;&#160;"><var>$out&#160;=&#160;</var><var>$id</var><text>&#160;</text><var>+</var><text>&#160;</text><var>'&#160;=&#160;'</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$name</var></line>
+<line linenr="025" indent="&#160;&#160;"><var>$out&#160;=&#160;</var><var>'factory.'</var><text>&#160;</text><var>+</var><text>&#160;</text><var>$out</var></line>
+<line linenr="026" indent="&#160;&#160;"><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[TRUE]</var><text>&#160;&#160;value=</text><var>$out</var></line>
+<line linenr="027" indent="&#160;"><text>end</text></line>
+<line linenr="028" indent="&#160;"><text>inc&#160;</text><var>$i&#160;=&#160;</var></line>
+<line linenr="029" indent=""><text>end</text></line>
+<line linenr="030" indent=""><text>return&#160;</text><var>null</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="ailis.dumpFactoryNames"/>
+  <sval type="int" val="42"/>
+  <sval type="string" val="Dumps all factory names into a logfile"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="2"/>
+  <sval type="array" size="13">
+    <sval type="string" val="logfile"/>
+    <sval type="string" val="seen"/>
+    <sval type="string" val="factories"/>
+    <sval type="string" val="max"/>
+    <sval type="string" val="i"/>
+    <sval type="string" val="factory"/>
+    <sval type="string" val="station"/>
+    <sval type="string" val="id"/>
+    <sval type="string" val="race"/>
+    <sval type="string" val="name"/>
+    <sval type="string" val="offset"/>
+    <sval type="string" val="len"/>
+    <sval type="string" val="out"/>
+  </sval>
+  <sval type="array" size="29">
+    <sval type="array" size="4">
+      <sval type="int" val="128"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="404"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="# Factory names"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.getAllFactories"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610605559"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="14">
+      <sval type="int" val="747"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="65544"/>
+      <sval type="int" val="1048587"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.factoryIdString"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1350"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="8"/>
+    </sval>
+    <sval type="array" size="14">
+      <sval type="int" val="149"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="%s"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="765"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="14">
+      <sval type="int" val="149"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="%s"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1075"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1075"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="1077"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1075"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="1077"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="1406"/>
+      <sval type="int" val="-536864252"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="135"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="19">
+      <sval type="int" val="104"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val=" = "/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-4"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="factory."/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="404"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="142"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="array" size="1">
+    <sval type="array" size="2">
+      <sval type="int" val="3"/>
+      <sval type="string" val="logfile"/>
+    </sval>
+  </sval>
+  <sval type="array" size="2">
+    <sval type="array" size="2">
+      <sval type="int" val="26"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="28"/>
+      <sval type="int" val="4"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>
