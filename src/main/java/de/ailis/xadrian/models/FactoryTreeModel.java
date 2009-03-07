@@ -47,7 +47,7 @@ public class FactoryTreeModel implements TreeModel
         for (final Race race: RaceFactory.getInstance().getRaces())
         {
             final List<Factory> factories =
-                FactoryFactory.getInstance().getFactories(race);
+                FactoryFactory.getInstance().getBuyableFactories(race);
             if (factories.size() > 0)
             {
                 this.races.add(race);

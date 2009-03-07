@@ -132,13 +132,13 @@ public class FactoryFactory
                 for (final Object manuItem : manuItems)
                 {
                     final Element manuElement = (Element) manuItem;
-                    manufacturers[i] = StationFactory.getInstance()
-                        .getStation(manuElement.attributeValue("station"),
-                            manuElement.attributeValue("sector"));
+                    manufacturers[i] = StationFactory.getInstance().getStation(
+                        manuElement.attributeValue("station"),
+                        manuElement.attributeValue("sector"));
                     i++;
                 }
-                final Factory factory = new Factory(id, size, race,
-                    cycle, product, price, volume, resources, manufacturers);
+                final Factory factory = new Factory(id, size, race, cycle,
+                    product, price, volume, resources, manufacturers);
                 this.factories.add(factory);
                 this.factoryMap.put(id, factory);
             }
@@ -189,6 +189,28 @@ public class FactoryFactory
         for (final Factory factory : this.factories)
         {
             if (factory.getRace().equals(race)) factories.add(factory);
+        }
+        return factories;
+    }
+
+
+    /**
+     * Returns the factories of the specified race which can be buyed at a ship
+     * yard.
+     * 
+     * @param race
+     *            The race
+     * @return The factories of the specified race which are buyable
+     */
+
+    public List<Factory> getBuyableFactories(final Race race)
+    {
+        final List<Factory> factories = new ArrayList<Factory>();
+        for (final Factory factory : this.factories)
+        {
+            if (factory.getRace().equals(race)
+                && factory.getManufacturers().length > 0)
+                factories.add(factory);
         }
         return factories;
     }
