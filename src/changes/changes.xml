@@ -5,6 +5,12 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
+    <release version="1.0.1" date="2009-03-05" desc="Bugfix release">
+      <action dev="k" type="fix" date="2009-03-05">
+        Fixed conflict with LANG variable of unix locale system. Language
+        can now be enforced with the LANGUAGE variable instead.
+      </action>
+    </release>
     <release version="1.0.0" date="2009-03-04" desc="Initial release">
     </release>
   </body>
