@@ -3,10 +3,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.Properties;
 
 /*
  * $Id$
@@ -26,35 +29,32 @@ public class CorrectMessageKeys
 {
     public static void main(String[] args) throws Exception
     {
-        File enFile = new File(args[0]);
-        File fnFile = new File(args[1]);
-        File outFile = new File(args[2]);
+        Properties mapping = new Properties();
+        mapping.load(new FileReader("mapping.properties"));
         
-        BufferedReader enReader = new BufferedReader(new InputStreamReader(new FileInputStream(enFile)));
-        BufferedReader fnReader = new BufferedReader(new InputStreamReader(new FileInputStream(fnFile)));
-        OutputStream out = new FileOutputStream(outFile);
+        BufferedReader in = new BufferedReader(new FileReader(args[0]));
+        Writer out = new FileWriter(args[1]);
         
         String line;
-        while ((line = fnReader.readLine()) != null)
+        while ((line = in.readLine()) != null)
         {
-            String enLine = enReader.readLine();
-            String[] parts = line.split("=", 2);
+            String[] parts = line.split(" = ", 2);
             if (parts.length != 2)
             {
-                out.write(line.getBytes());
+                out.write(line);
             }
             else
             {
-                String[] enParts = enLine.split("=", 2);
-                out.write(enParts[0].getBytes());
-                out.write('=');
-                out.write(parts[1].getBytes());
+                String newKey = mapping.getProperty(parts[0]);
+                if (newKey == null)
+                    throw new RuntimeException("No ID mapping found for " + parts[0]);
+                out.write(newKey);
+                out.write(" = ");
+                out.write(parts[1]);
             }
             out.write('\n');
         }
-        
-        enReader.close();
-        fnReader.close();
+        in.close();
         out.close();
     }
 }
