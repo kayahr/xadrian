@@ -360,6 +360,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
                         .getString("confirm.saveChanges"), editor.getComplex()
                         .getName()), I18N.getTitle("confirm.saveChanges"),
                         JOptionPane.YES_NO_CANCEL_OPTION);
+                if (answer == JOptionPane.CLOSED_OPTION) return false;
                 if (answer == JOptionPane.CANCEL_OPTION) return false;
                 if (answer == JOptionPane.YES_OPTION)
                 {
