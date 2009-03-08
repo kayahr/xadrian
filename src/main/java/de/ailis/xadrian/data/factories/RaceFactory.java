@@ -7,6 +7,8 @@
 package de.ailis.xadrian.data.factories;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -104,6 +106,24 @@ public class RaceFactory
 
 
     /**
+     * Returns all races which have buyable factories.
+     * 
+     * @return The races which habe buyable factories.
+     */
+
+    public Collection<Race> getManufacturerRaces()
+    {
+        final Collection<Race> races = new ArrayList<Race>();
+        final FactoryFactory factory = FactoryFactory.getInstance();
+        for (final Race race: this.races)
+        {
+            if (factory.getFactories(race).size() > 0) races.add(race);
+        }
+        return races;
+    }
+
+
+    /**
      * Returns the race with the specified id or null if not found.
      * 
      * @param id
@@ -115,14 +135,14 @@ public class RaceFactory
     {
         return this.raceMap.get(id);
     }
-    
-    
+
+
     /**
      * Returns the number of races.
      * 
      * @return The number of races
      */
-    
+
     public int countRaces()
     {
         return this.races.size();

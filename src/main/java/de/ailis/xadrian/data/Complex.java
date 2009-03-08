@@ -132,9 +132,9 @@ public class Complex implements Serializable
     public int getTotalQuantity()
     {
         int quantity = 0;
-        for (final ComplexFactory factory : this.factories)
+        for (final ComplexFactory factory: this.factories)
             quantity += factory.getQuantity();
-        for (final ComplexFactory factory : this.autoFactories)
+        for (final ComplexFactory factory: this.autoFactories)
             quantity += factory.getQuantity();
         return quantity;
     }
@@ -149,12 +149,14 @@ public class Complex implements Serializable
     public long getTotalPrice()
     {
         long price = 0;
-        for (final ComplexFactory complexFactory : this.factories)
-            price += ((long) complexFactory.getQuantity())
-                * complexFactory.getFactory().getPrice();
-        for (final ComplexFactory complexFactory : this.autoFactories)
-            price += ((long) complexFactory.getQuantity())
-                * complexFactory.getFactory().getPrice();
+        for (final ComplexFactory complexFactory: this.factories)
+            price +=
+                ((long) complexFactory.getQuantity())
+                    * complexFactory.getFactory().getPrice();
+        for (final ComplexFactory complexFactory: this.autoFactories)
+            price +=
+                ((long) complexFactory.getQuantity())
+                    * complexFactory.getFactory().getPrice();
         return price + getTotalKitPrice();
     }
 
@@ -337,8 +339,7 @@ public class Complex implements Serializable
 
     public void addFactory(final Factory factory)
     {
-        addFactory(new ComplexFactory(factory, 1,
-            factory.isMine() ? 25 : 0));
+        addFactory(new ComplexFactory(factory, 1, factory.isMine() ? 25 : 0));
         calculateBaseComplex();
     }
 
@@ -354,7 +355,7 @@ public class Complex implements Serializable
     {
         if (!complexFactory.getFactory().isMine())
         {
-            for (final ComplexFactory current : this.factories)
+            for (final ComplexFactory current: this.factories)
             {
                 if (current.getFactory().equals(complexFactory.getFactory())
                     && current.getYield() == complexFactory.getYield())
@@ -380,15 +381,16 @@ public class Complex implements Serializable
         final Document document = DocumentHelper.createDocument();
         final Element root = document.addElement("complex");
         root.addAttribute("suns", Integer.toString(this.suns));
-        root.addAttribute("addBaseComplex", Boolean.toString(this.addBaseComplex));
-        for (final ComplexFactory factory : this.factories)
+        root.addAttribute("addBaseComplex", Boolean
+            .toString(this.addBaseComplex));
+        for (final ComplexFactory factory: this.factories)
         {
             final Element factoryE = root.addElement("complexFactory");
             factoryE.addAttribute("factory", factory.getFactory().getId());
             factoryE.addAttribute("quantity", Integer.toString(factory
                 .getQuantity()));
-            factoryE
-                .addAttribute("yield", Integer.toString(factory.getYield()));
+            factoryE.addAttribute("yield", Integer
+                .toString(factory.getYield()));
         }
         return document;
     }
@@ -410,14 +412,15 @@ public class Complex implements Serializable
         complex.setSuns(Integer.parseInt(root.attributeValue("suns")));
         complex.setAddBaseComplex(Boolean.parseBoolean(root
             .attributeValue("addBaseComplex")));
-        for (final Object item : root.elements("complexFactory"))
+        for (final Object item: root.elements("complexFactory"))
         {
             final Element element = (Element) item;
-            final Factory factory = factoryFactory.getFactory(element
-                .attributeValue("factory"));
-            final int yield = Integer.parseInt(element.attributeValue("yield"));
-            final int quantity = Integer.parseInt(element
-                .attributeValue("quantity"));
+            final Factory factory =
+                factoryFactory.getFactory(element.attributeValue("factory"));
+            final int yield =
+                Integer.parseInt(element.attributeValue("yield"));
+            final int quantity =
+                Integer.parseInt(element.attributeValue("quantity"));
             complex.addFactory(new ComplexFactory(factory, quantity, yield));
         }
         complex.calculateBaseComplex();
@@ -448,7 +451,7 @@ public class Complex implements Serializable
     public Collection<Product> getProductsPerHour()
     {
         final Map<String, Product> products = new HashMap<String, Product>();
-        for (final ComplexFactory factory : getAllFactories())
+        for (final ComplexFactory factory: getAllFactories())
         {
             final Product product = factory.getProductPerHour(this.suns);
             final Ware ware = product.getWare();
@@ -473,9 +476,9 @@ public class Complex implements Serializable
     public Collection<Product> getResourcesPerHour()
     {
         final Map<String, Product> resources = new HashMap<String, Product>();
-        for (final ComplexFactory factory : getAllFactories())
+        for (final ComplexFactory factory: getAllFactories())
         {
-            for (final Product resource : factory
+            for (final Product resource: factory
                 .getResourcesPerHour(this.suns))
             {
                 final Ware ware = resource.getWare();
@@ -500,10 +503,11 @@ public class Complex implements Serializable
 
     public Collection<ComplexWare> getWares()
     {
-        final Map<String, ComplexWare> wares = new HashMap<String, ComplexWare>();
+        final Map<String, ComplexWare> wares =
+            new HashMap<String, ComplexWare>();
 
         // Add the products
-        for (final Product product : getProductsPerHour())
+        for (final Product product: getProductsPerHour())
         {
             final String wareId = product.getWare().getId();
             wares.put(wareId, new ComplexWare(product.getWare(), product
@@ -511,16 +515,18 @@ public class Complex implements Serializable
         }
 
         // Add the resources
-        for (final Product resource : getResourcesPerHour())
+        for (final Product resource: getResourcesPerHour())
         {
             final String wareId = resource.getWare().getId();
             ComplexWare complexWare = wares.get(wareId);
             if (complexWare == null)
-                complexWare = new ComplexWare(resource.getWare(), 0, resource
-                    .getQuantity());
+                complexWare =
+                    new ComplexWare(resource.getWare(), 0, resource
+                        .getQuantity());
             else
-                complexWare = new ComplexWare(resource.getWare(), complexWare
-                    .getProduced(), resource.getQuantity());
+                complexWare =
+                    new ComplexWare(resource.getWare(), complexWare
+                        .getProduced(), resource.getQuantity());
             wares.put(wareId, complexWare);
         }
 
@@ -539,7 +545,7 @@ public class Complex implements Serializable
         double profit;
 
         profit = 0;
-        for (final ComplexWare complexWare : getWares())
+        for (final ComplexWare complexWare: getWares())
         {
             profit += complexWare.getProfit();
         }
@@ -601,6 +607,16 @@ public class Complex implements Serializable
             if (!addBaseComplex()) break;
         }
     }
+    
+    
+    /**
+     * Updates the base complex.
+     */
+    
+    public void updateBaseComplex()
+    {
+        this.calculateBaseComplex();
+    }
 
 
     /**
@@ -615,7 +631,7 @@ public class Complex implements Serializable
 
     private boolean addBaseComplex()
     {
-        for (final ComplexWare ware : getWares())
+        for (final ComplexWare ware: getWares())
         {
             // We are not going to add mines
             if (ware.getWare().getId().equals("siliconWafers")) continue;
@@ -625,7 +641,7 @@ public class Complex implements Serializable
             // factories for this ware and then restart the adding of factories
             if (ware.getMissing() > 0)
             {
-                addBaseComplexForWare(ware);
+                if (!addBaseComplexForWare(ware)) continue;
                 return true;
             }
 
@@ -640,9 +656,11 @@ public class Complex implements Serializable
      * 
      * @param complexWare
      *            The complex ware for which factories must be added
+     * @return True if a new factories were added, false if this was not
+     *         possible
      */
 
-    private void addBaseComplexForWare(final ComplexWare complexWare)
+    private boolean addBaseComplexForWare(final ComplexWare complexWare)
     {
         final Ware ware = complexWare.getWare();
         final FactoryFactory factoryFactory = FactoryFactory.getInstance();
@@ -651,31 +669,37 @@ public class Complex implements Serializable
         // specified ware and calculate the real need which must be
         // fulfilled.
         double need = complexWare.getMissing();
-        for (final ComplexFactory complexFactory : new ArrayList<ComplexFactory>(
+        for (final ComplexFactory complexFactory: new ArrayList<ComplexFactory>(
             this.autoFactories))
         {
-            if (complexFactory.getFactory().getProduct().getWare().equals(ware))
+            if (complexFactory.getFactory().getProduct().getWare()
+                .equals(ware))
             {
-                need += complexFactory.getProductPerHour(this.suns)
-                    .getQuantity();
+                need +=
+                    complexFactory.getProductPerHour(this.suns).getQuantity();
                 this.autoFactories.remove(complexFactory);
             }
-        }
+        }              
 
         // Determine the available factory sizes
-        final FactorySize[] sizes = factoryFactory.getFactorySizes(ware)
-            .toArray(new FactorySize[0]);
+        final FactorySize[] sizes =
+            factoryFactory.getFactorySizes(ware).toArray(new FactorySize[0]);
+        
+        // Abort if no factories were found
+        if (sizes.length == 0) return false;
 
         // Get the cheapest factories for the sizes
-        final Map<FactorySize, Factory> factories = new HashMap<FactorySize, Factory>();
-        for (final FactorySize size : sizes)
+        final Map<FactorySize, Factory> factories =
+            new HashMap<FactorySize, Factory>();
+        for (final FactorySize size: sizes)
         {
             factories.put(size, factoryFactory.getCheapestFactory(ware, size));
         }
 
         // Get the smallest possible production quantity
-        final double minProduction = factories.get(sizes[0]).getProductPerHour(
-            this.suns, 0).getQuantity();
+        final double minProduction =
+            factories.get(sizes[0]).getProductPerHour(this.suns, 0)
+                .getQuantity();
 
         // Iterate the available sizes (from largest to smallest) and add
         // the factories producing an adequate number of products
@@ -683,12 +707,12 @@ public class Complex implements Serializable
         {
             final FactorySize size = sizes[i];
             final Factory factory = factories.get(size);
-            final double product = factory.getProductPerHour(this.suns, 0)
-                .getQuantity();
+            final double product =
+                factory.getProductPerHour(this.suns, 0).getQuantity();
 
             // Calculate the number of factories of the current size needed
-            final int quantity = (int) (need + minProduction - 1)
-                / (int) product;
+            final int quantity =
+                (int) (need + minProduction - 1) / (int) product;
 
             // Add the number of factories and decrease the need
             if (quantity > 0)
@@ -698,6 +722,7 @@ public class Complex implements Serializable
                 need -= quantity * product;
             }
         }
+        return true;
     }
 
 

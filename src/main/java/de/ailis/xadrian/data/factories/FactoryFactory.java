@@ -28,6 +28,7 @@ import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.Station;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
+import de.ailis.xadrian.support.Config;
 
 
 /**
@@ -40,13 +41,17 @@ import de.ailis.xadrian.exceptions.DataException;
 public class FactoryFactory
 {
     /** The factory map (for quick ID navigation) */
-    private final Map<String, Factory> factoryMap = new HashMap<String, Factory>();
+    private final Map<String, Factory> factoryMap =
+        new HashMap<String, Factory>();
 
     /** The factories (sorted) */
     private final SortedSet<Factory> factories = new TreeSet<Factory>();
 
     /** The singleton instance */
     private final static FactoryFactory instance = new FactoryFactory();
+
+    /** The configuration */
+    private final static Config config = Config.getInstance();
 
 
     /**
@@ -84,7 +89,7 @@ public class FactoryFactory
             final Document document = reader.read(url);
             final WareFactory wareFactory = WareFactory.getInstance();
             final RaceFactory raceFactory = RaceFactory.getInstance();
-            for (final Object item : document.getRootElement().elements(
+            for (final Object item: document.getRootElement().elements(
                 "factory"))
             {
                 final Element element = (Element) item;
@@ -95,33 +100,35 @@ public class FactoryFactory
                     size = FactorySize.S;
                 else
                     size = FactorySize.valueOf(sizeStr);
-                final Race race = raceFactory.getRace(element
-                    .attributeValue("race"));
-                final int cycle = Integer.parseInt(element
-                    .attributeValue("cycle"));
-                final int price = Integer.parseInt(element
-                    .attributeValue("price"));
-                final int volume = Integer.parseInt(element
-                    .attributeValue("volume"));
+                final Race race =
+                    raceFactory.getRace(element.attributeValue("race"));
+                final int cycle =
+                    Integer.parseInt(element.attributeValue("cycle"));
+                final int price =
+                    Integer.parseInt(element.attributeValue("price"));
+                final int volume =
+                    Integer.parseInt(element.attributeValue("volume"));
 
                 final Element productElement = element.element("product");
-                final Ware productWare = wareFactory.getWare(productElement
-                    .attributeValue("ware"));
-                final int productQuantity = Integer.parseInt(productElement
-                    .attributeValue("quantity"));
-                final Product product = new Product(productWare,
-                    productQuantity);
+                final Ware productWare =
+                    wareFactory.getWare(productElement.attributeValue("ware"));
+                final int productQuantity =
+                    Integer
+                        .parseInt(productElement.attributeValue("quantity"));
+                final Product product =
+                    new Product(productWare, productQuantity);
 
                 final List<?> resItems = element.elements("resource");
                 final Product[] resources = new Product[resItems.size()];
                 int i = 0;
-                for (final Object resItem : resItems)
+                for (final Object resItem: resItems)
                 {
                     final Element resElement = (Element) resItem;
-                    final Ware resWare = wareFactory.getWare(resElement
-                        .attributeValue("ware"));
-                    final int resQuantity = Integer.parseInt(resElement
-                        .attributeValue("quantity"));
+                    final Ware resWare =
+                        wareFactory.getWare(resElement.attributeValue("ware"));
+                    final int resQuantity =
+                        Integer
+                            .parseInt(resElement.attributeValue("quantity"));
                     resources[i] = new Product(resWare, resQuantity);
                     i++;
                 }
@@ -129,16 +136,18 @@ public class FactoryFactory
                 final List<?> manuItems = element.elements("manufacturer");
                 final Station[] manufacturers = new Station[manuItems.size()];
                 i = 0;
-                for (final Object manuItem : manuItems)
+                for (final Object manuItem: manuItems)
                 {
                     final Element manuElement = (Element) manuItem;
-                    manufacturers[i] = StationFactory.getInstance().getStation(
-                        manuElement.attributeValue("station"),
-                        manuElement.attributeValue("sector"));
+                    manufacturers[i] =
+                        StationFactory.getInstance().getStation(
+                            manuElement.attributeValue("station"),
+                            manuElement.attributeValue("sector"));
                     i++;
                 }
-                final Factory factory = new Factory(id, size, race, cycle,
-                    product, price, volume, resources, manufacturers);
+                final Factory factory =
+                    new Factory(id, size, race, cycle, product, price, volume,
+                        resources, manufacturers);
                 this.factories.add(factory);
                 this.factoryMap.put(id, factory);
             }
@@ -186,7 +195,7 @@ public class FactoryFactory
     public List<Factory> getFactories(final Race race)
     {
         final List<Factory> factories = new ArrayList<Factory>();
-        for (final Factory factory : this.factories)
+        for (final Factory factory: this.factories)
         {
             if (factory.getRace().equals(race)) factories.add(factory);
         }
@@ -195,29 +204,8 @@ public class FactoryFactory
 
 
     /**
-     * Returns the factories of the specified race which can be buyed at a ship
-     * yard.
-     * 
-     * @param race
-     *            The race
-     * @return The factories of the specified race which are buyable
-     */
-
-    public List<Factory> getBuyableFactories(final Race race)
-    {
-        final List<Factory> factories = new ArrayList<Factory>();
-        for (final Factory factory : this.factories)
-        {
-            if (factory.getRace().equals(race)
-                && factory.getManufacturers().length > 0)
-                factories.add(factory);
-        }
-        return factories;
-    }
-
-
-    /**
-     * Returns the factories which produces the specified ware.
+     * Returns the factories which produces the specified ware. This method only
+     * uses factories which races are not set to be ignored.
      * 
      * @param ware
      *            The ware
@@ -227,8 +215,11 @@ public class FactoryFactory
     public List<Factory> getFactories(final Ware ware)
     {
         final List<Factory> factories = new ArrayList<Factory>();
-        for (final Factory factory : this.factories)
+        for (final Factory factory: this.factories)
         {
+            // Ignore factories of ignored races.
+            if (config.isRaceIgnored(factory.getRace())) continue;
+
             if (factory.getProduct().getWare().equals(ware))
                 factories.add(factory);
         }
@@ -238,7 +229,8 @@ public class FactoryFactory
 
     /**
      * Returns the factories which produces the specified ware and have the
-     * specified size.
+     * specified size. This method only uses factories which races are not set
+     * to be ignored.
      * 
      * @param ware
      *            The ware
@@ -250,8 +242,11 @@ public class FactoryFactory
     public List<Factory> getFactories(final Ware ware, final FactorySize size)
     {
         final List<Factory> factories = new ArrayList<Factory>();
-        for (final Factory factory : this.factories)
+        for (final Factory factory: this.factories)
         {
+            // Ignore factories of ignored races.
+            if (config.isRaceIgnored(factory.getRace())) continue;
+
             if (factory.getProduct().getWare().equals(ware)
                 && factory.getSize().equals(size)) factories.add(factory);
         }
@@ -261,6 +256,7 @@ public class FactoryFactory
 
     /**
      * Returns the available sizes of factories producing the specified ware.
+     * This method only uses factories which races are not set to be ignored.
      * 
      * @param ware
      *            The product id ware
@@ -270,8 +266,11 @@ public class FactoryFactory
     public SortedSet<FactorySize> getFactorySizes(final Ware ware)
     {
         final SortedSet<FactorySize> sizes = new TreeSet<FactorySize>();
-        for (final Factory factory : this.factories)
+        for (final Factory factory: this.factories)
         {
+            // Ignore factories of ignored races.
+            if (config.isRaceIgnored(factory.getRace())) continue;
+
             if (factory.getProduct().getWare().equals(ware))
                 sizes.add(factory.getSize());
         }
@@ -281,7 +280,8 @@ public class FactoryFactory
 
     /**
      * Returns the cheapest factory of the given size which produces the
-     * specified ware. Returns null if none found.
+     * specified ware. Returns null if none found. This method only uses
+     * factories which races are not set to be ignored.
      * 
      * @param ware
      *            The ware
@@ -294,8 +294,11 @@ public class FactoryFactory
     {
         Factory cheapestFactory = null;
         int cheapestPrice = Integer.MAX_VALUE;
-        for (final Factory factory : this.factories)
+        for (final Factory factory: this.factories)
         {
+            // Ignore factories of ignored races.
+            if (config.isRaceIgnored(factory.getRace())) continue;
+
             final int price = factory.getPrice();
             if (factory.getProduct().getWare().equals(ware)
                 && factory.getSize().equals(size) && price < cheapestPrice)

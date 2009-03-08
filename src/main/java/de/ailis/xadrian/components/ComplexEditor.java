@@ -534,4 +534,15 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         return !this.changed && this.file == null
             && this.complex.getFactories().size() == 0;
     }
+    
+    
+    /**
+     * Updates the base complex
+     */
+    
+    public void updateBaseComplex()
+    {
+        this.complex.updateBaseComplex();
+        redraw();
+    }
 }

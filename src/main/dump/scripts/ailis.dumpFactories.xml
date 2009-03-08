@@ -2,7 +2,7 @@
 <?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
 <script>
 <name>ailis.dumpFactories</name>
-<version>1</version>
+<version>2</version>
 <engineversion>42</engineversion>
 <description>Dumps all factories into a logfile</description>
 <arguments>
@@ -12,7 +12,7 @@
 <line linenr="001" indent=""><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[FALSE]</var><text>&#160;&#160;value=</text><var>'&lt;?xml&#160;version=&quot;1.0&quot;&#160;encoding=&quot;UTF-8&quot;&#160;?&gt;'</var></line>
 <line linenr="002" indent=""><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[TRUE]</var><text>&#160;&#160;value=</text><var>'&lt;factories&gt;'</var></line>
 <line linenr="003" indent=""></line>
-<line linenr="004" interruptable="@" indent=""><var>$factories&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.getAllFactories</call><text>&#160;:&#160;</text></line>
+<line linenr="004" interruptable="@" indent=""><var>$factories&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.getBuyableFactories</call><text>&#160;:&#160;</text></line>
 <line linenr="005" indent=""><var>$max&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$factories</var></line>
 <line linenr="006" indent=""><var>$i&#160;=&#160;</var><var>0</var></line>
 <line linenr="007" indent=""><var>while&#160;</var><var>$i</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$max</var></line>

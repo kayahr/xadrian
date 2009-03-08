@@ -81,6 +81,9 @@ public final class Icons
     /** The SUNS icon */
     public static final Icon SUNS = createIcon("suns");
 
+    /** The PREFS icon */
+    public static final Icon PREFS = createIcon("prefs");
+
 
     /**
      * Private constructor to prevent instantiation.

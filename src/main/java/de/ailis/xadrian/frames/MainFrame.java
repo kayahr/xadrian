@@ -38,6 +38,7 @@ import de.ailis.xadrian.actions.CloseAllAction;
 import de.ailis.xadrian.actions.ExitAction;
 import de.ailis.xadrian.actions.NewAction;
 import de.ailis.xadrian.actions.OpenAction;
+import de.ailis.xadrian.actions.PreferencesAction;
 import de.ailis.xadrian.actions.PrintAction;
 import de.ailis.xadrian.actions.SaveAction;
 import de.ailis.xadrian.actions.SaveAllAction;
@@ -47,10 +48,13 @@ import de.ailis.xadrian.actions.ToggleBaseComplexAction;
 import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.dialogs.AboutDialog;
+import de.ailis.xadrian.dialogs.PreferencesDialog;
 import de.ailis.xadrian.listeners.EditorStateListener;
 import de.ailis.xadrian.listeners.MainStateListener;
 import de.ailis.xadrian.resources.Images;
+import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
+import de.ailis.xadrian.support.ModalDialog.Result;
 
 
 /**
@@ -99,6 +103,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /** The "about" action */
     private final Action aboutAction = new AboutAction(this);
 
+    /** The "preferences" action */
+    private final Action preferencesAction = new PreferencesAction(this);
+
     /** The "addFactory" action */
     private final Action addFactoryAction = new AddFactoryAction(this);
 
@@ -111,7 +118,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /** The about dialog */
     private final AboutDialog aboutDialog = new AboutDialog();
-
 
     /** The tabbed pane */
     private JTabbedPane tabs;
@@ -178,6 +184,10 @@ public class MainFrame extends JFrame implements EditorStateListener,
         fileMenu.add(this.printAction);
         fileMenu.addSeparator();
         fileMenu.add(this.exitAction);
+        
+        // Create the 'Edit' menu
+        final JMenu editMenu = I18N.createMenu(menuBar, "edit");
+        editMenu.add(this.preferencesAction);
 
         // Create the 'Complex' menu
         final JMenu complexMenu = I18N.createMenu(menuBar, "complex");
@@ -404,6 +414,26 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
 
     /**
+     * Shows the preferences dialog.
+     */
+
+    public void preferences()
+    {
+        if (PreferencesDialog.getInstance().open() == Result.OK)
+        {
+            for (final Component component: getTabs().getComponents())
+            {
+                if (component instanceof ComplexEditor)
+                {
+                    final ComplexEditor editor = (ComplexEditor) component;
+                    editor.updateBaseComplex();
+                }
+            }
+        }
+    }
+
+
+    /**
      * Returns the tabs.
      * 
      * @return The tabs
@@ -449,6 +479,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         if (closeAllTabs())
         {
             savePreferences();
+            Config.getInstance().save();
             System.exit(0);
         }
     }

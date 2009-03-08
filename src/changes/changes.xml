@@ -5,7 +5,10 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.0.1" date="2009-03-07" desc="Bugfix release">
+    <release version="1.1.0" date="2009-03-08" desc="Minor update">
+      <action dev="k" type="add" date="2009-03-08">
+        Added preferences dialog to set the used races.
+      </action>
       <action dev="k" type="fix" date="2009-03-07">
         Closing the unsaved-changes-warning on exit now performs a
         cancel instead of closing the application.
