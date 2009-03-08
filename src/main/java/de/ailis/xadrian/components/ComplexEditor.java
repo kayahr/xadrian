@@ -8,8 +8,6 @@ package de.ailis.xadrian.components;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.FileWriter;
@@ -61,6 +59,7 @@ import de.ailis.xadrian.listeners.EditorStateListener;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
 import de.ailis.xadrian.utils.FileUtils;
+import de.ailis.xadrian.utils.SwingUtils;
 import freemarker.template.Template;
 
 
@@ -131,27 +130,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         popupMenu.add(new AddFactoryAction(this));
         popupMenu.add(new ChangeSunsAction(this));
         popupMenu.add(new JCheckBoxMenuItem(new ToggleBaseComplexAction(this)));
-
-        this.textPane.addMouseListener(new MouseAdapter()
-        {
-            @Override
-            public void mousePressed(final MouseEvent e)
-            {
-                if (e.isPopupTrigger())
-                {
-                    popupMenu.show(ComplexEditor.this.textPane, e.getX(), e.getY());
-                }
-            }
-
-            @Override
-            public void mouseReleased(final MouseEvent e)
-            {
-                if (e.isPopupTrigger())
-                {
-                    popupMenu.show(ComplexEditor.this.textPane, e.getX(), e.getY());
-                }
-            }
-        });
+        SwingUtils.setPopupMenu(this.textPane, popupMenu);
 
         // Set the base URL of the text pane
         ((HTMLDocument) this.textPane.getDocument()).setBase(Main.class
