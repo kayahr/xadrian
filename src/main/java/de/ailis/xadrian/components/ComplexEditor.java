@@ -142,6 +142,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
         // Redraw the content
         redraw();
+        
+        this.fireComplexState();
     }
 
 
