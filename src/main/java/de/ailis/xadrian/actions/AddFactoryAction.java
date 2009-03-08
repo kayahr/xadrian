@@ -9,11 +9,10 @@ package de.ailis.xadrian.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.ailis.xadrian.components.ComplexEditor;
-import de.ailis.xadrian.frames.MainFrame;
-import de.ailis.xadrian.listeners.MainStateListener;
+import de.ailis.xadrian.interfaces.ComplexProvider;
+import de.ailis.xadrian.listeners.ComplexStateListener;
 import de.ailis.xadrian.resources.Icons;
-import de.ailis.xadrian.support.FrameAction;
+import de.ailis.xadrian.support.BaseAction;
 
 
 /**
@@ -23,25 +22,28 @@ import de.ailis.xadrian.support.FrameAction;
  * @version $Revision: 704 $
  */
 
-public class AddFactoryAction extends FrameAction<MainFrame> implements
-    MainStateListener
+public class AddFactoryAction extends BaseAction implements ComplexStateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = -458513467199019742L;
 
+    /** The complex provider */
+    private final ComplexProvider provider;
+    
 
     /**
      * Constructor
      * 
-     * @param frame
-     *            The frame
+     * @param provider
+     *            The complex provider
      */
 
-    public AddFactoryAction(final MainFrame frame)
+    public AddFactoryAction(final ComplexProvider provider)
     {
-        super(frame, "addFactory", Icons.ADD);
-        setEnabled(false);
-        frame.addStateListener(this);
+        super("addFactory", Icons.ADD);
+        this.provider = provider;
+        setEnabled(provider.canAddFactory());
+        provider.addComplexStateListener(this);
     }
 
 
@@ -51,17 +53,17 @@ public class AddFactoryAction extends FrameAction<MainFrame> implements
 
     public void actionPerformed(final ActionEvent e)
     {
-        ((ComplexEditor) this.frame.getCurrentTab()).addFactory();
+        this.provider.addFactory();
     }
 
-
+    
     /**
-     * @see MainStateListener#mainStateChanged(MainFrame)
+     * @see de.ailis.xadrian.listeners.ComplexStateListener#complexStateChanged(de.ailis.xadrian.interfaces.ComplexProvider)
      */
-
+    
     @Override
-    public void mainStateChanged(final MainFrame sender)
+    public void complexStateChanged(final ComplexProvider provider)
     {
-        setEnabled(sender.getTabs().getComponentCount() > 0);
+        setEnabled(provider.canAddFactory());
     }
 }

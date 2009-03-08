@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -38,8 +39,11 @@ import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
+import de.ailis.xadrian.actions.AddFactoryAction;
+import de.ailis.xadrian.actions.ChangeSunsAction;
 import de.ailis.xadrian.actions.CopyAction;
 import de.ailis.xadrian.actions.SelectAllAction;
+import de.ailis.xadrian.actions.ToggleBaseComplexAction;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.dialogs.AddFactoryDialog;
@@ -50,7 +54,9 @@ import de.ailis.xadrian.dialogs.SunsDialog;
 import de.ailis.xadrian.dialogs.YieldDialog;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.interfaces.ClipboardProvider;
+import de.ailis.xadrian.interfaces.ComplexProvider;
 import de.ailis.xadrian.listeners.ClipboardStateListener;
+import de.ailis.xadrian.listeners.ComplexStateListener;
 import de.ailis.xadrian.listeners.EditorStateListener;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
@@ -66,7 +72,7 @@ import freemarker.template.Template;
  */
 
 public class ComplexEditor extends JComponent implements HyperlinkListener,
-    CaretListener, ClipboardProvider
+    CaretListener, ClipboardProvider, ComplexProvider
 {
     /** Serial version UID */
     private static final long serialVersionUID = -582597303446091577L;
@@ -121,6 +127,10 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         final JPopupMenu popupMenu = new JPopupMenu();
         popupMenu.add(new CopyAction(this));
         popupMenu.add(new SelectAllAction(this));
+        popupMenu.addSeparator();
+        popupMenu.add(new AddFactoryAction(this));
+        popupMenu.add(new ChangeSunsAction(this));
+        popupMenu.add(new JCheckBoxMenuItem(new ToggleBaseComplexAction(this)));
 
         this.textPane.addMouseListener(new MouseAdapter()
         {
@@ -202,11 +212,9 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     private void doChange()
     {
-        if (!this.changed)
-        {
-            this.changed = true;
-            fireState();
-        }
+        this.changed = true;
+        fireState();
+        fireComplexState();
     }
 
 
@@ -472,6 +480,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
                 this.complex.setName(FileUtils.getNameWithoutExt(file));
                 redraw();
                 fireState();
+                fireComplexState();
             }
             finally
             {
@@ -516,7 +525,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
      * Toggles the addition of automatically calculated base complex.
      */
 
-    public void toggleAddBaseComplex()
+    public void toggleBaseComplex()
     {
         this.complex.toggleAddBaseComplex();
         doChange();
@@ -745,5 +754,87 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public boolean canSelectAll()
     {
         return true;
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#canAddFactory()
+     */
+    
+    @Override
+    public boolean canAddFactory()
+    {
+        return true;
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#addComplexStateListener(de.ailis.xadrian.listeners.ComplexStateListener)
+     */
+    
+    @Override
+    public void addComplexStateListener(final ComplexStateListener listener)
+    {
+        this.listenerList.add(ComplexStateListener.class, listener);
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#removeComplexStateListener(de.ailis.xadrian.listeners.ComplexStateListener)
+     */
+    
+    @Override
+    public void removeComplexStateListener(final ComplexStateListener listener)
+    {
+        this.listenerList.remove(ComplexStateListener.class, listener);
+    }
+
+    
+    /**
+     * Fire the complex state event.
+     */
+
+    private void fireComplexState()
+    {
+        final Object[] listeners = this.listenerList.getListenerList();
+        for (int i = listeners.length - 2; i >= 0; i -= 2)
+            if (listeners[i] == ComplexStateListener.class)
+                ((ComplexStateListener) listeners[i + 1])
+                    .complexStateChanged(this);
+    }
+
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#canChangeSuns()
+     */
+    
+    @Override
+    public boolean canChangeSuns()
+    {
+        return true;
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#canToggleBaseComplex()
+     */
+    
+    @Override
+    public boolean canToggleBaseComplex()
+    {
+        return true;
+    }
+
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#isAddBaseComplex()
+     */
+    
+    @Override
+    public boolean isAddBaseComplex()
+    {
+        return this.complex.isAddBaseComplex();
     }
 }

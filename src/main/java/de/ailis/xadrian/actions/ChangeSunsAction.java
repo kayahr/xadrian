@@ -16,22 +16,21 @@ import de.ailis.xadrian.support.BaseAction;
 
 
 /**
- * Toggles the addition of a base complex.
+ * Changes the sun power.
  * 
  * @author Klaus Reimer (k@ailis.de)
  * @version $Revision: 704 $
  */
 
-public class ToggleBaseComplexAction extends BaseAction implements
-    ComplexStateListener
+public class ChangeSunsAction extends BaseAction implements ComplexStateListener
 {
     /** Serial version UID */
-    private static final long serialVersionUID = 5699001225424519853L;
-    
+    private static final long serialVersionUID = 4088425344137553110L;
+
     /** The complex provider */
     private final ComplexProvider provider;
 
-
+    
     /**
      * Constructor
      * 
@@ -39,12 +38,11 @@ public class ToggleBaseComplexAction extends BaseAction implements
      *            The provider
      */
 
-    public ToggleBaseComplexAction(final ComplexProvider provider)
+    public ChangeSunsAction(final ComplexProvider provider)
     {
-        super("toggleBaseComplex", Icons.WAND);
+        super("changeSuns", Icons.SUNS);
         this.provider = provider;
-        setEnabled(provider.canToggleBaseComplex());
-        setSelected(false);
+        setEnabled(provider.canChangeSuns());
         provider.addComplexStateListener(this);
     }
 
@@ -55,18 +53,17 @@ public class ToggleBaseComplexAction extends BaseAction implements
 
     public void actionPerformed(final ActionEvent e)
     {
-        this.provider.toggleBaseComplex();
+        this.provider.changeSuns();
     }
 
-
+    
     /**
      * @see de.ailis.xadrian.listeners.ComplexStateListener#complexStateChanged(de.ailis.xadrian.interfaces.ComplexProvider)
      */
-
+    
     @Override
     public void complexStateChanged(final ComplexProvider provider)
     {
-        setEnabled(provider.canToggleBaseComplex());
-        setSelected(provider.isAddBaseComplex());
+        setEnabled(provider.canChangeSuns());
     }
 }
