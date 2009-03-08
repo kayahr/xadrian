@@ -49,13 +49,13 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /** The resources this factory needs in one cycle to produce its product */
     private final Product[] resources;
-    
+
     /** The manufacturer stations */
     private final Station[] manufacturers;
 
     /** The message id */
     private final String messageId;
-    
+
     /** The factory size */
     private final FactorySize size;
 
@@ -65,7 +65,8 @@ public class Factory implements Serializable, Comparable<Factory>
      * 
      * @param id
      *            The factory id
-     *            @param size The factory size
+     * @param size
+     *            The factory size
      * @param race
      *            The race
      * @param cycle
@@ -84,7 +85,8 @@ public class Factory implements Serializable, Comparable<Factory>
 
     public Factory(final String id, final FactorySize size, final Race race,
         final int cycle, final Product product, final int price,
-        final int volume, final Product[] resources, final Station[] manufacturers)
+        final int volume, final Product[] resources,
+        final Station[] manufacturers)
     {
         this.id = id;
         this.size = size;
@@ -122,13 +124,13 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.size;
     }
 
-    
+
     /**
      * Returns true if this factory is a mine.
      * 
      * @return True if this factory is a mine. False if not.
      */
-    
+
     public boolean isMine()
     {
         final String wareId = this.product.getWare().getId();
@@ -170,24 +172,23 @@ public class Factory implements Serializable, Comparable<Factory>
     {
         return this.cycle;
     }
-    
-    
+
+
     /**
      * Returns the production cycle as a human readable time string.
      * 
      * @return The production cycle as a string
      */
-    
+
     public String getCycleAsString()
     {
         final int cycle = this.cycle;
         if (cycle >= 60 * 60)
-            return String.format("%d:%02d:%02d", cycle / 60 / 60,
-                cycle % (60 * 60) / 60, cycle % 60);
+            return String.format("%d:%02d:%02d", cycle / 60 / 60, cycle
+                % (60 * 60) / 60, cycle % 60);
         else if (cycle >= 60)
-            return String.format("%d:%02d",
-                cycle / 60, cycle % 60);
-        else 
+            return String.format("%d:%02d", cycle / 60, cycle % 60);
+        else
             return Integer.toString(cycle);
     }
 
@@ -284,8 +285,29 @@ public class Factory implements Serializable, Comparable<Factory>
     @Override
     public int compareTo(final Factory o)
     {
-        final int result = getName().compareTo(o.getName());
-        if (result == 0) return getRace().compareTo(o.getRace());
+        int result = 0;
+
+        // If both factories produce the same product then they are most
+        // likely the same factory types with different sizes. So if this
+        // is the case then compare the sizes.
+        if (!o.product.equals(this.product)
+            && o.product.getWare().equals(this.product.getWare()))
+        {
+            String name1 = getName();
+            String name2 = o.getName();
+            int pos = name1.lastIndexOf(' ');
+            if (pos >= 0) name1 = name1.substring(0, pos);
+            pos = name2.lastIndexOf(' ');
+            if (pos >= 0) name2 = name2.substring(0, pos);
+            if (name1.equals(name2)) result = this.size.compareTo(o.size);
+        }
+
+        // If factories were not compares by their size then compare the name
+        if (result == 0) result = getName().compareTo(o.getName());
+
+        // If names are the same then compare the race
+        if (result == 0) result = getRace().compareTo(o.getRace());
+
         return result;
     }
 
@@ -396,7 +418,8 @@ public class Factory implements Serializable, Comparable<Factory>
         {
             final int baseTime = 600 / (yield + 1) + 1;
             final int multiple = (int) Math.floor(59.9 / baseTime) + 1;
-            return new Product(ware, multiple * (this.product.getQuantity() / 4));
+            return new Product(ware, multiple
+                * (this.product.getQuantity() / 4));
         }
 
         // Normal factory, return normal product

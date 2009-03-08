@@ -28,6 +28,7 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import de.ailis.xadrian.Main;
+import de.ailis.xadrian.components.FactoryTreeCellRenderer;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.models.FactoryTreeModel;
@@ -90,6 +91,7 @@ public class AddFactoryDialog extends ModalDialog implements
         // Create the content controls
         this.factoriesTree = new JTree();
         this.factoriesTree.setModel(new FactoryTreeModel());
+        this.factoriesTree.setCellRenderer(new FactoryTreeCellRenderer());
         this.factoriesTree.setShowsRootHandles(true);
         this.factoriesTree.setRootVisible(false);
         this.factoriesTree.setEditable(false);
@@ -106,6 +108,7 @@ public class AddFactoryDialog extends ModalDialog implements
         this.factoriesTree.getSelectionModel().setSelectionMode(
             TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
         this.factoriesTree.addTreeSelectionListener(this);
+        this.factoriesTree.expandRow(2);
 
         // Create the factory pane
         final JScrollPane factoryPane = new JScrollPane(this.factoriesTree);

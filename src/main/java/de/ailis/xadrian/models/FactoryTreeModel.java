@@ -38,8 +38,11 @@ public class FactoryTreeModel implements TreeModel
     /** The top level entries */
     private final List<Object> topLevel = new ArrayList<Object>();
 
+    /** The top level entries */
+    private final List<Race> races = new ArrayList<Race>();
+
     /** The wares */
-    private final List<Object> wares = new ArrayList<Object>();
+    private final List<Ware> wares = new ArrayList<Ware>();
 
     /** The cheapest factories for wares */
     private final List<Factory> cheapest = new ArrayList<Factory>();
@@ -50,8 +53,11 @@ public class FactoryTreeModel implements TreeModel
     /** The title for the By-Ware entry */
     private final String byWareEntry = I18N.getString("addFactory.byWare");
 
+    /** The title for the By-Race entry */
+    private final String byRaceEntry = I18N.getString("addFactory.byRace");
+
     /** The factories by races */
-    private final Map<Race, List<Factory>> factories = new TreeMap<Race, List<Factory>>();
+    private final Map<Race, List<Factory>> byRaceFactories = new TreeMap<Race, List<Factory>>();
 
     /** The factories by wares */
     private final Map<Ware, List<Factory>> byWareFactories = new TreeMap<Ware, List<Factory>>();
@@ -99,10 +105,11 @@ public class FactoryTreeModel implements TreeModel
                 .getFactories(race);
             if (factories.size() > 0)
             {
-                this.topLevel.add(race);
-                this.factories.put(race, factories);
+                this.byRaceFactories.put(race, factories);
+                this.races.add(race);
             }
         }
+        this.topLevel.add(this.byRaceEntry);
     }
 
 
@@ -126,8 +133,10 @@ public class FactoryTreeModel implements TreeModel
     {
         if (parent instanceof Factory)
             return 0;
+        else if (parent == this.byRaceEntry)
+            return this.races.size();
         else if (parent instanceof Race)
-            return this.factories.get(parent).size();
+            return this.byRaceFactories.get(parent).size();
         else if (parent == this.byWareEntry)
             return this.wares.size();
         else if (parent instanceof Ware)
@@ -147,7 +156,9 @@ public class FactoryTreeModel implements TreeModel
     public Object getChild(final Object parent, final int index)
     {
         if (parent instanceof Race)
-            return this.factories.get(parent).get(index);
+            return this.byRaceFactories.get(parent).get(index);
+        else if (parent == this.byRaceEntry)
+            return this.races.get(index);
         else if (parent instanceof Ware)
             return this.byWareFactories.get(parent).get(index);
         else if (parent == this.byWareEntry)
@@ -166,13 +177,15 @@ public class FactoryTreeModel implements TreeModel
     public int getIndexOfChild(final Object parent, final Object child)
     {
         if (parent instanceof Race)
-            return this.factories.get(parent).indexOf(child);
+            return this.byRaceFactories.get(parent).indexOf(child);
+        else if (parent == this.byRaceEntry)
+            return this.races.indexOf(child);
         else if (parent instanceof Ware)
             return this.byWareFactories.get(parent).indexOf(child);
         else if (parent == this.byWareEntry)
-            return this.cheapest.indexOf(child);
-        else if (parent == this.cheapestEntry)
             return this.wares.indexOf(child);
+        else if (parent == this.cheapestEntry)
+            return this.cheapest.indexOf(child);
         else
             return this.topLevel.indexOf(child);
     }

@@ -1,11 +1,8 @@
 * Add Yes/no-to-all option in close all action.
 * Let user change the buy/sell prices of wares per complex.
-* List cheapest factories in addfactory dialog.
-* List factories grouped by product in addfactory dialog.
 * Display storage of factories (and resulting storage of complex)
 * Implement "buy" list for factories (Grouped to the lowest number of sectors
   to visit and display the needed total volume per sector)
-* Sort factories in addFactory by their size and not only alphabetical
 * Correct location of the data build system.
 
 For FAQ:

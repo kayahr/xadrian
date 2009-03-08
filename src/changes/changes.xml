@@ -7,6 +7,10 @@
   <body>
     <release version="1.1.0" date="2009-03-08" desc="Minor update">
       <action dev="k" type="add" date="2009-03-08">
+        Added factory listing grouped by product and cheapest factories to
+        add-factory-dialog.
+      </action>
+      <action dev="k" type="add" date="2009-03-08">
         Added popup menu to complex editor.
       </action>
       <action dev="k" type="add" date="2009-03-08">
