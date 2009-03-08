@@ -10,7 +10,6 @@ import java.io.Serializable;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 import de.ailis.xadrian.support.I18N;
 
@@ -207,6 +206,6 @@ public class Ware implements Serializable, Comparable<Ware>
     @Override
     public String toString()
     {
-        return new ToStringBuilder(this).append("id", this.id).toString();
+        return getName();
     }
 }

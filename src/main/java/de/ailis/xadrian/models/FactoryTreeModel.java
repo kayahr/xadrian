@@ -7,6 +7,7 @@
 package de.ailis.xadrian.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -16,9 +17,13 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 import de.ailis.xadrian.data.Factory;
+import de.ailis.xadrian.data.FactorySize;
 import de.ailis.xadrian.data.Race;
+import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.data.factories.RaceFactory;
+import de.ailis.xadrian.data.factories.WareFactory;
+import de.ailis.xadrian.support.I18N;
 
 
 /**
@@ -30,12 +35,26 @@ import de.ailis.xadrian.data.factories.RaceFactory;
 
 public class FactoryTreeModel implements TreeModel
 {
-    /** The races */
-    private final List<Race> races = new ArrayList<Race>();
+    /** The top level entries */
+    private final List<Object> topLevel = new ArrayList<Object>();
 
-    /** The factories */
-    private final Map<Race, List<Factory>> factories =
-        new TreeMap<Race, List<Factory>>();
+    /** The wares */
+    private final List<Object> wares = new ArrayList<Object>();
+
+    /** The cheapest factories for wares */
+    private final List<Factory> cheapest = new ArrayList<Factory>();
+    
+    /** The title for the cheapest entry */
+    private final String cheapestEntry = I18N.getString("addFactory.cheapest");
+
+    /** The title for the By-Ware entry */
+    private final String byWareEntry = I18N.getString("addFactory.byWare");
+
+    /** The factories by races */
+    private final Map<Race, List<Factory>> factories = new TreeMap<Race, List<Factory>>();
+
+    /** The factories by wares */
+    private final Map<Ware, List<Factory>> byWareFactories = new TreeMap<Ware, List<Factory>>();
 
 
     /**
@@ -44,13 +63,43 @@ public class FactoryTreeModel implements TreeModel
 
     public FactoryTreeModel()
     {
-        for (final Race race: RaceFactory.getInstance().getRaces())
+        final FactoryFactory factoryFactory = FactoryFactory.getInstance();
+
+        // Build the list with cheapest factories
+        for (final Ware ware : WareFactory.getInstance().getWares())
         {
-            final List<Factory> factories =
-                FactoryFactory.getInstance().getFactories(race);
+            for (final FactorySize size : factoryFactory.getFactorySizes(ware))
+            {
+                final Factory factory = factoryFactory.getCheapestFactory(ware,
+                    size);
+                if (factory != null) this.cheapest.add(factory);
+            }
+        }
+        this.topLevel.add(this.cheapestEntry);
+        Collections.sort(this.cheapest);
+
+        
+        // Build map with factories by wares
+        for (final Ware ware : WareFactory.getInstance().getWares())
+        {
+            final List<Factory> factories = FactoryFactory.getInstance()
+                .getFactories(ware);
             if (factories.size() > 0)
             {
-                this.races.add(race);
+                this.byWareFactories.put(ware, factories);
+                this.wares.add(ware);
+            }
+        }
+        this.topLevel.add(this.byWareEntry);
+
+        // Build map with factories by races
+        for (final Race race : RaceFactory.getInstance().getRaces())
+        {
+            final List<Factory> factories = FactoryFactory.getInstance()
+                .getFactories(race);
+            if (factories.size() > 0)
+            {
+                this.topLevel.add(race);
                 this.factories.put(race, factories);
             }
         }
@@ -79,8 +128,14 @@ public class FactoryTreeModel implements TreeModel
             return 0;
         else if (parent instanceof Race)
             return this.factories.get(parent).size();
+        else if (parent == this.byWareEntry)
+            return this.wares.size();
+        else if (parent instanceof Ware)
+            return this.byWareFactories.get(parent).size();
+        else if (parent == this.cheapestEntry)
+            return this.cheapest.size();
         else
-            return this.races.size();
+            return this.topLevel.size();
     }
 
 
@@ -93,8 +148,14 @@ public class FactoryTreeModel implements TreeModel
     {
         if (parent instanceof Race)
             return this.factories.get(parent).get(index);
+        else if (parent instanceof Ware)
+            return this.byWareFactories.get(parent).get(index);
+        else if (parent == this.byWareEntry)
+            return this.wares.get(index);
+        else if (parent == this.cheapestEntry)
+            return this.cheapest.get(index);
         else
-            return this.races.get(index);
+            return this.topLevel.get(index);
     }
 
     /**
@@ -106,8 +167,14 @@ public class FactoryTreeModel implements TreeModel
     {
         if (parent instanceof Race)
             return this.factories.get(parent).indexOf(child);
+        else if (parent instanceof Ware)
+            return this.byWareFactories.get(parent).indexOf(child);
+        else if (parent == this.byWareEntry)
+            return this.cheapest.indexOf(child);
+        else if (parent == this.cheapestEntry)
+            return this.wares.indexOf(child);
         else
-            return this.races.indexOf(child);
+            return this.topLevel.indexOf(child);
     }
 
 
