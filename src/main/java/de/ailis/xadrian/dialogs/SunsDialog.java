@@ -57,12 +57,12 @@ public class SunsDialog extends ModalDialog
     @Override
     protected void createUI()
     {
-        setTitle(I18N.getTitle("dialog.setSuns"));
+        setTitle(I18N.getTitle("dialog.changeSuns"));
         setIconImages(Images.LOGOS);
 
         // Create the content controls
         final JLabel sunsLabel = new JLabel(I18N
-            .getString("dialog.setSuns.suns"));
+            .getString("dialog.changeSuns.suns"));
         this.sunsComboBox = new JComboBox(new String[] { "0 %", "100 %",
             "150 %", "300 %", "400 %" });
         sunsLabel.setLabelFor(this.sunsComboBox);
