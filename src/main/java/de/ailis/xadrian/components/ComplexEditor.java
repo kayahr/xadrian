@@ -8,6 +8,8 @@ package de.ailis.xadrian.components;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.FileWriter;
@@ -18,8 +20,11 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.event.EventListenerList;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -33,6 +38,8 @@ import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
+import de.ailis.xadrian.actions.CopyAction;
+import de.ailis.xadrian.actions.SelectAllAction;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.dialogs.AddFactoryDialog;
@@ -42,6 +49,8 @@ import de.ailis.xadrian.dialogs.SaveComplexDialog;
 import de.ailis.xadrian.dialogs.SunsDialog;
 import de.ailis.xadrian.dialogs.YieldDialog;
 import de.ailis.xadrian.freemarker.TemplateFactory;
+import de.ailis.xadrian.interfaces.ClipboardProvider;
+import de.ailis.xadrian.listeners.ClipboardStateListener;
 import de.ailis.xadrian.listeners.EditorStateListener;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
@@ -56,7 +65,8 @@ import freemarker.template.Template;
  * @version $Revision$
  */
 
-public class ComplexEditor extends JComponent implements HyperlinkListener
+public class ComplexEditor extends JComponent implements HyperlinkListener,
+    CaretListener, ClipboardProvider
 {
     /** Serial version UID */
     private static final long serialVersionUID = -582597303446091577L;
@@ -65,8 +75,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
     private static final Log log = LogFactory.getLog(ComplexEditor.class);
 
     /** The freemarker template for the content */
-    private static final Template template = TemplateFactory
-        .getTemplate("complex.ftl");
+    private static final Template template =
+        TemplateFactory.getTemplate("complex.ftl");
 
     /** The event listener list */
     private final EventListenerList listenerList = new EventListenerList();
@@ -105,6 +115,33 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         this.textPane.setContentType("text/html");
         this.textPane.setDoubleBuffered(true);
         this.textPane.addHyperlinkListener(this);
+        this.textPane.addCaretListener(this);
+
+        // Create the popup menu for the text pane
+        final JPopupMenu popupMenu = new JPopupMenu();
+        popupMenu.add(new CopyAction(this));
+        popupMenu.add(new SelectAllAction(this));
+
+        this.textPane.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mousePressed(final MouseEvent e)
+            {
+                if (e.isPopupTrigger())
+                {
+                    popupMenu.show(ComplexEditor.this.textPane, e.getX(), e.getY());
+                }
+            }
+
+            @Override
+            public void mouseReleased(final MouseEvent e)
+            {
+                if (e.isPopupTrigger())
+                {
+                    popupMenu.show(ComplexEditor.this.textPane, e.getX(), e.getY());
+                }
+            }
+        });
 
         // Set the base URL of the text pane
         ((HTMLDocument) this.textPane.getDocument()).setBase(Main.class
@@ -182,7 +219,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("complex", this.complex);
         model.put("print", false);
-        final String content = TemplateFactory.processTemplate(template, model);
+        final String content =
+            TemplateFactory.processTemplate(template, model);
         this.textPane.setText(content);
         this.textPane.setCaretPosition(0);
     }
@@ -240,7 +278,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         final AddFactoryDialog dialog = AddFactoryDialog.getInstance();
         if (dialog.open() == Result.OK)
         {
-            for (final Factory factory : dialog.getFactories())
+            for (final Factory factory: dialog.getFactories())
             {
                 this.complex.addFactory(factory);
             }
@@ -404,8 +442,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
                 JOptionPane.showMessageDialog(null, I18N
                     .getString("error.cantReadComplex"), I18N
                     .getString("error.title"), JOptionPane.ERROR_MESSAGE);
-                log.error(
-                    "Unable to load complex from file " + file + ": " + e, e);
+                log.error("Unable to load complex from file " + file + ": "
+                    + e, e);
                 return null;
             }
         }
@@ -498,7 +536,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         model.put("print", true);
 
         // Generate content
-        final String content = TemplateFactory.processTemplate(template, model);
+        final String content =
+            TemplateFactory.processTemplate(template, model);
 
         // Put content into a text pane component
         final JTextPane printPane = new JTextPane();
@@ -534,15 +573,177 @@ public class ComplexEditor extends JComponent implements HyperlinkListener
         return !this.changed && this.file == null
             && this.complex.getFactories().size() == 0;
     }
-    
-    
+
+
     /**
      * Updates the base complex
      */
-    
+
     public void updateBaseComplex()
     {
         this.complex.updateBaseComplex();
         redraw();
+    }
+
+
+    /**
+     * @see javax.swing.event.CaretListener#caretUpdate(javax.swing.event.CaretEvent)
+     */
+
+    @Override
+    public void caretUpdate(final CaretEvent e)
+    {
+        fireClipboardState();
+    }
+
+
+    /**
+     * Returns the selected text or null if none selected.
+     * 
+     * @return The selected text or null if none
+     */
+
+    public String getSelectedText()
+    {
+        return this.textPane.getSelectedText();
+    }
+
+
+    /**
+     * Copies the selected text into the clipboard.
+     */
+
+    public void copySelection()
+    {
+        this.textPane.copy();
+    }
+
+
+    /**
+     * Selects all the text in the text pane.
+     */
+
+    public void selectAll()
+    {
+        this.textPane.requestFocus();
+        this.textPane.selectAll();
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#canCopy()
+     */
+
+    @Override
+    public boolean canCopy()
+    {
+        return this.textPane.getSelectedText() != null;
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#canCut()
+     */
+
+    @Override
+    public boolean canCut()
+    {
+        return false;
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#canPaste()
+     */
+
+    @Override
+    public boolean canPaste()
+    {
+        return false;
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#copy()
+     */
+
+    @Override
+    public void copy()
+    {
+        this.textPane.requestFocus();
+        this.textPane.copy();
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#cut()
+     */
+
+    @Override
+    public void cut()
+    {
+        this.textPane.requestFocus();
+        this.textPane.cut();
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#paste()
+     */
+
+    @Override
+    public void paste()
+    {
+        this.textPane.requestFocus();
+        this.textPane.paste();
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#addClipboardStateListener(de.ailis.xadrian.listeners.ClipboardStateListener)
+     */
+
+    @Override
+    public void addClipboardStateListener(final ClipboardStateListener listener)
+    {
+        this.listenerList.add(ClipboardStateListener.class, listener);
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#removeClipboardStateListener(de.ailis.xadrian.listeners.ClipboardStateListener)
+     */
+
+    @Override
+    public void removeClipboardStateListener(
+        final ClipboardStateListener listener)
+    {
+        this.listenerList.remove(ClipboardStateListener.class, listener);
+    }
+
+
+    /**
+     * Fire the clipboard state changed event.
+     */
+
+    private void fireClipboardState()
+    {
+        final Object[] listeners = this.listenerList.getListenerList();
+        for (int i = listeners.length - 2; i >= 0; i -= 2)
+            if (listeners[i] == ClipboardStateListener.class)
+                ((ClipboardStateListener) listeners[i + 1])
+                    .clipboardStateChanged(this);
+    }
+
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#canSelectAll()
+     */
+    
+    @Override
+    public boolean canSelectAll()
+    {
+        return true;
     }
 }

@@ -42,9 +42,6 @@ public final class Icons
     /** The COPY icon */
     public static final Icon COPY = createIcon("copy");
 
-    /** The CUT icon */
-    public static final Icon CUT = createIcon("cut");
-
     /** The DELETE icon */
     public static final Icon DELETE = createIcon("delete");
 
@@ -60,8 +57,8 @@ public final class Icons
     /** The OPEN icon */
     public static final Icon OPEN = createIcon("open");
 
-    /** The PASTE icon */
-    public static final Icon PASTE = createIcon("paste");
+    /** The SELECT ALL icon */
+    public static final Icon SELECT_ALL = createIcon("selectall");
 
     /** The PRINT icon */
     public static final Icon PRINT = createIcon("print");

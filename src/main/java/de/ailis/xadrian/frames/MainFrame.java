@@ -35,6 +35,7 @@ import de.ailis.xadrian.actions.AboutAction;
 import de.ailis.xadrian.actions.AddFactoryAction;
 import de.ailis.xadrian.actions.CloseAction;
 import de.ailis.xadrian.actions.CloseAllAction;
+import de.ailis.xadrian.actions.CopyAction;
 import de.ailis.xadrian.actions.ExitAction;
 import de.ailis.xadrian.actions.NewAction;
 import de.ailis.xadrian.actions.OpenAction;
@@ -43,12 +44,15 @@ import de.ailis.xadrian.actions.PrintAction;
 import de.ailis.xadrian.actions.SaveAction;
 import de.ailis.xadrian.actions.SaveAllAction;
 import de.ailis.xadrian.actions.SaveAsAction;
+import de.ailis.xadrian.actions.SelectAllAction;
 import de.ailis.xadrian.actions.SetSunsAction;
 import de.ailis.xadrian.actions.ToggleBaseComplexAction;
 import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.dialogs.AboutDialog;
 import de.ailis.xadrian.dialogs.PreferencesDialog;
+import de.ailis.xadrian.interfaces.ClipboardProvider;
+import de.ailis.xadrian.listeners.ClipboardStateListener;
 import de.ailis.xadrian.listeners.EditorStateListener;
 import de.ailis.xadrian.listeners.MainStateListener;
 import de.ailis.xadrian.resources.Images;
@@ -65,7 +69,7 @@ import de.ailis.xadrian.support.ModalDialog.Result;
  */
 
 public class MainFrame extends JFrame implements EditorStateListener,
-    ChangeListener
+    ChangeListener, ClipboardProvider, ClipboardStateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = 7989554637240491666L;
@@ -111,6 +115,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /** The "changeSuns" action */
     private final Action setSunsAction = new SetSunsAction(this);
+
+        /** The "select all" action */
+    private final Action selectAllAction = new SelectAllAction(this);
 
     /** The "toggleBaseComplex" action */
     private final Action toggleBaseComplexAction =
@@ -187,6 +194,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
         
         // Create the 'Edit' menu
         final JMenu editMenu = I18N.createMenu(menuBar, "edit");
+        editMenu.add(new CopyAction(this));
+        editMenu.add(this.selectAllAction);
+        editMenu.addSeparator();
         editMenu.add(this.preferencesAction);
 
         // Create the 'Complex' menu
@@ -315,6 +325,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         this.tabs.addTab(editor.getComplex().getName(), editor);
         this.tabs.setSelectedComponent(editor);
         editor.addStateListener(this);
+        editor.addClipboardStateListener(this);
         this.fireChange();
     }
 
@@ -338,7 +349,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     
     /**
-     * Returns the current tab component.
+     * Returns the current tab component or null if no tab is currently
+     * present.
      * 
      * @return The current tab component
      */
@@ -515,5 +527,153 @@ public class MainFrame extends JFrame implements EditorStateListener,
             "MainFrame.height", getHeight()));
         setLocation(prefs.getInt("MainFrame.left", getX()), prefs.getInt(
             "MainFrame.top", getY()));
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#canCopy()
+     */
+    
+    @Override
+    public boolean canCopy()
+    {
+        final Component tab = getCurrentTab();
+        if (tab == null) return false;
+        if (!(tab instanceof ClipboardProvider)) return false;
+        return ((ClipboardProvider) tab).canCopy();
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#canCut()
+     */
+    
+    @Override
+    public boolean canCut()
+    {
+        final Component tab = getCurrentTab();
+        if (tab == null) return false;
+        if (!(tab instanceof ClipboardProvider)) return false;
+        return ((ClipboardProvider) tab).canCut();
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#canPaste()
+     */
+    
+    @Override
+    public boolean canPaste()
+    {
+        final Component tab = getCurrentTab();
+        if (tab == null) return false;
+        if (!(tab instanceof ClipboardProvider)) return false;
+        return ((ClipboardProvider) tab).canPaste();
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#copy()
+     */
+    
+    @Override
+    public void copy()
+    {
+        ((ClipboardProvider) getCurrentTab()).copy();
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#cut()
+     */
+    
+    @Override
+    public void cut()
+    {
+        ((ClipboardProvider) getCurrentTab()).cut();
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#paste()
+     */
+    
+    @Override
+    public void paste()
+    {
+        ((ClipboardProvider) getCurrentTab()).paste();
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#addClipboardStateListener(de.ailis.xadrian.listeners.ClipboardStateListener)
+     */
+    
+    @Override
+    public void addClipboardStateListener(final ClipboardStateListener listener)
+    {
+        this.listenerList.add(ClipboardStateListener.class, listener);
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#removeClipboardStateListener(de.ailis.xadrian.listeners.ClipboardStateListener)
+     */
+    
+    @Override
+    public void removeClipboardStateListener(final ClipboardStateListener listener)
+    {
+        this.listenerList.remove(ClipboardStateListener.class, listener);
+    }
+
+    
+    /**
+     * Fire the clipboard state event.
+     */
+
+    private void fireClipboardState()
+    {
+        final Object[] listeners = this.listenerList.getListenerList();
+        for (int i = listeners.length - 2; i >= 0; i -= 2)
+            if (listeners[i] == ClipboardStateListener.class)
+                ((ClipboardStateListener) listeners[i + 1]).clipboardStateChanged(this);
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#selectAll()
+     */
+    
+    @Override
+    public void selectAll()
+    {
+        ((ClipboardProvider) getCurrentTab()).selectAll();
+    }
+
+
+    
+    /**
+     * @see de.ailis.xadrian.listeners.ClipboardStateListener#clipboardStateChanged(de.ailis.xadrian.interfaces.ClipboardProvider)
+     */
+    
+    @Override
+    public void clipboardStateChanged(final ClipboardProvider provider)
+    {
+        fireClipboardState();
+    }
+
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.ClipboardProvider#canSelectAll()
+     */
+    
+    @Override
+    public boolean canSelectAll()
+    {
+        final Component tab = getCurrentTab();
+        if (tab == null) return false;
+        if (!(tab instanceof ClipboardProvider)) return false;
+        return ((ClipboardProvider) tab).canSelectAll();
     }
 }
