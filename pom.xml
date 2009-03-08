@@ -52,9 +52,9 @@
           <artifactId>maven-assembly-plugin</artifactId>
           <configuration>
             <descriptors>
-              <descriptor>src/main/assembly/windows-bin.xml</descriptor>
-              <descriptor>src/main/assembly/unix-bin.xml</descriptor>
-              <descriptor>src/main/assembly/macosx-bin.xml</descriptor>
+              <descriptor>src/main/assembly/windows.xml</descriptor>
+              <descriptor>src/main/assembly/unix.xml</descriptor>
+              <descriptor>src/main/assembly/macosx.xml</descriptor>
               <descriptor>src/main/assembly/src.xml</descriptor>
             </descriptors>
           </configuration>

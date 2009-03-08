@@ -1,5 +1,5 @@
 <assembly>
-  <id>unix-bin</id>
+  <id>unix</id>
   <formats>
     <format>tar.bz2</format>
   </formats>

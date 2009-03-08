@@ -1,5 +1,5 @@
 <assembly>
-  <id>win-bin</id>
+  <id>windows</id>
   <formats>
     <format>zip</format>
   </formats>

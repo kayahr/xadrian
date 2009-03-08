@@ -3,7 +3,6 @@
 * Display storage of factories (and resulting storage of complex)
 * Implement "buy" list for factories (Grouped to the lowest number of sectors
   to visit and display the needed total volume per sector)
-* Correct location of the data build system.
 
 For FAQ:
 

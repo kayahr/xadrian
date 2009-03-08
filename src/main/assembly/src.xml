@@ -15,6 +15,11 @@
     </fileSet>
     <fileSet>
       <directory>src</directory>
+      <excludes>
+        <exclude>**/log?????.txt</exclude>
+        <exclude>**/dump/out/*</exclude>
+        <exclude>**/dump/lib/*.class</exclude>
+      </excludes>
     </fileSet>
   </fileSets>
 </assembly>

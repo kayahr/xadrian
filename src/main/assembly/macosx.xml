@@ -1,5 +1,5 @@
 <assembly>
-  <id>macosx-bin</id>
+  <id>macosx</id>
   <formats>
     <format>zip</format>
   </formats>
