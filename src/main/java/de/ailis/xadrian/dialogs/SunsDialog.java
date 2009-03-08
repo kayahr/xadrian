@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import de.ailis.xadrian.data.Suns;
 import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
@@ -63,8 +64,7 @@ public class SunsDialog extends ModalDialog
         // Create the content controls
         final JLabel sunsLabel = new JLabel(I18N
             .getString("dialog.changeSuns.suns"));
-        this.sunsComboBox = new JComboBox(new String[] { "0 %", "100 %",
-            "150 %", "300 %", "400 %" });
+        this.sunsComboBox = new JComboBox(Suns.values());
         sunsLabel.setLabelFor(this.sunsComboBox);
 
         // Create the content panel
@@ -112,9 +112,9 @@ public class SunsDialog extends ModalDialog
      *            The yield to set
      */
 
-    public void setSuns(final int suns)
+    public void setSuns(final Suns suns)
     {
-        this.sunsComboBox.setSelectedItem(suns + " %");
+        this.sunsComboBox.setSelectedItem(suns);
     }
 
 
@@ -124,9 +124,8 @@ public class SunsDialog extends ModalDialog
      * @return The suns
      */
 
-    public int getSuns()
+    public Suns getSuns()
     {
-        final String value = (String) this.sunsComboBox.getSelectedItem();
-        return Integer.parseInt(value.substring(0, value.length() - 2));
+        return (Suns) this.sunsComboBox.getSelectedItem();
     }
 }

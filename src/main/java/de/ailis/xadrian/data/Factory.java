@@ -13,7 +13,6 @@ import java.util.Collection;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import de.ailis.xadrian.exceptions.DataException;
 import de.ailis.xadrian.support.I18N;
 
 
@@ -334,34 +333,12 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The production cycle
      */
 
-    private int getRealCycle(final int suns, final int yield)
+    private int getRealCycle(final Suns suns, final int yield)
     {
         final String wareId = this.product.getWare().getId();
 
         // Handle solar power plants
-        if (wareId.equals("energyCells"))
-        {
-            switch (suns)
-            {
-                case 0:
-                    return 76;
-
-                case 100:
-                    return 118;
-
-                case 150:
-                    return 106;
-
-                case 300:
-                    return 90;
-
-                case 400:
-                    return 90;
-
-                default:
-                    throw new DataException("Unknown solar power " + suns);
-            }
-        }
+        if (wareId.equals("energyCells")) return suns.getCycle();
 
         // Handle silicon mines
         if (wareId.equals("siliconWafers"))
@@ -395,14 +372,14 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The product
      */
 
-    private Product getRealProduct(final int suns, final int yield)
+    private Product getRealProduct(final Suns suns, final int yield)
     {
         final Ware ware = this.product.getWare();
         final String wareId = ware.getId();
 
         // If no suns are present and this factory is a solar power plant then
         // it produces only the half product
-        if (suns == 0 && wareId.equals("energyCells"))
+        if (suns == Suns.P0 && wareId.equals("energyCells"))
             return new Product(ware, this.product.getQuantity() / 2);
 
         // Handle silicon mines
@@ -438,13 +415,13 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The resources
      */
 
-    private Product[] getRealResources(final int suns, final int yield)
+    private Product[] getRealResources(final Suns suns, final int yield)
     {
         final String wareId = this.product.getWare().getId();
 
         // If no suns are present and this factory is a solar power plant then
         // return half the resources
-        if (suns == 0 && wareId.equals("energyCells"))
+        if (suns == Suns.P0 && wareId.equals("energyCells"))
         {
             final Product resources[] = new Product[1];
             final Product resource = this.resources[0];
@@ -493,7 +470,7 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The product per hour.
      */
 
-    public final Product getProductPerHour(final int suns, final int yield)
+    public final Product getProductPerHour(final Suns suns, final int yield)
     {
         final Product product = getRealProduct(suns, yield);
         return new Product(product.getWare(), product.getQuantity() * 60 * 60
@@ -510,7 +487,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     public Product getProductPerHour()
     {
-        return getProductPerHour(100, 25);
+        return getProductPerHour(Suns.P100, 25);
     }
 
 
@@ -525,7 +502,7 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The resources needed per hour
      */
 
-    public Collection<Product> getResourcesPerHour(final int suns,
+    public Collection<Product> getResourcesPerHour(final Suns suns,
         final int yield)
     {
         final Product[] resources = this.getRealResources(suns, yield);
@@ -549,6 +526,6 @@ public class Factory implements Serializable, Comparable<Factory>
 
     public Collection<Product> getResourcesPerHour()
     {
-        return getResourcesPerHour(100, 25);
+        return getResourcesPerHour(Suns.P100, 25);
     }
 }

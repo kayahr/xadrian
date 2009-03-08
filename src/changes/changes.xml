@@ -6,6 +6,12 @@
   </properties>
   <body>
     <release version="1.1.0" date="2009-03-08" desc="Minor update">
+      <action dev="k" type="update" date="2009-03-08">
+        The suns dialog now no longer makes a difference between 300% and 400%
+        because the game handles everything above or equal than 300 as the
+        same. Also added the 200% which is not used in X3TC but may show  up
+        later (At least it was present in Reunion).        
+      </action>
       <action dev="k" type="add" date="2009-03-08">
         Added factory listing grouped by product and cheapest factories to
         add-factory-dialog.

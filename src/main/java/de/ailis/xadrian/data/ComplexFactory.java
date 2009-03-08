@@ -185,7 +185,7 @@ public class ComplexFactory implements Serializable,
      * @return The product per hour.
      */
 
-    public Product getProductPerHour(final int suns)
+    public Product getProductPerHour(final Suns suns)
     {
         final Product product =
             this.factory.getProductPerHour(suns, this.yield);
@@ -203,7 +203,7 @@ public class ComplexFactory implements Serializable,
 
     public Product getProductPerHour()
     {
-        return getProductPerHour(100);
+        return getProductPerHour(Suns.P100);
     }
 
     
@@ -216,7 +216,7 @@ public class ComplexFactory implements Serializable,
      * @return The resources needed per hour
      */
 
-    public Collection<Product> getResourcesPerHour(final int suns)
+    public Collection<Product> getResourcesPerHour(final Suns suns)
     {
         final Collection<Product> resources = new ArrayList<Product>();
         for (final Product resource: this.factory.getResourcesPerHour(suns,
@@ -239,6 +239,6 @@ public class ComplexFactory implements Serializable,
  
     public Collection<Product> getResourcesPerHour()
     {
-        return getResourcesPerHour(100);
+        return getResourcesPerHour(Suns.P100);
     }
 }

@@ -19,7 +19,7 @@
         [@message key="complex.suns" />:
         [#if !print]<a href="file://changeSuns">[/#if]
         ${complex.suns}
-        [#if !print]</a>[/#if] %
+        [#if !print]</a>[/#if]
       </p>
       <table class="complex">
         <tr>
