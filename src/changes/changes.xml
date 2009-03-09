@@ -5,7 +5,11 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.1.0" date="2009-03-08" desc="Minor update">
+    <release version="1.1.0" date="2009-03-09" desc="Minor update">
+      <action dev="k" type="add" date="2009-03-09">
+        Added storage capacity information to add-factory dialog and added
+        storage capacity statistics to complex view.
+      </action>
       <action dev="k" type="update" date="2009-03-08">
         The suns dialog now no longer makes a difference between 300% and 400%
         because the game handles everything above or equal than 300 as the
