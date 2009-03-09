@@ -1,5 +1,4 @@
-<project name="x3tc-dump">
-    
+<project name="x3tc-dump" default="build">
     
     <target name="build">
         <copy file="en/log00000.txt" tofile="out/sectors.xml" />

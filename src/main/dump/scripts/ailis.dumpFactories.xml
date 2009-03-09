@@ -6,7 +6,7 @@
 <engineversion>42</engineversion>
 <description>Dumps all factories into a logfile</description>
 <arguments>
-<argument index="1" name="logfile" type="Nummer" desc="logfile" />
+<argument index="1" name="logfile" type="Number" desc="logfile" />
 </arguments>
 <sourcetext>
 <line linenr="001" indent=""><text>write&#160;to&#160;log&#160;file&#160;#</text><var>$logfile</var><text>&#160;&#160;append=</text><var>[FALSE]</var><text>&#160;&#160;value=</text><var>'&lt;?xml&#160;version=&quot;1.0&quot;&#160;encoding=&quot;UTF-8&quot;&#160;?&gt;'</var></line>
@@ -59,7 +59,7 @@
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="102"/>
-      <sval type="string" val="ailis.getAllFactories"/>
+      <sval type="string" val="ailis.getBuyableFactories"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131075"/>
       <sval type="int" val="1"/>
