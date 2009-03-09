@@ -21,8 +21,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @version $Revision$
  */
 
-public class ComplexFactory implements Serializable,
-    Comparable<ComplexFactory>
+public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 {
     /** Serial version UID */
     private static final long serialVersionUID = -4731442033981700443L;
@@ -100,8 +99,8 @@ public class ComplexFactory implements Serializable,
     @Override
     public int hashCode()
     {
-        return new HashCodeBuilder().append(this.factory)
-            .append(this.quantity).append(this.yield).hashCode();
+        return new HashCodeBuilder().append(this.factory).append(this.quantity)
+            .append(this.yield).hashCode();
     }
 
 
@@ -129,8 +128,8 @@ public class ComplexFactory implements Serializable,
     @Override
     public int compareTo(final ComplexFactory other)
     {
-        final int result =
-            this.factory.getName().compareTo(other.factory.getName());
+        final int result = this.factory.getName().compareTo(
+            other.factory.getName());
         if (result == 0)
             return -1 * Integer.valueOf(this.yield).compareTo(other.yield);
         return result;
@@ -187,13 +186,13 @@ public class ComplexFactory implements Serializable,
 
     public Product getProductPerHour(final Suns suns)
     {
-        final Product product =
-            this.factory.getProductPerHour(suns, this.yield);
+        final Product product = this.factory
+            .getProductPerHour(suns, this.yield);
         return new Product(product.getWare(), product.getQuantity()
             * this.quantity);
     }
-    
-    
+
+
     /**
      * Returns the product this complex factory/factories produces in one hour
      * using a default sun power of 100%.
@@ -206,7 +205,7 @@ public class ComplexFactory implements Serializable,
         return getProductPerHour(Suns.P100);
     }
 
-    
+
     /**
      * Returns the resources this complex factory/factories needs in our hour.
      * 
@@ -219,7 +218,7 @@ public class ComplexFactory implements Serializable,
     public Collection<Product> getResourcesPerHour(final Suns suns)
     {
         final Collection<Product> resources = new ArrayList<Product>();
-        for (final Product resource: this.factory.getResourcesPerHour(suns,
+        for (final Product resource : this.factory.getResourcesPerHour(suns,
             this.yield))
         {
             resources.add(new Product(resource.getWare(), resource
@@ -229,16 +228,34 @@ public class ComplexFactory implements Serializable,
         return resources;
     }
 
-    
     /**
      * Returns the resources this complex factory/factories needs in our hour
      * using a default sun power of 100%.
      * 
      * @return The resources needed per hour
      */
- 
+
     public Collection<Product> getResourcesPerHour()
     {
         return getResourcesPerHour(Suns.P100);
+    }
+
+
+    /**
+     * Returns the storage capacities.
+     * 
+     * @return The storage capacities
+     */
+
+    public Collection<Capacity> getCapacities()
+    {
+        final Collection<Capacity> capacities = new ArrayList<Capacity>();
+        for (final Capacity capacity : this.factory.getCapacities())
+        {
+            capacities.add(new Capacity(capacity.getWare(), capacity
+                .getQuantity()
+                * this.quantity));
+        }
+        return capacities;
     }
 }

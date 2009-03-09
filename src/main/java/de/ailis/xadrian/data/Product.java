@@ -20,7 +20,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * @version $Revision$
  */
 
-public class Product implements Serializable
+public class Product implements Serializable, Comparable<Product>
 {
     /** Serial version UID */
     private static final long serialVersionUID = 4086385499471771372L;
@@ -30,7 +30,7 @@ public class Product implements Serializable
 
     /** The quantity */
     private final double quantity;
-
+    
 
     /**
      * Constructor
@@ -109,5 +109,16 @@ public class Product implements Serializable
     {
         return new ToStringBuilder(this).append("ware", this.ware).append(
             "quantity", this.quantity).toString();
+    }
+
+
+    /**
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    
+    @Override
+    public int compareTo(final Product o)
+    {
+        return this.ware.compareTo(o.ware);
     }
 }

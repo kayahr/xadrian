@@ -1,6 +1,5 @@
 * Add Yes/no-to-all option in close all action.
 * Let user change the buy/sell prices of wares per complex.
-* Display storage of factories (and resulting storage of complex)
 * Implement "buy" list for factories (Grouped to the lowest number of sectors
   to visit and display the needed total volume per sector)
 

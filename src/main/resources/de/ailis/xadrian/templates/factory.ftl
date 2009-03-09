@@ -31,6 +31,12 @@
         [/#list]
         <br />
         
+        <strong>[@message key="factoryInfo.storage" /]:</strong><br />
+        [#list factory.capacities as capacity]
+          ${capacity.quantity} ${capacity.ware.name}<br />
+        [/#list]
+        <br />
+        
         <strong>[@message key="factoryInfo.manufacturers" /]:</strong><br />
         [#list factory.manufacturers as manufacturer]
           ${manufacturer.sector.name}<br />

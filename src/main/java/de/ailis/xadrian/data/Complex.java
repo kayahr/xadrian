@@ -525,7 +525,10 @@ public class Complex implements Serializable
             wares.put(wareId, complexWare);
         }
 
-        return wares.values();
+        final List<ComplexWare> result = new ArrayList<ComplexWare>(wares
+            .values());
+        Collections.sort(result);
+        return result;
     }
 
 
@@ -752,4 +755,51 @@ public class Complex implements Serializable
     {
         return this.addBaseComplex;
     }
+
+
+    /**
+     * Returns the storage capacities.
+     * 
+     * @return The storage capacities.
+     */
+
+    public Collection<Capacity> getCapacities()
+    {
+        final Map<String, Capacity> capacities = new HashMap<String, Capacity>();
+        for (final ComplexFactory factory : getAllFactories())
+        {
+            for (final Capacity capacity : factory.getCapacities())
+            {
+                final Ware ware = capacity.getWare();
+                final Capacity mapCapacity = capacities.get(ware.getId());
+                if (mapCapacity == null)
+                    capacities.put(ware.getId(), capacity);
+                else
+                    capacities.put(ware.getId(), new Capacity(ware, mapCapacity
+                        .getQuantity()
+                        + capacity.getQuantity()));
+            }
+        }
+        final List<Capacity> result = new ArrayList<Capacity>(capacities
+            .values());
+        Collections.sort(result);
+        return result;
+    }
+
+
+    /**
+     * Returns the total storage capacity
+     * 
+     * @return The total storage capacity;
+     */
+
+    public long getTotalCapacity()
+    {
+        long total = 0;
+        for (final Capacity capacity : getCapacities())
+            total += capacity.getQuantity();
+        return total;
+    }
+
+
 }

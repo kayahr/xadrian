@@ -52,6 +52,9 @@ public class Factory implements Serializable, Comparable<Factory>
     /** The manufacturer stations */
     private final Station[] manufacturers;
 
+    /** The ware storage */
+    private final Capacity[] capacities;
+
     /** The message id */
     private final String messageId;
 
@@ -78,13 +81,15 @@ public class Factory implements Serializable, Comparable<Factory>
      *            The factory volume
      * @param resources
      *            The needed resources per cycle
+     * @param storage
+     *            The ware storage
      * @param manufacturers
      *            The manufacturer stations
      */
 
     public Factory(final String id, final FactorySize size, final Race race,
         final int cycle, final Product product, final int price,
-        final int volume, final Product[] resources,
+        final int volume, final Product[] resources, final Capacity[] storage,
         final Station[] manufacturers)
     {
         this.id = id;
@@ -95,6 +100,7 @@ public class Factory implements Serializable, Comparable<Factory>
         this.price = price;
         this.volume = volume;
         this.resources = resources;
+        this.capacities = storage;
         this.manufacturers = manufacturers;
         this.messageId = "factory." + id.substring(0, id.lastIndexOf("-"));
     }
@@ -237,6 +243,18 @@ public class Factory implements Serializable, Comparable<Factory>
     public Product[] getResources()
     {
         return this.resources;
+    }
+
+
+    /**
+     * Returns the storage capacities.
+     * 
+     * @return The storage capacities
+     */
+
+    public Capacity[] getCapacities()
+    {
+        return this.capacities;
     }
 
 

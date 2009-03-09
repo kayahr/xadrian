@@ -195,6 +195,35 @@
           <td class="profit">${complex.profit?round} Cr</td>          
         </tr>        
       </table>
+
+      <h2>[@message key="complex.storageCapacities" /]</h2>
+      <table>
+        <tr>
+          <th class="ware">[@message key="complex.ware" /]</th>
+          <th class="units">[@message key="complex.storageCapacity" /]</th>
+        </tr>
+        <tr>
+          <td colspan="2"><hr /></td>
+        </tr>
+        [#list complex.capacities as capacity]
+          [#if capacity_index %2 == 0]
+            [#assign class="even" /]
+          [#else]
+            [#assign class="odd" /]
+          [/#if]
+          <tr class="${class}">
+            <td class="ware">${capacity.ware.name}</td>
+            <td class="units">${capacity.quantity}</td>
+          </tr>
+        [/#list]
+        <tr>
+          <td colspan="2"><hr /></td>
+        </tr>
+        <tr>
+          <th class="ware">[@message key="complex.totalStorageCapacity" /]</th>
+          <td class="profit">${complex.totalCapacity}</td>          
+        </tr>        
+      </table>
     [/#if]
   </body>
 </html>

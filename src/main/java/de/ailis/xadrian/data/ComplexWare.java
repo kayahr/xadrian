@@ -17,7 +17,7 @@ import java.io.Serializable;
  * @version $Revision$
  */
 
-public class ComplexWare implements Serializable
+public class ComplexWare implements Serializable, Comparable<ComplexWare>
 {
     /** Serial version UID */    
     private static final long serialVersionUID = -651656278517737848L;
@@ -155,5 +155,16 @@ public class ComplexWare implements Serializable
         {
             return surplus * getSellPrice();
         }
+    }
+
+
+    /**
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    
+    @Override
+    public int compareTo(final ComplexWare o)
+    {
+        return this.ware.compareTo(o.ware);
     }
 }

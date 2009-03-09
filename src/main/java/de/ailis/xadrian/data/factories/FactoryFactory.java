@@ -8,6 +8,7 @@ package de.ailis.xadrian.data.factories;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
+import de.ailis.xadrian.data.Capacity;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.FactorySize;
 import de.ailis.xadrian.data.Product;
@@ -120,6 +122,8 @@ public class FactoryFactory
 
                 final List<?> resItems = element.elements("resource");
                 final Product[] resources = new Product[resItems.size()];
+                final Capacity[] storage = new Capacity[resItems.size() + 1];
+                storage[0] = new Capacity(product.getWare(), Integer.parseInt(productElement.attributeValue("storage")));
                 int i = 0;
                 for (final Object resItem: resItems)
                 {
@@ -129,7 +133,11 @@ public class FactoryFactory
                     final int resQuantity =
                         Integer
                             .parseInt(resElement.attributeValue("quantity"));
+                    final int resStorage =
+                        Integer
+                            .parseInt(resElement.attributeValue("storage"));
                     resources[i] = new Product(resWare, resQuantity);
+                    storage[i + 1] = new Capacity(resWare, resStorage);
                     i++;
                 }
 
@@ -145,9 +153,11 @@ public class FactoryFactory
                             manuElement.attributeValue("sector"));
                     i++;
                 }
+                Arrays.sort(resources);
+                Arrays.sort(storage);
                 final Factory factory =
                     new Factory(id, size, race, cycle, product, price, volume,
-                        resources, manufacturers);
+                        resources, storage, manufacturers);
                 this.factories.add(factory);
                 this.factoryMap.put(id, factory);
             }
