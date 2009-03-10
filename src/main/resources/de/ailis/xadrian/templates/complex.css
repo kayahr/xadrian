@@ -79,14 +79,14 @@ tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
 	width: 100%;
 }
 
-.quantity, .yield, .race
+.quantity, .yield, .race, .container
 {
 	text-align: center;
 	margin: 0 0 0 10px;
 	white-space: nowrap;
 }
 
-.price, .units, .missing, .surplus, .balanced, .profit
+.price, .units, .missing, .surplus, .balanced, .profit, .volume, .units
 {
     text-align: right;
     margin: 0 0 0 10px;

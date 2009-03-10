@@ -29,7 +29,7 @@ public class Capacity implements Serializable, Comparable<Capacity>
     private final Ware ware;
 
     /** The quantity */
-    private final double quantity;
+    private final long quantity;
     
 
     /**
@@ -41,7 +41,7 @@ public class Capacity implements Serializable, Comparable<Capacity>
      *            The quantity
      */
 
-    public Capacity(final Ware ware, final double quantity)
+    public Capacity(final Ware ware, final long quantity)
     {
         this.ware = ware;
         this.quantity = quantity;
@@ -66,9 +66,21 @@ public class Capacity implements Serializable, Comparable<Capacity>
      * @return The quantity
      */
 
-    public double getQuantity()
+    public long getQuantity()
     {
         return this.quantity;
+    }
+    
+    
+    /**
+     * Returns the storage volume.
+     * 
+     * @return The storage volume
+     */
+    
+    public long getVolume()
+    {
+        return this.ware.getVolume() * this.quantity;
     }
 
 

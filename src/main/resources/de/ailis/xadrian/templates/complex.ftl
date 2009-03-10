@@ -200,10 +200,13 @@
       <table>
         <tr>
           <th class="ware">[@message key="complex.ware" /]</th>
-          <th class="units">[@message key="complex.storageCapacity" /]</th>
+          <th class="container">[@message key="complex.container" /]</th>
+          <th class="volume">[@message key="complex.wareVolume" /]</th>
+          <th class="units">[@message key="complex.storageUnits" /]</th>
+          <th class="volume">[@message key="complex.storageVolume" /]</th>
         </tr>
         <tr>
-          <td colspan="2"><hr /></td>
+          <td colspan="5"><hr /></td>
         </tr>
         [#list complex.capacities as capacity]
           [#if capacity_index %2 == 0]
@@ -213,15 +216,21 @@
           [/#if]
           <tr class="${class}">
             <td class="ware">${capacity.ware.name}</td>
+            <td class="container">${capacity.ware.container}</td>
+            <td class="volume">${capacity.ware.volume}</td>
             <td class="units">${capacity.quantity}</td>
+            <td class="volume">${capacity.volume}</td>
           </tr>
         [/#list]
         <tr>
-          <td colspan="2"><hr /></td>
+          <td colspan="5"><hr /></td>
         </tr>
         <tr>
-          <th class="ware">[@message key="complex.totalStorageCapacity" /]</th>
-          <td class="profit">${complex.totalCapacity}</td>          
+          <th class="ware">[@message key="complex.total" /]</th>
+          <td></td>          
+          <td></td>          
+          <td class="profit">${complex.totalCapacity}</td>
+          <td class="volume">${complex.totalStorageVolume}</td>          
         </tr>        
       </table>
     [/#if]

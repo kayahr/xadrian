@@ -802,4 +802,17 @@ public class Complex implements Serializable
     }
 
 
+    /**
+     * Returns the total storage volume
+     * 
+     * @return The total storage volume;
+     */
+
+    public long getTotalStorageVolume()
+    {
+        long total = 0;
+        for (final Capacity capacity : getCapacities())
+            total += capacity.getVolume();
+        return total;
+    }
 }
