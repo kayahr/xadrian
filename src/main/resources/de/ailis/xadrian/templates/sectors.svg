@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+    <!ATTLIST svg
+    xmlns:a3 CDATA #IMPLIED
+        a3:scriptImplementation CDATA #IMPLIED
+>
+    <!ATTLIST script
+    a3:scriptImplementation CDATA #IMPLIED
+>
+]>
+<?AdobeSVGViewer save="snapshot"?>
+<svg id="svgdoc" width="100%" height="100%" viewBox="0 0 1100 825" style="overflow:visible;" onresize="myMapApp.resetFactors();" onload="init(evt);" zoomAndPan="disable" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a3="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" a3:scriptImplementation="Adobe" xmlns:attrib="http://www.carto.net/attrib/">
+<title>Umzugsdynamik </title>
+<!-- **************************************** -->   
+<!-- ************* DEFINITIONS ************** -->
+<!-- **************************************** -->
+    <defs>
+        <!-- *************** SCRIPTS **************** -->
+        <script type="text/ecmascript" a3:scriptImplementation="Adobe" xlink:href="scripts/selectionList.es.gz"/>
+
+        <script type="text/ecmascript" a3:scriptImplementation="Adobe" xlink:href="scripts/helper_functions.es.gz"/>
+        <script type="text/ecmascript" a3:scriptImplementation="Adobe" xlink:href="scripts/slider.es.gz"/>
+        <script type="text/ecmascript" a3:scriptImplementation="Adobe" xlink:href="scripts/navigation.es.gz"/>
+        <script type="text/ecmascript" a3:scriptImplementation="Adobe" xlink:href="scripts/thematicMap.es.gz"/>
+        <script type="text/ecmascript" a3:scriptImplementation="Adobe" xlink:href="scripts/main.es.gz"/>        
+        <!-- *************** STYLES **************** -->
+        <style type="text/css">
+            <![CDATA[
+                .sliderSymbol {fill:none;stroke:rgb(255,255,153);stroke-width:4}
+                    .bgBoxLight {fill:mintcream;stroke:none;}
+                    .bgBoxDark {fill:paleturquoise;stroke:none;}
+                    .allText {font-family:Helvetica,Arial,Sans-Serif;}
+                    .titleText {font-size:25;font-weight:bold;}
+                    .subTitleText {font-size:20;font-weight:bold;}                      
+                    .boldText {font-weight:bold;}
+                    .rightText {text-anchor:end;}
+                    .centerText {text-anchor:middle;}
+                    .nofill {fill:none;}
+                    .whitefill {fill:white;}
+                    .normalfillcol {fill:#336699;}
+                    .normallinecol {stroke:lightsteelblue;}
+                    .nostroke {stroke:none;}
+                    .verythinline {stroke-width:1;}
+                    .thinline {stroke-width:1.5;}
+                    .normalline {stroke-width:2;}
+                    .normalThickline {stroke-width:3;}
+                    .mediumThickLine {stroke-width:80;}
+                    .thickLine {stroke-width:200;}
+                    .thickerLine {stroke-width:300;}
+                    .veryThickLine {stroke-width:600;}
+                    .superThickLine {stroke-width:1000;}
+                    .redlinecol {stroke:firebrick;opacity:.8;}                      
+                    .whiteTranspFill {fill:rgb(220,220,220);fill-opacity:.13;}
+                    .whiteTransp {fill:white;fill-opacity:.5;}
+                    .yellowTranspFill {fill:rgb(255,255,50);fill-opacity:.3;}
+                    .lightYellowFIll {fill:rgb(255,255,183);}
+                    .veryLightYellowFIll {fill:rgb(255,255,200);}                   
+                    .lightGreyFill{fill:rgb(220,220,220);}
+                    .greyTranspFill {fill:rgb(220,220,220);fill-opacity:.8;}
+                    .mediumGreyFill {fill:rgb(153,153,153);}
+                    .darkGreyFill{fill:rgb(102,102,102);}
+                    .whiteStroke{stroke:white;stroke-linecap:round;stroke-linejoin:round;}
+                    .lightYellowStroke{stroke:rgb(255,255,183);stroke-linecap:round;stroke-linejoin:round;}
+                    .whiteStroke{stroke:white;stroke-linecap:round;stroke-linejoin:round;}
+                    .lightGreyStroke{stroke:rgb(220,220,220);stroke-linecap:round;stroke-linejoin:round;}                   
+                    .transpGreyStroke{stroke:rgb(220,220,220);stroke-opacity:.8;stroke-linecap:round;stroke-linejoin:round;}
+                    .mediumGreyStroke{stroke:rgb(153,153,153);stroke-linecap:round;stroke-linejoin:round;}
+                    .darkGreyStroke{stroke:rgb(102,102,102);stroke-linecap:round;stroke-linejoin:round;}
+                    .darkBlueStroke {stroke:#336699;}
+                    .lightblueFill {fill:lightsteelblue;}                   
+                    .fontSize12 {font-size:12;}
+                    .fontSize13 {font-size:13;}
+                    .fontSize11 {font-size:11;}
+                    .fontSize18{font-size:18;}
+                .fontSize21{font-size:21;}
+                .fontSize30{font-size:28;}
+                .letterspacing3 {letter-spacing:3;}
+                .letterspacing2 {letter-spacing:2;}
+                .letterspacing2 {letter-spacing:1;}
+            ]]>
+        </style>
+
+        <!-- *************** SYMBOLS **************** -->
+        <symbol id="magnifyer" overflow="visible" class="mediumGreyFill normalline mediumGreyStroke">
+            <line x1="0" y1="0" x2="-8" y2="20"/>
+            <circle r="6"/>
+        </symbol>
+        <symbol id="magnifyerFull" overflow="visible">
+            <use xlink:href="#magnifyer"/>
+            <text y="5" class="allText fontSize13 centerText boldText lightYellowFIll allText" pointer-events="none">F</text>
+
+        </symbol>
+        <symbol id="magnifyerManual" overflow="visible">
+            <line x1="0" y1="0" x2="-8" y2="20" class="normalline mediumGreyStroke"/>
+            <circle r="6" class="mediumGreyFill mediumGreyStroke"/>
+            <rect x="-4" y="-3" width="8" height="6" class="nofill verythinline lightYellowStroke" stroke-dasharray="1.3,1.3"/>
+        </symbol>
+        <symbol id="magnifyerZoomInWo" overflow="visible" class="normalline lightYellowStroke">
+            <circle r="6" class="mediumGreyFill mediumGreyStroke"/>
+            <line x1="-4" y1="0" x2="4" y2="0" />
+
+            <line x1="0" y1="-4" x2="0" y2="4" />
+        </symbol>
+        <symbol id="magnifyerZoomOutWo" overflow="visible" class="normalline lightYellowStroke">
+            <circle r="6" class="mediumGreyFill mediumGreyStroke"/>
+            <line x1="-4" y1="0" x2="4" y2="0" />
+        </symbol>
+        <symbol id="symbolRect" overflow="visible" style="fill:#C60231;fill-opacity:0.9;stroke:gray;stroke-width:300">
+            <rect x="-2000" y="-2000" width="4000" height="4000"/>
+        </symbol>       
+        <symbol id="symbolSmallRect" overflow="visible" style="fill:crimson;fill-opacity:0.7;stroke:gray;stroke-width:300">
+
+            <rect x="-1000" y="-1000" width="2000" height="2000"/>
+        </symbol>  
+        <symbol id="symbolCirc" overflow="visible" style="fill:crimson;fill-opacity:0.3;stroke:gray;stroke-width:300">
+                <circle cx="0" cy="0" r="1200"/>
+        </symbol>           
+        <symbol id="sliderSymbol" overflow="visible" class="sliderSymbol" pointer-events="none">
+            <line x1="0" y1="-6" x2="0" y2="6"/>
+        </symbol>
+        <!-- Symbol for Dragging if zoomed in far -->
+        <symbol id="myDragCrossSymbol" overflow="visible" orient="auto" stroke-width="0.3" class="nofill redlinecol" pointer-events="none" transform="scale(10000)">
+
+            <line x1="-1.3" y1="0" x2="-0.6" y2="0" />
+            <line x1="1.3" y1="0" x2="0.6" y2="0" />
+            <line x1="0" y1="-0.6" x2="0" y2="-1.3" />
+            <line x1="0" y1="0.6" x2="0" y2="1.3" />
+        </symbol>
+        <clipPath id="AusschnittMap">
+            <rect x="449" y="335" width="631" height="417"/>
+        </clipPath>
+        <clipPath id="AusschnittNav">
+
+            <rect x="951.3" y="326" width="104.5" height="66.5"/>
+        </clipPath>
+        <!-- Symbol for Slider -->
+        <symbol id="sliderSymbolDarkcyan" overflow="visible" class="nofill darkGreyStroke normalThickline" pointer-events="none">
+            <rect x="-3" y="-6" width="6" height="12"/>
+            <!--<line x1="0" y1="-5" x2="0" y2="5" />-->
+        </symbol>
+        <symbol id="sliderSymbolOrange" overflow="visible" style="fill:none;stroke:orange;stroke-width:5;" pointer-events="none">
+            <line x1="0" y1="-10" x2="0" y2="10" />
+
+        </symbol>
+        
+        <symbol id="windowInMap">
+            <rect id="navHeaderRect" x="0" y="0" width="133" height="17" class="mediumGreyFill lightGreyStroke normalline"/>
+            <polygon id="triangle2hideWindow" transform="translate(120 5) scale(1.5)" onclick="handleWindow(evt,'nav');" class="lightYellowFIll lightYellowStroke" points="0,0 5,0 2.5,4.33 "/>
+        </symbol>
+        <linearGradient id="hueGradient">
+            <stop offset="0%" style="stop-color:rgb(255,0,0)" />
+            <stop offset="16.7%" style="stop-color:rgb(255,255,0)" />
+            <stop offset="33.3%" style="stop-color:rgb(0,255,0)" />
+
+            <stop offset="50%" style="stop-color:rgb(0,255,255)" />
+            <stop offset="66.7%" style="stop-color:rgb(0,0,255)" />
+            <stop offset="83.3%" style="stop-color:rgb(255,0,255)" />
+            <stop offset="100%" style="stop-color:rgb(255,0,0)" />
+        </linearGradient>
+        <linearGradient id="valGradient">
+            <stop id="valStopStartColor" offset="0%" style="stop-color:rgb(0,0,0)" />
+            <stop id="valStopEndColor" offset="100%" style="stop-color:rgb(255,128,0)" />
+        </linearGradient>
+
+        
+        <marker id="Triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="6" orient="auto" preserveAspectRatio="xMidYMid meet">
+            <path class="lightGreyFill" d="M 0 0 L 10 5 L 0 10 z"/>
+        </marker>   
+    </defs>
+<!-- **************************************** -->
+<!-- ************* DATA GROUP *************** -->
+<!-- **************************************** -->
+<g id="kartdat_data" /> <!-- xml daten zu er jew. karte-->
+<g id="quaddat_data" />
+<!-- **************************************** -->
+<!-- ************* BACKGROUNDS ************** -->
+<!-- **************************************** -->
+<rect x="-2500" y="-2500" width="5000" height="5000" class="veryLightYellowFIll"/>
+
+<rect x="-2500" y="39" width="5000" height="1000" class="mediumGreyFill"/> <!--height="755"-->
+
+<!-- **************************************** -->   
+<!-- ************** MAIN MAP *************** -->
+<!-- **************************************** -->   
+
+<!-- ************** BACKGROUND MAP *********-->
+<rect x="448" y="317" width="633" height="436" class="whiteTranspFill lightGreyStroke normalline"/> 
+<rect x="448" y="317" width="633" height="17" class="mediumGreyFill lightGreyStroke normalline"/> 
+<g style="clip-path:url(#AusschnittMap)">
+<svg id="mainMap" x="449" y="335" width="631" height="400" viewBox="640150 -278000 88406 56000" onmousemove="showCoords(evt)" onmouseout="showCoords(evt)"> 
+    <g onmouseover="showData(evt,'kanton');" onmouseout="showData(evt,'kanton');" >
+        <g id="kantone_areas" opacity="0" >
+            <path attrib:NAMEN="SH" d="M687665 -280800l-602 -78l-1498 1268l-1062 -930l-1265 297l-378 1198l-1080 -290l370 1263l-122 534l-2786 -367l-1722 969l-602 -1359l-1015 -418l-344 177l-2424 -1452l-467 -1082l1074 -864l-981 -2014l3492 -2310l147 -745l-517 -1072l1700 -2848l2745 -1360l762 620l2433 -1577l1005 702l812 -430l-1165 -1200l56 -1696l774 173l145 736l2903 -225l620 695l-313 1645l163 1385l1087 810l853 -543l450 -1042l-509 -1519l329 -1166l697 -263l238 971l619 522l831 55l439 1321l81 1711l961 -39l1024 -676l1092 322l498 849l472 691l-1983 1114l287 1892l1386 555l-585 2618l-753 250l-1515 -2638l-882 704l-1093 -774l-184 140l-457 340l1004 1463l-1287 1163l-1095 -679l-913 210l-542 68l-70 1504l-753 -44l-585 765z" />
+            <path attrib:NAMEN="SH" d="M707935 -279392l-777 -215l-325 36l162 341l-833 430l-119 -1159l-1038 -1048l-2378 -735l-495 242l-192 103l30 -1428l990 -602l-1278 -1180l-1812 -273l24 -1274l2178 -1016l-207 -820l750 -430l465 1594l972 561l-105 865l1645 -62l218 870l1831 -237l256 1246l-1719 -37l-81 1513l1238 552l600 2163z" />
+
+            <path attrib:NAMEN="ZH" d="M691623 -282624l789 307l-82 812l722 1300l838 1770l2182 868l1105 -48l1163 343l1317 -1153l2485 -1832l338 -30l157 1432l815 255l823 315l-63 1088l-1540 3260l-444 459l-783 -609l-2905 -1260l-725 1497l682 1733l1038 -73l2715 823l960 1565l2130 -73l925 820l-1558 1168l895 2282l2015 213l470 100l1023 115l830 437l-215 2393l222 1957l-912 390l-105 1273l817 765l761 2207l2095 720l-32 521l-1388 53l-354 3029l6 380l2632 1467l190 1273l2296 3252l954 2963l-722 1382l-1358 308l-1551 2003l949 644l-920 2278l-3808 935l-1122 850l-3176 -520l-1454 307l-977.3 1003.5l993.2 2052.6l18.9 18.4l-1159.6 -247.8l-3784.1 1204l-50 15.9l-2126.1 1079.4l-2482 2184l58 1058l794 807l20 370l-2002 442l-395 -1172l-1621 288l-604 -285l-558 -285l-713 -2888l-920 -410l-2000 -1702l-212 207l-2353 -545l-3387 1163l-695 150l-703 250l-2560 -1615l-1865 37l-382 -1137l-235 -1128l-300 -515l-685 -2197l-770 -2023l-230 -392l1965 -398l1035 -867l567 -1575l378 -73l754 -1208l-129 -729l-1278 775l-1530 -225l278 -953l-748 -1635l-145 -1362l233 -288l-595 -422l-70 -475l-255 -2118l-2570 -471l-23 -436l1525 -210l335 -2655l-444 -313l167 -425l-377 -1223l694 -519l-1720 -1828l705 -490l-167 -1142l-760 72l-185 -3240l1192 -275l700 -1840l412 134l357 65l432 -705l-242 -699l1339 -692l61 -1759l529 -714l2883 -518l654 -246l853 -323l759 -433l-552 -722l-1418 421l-594 -496l-310 -1545l1575 -943l2287 -800l599 -1630l1694 106l2315 1473l389 615l-852 1394l-477 225l-833 622l-612 493l-168 1350l893 157l640 2343l647 -543l375 -1973l1174 -1808l708 -394l96 -1195l572 -600l-622 -3570l590 -1176l752 602l-572 1007l700 131l938 -1149l-1472 -2094l-226 -541l585 -765l753 44l70 -1504l542 -68l913 -210l1095 679z" />
+            <path attrib:NAMEN="AG" d="M620707 -265470l739 -285l2206 -330l426 -453l2812 -932l1767 -3322l1360 472l2380 -670l2160 523l985 1522l-167 1710l705 868l1178 0l525 252l1111 -1376l688 -53l3275 274l1023 480l1840 -565l1017 -930l1130 173l1693 85l707 -2193l1455 -290l1635 -1407l848 227l1897 -1262l1260 -1743l1420 486l274 1003l1165 -740l1644 -26l2060 352l715 467l-13 1863l1415 1125l1578 930l1845 48l1700 437l381 -1148l661 -159l1064 567l1009 450l-529 714l-61 1759l-1339 692l242 699l-432 705l-357 -65l-412 -134l-700 1840l-1192 275l185 3240l760 -72l167 1142l-705 490l1720 1828l-694 519l377 1223l-167 425l444 313l-335 2655l-1525 210l23 436l2570 471l255 2118l70 475l595 422l-233 288l145 1362l748 1635l-278 953l1530 225l1278 -775l129 729l-754 1208l-378 73l-567 1575l-1035 867l-1965 398l230 392l770 2023l685 2197l-449 412l-549 2758l338 4053l1110 2900l-11 92l-132 1773l-520 350l-2322 -590l-960 -315l-308 -808l-10 -387l-811 -827l-656 -2226l-718 -1997l-217 -930l-135 -318l-550 -1082l-245 -810l-60 -998l-314 -602l-336 -644l-555 -491l-123 -1842l-2980 -1643l-1220 1645l-1060 -40l-617 2302l-898 543l-272 2390l-2103 472l-208 -400l-517 -693l-820 -842l1810 -695l-41 -574l-361 -301l-2418 705l-972 433l-415 232l-1163 -340l-220 -477l-463 -1151l-904 -399l-1173 882l-1210 -40l495 983l-3580 297l-160 -1985l-687 -1002l-558 -950l-3567 582l842 2245l-2102 2080l-850 -200l-2090 -530l-4228 905l-837 -2110l-216 -1320l241 -105l985 -841l615 -1609l145 -165l667 -1737l1558 -550l816 -366l1101 -2877l693 315l177 135l1107 226l1138 64l65 1713l1143 -438l2115 -1292l692 -245l810 -1680l543 -1528l292 -145l150 -327l180 -375l256 -1299l-283 -1154l-65 -272l-1210 77l-138 -827l-150 -631l-2783 -1517l943 -720l345 -32l-422 -1963l-553 -1415l-1345 432l-459 -997l-801 247l415 -2604l-3095 85l-15 -808l-710 -1117l-95 -385l-1392 -825l67 -1055l-997 -93l-835 -1295l-1435 166l-93 2117l-1842 1970l-660 -188l-620 323l-96 -385l198 -441l-220 -1654l-3015 -730l-1140 -690l-1530 -928z" />
+            <path attrib:NAMEN="SH" d="M684562 -272687l1360 158l1083 -881l-96 1195l-708 394l-1174 1808l-375 1973l-647 543l-640 -2343l-893 -157l168 -1350l612 -493l833 -622l477 -225z" />
+            <path attrib:NAMEN="SG" d="M755455.4 -268338.4l738 1168.6l2829.3 0l872.3 3925.9l1712 2384l914 1545l634 269l282 -709l956 334l262 825l2558 343l-363 1233l-475 900l570 2020l70 1325l1708 1430l-48 1237l-1087 1250l-2500 405l-1800 2328l-875 3300l-1602 1477l-1579 2823l-957 1028l-1403 4220l-1407 3797l-175 870l10 1776l641 1932l602 1074l972 2748l158 752l-190 3343l-2845 1900l142 1892l113 288l622 955l513 740l1482 2562l2782 3658l-1640 497l-357 1888l-1443 262l-195 992l-1207 3895l-952 1143l84 1016l-555 595l-960 1204l-310 -287l-2213 -2048l-3010 -78l-2537 -299l-3692 -766l-2096 143l-1321 -890l267 -1202l-1375 -2432l792 -2553l282 -2949l-1323 -3440l-1141 -361l-1704 -433l-1276 1295l-1850 -427l-1405 -968l3186 -2554l890 -636l-155 -1960l-278 -3527l83.7 -793.6l-5623.8 -913.7l-474.5 191.8l-292.8 0l-383.7 -242.3l-148.9 52.9l-989 354l-1367 40l-1349 -1269l-3273 -3315l-255 -115l-1830 -1093l-795 508l-652 -533l-350 -1720l1219 -1522l-635 -500l-1840.9 -45l-17 -0.4l-4648.3 794.8l-3257.7 455.8l-1179.7 -368.7l-958.6 -931.9l-18.9 -18.4l-993.2 -2052.6l977.3 -1003.5l1454 -307l3176 520l1122 -850l3808 -935l920 -2278l-949 -644l1551 -2003l1358 -308l722 -1382l-954 -2963l-2296 -3252l2070 -1753l348 -2165l1035 -370l-283 -1715l895 -667l965 157l743 -905l925 660l285 -680l1067 -275l788 -300l-1468 -797l-1283 -294l79 -745l-1356 -851l123 -2025l2230 -761l1052 918l1845 -895l823 1359l2850 -257l2038 -437l698 -1795l899 757l2450 813l-42 1020l2112 -138l506 -12l579 712l2230 -1015l1325 615l1660 -1540l-982 -1155l630 -835l-1045 -750l-627 683l-1147 -397l1019 -1058l3425 -1055l354 1233l805 272l-1100 1225l-100 670l2028 -147l730 205l-524 775l-26 830l505 2l1385 863l605 -103l724 -1731l576 -525l320 179l1045 -1155l5010.4 -4671.4M753552 -261837l-784 -756l-1281 -522l35 1013l1130 845l900 -580M744120 -234920l2132 990l895 658l1419 -393l5254 -4071l987 -1266l51 -1274l717 -1214l112 -950l303 -2545l-20 -1130l-62 -768l305 -4300l80 -185l3495 -305l872 -470l1165 -970l3 -85l1630 -545l-1283 -1217l1830 -623l237 -730l746 -242l277 -106l-3135 -1902l13 -155l-705 -360l-1365 3l-683 -117l-528 30l-110 -591l-905 195l-411 467l-36 420l-140 940l-1176 249l-1270 939l-1749 421l-1178 795l-1310 -333l-602 3057l-2120 775l-1970 -730l-2380 965l-1093 -72l-2345 443l-4650 -3l-7 1100l-1000 408l187 1262l-782 1140l-1430 88l622 1606l605 971l1365 -402l675 1147l-1760 1273l636 1439l532 1658l-1324 1862l831 459l1283 707l1772 200l1245 -793l864 662l936 716l860 -180l1068 1385l1525 -403z" />
+            <path attrib:NAMEN="LU" d="M630302 -231605l4228 -905l2090 530l850 200l2102 -2080l-842 -2245l3567 -582l558 950l687 1002l160 1985l3580 -297l-495 -983l1210 40l1173 -882l904 399l463 1151l220 477l1163 340l415 -232l972 -433l2418 -705l361 301l41 574l-1810 695l820 842l517 693l208 400l2103 -472l272 -2390l898 -543l617 -2302l1060 40l1220 -1645l2980 1643l123 1842l555 491l336 644l314 602l60 998l245 810l550 1082l135 318l217 930l718 1997l656 2226l811 827l10 387l308 808l960 315l2322 590l520 -350l382 1027l-122 760l375 195l2190 -952l446 1420l937 -90l990.2 -847.7l1025.7 1383.8l-16.3 1562.9l-1289.6 -695l-407 -515l-1501 66l-2309 974l-1013 2518l-1342 985l25 282l875 965l2230 -705l2420 1653l222 187l800 590l2945 2350l-312 1915l-2137 1212l-360 -50l-602.8 -239l55.2 -1412.6l-3145.2 -838.7l-33.1 1434.6l-3277.6 -286.9l-44.1 -1158.7l-1158.7 -242.8l-2549.3 3459.7l-1213.9 -1158.7l-372.6 125.1l-4089 296l-1207 1150l-490 -637l-733 -75l-737 1280l820 880l-1980 710l-1183 -525l-1897 935l-910 645l1140 2032l-585 668l-1690 1250l-1763 3302l-657 -275l440 -1442l-1055 -410l-673 657l-1212 1165l62 2013l-295 1693l-55 319l-1561 2277l-201 293l1062 1955l653 1200l-148 268l-1170 2075l-2007 -203l-2745 1588l-1730 -1360l-620 -488l-45 -282l-200 -595l-2171 -1836l-1843 -1559l-2201 -1863l-878 -4222l1098 -498l754 -1882l-1217 -905l425 -1052l3222 -1180l2304 -3966l499 -1235l23 -2841l-900 144l-1645 -502l-1353 449l-737 -2655l-1842 -2195l822 -3212l-512 -209l193 -1039l-619 -2955l490 -845l940 -470l-312 -2107l-405 -2030l302 -1168l-1645 -2559l-178 131l-823 -2170l-614 -584l22 -1300z" />
+            <path attrib:NAMEN="ZG" d="M695050 -224365l690 1342l-970 595l-72 1050l-1115 2325l-1683 1410l-897 1138l-2261 149l-1509 743l-1123 238l-500 -1340l-3345 702l8.7 24.5l-2214.1 -1074.5l16.3 -1562.9l-1025.7 -1383.8l-990.2 847.7l-937 90l-446 -1420l-2190 952l-375 -195l122 -760l-382 -1027l132 -1773l11 -92l-1110 -2900l-338 -4053l549 -2758l449 -412l300 515l235 1128l382 1137l1865 -37l2560 1615l703 -250l695 -150l3387 -1163l2353 545l212 -207l2000 1702l920 410l713 2888l558 285l604 285l1621 -288l395 1172l2002 -442z" />
+            <path attrib:NAMEN="SZ" d="M703779.8 -230835.5l958.6 931.9l1179.7 368.7l3257.7 -455.8l4648.3 -794.8l17 0.4l1840.9 45l635 500l-1219 1522l350 1720l652 533l795 -508l1830 1093l-2559 3818l-203 304l160 235l237 1818l10 339l-82 1253l-1255 1398l565 1682l-903 3005l-1768 1136l-1796 659l-423 1440l1192 408l1264 1953l1826 3282l1685 1030l-1205 2353l641 1172l-2111 978l-3720 1918l-2721 1937l-202 -563l61 -2378l-1633 -1047l-82 -1473l-1238 -615l-1410 1205l-1620 -1157l-3162 1602l-1516 1343l-1651 -2523l-323 -454l-3590 -723l-1290 -263l-1171.1 88.2l-242.8 -2549.2l198.6 -882.9l-110.4 -485.6l-375.2 -309l-1147.7 -419.4l-904.9 397.3l-669.9 383.8l-1448.9 830.1l-1787.8 0l-1699.5 397.3l-2405.8 -794.6l165.6 -1418.1l602.8 239l360 50l2137 -1212l312 -1915l-2945 -2350l-800 -590l-222 -187l-2420 -1653l-2230 705l-875 -965l-25 -282l1342 -985l1013 -2518l2309 -974l1501 -66l407 515l1289.6 695l2214.1 1074.5l-8.7 -24.5l3345 -702l500 1340l1123 -238l1509 -743l2261 -149l897 -1138l1683 -1410l1115 -2325l72 -1050l970 -595l-690 -1342l-20 -370l-794 -807l-58 -1058l2482 -2184l2126.1 -1079.4l50 -15.9l3784.1 -1204l1159.6 247.8z" />
+            <path attrib:NAMEN="GL" d="M718725 -225880l255 115l3273 3315l1349 1269l1367 -40l989 -354l148.9 -52.9l383.7 242.3l292.8 0l474.5 -191.8l5623.8 913.7l-83.7 793.6l278 3527l155 1960l-890 636l-3186 2554l1405 968l1850 427l1276 -1295l1704 433l1141 361l1323 3440l-282 2949l-792 2553l1375 2432l-267 1202l-1594 1029l-1084 1736l-1259 1196l-3033 10l-539 651l-752 1317l-340 469l-1725 1148l-1300 -2243l-2247 -400l-937 362l-583 743l-752 3367l-1898 2698l-3977 651l-2148 1101l-1055 -1615l-1270 -321l-1580 12l260 -1663l-805 -1403l6398 -3822l-233 -2611l-18 -207l-476 -704l-941 -1395l2111 -978l-641 -1172l1205 -2353l-1685 -1030l-1826 -3282l-1264 -1953l-1192 -408l423 -1440l1796 -659l1768 -1136l903 -3005l-565 -1682l1255 -1398l82 -1253l-10 -339l-237 -1818l-160 -235l203 -304l2559 -3818z" />
+        </g>    </g>
+
+    
+    <!-- ******* QUARTIERE, BEZIRKE - LAYER *******--> <!--viewBox="476766.4 -301378.5 365636.2 231610"--> 
+    <g id="units" class="whitefill mediumThickLine darkGreyStroke"  onmouseover="showData(evt, 'unit');" onmouseout="showData(evt,'unit');">
+        <path id="units_71" attrib:Class="-" attrib:AREA="8460492.0" attrib:NAMEN="Wil (ZH)" attrib:GDE_NR="71" attrib:KANT="ZH" attrib:E_QUADRAT="12" attrib:STADT="Agglomeration" d="M678130 -273845l2287 -800l599 -1630l879 3080l1357 1355l-612 493l-1658 -613l-1634 -1320l-678 80l-540 -645z" />
+        <path id="units_67" attrib:Class="-" attrib:AREA="11342132.0" attrib:NAMEN="Rafz" attrib:GDE_NR="67" attrib:KANT="ZH" attrib:E_QUADRAT="12" attrib:STADT="Agglomeration" d="M681016 -276275l1694 106l2315 1473l389 615l-852 1394l-477 225l-833 622l-1357 -1355l-879 -3080z" />
+        <path id="units_70" attrib:Class="-" attrib:AREA="4435827.5" attrib:NAMEN="Wasterkingen" attrib:GDE_NR="70" attrib:KANT="ZH" attrib:E_QUADRAT="12" attrib:STADT="Agglomeration" d="M678130 -273845l540 645l-361 570l568 1348l-1418 421l-594 -496l-310 -1545l1575 -943z" />
+        <path id="units_61" attrib:Class="-" attrib:AREA="5024067.0" attrib:NAMEN="H&#252;ntwangen" attrib:GDE_NR="61" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M678670 -273200l678 -80l1634 1320l100 1288l-1653 112l-552 -722l-568 -1348l361 -570z" />
+        <path id="units_55" attrib:Class="-" attrib:AREA="9790672.0" attrib:NAMEN="Eglisau" attrib:GDE_NR="55" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M680982 -271960l1658 613l-168 1350l893 157l640 2343l-45 242l-414 235l-1601 -1335l-528 283l-292 -1298l-2455 -757l759 -433l1653 -112l-100 -1288z" />
+        <path id="units_58" attrib:Class="-" attrib:AREA="12619444.0" attrib:NAMEN="Glattfelden" attrib:GDE_NR="58" attrib:KANT="ZH" attrib:E_QUADRAT="21" attrib:STADT="Agglomeration" d="M677163 -269558l654 -246l853 -323l2455 757l292 1298l528 -283l142 1350l-908 485l-989 703l-270 -523l-2131 -1784l-679 580l-490 -286l829 -943l-286 -785z" />
+        <path id="units_102" attrib:Class="-" attrib:AREA="8795236.0" attrib:NAMEN="Weiach" attrib:GDE_NR="102" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M674280 -269040l2883 -518l286 785l-829 943l-1193 2078l-1737 -815l61 -1759l529 -714z" />
+
+        <path id="units_4308" attrib:Class="-" attrib:AREA="896646.0" attrib:NAMEN="Kaiserstuhl" attrib:GDE_NR="4308" attrib:KANT="AG" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M673271 -269490l1009 450l-529 714l-864 -356l384 -808z" />
+        <path id="units_53" attrib:Class="-" attrib:AREA="14359562.0" attrib:NAMEN="B&#252;lach" attrib:GDE_NR="53" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M681945 -268355l1601 1335l1024 2628l1047 685l-350 1000l-520 -256l-520 -309l-2562 1770l-195 -1423l447 -949l-738 -2646l908 -485l-142 -1350z" />
+        <path id="units_100" attrib:Class="-" attrib:AREA="12887262.0" attrib:NAMEN="Stadel" attrib:GDE_NR="100" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M679920 -266340l-690 1653l-2190 1460l-1613 -2525l1193 -2078l490 286l679 -580l2131 1784z" />
+        <path id="units_57" attrib:Class="-" attrib:AREA="7913874.5" attrib:NAMEN="Freienstein-Teufen" attrib:GDE_NR="57" attrib:KANT="ZH" attrib:E_QUADRAT="12" attrib:STADT="Agglomeration" d="M684005 -267497l647 -543l2568 1095l1155 1330l-445 1353l-1465 -540l-2505 -2453l45 -242z" />
+        <path id="units_68" attrib:Class="-" attrib:AREA="4365731.0" attrib:NAMEN="Rorbas" attrib:GDE_NR="68" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M683960 -267255l2505 2453l-848 1095l-1047 -685l-1024 -2628l414 -235z" />
+        <path id="units_59" attrib:Class="-" attrib:AREA="6050951.0" attrib:NAMEN="Hochfelden" attrib:GDE_NR="59" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M681179 -266520l738 2646l-447 949l-2025 -955l-215 -807l690 -1653l270 523l989 -703z" />
+        <path id="units_93" attrib:Class="-" attrib:AREA="4362659.5" attrib:NAMEN="Oberweningen" attrib:GDE_NR="93" attrib:KANT="ZH" attrib:E_QUADRAT="12" attrib:STADT="Agglomeration" d="M672161 -264471l432 -705l1059 660l200 539l-861 -16l491 4086l-50 368l-520 37l-751 -4969z" />
+        <path id="units_56" attrib:Class="-" attrib:AREA="13267378.0" attrib:NAMEN="Embrach" attrib:GDE_NR="56" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M686465 -264802l1465 540l862 187l988 1703l-125 745l-2033 776l-2087 120l-268 -1976l350 -1000l848 -1095z" />
+        <path id="units_88" attrib:Class="-" attrib:AREA="5997811.0" attrib:NAMEN="Neerach" attrib:GDE_NR="88" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M679445 -263880l-920 1548l435 1022l-811 411l-889 -48l-745 -1795l525 -485l2190 -1460l215 807z" />
+
+        <path id="units_91" attrib:Class="-" attrib:AREA="6320093.5" attrib:NAMEN="Niederweningen" attrib:GDE_NR="91" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M671392 -264670l412 134l-987 5115l-372 34l-760 72l-185 -3240l1192 -275l700 -1840z" />
+        <path id="units_98" attrib:Class="-" attrib:AREA="6204720.5" attrib:NAMEN="Schleinikon" attrib:GDE_NR="98" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M671804 -264536l357 65l751 4969l-955 60l-1140 21l987 -5115z" />
+        <path id="units_99" attrib:Class="-" attrib:AREA="4801415.0" attrib:NAMEN="Sch&#246;fflisdorf" attrib:GDE_NR="99" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M674140 -263487l787 2020l-665 1128l-780 432l-491 -4086l861 16l288 490z" />
+        <path id="units_60" attrib:Class="-" attrib:AREA="5467645.5" attrib:NAMEN="H&#246;ri" attrib:GDE_NR="60" attrib:KANT="ZH" attrib:E_QUADRAT="21" attrib:STADT="Agglomeration" d="M681470 -262925l195 1423l46 185l-280 211l-663 -589l-1808 385l-435 -1022l920 -1548l2025 955z" />
+        <path id="units_101" attrib:Class="-" attrib:AREA="9058969.0" attrib:NAMEN="Steinmaur" attrib:GDE_NR="101" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M676515 -262742l745 1795l889 48l-4 324l0 205l-2145 600l-2568 231l50 -368l780 -432l665 -1128l-787 -2020l2375 745z" />
+        <path id="units_51" attrib:Class="-" attrib:AREA="4135725.5" attrib:NAMEN="Bachenb&#252;lach" attrib:GDE_NR="51" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M681665 -261502l2562 -1770l520 309l0 1038l-1278 507l-497 1171l-1261 -1070l-46 -185z" />
+        <path id="units_72" attrib:Class="-" attrib:AREA="8174539.5" attrib:NAMEN="Winkel" attrib:GDE_NR="72" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M685267 -262707l268 1976l450 1296l-1860 1519l-235 -250l-918 -2081l497 -1171l1278 -507l0 -1038l520 256z" />
+        <path id="units_4043" attrib:Class="-" attrib:AREA="4406186.0" attrib:NAMEN="Unterehrendingen" attrib:GDE_NR="4043" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M668235 -262775l1265 220l185 3240l-395 84l-1603 -2546l25 -540l523 -458z" />
+        <path id="units_4036" attrib:Class="-" attrib:AREA="3133526.0" attrib:NAMEN="Oberehrendingen" attrib:GDE_NR="4036" attrib:KANT="AG" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M667687 -261777l1603 2546l-1231 191l-1149 -855l777 -1882z" />
+
+        <path id="units_89" attrib:Class="-" attrib:AREA="3821093.5" attrib:NAMEN="Niederglatt" attrib:GDE_NR="89" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M681431 -261106l-1379 1464l-1907 -933l4 -324l811 -411l1808 -385l663 589z" />
+        <path id="units_92" attrib:Class="-" attrib:AREA="8499491.0" attrib:NAMEN="Oberglatt" attrib:GDE_NR="92" attrib:KANT="ZH" attrib:E_QUADRAT="31" attrib:STADT="Agglomeration" d="M681711 -261317l1261 1070l918 2081l-2027 600l-122 -773l-1054 497l-635 -1800l1379 -1464l280 -211z" />
+        <path id="units_63" attrib:Class="-" attrib:AREA="4725763.5" attrib:NAMEN="Lufingen" attrib:GDE_NR="63" attrib:KANT="ZH" attrib:E_QUADRAT="33" attrib:STADT="Agglomeration" d="M687622 -260851l715 1243l-952 1620l-1400 -1447l-450 -1296l2087 -120z" />
+        <path id="units_213" attrib:Class="-" attrib:AREA="6466548.5" attrib:NAMEN="Br&#252;tten" attrib:GDE_NR="213" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M692077 -260637l928 865l687 -526l1375 1878l-1990 1040l-1565 -1170l565 -2087z" />
+        <path id="units_90" attrib:Class="-" attrib:AREA="12004940.0" attrib:NAMEN="Niederhasli" attrib:GDE_NR="90" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M678145 -260370l0 -205l1907 933l635 1800l1054 -497l122 773l-1788 2039l-1160 -1423l-1635 -86l-210 -408l1075 -2926z" />
+        <path id="units_86" attrib:Class="-" attrib:AREA="5236944.0" attrib:NAMEN="Dielsdorf" attrib:GDE_NR="86" attrib:KANT="ZH" attrib:E_QUADRAT="31" attrib:STADT="Agglomeration" d="M676000 -259770l2145 -600l-1075 2926l-2580 -604l1141 -962l369 -760z" />
+        <path id="units_95" attrib:Class="-" attrib:AREA="2708904.0" attrib:NAMEN="Regensberg" attrib:GDE_NR="95" attrib:KANT="ZH" attrib:E_QUADRAT="24" attrib:STADT="Agglomeration" d="M673432 -259539l2568 -231l-369 760l-1141 962l-468 -89l-300 -1013l-642 -41l-168 -311l520 -37z" />
+        <path id="units_62" attrib:Class="-" attrib:AREA="19847772.0" attrib:NAMEN="Kloten" attrib:GDE_NR="62" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M688337 -259608l508 966l617 -198l555 1102l-505 680l-1012 116l-658 2015l-515 367l-282 -5l-2855 -447l-763 -1590l698 -1314l1860 -1519l1400 1447l952 -1620z" />
+        <path id="units_82" attrib:Class="-" attrib:AREA="4027283.0" attrib:NAMEN="Boppelsen" attrib:GDE_NR="82" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M671957 -259442l955 -60l168 311l642 41l300 1013l-10 955l-130 379l-2210 -1417l285 -1222z" />
+
+        <path id="units_94" attrib:Class="-" attrib:AREA="7244742.5" attrib:NAMEN="Otelfingen" attrib:GDE_NR="94" attrib:KANT="ZH" attrib:E_QUADRAT="12" attrib:STADT="Agglomeration" d="M670817 -259421l1140 -21l-285 1222l2210 1417l-92 801l-2163 75l-1720 -1828l705 -490l-167 -1142l372 -34z" />
+        <path id="units_64" attrib:Class="-" attrib:AREA="9560830.0" attrib:NAMEN="N&#252;rensdorf" attrib:GDE_NR="64" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M689462 -258840l718 -537l1332 827l1565 1170l443 853l-1168 585l-340 1375l-2500 -2491l505 -680l-555 -1102z" />
+        <path id="units_176" attrib:Class="-" attrib:AREA="11798809.0" attrib:NAMEN="Lindau" attrib:GDE_NR="176" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M693077 -257380l1990 -1040l505 314l-166 1672l441 203l-377 1186l-1705 290l-705 2415l-155 88l-858 -628l-35 -1687l340 -1375l1168 -585l-443 -853z" />
+        <path id="units_175" attrib:Class="-" attrib:AREA="8391436.0" attrib:NAMEN="Kyburg" attrib:GDE_NR="175" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M696750 -257400l2422 -992l570 877l832 819l68 754l-1972 855l-756 -586l-717 556l-447 -2283z" />
+        <path id="units_97" attrib:Class="-" attrib:AREA="11874447.0" attrib:NAMEN="R&#252;mlang" attrib:GDE_NR="97" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M684125 -257916l-698 1314l763 1590l60 1092l-2027.1 -198l-2015.9 -197l-132 -1212l1788 -2039l2027 -600l235 250z" />
+        <path id="units_83" attrib:Class="-" attrib:AREA="5562253.5" attrib:NAMEN="Buchs (ZH)" attrib:GDE_NR="83" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M674022 -258137l468 89l2580 604l210 408l-1698 1299l-1605 -173l-187 -92l92 -801l130 -379l10 -955z" />
+        <path id="units_4048" attrib:Class="-" attrib:AREA="8874884.0" attrib:NAMEN="W&#252;renlos" attrib:GDE_NR="4048" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M671627 -255927l-694 519l377 1223l-167 425l-1641 -240l-1040 -432l-732 -868l2177 -2455l1720 1828z" />
+        <path id="units_174" attrib:Class="-" attrib:AREA="26336288.0" attrib:NAMEN="Illnau-Effretikon" attrib:GDE_NR="174" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M695847 -256231l903 -1169l447 2283l717 -556l756 586l585 2950l-103 852l-1562 335l-28 923l-1413 -7l-3089 -2306l705 -2415l1705 -290l377 -1186z" />
+        <path id="units_52" attrib:Class="-" attrib:AREA="9353166.0" attrib:NAMEN="Bassersdorf" attrib:GDE_NR="52" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M687842 -254927l658 -2015l1012 -116l2500 2491l35 1687l-2265 -1047l-1940 -1000z" />
+
+        <path id="units_96" attrib:Class="-" attrib:AREA="14731104.0" attrib:NAMEN="Regensdorf" attrib:GDE_NR="96" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M677280 -257036l1635 86l1160 1423l132 1212l-1234.9 1051.3l-903.1 768.7l-807 -15l-707 -257l-655 -768l515 -1025l-833 -1177l1698 -1299z" />
+        <path id="units_4034" attrib:Class="-" attrib:AREA="5055827.5" attrib:NAMEN="Neuenhof" attrib:GDE_NR="4034" attrib:KANT="AG" attrib:E_QUADRAT="31" attrib:STADT="Agglomeration" d="M665762 -256950l461 652l774 -342l733 1340l732 868l-1287 1055l-1128 -1520l-482 -405l197 -1648z" />
+        <path id="units_85" attrib:Class="-" attrib:AREA="2631148.0" attrib:NAMEN="D&#228;nikon" attrib:GDE_NR="85" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M671627 -255927l2163 -75l187 92l-250 1688l-1045 -335l-1055 -1370z" />
+        <path id="units_87" attrib:Class="-" attrib:AREA="1658262.5" attrib:NAMEN="H&#252;ttikon" attrib:GDE_NR="87" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M672682 -254557l-1372 372l-377 -1223l694 -519l1055 1370z" />
+        <path id="units_84" attrib:Class="-" attrib:AREA="4359665.0" attrib:NAMEN="D&#228;llikon" attrib:GDE_NR="84" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M675582 -255737l833 1177l-515 1025l-1985 -655l-188 -32l250 -1688l1605 173z" />
+        <path id="units_66" attrib:Class="-" attrib:AREA="5538329.0" attrib:NAMEN="Opfikon" attrib:GDE_NR="66" attrib:KANT="ZH" attrib:E_QUADRAT="41" attrib:STADT="Agglomeration" d="M687045 -254565l-260 1333l-1135 490l-773 480l-705 -553l78 -1105l-60 -1092l2855 447z" />
+        <path id="units_54" attrib:Class="-" attrib:AREA="4829915.5" attrib:NAMEN="Dietlikon" attrib:GDE_NR="54" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M687327 -254560l515 -367l1940 1000l43 2382l-738 155l-1760 -3170z" />
+        <path id="units_69" attrib:Class="-" attrib:AREA="6063657.0" attrib:NAMEN="Wallisellen" attrib:GDE_NR="69" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M687327 -254560l1760 3170l-1612 158l-535.8 -160.5l-1284.2 -384.5l-5 -965l1135 -490l260 -1333l282 5z" />
+        <path id="units_246" attrib:Class="-" attrib:AREA="2963303.0" attrib:NAMEN="Oetwil an der Limmat" attrib:GDE_NR="246" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M673727 -254222l188 32l-148 530l-1052 885l-1128 -672l-444 -313l167 -425l1372 -372l1045 335z" />
+
+        <path id="units_4030" attrib:Class="-" attrib:AREA="2386829.0" attrib:NAMEN="Killwangen" attrib:GDE_NR="4030" attrib:KANT="AG" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M668462 -254432l1040 432l-1397 1715l-930 -1092l1287 -1055z" />
+        <path id="units_111000" attrib:Class="-" attrib:AREA="6628347.5" attrib:NAMEN="Affoltern" attrib:GDE_NR="111000" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Stadt Z&#252;rich" d="M682222.9 -254118l-136.3 818l-445.2 308.2l410.9 684.9l582.7 16.2l-365.8 742.9l-182.7 371.1l-235.8 -94.3l-1647.8 -659.1l-1231 -1333.6l1234.9 -1051.3l2015.9 197z" />
+        <path id="units_251" attrib:Class="-" attrib:AREA="5395890.5" attrib:NAMEN="Weiningen (ZH)" attrib:GDE_NR="251" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M673915 -254190l1985 655l655 768l-1954 1563l-1346 64l45 -402l995 -1370l-528 -748l148 -530z" />
+        <path id="units_119000" attrib:Class="-" attrib:AREA="4580006.0" attrib:NAMEN="Seebach" attrib:GDE_NR="119000" attrib:KANT="ZH" attrib:E_QUADRAT="41" attrib:STADT="Stadt Z&#252;rich" d="M684250 -253920l-78 1105l705 553l-290.4 400.4l-1301.4 -102.7l0 -308.2l-650.2 -18.1l-582.7 -16.2l-410.9 -684.9l445.2 -308.2l136.3 -818l2027.1 198z" />
+        <path id="units_4040" attrib:Class="-" attrib:AREA="8638000.0" attrib:NAMEN="Spreitenbach" attrib:GDE_NR="4040" attrib:KANT="AG" attrib:E_QUADRAT="31" attrib:STADT="Agglomeration" d="M669502 -254000l1641 240l444 313l-335 2655l-1525 210l-497 -153l-1130 -1442l5 -108l1397 -1715z" />
+        <path id="units_200" attrib:Class="-" attrib:AREA="6779232.5" attrib:NAMEN="Wangen-Br&#252;ttisellen" attrib:GDE_NR="200" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M692047 -252880l858 628l-1250 2127l-1830 -1420l-43 -2382l2265 1047z" />
+        <path id="units_244" attrib:Class="-" attrib:AREA="1641230.5" attrib:NAMEN="Geroldswil" attrib:GDE_NR="244" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M672715 -252775l1052 -885l528 748l-995 1370l-585 -1233z" />
+        <path id="units_178" attrib:Class="-" attrib:AREA="13762308.0" attrib:NAMEN="Russikon" attrib:GDE_NR="178" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M699255 -252137l1565 227l2205 -1675l1045 2718l-582 1647l-2493 268l-1843 -2333l103 -852z" />
+        <path id="units_243" attrib:Class="-" attrib:AREA="9410284.0" attrib:NAMEN="Dietikon" attrib:GDE_NR="243" attrib:KANT="ZH" attrib:E_QUADRAT="31" attrib:STADT="Agglomeration" d="M671587 -253447l1128 672l585 1233l-45 402l250 715l1627 -225l-557 678l-1433 132l13 2053l-580 230l-255 -2118l-2570 -471l-23 -436l1525 -210l335 -2655z" />
+
+        <path id="units_101000" attrib:Class="-" attrib:AREA="7341304.5" attrib:NAMEN="Hoengg" attrib:GDE_NR="101000" attrib:KANT="ZH" attrib:E_QUADRAT="34" attrib:STADT="Stadt Z&#252;rich" d="M678972.1 -253263.7l1231 1333.6l1647.8 659.1l-580.8 905.4l0 585.5l-267.7 -66.9l-401.4 -33.5l-2350 -619.5l275 -859l-836 -548l379 -588l903.1 -768.7z" />
+        <path id="units_249" attrib:Class="-" attrib:AREA="3341846.0" attrib:NAMEN="Unterengstringen" attrib:GDE_NR="249" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M677262 -252510l-797 1123l-1333 737l-1627 225l-250 -715l1346 -64l1954 -1563l707 257z" />
+        <path id="units_121000" attrib:Class="-" attrib:AREA="1165360.625" attrib:NAMEN="Saatlen" attrib:GDE_NR="121000" attrib:KANT="ZH" attrib:E_QUADRAT="31" attrib:STADT="Stadt Z&#252;rich" d="M685650 -252742l5 965l-253.3 257.2l-234.2 401.5l-512.4 78.6l-68.5 -821.9l290.4 -400.4l773 -480z" />
+        <path id="units_245" attrib:Class="-" attrib:AREA="2162777.5" attrib:NAMEN="Oberengstringen" attrib:GDE_NR="245" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M678069 -252495l-379 588l836 548l-275 859l-1786 -887l797 -1123l807 15z" />
+        <path id="units_199" attrib:Class="-" attrib:AREA="14485730.0" attrib:NAMEN="Volketswil" attrib:GDE_NR="199" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M693060 -252340l3089 2306l1413 7l-187 1095l-758 902l-2055 -705l-917 1005l-803 -605l-1292 -1532l105 -258l1250 -2127l155 -88z" />
+        <path id="units_115000" attrib:Class="-" attrib:AREA="2805066.250" attrib:NAMEN="Oerlikon" attrib:GDE_NR="115000" attrib:KANT="ZH" attrib:E_QUADRAT="53" attrib:STADT="Stadt Z&#252;rich" d="M682635.1 -252290.7l650.2 18.1l0 308.2l1301.4 102.7l68.5 821.9l-410.9 547.9l-616.5 34.3l-1358.4 -1090.2l365.8 -742.9z" />
+        <path id="units_4039" attrib:Class="-" attrib:AREA="4445023.0" attrib:NAMEN="Remetschwil" attrib:GDE_NR="4039" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M668100 -252177l1130 1442l-1743 570l-775 -125l-1265 -1197l730 -208l1923 -482z" />
+        <path id="units_122000" attrib:Class="-" attrib:AREA="2427256.250" attrib:NAMEN="Schwamendingen-M" attrib:GDE_NR="122000" attrib:KANT="ZH" attrib:E_QUADRAT="51" attrib:STADT="Stadt Z&#252;rich" d="M686939.2 -251392.5l-1002.1 575.2l-631.3 1318.6l-1061.6 -993.2l410.9 -547.9l512.4 -78.6l234.2 -401.5l253.3 -257.2l1284.2 384.5z" />
+        <path id="units_61000" attrib:Class="-" attrib:AREA="2416967.750" attrib:NAMEN="Unterstrass" attrib:GDE_NR="61000" attrib:KANT="ZH" attrib:E_QUADRAT="54" attrib:STADT="Stadt Z&#252;rich" d="M682269.3 -251547.8l1358.4 1090.2l-57.6 2266.5l-259.3 58.5l-150.5 -376.4l-83.7 -58.5l-434.9 -376.4l250.9 -200.7l0 -401.5l-301.1 -501.8l-167.3 -920l-337.7 -208.9l182.7 -371.1z" />
+
+        <path id="units_191" attrib:Class="-" attrib:AREA="13752242.0" attrib:NAMEN="D&#252;bendorf" attrib:GDE_NR="191" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M689825 -251545l1830 1420l-105 258l-655 1337l-1683 238l-197 1460l-2595 -2405l1055 -1995l1612 -158l738 -155z" />
+        <path id="units_123000" attrib:Class="-" attrib:AREA="2230284.250" attrib:NAMEN="Hirzenbach" attrib:GDE_NR="123000" attrib:KANT="ZH" attrib:E_QUADRAT="41" attrib:STADT="Stadt Z&#252;rich" d="M687475 -251232l-1055 1995l-360.8 -330.1l-753.4 68.5l631.3 -1318.6l1002.1 -575.2l535.8 160.5z" />
+        <path id="units_247" attrib:Class="-" attrib:AREA="6047020.5" attrib:NAMEN="Schlieren" attrib:GDE_NR="247" attrib:KANT="ZH" attrib:E_QUADRAT="41" attrib:STADT="Agglomeration" d="M675132 -250650l1333 -737l1786 887l-2024 2303l-1652 -1775l557 -678z" />
+        <path id="units_172" attrib:Class="-" attrib:AREA="9703885.0" attrib:NAMEN="Fehraltorf" attrib:GDE_NR="172" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M697562 -250027l28 -923l1562 -335l1843 2333l-1550 2215l-2070 -2195l187 -1095z" />
+        <path id="units_102000" attrib:Class="-" attrib:AREA="2154314.5" attrib:NAMEN="Wipkingen" attrib:GDE_NR="102000" attrib:KANT="ZH" attrib:E_QUADRAT="53" attrib:STADT="Stadt Z&#252;rich" d="M682086.6 -251176.7l337.7 208.9l167.3 920l301.1 501.8l0 401.5l-250.9 200.7l-384.8 -351.3l-317.8 -217.5l-669.1 -267.6l0 -585.5l580.8 -905.4l235.8 94.3z" />
+        <path id="units_4022" attrib:Class="-" attrib:AREA="4803768.5" attrib:NAMEN="Bellikon" attrib:GDE_NR="4022" attrib:KANT="AG" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M669230 -250735l497 153l23 436l160 1736l-940 853l-375 -370l-1108 -2238l1743 -570z" />
+        <path id="units_92000" attrib:Class="-" attrib:AREA="6928237.5" attrib:NAMEN="Altstetten" attrib:GDE_NR="92000" attrib:KANT="ZH" attrib:E_QUADRAT="41" attrib:STADT="Stadt Z&#252;rich" d="M678251 -250500l2350 619.5l-518.6 501.8l-117.1 351.3l702.6 284.4l-284.4 368l-129.1 154.8l-439.7 -322.1l-250.9 217.5l-418.2 -267.6l-518.5 401.5l-451.7 301.1l-274 354.6l-1674.5 -661.7l2024 -2303z" />
+        <path id="units_63000" attrib:Class="-" attrib:AREA="2452899.0" attrib:NAMEN="Oberstrass" attrib:GDE_NR="63000" attrib:KANT="ZH" attrib:E_QUADRAT="46" attrib:STADT="Stadt Z&#252;rich" d="M683627.7 -250457.5l616.5 -34.3l1061.6 993.2l-380.8 412.6l-167.3 -133.8l-752.8 844.7l150.6 184l-309.4 234.2l-150.6 8.4l-125.4 -242.5l57.6 -2266.5z" />
+        <path id="units_4023" attrib:Class="-" attrib:AREA="5469309.0" attrib:NAMEN="Bergdietikon" attrib:GDE_NR="4023" attrib:KANT="AG" attrib:E_QUADRAT="24" attrib:STADT="Agglomeration" d="M669750 -250146l2570 471l255 2118l70 475l-266 95l-587 -988l-1712 88l-170 -523l-160 -1736z" />
+
+        <path id="units_250" attrib:Class="-" attrib:AREA="7887657.0" attrib:NAMEN="Urdorf" attrib:GDE_NR="250" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M676227 -248197l-912 1232l-2075 305l-595 -422l-70 -475l580 -230l-13 -2053l1433 -132l1652 1775z" />
+        <path id="units_52000" attrib:Class="-" attrib:AREA="1360705.5" attrib:NAMEN="Escher Wyss" attrib:GDE_NR="52000" attrib:KANT="ZH" attrib:E_QUADRAT="53" attrib:STADT="Stadt Z&#252;rich" d="M680601 -249880.5l401.4 33.5l267.7 66.9l669.1 267.6l317.8 217.5l-552 568.7l-1622.6 -652.4l518.6 -501.8z" />
+        <path id="units_197" attrib:Class="-" attrib:AREA="2383225.0" attrib:NAMEN="Schwerzenbach" attrib:GDE_NR="197" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M691550 -249867l1292 1532l-259 658l-663 82l-1025 -935l655 -1337z" />
+        <path id="units_71000" attrib:Class="-" attrib:AREA="2895597.5" attrib:NAMEN="Fluntern" attrib:GDE_NR="71000" attrib:KANT="ZH" attrib:E_QUADRAT="36" attrib:STADT="Stadt Z&#252;rich" d="M686420 -249237l-874.5 697.3l239.8 342.5l-1404.1 993.2l-205.4 -239.7l-329.6 -513l309.4 -234.2l-150.6 -184l752.8 -844.7l167.3 133.8l380.8 -412.6l753.4 -68.5l360.8 330.1z" />
+        <path id="units_44000" attrib:Class="-" attrib:AREA="1333643.750" attrib:NAMEN="Hard" attrib:GDE_NR="44000" attrib:KANT="ZH" attrib:E_QUADRAT="51" attrib:STADT="Stadt Z&#252;rich" d="M680082.4 -249378.7l1622.6 652.4l-108.1 972.5l-9 81.3l-1204.4 -702.5l284.4 -368l-702.6 -284.4l117.1 -351.3z" />
+        <path id="units_51000" attrib:Class="-" attrib:AREA="731524.750" attrib:NAMEN="Gewerbeschule" attrib:GDE_NR="51000" attrib:KANT="ZH" attrib:E_QUADRAT="62" attrib:STADT="Stadt Z&#252;rich" d="M682257 -249295.1l384.8 351.3l434.9 376.4l-58.5 83.6l16.7 368l-1329.8 -610.5l552 -568.7z" />
+        <path id="units_72000" attrib:Class="-" attrib:AREA="5483734.0" attrib:NAMEN="Hottingen" attrib:GDE_NR="72000" attrib:KANT="ZH" attrib:E_QUADRAT="45" attrib:STADT="Stadt Z&#252;rich" d="M684175.7 -247443.8l205.4 239.7l1404.1 -993.2l-239.8 -342.5l874.5 -697.3l2595 2405l-1962.6 -132.4l-445.2 -239.7l-171.3 -479.5l-513.7 102.7l137 445.2l-1570.2 663l-226 -86.8l-429.9 -165.2l205.5 -274l-137 -171.2l274 -274z" />
+        <path id="units_198" attrib:Class="-" attrib:AREA="28379944.0" attrib:NAMEN="Uster" attrib:GDE_NR="198" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M693645 -247730l917 -1005l2055 705l758 -902l2070 2195l163 1594l-96 1558l159 793l-1239 755l-457 -580l-1838 797l-767 -620l462 -122l117 -676l-779 -426l-488 -416l-215 -1350l228 -1350l-1050 -950z" />
+        <path id="units_42000" attrib:Class="-" attrib:AREA="1035310.188" attrib:NAMEN="Langstrasse" attrib:GDE_NR="42000" attrib:KANT="ZH" attrib:E_QUADRAT="62" attrib:STADT="Stadt Z&#252;rich" d="M681705 -248726.3l1329.8 610.5l-460 610.6l-977.9 -248.6l108.1 -972.5z" />
+
+        <path id="units_91000" attrib:Class="-" attrib:AREA="4436625.0" attrib:NAMEN="Albisrieden" attrib:GDE_NR="91000" attrib:KANT="ZH" attrib:E_QUADRAT="42" attrib:STADT="Stadt Z&#252;rich" d="M680254.5 -248220.2l-205.5 246.6l384.8 468.4l-685.9 501.8l66.9 100.4l-133.8 451.6l-791 470.4l-1420 -839l431.5 -715.3l274 -354.6l451.7 -301.1l518.5 -401.5l418.2 267.6l250.9 -217.5l439.7 322.1z" />
+        <path id="units_14000" attrib:Class="-" attrib:AREA="713349.375" attrib:NAMEN="City" attrib:GDE_NR="14000" attrib:KANT="ZH" attrib:E_QUADRAT="54" attrib:STADT="Stadt Z&#252;rich" d="M683310.8 -248132.5l66.9 225.8l-225.8 0l-100.4 543.6l232.9 715.4l-95.4 44l-396.8 -508.5l-301.1 192.4l-142.2 -167.3l125.4 -150.5l100.4 -267.6l460 -610.6l-16.7 -368l58.5 -83.6l83.7 58.5l150.5 376.4z" />
+        <path id="units_193" attrib:Class="-" attrib:AREA="6013598.5" attrib:NAMEN="F&#228;llanden" attrib:GDE_NR="193" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M690895 -248530l1025 935l-219 594l44 559l300 500l-2673 -190l-357 -700l197 -1460l1683 -238z" />
+        <path id="units_4081" attrib:Class="-" attrib:AREA="2363671.0" attrib:NAMEN="Widen" attrib:GDE_NR="4081" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M670080 -247887l-20 1495l-588 495l-844 -374l342 -1286l940 -853l170 523z" />
+        <path id="units_34000" attrib:Class="-" attrib:AREA="1680603.375" attrib:NAMEN="Sihlfeld" attrib:GDE_NR="34000" attrib:KANT="ZH" attrib:E_QUADRAT="52" attrib:STADT="Stadt Z&#252;rich" d="M680383.6 -248375.1l1204.4 702.5l660.7 693.7l-259.3 243l-250.9 -317.8l-267.6 -150.5l-786.2 150.5l-869.8 150.5l-66.9 -100.4l685.9 -501.8l-384.8 -468.4l205.5 -246.6l129.1 -154.8z" />
+        <path id="units_194" attrib:Class="-" attrib:AREA="2145933.5" attrib:NAMEN="Greifensee" attrib:GDE_NR="194" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M692842 -248335l803 605l1050 950l-228 1350l-620 -1012l-1264 -1235l259 -658z" />
+        <path id="units_248" attrib:Class="-" attrib:AREA="4876925.0" attrib:NAMEN="Uitikon" attrib:GDE_NR="248" attrib:KANT="ZH" attrib:E_QUADRAT="15" attrib:STADT="Agglomeration" d="M676227 -248197l1674.5 661.7l-431.5 715.3l1420 839l312 804l-937 -93l-2950 -1695l912 -1232z" />
+        <path id="units_12000" attrib:Class="-" attrib:AREA="506027.5" attrib:NAMEN="Hochschulen" attrib:GDE_NR="12000" attrib:KANT="ZH" attrib:E_QUADRAT="64" attrib:STADT="Stadt Z&#252;rich" d="M683570.1 -248191.1l125.4 242.5l150.6 -8.4l329.6 513l-274 274l137 171.2l-205.5 274l-79.1 97.6l-146.9 123.9l-104.2 -242.4l234.3 -115.7l8.4 -125.5l8.4 -384.7l-242.6 -526.9l-133.8 -8.4l-66.9 -225.8l259.3 -58.5z" />
+        <path id="units_4075" attrib:Class="-" attrib:AREA="4636569.0" attrib:NAMEN="Rudolfstetten-Friedlisberg" attrib:GDE_NR="4075" attrib:KANT="AG" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M672645 -247082l595 422l-233 288l-702 600l-2245 -620l20 -1495l1712 -88l587 988l266 -95z" />
+
+        <path id="units_4066" attrib:Class="-" attrib:AREA="2210741.0" attrib:NAMEN="Eggenwil" attrib:GDE_NR="4066" attrib:KANT="AG" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M668595 -247927l375 370l-342 1286l-566 108l-356 -904l-743 294l199 -989l1433 -165z" />
+        <path id="units_13000" attrib:Class="-" attrib:AREA="374397.656" attrib:NAMEN="Lindenhof" attrib:GDE_NR="13000" attrib:KANT="ZH" attrib:E_QUADRAT="55" attrib:STADT="Stadt Z&#252;rich" d="M683377.8 -247906.7l125.3 1161.1l-218.6 97.9l-232.9 -715.4l100.4 -543.6l225.8 0z" />
+        <path id="units_11000" attrib:Class="-" attrib:AREA="279099.656" attrib:NAMEN="Rathaus" attrib:GDE_NR="11000" attrib:KANT="ZH" attrib:E_QUADRAT="55" attrib:STADT="Stadt Z&#252;rich" d="M683377.8 -247906.7l133.8 8.4l242.6 526.9l-8.4 384.7l-8.4 125.5l-234.3 115.7l-125.3 -1161.1z" />
+        <path id="units_4067" attrib:Class="-" attrib:AREA="3293807.5" attrib:NAMEN="Fischbach-G&#246;slikon" attrib:GDE_NR="4067" attrib:KANT="AG" attrib:E_QUADRAT="12" attrib:STADT="Agglomeration" d="M667162 -247762l-199 989l-1806 1021l-630 -248l975 -1882l1660 120z" />
+        <path id="units_41000" attrib:Class="-" attrib:AREA="345930.031" attrib:NAMEN="Werd" attrib:GDE_NR="41000" attrib:KANT="ZH" attrib:E_QUADRAT="63" attrib:STADT="Stadt Z&#252;rich" d="M681596.9 -247753.9l977.9 248.6l-100.4 267.6l-125.4 150.5l-100.4 108.3l-660.7 -693.7l9 -81.3z" />
+        <path id="units_73000" attrib:Class="-" attrib:AREA="2464579.0" attrib:NAMEN="Hirslanden" attrib:GDE_NR="73000" attrib:KANT="ZH" attrib:E_QUADRAT="45" attrib:STADT="Stadt Z&#252;rich" d="M687052.4 -246964.4l-479.4 684.9l-239.8 -205.5l-410.9 -68.5l-34.3 445.2l719.2 650.7l68.5 274l45.1 202.8l-449.2 -249.5l-518.5 -535.3l-920 -250.9l-344 -456.1l1570.2 -663l-137 -445.2l513.7 -102.7l171.3 479.5l445.2 239.7z" />
+        <path id="units_31000" attrib:Class="-" attrib:AREA="1733964.750" attrib:NAMEN="Alt-Wiedikon" attrib:GDE_NR="31000" attrib:KANT="ZH" attrib:E_QUADRAT="53" attrib:STADT="Stadt Z&#252;rich" d="M680684.6 -247053.6l786.2 -150.5l267.6 150.5l250.9 317.8l-117.1 485.1l99.9 1132.5l-334.1 21.7l-150.6 -501.8l-234.2 66.9l-100.4 -384.7l-167.3 83.6l-234.2 -418.2l234.2 -217.5l-117.1 -117.1l-184 -468.4z" />
+        <path id="units_24000" attrib:Class="-" attrib:AREA="1937363.0" attrib:NAMEN="Enge" attrib:GDE_NR="24000" attrib:KANT="ZH" attrib:E_QUADRAT="45" attrib:STADT="Stadt Z&#252;rich" d="M682248.6 -246978.8l100.4 -108.3l142.2 167.3l301.1 -192.4l396.8 508.5l-151.1 69.7l-54 321l-38.3 1031.6l-973.5 63.2l-99.9 -1132.5l117.1 -485.1l259.3 -243z" />
+        <path id="units_4063" attrib:Class="-" attrib:AREA="8485492.0" attrib:NAMEN="Bremgarten (AG)" attrib:GDE_NR="4063" attrib:KANT="AG" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M666963 -246773l743 -294l356 904l566 -108l427 1596l-1108 1163l-1287 77l-118 -537l-1385 -1780l1806 -1021z" />
+
+        <path id="units_33000" attrib:Class="-" attrib:AREA="5421115.5" attrib:NAMEN="Friesenberg" attrib:GDE_NR="33000" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Stadt Z&#252;rich" d="M679814.8 -246903.1l869.8 -150.5l184 468.4l117.1 117.1l-234.2 217.5l234.2 418.2l167.3 -83.6l100.4 384.7l234.2 -66.9l150.6 501.8l-167.3 317.8l33.4 468.4l-635.6 167.3l-479.2 661l-1187.4 -1694.9l-312 -804l791 -470.4l133.8 -451.6z" />
+        <path id="units_242" attrib:Class="-" attrib:AREA="11879762.0" attrib:NAMEN="Birmensdorf (ZH)" attrib:GDE_NR="242" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M673240 -246660l2075 -305l2950 1695l-560 558l-908 190l525 1151l-485 206l-1000 -1267l-1937 1057l-748 -1635l-145 -1362l233 -288z" />
+        <path id="units_74000" attrib:Class="-" attrib:AREA="5094620.5" attrib:NAMEN="Witikon" attrib:GDE_NR="74000" attrib:KANT="ZH" attrib:E_QUADRAT="35" attrib:STADT="Stadt Z&#252;rich" d="M689015 -246832l357 700l243 625l-2871.1 630.3l-23.1 -104.1l-45.1 -202.8l-68.5 -274l-719.2 -650.7l34.3 -445.2l410.9 68.5l239.8 205.5l479.4 -684.9l1962.6 132.4z" />
+        <path id="units_82000" attrib:Class="-" attrib:AREA="596361.188" attrib:NAMEN="Muehlebach" attrib:GDE_NR="82000" attrib:KANT="ZH" attrib:E_QUADRAT="55" attrib:STADT="Stadt Z&#252;rich" d="M683833.2 -246724.6l429.9 165.2l43.1 267l957.8 1740.7l-151.4 33.2l-1358.4 -2108.5l79.1 -97.6z" />
+        <path id="units_81000" attrib:Class="-" attrib:AREA="660178.750" attrib:NAMEN="Seefeld" attrib:GDE_NR="81000" attrib:KANT="ZH" attrib:E_QUADRAT="65" attrib:STADT="Stadt Z&#252;rich" d="M683754.1 -246627l1358.4 2108.5l-157.6 34.6l-473 -704l-455 -107l-276 -874l-143.8 -334.2l146.9 -123.9z" />
+        <path id="units_83000" attrib:Class="-" attrib:AREA="1851607.625" attrib:NAMEN="Weinegg" attrib:GDE_NR="83000" attrib:KANT="ZH" attrib:E_QUADRAT="44" attrib:STADT="Stadt Z&#252;rich" d="M684489.1 -246472.6l344 456.1l920 250.9l518.5 535.3l449.2 249.5l23.1 104.1l-1479.9 324.9l-957.8 -1740.7l-43.1 -267l226 86.8z" />
+        <path id="units_4062" attrib:Class="-" attrib:AREA="5568930.0" attrib:NAMEN="Berikon" attrib:GDE_NR="4062" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M669472 -245897l588 -495l2245 620l702 -600l145 1362l-2370 1213l-1310 -2100z" />
+        <path id="units_4083" attrib:Class="-" attrib:AREA="4426669.5" attrib:NAMEN="Zufikon" attrib:GDE_NR="4083" attrib:KANT="AG" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M669472 -245897l1310 2100l-160 502l-519 261l-1032 -490l-409 523l-715 -511l1108 -1163l-427 -1596l844 374z" />
+        <path id="units_195" attrib:Class="-" attrib:AREA="16352377.0" attrib:NAMEN="Maur" attrib:GDE_NR="195" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M692045 -245942l891 1146l514 162l971 1690l319 1018l407 -31l200 392l-3280 1148l-112 -253l-673 -2150l-1545 -2190l-122 -497l-243 -625l2673 190z" />
+
+        <path id="units_119" attrib:Class="-" attrib:AREA="4798591.0" attrib:NAMEN="Seegr&#228;ben" attrib:GDE_NR="119" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M699608 -245143l1064 -502l1280 977l-450 1143l-1357 733l-474 0l-159 -793l96 -1558z" />
+        <path id="units_161" attrib:Class="-" attrib:AREA="6761946.5" attrib:NAMEN="Zollikon" attrib:GDE_NR="161" attrib:KANT="ZH" attrib:E_QUADRAT="25" attrib:STADT="Agglomeration" d="M689615 -245507l122 497l-1740 1690l-2445 352l-597 -1516l157.6 -34.6l151.4 -33.2l1479.9 -324.9l2871.1 -630.3z" />
+        <path id="units_13" attrib:Class="-" attrib:AREA="11616472.0" attrib:NAMEN="Stallikon" attrib:GDE_NR="13" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M678265 -245270l937 93l1187.4 1694.9l87.6 1897.1l523 3653l-198 165l-1045 -733l-1192 428l-45 -473l450 -460l-70 -1402l745 -290l-625 -1275l-362 -1449l-953 -1291l560 -558z" />
+        <path id="units_21000" attrib:Class="-" attrib:AREA="4469704.5" attrib:NAMEN="Wollishofen" attrib:GDE_NR="21000" attrib:KANT="ZH" attrib:E_QUADRAT="43" attrib:STADT="Stadt Z&#252;rich" d="M681972.2 -245118.2l973.5 -63.2l-14.7 394.4l534 1457l-500 608l-1313.7 600.4l-213.9 -1151.6l66.9 -1037.1l-33.4 -468.4l167.3 -317.8l334.1 -21.7z" />
+        <path id="units_4074" attrib:Class="-" attrib:AREA="5680007.0" attrib:NAMEN="Oberwil-Lieli" attrib:GDE_NR="4074" attrib:KANT="AG" attrib:E_QUADRAT="24" attrib:STADT="Agglomeration" d="M673152 -245010l748 1635l-278 953l-300 -28l-1482 153l-1218 -998l160 -502l2370 -1213z" />
+        <path id="units_160" attrib:Class="-" attrib:AREA="5062027.5" attrib:NAMEN="Zumikon" attrib:GDE_NR="160" attrib:KANT="ZH" attrib:E_QUADRAT="25" attrib:STADT="Agglomeration" d="M687997 -243320l1740 -1690l1545 2190l-1275 933l-2010 -1433z" />
+        <path id="units_14" attrib:Class="-" attrib:AREA="2949775.5" attrib:NAMEN="Wettswil am Albis" attrib:GDE_NR="14" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M676837 -243165l485 -206l-525 -1151l908 -190l953 1291l362 1449l-2183 -1193z" />
+        <path id="units_241" attrib:Class="-" attrib:AREA="4079957.0" attrib:NAMEN="Aesch bei Birmensdorf" attrib:GDE_NR="241" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M673900 -243375l1937 -1057l1000 1267l-407 193l-1278 775l-1530 -225l278 -953z" />
+        <path id="units_23000" attrib:Class="-" attrib:AREA="2438747.250" attrib:NAMEN="Leimbach" attrib:GDE_NR="23000" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Stadt Z&#252;rich" d="M680868.6 -244143l635.6 -167.3l-66.9 1037.1l213.9 1151.6l-1174.2 536.6l-87.6 -1897.1l479.2 -661z" />
+
+        <path id="units_4079" attrib:Class="-" attrib:AREA="5326562.5" attrib:NAMEN="Unterlunkhofen" attrib:GDE_NR="4079" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M668662 -243001l409 -523l1032 490l519 -261l1218 998l1482 -153l-59 723l-1543 363l-252 1112l-278 0l-1263 -2215l-1265 -534z" />
+        <path id="units_4069" attrib:Class="-" attrib:AREA="3692364.5" attrib:NAMEN="Hermetschwil-Staffeln" attrib:GDE_NR="4069" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M667947 -243512l715 511l1265 534l-1015 822l-963 83l-1337 -1498l48 -375l1287 -77z" />
+        <path id="units_135" attrib:Class="-" attrib:AREA="2413430.0" attrib:NAMEN="Kilchberg (ZH)" attrib:GDE_NR="135" attrib:KANT="ZH" attrib:E_QUADRAT="24" attrib:STADT="Agglomeration" d="M682965 -242722l500 -608l375 415l633 1525l-1181 903l-327 -2235z" />
+        <path id="units_154" attrib:Class="-" attrib:AREA="12240330.0" attrib:NAMEN="K&#252;snacht (ZH)" attrib:GDE_NR="154" attrib:KANT="ZH" attrib:E_QUADRAT="25" attrib:STADT="Agglomeration" d="M685552 -242968l2445 -352l2010 1433l1275 -933l673 2150l-1720 307l-487 -714l-2951 867l-460 -530l-268 -633l-45 -499l-472 -1096z" />
+        <path id="units_3" attrib:Class="-" attrib:AREA="8094296.0" attrib:NAMEN="Bonstetten" attrib:GDE_NR="3" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M676430 -242972l407 -193l2183 1193l625 1275l-745 290l70 1402l-3165 -2030l754 -1208l-129 -729z" />
+        <path id="units_4084" attrib:Class="-" attrib:AREA="1591757.0" attrib:NAMEN="Islisberg" attrib:GDE_NR="4084" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M676430 -242972l129 729l-754 1208l-378 73l-275 -1235l1278 -775z" />
+        <path id="units_115" attrib:Class="-" attrib:AREA="19450022.0" attrib:NAMEN="Gossau (ZH)" attrib:GDE_NR="115" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M699671 -242792l474 0l3507 3525l245 442l-1340 1818l-2400 -1848l-1917 588l-643 -813l860 -207l-817 -1278l792 -1472l1239 -755z" />
+        <path id="units_131" attrib:Class="-" attrib:AREA="8132278.0" attrib:NAMEN="Adliswil" attrib:GDE_NR="131" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M681651.3 -242121.6l1313.7 -600.4l327 2235l-707 1060l-1585 1495l-523 -3653l1174.2 -536.6z" />
+        <path id="units_196" attrib:Class="-" attrib:AREA="6934773.5" attrib:NAMEN="M&#246;nchaltorf" attrib:GDE_NR="196" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M695147 -241957l223 -483l767 620l1838 -797l457 580l-792 1472l817 1278l-860 207l-2127 -1247l75 -931l-198 -307l-200 -392z" />
+
+        <path id="units_4238" attrib:Class="-" attrib:AREA="4201028.5" attrib:NAMEN="Rottenschwil" attrib:GDE_NR="4238" attrib:KANT="AG" attrib:E_QUADRAT="12" attrib:STADT="Agglomeration" d="M669927 -242467l1263 2215l94 431l-447 481l-1607 -725l-318 -1580l1015 -822z" />
+        <path id="units_4061" attrib:Class="-" attrib:AREA="4274592.5" attrib:NAMEN="Arni (AG)" attrib:GDE_NR="4061" attrib:KANT="AG" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M673322 -242450l300 28l1530 225l275 1235l-567 1575l-873 -1105l-787 -508l63 -727l59 -723z" />
+        <path id="units_4073" attrib:Class="-" attrib:AREA="2978727.5" attrib:NAMEN="Oberlunkhofen" attrib:GDE_NR="4073" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M673987 -240492l-1407 531l-1296 140l-94 -431l278 0l252 -1112l1543 -363l-63 727l787 508z" />
+        <path id="units_192" attrib:Class="-" attrib:AREA="13713957.0" attrib:NAMEN="Egg" attrib:GDE_NR="192" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M692067 -240417l3280 -1148l198 307l-75 931l2127 1247l643 813l-65 186l-3420 871l-563 -585l-1635 -1782l-490 -840z" />
+        <path id="units_139" attrib:Class="-" attrib:AREA="3266574.5" attrib:NAMEN="R&#252;schlikon" attrib:GDE_NR="139" attrib:KANT="ZH" attrib:E_QUADRAT="25" attrib:STADT="Agglomeration" d="M684473 -241390l428 1533l-1419 1207l-897 -777l707 -1060l1181 -903z" />
+        <path id="units_151" attrib:Class="-" attrib:AREA="2933173.5" attrib:NAMEN="Erlenbach (ZH)" attrib:GDE_NR="151" attrib:KANT="ZH" attrib:E_QUADRAT="24" attrib:STADT="Agglomeration" d="M686797 -240210l2951 -867l487 714l-1460 223l-1058 1375l-920 -1445z" />
+        <path id="units_5" attrib:Class="-" attrib:AREA="6605532.5" attrib:NAMEN="Hedingen" attrib:GDE_NR="5" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M675427 -240962l378 -73l3165 2030l-450 460l-1958 495l-1702 -1337l567 -1575z" />
+        <path id="units_152" attrib:Class="-" attrib:AREA="9690894.0" attrib:NAMEN="Herrliberg" attrib:GDE_NR="152" attrib:KANT="ZH" attrib:E_QUADRAT="15" attrib:STADT="Agglomeration" d="M691955 -240670l112 253l490 840l-1575 1605l-2426 451l-839 -1244l1058 -1375l1460 -223l1720 -307z" />
+        <path id="units_4071" attrib:Class="-" attrib:AREA="5617638.0" attrib:NAMEN="Jonen" attrib:GDE_NR="4071" attrib:KANT="AG" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M671284 -239821l1296 -140l1407 -531l873 1105l-1035 867l-1965 398l-1023 -1218l447 -481z" />
+
+        <path id="units_141" attrib:Class="-" attrib:AREA="5903983.0" attrib:NAMEN="Thalwil" attrib:GDE_NR="141" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M684901 -239857l829 1016l687 1329l-1995 1147l-267 0l-673 -2285l1419 -1207z" />
+        <path id="units_156" attrib:Class="-" attrib:AREA="12121866.0" attrib:NAMEN="Meilen" attrib:GDE_NR="156" attrib:KANT="ZH" attrib:E_QUADRAT="24" attrib:STADT="Agglomeration" d="M692557 -239577l1635 1782l-1258 2627l-2880 -1043l-1088 -775l-410 -535l2426 -451l1575 -1605z" />
+        <path id="units_136" attrib:Class="-" attrib:AREA="9619992.0" attrib:NAMEN="Langnau am Albis" attrib:GDE_NR="136" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M682585 -239427l897 777l673 2285l-1153 1318l-2392 -1300l192 -1420l198 -165l1585 -1495z" />
+        <path id="units_2" attrib:Class="-" attrib:AREA="10906190.0" attrib:NAMEN="Affoltern am Albis" attrib:GDE_NR="2" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M673825 -238520l1035 -867l1702 1337l1958 -495l45 473l-325 2827l-2070 -287l-725 -1508l-650 220l-970 -1700z" />
+        <path id="units_116" attrib:Class="-" attrib:AREA="8573316.0" attrib:NAMEN="Gr&#252;ningen" attrib:GDE_NR="116" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M698175 -238081l65 -186l1917 -588l2400 1848l-980 1172l-2590 -205l-812 -2041z" />
+        <path id="units_112" attrib:Class="-" attrib:AREA="12345772.0" attrib:NAMEN="Bubikon" attrib:GDE_NR="112" attrib:KANT="ZH" attrib:E_QUADRAT="12" attrib:STADT="Agglomeration" d="M703897 -238825l1005 1383l863 1902l-566 1323l-1454 307l-1008 -62l-1160 -1863l980 -1172l1340 -1818z" />
+        <path id="units_11" attrib:Class="-" attrib:AREA="5233662.5" attrib:NAMEN="Ottenbach" attrib:GDE_NR="11" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M671860 -238122l1965 -398l970 1700l5 575l-1940 538l-770 -2023l-230 -392z" />
+        <path id="units_1" attrib:Class="-" attrib:AREA="6985196.0" attrib:NAMEN="Aeugst am Albis" attrib:GDE_NR="1" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M678565 -238072l1192 -428l1045 733l-192 1420l-66 1318l-441 -32l-1863 -184l325 -2827z" />
+        <path id="units_157" attrib:Class="-" attrib:AREA="6938684.0" attrib:NAMEN="Oetwil am See" attrib:GDE_NR="157" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M694755 -237210l3420 -871l812 2041l-1240 730l-1252 -412l-1295 -818l-445 -670z" />
+
+        <path id="units_159" attrib:Class="-" attrib:AREA="3199621.5" attrib:NAMEN="Uetikon am See" attrib:GDE_NR="159" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M694192 -237795l563 585l445 670l-1402 1756l-864 -384l1258 -2627z" />
+        <path id="units_137" attrib:Class="-" attrib:AREA="2753372.0" attrib:NAMEN="Oberrieden" attrib:GDE_NR="137" attrib:KANT="ZH" attrib:E_QUADRAT="14" attrib:STADT="Agglomeration" d="M684422 -236365l1995 -1147l276 900l321 383l-1039 889l-1553 -1025z" />
+        <path id="units_10" attrib:Class="-" attrib:AREA="7349777.0" attrib:NAMEN="Obfelden" attrib:GDE_NR="10" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M672860 -235707l1940 -538l-5 -575l650 -220l725 1508l-958 742l233 1340l-1600 455l-300 -515l-685 -2197z" />
+        <path id="units_155" attrib:Class="-" attrib:AREA="4649426.0" attrib:NAMEN="M&#228;nnedorf" attrib:GDE_NR="155" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M695200 -236540l1295 818l-343 2230l-1471 -659l-401 -473l-482 -160l1402 -1756z" />
+        <path id="units_133" attrib:Class="-" attrib:AREA="22081696.0" attrib:NAMEN="Horgen" attrib:GDE_NR="133" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M684155 -236365l267 0l1553 1025l1039 -889l321 758l2675 1311l427 1108l-1182 2165l-790 -85l-503 -1876l-1777 396l738 1413l-506 391l-3415 -4399l1153 -1318z" />
+        <path id="units_153" attrib:Class="-" attrib:AREA="11638878.0" attrib:NAMEN="Hombrechtikon" attrib:GDE_NR="153" attrib:KANT="ZH" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M701577 -235835l1160 1863l1008 62l-988 1005l-623 510l-997 13l-3390 -2928l1240 -730l2590 205z" />
+        <path id="units_158" attrib:Class="-" attrib:AREA="9453204.0" attrib:NAMEN="St&#228;fa" attrib:GDE_NR="158" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M697747 -235310l3390 2928l-1116 147l-1816 28l-1661 -661l-392 -624l343 -2230l1252 412z" />
+        <path id="units_9" attrib:Class="-" attrib:AREA="12363958.0" attrib:NAMEN="Mettmenstetten" attrib:GDE_NR="9" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M678240 -235245l1863 184l-413 1246l-1341 -377l-75 676l947 950l-225 436l754 938l-465 935l-2827 -2995l-803 245l-210 -443l-233 -1340l958 -742l2070 287z" />
+        <path id="units_142" attrib:Class="-" attrib:AREA="17599656.0" attrib:NAMEN="W&#228;denswil" attrib:GDE_NR="142" attrib:KANT="ZH" attrib:E_QUADRAT="32" attrib:STADT="Agglomeration" d="M690010 -234160l641 249l321 -240l321 -9l607 330l267 383l410 686l1284 1159l1016 785l-1537 2279l-3240 -1262l-845 -1087l1182 -2165l-427 -1108z" />
+
+        <path id="units_7" attrib:Class="-" attrib:AREA="6764842.5" attrib:NAMEN="Knonau" attrib:GDE_NR="7" attrib:KANT="ZH" attrib:E_QUADRAT="13" attrib:STADT="Agglomeration" d="M676327 -230767l-672 -2240l803 -245l2827 2995l305 855l-703 250l-2560 -1615z" />
+        <path id="units_138" attrib:Class="-" attrib:AREA="8535502.0" attrib:NAMEN="Richterswil" attrib:GDE_NR="138" attrib:KANT="ZH" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M694877 -230817l758 455l1025 1578l-2482 2184l-1473 -408l635 -1530l1537 -2279z" />
+        <path id="units_1322" attrib:Class="-" attrib:AREA="15049858.0" attrib:NAMEN="Freienbach" attrib:GDE_NR="1322" attrib:KANT="SZ" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M697195 -228633l883 -499l1783 -330l2587 204l161 -792l925 -687l249 116l-151 508l-847 1079l740 178l-790 3231l-1545 40l605 -1381l-1097 -662l-3348 588l-155 -1593z" />
+        <path id="units_1323" attrib:Class="-" attrib:AREA="5219619.5" attrib:NAMEN="Wollerau" attrib:GDE_NR="1323" attrib:KANT="SZ" attrib:E_QUADRAT="23" attrib:STADT="Agglomeration" d="M696660 -228784l535 151l155 1593l-1805 367l-515 1938l-794 -807l-58 -1058l2482 -2184z" />
+        <path id="units_1321" attrib:Class="-" attrib:AREA="17127238.0" attrib:NAMEN="Feusisberg" attrib:GDE_NR="1321" attrib:KANT="SZ" attrib:E_QUADRAT="22" attrib:STADT="Agglomeration" d="M697350 -227040l3348 -588l1097 662l-605 1381l-785 -500l-577 1175l-1895 180l-798 1605l-1395 102l-690 -1342l-20 -370l515 -1938l1805 -367z" />
+
+    </g>
+    <!-- KANTONE LAYER -->
+    <g class="nofill darkGreyStroke thickLine" visibility="visible" onmouseover="showData(evt,'kanton');" onmouseout="showData(evt,'kanton');" >
+
+        <g id="city" class="thickLine" stroke="darkslategray">
+            <path id="city_112" attrib:NAMEN="Stadt Z&#252;rich" attrib:GDE_NR="261" attrib:BEZ_NR="112" d="M684250 -253920l-78 1105l705 553l773 -480l5 965l1820 545l-1055 1995l2595 2405l357 700l243 625l-4660 1023l-473 -704l-455 -107l-276 -874l-249 -579l-464 214l-54 321l-53 1426l534 1457l-500 608l-2488 1137l-77 -1882l-1198 -1710l-312 -804l-1420 -839l445 -710l-1688 -667l2024 -2303l275 -859l-836 -548l379 -588l2138 -1820l4043 395z" />
+        </g>
+        <g id="surround" class="thickLine" stroke="darkslategray">
+            <path id="surr_165" attrib:NAMEN="Agglomeration Z&#252;rich" attrib:COUNT="165" attrib:SUM_AREA="1093055053.5" d="M667175 -253377l-1128 -1520l-482 -405l197 -1648l461 652l774 -342l733 1340l2177 -2455l705 -490l-167 -1142l-760 72l-395 84l-1231 191l-1149 -855l777 -1882l25 -540l523 -458l1265 220l1192 -275l700 -1840l412 134l357 65l432 -705l1059 660l200 539l288 490l2375 745l525 -485l-1613 -2525l-1737 -815l61 -1759l-864 -356l384 -808l1009 450l2883 -518l654 -246l853 -323l759 -433l-552 -722l-1418 421l-594 -496l-310 -1545l1575 -943l2287 -800l599 -1630l1694 106l2315 1473l389 615l-852 1394l-477 225l-833 622l-612 493l-168 1350l893 157l640 2343l647 -543l2568 1095l1155 1330l-445 1353l862 187l988 1703l-125 745l-2033 776l715 1243l508 966l617 -198l718 -537l1332 827l565 -2087l928 865l633 -484.7l38.3 -52.8l1390.7 1889.4l497.4 309.3l4.1 40l-162.5 1636.7l441 203l903 -1169l553.9 -226.9l947.1 -387.9l911.3 -373.2l579.8 873l832 819l68 754l-1972 855l585 2950l1565 227l2205 -1675l1045 2718l-582 1647l-2493 268l-1550 2215l163 1594l1064 -502l1280 977l-450 1143l-1357 733l3507 3525l245 442l1005 1383l863 1902l-566 1323l-1454 307l-988 1005l-623 510l-997 13l-1116 147l-1816 28l-1661 -661l-392 -624l-1471 -659l-401 -473l-482 -160l-864 -384l-2880 -1043l-1088 -775l-410 -535l-839 -1244l-920 -1445l-460 -530l-268 -633l-45 -499l-472 -1096l-597 -1516l-473 -704l-455 -107l-276 -874l-143.8 -334.2l-104.2 -242.4l-218.6 97.9l-95.4 44l-151.1 69.7l-54 321l-38.3 1031.6l-14.7 394.4l534 1457l375 415l633 1525l428 1533l829 1016l687 1329l276 900l321 383l321 758l2675 1311l641 249l321 -240l321 -9l607 330l267 383l410 686l1284 1159l1016 785l758 455l1025 1578l535 151l883 -499l1783 -330l2587 204l161 -792l925 -687l249 116l-151 508l-847 1079l740 178l-790 3231l-1545 40l-785 -500l-577 1175l-1895 180l-798 1605l-1395 102l-690 -1342l-20 -370l-794 -807l-58 -1058l-1473 -408l635 -1530l-3240 -1262l-845 -1087l-790 -85l-503 -1876l-1777 396l738 1413l-506 391l-3415 -4399l-2392 -1300l-66 1318l-441 -32l-413 1246l-1341 -377l-75 676l947 950l-225 436l754 938l-465 935l305 855l-703 250l-2560 -1615l-672 -2240l-210 -443l-1600 455l-300 -515l-685 -2197l-770 -2023l-230 -392l-1023 -1218l-1607 -725l-318 -1580l-963 83l-1337 -1498l48 -375l-118 -537l-1385 -1780l-630 -248l975 -1882l1660 120l1433 -165l-1108 -2238l-775 -125l-1265 -1197l730 -208l1923 -482l5 -108l-930 -1092M694467 -245430l-620 -1012l-1264 -1235l-663 82l-219 594l44 559l300 500l891 1146l514 162l971 1690l319 1018l407 -31l223 -483l462 -122l117 -676l-779 -426l-488 -416l-215 -1350z" />
+        </g>
+        <g id="kantone">
+            <path id="kantone_0" attrib:gid="0" attrib:NAMEN="SH" d="M687665 -280800l-602 -78l-1498 1268l-1062 -930l-1265 297l-378 1198l-1080 -290l370 1263l-122 534l-2786 -367l-1722 969l-602 -1359l-1015 -418l-344 177l-2424 -1452l-467 -1082l1074 -864l-981 -2014l3492 -2310l147 -745l-517 -1072l1700 -2848l2745 -1360l762 620l2433 -1577l1005 702l812 -430l-1165 -1200l56 -1696l774 173l145 736l2903 -225l620 695l-313 1645l163 1385l1087 810l853 -543l450 -1042l-509 -1519l329 -1166l697 -263l238 971l619 522l831 55l439 1321l81 1711l961 -39l1024 -676l1092 322l498 849l472 691l-1983 1114l287 1892l1386 555l-585 2618l-753 250l-1515 -2638l-882 704l-1093 -774l-184 140l-457 340l1004 1463l-1287 1163l-1095 -679l-913 210l-542 68l-70 1504l-753 -44l-585 765z" />
+            <path id="kantone_1" attrib:gid="1" attrib:NAMEN="SH" d="M707935 -279392l-777 -215l-325 36l162 341l-833 430l-119 -1159l-1038 -1048l-2378 -735l-495 242l-192 103l30 -1428l990 -602l-1278 -1180l-1812 -273l24 -1274l2178 -1016l-207 -820l750 -430l465 1594l972 561l-105 865l1645 -62l218 870l1831 -237l256 1246l-1719 -37l-81 1513l1238 552l600 2163z" />
+
+            <path id="kantone_4" attrib:gid="4" attrib:NAMEN="ZH" d="M691623 -282624l789 307l-82 812l722 1300l838 1770l2182 868l1105 -48l1163 343l1317 -1153l2485 -1832l338 -30l157 1432l815 255l823 315l-63 1088l-1540 3260l-444 459l-783 -609l-2905 -1260l-725 1497l682 1733l1038 -73l2715 823l960 1565l2130 -73l925 820l-1558 1168l895 2282l2015 213l470 100l1023 115l830 437l-215 2393l222 1957l-912 390l-105 1273l817 765l761 2207l2095 720l-32 521l-1388 53l-354 3029l6 380l2632 1467l190 1273l2296 3252l954 2963l-722 1382l-1358 308l-1551 2003l949 644l-920 2278l-3808 935l-1122 850l-3176 -520l-1454 307l-977.3 1003.5l993.2 2052.6l18.9 18.4l-1159.6 -247.8l-3784.1 1204l-50 15.9l-2126.1 1079.4l-2482 2184l58 1058l794 807l20 370l-2002 442l-395 -1172l-1621 288l-604 -285l-558 -285l-713 -2888l-920 -410l-2000 -1702l-212 207l-2353 -545l-3387 1163l-695 150l-703 250l-2560 -1615l-1865 37l-382 -1137l-235 -1128l-300 -515l-685 -2197l-770 -2023l-230 -392l1965 -398l1035 -867l567 -1575l378 -73l754 -1208l-129 -729l-1278 775l-1530 -225l278 -953l-748 -1635l-145 -1362l233 -288l-595 -422l-70 -475l-255 -2118l-2570 -471l-23 -436l1525 -210l335 -2655l-444 -313l167 -425l-377 -1223l694 -519l-1720 -1828l705 -490l-167 -1142l-760 72l-185 -3240l1192 -275l700 -1840l412 134l357 65l432 -705l-242 -699l1339 -692l61 -1759l529 -714l2883 -518l654 -246l853 -323l759 -433l-552 -722l-1418 421l-594 -496l-310 -1545l1575 -943l2287 -800l599 -1630l1694 106l2315 1473l389 615l-852 1394l-477 225l-833 622l-612 493l-168 1350l893 157l640 2343l647 -543l375 -1973l1174 -1808l708 -394l96 -1195l572 -600l-622 -3570l590 -1176l752 602l-572 1007l700 131l938 -1149l-1472 -2094l-226 -541l585 -765l753 44l70 -1504l542 -68l913 -210l1095 679z" />
+            <path id="kantone_5" attrib:gid="5" attrib:NAMEN="AG" d="M620707 -265470l739 -285l2206 -330l426 -453l2812 -932l1767 -3322l1360 472l2380 -670l2160 523l985 1522l-167 1710l705 868l1178 0l525 252l1111 -1376l688 -53l3275 274l1023 480l1840 -565l1017 -930l1130 173l1693 85l707 -2193l1455 -290l1635 -1407l848 227l1897 -1262l1260 -1743l1420 486l274 1003l1165 -740l1644 -26l2060 352l715 467l-13 1863l1415 1125l1578 930l1845 48l1700 437l381 -1148l661 -159l1064 567l1009 450l-529 714l-61 1759l-1339 692l242 699l-432 705l-357 -65l-412 -134l-700 1840l-1192 275l185 3240l760 -72l167 1142l-705 490l1720 1828l-694 519l377 1223l-167 425l444 313l-335 2655l-1525 210l23 436l2570 471l255 2118l70 475l595 422l-233 288l145 1362l748 1635l-278 953l1530 225l1278 -775l129 729l-754 1208l-378 73l-567 1575l-1035 867l-1965 398l230 392l770 2023l685 2197l-449 412l-549 2758l338 4053l1110 2900l-11 92l-132 1773l-520 350l-2322 -590l-960 -315l-308 -808l-10 -387l-811 -827l-656 -2226l-718 -1997l-217 -930l-135 -318l-550 -1082l-245 -810l-60 -998l-314 -602l-336 -644l-555 -491l-123 -1842l-2980 -1643l-1220 1645l-1060 -40l-617 2302l-898 543l-272 2390l-2103 472l-208 -400l-517 -693l-820 -842l1810 -695l-41 -574l-361 -301l-2418 705l-972 433l-415 232l-1163 -340l-220 -477l-463 -1151l-904 -399l-1173 882l-1210 -40l495 983l-3580 297l-160 -1985l-687 -1002l-558 -950l-3567 582l842 2245l-2102 2080l-850 -200l-2090 -530l-4228 905l-837 -2110l-216 -1320l241 -105l985 -841l615 -1609l145 -165l667 -1737l1558 -550l816 -366l1101 -2877l693 315l177 135l1107 226l1138 64l65 1713l1143 -438l2115 -1292l692 -245l810 -1680l543 -1528l292 -145l150 -327l180 -375l256 -1299l-283 -1154l-65 -272l-1210 77l-138 -827l-150 -631l-2783 -1517l943 -720l345 -32l-422 -1963l-553 -1415l-1345 432l-459 -997l-801 247l415 -2604l-3095 85l-15 -808l-710 -1117l-95 -385l-1392 -825l67 -1055l-997 -93l-835 -1295l-1435 166l-93 2117l-1842 1970l-660 -188l-620 323l-96 -385l198 -441l-220 -1654l-3015 -730l-1140 -690l-1530 -928z" />
+            <path id="kantone_6" attrib:gid="6" attrib:NAMEN="SH" d="M684562 -272687l1360 158l1083 -881l-96 1195l-708 394l-1174 1808l-375 1973l-647 543l-640 -2343l-893 -157l168 -1350l612 -493l833 -622l477 -225z" />
+            <path id="kantone_8" attrib:gid="8" attrib:NAMEN="SG" d="M755455.4 -268338.4l738 1168.6l2829.3 0l872.3 3925.9l1712 2384l914 1545l634 269l282 -709l956 334l262 825l2558 343l-363 1233l-475 900l570 2020l70 1325l1708 1430l-48 1237l-1087 1250l-2500 405l-1800 2328l-875 3300l-1602 1477l-1579 2823l-957 1028l-1403 4220l-1407 3797l-175 870l10 1776l641 1932l602 1074l972 2748l158 752l-190 3343l-2845 1900l142 1892l113 288l622 955l513 740l1482 2562l2782 3658l-1640 497l-357 1888l-1443 262l-195 992l-1207 3895l-952 1143l84 1016l-555 595l-960 1204l-310 -287l-2213 -2048l-3010 -78l-2537 -299l-3692 -766l-2096 143l-1321 -890l267 -1202l-1375 -2432l792 -2553l282 -2949l-1323 -3440l-1141 -361l-1704 -433l-1276 1295l-1850 -427l-1405 -968l3186 -2554l890 -636l-155 -1960l-278 -3527l83.7 -793.6l-5623.8 -913.7l-474.5 191.8l-292.8 0l-383.7 -242.3l-148.9 52.9l-989 354l-1367 40l-1349 -1269l-3273 -3315l-255 -115l-1830 -1093l-795 508l-652 -533l-350 -1720l1219 -1522l-635 -500l-1840.9 -45l-17 -0.4l-4648.3 794.8l-3257.7 455.8l-1179.7 -368.7l-958.6 -931.9l-18.9 -18.4l-993.2 -2052.6l977.3 -1003.5l1454 -307l3176 520l1122 -850l3808 -935l920 -2278l-949 -644l1551 -2003l1358 -308l722 -1382l-954 -2963l-2296 -3252l2070 -1753l348 -2165l1035 -370l-283 -1715l895 -667l965 157l743 -905l925 660l285 -680l1067 -275l788 -300l-1468 -797l-1283 -294l79 -745l-1356 -851l123 -2025l2230 -761l1052 918l1845 -895l823 1359l2850 -257l2038 -437l698 -1795l899 757l2450 813l-42 1020l2112 -138l506 -12l579 712l2230 -1015l1325 615l1660 -1540l-982 -1155l630 -835l-1045 -750l-627 683l-1147 -397l1019 -1058l3425 -1055l354 1233l805 272l-1100 1225l-100 670l2028 -147l730 205l-524 775l-26 830l505 2l1385 863l605 -103l724 -1731l576 -525l320 179l1045 -1155l5010.4 -4671.4M753552 -261837l-784 -756l-1281 -522l35 1013l1130 845l900 -580M744120 -234920l2132 990l895 658l1419 -393l5254 -4071l987 -1266l51 -1274l717 -1214l112 -950l303 -2545l-20 -1130l-62 -768l305 -4300l80 -185l3495 -305l872 -470l1165 -970l3 -85l1630 -545l-1283 -1217l1830 -623l237 -730l746 -242l277 -106l-3135 -1902l13 -155l-705 -360l-1365 3l-683 -117l-528 30l-110 -591l-905 195l-411 467l-36 420l-140 940l-1176 249l-1270 939l-1749 421l-1178 795l-1310 -333l-602 3057l-2120 775l-1970 -730l-2380 965l-1093 -72l-2345 443l-4650 -3l-7 1100l-1000 408l187 1262l-782 1140l-1430 88l622 1606l605 971l1365 -402l675 1147l-1760 1273l636 1439l532 1658l-1324 1862l831 459l1283 707l1772 200l1245 -793l864 662l936 716l860 -180l1068 1385l1525 -403z" />
+            <path id="kantone_20" attrib:gid="20" attrib:NAMEN="LU" d="M630302 -231605l4228 -905l2090 530l850 200l2102 -2080l-842 -2245l3567 -582l558 950l687 1002l160 1985l3580 -297l-495 -983l1210 40l1173 -882l904 399l463 1151l220 477l1163 340l415 -232l972 -433l2418 -705l361 301l41 574l-1810 695l820 842l517 693l208 400l2103 -472l272 -2390l898 -543l617 -2302l1060 40l1220 -1645l2980 1643l123 1842l555 491l336 644l314 602l60 998l245 810l550 1082l135 318l217 930l718 1997l656 2226l811 827l10 387l308 808l960 315l2322 590l520 -350l382 1027l-122 760l375 195l2190 -952l446 1420l937 -90l990.2 -847.7l1025.7 1383.8l-16.3 1562.9l-1289.6 -695l-407 -515l-1501 66l-2309 974l-1013 2518l-1342 985l25 282l875 965l2230 -705l2420 1653l222 187l800 590l2945 2350l-312 1915l-2137 1212l-360 -50l-602.8 -239l55.2 -1412.6l-3145.2 -838.7l-33.1 1434.6l-3277.6 -286.9l-44.1 -1158.7l-1158.7 -242.8l-2549.3 3459.7l-1213.9 -1158.7l-372.6 125.1l-4089 296l-1207 1150l-490 -637l-733 -75l-737 1280l820 880l-1980 710l-1183 -525l-1897 935l-910 645l1140 2032l-585 668l-1690 1250l-1763 3302l-657 -275l440 -1442l-1055 -410l-673 657l-1212 1165l62 2013l-295 1693l-55 319l-1561 2277l-201 293l1062 1955l653 1200l-148 268l-1170 2075l-2007 -203l-2745 1588l-1730 -1360l-620 -488l-45 -282l-200 -595l-2171 -1836l-1843 -1559l-2201 -1863l-878 -4222l1098 -498l754 -1882l-1217 -905l425 -1052l3222 -1180l2304 -3966l499 -1235l23 -2841l-900 144l-1645 -502l-1353 449l-737 -2655l-1842 -2195l822 -3212l-512 -209l193 -1039l-619 -2955l490 -845l940 -470l-312 -2107l-405 -2030l302 -1168l-1645 -2559l-178 131l-823 -2170l-614 -584l22 -1300z" />
+            <path id="kantone_21" attrib:gid="21" attrib:NAMEN="ZG" d="M695050 -224365l690 1342l-970 595l-72 1050l-1115 2325l-1683 1410l-897 1138l-2261 149l-1509 743l-1123 238l-500 -1340l-3345 702l8.7 24.5l-2214.1 -1074.5l16.3 -1562.9l-1025.7 -1383.8l-990.2 847.7l-937 90l-446 -1420l-2190 952l-375 -195l122 -760l-382 -1027l132 -1773l11 -92l-1110 -2900l-338 -4053l549 -2758l449 -412l300 515l235 1128l382 1137l1865 -37l2560 1615l703 -250l695 -150l3387 -1163l2353 545l212 -207l2000 1702l920 410l713 2888l558 285l604 285l1621 -288l395 1172l2002 -442z" />
+            <path id="kantone_22" attrib:gid="22" attrib:NAMEN="SZ" d="M703779.8 -230835.5l958.6 931.9l1179.7 368.7l3257.7 -455.8l4648.3 -794.8l17 0.4l1840.9 45l635 500l-1219 1522l350 1720l652 533l795 -508l1830 1093l-2559 3818l-203 304l160 235l237 1818l10 339l-82 1253l-1255 1398l565 1682l-903 3005l-1768 1136l-1796 659l-423 1440l1192 408l1264 1953l1826 3282l1685 1030l-1205 2353l641 1172l-2111 978l-3720 1918l-2721 1937l-202 -563l61 -2378l-1633 -1047l-82 -1473l-1238 -615l-1410 1205l-1620 -1157l-3162 1602l-1516 1343l-1651 -2523l-323 -454l-3590 -723l-1290 -263l-1171.1 88.2l-242.8 -2549.2l198.6 -882.9l-110.4 -485.6l-375.2 -309l-1147.7 -419.4l-904.9 397.3l-669.9 383.8l-1448.9 830.1l-1787.8 0l-1699.5 397.3l-2405.8 -794.6l165.6 -1418.1l602.8 239l360 50l2137 -1212l312 -1915l-2945 -2350l-800 -590l-222 -187l-2420 -1653l-2230 705l-875 -965l-25 -282l1342 -985l1013 -2518l2309 -974l1501 -66l407 515l1289.6 695l2214.1 1074.5l-8.7 -24.5l3345 -702l500 1340l1123 -238l1509 -743l2261 -149l897 -1138l1683 -1410l1115 -2325l72 -1050l970 -595l-690 -1342l-20 -370l-794 -807l-58 -1058l2482 -2184l2126.1 -1079.4l50 -15.9l3784.1 -1204l1159.6 247.8z" />
+            <path id="kantone_23" attrib:gid="23" attrib:NAMEN="GL" d="M718725 -225880l255 115l3273 3315l1349 1269l1367 -40l989 -354l148.9 -52.9l383.7 242.3l292.8 0l474.5 -191.8l5623.8 913.7l-83.7 793.6l278 3527l155 1960l-890 636l-3186 2554l1405 968l1850 427l1276 -1295l1704 433l1141 361l1323 3440l-282 2949l-792 2553l1375 2432l-267 1202l-1594 1029l-1084 1736l-1259 1196l-3033 10l-539 651l-752 1317l-340 469l-1725 1148l-1300 -2243l-2247 -400l-937 362l-583 743l-752 3367l-1898 2698l-3977 651l-2148 1101l-1055 -1615l-1270 -321l-1580 12l260 -1663l-805 -1403l6398 -3822l-233 -2611l-18 -207l-476 -704l-941 -1395l2111 -978l-641 -1172l1205 -2353l-1685 -1030l-1826 -3282l-1264 -1953l-1192 -408l423 -1440l1796 -659l1768 -1136l903 -3005l-565 -1682l1255 -1398l82 -1253l-10 -339l-237 -1818l-160 -235l203 -304l2559 -3818z" />
+        </g>
+
+    </g>
+    <!-- ******* LAKES LAYER ******* -->
+    <g id="seen" class="darkBlueStroke lightblueFill thickLine" onmouseover="showData(evt,'see');" onmouseout="showData(evt,'see');">
+        <path id="seen_0" attrib:gid="0" attrib:NAME="Bodensee" d="M729407 -280583.6l-327 -298.4l-688 0l-727 327l-925 -342l-715 115l-1521 -22l-332 -244l-146 -520l-592 -156l-1247 59l-1206 -59l-426 218l-1715 -280l-426 73l-780 363l-1611 281l-790 551l-124 478l-749 468l-900 215l-1293 356l-488 510l-624 -73l-759 416l-859 66l-897 -628l-1545 -520l-162 -341l325 -36l777 215l787.1 46.7l1020.9 255.3l1616.5 -680.6l595.6 -170.2l935.9 -255.3l1616.5 -1020.9l680.6 -255.3l85.1 -510.5l1871.8 -935.9l595.6 -1276.2l-1106.1 -1106l-3062.8 -1531.4l-510.5 0l-425.4 -850.8l510.4 -850.8l1361.3 0l1106 340.3l2041.9 935.9l680.6 595.6l170.1 -425.4l-1191.1 -850.8l-255.2 -425.4l-1021 -170.2l-170.1 -595.6l85.1 -255.3l1106.1 170.2l1106 1020.9l1531.4 680.6l3743.5 1956.8l765.7 255.3l850.8 595.6l595.6 1276.2l-425.4 170.2l-1276.2 -85.1l-1276.2 -1020.9l-935.9 -680.6l-1361.2 -340.3l170.2 1616.5l850.8 510.5l2127 595.6l765.7 -340.3l1531.4 170.2l510.5 935.8l255.2 680.7l1106.1 170.2l1616.5 -425.4l1786.7 255.3l1956.8 765.7l595.6 -680.6l-935.9 -2722.5l-2297.2 -1701.6l-340.3 -2892.7l-1786.6 -1616.5l-1276.2 170.2l-1361.2 -1446.3l-2637.5 -1361.2l-2041.9 -2041.9l-1616.5 -1701.6l765.7 -1020.9l1786.7 340.3l1446.3 1446.3l510.5 510.5l1616.5 340.3l1531.4 1361.3l680.6 1276.2l1446.3 85.1l2127 1276.2l595.6 510.5l1871.8 680.6l510.4 510.5l170.2 1956.8l2892.7 2977.8l3488.3 2297.1l765.7 -85.1l2127 1446.3l340.3 0l1276.2 -680.6l850.8 85.1l425.4 -595.6l2467.3 255.3l1020.9 1191.1l595.6 -85.1l1871.8 850.8l2297.1 -340.3l1446.3 1871.8l170.2 1616.5l510.5 680.6l850.8 2041.9l510.5 85.1l510.4 595.6l1956.8 340.3l1276.2 -340.3l1191.1 680.6l935.9 1191.1l1786.7 510.5l1020.9 935.9l1786.6 170.2l-170.1 935.9l850.8 255.3l595.5 -680.7l1446.4 -255.2l1106 1361.2l0 595.6l595.6 255.2l1106.1 1616.5l-255.3 1020.9l-1106.1 425.4l-1106 0l-935.9 -425.4l-595.6 85.1l-1191.1 1446.3l-1191.1 -680.7l-1276.2 1786.7l-1106.1 -1021l850.8 -1191.1l-680.6 0l-1191.1 1446.3l-595.6 85.1l-680.6 680.6l-1531.4 0l-1361.2 -1531.4l-470.1 21.4l-499 281l-852 1486l-936 416l-1403 251l-1060 40l-1154 -229l-439 -838l-784 -756l-1281 -522l-1042 -552l2 -606l302 -519l-1784 -1165l-865 -833l-1446 -985l-295 -783l-204 -535l216 -1332l-123 -333l-1918 -1012l-1952 -1118l-1373 -1062l-1055 -1049l-1455 -731l-1255 -648l-1323 -814l-2065 -840l-1072 -543l-1104 -384l-734 -866l-269.6 -966.7l-595.6 -425.4l-765.7 0l-85.1 255.2l180.9 378.3z" />
+        <path id="seen_1" attrib:gid="1" attrib:NAME="Greifensee" d="M692583 -247677l1264 1235l620 1012l215 1350l488 416l779 426l-117 676l-462 122l-223 483l-407 31l-319 -1018l-971 -1690l-514 -162l-891 -1146l-300 -500l-44 -559l219 -594l663 -82z" />
+        <path id="seen_2" attrib:gid="2" attrib:NAME="Z&#252;richsee" d="M684955 -244484l597 1516l472 1096l45 499l268 633l460 530l920 1445l839 1244l410 535l1088 775l2880 1043l864 384l482 160l401 473l1471 659l392 624l1661 661l1816 -28l1116 -147l997 -13l623 -510l1499 269l198 747l-448 279l357 499l731 71l517 535l829 143l374 -125l-62 -303l128 -267l695 -63l496 383l723 80l211 245l1322 -325l1756 -820l2122 71l-27 232l-353 474l-21 257l-749 419l-1623 526l-927 312l-428 -339l-329 -89l-1052 250l-893 249l-623 197l-107 802l-303 357l-526 115l-651 -374l-1105 -27l-161 -499l-802 -232l-740 -178l847 -1079l151 -508l-249 -116l-925 687l-161 792l-2587 -204l-1783 330l-883 499l-535 -151l-1025 -1578l-758 -455l-1016 -785l-1284 -1159l-410 -686l-267 -383l-607 -330l-321 9l-321 240l-641 -249l-2675 -1311l-321 -758l-321 -383l-276 -900l-687 -1329l-829 -1016l-428 -1533l-633 -1525l-375 -415l-534 -1457l53 -1426l54 -321l464 -214l249 579l276 874l455 107l473 704z" />
+        <path id="seen_3" attrib:gid="3" attrib:NAME="Hallwilersee" d="M658645 -240485l178 356l398 1796l514 1703l17 553l365 817l39 409l-453 1075l222 268l-195 408l-240 27l-355 -702l-1062 -2918l-398 -2195l-213 -1185l125 -762l125 -350l203 -37l303 191l427 546z" />
+        <path id="seen_4" attrib:gid="4" attrib:NAME="Baldeggersee" d="M662100 -229822l469 417l407 1760l245 412l228 478l104 473l-87 386l-282 362l-217 -151l-900 -1326l-435 -965l-634 -975l107 -569l-3 -340l170 -94l828 132z" />
+        <path id="seen_5" attrib:gid="5" attrib:NAME="Zugersee" d="M678604 -226134l457 333l1039 128l1256 730l162 323l-343 1286l-371 981l67 1191l-762 1286l28 533l305 448l324 962l705 952l794 968l-4 832l335 754l113 542l-146 236l-483 649l-286 67l-428 -733l-1657 -1210l-1315 -1038l-495 -638l38 -210l686 -600l147 -396l766 -404l96 -524l-352 -152l-714 76l-506 -400l-218 -305l0 -990l457 -781l-381 -105l-581 -324l-38 -648l305 -457l126 -543l-598 -1230l-214 -332l64 -370l650 -592l972 -295z" />
+
+        <path id="seen_6" attrib:gid="6" attrib:NAME="Sempachersee" d="M652032 -225039l610 301l866 830l795 901l1484 1045l760 599l539 866l62 574l-411 713l-207 295l-380 44l-672 -468l-1758 -1202l-1300 -1427l-423 -455l-134 -475l-52 -1222l-35 -742l256 -177z" />
+        <path id="seen_7" attrib:gid="7" attrib:NAME="Sihlsee" d="M704082 -215766l-75 -352l-691 -502l-482 -795l-518 -380l-343 -88l-131 -459l259 -489l-374 -355l-247 -253l-44 -710l-602 -1007l-355 -684l-310 12l-38 -133l329 -773l215 -228l191 76l411 -31l304 -133l121 -431l222 31l551 336l-6 597l-146 299l278 518l-132 300l570 1357l-52 1015l300 897l12 513l637 473l489 175l387 372l-204 533l-526 299z" />
+        <path id="seen_8" attrib:gid="8" attrib:NAME="Walensee" d="M727027 -222253l895 -20l1292 151l1508 393l2066 29l2001 422l2769 -227l3705 80l158 196l-238 605l-30 442l-453 161l-583 261l-533 51l-1659 -322l-492 342l-2071 211l-131 -221l-372 -151l-473 241l-1588 -261l-1689 -352l-785 -312l-985 -131l-482 -271l-1277 10l-1006 -141l-616 -508l-7 -165l142 -56l379 60l313 -135l242 -382z" />
+        <path id="seen_9" attrib:gid="9" attrib:NAME="&#196;gerisee" d="M687977 -221260l476 -86l261 365l488 244l348 -148l774 339l339 427l244 670l443 565l-200 1183l-400 218l-278 -96l-409 -505l-18 -678l-287 -122l-748 -435l-757 -313l-739 -122l9 -174l287 -261l-96 -687l-358 -215l-182 -260l233 -98l570 189z" />
+        <path id="seen_10" attrib:gid="10" attrib:NAME="Bielersee" d="M584600 -219970l-568 735l-600 898l-256 940l-358 357l-203 565l-471 570l-41 415l96 292l-95 262l-262 277l-738 1374l-583 673l-385 -150l-119 151l-24 357l-48 270l-286 310l-571 603l-564 270l-494 -20l-260 115l-540 365l-1452 596l-786 31l-259 -144l-328 -522l31 -167l1519 -1018l880 -590l888 -1027l238 -381l-56 -254l-492 -223l-159 223l32 214l-500 968l-1048 755l-833 650l-842 516l-640 27l-308 29l-405 -37l-309 -503l-150 -236l88 -194l640 -349l359 20l1494 -747l397 -466l173 -582l1515 -912l1513 -940l1682 -1072l743 -927l912 -630l951 -970l358 -340l563 -465l728 -330l184 145l49 223z" />
+        <path id="seen_11" attrib:gid="11" attrib:NAME="Vierwaldst&#228;tters" d="M675328 -213188l-237 615l-20 777l-276 368l-352 559l-1106 787l-626 960l487 335l618 -359l2010 -284l1246 648l1138 219l1054 1071l279 1225l-627 388l-10 548l360 50l954 303l668 -124l1235 -189l1455 578l1550 -362l1178 -908l1165 -231l316 680l1163 215l226 1124l-130 737l409 1674l448 976l30 587l-734 1847l196 574l809 830l122 1660l-868 472l-551 624l-18 435l-371 -26l-475 -675l-130 -1570l232 -855l55 -237l-588 -429l-706 -861l349 -1376l297 -1289l429 -1305l-230 -926l357 -867l-68 -359l-569 -274l-1076 563l-1911 1186l-1753 468l-946 607l-1335 180l-1225 -269l-799 -750l-1579 -16l-1727 -420l-529 -499l-8 -626l1643 -857l1335 -129l159 -578l-2460 -219l-389 -10l-2191 -190l-737 130l-1167 -41l-333 282l-1210 2000l-1105 319l-278 -130l-719 269l-567 -29l20 -748l259 -308l-279 -1006l-573 -998l308 -266l573 -151l279 817l648 358l916 -557l-129 -757l-352 -1247l242 -805l-408 -538l-349 -498l-817 -767l-717 -558l169 -190l1506 -57l1670 1743l102 556l597 10l2042 -2027l827 -902l678 -578l299 90l508 -438l1075 -1641l441 186l-433 661l-338 1015z" />
+        <path id="seen_12" attrib:gid="12" attrib:NAME="Lac de Neuch&#226;tel" d="M566136 -206475l271 423l1067 237l358 -228l1089 -203l798 842l697 1292l-398 306l-318 539l-112 461l-1023 1474l-2165 1327l-1209 741l-1513 1776l-878 775l-1150 883l-944 731l-1767 1102l-669 942l-1400 1685l-675 740l-1397 1047l-1125 1223l-1810 822l-1145 1110l-1968 2013l-657 652l-668 43l-653 -493l-1800 43l-4437 2222l-892 80l-385 -410l-440 -469l-53 -328l-34 -616l1873 -1509l1770 -973l329 -627l1166 -606l1044 -1284l1148 -516l1727 -1422l92 -642l475 -870l768 -1275l958 -711l1698 -2076l1960 -1263l449 117l190 -175l-13 -587l564 -661l1060 -276l801 -498l316 -1200l-87 -1514l1594 -1024l4655 -1845l1015 -1166l862 -577l991 396z" />
+        <path id="seen_13" attrib:gid="13" attrib:NAME="Alpnachersee" d="M667885 -203640l242 113l309 627l-79 398l-578 488l-1744 1133l-741 447l-454 -434l-438 199l-289 -99l179 -449l1295 -926l638 -239l1604 -428l169 -339l-113 -491z" />
+        <path id="seen_14" attrib:gid="14" attrib:NAME="Murtensee" d="M575899 -200640l790 1090l-21 444l-900 868l-786 811l-722 650l-510 97l-299 -193l-117 127l95 402l-412 527l-1493 849l-772 21l-529 -116l-568 -427l-478 -677l-87 -579l530 -489l700 -775l760 -376l360 -582l2327 -1087l1419 -723l713 138z" />
+
+        <path id="seen_15" attrib:gid="15" attrib:NAME="Sarnersee" d="M661345 -192513l-210 809l-941 733l-1107 1038l-69 471l-595 719l-319 56l-733 -665l-97 -401l512 -1107l1564 -802l636 -568l647 -1180l529 -148l194 443l-11 602z" />
+        <path id="seen_16" attrib:gid="16" attrib:NAME="Brienzersee" d="M643859 -175814l-1750 981l-324 371l-1435 935l-1175 496l-557 458l-333 565l-1580 1138l-1550 -73l-389 -371l-574 37l-102 -259l879 -565l362 -463l731 -278l778 -611l1028 -815l797 -785l1990 -1576l686 -898l1324 -760l676 0l741 -342l1305 509l639 -158l510 445l102 648l-102 556l-787 -111l-1056 333l-834 593z" />
+        <path id="seen_17" attrib:gid="17" attrib:NAME="Thunersee" d="M616835 -175829l866 670l599 145l691 1093l1527 588l1341 444l1289 1434l465 1351l725 161l502 -223l1104 11l1052 -361l619 103l836 247l898 970l402 145l93 340l-196 371l-372 382l-495 155l-598 -475l-361 -31l-784 516l-1403 454l-1063 134l-578 -155l-773 -639l-1311 -402l-1681 -785l113 -773l-299 -392l-567 -258l-371 -632l-620 -286l-804 -42l-527 -278l-288 -619l-1187 -960l-31 -546l-213 -216l-158 -166l-330 62l-444 -279l41 -1031l320 -970l-144 -258l580 -427l720 499l815 929z" />
+        <path id="seen_18" attrib:gid="18" attrib:NAME="Lac de Gruy&#232;re" d="M574885 -174141l-152 912l-672 219l79 745l755 754l208 635l546 -204l54 377l-225 140l-799 615l-754 963l323 862l-377 916l500 2202l84 1439l63 1061l-746 -93l-440 -1733l81 -669l127 -1980l-208 -658l357 -695l-464 -329l-156 377l-431 -161l431 -1131l1287 -1557l-970 -377l323 -862l-377 -586l1078 -593l0 -431l475 -158z" />
+        <path id="seen_19" attrib:gid="19" attrib:NAME="Lac de Joux" d="M514825 -169033l266 35l88 204l-513 726l44 488l-151 292l-717 425l-2782 2446l-505 150l-1225 999l-816 381l-210 -157l18 -381l1101 -1300l2328 -1881l2658 -1905l416 -522z" />
+        <path id="seen_20" attrib:gid="20" attrib:NAME="Lac Leman" d="M534610 -152160l423 -13l1037 611l963 426l1806 500l1685 -64l251 129l676 74l1037 343l991 519l796 685l611 444l685 0l463 -324l528 0l611 324l612 704l1361 685l759 65l945 269l1111 213l1445 222l194 695l380 259l944 222l454 769l473 222l1037 201l92 466l1102 352l593 -130l537 546l19 500l259 250l417 -83l296 333l180 526l572 1427l-474 696l-121 491l-352 268l-1407 -102l-463 213l-482 -194l-833 55l-685 145l-602 -200l-121 102l-111 102l167 611l-222 333l-343 -231l-408 -139l-1222 250l-546 -130l-1473.8 -792.9l-71.5 182l-1120.1 -94.9l-2789.4 -1321.3l-1321.3 -97.9l-929.8 -391.5l-2446.8 -48.9l-1272.4 244.7l-342.6 146.8l-2397.9 -244.7l-3278.7 464.9l-391.5 -146.8l-3474.5 880.8l-1957.4 -1174.5l-2838.3 1125.5l-97.9 1223.4l-293.6 880.9l-3474.5 1712.8l-1517 -48.9l-978.7 1027.7l-783 1125.5l-2348.9 -734l-978.7 -2397.9l-2397.9 -48.9l-2202.2 1419.2l-1663.8 2593.6l-734.1 1761.7l-1007.9 1679.6l-292 464l-584 1010l-528 379l-945 1534l-545 683l-815 154l-395 708l-170 1348l111 778l-1714 2924l-1412 823l-482 -283l524 -538l-28 -1037l-287 -611l139 -732l169 -1391l-11 -554l388 -490l297 -676l370 -195l260 -787l175 -676l-268 -695l250 -1491l417 -268l453 -621l417 -657l639 -685l426 -991l528 -1510l93 -916l311 -681l1124 -1440l509 -519l1158 -1648l833 -704l352 -18l814 298l293 -567l384 -222l-37 -889l639 -926l93 -991l472 -287l769 -454l166 -291l537 -663l297 -546l1074 -796l463 -695l555 -463l368 -2l2059 -368l491 37l505 431l606 208l639 -158l157 -278l887 -645l1132 -188l991 -343l518 -537l389 102l135 -114l32 -710l704 -621l602 19l231 -259l367 -936l717 -231l685 -1074l472 -278l936 185l1074 796l1639 28l1148 -648l454 -426l540 -52z" />
+        <path id="seen_21" attrib:gid="21" attrib:NAME="Lago Maggiore" d="M697293 -106388l1297 -2043l555 -1647l1327 -1528l2143 -643l1145 878l774 10l372 -461l662 -761l-315 -1580l692 -79l1274 -451l392 -460l899 600l757 879l202 1102l92 437l-559 558l-744 128l-713 295l-640 263l-666 255l-607 284l-921 793l-794 559l-412 627l-762 905l-886 688l-1170.5 -61.4l-336.2 924.5l-1092.6 1176.7l0 420.3l672.4 1092.7l0 1344.8l336.2 672.4l-168.1 336.2l0 1260.7l1260.7 588.4l420.3 924.5l84 1344.8l-1428.8 1849.1l-756.4 84.1l-1092.7 756.4l168.1 672.4l-1092.7 1765l-2773.6 1597l0 1008.6l-672.4 840.5l-924.6 168.1l-1933.1 1681l-252.2 672.4l-840.5 840.5l-504.3 1765l252.2 336.2l-252.2 1176.7l1344.8 2689.6l756.4 84.1l0 924.5l504.3 1428.9l-420.3 924.5l-588.3 -252.1l-420.3 1092.6l-3614.2 84l252.2 -672.4l84 -924.5l504.3 -840.5l0 -672.4l-756.4 -3025.8l-588.4 -924.6l-2773.6 -1092.6l-1092.6 -1681l-84.1 -756.5l-1933.2 -1512.9l-252.1 -252.1l588.4 -840.5l1512.9 -504.3l2689.6 1092.6l1596.9 1428.8l336.2 -840.5l504.3 -1008.6l1008.6 -504.3l2857.7 -2353.4l84.1 -840.5l1765.1 -2521.5l336.2 -84l1849.1 -3362l2521.5 -1092.6l252.1 -756.5l-420.3 -588.3l0 -1260.7l-840.5 -2017.2l-420.3 -1765.1l388.8 -1647.8z" />
+        <path id="seen_22" attrib:gid="22" attrib:NAME="Ceresio" d="M722848 -95604.2l-1040 352.2l-277 398l-498 214l-1268 507l-526.4 569l-777.6 2214l-148 906l-397 -28l-83 388l258 83l185 361l-83 841l379 712l421 377l245 205l527 1045l-56 703l-138 656l-223 193l-286 -239l-120 -1498l-222 -582l-712 -620l-776 -545l-250 37l-647 619l-1091 1572l-558 272l-384.8 59.4l-390.4 997.6l-693.9 -173.5l216.9 -1561.4l-650.6 -390.4l-347 -1387.9l563.9 -997.6l-303.6 -520.5l0 -563.8l-1040.9 43.4l-477.1 -260.2l-347 0l-260.3 -520.5l-365.1 -377.6l185 -342l443 -259l194 65l207 378l-225 279l-43 452l691 202l674 -211l65 -268l-315 -564l19 -231l536 -259l240 -332l-9 -518l-120 -795l370 -527l687 -313l237 174l81 304l-25 177l-749 1414l-56 296l-166 361l-9 217l111 467l286 1248l85 592l-473 1349l37 398l712 601l453 499l360 -65l352 -296l591 -665l555 -851l268 -628l167 -657l323 -194l425 -37l167 -407l-370 -111l-55 -665l110 -731l444 -674l93 -370l-47 -555l-37 -508l-258 -241l-574 -314l398 -1045l961 -277l352 9l296 444l305 157l601 -102l689 -434l864 -74l610 -749l773.1 -610.4l500.4 -505.4l650.6 -303.6l607.2 86.7l216.9 -303.6l3383.1 43.4l2038.5 -1474.7l520.5 867.5l0 173.5l-737.4 867.5l-390.3 0l-650.6 997.6l-737.3 347l-824.1 0l-2906 -477.1l-433.7 216.9l-1081.9 1201.7z" />
+    </g>
+
+</svg>
+</g>
+<!-- **************************************** -->   
+<!-- ********* COORDINATE DISPLAY *********** -->
+<!-- **************************************** -->
+<g onmouseover="showHelp(evt, 'Um Schweizer Landeskkordinaten anzuzeigen, mit der Maus ueber Karte fahren.')" onmouseout="showHelp(evt, ' ')">
+    <rect x="449" y="736" width="631" height="17" class="greyTranspFill nostroke"/>
+    <g transform="translate(870,735)" class="darkGreyFill fontSize13 letterspacing2 allText" visibility="hidden">
+        <text id="coordX" x="0" y="0"> </text>
+        <text id="coordY" x="110" y="0"> </text>        
+    </g>
+
+</g>
+<!-- **************************************** -->   
+<!-- **** ATTRIBUTE DISPLAY 4 MAIN MAP ****** -->
+<!-- **************************************** -->
+<text id="dataDisplayMap1" x="460" y="750" class="darkGreyFill fontSize13 letterspacing2 allText"> </text>  <!-- main map -->
+<text id="dataDisplayMap2" x="640" y="750" class="darkGreyFill fontSize13 letterspacing2 allText"> </text>
+<text id="dataDisplayMap3" x="760" y="750" class="darkGreyFill fontSize13 letterspacing2 allText"> </text>
+<text id="dataDisplayMap4" x="906" y="750" class="darkGreyFill fontSize13 letterspacing2 allText"> </text>
+
+<!-- **************************************** -->   
+<!-- ************* DIAGRAM MAP ************** -->
+<!-- **************************************** -->
+
+<g id="diagram">
+    <rect x="20" y="317" class="whiteTranspFill lightGreyStroke normalline" width="400" height="436"/> 
+    <rect x="20" y="317" class="mediumGreyFill lightGreyStroke normalline" width="400" height="17"/> 
+    <g id="quadrate" class="normalline mediumGreyStroke whitefill" transform="scale(.92) translate(25 304)" onmouseover="showData(evt,'quadrat');" onmouseout="showData(evt,'quadrat');">
+        <rect id="quadrat_16" attrib:Class="-" x="20" y="80" width="65" height="65" />
+        <rect id="quadrat_26" attrib:Class="-" x="85" y="80" width="65" height="65" />
+        <rect id="quadrat_36" attrib:Class="-" x="150" y="80" width="65" height="65" />
+        <rect id="quadrat_46" attrib:Class="-" x="215" y="80" width="65" height="65" />
+        <rect id="quadrat_56" attrib:Class="-" x="280" y="80" width="65" height="65" />
+        <rect id="quadrat_66" attrib:Class="-" x="345" y="80" width="65" height="65" />
+
+        <rect id="quadrat_15" attrib:Class="-" x="20" y="145" width="65" height="65" />
+        <rect id="quadrat_25" attrib:Class="-" x="85" y="145" width="65" height="65" />
+        <rect id="quadrat_35" attrib:Class="-" x="150" y="145" width="65" height="65" />
+        <rect id="quadrat_45" attrib:Class="-" x="215" y="145" width="65" height="65" />
+        <rect id="quadrat_55" attrib:Class="-" x="280" y="145" width="65" height="65" />
+        <rect id="quadrat_65" attrib:Class="-" x="345" y="145" width="65" height="65" />
+        <rect id="quadrat_14" attrib:Class="-" x="20" y="210" width="65" height="65" />
+        <rect id="quadrat_24" attrib:Class="-" x="85" y="210" width="65" height="65" />
+        <rect id="quadrat_34" attrib:Class="-" x="150" y="210" width="65" height="65" />
+
+        <rect id="quadrat_44" attrib:Class="-" x="215" y="210" width="65" height="65" />
+        <rect id="quadrat_54" attrib:Class="-" x="280" y="210" width="65" height="65" />
+        <rect id="quadrat_64" attrib:Class="-" x="345" y="210" width="65" height="65" />
+        <rect id="quadrat_13" attrib:Class="-" x="20" y="275" width="65" height="65" />
+        <rect id="quadrat_23" attrib:Class="-" x="85" y="275" width="65" height="65" />
+        <rect id="quadrat_33" attrib:Class="-" x="150" y="275" width="65" height="65" />
+        <rect id="quadrat_43" attrib:Class="-" x="215" y="275" width="65" height="65" />
+        <rect id="quadrat_53" attrib:Class="-" x="280" y="275" width="65" height="65" />
+        <rect id="quadrat_63" attrib:Class="-" x="345" y="275" width="65" height="65" />
+
+        <rect id="quadrat_12" attrib:Class="-" x="20" y="340" width="65" height="65" />
+        <rect id="quadrat_22" attrib:Class="-" x="85" y="340" width="65" height="65" />
+        <rect id="quadrat_32" attrib:Class="-" x="150" y="340" width="65" height="65" />
+        <rect id="quadrat_42" attrib:Class="-" x="215" y="340" width="65" height="65" />
+        <rect id="quadrat_52" attrib:Class="-" x="280" y="340" width="65" height="65" />
+        <rect id="quadrat_62" attrib:Class="-" x="345" y="340" width="65" height="65" />
+        <rect id="quadrat_11" attrib:Class="-" x="20" y="405" width="65" height="65" />
+        <rect id="quadrat_21" attrib:Class="-" x="85" y="405" width="65" height="65" />
+        <rect id="quadrat_31" attrib:Class="-" x="150" y="405" width="65" height="65" />
+
+        <rect id="quadrat_41" attrib:Class="-" x="215" y="405" width="65" height="65" />
+        <rect id="quadrat_51" attrib:Class="-" x="280" y="405" width="65" height="65" />
+        <rect id="quadrat_61" attrib:Class="-" x="345" y="405" width="65" height="65" />        
+        <!-- Z&#252;rich -->
+        <rect id="quadrat_0" class="nofill" attrib:Class="-" x="-2000" y="-2000" width="390" height="390" visibility="hidden"/>
+        <!-- dummy rect to move weisses Quadrat der Auswahl -->
+        <rect id="quadrat_dummy" pointer-events="none" class="whiteStroke nofill normalThickline" attrib:Class="-" x="-2000" y="-2000" width="65" height="65" />                
+        <g class="lightGreyStroke normalThickline" marker-end="url(#Triangle)" visibility="hidden">
+            <line x2="9" y2="150" x1="9" y1="481"/>
+            <line x1="9" y1="481" x2="317" y2="481"/>
+
+        </g>
+    </g>    
+    <g class="lightGreyFill fontSize13 letterspacing2 allText">
+        <text x="0" y="0" transform="rotate(-90,0,0) translate(-605,36)">traditionell-bürgerlich</text>
+        <text x="180" y="350" >statushoch</text>    
+        <text x="0" y="0" transform="rotate(-90,0,0) translate(-584,414)">individualisiert</text>
+        <text x="180" y="726" >statusniedrig</text>
+    </g>
+
+    <!-- diagram display backgr. rect.-->
+    <rect x="20" y="736" width="400" height="17" class="greyTranspFill nostroke"/>
+</g>
+<!-- **** ATTRIBUTE DISPLAY 4 DIAGRAM ******* -->
+<text id="dataDisplayDiagr1" x="40" y="750" class="darkGreyFill fontSize13 letterspacing2 allText"> </text> <!-- diagramm -->
+<text id="dataDisplayDiagr2" x="340" y="750" class="darkGreyFill fontSize13 letterspacing2 allText">  </text>   <!-- diagramm -->
+<!-- ************ FRAME 4 ZURICH ************* -->
+<rect x="20" y="80" width="400" height="203" class="whiteTranspFill lightGreyStroke normalline"/> 
+<!-- **** ATTRIBUTE DISPLAY 4 QUARTIER'S MAP ******* -->
+<text id="dataDisplayQuart" x="250" y="240" class="lightYellowFIll fontSize13 letterspacing2 allText"> </text>  <!-- quartier's map -->
+
+<!-- **************************************** -->   
+<!-- ************ MAP OF ZURICH ************* -->
+<!-- **************************************** -->
+<rect id="quartier_100" x="20" y="87" width="200" height="195" opacity="0" attrib:NAMEN="Z&#xFC;rich" onclick="selectQuartier();"  onmouseover="showData(evt, 'quart');" onmouseout="showData(evt,'quart');"/> 
+<svg x="20"  y="87" width="200" height="190" viewBox="675892.3 -254633.2 14057.4 13366.5"  onmouseover="showData(evt, 'quart');" onmouseout="showData(evt,'quart');" xmlns="http://www.w3.org/2000/svg" xmlns:attrib="http://www.carto.net/attrib/">
+    <g id="quartiere" class="lightGreyStroke mediumThickLine mediumGreyFill" onclick="selectQuartier();"><path id="quartier_111000" attrib:AREA="6628347.500" attrib:NAMEN="Affoltern" d="M682222.9 -254118l-136.3 818l-445.2 308.2l410.9 684.9l582.7 16.2l-365.8 742.9l-182.7 371.1l-235.8 -94.3l-1647.8 -659.1l-1231 -1333.6l1234.9 -1051.3l2015.9 197z" />
+        <path id="quartier_119000" attrib:AREA="4580006.000" attrib:NAMEN="Seebach" d="M684250 -253920l-78 1105l705 553l-290.4 400.4l-1301.4 -102.7l0 -308.2l-650.2 -18.1l-582.7 -16.2l-410.9 -684.9l445.2 -308.2l136.3 -818l2027.1 198z" />
+        <path id="quartier_101000" attrib:AREA="7341304.500" attrib:NAMEN="Hoengg" d="M678972.1 -253263.7l1231 1333.6l1647.8 659.1l-580.8 905.4l0 585.5l-267.7 -66.9l-401.4 -33.5l-2350 -619.5l275 -859l-836 -548l379 -588l903.1 -768.7z" />
+        <path id="quartier_121000" attrib:AREA="1165360.625" attrib:NAMEN="Saatlen" d="M685650 -252742l5 965l-253.3 257.2l-234.2 401.5l-512.4 78.6l-68.5 -821.9l290.4 -400.4l773 -480z" />
+        <path id="quartier_115000" attrib:AREA="2805066.250" attrib:NAMEN="Oerlikon" d="M682635.1 -252290.7l650.2 18.1l0 308.2l1301.4 102.7l68.5 821.9l-410.9 547.9l-616.5 34.3l-1358.4 -1090.2l365.8 -742.9z" />
+        <path id="quartier_122000" attrib:AREA="2427256.250" attrib:NAMEN="Schwamendingen-M" d="M686939.2 -251392.5l-1002.1 575.2l-631.3 1318.6l-1061.6 -993.2l410.9 -547.9l512.4 -78.6l234.2 -401.5l253.3 -257.2l1284.2 384.5z" />
+
+        <path id="quartier_61000" attrib:AREA="2416967.750" attrib:NAMEN="Unterstrass" d="M682269.3 -251547.8l1358.4 1090.2l-57.6 2266.5l-259.3 58.5l-150.5 -376.4l-83.7 -58.5l-434.9 -376.4l250.9 -200.7l0 -401.5l-301.1 -501.8l-167.3 -920l-337.7 -208.9l182.7 -371.1z" />
+        <path id="quartier_123000" attrib:AREA="2230284.250" attrib:NAMEN="Hirzenbach" d="M687475 -251232l-1055 1995l-360.8 -330.1l-753.4 68.5l631.3 -1318.6l1002.1 -575.2l535.8 160.5z" />
+        <path id="quartier_102000" attrib:AREA="2154314.500" attrib:NAMEN="Wipkingen" d="M682086.6 -251176.7l337.7 208.9l167.3 920l301.1 501.8l0 401.5l-250.9 200.7l-384.8 -351.3l-317.8 -217.5l-669.1 -267.6l0 -585.5l580.8 -905.4l235.8 94.3z" />
+        <path id="quartier_92000" attrib:AREA="6928237.500" attrib:NAMEN="Altstetten" d="M678251 -250500l2350 619.5l-518.6 501.8l-117.1 351.3l702.6 284.4l-284.4 368l-129.1 154.8l-439.7 -322.1l-250.9 217.5l-418.2 -267.6l-518.5 401.5l-451.7 301.1l-274 354.6l-1674.5 -661.7l2024 -2303z" />
+        <path id="quartier_63000" attrib:AREA="2452899.000" attrib:NAMEN="Oberstrass" d="M683627.7 -250457.5l616.5 -34.3l1061.6 993.2l-380.8 412.6l-167.3 -133.8l-752.8 844.7l150.6 184l-309.4 234.2l-150.6 8.4l-125.4 -242.5l57.6 -2266.5z" />
+        <path id="quartier_52000" attrib:AREA="1360705.500" attrib:NAMEN="Escher Wyss" d="M680601 -249880.5l401.4 33.5l267.7 66.9l669.1 267.6l317.8 217.5l-552 568.7l-1622.6 -652.4l518.6 -501.8z" />
+        <path id="quartier_71000" attrib:AREA="2895597.500" attrib:NAMEN="Fluntern" d="M686420 -249237l-874.5 697.3l239.8 342.5l-1404.1 993.2l-205.4 -239.7l-329.6 -513l309.4 -234.2l-150.6 -184l752.8 -844.7l167.3 133.8l380.8 -412.6l753.4 -68.5l360.8 330.1z" />
+        <path id="quartier_44000" attrib:AREA="1333643.750" attrib:NAMEN="Hard" d="M680082.4 -249378.7l1622.6 652.4l-108.1 972.5l-9 81.3l-1204.4 -702.5l284.4 -368l-702.6 -284.4l117.1 -351.3z" />
+        <path id="quartier_51000" attrib:AREA="731524.750" attrib:NAMEN="Gewerbeschule" d="M682257 -249295.1l384.8 351.3l434.9 376.4l-58.5 83.6l16.7 368l-1329.8 -610.5l552 -568.7z" />
+
+        <path id="quartier_72000" attrib:AREA="5483734.000" attrib:NAMEN="Hottingen" d="M684175.7 -247443.8l205.4 239.7l1404.1 -993.2l-239.8 -342.5l874.5 -697.3l2595 2405l-1962.6 -132.4l-445.2 -239.7l-171.3 -479.5l-513.7 102.7l137 445.2l-1570.2 663l-226 -86.8l-429.9 -165.2l205.5 -274l-137 -171.2l274 -274z" />
+        <path id="quartier_42000" attrib:AREA="1035310.188" attrib:NAMEN="Langstrasse" d="M681705 -248726.3l1329.8 610.5l-460 610.6l-977.9 -248.6l108.1 -972.5z" />
+        <path id="quartier_91000" attrib:AREA="4436625.000"  attrib:NAMEN="Albisrieden" d="M680254.5 -248220.2l-205.5 246.6l384.8 468.4l-685.9 501.8l66.9 100.4l-133.8 451.6l-791 470.4l-1420 -839l431.5 -715.3l274 -354.6l451.7 -301.1l518.5 -401.5l418.2 267.6l250.9 -217.5l439.7 322.1z" />
+        <path id="quartier_14000" attrib:AREA="713349.375" attrib:NAMEN="City" d="M683310.8 -248132.5l66.9 225.8l-225.8 0l-100.4 543.6l232.9 715.4l-95.4 44l-396.8 -508.5l-301.1 192.4l-142.2 -167.3l125.4 -150.5l100.4 -267.6l460 -610.6l-16.7 -368l58.5 -83.6l83.7 58.5l150.5 376.4z" />
+        <path id="quartier_34000" attrib:AREA="1680603.375" attrib:NAMEN="Sihlfeld" d="M680383.6 -248375.1l1204.4 702.5l660.7 693.7l-259.3 243l-250.9 -317.8l-267.6 -150.5l-786.2 150.5l-869.8 150.5l-66.9 -100.4l685.9 -501.8l-384.8 -468.4l205.5 -246.6l129.1 -154.8z" />
+        <path id="quartier_12000" attrib:AREA="506027.500" attrib:NAMEN="Hochschulen" d="M683570.1 -248191.1l125.4 242.5l150.6 -8.4l329.6 513l-274 274l137 171.2l-205.5 274l-79.1 97.6l-146.9 123.9l-104.2 -242.4l234.3 -115.7l8.4 -125.5l8.4 -384.7l-242.6 -526.9l-133.8 -8.4l-66.9 -225.8l259.3 -58.5z" />
+        <path id="quartier_13000" attrib:AREA="374397.656" attrib:NAMEN="Lindenhof" d="M683377.8 -247906.7l125.3 1161.1l-218.6 97.9l-232.9 -715.4l100.4 -543.6l225.8 0z" />
+        <path id="quartier_11000" attrib:AREA="279099.656" attrib:NAMEN="Rathaus" d="M683377.8 -247906.7l133.8 8.4l242.6 526.9l-8.4 384.7l-8.4 125.5l-234.3 115.7l-125.3 -1161.1z" />
+        <path id="quartier_41000" attrib:AREA="345930.031" attrib:NAMEN="Werd" d="M681596.9 -247753.9l977.9 248.6l-100.4 267.6l-125.4 150.5l-100.4 108.3l-660.7 -693.7l9 -81.3z" />
+
+        <path id="quartier_73000" attrib:AREA="2464579.000" attrib:NAMEN="Hirslanden" d="M687052.4 -246964.4l-479.4 684.9l-239.8 -205.5l-410.9 -68.5l-34.3 445.2l719.2 650.7l68.5 274l45.1 202.8l-449.2 -249.5l-518.5 -535.3l-920 -250.9l-344 -456.1l1570.2 -663l-137 -445.2l513.7 -102.7l171.3 479.5l445.2 239.7z" />
+        <path id="quartier_31000" attrib:AREA="1733964.750" attrib:NAMEN="Alt-Wiedikon" d="M680684.6 -247053.6l786.2 -150.5l267.6 150.5l250.9 317.8l-117.1 485.1l99.9 1132.5l-334.1 21.7l-150.6 -501.8l-234.2 66.9l-100.4 -384.7l-167.3 83.6l-234.2 -418.2l234.2 -217.5l-117.1 -117.1l-184 -468.4z" />
+        <path id="quartier_24000" attrib:AREA="1937363.000" attrib:NAMEN="Enge" d="M682248.6 -246978.8l100.4 -108.3l142.2 167.3l301.1 -192.4l396.8 508.5l-151.1 69.7l-54 321l-38.3 1031.6l-973.5 63.2l-99.9 -1132.5l117.1 -485.1l259.3 -243z" />
+        <path id="quartier_33000" attrib:AREA="5421115.500" attrib:NAMEN="Friesenberg" d="M679814.8 -246903.1l869.8 -150.5l184 468.4l117.1 117.1l-234.2 217.5l234.2 418.2l167.3 -83.6l100.4 384.7l234.2 -66.9l150.6 501.8l-167.3 317.8l33.4 468.4l-635.6 167.3l-479.2 661l-1187.4 -1694.9l-312 -804l791 -470.4l133.8 -451.6z" />
+        <path id="quartier_74000" attrib:AREA="5094620.500" attrib:NAMEN="Witikon" d="M689015 -246832l357 700l243 625l-2871.1 630.3l-23.1 -104.1l-45.1 -202.8l-68.5 -274l-719.2 -650.7l34.3 -445.2l410.9 68.5l239.8 205.5l479.4 -684.9l1962.6 132.4z" />
+        <path id="quartier_82000" attrib:AREA="596361.188" attrib:NAMEN="Muehlebach" d="M683833.2 -246724.6l429.9 165.2l43.1 267l957.8 1740.7l-151.4 33.2l-1358.4 -2108.5l79.1 -97.6z" />
+        <path id="quartier_81000" attrib:AREA="660178.750" attrib:NAMEN="Seefeld" d="M683754.1 -246627l1358.4 2108.5l-157.6 34.6l-473 -704l-455 -107l-276 -874l-143.8 -334.2l146.9 -123.9z" />
+        <path id="quartier_83000" attrib:AREA="1851607.625" attrib:NAMEN="Weinegg" d="M684489.1 -246472.6l344 456.1l920 250.9l518.5 535.3l449.2 249.5l23.1 104.1l-1479.9 324.9l-957.8 -1740.7l-43.1 -267l226 86.8z" />
+        <path id="quartier_21000" attrib:AREA="4469704.500" attrib:NAMEN="Wollishofen" d="M681972.2 -245118.2l973.5 -63.2l-14.7 394.4l534 1457l-500 608l-1313.7 600.4l-213.9 -1151.6l66.9 -1037.1l-33.4 -468.4l167.3 -317.8l334.1 -21.7z" />
+
+        <path id="quartier_23000" attrib:AREA="2438747.250" attrib:NAMEN="Leimbach" d="M680868.6 -244143l635.6 -167.3l-66.9 1037.1l213.9 1151.6l-1174.2 536.6l-87.6 -1897.1l479.2 -661z" />
+    </g>
+</svg>
+<!-- **************************************** -->   
+<!-- ************* MAP WINDOWS ************** -->
+<!-- **************************************** -->
+    <!-- ********** NAVIGATION WINDOW MAP ******* -->
+    <g id="navWindow" visibility="hidden">
+        <!-- OVERVIEW MAP  -->
+        <rect id="navBgRect" x="947" y="335" width="133" height="100" class="greyTranspFill lightGreyStroke normalline" pointer-events="none"/>
+            <svg id="referenceMap" x="951.3" y="341" width="104.5" height="66.5" viewBox="640150 -278000 88406 56000" onmousedown="myRefMapDragger.drag(evt)" onmousemove="myRefMapDragger.drag(evt)" onmouseup="myRefMapDragger.drag(evt);myMainMap.newViewBox('dragRectForRefMap')">
+
+                <!-- viewBox="476766.4 -301378.5 365636.2 231610" -->
+                <rect x="640150" y="-278000" width="88406" height="56000" class="nofill"/>
+                <g class="veryThickLine lightYellowFIll darkGreyStroke"> 
+                    <path attrib:COUNT="165" attrib:SUM_AREA="1093055053.4690" d="M667175 -253377l-1128 -1520l-482 -405l197 -1648l461 652l774 -342l733 1340l2177 -2455l705 -490l-167 -1142l-760 72l-395 84l-1231 191l-1149 -855l777 -1882l25 -540l523 -458l1265 220l1192 -275l700 -1840l412 134l357 65l432 -705l1059 660l200 539l288 490l2375 745l525 -485l-1613 -2525l-1737 -815l61 -1759l-864 -356l384 -808l1009 450l2883 -518l654 -246l853 -323l759 -433l-552 -722l-1418 421l-594 -496l-310 -1545l1575 -943l2287 -800l599 -1630l1694 106l2315 1473l389 615l-852 1394l-477 225l-833 622l-612 493l-168 1350l893 157l640 2343l647 -543l2568 1095l1155 1330l-445 1353l862 187l988 1703l-125 745l-2033 776l715 1243l508 966l617 -198l718 -537l1332 827l565 -2087l928 865l633 -484.7l38.3 -52.8l1390.7 1889.4l497.4 309.3l4.1 40l-162.5 1636.7l441 203l903 -1169l553.9 -226.9l947.1 -387.9l911.3 -373.2l579.8 873l832 819l68 754l-1972 855l585 2950l1565 227l2205 -1675l1045 2718l-582 1647l-2493 268l-1550 2215l163 1594l1064 -502l1280 977l-450 1143l-1357 733l3507 3525l245 442l1005 1383l863 1902l-566 1323l-1454 307l-988 1005l-623 510l-997 13l-1116 147l-1816 28l-1661 -661l-392 -624l-1471 -659l-401 -473l-482 -160l-864 -384l-2880 -1043l-1088 -775l-410 -535l-839 -1244l-920 -1445l-460 -530l-268 -633l-45 -499l-472 -1096l-597 -1516l-473 -704l-455 -107l-276 -874l-143.8 -334.2l-104.2 -242.4l-218.6 97.9l-95.4 44l-151.1 69.7l-54 321l-38.3 1031.6l-14.7 394.4l534 1457l375 415l633 1525l428 1533l829 1016l687 1329l276 900l321 383l321 758l2675 1311l641 249l321 -240l321 -9l607 330l267 383l410 686l1284 1159l1016 785l758 455l1025 1578l535 151l883 -499l1783 -330l2587 204l161 -792l925 -687l249 116l-151 508l-847 1079l740 178l-790 3231l-1545 40l-785 -500l-577 1175l-1895 180l-798 1605l-1395 102l-690 -1342l-20 -370l-794 -807l-58 -1058l-1473 -408l635 -1530l-3240 -1262l-845 -1087l-790 -85l-503 -1876l-1777 396l738 1413l-506 391l-3415 -4399l-2392 -1300l-66 1318l-441 -32l-413 1246l-1341 -377l-75 676l947 950l-225 436l754 938l-465 935l305 855l-703 250l-2560 -1615l-672 -2240l-210 -443l-1600 455l-300 -515l-685 -2197l-770 -2023l-230 -392l-1023 -1218l-1607 -725l-318 -1580l-963 83l-1337 -1498l48 -375l-118 -537l-1385 -1780l-630 -248l975 -1882l1660 120l1433 -165l-1108 -2238l-775 -125l-1265 -1197l730 -208l1923 -482l5 -108l-930 -1092M694467 -245430l-620 -1012l-1264 -1235l-663 82l-219 594l44 559l300 500l891 1146l514 162l971 1690l319 1018l407 -31l223 -483l462 -122l117 -676l-779 -426l-488 -416l-215 -1350z" />
+                    <path attrib:NAMEN="Z&#252;rich" attrib:GDE_NR="261" attrib:BEZ_NR="112" d="M684250 -253920l-78 1105l705 553l773 -480l5 965l1820 545l-1055 1995l2595 2405l357 700l243 625l-4660 1023l-473 -704l-455 -107l-276 -874l-249 -579l-464 214l-54 321l-53 1426l534 1457l-500 608l-2488 1137l-77 -1882l-1198 -1710l-312 -804l-1420 -839l445 -710l-1688 -667l2024 -2303l275 -859l-836 -548l379 -588l2138 -1820l4043 395z" />
+                    
+                </g>        
+                <g class="darkBlueStroke lightblueFill thickLine">  
+                    <path id="seen_Greifensee" attrib:NAME="Greifensee" d="M692583 -247677l1264 1235l620 1012l215 1350l488 416l779 426l-117 676l-462 122l-223 483l-407 31l-319 -1018l-971 -1690l-514 -162l-891 -1146l-300 -500l-44 -559l219 -594l663 -82z" />
+                    <path id="seen_Z&#252;richsee" attrib:NAME="Z&#252;richsee" d="M684955 -244484l597 1516l472 1096l45 499l268 633l460 530l920 1445l839 1244l410 535l1088 775l2880 1043l864 384l482 160l401 473l1471 659l392 624l1661 661l1816 -28l1116 -147l997 -13l623 -510l1499 269l198 747l-448 279l357 499l731 71l517 535l829 143l374 -125l-62 -303l128 -267l695 -63l496 383l723 80l211 245l1322 -325l1756 -820l2122 71l-27 232l-353 474l-21 257l-749 419l-1623 526l-927 312l-428 -339l-329 -89l-1052 250l-893 249l-623 197l-107 802l-303 357l-526 115l-651 -374l-1105 -27l-161 -499l-802 -232l-740 -178l847 -1079l151 -508l-249 -116l-925 687l-161 792l-2587 -204l-1783 330l-883 499l-535 -151l-1025 -1578l-758 -455l-1016 -785l-1284 -1159l-410 -686l-267 -383l-607 -330l-321 9l-321 240l-641 -249l-2675 -1311l-321 -758l-321 -383l-276 -900l-687 -1329l-829 -1016l-428 -1533l-633 -1525l-375 -415l-534 -1457l53 -1426l54 -321l464 -214l249 579l276 874l455 107l473 704z" />
+                </g>
+
+                
+                <rect id="dragRectForRefMap" x="640150" y="-278000" width="88406" height="56000"  class="nofill redlinecol superThickLine" />
+                <use id="myDragCross" x="600000" y="-200000" xlink:href="#myDragCrossSymbol" visibility="hidden" />
+            </svg>  
+        <!-- SLIDER  -->
+        <line id="sliderBgLine" x1="958.3" y1="423" x2="1068.3" y2="423" stroke-width="14" class="mediumGreyStroke"/>
+        <g id="mapZoomSlider"/>     
+        <!-- NAVIGATION ELEMENTS -->        
+        <g id="navigatorElements"  transform="translate(498.3 238)">
+            <use id="zoomIn" x="570" y="185" xlink:href="#magnifyerZoomInWo" onclick="zoomIt('in');" onmouseover="magnify(evt,1.2,'in');" onmouseout="magnify(evt,1,'in');"/>
+            <use id="zoomOut"  x="460" y="185" xlink:href="#magnifyerZoomOutWo" onclick="zoomIt('out');" onmouseover="magnify(evt,1.2,'out');" onmouseout="magnify(evt,1,'out');"/>
+
+            <use id="zoomFull" x="570" y="117" xlink:href="#magnifyerFull" onclick="zoomIt('full');" onmouseover="magnify(evt,1.2,'full');" onmouseout="magnify(evt,1,'full');"/>
+            <use id="zoomManual" x="570" y="150" xlink:href="#magnifyerManual" onclick="myMainMap.zoomManual()" onmouseover="magnify(evt,1.2,'manual');" onmouseout="magnify(evt,1,'manual');"/>
+        </g>        
+    </g>
+    <!-- ********** LEGEND WINDOW MAP ******* -->
+    <g id="legMapWindow" visibility="hidden">
+        <rect id="legendMap_rect" x="448.7" y="335" width="133" height="100" class="greyTranspFill lightGreyStroke normalline" pointer-events="none"/>
+        <g id="legendMap" transform="matrix(1 0 0 1 454 338)" class="darkGreyFill fontSize11 letterspacing1 allText"/>
+    </g>
+
+    <!-- ********** COLOR IN WINDOW MAP ******* -->
+    <g id="colMapWindow" visibility="hidden">
+        <rect x="581.7" y="335" width="133" height="100" class="greyTranspFill lightGreyStroke normalline" pointer-events="none"/>
+        <g> <!-- COLOUR PICKER -->
+            <g id="sliderHue" />
+            <g id="sliderVal" />
+            <rect id="colorRect" x="687" y="408" width="20" height="20" fill="rgb(255,128,0)" class="darkGreyStroke thinline"/>
+            <g class="darkGreyFill fontSize11 letterspacing1 allTex">                       
+                <text id="colorTextRGB" x="587" y="413">RGB: 255,128,0</text>
+
+                <text id="colorTextHSV" x="587" y="428">HSV: 30,100,100</text>
+            </g>        
+        </g>
+    </g>
+<!-- **************************************** -->   
+<!-- *********** DIAGRAM WINDOWS ************ -->
+<!-- **************************************** -->   
+    <g id="legDiaWindow" visibility="hidden">
+        <rect id="legendDiagr_rect" x="287" y="335" width="133" height="100" class="greyTranspFill lightGreyStroke normalline" pointer-events="none"/>
+        <g id="legendDiagr" transform="matrix(1 0 0 1 292 338)" class="darkGreyFill fontSize11 letterspacing1 allText"/>
+    </g>
+
+    <g id="colDiaWindow" visibility="hidden"/>
+    <!-- *****HEADER 4 WINDOWS ******* -->
+    <use xlink:href="#windowInMap" onclick="handleWindow(evt,'nav');" transform="translate(947.4 317)"/>
+    <use xlink:href="#windowInMap" onclick="handleWindow(evt,'legMap');" transform="translate(448.7 317)"/>
+    <use xlink:href="#windowInMap" onclick="handleWindow(evt,'colMap');" transform="translate(581.7 317)"/>
+    <use xlink:href="#windowInMap" onclick="handleWindow(evt,'legDia');" transform="translate(287 317)"/>
+    <!--<use xlink:href="#windowInMap" onclick="handleWindow(evt,'colDia');" transform="translate(169 302)"/>-->
+    <text id="windowsText" class="lightYellowFIll fontSize13 letterspacing2" pointer-events="none">
+        <tspan x="958.3" y="330">Navigation</tspan>
+
+        <tspan x="460" y="330">Legende</tspan>
+        <tspan x="593" y="330">Einfärbung</tspan>
+        <tspan x="300" y="330">Legende</tspan>
+        <!--<tspan x="181" y="315">Einfärbung</tspan>-->        
+    </text>
+    <a xlink:href="javascript:window.open('help.html').focus()">        
+        <rect x="20" y="317" class="mediumGreyFill lightGreyStroke normalline" width="133" height="17"/> 
+        <text class="lightYellowFIll fontSize13 letterspacing2" x="30" y="330" >Mehr Info?</text>
+
+    </a>
+<!-- **************************************** -->   
+<!-- ************** BASIC LAYOUT ************ -->
+<!-- **************************************** -->
+    <!-- ***************** TITEL **************** -->
+    <text id="title" transform="matrix(1 0 0 1 25 32)">
+        <tspan x="0" y="0" class="mediumGreyFill allText fontSize30 letterspacing2">Z&#xFC;rich zieht um</tspan>
+        <tspan x="1050" y="0" text-anchor="end" font-style="italic" class="mediumGreyFill allText fontSize21 letterspacing3">Umzugsdynamik der Stadt Z&#xFC;rich</tspan>
+
+    </text>
+    <!-- ***************** STATUS **************** -->
+    <text id="Help_Text" class="whitefill allText fontSize21 letterspacing2" x="20" y="810"  visibility="hidden">Statusbar: Karte ist fertig.</text>
+    <!-- ************** UNDERTITELS ************** -->
+    <text class="lightGreyFill fontSize13 letterspacing2" x="448" y="73">Einstellungen zu den Karten</text>
+    <text class="lightGreyFill fontSize13 letterspacing2" x="20" y="73">Quartiere der Stadt Z&#xFC;rich</text>
+    <text class="lightGreyFill fontSize13 letterspacing2" x="20" y="310">Sozialgeografischer Raum - Agglomeration Z&#xFC;rich</text>
+
+    <text class="lightGreyFill fontSize13 letterspacing2" x="448" y="310">Geografischer Raum - Agglomeration Z&#252;rich</text>
+<!-- **************************************** -->   
+<!-- ********** LOADING DATA SIGN *********** -->
+<!-- **************************************** -->
+    <g id="loadingData" visibility="hidden" transform="translate(420 300)" pointer-events="none">
+        <rect x="0" y="0" width="170" height="50" rx="2" ry="2" class="stInfoBox" />
+        <text x="15" y="35" class="stLoadingText">loading...</text>
+    </g> 
+<!-- **************************************** -->   
+
+<!-- ****** SETTING BOX (above main map) *** -->
+<!-- **************************************** -->
+<rect x="449" y="265" width="631" height="17" class="greyTranspFill nostroke"/>
+<rect x="448" y="80" width="633" height="203" class="whiteTranspFill lightGreyStroke normalline"/> 
+    <!-- ****** HEADER 4 SELECT. LISTS ********** -->
+    <text class="lightYellowFIll fontSize12 letterspacing2 allText" visibility="visible">
+        <tspan x="230" y="120">Quartiere</tspan>
+        <tspan x="480" y="120">Zeitraum</tspan>
+        <tspan x="480" y="180">Richtung</tspan>
+        <tspan x="681" y="105">Bev&#246;lkerungs-</tspan>
+
+        <tspan x="681" y="120">gruppen nach</tspan>
+        <tspan x="892" y="120">Klassierung</tspan>
+        <tspan x="892" y="180">Klassen</tspan>
+        <!--<tspan x="455" y="205"  text-anchor="end">Farbton (°)</tspan>-->
+    </text>
+    <!-- ****** SUMMARY OF SETTINGS ********** -->
+    <!--<rect x="478" y="237" class="mediumGreyFill lightGreyStroke normalline" width="556" height="17"/> -->
+
+    <!-- DEFAULT SETTINGS ... CHANGE WHEN DIFFERENT QUARTIER IS SHOWN AT THE START -->
+    <text id="summary" class="darkGreyFill fontSize13 letterspacing2 allText" visibility="visible">
+        <tspan id="sum1" x="460" y="280">Z&#xFC;rich, </tspan>
+        <tspan id="sum2" y="280">1992-2002, </tspan>
+        <tspan id="sum3" y="280">Richtung Wegzug, </tspan>
+        <tspan id="sum4" y="280">Total </tspan>
+
+        <tspan id="sum5" y="280"> </tspan>
+    </text>
+<!-- * GROUP DECLARATION 4 SELECTION BOXES ** -->
+    <g id="SelectionBox_groups" >   
+        <g id="selKlasse" visibility="visible"/>
+        <g id="selAnzahl" visibility="visible"/>    <!-- ANZAHL DER KLASSEN -->
+        <g id="selGruppDetail" visibility="hidden"/>    <!-- (IN ABH. VON BEV.GRUPPEN) -->
+        <g id="selBevgruppen" visibility="visible"/>    <!-- BEV.GRUPPEN -->
+
+        <g id="selRichtung" visibility="visible"/>  <!-- RICHTUNG -->
+        <g id="selZeitraum" visibility="visible"/>  <!-- ZEITRAUM -->
+        <g id="selQuartier" visibility="visible"/>  <!-- QUARTIERE -->
+    </g>    
+<!-- **************************************** -->   
+<!-- ************* IMPRESSUM **************** -->
+<!-- **************************************** -->
+<a><text class="lightGreyFill fontSize13 letterspacing2" text-anchor="end" x="1075" y="771" onclick="impressum('show')">Über dieses Projekt - Impressum</text></a>
+<g id="impress" visibility="hidden">
+
+    <rect x="-2500" y="-2500" width="5000" height="5000" class="whiteTransp"/>
+    <a><rect x="400" y="237.5" width="300" height="350" class="whitefill mediumGreyStroke normalline" onclick="impressum('hide')"/></a>
+    <text class="darkGreyFill fontSize13 letterspacing2 allText" pointer-events="none">
+        <tspan x="420" y="270" class="fontSize21 mediumGreyFill">IMPRESSUM</tspan>
+        <tspan x="420" y="320" class="fontSize11 mediumGreyFill">Quelle: </tspan>
+        <tspan x="690" y="320"  text-anchor="end">Statistik Stadt Z&#xFC;rich</tspan>       
+        <tspan x="420" y="360" class="fontSize11 mediumGreyFill">Konzept und Inhalt:</tspan>
+
+        <tspan x="690" y="360"  text-anchor="end">Corinna Heye</tspan>
+        <tspan x="690" y="380"  text-anchor="end">group sotomo</tspan>
+        <tspan x="690" y="400"  text-anchor="end">Dep. of Geography</tspan>
+        <tspan x="690" y="420"  text-anchor="end">University of Z&#252;rich (Irchel)</tspan>
+        <tspan x="420" y="460" class="fontSize11 mediumGreyFill">Kartografische Visualisierung und technische</tspan>
+        <tspan x="420" y="477" class="fontSize11 mediumGreyFill">Umsetzung (SVG, JavaScript, Perl):</tspan>
+
+        <tspan x="420" y="494" class="fontSize11 mediumGreyFill"> </tspan>
+        <tspan x="690" y="500"  text-anchor="end">Yvonne Isakowski</tspan>
+        <tspan x="690" y="520"  text-anchor="end">Andreas Neumann</tspan>
+        <tspan x="690" y="540"  text-anchor="end">Institute of Cartography</tspan>
+        <tspan x="686" y="560"  text-anchor="end">ETH Z&#252;rich</tspan>
+        <tspan x="420" y="577" class="fontSize11 mediumGreyFill">Z&#252;rich, June 2004</tspan>
+
+    </text>
+</g>    
+</svg>

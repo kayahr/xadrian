@@ -4801,7 +4801,7 @@
       <asteroid id="ASWA-61" ware="ore" yield="26" x="-65928" y="53973" z="-67802" />
     </asteroids>
   </sector>
-  <sector id="sec-16-11" x="16" y="11" race="kha'ak" planets="1" suns="150" core="false">
+  <sector id="sec-16-11" x="16" y="11" race="khaak" planets="1" suns="150" core="false">
     <stations>
       <station id="YTEDL-28" class="factory" type="tomahawkMissileManufacturingPlant-teladi" serial="alpha" x="0" y="0" z="0" />
       <station id="YTEIL-40" class="factory" type="phasedShockwaveGeneratorForge-paranid" serial="alpha" x="0" y="0" z="0" />
@@ -4918,7 +4918,7 @@
       <station id="YTECL-72" class="factory" type="clusterFlakArrayForge-argon" serial="alpha" x="0" y="0" z="0" />
       <station id="YTEHL-84" class="factory" type="reconDroneConstructionFacility-boron" serial="alpha" x="0" y="0" z="0" />
       <station id="YTECL-71" class="factory" type="lowYieldSidearmsFab-argon" serial="alpha" x="0" y="0" z="0" />
-      <station id="KDOWA-47" class="kha'akDock" type="kha'akStation" x="19635" y="0" z="9670" />
+      <station id="KDOWA-47" class="khaakDock" type="khaakStation" x="19635" y="0" z="9670" />
       <station id="YTEHL-83" class="factory" type="marineTrainingBarracksM-argon" serial="alpha" x="0" y="0" z="0" />
       <station id="YTECL-70" class="factory" type="computerPlant-argon" serial="alpha" x="0" y="0" z="0" />
       <station id="YTEHL-82" class="factory" type="flailMissileProductionFacility-split" serial="alpha" x="0" y="0" z="0" />
@@ -5652,9 +5652,9 @@
       <asteroid id="ASUA-09" ware="ore" yield="12" x="2029" y="3044" z="-21118" />
     </asteroids>
   </sector>
-  <sector id="sec-14-12" x="14" y="12" race="kha'ak" planets="1" suns="100" core="false">
+  <sector id="sec-14-12" x="14" y="12" race="khaak" planets="1" suns="100" core="false">
     <stations>
-      <station id="KDOTA-84" class="kha'akDock" type="kha'akStation" x="3292" y="5171" z="4624" />
+      <station id="KDOTA-84" class="khaakDock" type="khaakStation" x="3292" y="5171" z="4624" />
     </stations>
     <asteroids>
       <asteroid id="ASTA-20" ware="ore" yield="27" x="-42642" y="-2210" z="30179" />
@@ -5974,7 +5974,7 @@
       <asteroid id="ASQA-09" ware="ore" yield="3" x="-28768" y="-7485" z="39323" />
     </asteroids>
   </sector>
-  <sector id="sec-15-13" x="15" y="13" race="kha'ak" planets="1" suns="100" core="false">
+  <sector id="sec-15-13" x="15" y="13" race="khaak" planets="1" suns="100" core="false">
   </sector>
   <sector id="sec-17-13" x="17" y="13" race="teladi" planets="1" suns="150" core="false" east="sec-18-13" south="sec-17-14">
     <stations>

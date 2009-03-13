@@ -6,6 +6,7 @@
 
 package de.ailis.xadrian.data.factories;
 
+import java.awt.Color;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -77,11 +78,14 @@ public class RaceFactory
         try
         {
             final Document document = reader.read(url);
-            for (final Object item: document.getRootElement().elements("race"))
+            for (final Object item : document.getRootElement().elements("race"))
             {
                 final Element element = (Element) item;
                 final String id = element.attributeValue("id");
-                final Race race = new Race(id);
+                final String colorStr = element.attributeValue("color");
+                final Color color = new Color(Integer.parseInt(colorStr
+                    .substring(1), 16));
+                final Race race = new Race(id, color);
                 this.races.add(race);
                 this.raceMap.put(id, race);
             }
@@ -115,7 +119,7 @@ public class RaceFactory
     {
         final Collection<Race> races = new ArrayList<Race>();
         final FactoryFactory factory = FactoryFactory.getInstance();
-        for (final Race race: this.races)
+        for (final Race race : this.races)
         {
             if (factory.getFactories(race).size() > 0) races.add(race);
         }

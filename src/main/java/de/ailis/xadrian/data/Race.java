@@ -6,6 +6,7 @@
 
 package de.ailis.xadrian.data;
 
+import java.awt.Color;
 import java.io.Serializable;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -28,7 +29,10 @@ public class Race implements Serializable, Comparable<Race>
 
     /** The race id */
     private final String id;
-    
+
+    /** The race color */
+    private final Color color;
+
     /** The message id */
     private final String messageId;
 
@@ -38,11 +42,14 @@ public class Race implements Serializable, Comparable<Race>
      * 
      * @param id
      *            The race id
+     * @param color
+     *            The race color
      */
 
-    public Race(final String id)
+    public Race(final String id, final Color color)
     {
         this.id = id;
+        this.color = color;
         this.messageId = "race." + id;
     }
 
@@ -56,6 +63,18 @@ public class Race implements Serializable, Comparable<Race>
     public String getId()
     {
         return this.id;
+    }
+
+
+    /**
+     * Return the color.
+     * 
+     * @return The color
+     */
+
+    public Color getColor()
+    {
+        return this.color;
     }
 
 
@@ -96,22 +115,22 @@ public class Race implements Serializable, Comparable<Race>
         return new EqualsBuilder().append(this.id, other.id).isEquals();
     }
 
-    
+
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-    
+
     @Override
     public int compareTo(final Race o)
     {
         return getName().compareTo(o.getName());
     }
-    
-    
+
+
     /**
      * @see java.lang.Object#toString()
      */
-    
+
     @Override
     public String toString()
     {
