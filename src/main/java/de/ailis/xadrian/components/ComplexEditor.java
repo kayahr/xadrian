@@ -38,6 +38,7 @@ import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.actions.AddFactoryAction;
+import de.ailis.xadrian.actions.ChangeSectorAction;
 import de.ailis.xadrian.actions.ChangeSunsAction;
 import de.ailis.xadrian.actions.CopyAction;
 import de.ailis.xadrian.actions.SelectAllAction;
@@ -129,6 +130,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         popupMenu.add(new SelectAllAction(this));
         popupMenu.addSeparator();
         popupMenu.add(new AddFactoryAction(this));
+        popupMenu.add(new ChangeSectorAction(this));
         popupMenu.add(new ChangeSunsAction(this));
         popupMenu.add(new JCheckBoxMenuItem(new ToggleBaseComplexAction(this)));
         SwingUtils.setPopupMenu(this.textPane, popupMenu);
@@ -213,6 +215,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             TemplateFactory.processTemplate(template, model);
         this.textPane.setText(content);
         this.textPane.setCaretPosition(0);
+        this.textPane.requestFocus();
     }
 
 
@@ -815,7 +818,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     @Override
     public boolean canChangeSuns()
     {
-        return true;
+        return this.complex.getSector() == null;
     }
 
     
@@ -829,7 +832,6 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         return true;
     }
 
-
     
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#isAddBaseComplex()
@@ -839,5 +841,16 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public boolean isAddBaseComplex()
     {
         return this.complex.isAddBaseComplex();
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#canChangeSector()
+     */
+    
+    @Override
+    public boolean canChangeSector()
+    {
+        return true;
     }
 }

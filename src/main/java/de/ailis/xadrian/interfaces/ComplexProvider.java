@@ -51,6 +51,13 @@ public interface ComplexProvider
      */
 
     public void changeSuns();
+
+    
+    /**
+     * Change the sector
+     */
+
+    public void changeSector();
     
     
     /**
@@ -77,6 +84,15 @@ public interface ComplexProvider
      */
 
     public boolean canChangeSuns();
+
+    
+    /**
+     * Returns true if component can change the sector.
+     * 
+     * @return True if component can change the sector. False if not.
+     */
+
+    public boolean canChangeSector();
 
     
     /**

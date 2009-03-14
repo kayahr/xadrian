@@ -33,6 +33,7 @@ import javax.swing.event.EventListenerList;
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.actions.AboutAction;
 import de.ailis.xadrian.actions.AddFactoryAction;
+import de.ailis.xadrian.actions.ChangeSectorAction;
 import de.ailis.xadrian.actions.ChangeSunsAction;
 import de.ailis.xadrian.actions.CloseAction;
 import de.ailis.xadrian.actions.CloseAllAction;
@@ -117,7 +118,10 @@ public class MainFrame extends JFrame implements EditorStateListener,
     private final Action addFactoryAction = new AddFactoryAction(this);
 
     /** The "changeSuns" action */
-    private final Action setSunsAction = new ChangeSunsAction(this);
+    private final Action changeSunsAction = new ChangeSunsAction(this);
+
+    /** The "changeSector" action */
+    private final Action changeSectorAction = new ChangeSectorAction(this);
 
     /** The "select all" action */
     private final Action selectAllAction = new SelectAllAction(this);
@@ -205,7 +209,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
         // Create the 'Complex' menu
         final JMenu complexMenu = I18N.createMenu(menuBar, "complex");
         complexMenu.add(this.addFactoryAction);
-        complexMenu.add(this.setSunsAction);
+        complexMenu.add(this.changeSectorAction);
+        complexMenu.add(this.changeSunsAction);
         complexMenu.add(new JCheckBoxMenuItem(this.toggleBaseComplexAction));
 
         // Create the 'Help' menu
@@ -232,7 +237,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
         toolBar.add(this.printAction);
         toolBar.addSeparator();
         toolBar.add(this.addFactoryAction);
-        toolBar.add(this.setSunsAction);
+        toolBar.add(this.changeSectorAction);
+        toolBar.add(this.changeSunsAction);
         final JToggleButton btn =
             new JToggleButton(this.toggleBaseComplexAction);
         btn.setHideActionText(true);
@@ -818,5 +824,30 @@ public class MainFrame extends JFrame implements EditorStateListener,
         if (tab == null) return false;
         if (!(tab instanceof ComplexProvider)) return false;
         return ((ComplexProvider) tab).isAddBaseComplex();
+    }
+
+
+    /**
+     * @see ComplexProvider#canChangeSector()
+     */
+    
+    @Override
+    public boolean canChangeSector()
+    {
+        final Component tab = getCurrentTab();
+        if (tab == null) return false;
+        if (!(tab instanceof ComplexProvider)) return false;
+        return ((ComplexProvider) tab).canChangeSector();
+    }
+
+
+    /**
+     * @see ComplexProvider#changeSector()
+     */
+    
+    @Override
+    public void changeSector()
+    {
+        ((ComplexProvider) getCurrentTab()).changeSector();
     }
 }
