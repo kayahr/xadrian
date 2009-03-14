@@ -49,6 +49,9 @@ public class SelectSectorDialog extends ModalDialog
 
     /** The sector selector */
     private SectorSelector selector;
+    
+    /** The quick search text field */
+    private JTextField quickSearch;
 
 
     /**
@@ -94,6 +97,7 @@ public class SelectSectorDialog extends ModalDialog
         controlsPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
         controlsPanel.setLayout(new BoxLayout(controlsPanel, BoxLayout.X_AXIS));
         final JTextField quickSearch = new JTextField();
+        this.quickSearch = quickSearch;
         quickSearch.setColumns(15);
         quickSearch.addKeyListener(new KeyAdapter()
         {
@@ -179,4 +183,19 @@ public class SelectSectorDialog extends ModalDialog
     {
         this.selector.setSelected(sector);
     }
+    
+    
+
+
+    /**
+     * @see de.ailis.xadrian.support.ModalDialog#open()
+     */
+
+    @Override
+    public Result open()
+    {
+        this.quickSearch.requestFocus();
+        final Result result = super.open();
+        return result;
+    }    
 }
