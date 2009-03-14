@@ -307,8 +307,8 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the distance from this sector to the specified sector. If the
-     * destination sector is unreachable (because it can't be reached via
-     * gates) then -1 is returned.
+     * destination sector is unreachable (because it can't be reached via gates)
+     * then -1 is returned.
      * 
      * @param dest
      *            The destination sector
@@ -319,11 +319,11 @@ public class Sector implements Serializable, Comparable<Sector>
     {
         final Set<Sector> seen = new HashSet<Sector>();
         Set<Sector> todo = new HashSet<Sector>();
-        
+
         // We begin with the current sector and a distance of 0
         todo.add(this);
-        int count = 0;
-        
+        int distance = 0;
+
         // This loop is repeated until no more TODOs are present. If the
         // target sector is reached then the loop is exited with a return
         while (todo.size() > 0)
@@ -333,13 +333,13 @@ public class Sector implements Serializable, Comparable<Sector>
             {
                 // When we have reached our destination sector then return
                 // the distance traveled so far
-                if (dest.equals(sector)) return count;
-                
-                // Mark this sector as already seen                
+                if (dest.equals(sector)) return distance;
+
+                // Mark this sector as already seen
                 seen.add(sector);
-                
-                // Add the sectors which can reached from the current sector
-                // to the new to-do list if they are not already seen
+
+                // Add the sectors which can be reached from the current sector
+                // to the new TODOs list if they are not already seen
                 Sector tmp = sector.getNorth();
                 if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
                 tmp = sector.getEast();
@@ -349,14 +349,14 @@ public class Sector implements Serializable, Comparable<Sector>
                 tmp = sector.getSouth();
                 if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
             }
-            
+
             // In the next run process our new TODOs list
             todo = newTodo;
-            
+
             // Increment the distance
-            count++;
+            distance++;
         }
-        
+
         // No more TODOs and target sector was not reached
         return -1;
     }
