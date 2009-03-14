@@ -546,4 +546,31 @@ public class Factory implements Serializable, Comparable<Factory>
     {
         return getResourcesPerHour(Suns.P100, 25);
     }
+
+
+    /**
+     * Returns the manufacturer station which is nearest to the specified
+     * sector.
+     * 
+     * @param sector
+     *            The source sector
+     * @return The nearest manufacturer station
+     */
+
+    public Station getNearestManufacturer(final Sector sector)
+    {
+        int distance = 0;
+        Station nearest = null;
+
+        for (final Station station : this.manufacturers)
+        {
+            final int curDistance = sector.getDistance(station.getSector());
+            if (nearest == null || curDistance < distance)
+            {
+                nearest = station;
+                distance = curDistance;
+            }
+        }
+        return nearest;
+    }
 }

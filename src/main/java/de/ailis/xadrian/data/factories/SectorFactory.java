@@ -93,8 +93,23 @@ public class SectorFactory
                 final String eastId = element.attributeValue("east");
                 final String southId = element.attributeValue("south");
                 final String westId = element.attributeValue("west");
+                boolean shipyard = false;
+                final Element stationsElement = element.element("stations");
+                if (stationsElement != null)
+                {
+                    for (final Object stationItem : stationsElement.elements("station"))
+                    {
+                        final Element stationElement = (Element) stationItem;
+                        if (stationElement.attributeValue("class").equals(
+                            "bigShipyard"))
+                        {
+                            shipyard = true;
+                            continue;
+                        }
+                    }
+                }
                 final Sector sector = new Sector(id, x, y, race, planets, suns,
-                    core, northId, eastId, southId, westId);
+                    core, shipyard, northId, eastId, southId, westId);
                 this.sectors.add(sector);
                 this.sectorMap.put(id, sector);
             }
@@ -178,7 +193,7 @@ public class SectorFactory
      *            The Y coordinate
      * @return The sector at this coordinate or null if none
      */
-    
+
     public Sector getSector(final int x, final int y)
     {
         return getSector(String.format("sec-%d-%d", x, y));

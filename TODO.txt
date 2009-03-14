@@ -1,10 +1,6 @@
 * Add Yes/no-to-all option in close all action.
 * Let user change the buy/sell prices of wares per complex.
-* Implement "buy" list for factories (Grouped to the lowest number of sectors
-  to visit and display the needed total volume per sector)
 * Implement better way to select asteroids.
-* Implement selecting a target sector (For auto-setting the suns and for
-  easier asteroid selection). 
 * Dump: Remove ' from ids
 
 Website:

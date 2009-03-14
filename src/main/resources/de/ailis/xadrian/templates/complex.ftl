@@ -131,7 +131,7 @@
           <td class="quantity">
             ${complex.totalQuantity}
             [#if complex.kitQuantity > 0]
-            (+${complex.kitQuantity} [@message key="complex.kits" /])
+            (+${complex.kitQuantity})
             [/#if]
           </td>
           <td></td>
@@ -244,6 +244,91 @@
           <td class="volume">${complex.totalStorageVolume}</td>          
         </tr>        
       </table>
+
+      <h2>[@message key="complex.shoppingList" /]</h2>
+      [#if !complex.sector?? && !print]
+        <p>      
+          [@message key="complex.noNearestManufacturer" /]
+        </p>
+      [/#if]
+      <table>
+        <tr>
+          <th class="ware">[@message key="complex.factory" /]</th>
+          <th class="quantity">[@message key="complex.quantity" /]</th>
+          <th class="volume">[@message key="complex.factoryVolume" /]</th>
+          <th class="volume">[@message key="complex.totalFactoryVolume" /]</th>
+          [#if complex.sector??]
+          <th class="manufacturer">[@message key="complex.nearestManufacturer" /]</th>
+          [/#if]
+        </tr>
+        <tr>
+          [#if complex.sector??]
+          <td colspan="7"><hr /></td>
+          [#else]
+          <td colspan="6"><hr /></td>
+          [/#if]
+        </tr>
+        [#list complex.shoppingList.items as item]
+          [#if item_index %2 == 0]
+            [#assign class="even" /]
+          [#else]
+            [#assign class="odd" /]
+          [/#if]
+          <tr class="${class}">
+            <td class="factory">${item.factory}</td>
+            <td class="quantity">${item.quantity}</td>
+            <td class="volume">${item.volume}</td>
+            <td class="volume">${item.totalVolume}</td>
+            [#if complex.sector??]
+              <td class="manufacturer">${item.nearestManufacturer.sector}</td>
+            [/#if]
+          </tr>
+        [/#list]
+        <tr class="sep">
+          [#if complex.sector??]
+          <td colspan="7"></td>
+          [#else]
+          <td colspan="6"></td>
+          [/#if]
+        </tr>
+        [#if complex.shoppingList.kitQuantity > 0]
+          [#if complex.shoppingList.items?size % 2 == 0]
+            [#assign class="even" /]
+          [#else]
+            [#assign class="odd" /]
+          [/#if]
+          <tr class="${class}">
+            <td class="factory">[@message key="complex.kit" /]</td>
+            <td class="quantity">${complex.shoppingList.kitQuantity}</td>
+            <td class="volume">${complex.shoppingList.kitVolume}</td>
+            <td class="volume">${complex.shoppingList.totalKitVolume}</td>
+            [#if complex.sector??]            
+              <td class="manufacturer">
+                [#if complex.shoppingList.nearestShipyard??]
+                  ${complex.shoppingList.nearestShipyard}
+                [/#if]
+              </td>
+            [/#if]
+          </tr>
+        [/#if]
+        <tr>
+          [#if complex.sector??]
+          <td colspan="7"><hr /></td>
+          [#else]
+          <td colspan="6"><hr /></td>
+          [/#if]
+        </tr>
+        <tr>
+          <th class="factory">[@message key="complex.total" /]</th>
+          <td class="quantity">${complex.shoppingList.totalQuantity}</td>          
+          <td></td>      
+          <td class="volume">${complex.shoppingList.totalVolume}</td>
+          [#if complex.sector??]
+          <td></td>
+          [/#if]      
+        </tr>        
+      </table>
+
     [/#if]
   </body>
 </html>

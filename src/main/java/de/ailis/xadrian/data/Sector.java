@@ -14,6 +14,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import de.ailis.xadrian.data.factories.SectorFactory;
+import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 
 
@@ -65,6 +66,9 @@ public class Sector implements Serializable, Comparable<Sector>
     /** The message id */
     private final String messageId;
 
+    /** If this sector has a shipyard or not */
+    private final boolean shipyard;
+
 
     /**
      * Constructor
@@ -83,6 +87,8 @@ public class Sector implements Serializable, Comparable<Sector>
      *            The suns
      * @param core
      *            If this is a core sector or not
+     * @param shipyard
+     *            If this sector has a shipyard or not
      * @param northId
      *            The id of the sector behind the north gate
      * @param eastId
@@ -95,8 +101,8 @@ public class Sector implements Serializable, Comparable<Sector>
 
     public Sector(final String id, final int x, final int y, final Race race,
         final int planets, final Suns suns, final boolean core,
-        final String northId, final String eastId, final String southId,
-        final String westId)
+        final boolean shipyard, final String northId, final String eastId,
+        final String southId, final String westId)
     {
         this.id = id;
         this.messageId = "sector." + id;
@@ -104,6 +110,7 @@ public class Sector implements Serializable, Comparable<Sector>
         this.y = y;
         this.race = race;
         this.planets = planets;
+        this.shipyard = shipyard;
         this.core = core;
         this.suns = suns;
         this.northId = northId;
@@ -258,6 +265,18 @@ public class Sector implements Serializable, Comparable<Sector>
 
 
     /**
+     * Checks if this sector has a shipyard or not.
+     * 
+     * @return True if sector has a shipyard, false if not
+     */
+
+    public boolean hasShipyard()
+    {
+        return this.shipyard;
+    }
+
+
+    /**
      * Returns the sector behind the north gate.
      * 
      * @return The sector behind the north gate
@@ -359,5 +378,60 @@ public class Sector implements Serializable, Comparable<Sector>
 
         // No more TODOs and target sector was not reached
         return -1;
+    }
+
+
+    /**
+     * Returns the nearest sector with a shipyard. This method honors the
+     * ignored races the player has configured. It never considers a shipyard of
+     * the Xenon. If no shipyard was found then null is returned.
+     * 
+     * @return The nearest sector with a shipyard or null if none
+     */
+
+    public Sector getNearestShipyardSector()
+    {
+        final Config config = Config.getInstance();
+        final Set<Sector> seen = new HashSet<Sector>();
+        Set<Sector> todo = new HashSet<Sector>();
+
+        // We begin with the current sector
+        todo.add(this);
+
+        // This loop is repeated until no more TODOs are present. If the
+        // target sector is reached then the loop is exited with a return
+        while (todo.size() > 0)
+        {
+            final Set<Sector> newTodo = new HashSet<Sector>();
+            for (final Sector sector : todo)
+            {
+                // When we have reached a sector with a shipyard and the player
+                // can buy from it then return it.
+                if (sector.hasShipyard()
+                    && !sector.getRace().getId().equals("xenon")
+                    && !sector.getRace().getId().equals("terran")
+                    && !config.isRaceIgnored(sector.getRace())) return sector;
+
+                // Mark this sector as already seen
+                seen.add(sector);
+
+                // Add the sectors which can be reached from the current sector
+                // to the new TODOs list if they are not already seen
+                Sector tmp = sector.getNorth();
+                if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
+                tmp = sector.getEast();
+                if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
+                tmp = sector.getWest();
+                if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
+                tmp = sector.getSouth();
+                if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
+            }
+
+            // In the next run process our new TODOs list
+            todo = newTodo;
+        }
+
+        // No more TODOs and no shipyard was found
+        return null;
     }
 }

@@ -81,9 +81,16 @@ tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
 
 .quantity, .yield, .race, .container
 {
-	text-align: center;
-	margin: 0 0 0 10px;
-	white-space: nowrap;
+    text-align: center;
+    margin: 0 0 0 10px;
+    white-space: nowrap;
+}
+
+.manufacturer
+{
+    text-align: left;
+    margin: 0 0 0 10px;
+    white-space: nowrap;
 }
 
 .price, .units, .missing, .surplus, .balanced, .profit, .volume, .units

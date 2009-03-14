@@ -39,7 +39,10 @@ public class Complex implements Serializable
     private static final long serialVersionUID = 2128684141345704703L;
 
     /** The single price of a complex construction kit */
-    private static final int KIT_PRICE = 259696;
+    public static final int KIT_PRICE = 259696;
+
+    /** The volume of a complex construction kit */
+    public static final int KIT_VOLUME = 4250;
 
     /** The complex counter for the complex name generator */
     private static int complexCounter = 0;
@@ -385,7 +388,7 @@ public class Complex implements Serializable
         final Element root = document.addElement("complex");
         root.addAttribute("suns", Integer.toString(getSuns().getPercent()));
         if (this.sector != null)
-            root.addAttribute("sector", this.sector.getId()); 
+            root.addAttribute("sector", this.sector.getId());
         root.addAttribute("addBaseComplex", Boolean
             .toString(this.addBaseComplex));
         for (final ComplexFactory factory : this.factories)
@@ -417,7 +420,8 @@ public class Complex implements Serializable
         final SectorFactory sectorFactory = SectorFactory.getInstance();
         complex.setSuns(Suns.valueOf(Integer.parseInt(root
             .attributeValue("suns"))));
-        complex.setSector(sectorFactory.getSector(root.attributeValue("sector")));
+        complex.setSector(sectorFactory
+            .getSector(root.attributeValue("sector")));
         complex.setAddBaseComplex(Boolean.parseBoolean(root
             .attributeValue("addBaseComplex")));
         for (final Object item : root.elements("complexFactory"))
@@ -853,5 +857,25 @@ public class Complex implements Serializable
     public Sector getSector()
     {
         return this.sector;
+    }
+
+
+    /**
+     * Returns the factory shopping list.
+     * 
+     * @return The factory shopping list
+     */
+
+    public ShoppingList getShoppingList()
+    {
+        final ShoppingList list = new ShoppingList(this.sector == null ? null
+            : this.sector.getNearestShipyardSector());
+        for (final ComplexFactory factory : this.factories)
+        {
+            list.addItem(new ShoppingListItem(factory.getFactory(), factory
+                .getQuantity(), this.sector == null ? null : factory
+                .getFactory().getNearestManufacturer(this.sector)));
+        }
+        return list;
     }
 }
