@@ -21,6 +21,7 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 import de.ailis.xadrian.data.factories.FactoryFactory;
+import de.ailis.xadrian.data.factories.SectorFactory;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.MultiCollection;
 
@@ -54,6 +55,9 @@ public class Complex implements Serializable
 
     /** The sun power in percent */
     private Suns suns = Suns.P100;
+
+    /** The sector where this complex is build */
+    private Sector sector = null;
 
     /** If base complex should be calculated or not */
     private boolean addBaseComplex = false;
@@ -208,7 +212,7 @@ public class Complex implements Serializable
         final Complex other = (Complex) obj;
         return new EqualsBuilder().append(this.name, other.name).append(
             this.factories, other.factories).append(this.suns, other.suns)
-            .isEquals();
+            .append(this.sector, other.sector).isEquals();
     }
 
 
@@ -324,6 +328,7 @@ public class Complex implements Serializable
 
     public Suns getSuns()
     {
+        if (this.sector != null) return this.sector.getSuns();
         return this.suns;
     }
 
@@ -378,7 +383,9 @@ public class Complex implements Serializable
     {
         final Document document = DocumentHelper.createDocument();
         final Element root = document.addElement("complex");
-        root.addAttribute("suns", Integer.toString(this.suns.getPercent()));
+        root.addAttribute("suns", Integer.toString(getSuns().getPercent()));
+        if (this.sector != null)
+            root.addAttribute("sector", this.sector.getId()); 
         root.addAttribute("addBaseComplex", Boolean
             .toString(this.addBaseComplex));
         for (final ComplexFactory factory : this.factories)
@@ -407,8 +414,10 @@ public class Complex implements Serializable
         final Element root = document.getRootElement();
         final Complex complex = new Complex();
         final FactoryFactory factoryFactory = FactoryFactory.getInstance();
+        final SectorFactory sectorFactory = SectorFactory.getInstance();
         complex.setSuns(Suns.valueOf(Integer.parseInt(root
             .attributeValue("suns"))));
+        complex.setSector(sectorFactory.getSector(root.attributeValue("sector")));
         complex.setAddBaseComplex(Boolean.parseBoolean(root
             .attributeValue("addBaseComplex")));
         for (final Object item : root.elements("complexFactory"))
@@ -451,7 +460,7 @@ public class Complex implements Serializable
         final Map<String, Product> products = new HashMap<String, Product>();
         for (final ComplexFactory factory : getAllFactories())
         {
-            final Product product = factory.getProductPerHour(this.suns);
+            final Product product = factory.getProductPerHour(getSuns());
             final Ware ware = product.getWare();
             final Product mapProduct = products.get(ware.getId());
             if (mapProduct == null)
@@ -477,7 +486,7 @@ public class Complex implements Serializable
         for (final ComplexFactory factory : getAllFactories())
         {
             for (final Product resource : factory
-                .getResourcesPerHour(this.suns))
+                .getResourcesPerHour(getSuns()))
             {
                 final Ware ware = resource.getWare();
                 final Product mapResource = resources.get(ware.getId());
@@ -672,7 +681,7 @@ public class Complex implements Serializable
         {
             if (complexFactory.getFactory().getProduct().getWare().equals(ware))
             {
-                need += complexFactory.getProductPerHour(this.suns)
+                need += complexFactory.getProductPerHour(getSuns())
                     .getQuantity();
                 this.autoFactories.remove(complexFactory);
             }
@@ -694,7 +703,7 @@ public class Complex implements Serializable
 
         // Get the smallest possible production quantity
         final double minProduction = factories.get(sizes[0]).getProductPerHour(
-            this.suns, 0).getQuantity();
+            getSuns(), 0).getQuantity();
 
         // Iterate the available sizes (from largest to smallest) and add
         // the factories producing an adequate number of products
@@ -702,7 +711,7 @@ public class Complex implements Serializable
         {
             final FactorySize size = sizes[i];
             final Factory factory = factories.get(size);
-            final double product = factory.getProductPerHour(this.suns, 0)
+            final double product = factory.getProductPerHour(getSuns(), 0)
                 .getQuantity();
 
             // Calculate the number of factories of the current size needed
@@ -814,5 +823,35 @@ public class Complex implements Serializable
         for (final Capacity capacity : getCapacities())
             total += capacity.getVolume();
         return total;
+    }
+
+
+    /**
+     * Sets the sector in which to build this complex
+     * 
+     * @param sector
+     *            The sector to set
+     */
+
+    public void setSector(final Sector sector)
+    {
+        if ((sector != null && !sector.equals(this.sector))
+            || (sector == null && this.sector != null))
+        {
+            this.sector = sector;
+            calculateBaseComplex();
+        }
+    }
+
+
+    /**
+     * Returns the sector in which this complex is build.
+     * 
+     * @return The sector
+     */
+
+    public Sector getSector()
+    {
+        return this.sector;
     }
 }

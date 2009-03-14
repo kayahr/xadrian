@@ -27,7 +27,6 @@ import javax.swing.border.BevelBorder;
 import de.ailis.xadrian.components.SectorSelector;
 import de.ailis.xadrian.components.SectorSelector.Mode;
 import de.ailis.xadrian.data.Sector;
-import de.ailis.xadrian.listeners.SectorSelectorStateListener;
 import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
@@ -40,8 +39,7 @@ import de.ailis.xadrian.support.ModalDialog;
  * @version $Revision: 800 $
  */
 
-public class SelectSectorDialog extends ModalDialog implements
-    SectorSelectorStateListener
+public class SelectSectorDialog extends ModalDialog
 {
     /** Serial version UID */
     private static final long serialVersionUID = -3589101588161573682L;
@@ -79,7 +77,6 @@ public class SelectSectorDialog extends ModalDialog implements
             .createBevelBorder(BevelBorder.LOWERED));
         final SectorSelector selector = new SectorSelector(512, 512);
         this.selector = selector;
-        selector.addSectorSelectorStateListener(this);
         selector.addMouseListener(new MouseAdapter()
         {
             /** @see MouseAdapter#mouseClicked(MouseEvent) */
@@ -146,17 +143,6 @@ public class SelectSectorDialog extends ModalDialog implements
         add(contentPanel, BorderLayout.CENTER);
     }
 
-    /**
-     * @see de.ailis.xadrian.support.ModalDialog#open()
-     */
-
-    @Override
-    public Result open()
-    {
-        setResultEnabled(Result.OK, this.getSelected() != null);
-        return super.open();
-    }
-
 
     /**
      * Returns the singleton instance
@@ -169,6 +155,7 @@ public class SelectSectorDialog extends ModalDialog implements
         return instance;
     }
 
+    
     /**
      * Returns the selected sector.
      * 
@@ -191,27 +178,5 @@ public class SelectSectorDialog extends ModalDialog implements
     public void setSelected(final Sector sector)
     {
         this.selector.setSelected(sector);
-    }
-
-
-    /**
-     * @param args
-     * @throws Exception
-     */
-    public static void main(final String args[]) throws Exception
-    {
-        SelectSectorDialog.getInstance().open();
-        System.exit(0);
-    }
-
-
-    /**
-     * @see SectorSelectorStateListener#sectorSelectorChanged(SectorSelector)
-     */
-
-    @Override
-    public void sectorSelectorChanged(final SectorSelector sender)
-    {
-        setResultEnabled(Result.OK, this.getSelected() != null);
     }
 }

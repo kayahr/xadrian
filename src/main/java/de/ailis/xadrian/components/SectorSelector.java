@@ -449,9 +449,13 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     public void setSelected(final Sector sector)
     {
-        this.selectedSector = sector;
-        repaint();
-        fireSectorSelectorState();
+        if ((sector != null && !sector.equals(this.selectedSector))
+            || (sector == null && this.selectedSector != null))
+        {
+            this.selectedSector = sector;
+            repaint();
+            fireSectorSelectorState();
+        }
     }
 
 
@@ -482,7 +486,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         this.listenerList.remove(SectorSelectorStateListener.class, listener);
     }
 
-    
+
     /**
      * Fire the sector selector state event.
      */

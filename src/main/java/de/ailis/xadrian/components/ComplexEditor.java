@@ -48,6 +48,7 @@ import de.ailis.xadrian.dialogs.AddFactoryDialog;
 import de.ailis.xadrian.dialogs.OpenComplexDialog;
 import de.ailis.xadrian.dialogs.QuantityDialog;
 import de.ailis.xadrian.dialogs.SaveComplexDialog;
+import de.ailis.xadrian.dialogs.SelectSectorDialog;
 import de.ailis.xadrian.dialogs.SunsDialog;
 import de.ailis.xadrian.dialogs.YieldDialog;
 import de.ailis.xadrian.freemarker.TemplateFactory;
@@ -254,6 +255,10 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             {
                 changeSuns();
             }
+            else if ("changeSector".equals(action))
+            {
+                changeSector();
+            }
         }
     }
 
@@ -277,6 +282,23 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     }
 
 
+    /**
+     * Sets the sector.
+     */
+
+    public void changeSector()
+    {
+        final SelectSectorDialog dialog = SelectSectorDialog.getInstance();
+        dialog.setSelected(this.complex.getSector());
+        if (dialog.open() == Result.OK)
+        {
+            this.complex.setSector(dialog.getSelected());
+            doChange();
+            redraw();
+        }
+    }
+    
+    
     /**
      * Removes the factory with the specified index.
      * 

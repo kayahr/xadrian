@@ -12,15 +12,26 @@
   [/#if]  
   <body class="${class}">
     <h1>${complex.name}</h1>
+    <p>
+      [@message key="complex.sector" /]:
+      [#if !print]<a href="file://changeSector">[/#if]
+      [#if complex.sector??]
+        ${complex.sector}
+      [#else]
+        [@message key="complex.noSector" /]
+      [/#if]
+      [#if !print]</a>[/#if]
+    
+      <br />
+    
+      [@message key="complex.suns" /]:
+      [#if !print && !complex.sector??]<a href="file://changeSuns">[/#if]
+      ${complex.suns}
+      [#if !print && !complex.sector??]</a>[/#if]
+    </p>
     [#if complex.factories?size == 0]
       <p>[@message key="complex.noFactories" /]</p>
     [#else]
-      <p>
-        [@message key="complex.suns" />:
-        [#if !print]<a href="file://changeSuns">[/#if]
-        ${complex.suns}
-        [#if !print]</a>[/#if]
-      </p>
       <table class="complex">
         <tr>
           <th class="factory">[@message key="complex.factory" /]</th>

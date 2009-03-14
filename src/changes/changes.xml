@@ -5,7 +5,11 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.1.0" date="2009-03-09" desc="Minor update">
+    <release version="1.1.0" date="2009-03-14" desc="Minor update">
+      <action dev="k" type="add" date="2009-03-14">
+        Complex can now be connected to a sector. The suns are then determined
+        automatically.
+      </action>
       <action dev="k" type="add" date="2009-03-09">
         Added storage capacity information to add-factory dialog and added
         storage capacity statistics to complex view.
