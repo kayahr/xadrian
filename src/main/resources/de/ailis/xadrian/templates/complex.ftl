@@ -254,6 +254,7 @@
       <table>
         <tr>
           <th class="ware">[@message key="complex.factory" /]</th>
+          <th class="race">[@message key="complex.race" /]</th>
           <th class="quantity">[@message key="complex.quantity" /]</th>
           <th class="volume">[@message key="complex.factoryVolume" /]</th>
           <th class="volume">[@message key="complex.totalFactoryVolume" /]</th>
@@ -263,9 +264,9 @@
         </tr>
         <tr>
           [#if complex.sector??]
-          <td colspan="7"><hr /></td>
-          [#else]
           <td colspan="6"><hr /></td>
+          [#else]
+          <td colspan="5"><hr /></td>
           [/#if]
         </tr>
         [#list complex.shoppingList.items as item]
@@ -276,6 +277,7 @@
           [/#if]
           <tr class="${class}">
             <td class="factory">${item.factory}</td>
+            <td class="race">${item.factory.race}</td>
             <td class="quantity">${item.quantity}</td>
             <td class="volume">${item.volume}</td>
             <td class="volume">${item.totalVolume}</td>
@@ -286,9 +288,9 @@
         [/#list]
         <tr class="sep">
           [#if complex.sector??]
-          <td colspan="7"></td>
-          [#else]
           <td colspan="6"></td>
+          [#else]
+          <td colspan="5"></td>
           [/#if]
         </tr>
         [#if complex.shoppingList.kitQuantity > 0]
@@ -298,7 +300,7 @@
             [#assign class="odd" /]
           [/#if]
           <tr class="${class}">
-            <td class="factory">[@message key="complex.kit" /]</td>
+            <td class="factory" colspan="2">[@message key="complex.kit" /]</td>
             <td class="quantity">${complex.shoppingList.kitQuantity}</td>
             <td class="volume">${complex.shoppingList.kitVolume}</td>
             <td class="volume">${complex.shoppingList.totalKitVolume}</td>
@@ -313,13 +315,14 @@
         [/#if]
         <tr>
           [#if complex.sector??]
-          <td colspan="7"><hr /></td>
-          [#else]
           <td colspan="6"><hr /></td>
+          [#else]
+          <td colspan="5"><hr /></td>
           [/#if]
         </tr>
         <tr>
           <th class="factory">[@message key="complex.total" /]</th>
+          <td></td>
           <td class="quantity">${complex.shoppingList.totalQuantity}</td>          
           <td></td>      
           <td class="volume">${complex.shoppingList.totalVolume}</td>

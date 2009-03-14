@@ -876,6 +876,12 @@ public class Complex implements Serializable
                 .getQuantity(), this.sector == null ? null : factory
                 .getFactory().getNearestManufacturer(this.sector)));
         }
+        for (final ComplexFactory factory : this.autoFactories)
+        {
+            list.addItem(new ShoppingListItem(factory.getFactory(), factory
+                .getQuantity(), this.sector == null ? null : factory
+                .getFactory().getNearestManufacturer(this.sector)));
+        }
         return list;
     }
 }
