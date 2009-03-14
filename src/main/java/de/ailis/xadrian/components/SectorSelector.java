@@ -6,10 +6,16 @@
 
 package de.ailis.xadrian.components;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.SortedSet;
 
@@ -17,6 +23,7 @@ import javax.swing.JComponent;
 
 import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.factories.SectorFactory;
+import de.ailis.xadrian.support.TextRenderer;
 
 
 /**
@@ -27,7 +34,7 @@ import de.ailis.xadrian.data.factories.SectorFactory;
  * @version $Revision: 767 $
  */
 
-public class SectorSelector extends JComponent
+public class SectorSelector extends JComponent implements MouseMotionListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = 42133575643122689L;
@@ -37,6 +44,9 @@ public class SectorSelector extends JComponent
     
     /** The scale factor of the map */
     private final float scale;
+    
+    /** The sector over which the mouse cursor hovers */
+    private Sector overSector;
     
 
     /**
@@ -75,9 +85,12 @@ public class SectorSelector extends JComponent
         setPreferredSize(new Dimension(width, height));
         setMinimumSize(getPreferredSize());
         setMaximumSize(getPreferredSize());
+        System.out.println("Go");
+        
+     addMouseMotionListener(this);   
     }
 
-
+    
     /**
      * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
      */
@@ -101,6 +114,9 @@ public class SectorSelector extends JComponent
 
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, width, height);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g.setStroke(new BasicStroke(1.0f / this.scale));
 
         g.scale(this.scale, this.scale);
         g.translate(75, 75);
@@ -114,19 +130,100 @@ public class SectorSelector extends JComponent
             
             g.setColor(new Color(0x606060));
             if (sector.getSouth() != null)
-                g.fillRect(sx * 100 - 20, sy * 100 + 40, 40, 10);
+                g.fillRect(sx * 100 - 20, sy * 100 + 40, 40, 11);
             if (sector.getNorth() != null)
-                g.fillRect(sx * 100 - 20, sy * 100 - 50, 40, 10);
+                g.fillRect(sx * 100 - 20, sy * 100 - 51, 40, 11);
             if (sector.getWest() != null)
-                g.fillRect(sx * 100 - 50, sy * 100 - 20, 10, 40);
+                g.fillRect(sx * 100 - 51, sy * 100 - 20, 11, 40);
             if (sector.getEast() != null)
-                g.fillRect(sx * 100 + 40, sy * 100 - 20, 10, 40);
+                g.fillRect(sx * 100 + 40, sy * 100 - 20, 11, 40);
 
             g.setColor(new Color(0x808080));
             g.drawRect(sx * 100 - 40, sy * 100 - 40, 80, 80);
         }
+        
+        // Emphasize the hovered sector
+        if (this.overSector != null)
+        {
+            final int sx = this.overSector.getX();
+            final int sy = this.overSector.getY();
+            g.setColor(Color.BLACK);
+            g.setStroke(new BasicStroke(5.0f / this.scale));
+            g.drawRoundRect(sx * 100 - 60, sy * 100 - 60, 120, 120, 20, 20);
+            g.setColor(Color.RED);
+            g.setStroke(new BasicStroke(3.0f / this.scale));
+            g.drawRoundRect(sx * 100 - 60, sy * 100 - 60, 120, 120, 20, 20);
+            
+            // Create the sector info text
+            final Color titleColor = new Color(0x40, 0x40, 0x40);
+            final Color detailColor = new Color(0x50, 0x50, 0x50);
+            final TextRenderer textRenderer = new TextRenderer();
+            textRenderer.setFont(new Font("Arial", Font.BOLD, 12).deriveFont(12f / this.scale));
+            textRenderer.setColor(titleColor);
+            textRenderer.addText(this.overSector.getName());
+            textRenderer.newLine();
+            textRenderer.setFont(new Font("Arial", Font.BOLD, 10).deriveFont(10f / this.scale));
+            textRenderer.setColor(detailColor);
+            textRenderer.addText("Location: ");
+            textRenderer.addText(String.format("%d; %d", this.overSector.getX(), this.overSector.getY()));
+            textRenderer.newLine();            
+            textRenderer.addText("Race: ");
+            textRenderer.addText(this.overSector.getRace().toString());
+            textRenderer.newLine();
+            textRenderer.addText("Suns: ");
+            textRenderer.addText(this.overSector.getSuns().toString());
+            textRenderer.newLine();
 
-        g.setColor(Color.RED);
+            // Position the sector info text
+            final Rectangle2D bounds = textRenderer.getBounds(g.getFontRenderContext());
+            final int borderX = (int) (10 / this.scale);
+            final int borderY = (int) (5 / this.scale);
+            final int infoWidth = (int) (bounds.getWidth() + borderX * 2);
+            final int infoHeight = (int) (bounds.getHeight() + borderY * 2);
+            int infoLeft = sx * 100 - infoWidth / 2;
+            int infoTop = sy * 100 + 100;
+            if (infoTop + infoHeight > height / this.scale - 100)
+                infoTop = sy * 100 - 100 - infoHeight;
+            if (infoLeft < -50) infoLeft = -50;           
+            if (infoLeft + infoWidth > width / this.scale - 100)
+                infoLeft = (int) (width / this.scale) - 100 - infoWidth;
+            
+            // Render the sector info text
+            g.setColor(new Color(255, 255, 255, 200));
+            g.fillRoundRect(infoLeft, infoTop, infoWidth, infoHeight, 30, 30);
+            textRenderer.render(g, infoLeft + borderX, infoTop + borderY);
+        }
+
         graphics.drawImage(this.buffer, 0, 0, null);
+    }
+
+    /**
+     * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
+     */
+    
+    @Override
+    public void mouseDragged(final MouseEvent e)
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /**
+     * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
+     */
+    
+    @Override
+    public void mouseMoved(final MouseEvent e)
+    {
+        
+        final int sx = Math.round(((e.getX() / this.scale) - 75) / 100);
+        final int sy = Math.round(((e.getY() / this.scale) - 75) / 100);
+        
+        final Sector sector = SectorFactory.getInstance().getSector(sx, sy);
+        if (sector != this.overSector)
+        {
+            this.overSector = sector;
+            repaint();
+        }
     }
 }

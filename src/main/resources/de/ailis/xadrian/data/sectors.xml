@@ -6558,6 +6558,8 @@
       <asteroid id="ASFA-69" ware="ore" yield="23" x="-7100" y="-1560" z="26444" />
     </asteroids>
   </sector>
+  <!--
   <sector id="sec-23-19" x="23" y="19" race="unknown" planets="0" suns="0" core="false">
   </sector>
+  -->
 </sectors>
