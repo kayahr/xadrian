@@ -15,6 +15,9 @@
         Complex can now be connected to a sector. The suns are then determined
         automatically.
       </action>
+      <action dev="k" type="add" date="2009-03-14">
+        Quantity of mines can now be changed.
+      </action>
       <action dev="k" type="add" date="2009-03-09">
         Added storage capacity information to add-factory dialog and added
         storage capacity statistics to complex view.
