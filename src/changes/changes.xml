@@ -44,10 +44,13 @@
       </action>
       <action dev="k" type="fix" date="2009-03-05">
         Fixed conflict with LANG variable of unix locale system. Language
-        can now be enforced with the LANGUAGE variable instead.
+        can now be enforced with the XADRIAN_LANG variable instead.
       </action>
     </release>
     <release version="1.0.0" date="2009-03-04" desc="Initial release">
+      <action dev="k" type="add" date="2009-03-04">
+        Initial release.
+      </action>
     </release>
   </body>
 </document>

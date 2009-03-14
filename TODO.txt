@@ -2,8 +2,3 @@
 * Let user change the buy/sell prices of wares per complex.
 * Implement better way to select asteroids.
 * Dump: Remove ' from ids
-
-Website:
-  * Add FAQ page:
-    * How to switch the language
-    * Why is the result different to cartman?

@@ -27,10 +27,7 @@ Anleitung
   Fabriken wieder aus dem Komplex entfernt werden.
 
   Um die Anzahl einer Fabrik zu ändern, einfach auf die Anzahl (welche als
-  Link dargestellt ist) klicken und eine neue Anzahl auswählen. Bei Minen kann
-  die Anzahl nicht verändert werden. Da jede Mine eine bestimmte Ausbeute hat
-  lassen sich diese nicht in einen einzelnen Eintrag gruppieren. Daher muss jede
-  Mine einzeln zum Komplex hinzugefügt werden.
+  Link dargestellt ist) klicken und eine neue Anzahl auswählen.
   
   Um die Ausbeute bei einer Mine zu ändern, einfach auf den Ausbeute-Wert klicken
   und einen neuen Wert eingeben.
@@ -38,7 +35,10 @@ Anleitung
   Die Sonnenstärke kann mit einem Klick auf den Prozent-Wert oben in der
   Komplex-Ansicht geändert werden. Dies beinflusst die Effektivität von
   Kraftwerken. Daher ist es eine gute Idee hier immer den korrekten Wert des
-  Sektors anzugeben, in dem der Komplex später gebaut werden soll. 
+  Sektors anzugeben, in dem der Komplex später gebaut werden soll.
+  
+  Alternativ kann auch ein Sektor für den Komplex gewählt werden. Die
+  Sonnenstärke wird dann automatisch ermittelt.
 
   Xadrian kann automatisch einen Grundkomplex berechnen und zum Komplex
   hinzufügen. Das bedeutet dass Xadrian dann fehlende Fabriken hinzufügt, damit

@@ -1,0 +1,27 @@
+ -----------------------------------------------------------------------------
+ FAQ
+ -----------------------------------------------------------------------------
+
+FAQ
+
+* Why is the base complex calculated by Xadrian different to other factory complex calculators?
+
+  Xadrian uses an algorithm which concentrates on keeping the number of
+  factories as low as possible. This can result in a slightly higher 
+  resource surplus compared to other complex calculators which may use a
+  different algorithm. In most cases this is a good thing. Fewer factories
+  means a lower total price and slightly higher surplus means that the
+  storages are filled in less time and the complex can run smoother. In some
+  cases the resulting complex is slightly more expensive but remember that
+  you have to build less factories which means spending less time. And time
+  is money. 
+    
+* How can I change the language of Xadrian?
+
+  Xadrian automatically uses the language of the operating system. If for
+  some reason you want to force Xadrian to use a specific language you can
+  set the environment variable <<XADRIAN_LANG>> to <<en>> or <<de>>. Consult
+  the manual of your operating system if you don't know how to set
+  environment variables.
+
+  

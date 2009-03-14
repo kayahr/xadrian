@@ -32,10 +32,10 @@ public class Main
 
     public static void main(final String[] args) throws Exception
     {
-        final String language = System.getenv().get("LANGUAGE");
+        final String language = System.getenv().get("XADRIAN_LANG");
         if (language != null) Locale.setDefault(new Locale(language));
 
-        final String sysThemeStr = System.getenv().get("SYSTHEME");
+        final String sysThemeStr = System.getenv().get("XADRIAN_SYSTHEME");
         if (sysThemeStr == null || Boolean.parseBoolean(sysThemeStr))
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         new MainFrame().setVisible(true);

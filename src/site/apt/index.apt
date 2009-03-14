@@ -21,6 +21,10 @@ What is Xadrian?
 
     * Sun power is configurable per complex.
     
+    * Complex can be connected to a sector for automatic sun power
+      configuration and calculation of next shipyards where the factories
+      can be bought.
+    
     * Cross-platform GUI application. Runs on any platform supporting
       {{{http://java.sun.com/javase/6/}Java SE 6}} or higher.
 
@@ -38,5 +42,10 @@ Getting started
 
 News
 
-  2009/03/04 -  Version 1.0.0 has been released.
+  * 2009/03/14 - Version 1.1.0 has been released.
+    See {{{changes-report.html}changelog}} for details.
 
+  *  2009/03/04 -  Version 1.0.0 has been released.
+
+  []
+  

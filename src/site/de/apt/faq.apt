@@ -1,0 +1,29 @@
+ -----------------------------------------------------------------------------
+ FAQ
+ -----------------------------------------------------------------------------
+
+FAQ - Häufig gestellte Fragen
+
+* Wieso erzeugt Xadrian andere Grundkomplexe als Komplexprüfer xyz?
+
+  Die Algorithmen zum Berechnen von Grundkomplexen sind nicht immer die selben.
+  Xadrian verwendet einen Algorithmus der die Anzahl der zu bauenden Fabriken
+  so niedrig wie möglich hält. Dabei kann es passieren, dass mal bei einem
+  Zwischenprodukt etwas mehr Überschuss produziert wird, als nötig. Das
+  wirkt sich aber meistens eher positiv aus. Durch die geringere Anzahl an
+  Fabriken sind die von Xadrian berechneten Komplexe oft billiger und durch
+  höheren Überschuss laufen die Komplexe meist schneller voll und laufen
+  somit auch stabiler. Manchmal kann das auch zu etwas teureren Komplexen
+  führen. Aber weniger Fabriken bedeutet auch weniger Zeitaufwand. Und Zeit
+  ist Geld.
+  
+* Wie stellt man die Sprache in Xadrian um?
+
+  Xadrian passt sich automatisch an die Sprache des Betriebssystems an,
+  daher ist es normalerweise nicht notwendig die Sprache manuell anzupassen.
+  Wenn es doch mal unbedingt notwendig sein sollte, kann man Xadrian
+  dazu zwingen, eine bestimmte Sprache zu verwenden, indem man die
+  Umgebungsvariable <<XADRIAN_LANG>> auf <<de>> oder <<en>> setzt. Wie man
+  Umgebungsvariablen setzt, sollte die Anleitung des verwendeten
+  Betriebssystems verraten.  
+  

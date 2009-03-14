@@ -20,6 +20,10 @@ Was ist Xadrian?
     * Laden, Speichern und Drucken von Fabrik-Komplexen.
 
     * Sonnenstärke ist pro Komplex einstellbar.
+
+    * Komplex kann mit einem Sektor verbunden werden. Sonnenstärke wird 
+      dann automatisch konfiguriert und außerdem werden die nächstgelegenen
+      Schiffswerften zum Kauf der Fabriken angezeigt.
     
     * Plattform-unabhängige Applikation. Läuft auf jeder Platform die
       {{{http://java.sun.com/javase/6/}Java SE 6}} oder höher unterstützt.
@@ -38,5 +42,9 @@ Erste Schritte
 
 Neuigkeiten
 
-  04.03.2009 - Version 1.0.0 veröffentlicht.
+  * 14.03.2009 - Version 1.1.0 veröffentlich. Siehe 
+    {{{changes-report.html}Changelog}} für nähere Informationen.
 
+  * 04.03.2009 - Version 1.0.0 veröffentlicht.
+
+  []

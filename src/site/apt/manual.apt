@@ -25,17 +25,18 @@ Manual
   
   To change the quantity of a factory simply click the quantity (which
   is a hyperlink). A dialog window will pop up where you can enter the new
-  quantity. Note that you can't change the quantity of mines. If you need
-  multiple mines you have to add them one by one because each mine can have
-  a different yield so they can't be grouped together into a single entry.
+  quantity.
 
   To change the yield of a mine simply click the yield value and enter a
   new yield.
-
+  
   You can change the sun power by clicking the suns percent value at the
   top of the complex view. This influences the effectivity of solar power
   plants so it's always a good idea to set the correct value here depending
   on the target sector in the game.
+
+  Alternatively you can select a sector for your complex. The sun power is
+  then determined automatically.
 
   Xadrian can automatically calculate the base complex. This means Xadrian can
   add needed factories automatically to get a self-sustaining complex. You
