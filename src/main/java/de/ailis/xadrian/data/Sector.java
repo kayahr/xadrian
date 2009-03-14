@@ -7,6 +7,8 @@
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -185,10 +187,10 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the x position in the universe.
-     *
+     * 
      * @return The x position in the universe
      */
-    
+
     public int getX()
     {
         return this.x;
@@ -197,10 +199,10 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the y position in the universe.
-     *
+     * 
      * @return The y position in the universe
      */
-    
+
     public int getY()
     {
         return this.y;
@@ -209,10 +211,10 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the race to which this sector belongs.
-     *
+     * 
      * @return The race to which this sector belongs
      */
-    
+
     public Race getRace()
     {
         return this.race;
@@ -221,10 +223,10 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the number of planets.
-     *
+     * 
      * @return The number of planets
      */
-    
+
     public int getPlanets()
     {
         return this.planets;
@@ -233,10 +235,10 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the suns.
-     *
+     * 
      * @return The suns
      */
-    
+
     public Suns getSuns()
     {
         return this.suns;
@@ -245,10 +247,10 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Checks if this sector is a core sector or not.
-     *
+     * 
      * @return True if core sector, false if not
      */
-    
+
     public boolean isCore()
     {
         return this.core;
@@ -257,10 +259,10 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the sector behind the north gate.
-     *
+     * 
      * @return The sector behind the north gate
      */
-    
+
     public Sector getNorth()
     {
         return SectorFactory.getInstance().getSector(this.northId);
@@ -269,10 +271,10 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the sector behind the south gate.
-     *
+     * 
      * @return The sector behind the south gate
      */
-    
+
     public Sector getSouth()
     {
         return SectorFactory.getInstance().getSector(this.southId);
@@ -281,10 +283,10 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the sector behind the west gate.
-     *
+     * 
      * @return The sector behind the west gate
      */
-    
+
     public Sector getWest()
     {
         return SectorFactory.getInstance().getSector(this.westId);
@@ -293,12 +295,69 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the sector behind the east gate.
-     *
+     * 
      * @return The sector behind the east gate
      */
-    
+
     public Sector getEast()
     {
         return SectorFactory.getInstance().getSector(this.eastId);
+    }
+
+
+    /**
+     * Returns the distance from this sector to the specified sector. If the
+     * destination sector is unreachable (because it can't be reached via
+     * gates) then -1 is returned.
+     * 
+     * @param dest
+     *            The destination sector
+     * @return The distance. -1 if destination sector is unreachable
+     */
+
+    public int getDistance(final Sector dest)
+    {
+        final Set<Sector> seen = new HashSet<Sector>();
+        Set<Sector> todo = new HashSet<Sector>();
+        
+        // We begin with the current sector and a distance of 0
+        todo.add(this);
+        int count = 0;
+        
+        // This loop is repeated until no more TODOs are present. If the
+        // target sector is reached then the loop is exited with a return
+        while (todo.size() > 0)
+        {
+            final Set<Sector> newTodo = new HashSet<Sector>();
+            for (final Sector sector : todo)
+            {
+                // When we have reached our destination sector then return
+                // the distance traveled so far
+                if (dest.equals(sector)) return count;
+                
+                // Mark this sector as already seen                
+                seen.add(sector);
+                
+                // Add the sectors which can reached from the current sector
+                // to the new to-do list if they are not already seen
+                Sector tmp = sector.getNorth();
+                if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
+                tmp = sector.getEast();
+                if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
+                tmp = sector.getWest();
+                if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
+                tmp = sector.getSouth();
+                if (tmp != null && !seen.contains(tmp)) newTodo.add(tmp);
+            }
+            
+            // In the next run process our new TODOs list
+            todo = newTodo;
+            
+            // Increment the distance
+            count++;
+        }
+        
+        // No more TODOs and target sector was not reached
+        return -1;
     }
 }
