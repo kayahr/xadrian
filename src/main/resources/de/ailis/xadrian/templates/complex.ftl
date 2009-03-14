@@ -64,7 +64,7 @@
               [/#if]
             </td>
             <td class="quantity">
-              [#if !complexFactory.factory.mine && !print]
+              [#if !print]
                 <a href="file://changeQuantity/${complexFactory_index}">${complexFactory.quantity}</a>
               [#else]
                 ${complexFactory.quantity}
