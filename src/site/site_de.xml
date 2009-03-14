@@ -8,7 +8,11 @@
   </bannerLeft>
 
   <body>
-    
+
+    <head>
+      <link href="../favicon.ico" rel="SHORTCUT ICON" />
+    </head>
+        
     <links>
       <item name="English" href="../" />
     </links>

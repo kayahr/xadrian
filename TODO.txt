@@ -7,4 +7,3 @@ Website:
   * Add FAQ page:
     * How to switch the language
     * Why is the result different to cartman?
-  * Add favicon
