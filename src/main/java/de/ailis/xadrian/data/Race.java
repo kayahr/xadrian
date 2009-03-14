@@ -79,6 +79,21 @@ public class Race implements Serializable, Comparable<Race>
 
 
     /**
+     * Return the color with the specified alpha value.
+     * 
+     * @param alpha
+     *            The alpha value
+     * @return The color
+     */
+
+    public Color getColor(final int alpha)
+    {
+        return new Color(this.color.getRed(), this.color.getGreen(), this.color
+            .getBlue(), alpha);
+    }
+
+
+    /**
      * Returns the name.
      * 
      * @return The name

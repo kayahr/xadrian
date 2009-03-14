@@ -16,62 +16,113 @@ import java.util.List;
 
 
 /**
- * TextRenderer
+ * Text Renderer
  * 
- * @author k
+ * @author Klaus Reimer (k@ailis.de
  * @version $Revision$
  */
 
 public class TextRenderer
 {
+    /** The text lines */
     private final List<TextLine> lines = new ArrayList<TextLine>();
 
-    private TextLine current = null;
-    
+    /** The current text line */
+    private TextLine currentLine = null;
+
+    /** The current font */
     private Font currentFont = new Font("Arial", Font.PLAIN, 12);
-    
+
+    /** The current color */
     private Color currentColor = Color.BLACK;
 
-    public TextRenderer()
-    {
-    }
+
+    /**
+     * Sets the current font.
+     * 
+     * @param font
+     *            The current font to set
+     */
 
     public void setFont(final Font font)
     {
         this.currentFont = font;
     }
-    
+
+
+    /**
+     * Sets the current color.
+     * 
+     * @param color
+     *            The current color to set
+     */
+
     public void setColor(final Color color)
     {
         this.currentColor = color;
     }
-    
+
+
+    /**
+     * Adds a new text.
+     * 
+     * @param text
+     *            The text to add
+     */
+
     public void addText(final String text)
     {
-        final TextPart part = new TextPart(this.currentFont, this.currentColor, text);
-        if (current == null)
+        final TextPart part = new TextPart(this.currentFont, this.currentColor,
+            text);
+        if (this.currentLine == null)
         {
-            current = new TextLine();
-            lines.add(current);
+            this.currentLine = new TextLine();
+            this.lines.add(this.currentLine);
         }
-        current.add(part);
+        this.currentLine.add(part);
     }
+
+
+    /**
+     * Inserts a line break
+     */
 
     public void newLine()
     {
-        current = new TextLine();
-        lines.add(current);
+        this.currentLine = new TextLine();
+        this.lines.add(this.currentLine);
     }
+
+
+    /**
+     * Renders the text
+     * 
+     * @param g
+     *            The graphics context
+     * @param x
+     *            The x position
+     * @param y
+     *            The y position
+     */
 
     public void render(final Graphics2D g, final double x, final double y)
     {
         double curY = y;
-        for (final TextLine line: this.lines)
+        for (final TextLine line : this.lines)
         {
             line.render(g, x, curY);
             curY += line.getBounds(g.getFontRenderContext()).getHeight();
         }
     }
+
+
+    /**
+     * Returns the text bounds.
+     * 
+     * @param context
+     *            The font render context
+     * @return The text bounds
+     */
 
     public Rectangle2D getBounds(final FontRenderContext context)
     {
@@ -101,14 +152,40 @@ public class TextRenderer
         return new Rectangle2D.Double(x, y, width, height);
     }
 
-    private class TextLine
+
+    /**
+     * A single text line.
+     * 
+     * @author Klaus Reimer (k@ailis.de)
+     * @version $Revision$
+     */
+
+    class TextLine
     {
+        /** The text parts in this line */
         private final List<TextPart> parts = new ArrayList<TextPart>();
+
+
+        /**
+         * Adds a text part.
+         * 
+         * @param part
+         *            The text part to add
+         */
 
         public void add(final TextPart part)
         {
             this.parts.add(part);
         }
+
+
+        /**
+         * Returns the text bounds.
+         * 
+         * @param context
+         *            The font render context
+         * @return The text bounds
+         */
 
         public Rectangle2D getBounds(final FontRenderContext context)
         {
@@ -138,10 +215,22 @@ public class TextRenderer
             return new Rectangle2D.Double(x, y, width, height);
         }
 
+
+        /**
+         * Renders the text line
+         * 
+         * @param g
+         *            The graphics context
+         * @param x
+         *            The x position
+         * @param y
+         *            The y position
+         */
+
         public void render(final Graphics2D g, final double x, final double y)
         {
             double curX = x;
-            for (final TextPart part: this.parts)
+            for (final TextPart part : this.parts)
             {
                 part.render(g, curX, y);
                 curX += part.getBounds(g.getFontRenderContext()).getWidth();
@@ -149,13 +238,36 @@ public class TextRenderer
         }
     }
 
-    private class TextPart
+
+    /**
+     * A single text part in a line.
+     * 
+     * @author Klaus Reimer (k@ailis.de)
+     * @version $Revision$
+     */
+
+    class TextPart
     {
+        /** The font */
         private final Font font;
-        
+
+        /** The color */
         private final Color color;
 
+        /** The text */
         private final String text;
+
+
+        /**
+         * Creates a new text part.
+         * 
+         * @param font
+         *            The font
+         * @param color
+         *            The color
+         * @param text
+         *            The text
+         */
 
         public TextPart(final Font font, final Color color, final String text)
         {
@@ -164,17 +276,39 @@ public class TextRenderer
             this.color = color;
         }
 
+
+        /**
+         * Returns the text bounds.
+         * 
+         * @param context
+         *            The font render context
+         * @return The text bounds
+         */
+
         public Rectangle2D getBounds(final FontRenderContext context)
         {
             return this.font.getStringBounds(this.text, context);
         }
-        
+
+
+        /**
+         * Renders the text part
+         * 
+         * @param g
+         *            The graphics context
+         * @param x
+         *            The x position
+         * @param y
+         *            The y position
+         */
+
         public void render(final Graphics2D g, final double x, final double y)
         {
             final Rectangle2D bounds = getBounds(g.getFontRenderContext());
             g.setFont(this.font);
             g.setColor(this.color);
-            g.drawString(this.text, (int) (x + bounds.getX()), (int) (y - bounds.getY())); 
+            g.drawString(this.text, (int) (x + bounds.getX()),
+                (int) (y - bounds.getY()));
         }
-    }    
+    }
 }

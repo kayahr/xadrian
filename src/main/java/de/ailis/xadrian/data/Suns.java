@@ -6,6 +6,8 @@
 
 package de.ailis.xadrian.data;
 
+import java.awt.Color;
+
 
 /**
  * Factory sizes
@@ -118,5 +120,18 @@ public enum Suns
     public int getCycle()
     {
         return this.cycle;
+    }
+    
+    
+    /**
+     * Returns the color of the suns.
+     * 
+     * @return The color of the suns
+     */
+    
+    public Color getColor()
+    {
+        final int intensity = Math.min(255, 255 * this.percent / 300);
+        return new Color(intensity, intensity, 0);
     }
 }
