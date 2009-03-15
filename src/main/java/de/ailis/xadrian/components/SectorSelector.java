@@ -329,7 +329,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
     private void addYieldInfo(final TextRenderer renderer, final Sector sector,
         final String wareId)
     {
-        final SortedMap<Integer, Integer> yields = sector.getYields(wareId);
+        final SortedMap<Integer, Integer> yields = sector.getYieldsMap(wareId);
 
         // If yield map is empty then do nothing
         if (yields.isEmpty()) return;

@@ -8,7 +8,10 @@ package de.ailis.xadrian.data;
 
 import java.awt.Color;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -599,7 +602,7 @@ public class Sector implements Serializable, Comparable<Sector>
      * @return The yield map
      */
 
-    public SortedMap<Integer, Integer> getYields(final String wareId)
+    public SortedMap<Integer, Integer> getYieldsMap(final String wareId)
     {
         final SortedMap<Integer, Integer> yields = new TreeMap<Integer, Integer>(
             new ReverseIntegerComparator());
@@ -618,6 +621,31 @@ public class Sector implements Serializable, Comparable<Sector>
         }
 
         // Return the yields map
+        return yields;
+    }
+
+
+    /**
+     * Returns a list with the yields of the specified asteroid ware.
+     * 
+     * @param wareId
+     *            The id of the asteroid ware
+     * @return The list with the yields. Can be empty. Never null.
+     */
+
+    public List<Integer> getYields(final String wareId)
+    {
+        final List<Integer> yields = new ArrayList<Integer>();
+
+        // Iterate over all asteroids
+        for (final Asteroid asteroid : this.asteroids)
+        {
+            // If this asteroid is not of the searched type then ignore it
+            if (!wareId.equals(asteroid.getWare().getId())) continue;
+
+            yields.add(asteroid.getYield());
+        }
+        Collections.sort(yields, new ReverseIntegerComparator());
         return yields;
     }
 }
