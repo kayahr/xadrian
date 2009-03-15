@@ -18,6 +18,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.util.Map;
+import java.util.SortedMap;
 import java.util.SortedSet;
 
 import javax.swing.JComponent;
@@ -54,7 +56,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
         /** Silicon view mode */
         SILICON,
-        
+
         /** Ore view mode */
         ORE,
 
@@ -184,11 +186,11 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
                 case SUNS:
                     sectorColor = sector.getSuns().getColor();
                     break;
-                    
+
                 case SILICON:
                     sectorColor = sector.getSiliconColor();
                     break;
-                    
+
                 case ORE:
                     sectorColor = sector.getOreColor();
                     break;
@@ -282,7 +284,11 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
             textRenderer.addText(String.format("%s: %s", I18N
                 .getString("sectorSelector.suns"), this.overSector.getSuns()
                 .toString()));
-            textRenderer.newLine();
+
+            addYieldInfo(textRenderer, this.overSector, "siliconWafers");
+            addYieldInfo(textRenderer, this.overSector, "ore");
+            addYieldInfo(textRenderer, this.overSector, "nividium");
+            addYieldInfo(textRenderer, this.overSector, "ice");
 
             // Position the sector info text
             final Rectangle2D bounds = textRenderer.getBounds(g
@@ -307,6 +313,53 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
         graphics.drawImage(this.buffer, 0, 0, null);
     }
+
+
+    /**
+     * Outputs the yield info.
+     * 
+     * @param renderer
+     *            The text renderer
+     * @param sector
+     *            The sector
+     * @param wareId
+     *            The id of the asteroid ware
+     */
+
+    private void addYieldInfo(final TextRenderer renderer, final Sector sector,
+        final String wareId)
+    {
+        final SortedMap<Integer, Integer> yields = sector.getYields(wareId);
+
+        // If yield map is empty then do nothing
+        if (yields.isEmpty()) return;
+
+        // Output the title
+        renderer.newLine();
+        renderer.addText(I18N.getString("sectorSelector." + wareId) + ": ");
+        renderer.newLine();
+
+        // Output the yields
+        String text = "    ";
+        for (final Map.Entry<Integer, Integer> entry : yields.entrySet())
+        {
+            final int yield = entry.getKey();
+            final int quantity = entry.getValue();
+            if (text.length() > 40)
+            {
+                renderer.addText(text);
+                renderer.newLine();
+                text = "    ";
+
+            }
+            if (quantity > 1)
+                text = text + String.format("%dx%d, ", quantity, yield);
+            else
+                text = text + yield + ", ";
+        }
+        renderer.addText(text.substring(0, text.length() - 2));
+    }
+
 
     /**
      * @see java.awt.event.MouseMotionListener#mouseDragged(MouseEvent)

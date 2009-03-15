@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -17,6 +19,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import de.ailis.xadrian.data.factories.SectorFactory;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
+import de.ailis.xadrian.support.ReverseIntegerComparator;
 
 
 /**
@@ -584,5 +587,37 @@ public class Sector implements Serializable, Comparable<Sector>
         if (cur == 0) return Color.BLACK;
         final int intensity = Math.min(200, 200 * cur / max) + 55;
         return new Color(0, intensity, intensity);
+    }
+
+
+    /**
+     * Returns the yield map. This map has the yield as key and the number of
+     * asteroids with this yield as value.
+     * 
+     * @param wareId
+     *            The id of the asteroid ware to search for
+     * @return The yield map
+     */
+
+    public SortedMap<Integer, Integer> getYields(final String wareId)
+    {
+        final SortedMap<Integer, Integer> yields = new TreeMap<Integer, Integer>(
+            new ReverseIntegerComparator());
+
+        // Iterate over all asteroids
+        for (final Asteroid asteroid : this.asteroids)
+        {
+            // If this asteroid is not of the searched type then ignore it
+            if (!wareId.equals(asteroid.getWare().getId())) continue;
+
+            // Update the yield in the yields map
+            final int yield = asteroid.getYield();
+            Integer oldQuantity = yields.get(yield);
+            if (oldQuantity == null) oldQuantity = 0;
+            yields.put(yield, oldQuantity + 1);
+        }
+
+        // Return the yields map
+        return yields;
     }
 }
