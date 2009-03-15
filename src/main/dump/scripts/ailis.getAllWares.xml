@@ -2,34 +2,36 @@
 <?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
 <script>
 <name>ailis.getAllWares</name>
-<version>2</version>
+<version>4</version>
 <engineversion>42</engineversion>
 <description>Returns array with all wares</description>
 <arguments>
 </arguments>
 <sourcetext>
 <line linenr="001" indent=""><var>$wares&#160;=&#160;</var><text>&#160;array&#160;alloc:&#160;size=</text><var>0</var></line>
-<line linenr="002" interruptable="@" indent=""><var>$factories&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.getBuyableFactories</call><text>&#160;:&#160;</text></line>
-<line linenr="003" indent=""><var>$max&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$factories</var></line>
-<line linenr="004" indent=""><var>$i&#160;=&#160;</var><var>0</var></line>
-<line linenr="005" indent=""><var>while&#160;</var><var>$i</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$max</var></line>
-<line linenr="006" indent="&#160;"><var>$factory&#160;=&#160;</var><var>$factories</var><text>[</text><var>$i</var><text>]</text></line>
-<line linenr="007" indent="&#160;"><var>$station&#160;=&#160;</var><text>&#160;create&#160;station:&#160;type=</text><var>$factory</var><text>&#160;owner=</text><var>Player</var><text>&#160;addto=</text><var>Kha'ak&#160;Sector&#160;931</var><text>&#160;x=</text><var>0</var><text>&#160;y=</text><var>0</var><text>&#160;z=</text><var>0</var></line>
-<line linenr="008" indent="&#160;"><var>$station&#160;-&gt;</var><text>&#160;add&#160;default&#160;wares&#160;to&#160;station/dock</text></line>
-<line linenr="009" indent="&#160;"><var>$station&#160;-&gt;</var><text>&#160;factory&#160;production&#160;task:&#160;on=</text><var>[TRUE]</var></line>
-<line linenr="010" indent="&#160;"><var>$trades&#160;=&#160;</var><var>$station&#160;-&gt;</var><text>&#160;get&#160;tradeable&#160;ware&#160;array&#160;from&#160;station</text></line>
-<line linenr="011" indent="&#160;"><var>$maxTrades&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$trades</var></line>
-<line linenr="012" indent="&#160;"><var>$tradesPtr&#160;=&#160;</var><var>0</var></line>
-<line linenr="013" indent="&#160;"><var>while&#160;</var><var>$tradesPtr</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$maxTrades</var></line>
-<line linenr="014" indent="&#160;&#160;"><var>$trade&#160;=&#160;</var><var>$trades</var><text>[</text><var>$tradesPtr</var><text>]</text></line>
-<line linenr="015" indent="&#160;&#160;"><var>if&#160;not&#160;</var><text>&#160;find&#160;</text><var>$trade</var><text>&#160;in&#160;array:&#160;</text><var>$wares</var></line>
-<line linenr="016" indent="&#160;&#160;&#160;"><text>append&#160;</text><var>$trade</var><text>&#160;to&#160;array&#160;</text><var>$wares</var></line>
-<line linenr="017" indent="&#160;&#160;"><text>end</text></line>
-<line linenr="018" indent="&#160;&#160;"><text>inc&#160;</text><var>$tradesPtr&#160;=&#160;</var></line>
-<line linenr="019" indent="&#160;"><text>end</text></line>
-<line linenr="020" indent="&#160;"><text>inc&#160;</text><var>$i&#160;=&#160;</var></line>
-<line linenr="021" indent=""><text>end</text></line>
-<line linenr="022" indent=""><text>return&#160;</text><var>$wares</var></line>
+<line linenr="002" indent=""><text>append&#160;</text><var>Nividium</var><text>&#160;to&#160;array&#160;</text><var>$wares</var></line>
+<line linenr="003" indent=""><comment>*$factories&#160;=&#160;[THIS]&#160;-&gt;<text>&#160;call&#160;script&#160;</text>ailis.getBuyableFactories<text>&#160;:&#160;</text></comment></line>
+<line linenr="004" interruptable="@" indent=""><var>$factories&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>ailis.getAllFactories</call><text>&#160;:&#160;</text></line>
+<line linenr="005" indent=""><var>$max&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$factories</var></line>
+<line linenr="006" indent=""><var>$i&#160;=&#160;</var><var>0</var></line>
+<line linenr="007" indent=""><var>while&#160;</var><var>$i</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$max</var></line>
+<line linenr="008" indent="&#160;"><var>$factory&#160;=&#160;</var><var>$factories</var><text>[</text><var>$i</var><text>]</text></line>
+<line linenr="009" indent="&#160;"><var>$station&#160;=&#160;</var><text>&#160;create&#160;station:&#160;type=</text><var>$factory</var><text>&#160;owner=</text><var>Player</var><text>&#160;addto=</text><var>Kha'ak&#160;Sector&#160;931</var><text>&#160;x=</text><var>0</var><text>&#160;y=</text><var>0</var><text>&#160;z=</text><var>0</var></line>
+<line linenr="010" indent="&#160;"><var>$station&#160;-&gt;</var><text>&#160;add&#160;default&#160;wares&#160;to&#160;station/dock</text></line>
+<line linenr="011" indent="&#160;"><var>$station&#160;-&gt;</var><text>&#160;factory&#160;production&#160;task:&#160;on=</text><var>[TRUE]</var></line>
+<line linenr="012" indent="&#160;"><var>$trades&#160;=&#160;</var><var>$station&#160;-&gt;</var><text>&#160;get&#160;tradeable&#160;ware&#160;array&#160;from&#160;station</text></line>
+<line linenr="013" indent="&#160;"><var>$maxTrades&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$trades</var></line>
+<line linenr="014" indent="&#160;"><var>$tradesPtr&#160;=&#160;</var><var>0</var></line>
+<line linenr="015" indent="&#160;"><var>while&#160;</var><var>$tradesPtr</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$maxTrades</var></line>
+<line linenr="016" indent="&#160;&#160;"><var>$trade&#160;=&#160;</var><var>$trades</var><text>[</text><var>$tradesPtr</var><text>]</text></line>
+<line linenr="017" indent="&#160;&#160;"><var>if&#160;not&#160;</var><text>&#160;find&#160;</text><var>$trade</var><text>&#160;in&#160;array:&#160;</text><var>$wares</var></line>
+<line linenr="018" indent="&#160;&#160;&#160;"><text>append&#160;</text><var>$trade</var><text>&#160;to&#160;array&#160;</text><var>$wares</var></line>
+<line linenr="019" indent="&#160;&#160;"><text>end</text></line>
+<line linenr="020" indent="&#160;&#160;"><text>inc&#160;</text><var>$tradesPtr&#160;=&#160;</var></line>
+<line linenr="021" indent="&#160;"><text>end</text></line>
+<line linenr="022" indent="&#160;"><text>inc&#160;</text><var>$i&#160;=&#160;</var></line>
+<line linenr="023" indent=""><text>end</text></line>
+<line linenr="024" indent=""><text>return&#160;</text><var>$wares</var></line>
 </sourcetext>
 <codearray>
 
@@ -37,7 +39,7 @@
   <sval type="string" val="ailis.getAllWares"/>
   <sval type="int" val="42"/>
   <sval type="string" val="Returns array with all wares"/>
-  <sval type="int" val="2"/>
+  <sval type="int" val="4"/>
   <sval type="int" val="2"/>
   <sval type="array" size="10">
     <sval type="string" val="wares"/>
@@ -51,16 +53,23 @@
     <sval type="string" val="tradesPtr"/>
     <sval type="string" val="trade"/>
   </sval>
-  <sval type="array" size="21">
+  <sval type="array" size="22">
     <sval type="array" size="4">
       <sval type="int" val="128"/>
       <sval type="int" val="0"/>
       <sval type="int" val="4"/>
       <sval type="int" val="0"/>
     </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="135"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="786444"/>
+    </sval>
     <sval type="array" size="6">
       <sval type="int" val="102"/>
-      <sval type="string" val="ailis.getBuyableFactories"/>
+      <sval type="string" val="ailis.getAllFactories"/>
       <sval type="int" val="1"/>
       <sval type="int" val="131075"/>
       <sval type="int" val="1"/>
@@ -83,7 +92,7 @@
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610607607"/>
+      <sval type="int" val="-1610607351"/>
       <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="3"/>
@@ -155,7 +164,7 @@
     </sval>
     <sval type="array" size="13">
       <sval type="int" val="104"/>
-      <sval type="int" val="-1610608119"/>
+      <sval type="int" val="-1610607863"/>
       <sval type="int" val="3"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="8"/>
@@ -178,7 +187,7 @@
     </sval>
     <sval type="array" size="6">
       <sval type="int" val="1406"/>
-      <sval type="int" val="-536866812"/>
+      <sval type="int" val="-536866556"/>
       <sval type="int" val="131074"/>
       <sval type="int" val="9"/>
       <sval type="int" val="131074"/>
@@ -197,7 +206,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="12"/>
+      <sval type="int" val="13"/>
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="142"/>
@@ -205,7 +214,7 @@
     </sval>
     <sval type="array" size="2">
       <sval type="int" val="112"/>
-      <sval type="int" val="4"/>
+      <sval type="int" val="5"/>
     </sval>
     <sval type="array" size="3">
       <sval type="int" val="103"/>
@@ -214,17 +223,27 @@
     </sval>
   </sval>
   <sval type="int" val="0"/>
-  <sval type="array" size="3">
+  <sval type="array" size="4">
+    <sval type="array" size="8">
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="102"/>
+      <sval type="string" val="ailis.getBuyableFactories"/>
+      <sval type="string" val="factories"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="0"/>
+    </sval>
     <sval type="array" size="2">
-      <sval type="int" val="16"/>
+      <sval type="int" val="17"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="18"/>
+      <sval type="int" val="19"/>
       <sval type="int" val="4"/>
     </sval>
     <sval type="array" size="2">
-      <sval type="int" val="20"/>
+      <sval type="int" val="21"/>
       <sval type="int" val="4"/>
     </sval>
   </sval>

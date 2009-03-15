@@ -9,6 +9,7 @@ package de.ailis.xadrian.data.factories;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -19,9 +20,11 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
+import de.ailis.xadrian.data.Asteroid;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.Suns;
+import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
 
 
@@ -49,6 +52,18 @@ public class SectorFactory
     /** The maximum Y position */
     private int maxY = 0;
 
+    /** The maximum silicon yield in a single sector */
+    private int maxSiliconYield = 0;
+
+    /** The maximum silicon yield in a single sector */
+    private int maxOreYield = 0;
+
+    /** The maximum nividium yield in a single sector */
+    private int maxNividiumYield = 0;
+
+    /** The maximum ice yield in a single sector */
+    private int maxIceYield = 0;
+
 
     /**
      * Private constructor to prevent instantiation from outside.
@@ -71,6 +86,7 @@ public class SectorFactory
         try
         {
             final RaceFactory raceFactory = RaceFactory.getInstance();
+            final WareFactory wareFactory = WareFactory.getInstance();
             final Document document = reader.read(url);
             for (final Object item : document.getRootElement().elements(
                 "sector"))
@@ -97,7 +113,8 @@ public class SectorFactory
                 final Element stationsElement = element.element("stations");
                 if (stationsElement != null)
                 {
-                    for (final Object stationItem : stationsElement.elements("station"))
+                    for (final Object stationItem : stationsElement
+                        .elements("station"))
                     {
                         final Element stationElement = (Element) stationItem;
                         if (stationElement.attributeValue("class").equals(
@@ -108,10 +125,52 @@ public class SectorFactory
                         }
                     }
                 }
+
+                final Element asteroidsElement = element.element("asteroids");
+                final Asteroid[] asteroids;
+                if (asteroidsElement != null)
+                {
+                    final List<?> asteroidElements = asteroidsElement
+                        .elements("asteroid");
+                    asteroids = new Asteroid[asteroidElements.size()];
+                    int i = 0;
+                    for (final Object asteroidItem : asteroidElements)
+                    {
+                        final Element asteroidElement = (Element) asteroidItem;
+                        final String asteroidId = asteroidElement
+                            .attributeValue("id");
+                        final int yield = Integer.parseInt(asteroidElement
+                            .attributeValue("yield"));
+                        final int astX = Integer.parseInt(asteroidElement
+                            .attributeValue("x"));
+                        final int astY = Integer.parseInt(asteroidElement
+                            .attributeValue("y"));
+                        final int astZ = Integer.parseInt(asteroidElement
+                            .attributeValue("z"));
+                        final Ware ware = wareFactory.getWare(asteroidElement
+                            .attributeValue("ware"));
+                        final Asteroid asteroid = new Asteroid(asteroidId,
+                            ware, yield, astX, astY, astZ);
+                        asteroids[i] = asteroid;
+                        i++;
+                    }
+                }
+                else
+                    asteroids = new Asteroid[0];
+
                 final Sector sector = new Sector(id, x, y, race, planets, suns,
-                    core, shipyard, northId, eastId, southId, westId);
+                    core, shipyard, northId, eastId, southId, westId, asteroids);
                 this.sectors.add(sector);
                 this.sectorMap.put(id, sector);
+
+                this.maxSiliconYield = Math.max(this.maxSiliconYield, sector
+                    .getTotalSiliconYield());
+                this.maxOreYield = Math.max(this.maxOreYield, sector
+                    .getTotalOreYield());
+                this.maxNividiumYield = Math.max(this.maxNividiumYield, sector
+                    .getTotalNividiumYield());
+                this.maxIceYield = Math.max(this.maxIceYield, sector
+                    .getTotalIceYield());
             }
         }
         catch (final DocumentException e)
@@ -197,5 +256,53 @@ public class SectorFactory
     public Sector getSector(final int x, final int y)
     {
         return getSector(String.format("sec-%d-%d", x, y));
+    }
+
+
+    /**
+     * Returns the maximum silicon yield in a single sector.
+     * 
+     * @return The maximum silicon yield
+     */
+
+    public int getMaxSiliconYield()
+    {
+        return this.maxSiliconYield;
+    }
+
+
+    /**
+     * Returns the maximum ore yield in a single sector.
+     * 
+     * @return The maximum ore yield
+     */
+
+    public int getMaxOreYield()
+    {
+        return this.maxOreYield;
+    }
+
+
+    /**
+     * Returns the maximum nividium yield in a single sector.
+     * 
+     * @return The maximum nividium yield
+     */
+
+    public int getMaxNividiumYield()
+    {
+        return this.maxNividiumYield;
+    }
+
+
+    /**
+     * Returns the maximum ice yield in a single sector.
+     * 
+     * @return The maximum ice yield
+     */
+
+    public int getMaxIceYield()
+    {
+        return this.maxIceYield;
     }
 }

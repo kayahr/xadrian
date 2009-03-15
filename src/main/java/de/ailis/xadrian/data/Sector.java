@@ -6,6 +6,7 @@
 
 package de.ailis.xadrian.data;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -69,6 +70,9 @@ public class Sector implements Serializable, Comparable<Sector>
     /** If this sector has a shipyard or not */
     private final boolean shipyard;
 
+    /** Array with asteroids in this sector */
+    private final Asteroid[] asteroids;
+
 
     /**
      * Constructor
@@ -97,12 +101,14 @@ public class Sector implements Serializable, Comparable<Sector>
      *            The id of the sector behind the south gate
      * @param westId
      *            The id of the sector behind the west gate
+     * @param asteroids
+     *            Array with asteroids in this sector
      */
 
     public Sector(final String id, final int x, final int y, final Race race,
         final int planets, final Suns suns, final boolean core,
         final boolean shipyard, final String northId, final String eastId,
-        final String southId, final String westId)
+        final String southId, final String westId, final Asteroid[] asteroids)
     {
         this.id = id;
         this.messageId = "sector." + id;
@@ -117,6 +123,7 @@ public class Sector implements Serializable, Comparable<Sector>
         this.southId = southId;
         this.westId = westId;
         this.eastId = eastId;
+        this.asteroids = asteroids;
     }
 
 
@@ -433,5 +440,149 @@ public class Sector implements Serializable, Comparable<Sector>
 
         // No more TODOs and no shipyard was found
         return null;
+    }
+
+
+    /**
+     * Returns the array with asteroids.
+     * 
+     * @return The array with asteroids
+     */
+
+    public Asteroid[] getAsteroids()
+    {
+        return this.asteroids;
+    }
+
+
+    /**
+     * Returns the total silicon yield of this sector.
+     * 
+     * @return The total silicon yield
+     */
+
+    public int getTotalSiliconYield()
+    {
+        int yield = 0;
+        for (final Asteroid asteroid : this.asteroids)
+            if (asteroid.getWare().getId().equals("siliconWafers"))
+                yield += asteroid.getYield();
+        return yield;
+    }
+
+
+    /**
+     * Returns the total ore yield of this sector.
+     * 
+     * @return The total ore yield
+     */
+
+    public int getTotalOreYield()
+    {
+        int yield = 0;
+        for (final Asteroid asteroid : this.asteroids)
+            if (asteroid.getWare().getId().equals("ore"))
+                yield += asteroid.getYield();
+        return yield;
+    }
+
+
+    /**
+     * Returns the total nividium yield of this sector.
+     * 
+     * @return The total nividium yield
+     */
+
+    public int getTotalNividiumYield()
+    {
+        int yield = 0;
+        for (final Asteroid asteroid : this.asteroids)
+            if (asteroid.getWare().getId().equals("nividium"))
+                yield += asteroid.getYield();
+        return yield;
+    }
+
+
+    /**
+     * Returns the total ice yield of this sector.
+     * 
+     * @return The total ice yield
+     */
+
+    public int getTotalIceYield()
+    {
+        int yield = 0;
+        for (final Asteroid asteroid : this.asteroids)
+            if (asteroid.getWare().getId().equals("ice"))
+                yield += asteroid.getYield();
+        return yield;
+    }
+
+
+    /**
+     * Returns the silicon color of this sector. The brighter the more silicon
+     * is available.
+     * 
+     * @return The silicon color
+     */
+
+    public Color getSiliconColor()
+    {
+        final int max = SectorFactory.getInstance().getMaxSiliconYield();
+        final int cur = this.getTotalSiliconYield();
+        if (cur == 0) return Color.BLACK;
+        final int intensity = Math.min(200, 200 * cur / max) + 55;
+        return new Color(0, intensity, intensity);
+    }
+
+
+    /**
+     * Returns the ore color of this sector. The brighter the more ore is
+     * available.
+     * 
+     * @return The ore color
+     */
+
+    public Color getOreColor()
+    {
+        final int max = SectorFactory.getInstance().getMaxOreYield();
+        final int cur = this.getTotalOreYield();
+        if (cur == 0) return Color.BLACK;
+        final int intensity = Math.min(200, 200 * cur / max) + 55;
+        return new Color(0, intensity, intensity);
+    }
+
+
+    /**
+     * Returns the nividium color of this sector. The brighter the more ore is
+     * available.
+     * 
+     * @return The nividium color
+     */
+
+    public Color getNividiumColor()
+    {
+        final int max = SectorFactory.getInstance().getMaxNividiumYield();
+        final int cur = this.getTotalNividiumYield();
+        if (cur == 0) return Color.BLACK;
+        final int intensity = Math.min(200, 200 * cur / max) + 55;
+        return new Color(0, intensity, intensity);
+    }
+
+
+    /**
+     * Returns the ice color of this sector. The brighter the more ore is
+     * available.
+     * 
+     * @return The ice color
+     */
+
+    public Color getIceColor()
+    {
+        final int max = SectorFactory.getInstance().getMaxIceYield();
+        final int cur = this.getTotalIceYield();
+        if (cur == 0) return Color.BLACK;
+        final int intensity = Math.min(200, 200 * cur / max) + 55;
+        return new Color(0, intensity, intensity);
     }
 }

@@ -49,11 +49,20 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         /** Political view mode */
         POLITICAL,
 
-        /** Mineral view mode */
-        // MINERALS,
         /** Sun view mode */
-        SUNS;
+        SUNS,
 
+        /** Silicon view mode */
+        SILICON,
+        
+        /** Ore view mode */
+        ORE,
+
+        /** Nividium view mode */
+        NIVIDIUM,
+
+        /** Ice view mode */
+        ICE;
 
         /**
          * @see java.lang.Enum#toString()
@@ -174,6 +183,22 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
             {
                 case SUNS:
                     sectorColor = sector.getSuns().getColor();
+                    break;
+                    
+                case SILICON:
+                    sectorColor = sector.getSiliconColor();
+                    break;
+                    
+                case ORE:
+                    sectorColor = sector.getOreColor();
+                    break;
+
+                case NIVIDIUM:
+                    sectorColor = sector.getNividiumColor();
+                    break;
+
+                case ICE:
+                    sectorColor = sector.getIceColor();
                     break;
 
                 default:
