@@ -1,5 +1,5 @@
 /*
- * $Id: AddFactoryDialog.java 800 2009-03-09 22:42:29Z k $
+ * $Id$
  * Copyright (C) 2009 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information
  */
@@ -36,7 +36,7 @@ import de.ailis.xadrian.support.ModalDialog;
  * Dialog for selecting a sector.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 800 $
+ * @version $Revision$
  */
 
 public class SelectSectorDialog extends ModalDialog

@@ -1,5 +1,5 @@
 /*
- * $Id: NewComplexAction.java 704 2009-02-20 08:10:11Z k $
+ * $Id$
  * Copyright (C) 2009 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information
  */
@@ -19,7 +19,7 @@ import de.ailis.xadrian.support.BaseAction;
  * Toggles the addition of a base complex.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 704 $
+ * @version $Revision$
  */
 
 public class ToggleBaseComplexAction extends BaseAction implements

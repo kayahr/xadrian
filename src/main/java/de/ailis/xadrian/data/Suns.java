@@ -1,5 +1,5 @@
 /*
- * $Id: FactorySize.java 740 2009-02-28 10:39:18Z k $
+ * $Id$
  * Copyright (C) 2009 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
@@ -13,7 +13,7 @@ import java.awt.Color;
  * Factory sizes
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 740 $
+ * @version $Revision$
  */
 
 public enum Suns

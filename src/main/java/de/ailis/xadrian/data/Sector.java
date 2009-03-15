@@ -1,5 +1,5 @@
 /*
- * $Id: Ware.java 752 2009-03-01 23:24:14Z k $
+ * $Id$
  * Copyright (C) 2009 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information
  */
@@ -23,7 +23,7 @@ import de.ailis.xadrian.support.I18N;
  * A sector.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 752 $
+ * @version $Revision$
  */
 
 public class Sector implements Serializable, Comparable<Sector>

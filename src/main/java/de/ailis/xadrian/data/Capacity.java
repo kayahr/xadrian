@@ -1,5 +1,5 @@
 /*
- * $Id: Product.java 735 2009-02-26 21:14:43Z k $
+ * $Id$
  * Copyright (C) 2009 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information
  */
@@ -17,7 +17,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * Storage capacity for a single ware.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 735 $
+ * @version $Revision$
  */
 
 public class Capacity implements Serializable, Comparable<Capacity>

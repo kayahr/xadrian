@@ -1,5 +1,5 @@
 /*
- * $Id: WareFactory.java 752 2009-03-01 23:24:14Z k $
+ * $Id$
  * Copyright (C) 2009 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
@@ -32,7 +32,7 @@ import de.ailis.xadrian.exceptions.DataException;
  * Factory for Sector objects.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 752 $
+ * @version $Revision$
  */
 
 public class SectorFactory

@@ -1,5 +1,5 @@
 /*
- * $Id: JLinkLabel.java 767 2009-03-04 21:29:08Z k $
+ * $Id$
  * Copyright (C) 2009 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
@@ -34,7 +34,7 @@ import de.ailis.xadrian.support.TextRenderer;
  * select one.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 767 $
+ * @version $Revision$
  */
 
 public class SectorSelector extends JComponent implements MouseMotionListener,
