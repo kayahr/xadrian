@@ -1,3 +1,5 @@
 * Add Yes/no-to-all option in close all action.
 * Let user change the buy/sell prices of wares per complex.
 * Implement better way to select asteroids.
+* Save/Restore file chooser path.
+* Implement bought/needed interaction in shopping list.

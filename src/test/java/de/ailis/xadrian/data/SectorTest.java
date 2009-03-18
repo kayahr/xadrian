@@ -44,6 +44,6 @@ public class SectorTest
         // Check distance between Friar's Retreat and Aldrin (Must fail with -1
         // because Aldrin can't be reached without a jump drive)
         assertEquals(-1, sectorFactory.getSector(9, 14).getDistance(
-            sectorFactory.getSector(13, 10)));
+            sectorFactory.getSector(13, 11)));
     }
 }
