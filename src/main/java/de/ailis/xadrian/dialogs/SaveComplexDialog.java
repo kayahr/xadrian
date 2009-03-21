@@ -11,6 +11,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 
 
@@ -40,6 +41,7 @@ public class SaveComplexDialog extends JFileChooser
         setFileFilter(new FileNameExtensionFilter(I18N
             .getString("dialog.saveComplex.filter"), "x3c"));
         setMultiSelectionEnabled(false);
+        setFileSelectionMode(FILES_ONLY);
     }
 
 
@@ -63,8 +65,10 @@ public class SaveComplexDialog extends JFileChooser
 
     public File open()
     {
+        setCurrentDirectory(Config.getInstance().getLastFileChooserPath());
         if (showSaveDialog(null) == APPROVE_OPTION)
         {
+            Config.getInstance().setLastFileChooserPath(getCurrentDirectory());
             return getSelectedFile();
         }
         else

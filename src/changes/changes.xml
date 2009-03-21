@@ -5,6 +5,13 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
+    <release version="1.2.0" date="2009-03-21" desc="Minor update">
+      <action dev="k" type="update" date="2009-03-21">
+        Improved loading/saving of complexes. Complex names are now used as
+        suggested filenames (For Save-As) and the last selected directory in
+        file chooser is now remembered.
+      </action>
+    </release>
     <release version="1.1.0" date="2009-03-14" desc="Minor update">
       <action dev="k" type="add" date="2009-03-14">
         Implemented shopping list in complex view. It lists the factories 

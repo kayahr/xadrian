@@ -6,6 +6,7 @@
 
 package de.ailis.xadrian.support;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.Preferences;
@@ -23,15 +24,21 @@ import de.ailis.xadrian.data.factories.RaceFactory;
  */
 
 public final class Config
-{   
-    /** The ignored manufacturer races */
-    private final List<Race> ignoredRaces = new ArrayList<Race>();
+{
+    /** Config key for ignored races */
+    private static final String IGNORED_RACES = "ignoredRaces";
+
+    /** Config key for last file chooser path */
+    private static final String LAST_FILE_CHOOSER_PATH = "lastFileChooserPath";
 
     /** The singleton instance */
     private static final Config instance = new Config();
-    
-    /** Config key for ignored races */
-    private static final String IGNORED_RACES = "ignoredRaces";
+
+    /** The ignored manufacturer races */
+    private final List<Race> ignoredRaces = new ArrayList<Race>();
+
+    /** The last file chooser path */
+    private File lastFileChooserPath = null;
 
 
     /**
@@ -67,11 +74,13 @@ public final class Config
         if (races != null)
         {
             final RaceFactory factory = RaceFactory.getInstance();
-            for (final String raceId: races.split(" "))
+            for (final String raceId : races.split(" "))
             {
                 this.ignoredRaces.add(factory.getRace(raceId));
             }
         }
+        final String tmp = prefs.get(LAST_FILE_CHOOSER_PATH, null);
+        this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
     }
 
 
@@ -87,13 +96,18 @@ public final class Config
         else
         {
             final StringBuilder builder = new StringBuilder();
-            for (final Race race: this.ignoredRaces)
+            for (final Race race : this.ignoredRaces)
             {
                 if (builder.length() > 0) builder.append(' ');
                 builder.append(race.getId());
             }
             prefs.put(IGNORED_RACES, builder.toString());
         }
+        if (this.lastFileChooserPath != null)
+            prefs.put(LAST_FILE_CHOOSER_PATH, this.lastFileChooserPath
+                .getPath());
+        else
+            prefs.remove(LAST_FILE_CHOOSER_PATH);
     }
 
 
@@ -120,8 +134,7 @@ public final class Config
      *            If the race should be ignored or not
      */
 
-    public void setRaceIgnored(final Race race,
-        final boolean ignored)
+    public void setRaceIgnored(final Race race, final boolean ignored)
     {
         // Do nothing if state is not changed
         if (isRaceIgnored(race) == ignored) return;
@@ -131,4 +144,30 @@ public final class Config
         else
             this.ignoredRaces.remove(race);
     }
+
+
+    /**
+     * Returns the last file chooser path.
+     * 
+     * @return The last file chooser path
+     */
+
+    public File getLastFileChooserPath()
+    {
+        return this.lastFileChooserPath;
+    }
+
+
+    /**
+     * Sets the last file chooser path.
+     * 
+     * @param lastFileChooserPath
+     *            The last file chooser path to set
+     */
+
+    public void setLastFileChooserPath(final File lastFileChooserPath)
+    {
+        this.lastFileChooserPath = lastFileChooserPath;
+    }
+
 }

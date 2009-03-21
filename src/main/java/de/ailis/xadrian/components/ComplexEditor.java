@@ -408,7 +408,9 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     public void saveAs()
     {
-        File file = SaveComplexDialog.getInstance().open();
+        final SaveComplexDialog dialog = SaveComplexDialog.getInstance();        
+        dialog.setSelectedFile(getFile());
+        File file = dialog.open();
         if (file != null)
         {
             // Add file extension if none present
@@ -437,7 +439,10 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     public static ComplexEditor open()
     {
-        final File file = OpenComplexDialog.getInstance().open();
+        final OpenComplexDialog dialog = OpenComplexDialog.getInstance();
+        
+        dialog.setSelectedFile(new File(""));
+        final File file = dialog.open();
         if (file != null)
         {
             final SAXReader reader = new SAXReader();
@@ -852,5 +857,19 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public boolean canChangeSector()
     {
         return true;
+    }
+    
+    
+    /**
+     * Returns the file under which the currently edited complex could be
+     * saved.
+     * 
+     * @return A suggested file name for saving.
+     */
+    
+    private File getFile()
+    {
+        if (this.file != null) return this.file;
+        return new File(this.complex.getName() + ".x3c");
     }
 }
