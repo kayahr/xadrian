@@ -7,6 +7,10 @@
   <body>
     <release version="1.2.0" date="2009-03-22" desc="Minor update">
       <action dev="k" type="update" date="2009-03-22">
+        Fixed scroll behavior in complex view (When view is repainted then
+        the previous scroll position is restored. 
+      </action>
+      <action dev="k" type="update" date="2009-03-22">
         Added a workaround for Java bug #4699955 which prevented correct
         focus on spinner controls.
       </action>
