@@ -395,14 +395,31 @@ public class Complex implements Serializable
             root.addAttribute("sector", this.sector.getId());
         root.addAttribute("addBaseComplex", Boolean
             .toString(this.addBaseComplex));
-        for (final ComplexFactory factory : this.factories)
+        if (!this.factories.isEmpty())
         {
-            final Element factoryE = root.addElement("complexFactory");
-            factoryE.addAttribute("factory", factory.getFactory().getId());
-            factoryE.addAttribute("quantity", Integer.toString(factory
-                .getQuantity()));
-            factoryE
-                .addAttribute("yield", Integer.toString(factory.getYield()));
+            final Element factoriesE = root.addElement("complexFactories");
+            for (final ComplexFactory factory : this.factories)
+            {
+                final Element factoryE = factoriesE.addElement("complexFactory");
+                factoryE.addAttribute("factory", factory.getFactory().getId());
+                factoryE.addAttribute("quantity", Integer.toString(factory
+                    .getQuantity()));
+                factoryE
+                    .addAttribute("yield", Integer.toString(factory.getYield()));
+            }
+        }
+        if (!this.customPrices.isEmpty())
+        {
+            final Element waresE = root.addElement("complexWares");
+            for (final Map.Entry<Ware, Integer> entry: this.customPrices.entrySet())
+            {
+                final Ware ware = entry.getKey();
+                final int price = entry.getValue();
+                final Element wareE = waresE.addElement("complexWare");
+                wareE.addAttribute("ware", ware.getId());
+                wareE.addAttribute("use", Boolean.valueOf(price > 0).toString());
+                wareE.addAttribute("price", Integer.toString(price));
+            }
         }
         return document;
     }
@@ -428,7 +445,12 @@ public class Complex implements Serializable
             .getSector(root.attributeValue("sector")));
         complex.setAddBaseComplex(Boolean.parseBoolean(root
             .attributeValue("addBaseComplex")));
-        for (final Object item : root.elements("complexFactory"))
+        
+        // Get the factories parent element (In older version this was the root node)
+        Element factoriesE = root.element("complexFactories");
+        if (factoriesE == null) factoriesE = root;
+        
+        for (final Object item : factoriesE.elements("complexFactory"))
         {
             final Element element = (Element) item;
             final Factory factory = factoryFactory.getFactory(element
