@@ -5,7 +5,11 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.2.0" date="2009-03-21" desc="Minor update">
+    <release version="1.2.0" date="2009-03-22" desc="Minor update">
+      <action dev="k" type="update" date="2009-03-22">
+        Added a workaround for Java bug #4699955 which prevented correct
+        focus on spinner controls.
+      </action>
       <action dev="k" type="update" date="2009-03-21">
         Improved loading/saving of complexes. Complex names are now used as
         suggested filenames (For Save-As) and the last selected directory in

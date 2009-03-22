@@ -38,6 +38,7 @@ import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.actions.AddFactoryAction;
+import de.ailis.xadrian.actions.ChangePricesAction;
 import de.ailis.xadrian.actions.ChangeSectorAction;
 import de.ailis.xadrian.actions.ChangeSunsAction;
 import de.ailis.xadrian.actions.CopyAction;
@@ -45,12 +46,15 @@ import de.ailis.xadrian.actions.SelectAllAction;
 import de.ailis.xadrian.actions.ToggleBaseComplexAction;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.data.Factory;
+import de.ailis.xadrian.data.Ware;
+import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.dialogs.AddFactoryDialog;
 import de.ailis.xadrian.dialogs.OpenComplexDialog;
 import de.ailis.xadrian.dialogs.QuantityDialog;
 import de.ailis.xadrian.dialogs.SaveComplexDialog;
 import de.ailis.xadrian.dialogs.SelectSectorDialog;
 import de.ailis.xadrian.dialogs.SunsDialog;
+import de.ailis.xadrian.dialogs.WarePricesDialog;
 import de.ailis.xadrian.dialogs.YieldDialog;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.interfaces.ClipboardProvider;
@@ -82,8 +86,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     private static final Log log = LogFactory.getLog(ComplexEditor.class);
 
     /** The freemarker template for the content */
-    private static final Template template =
-        TemplateFactory.getTemplate("complex.ftl");
+    private static final Template template = TemplateFactory
+        .getTemplate("complex.ftl");
 
     /** The event listener list */
     private final EventListenerList listenerList = new EventListenerList();
@@ -132,6 +136,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         popupMenu.add(new AddFactoryAction(this));
         popupMenu.add(new ChangeSectorAction(this));
         popupMenu.add(new ChangeSunsAction(this));
+        popupMenu.add(new ChangePricesAction(this));
         popupMenu.add(new JCheckBoxMenuItem(new ToggleBaseComplexAction(this)));
         SwingUtils.setPopupMenu(this.textPane, popupMenu);
 
@@ -145,7 +150,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
         // Redraw the content
         redraw();
-        
+
         this.fireComplexState();
     }
 
@@ -211,8 +216,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("complex", this.complex);
         model.put("print", false);
-        final String content =
-            TemplateFactory.processTemplate(template, model);
+        final String content = TemplateFactory.processTemplate(template, model);
         this.textPane.setText(content);
         this.textPane.setCaretPosition(0);
         this.textPane.requestFocus();
@@ -262,6 +266,11 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             {
                 changeSector();
             }
+            else if ("changePrice".equals(action))
+            {
+                changePrices(WareFactory.getInstance().getWare(
+                    url.getPath().substring(1)));
+            }
         }
     }
 
@@ -275,7 +284,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         final AddFactoryDialog dialog = AddFactoryDialog.getInstance();
         if (dialog.open() == Result.OK)
         {
-            for (final Factory factory: dialog.getFactories())
+            for (final Factory factory : dialog.getFactories())
             {
                 this.complex.addFactory(factory);
             }
@@ -300,8 +309,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             redraw();
         }
     }
-    
-    
+
+
     /**
      * Removes the factory with the specified index.
      * 
@@ -408,7 +417,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     public void saveAs()
     {
-        final SaveComplexDialog dialog = SaveComplexDialog.getInstance();        
+        final SaveComplexDialog dialog = SaveComplexDialog.getInstance();
         dialog.setSelectedFile(getFile());
         File file = dialog.open();
         if (file != null)
@@ -440,7 +449,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public static ComplexEditor open()
     {
         final OpenComplexDialog dialog = OpenComplexDialog.getInstance();
-        
+
         dialog.setSelectedFile(new File(""));
         final File file = dialog.open();
         if (file != null)
@@ -461,8 +470,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
                 JOptionPane.showMessageDialog(null, I18N
                     .getString("error.cantReadComplex"), I18N
                     .getString("error.title"), JOptionPane.ERROR_MESSAGE);
-                log.error("Unable to load complex from file " + file + ": "
-                    + e, e);
+                log.error(
+                    "Unable to load complex from file " + file + ": " + e, e);
                 return null;
             }
         }
@@ -556,8 +565,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         model.put("print", true);
 
         // Generate content
-        final String content =
-            TemplateFactory.processTemplate(template, model);
+        final String content = TemplateFactory.processTemplate(template, model);
 
         // Put content into a text pane component
         final JTextPane printPane = new JTextPane();
@@ -756,22 +764,21 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     }
 
 
-    
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#canSelectAll()
      */
-    
+
     @Override
     public boolean canSelectAll()
     {
         return true;
     }
 
-    
+
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#canAddFactory()
      */
-    
+
     @Override
     public boolean canAddFactory()
     {
@@ -782,25 +789,25 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#addComplexStateListener(de.ailis.xadrian.listeners.ComplexStateListener)
      */
-    
+
     @Override
     public void addComplexStateListener(final ComplexStateListener listener)
     {
         this.listenerList.add(ComplexStateListener.class, listener);
     }
 
-    
+
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#removeComplexStateListener(de.ailis.xadrian.listeners.ComplexStateListener)
      */
-    
+
     @Override
     public void removeComplexStateListener(final ComplexStateListener listener)
     {
         this.listenerList.remove(ComplexStateListener.class, listener);
     }
 
-    
+
     /**
      * Fire the complex state event.
      */
@@ -815,33 +822,32 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     }
 
 
-    
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#canChangeSuns()
      */
-    
+
     @Override
     public boolean canChangeSuns()
     {
         return this.complex.getSector() == null;
     }
 
-    
+
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#canToggleBaseComplex()
      */
-    
+
     @Override
     public boolean canToggleBaseComplex()
     {
         return true;
     }
 
-    
+
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#isAddBaseComplex()
      */
-    
+
     @Override
     public boolean isAddBaseComplex()
     {
@@ -852,24 +858,66 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#canChangeSector()
      */
-    
+
     @Override
     public boolean canChangeSector()
     {
         return true;
     }
-    
-    
+
+
     /**
-     * Returns the file under which the currently edited complex could be
-     * saved.
+     * Returns the file under which the currently edited complex could be saved.
      * 
      * @return A suggested file name for saving.
      */
-    
+
     private File getFile()
     {
         if (this.file != null) return this.file;
         return new File(this.complex.getName() + ".x3c");
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#canChangePrices()
+     */
+
+    @Override
+    public boolean canChangePrices()
+    {
+        return true;
+    }
+
+
+    /**
+     * Opens the change prices dialog. Focuses the specified ware (if not null).
+     * 
+     * @param focusedWare
+     *            The ware to focus (null for none)
+     */
+
+    public void changePrices(final Ware focusedWare)
+    {
+        final WarePricesDialog dialog = WarePricesDialog.getInstance();
+        dialog.setCustomPrices(this.complex.getCustomPrices());
+        dialog.setActiveWare(focusedWare);
+        if (dialog.open() == Result.OK)
+        {
+            this.complex.setCustomPrices(dialog.getCustomPrices());
+            doChange();
+            redraw();
+        }
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#changePrices()
+     */
+
+    @Override
+    public void changePrices()
+    {
+        changePrices(null);
     }
 }

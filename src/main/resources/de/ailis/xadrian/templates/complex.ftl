@@ -182,14 +182,26 @@
             <td class="${class}">${surplus?round}</td>
             <td class="price">
               [#if surplus lt 0]
-                ${complexWare.buyPrice} Cr
+                <a href="file://changePrice/${complexWare.ware.id}">
+                  [#if complexWare.price gt 0]
+                    ${complexWare.price} Cr
+                  [#else]
+                    N/A
+                  [/#if]
+                </a>
               [#else]
                 -
               [/#if]
             </td>          
             <td class="price">
-              [#if surplus > 0]
-                ${complexWare.sellPrice} Cr
+              [#if surplus gt 0]
+                <a href="file://changePrice/${complexWare.ware.id}">
+                  [#if complexWare.price gt 0]
+                    ${complexWare.price} Cr
+                  [#else]
+                    N/A
+                  [/#if]
+                </a>
               [#else]
                 -
               [/#if]

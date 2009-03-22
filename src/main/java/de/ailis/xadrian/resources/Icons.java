@@ -81,6 +81,9 @@ public final class Icons
     /** The SUNS icon */
     public static final Icon SECTOR = createIcon("sector");
 
+    /** The PRICES icon */
+    public static final Icon PRICES = createIcon("prices");
+
     /** The PREFS icon */
     public static final Icon PREFS = createIcon("prefs");
 

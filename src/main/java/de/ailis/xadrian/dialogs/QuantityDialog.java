@@ -20,6 +20,7 @@ import javax.swing.SpinnerNumberModel;
 import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
+import de.ailis.xadrian.utils.SwingUtils;
 
 
 /**
@@ -69,6 +70,7 @@ public class QuantityDialog extends ModalDialog
         model.setMinimum(1);
         model.setMaximum(999);
         this.quantitySpinner.setModel(model);
+        SwingUtils.installSpinnerBugWorkaround(this.quantitySpinner);
         quantityLabel.setLabelFor(this.quantitySpinner);
 
         // Create the content panel

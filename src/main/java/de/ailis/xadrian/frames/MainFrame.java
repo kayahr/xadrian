@@ -33,6 +33,7 @@ import javax.swing.event.EventListenerList;
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.actions.AboutAction;
 import de.ailis.xadrian.actions.AddFactoryAction;
+import de.ailis.xadrian.actions.ChangePricesAction;
 import de.ailis.xadrian.actions.ChangeSectorAction;
 import de.ailis.xadrian.actions.ChangeSunsAction;
 import de.ailis.xadrian.actions.CloseAction;
@@ -123,6 +124,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /** The "changeSector" action */
     private final Action changeSectorAction = new ChangeSectorAction(this);
 
+    /** The "changePrices" action */
+    private final Action changePricesAction = new ChangePricesAction(this);
+
     /** The "select all" action */
     private final Action selectAllAction = new SelectAllAction(this);
 
@@ -211,6 +215,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         complexMenu.add(this.addFactoryAction);
         complexMenu.add(this.changeSectorAction);
         complexMenu.add(this.changeSunsAction);
+        complexMenu.add(this.changePricesAction);
         complexMenu.add(new JCheckBoxMenuItem(this.toggleBaseComplexAction));
 
         // Create the 'Help' menu
@@ -239,6 +244,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         toolBar.add(this.addFactoryAction);
         toolBar.add(this.changeSectorAction);
         toolBar.add(this.changeSunsAction);
+        toolBar.add(this.changePricesAction);
         final JToggleButton btn =
             new JToggleButton(this.toggleBaseComplexAction);
         btn.setHideActionText(true);
@@ -849,5 +855,30 @@ public class MainFrame extends JFrame implements EditorStateListener,
     public void changeSector()
     {
         ((ComplexProvider) getCurrentTab()).changeSector();
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#canChangePrices()
+     */
+    
+    @Override
+    public boolean canChangePrices()
+    {
+        final Component tab = getCurrentTab();
+        if (tab == null) return false;
+        if (!(tab instanceof ComplexProvider)) return false;
+        return ((ComplexProvider) tab).canChangePrices();
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.interfaces.ComplexProvider#changePrices()
+     */
+    
+    @Override
+    public void changePrices()
+    {
+        ((ComplexProvider) getCurrentTab()).changePrices();
     }
 }

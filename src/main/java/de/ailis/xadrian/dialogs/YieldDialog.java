@@ -20,6 +20,7 @@ import javax.swing.SpinnerNumberModel;
 import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
+import de.ailis.xadrian.utils.SwingUtils;
 
 
 /**
@@ -69,6 +70,7 @@ public class YieldDialog extends ModalDialog
         model.setMinimum(0);
         model.setMaximum(200);
         this.yieldSpinner.setModel(model);
+        SwingUtils.installSpinnerBugWorkaround(this.yieldSpinner);
         yieldLabel.setLabelFor(this.yieldSpinner);
 
         // Create the content panel

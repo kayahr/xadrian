@@ -58,6 +58,13 @@ public interface ComplexProvider
      */
 
     public void changeSector();
+
+    
+    /**
+     * Change the ware prices
+     */
+
+    public void changePrices();
     
     
     /**
@@ -84,6 +91,15 @@ public interface ComplexProvider
      */
 
     public boolean canChangeSuns();
+
+    
+    /**
+     * Returns true if component can change the ware prices.
+     * 
+     * @return True if component can change the ware prices. False if not.
+     */
+
+    public boolean canChangePrices();
 
     
     /**

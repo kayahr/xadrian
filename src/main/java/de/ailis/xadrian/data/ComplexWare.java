@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 public class ComplexWare implements Serializable, Comparable<ComplexWare>
 {
-    /** Serial version UID */    
+    /** Serial version UID */
     private static final long serialVersionUID = -651656278517737848L;
 
     /** The ware */
@@ -31,6 +31,9 @@ public class ComplexWare implements Serializable, Comparable<ComplexWare>
     /** The number of needed units */
     private final double needed;
 
+    /** The ware price */
+    private final int price;
+
 
     /**
      * Constructor.
@@ -41,127 +44,111 @@ public class ComplexWare implements Serializable, Comparable<ComplexWare>
      *            The number of produced units
      * @param needed
      *            The number of needed units
+     * @param price
+     *            The buy/sell price of the ware
      */
 
     public ComplexWare(final Ware ware, final double produced,
-        final double needed)
+        final double needed, final int price)
     {
         this.ware = ware;
         this.produced = produced;
         this.needed = needed;
+        this.price = price;
     }
-    
-    
+
+
     /**
      * Returns the ware.
      * 
      * @return The ware
      */
-    
+
     public Ware getWare()
     {
         return this.ware;
     }
-    
-    
+
+
     /**
      * Returns the number of produced units.
      * 
      * @return The number of produced units
      */
-    
+
     public double getProduced()
     {
         return this.produced;
     }
 
-    
+
     /**
      * Returns the number of needed units.
      * 
      * @return The number of needed units
      */
-    
+
     public double getNeeded()
     {
         return this.needed;
     }
-    
-    
+
+
     /**
      * Returns the number of missing units. If more units are produced than
      * needed then this method returns 0.
      * 
      * @return The number of missing units
      */
-    
+
     public double getMissing()
     {
         return Math.max(0, this.needed - this.produced);
     }
-    
-    
+
+
     /**
-     * Returns the surplus. Can return negative values if more units are
-     * needed than produced.
+     * Returns the surplus. Can return negative values if more units are needed
+     * than produced.
      * 
      * @return The surplus
      */
-    
+
     public double getSurplus()
     {
         return this.produced - this.needed;
     }
-    
-    
+
+
     /**
-     * Returns the buy price.
+     * Returns the buy/sell price.
      * 
-     * @return the buy price
+     * @return the buy/sell price
      */
-    
-    public int getBuyPrice()
+
+    public int getPrice()
     {
-        return this.ware.getAvgPrice();
+        return this.price;
     }
-    
-    
-    /**
-     * Returns the sell price.
-     * 
-     * @return The sell price
-     */
-    
-    public int getSellPrice()
-    {
-        return this.ware.getAvgPrice();
-    }
-    
-    
+
+
     /**
      * Returns the profit per hour.
      * 
      * @return The profit per hour
      */
-    
+
     public double getProfit()
     {
         final double surplus = this.getSurplus();
-        if (surplus < 0)
-        {
-            return surplus * getBuyPrice();
-        }
-        else
-        {
-            return surplus * getSellPrice();
-        }
+        return surplus * this.price;
     }
 
 
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-    
+
     @Override
     public int compareTo(final ComplexWare o)
     {

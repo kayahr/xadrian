@@ -65,6 +65,9 @@ public class Complex implements Serializable
     /** If base complex should be calculated or not */
     private boolean addBaseComplex = false;
 
+    /** Custom buy/sell prices in this complex */
+    private final Map<Ware, Integer> customPrices;
+
 
     /**
      * Constructor
@@ -88,6 +91,7 @@ public class Complex implements Serializable
         this.name = name;
         this.factories = new ArrayList<ComplexFactory>();
         this.autoFactories = new ArrayList<ComplexFactory>();
+        this.customPrices = new HashMap<Ware, Integer>();
     }
 
 
@@ -519,22 +523,24 @@ public class Complex implements Serializable
         // Add the products
         for (final Product product : getProductsPerHour())
         {
-            final String wareId = product.getWare().getId();
-            wares.put(wareId, new ComplexWare(product.getWare(), product
-                .getQuantity(), 0));
+            final Ware ware = product.getWare();
+            final String wareId = ware.getId();
+            wares.put(wareId, new ComplexWare(ware, product.getQuantity(), 0,
+                getWarePrice(ware)));
         }
 
         // Add the resources
         for (final Product resource : getResourcesPerHour())
         {
-            final String wareId = resource.getWare().getId();
+            final Ware ware = resource.getWare();
+            final String wareId = ware.getId();
             ComplexWare complexWare = wares.get(wareId);
             if (complexWare == null)
-                complexWare = new ComplexWare(resource.getWare(), 0, resource
-                    .getQuantity());
+                complexWare = new ComplexWare(ware, 0, resource.getQuantity(),
+                    getWarePrice(ware));
             else
-                complexWare = new ComplexWare(resource.getWare(), complexWare
-                    .getProduced(), resource.getQuantity());
+                complexWare = new ComplexWare(ware, complexWare.getProduced(),
+                    resource.getQuantity(), getWarePrice(ware));
             wares.put(wareId, complexWare);
         }
 
@@ -883,5 +889,50 @@ public class Complex implements Serializable
                 .getFactory().getNearestManufacturer(this.sector)));
         }
         return list;
+    }
+
+
+    /**
+     * Returns the price for the specified ware. If the price has a custom price
+     * then this one is returned. If not then the standard average price of the
+     * ware is returned.
+     * 
+     * @param ware
+     *            The ware
+     * @return The price
+     */
+
+    public int getWarePrice(final Ware ware)
+    {
+        final Integer price = this.customPrices.get(ware);
+        if (price == null) return ware.getAvgPrice();
+        if (price < 0) return 0;
+        return price;
+    }
+
+
+    /**
+     * Returns the map with custom prices.
+     * 
+     * @return The map with custom prices
+     */
+
+    public Map<Ware, Integer> getCustomPrices()
+    {
+        return Collections.unmodifiableMap(this.customPrices);
+    }
+
+
+    /**
+     * Sets a new map with custom prices.
+     * 
+     * @param customPrices
+     *            The new map with custom prices
+     */
+
+    public void setCustomPrices(final Map<Ware, Integer> customPrices)
+    {
+        this.customPrices.clear();
+        this.customPrices.putAll(customPrices);
     }
 }
