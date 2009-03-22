@@ -7,6 +7,11 @@
   <body>
     <release version="1.2.0" date="2009-03-22" desc="Minor update">
       <action dev="k" type="add" date="2009-03-22">
+        Implemented possibility to change the buy/sell prices of wares in
+        a complex. It's also possible to completely disable trading with a
+        ware.
+      </action>
+      <action dev="k" type="add" date="2009-03-22">
         All window locations and sizes are now saved and restored.
         AddFactory dialog can now be resized and splitter position is also
         saved and restored.

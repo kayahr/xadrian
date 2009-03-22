@@ -10,7 +10,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.print.PrinterException;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -49,13 +48,13 @@ import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.dialogs.AddFactoryDialog;
-import de.ailis.xadrian.dialogs.OpenComplexDialog;
+import de.ailis.xadrian.dialogs.ChangePricesDialog;
 import de.ailis.xadrian.dialogs.ChangeQuantityDialog;
+import de.ailis.xadrian.dialogs.ChangeSunsDialog;
+import de.ailis.xadrian.dialogs.ChangeYieldDialog;
+import de.ailis.xadrian.dialogs.OpenComplexDialog;
 import de.ailis.xadrian.dialogs.SaveComplexDialog;
 import de.ailis.xadrian.dialogs.SelectSectorDialog;
-import de.ailis.xadrian.dialogs.ChangeSunsDialog;
-import de.ailis.xadrian.dialogs.ChangePricesDialog;
-import de.ailis.xadrian.dialogs.ChangeYieldDialog;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.interfaces.ClipboardProvider;
 import de.ailis.xadrian.interfaces.ComplexProvider;
@@ -66,6 +65,7 @@ import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
 import de.ailis.xadrian.utils.FileUtils;
 import de.ailis.xadrian.utils.SwingUtils;
+import de.ailis.xadrian.utils.XmlUtils;
 import freemarker.template.Template;
 
 
@@ -489,24 +489,15 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     private void save(final File file)
     {
-        FileWriter out;
         try
         {
-            out = new FileWriter(file);
-            try
-            {
-                this.complex.toXML().write(out);
-                this.file = file;
-                this.changed = false;
-                this.complex.setName(FileUtils.getNameWithoutExt(file));
-                redraw();
-                fireState();
-                fireComplexState();
-            }
-            finally
-            {
-                out.close();
-            }
+            XmlUtils.write(this.complex.toXML(), file);
+            this.file = file;
+            this.changed = false;
+            this.complex.setName(FileUtils.getNameWithoutExt(file));
+            redraw();
+            fireState();
+            fireComplexState();
         }
         catch (final IOException e)
         {

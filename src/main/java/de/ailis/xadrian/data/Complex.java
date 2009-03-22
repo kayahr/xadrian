@@ -17,11 +17,13 @@ import java.util.Map;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.data.factories.SectorFactory;
+import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.MultiCollection;
 
@@ -390,6 +392,7 @@ public class Complex implements Serializable
     {
         final Document document = DocumentHelper.createDocument();
         final Element root = document.addElement("complex");
+        root.addAttribute("version", "2");
         root.addAttribute("suns", Integer.toString(getSuns().getPercent()));
         if (this.sector != null)
             root.addAttribute("sector", this.sector.getId());
@@ -400,25 +403,28 @@ public class Complex implements Serializable
             final Element factoriesE = root.addElement("complexFactories");
             for (final ComplexFactory factory : this.factories)
             {
-                final Element factoryE = factoriesE.addElement("complexFactory");
+                final Element factoryE = factoriesE
+                    .addElement("complexFactory");
                 factoryE.addAttribute("factory", factory.getFactory().getId());
                 factoryE.addAttribute("quantity", Integer.toString(factory
                     .getQuantity()));
-                factoryE
-                    .addAttribute("yield", Integer.toString(factory.getYield()));
+                factoryE.addAttribute("yield", Integer.toString(factory
+                    .getYield()));
             }
         }
         if (!this.customPrices.isEmpty())
         {
             final Element waresE = root.addElement("complexWares");
-            for (final Map.Entry<Ware, Integer> entry: this.customPrices.entrySet())
+            for (final Map.Entry<Ware, Integer> entry : this.customPrices
+                .entrySet())
             {
                 final Ware ware = entry.getKey();
                 final int price = entry.getValue();
                 final Element wareE = waresE.addElement("complexWare");
                 wareE.addAttribute("ware", ware.getId());
-                wareE.addAttribute("use", Boolean.valueOf(price > 0).toString());
-                wareE.addAttribute("price", Integer.toString(price));
+                wareE
+                    .addAttribute("use", Boolean.valueOf(price > 0).toString());
+                wareE.addAttribute("price", Integer.toString(Math.abs(price)));
             }
         }
         return document;
@@ -431,25 +437,38 @@ public class Complex implements Serializable
      * @param document
      *            The XML document
      * @return The complex
+     * @throws DocumentException
+     *             If XML file could not be read
      */
 
     public static Complex fromXML(final Document document)
+        throws DocumentException
     {
         final Element root = document.getRootElement();
         final Complex complex = new Complex();
         final FactoryFactory factoryFactory = FactoryFactory.getInstance();
         final SectorFactory sectorFactory = SectorFactory.getInstance();
+        final WareFactory wareFactory = WareFactory.getInstance();
+
+        // Check the version
+        final String versionStr = root.attributeValue("version");
+        int version = 1;
+        if (versionStr != null) version = Integer.parseInt(versionStr);
+        if (version > 2) throw new DocumentException("File is too new");
+
         complex.setSuns(Suns.valueOf(Integer.parseInt(root
             .attributeValue("suns"))));
         complex.setSector(sectorFactory
             .getSector(root.attributeValue("sector")));
         complex.setAddBaseComplex(Boolean.parseBoolean(root
             .attributeValue("addBaseComplex")));
-        
-        // Get the factories parent element (In older version this was the root node)
+
+        // Get the factories parent element (In older version this was the root
+        // node)
         Element factoriesE = root.element("complexFactories");
         if (factoriesE == null) factoriesE = root;
-        
+
+        // Read the complex factories
         for (final Object item : factoriesE.elements("complexFactory"))
         {
             final Element element = (Element) item;
@@ -460,6 +479,22 @@ public class Complex implements Serializable
                 .attributeValue("quantity"));
             complex.addFactory(new ComplexFactory(factory, quantity, yield));
         }
+        
+        // Read the complex wares
+        final Element waresE = root.element("complexWares");
+        if (waresE != null)
+        {
+            complex.customPrices.clear();
+            for (final Object item: waresE.elements("complexWare"))
+            {
+                final Element element = (Element) item;
+                final Ware ware = wareFactory.getWare(element.attributeValue("ware"));
+                final boolean use = Boolean.parseBoolean(element.attributeValue("use"));
+                final int price = Integer.parseInt(element.attributeValue("price"));
+                complex.customPrices.put(ware, use ? price : -price);
+            }
+        }
+
         complex.calculateBaseComplex();
         return complex;
     }
