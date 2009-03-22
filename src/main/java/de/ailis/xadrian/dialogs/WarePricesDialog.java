@@ -100,7 +100,7 @@ public class WarePricesDialog extends ModalDialog
         final JScrollPane scrollPane = new JScrollPane(this.warePricesPanel);
         scrollPane.setBorder(BorderFactory
             .createBevelBorder(BevelBorder.LOWERED));
-        scrollPane.setPreferredSize(new Dimension(640, 320));
+        scrollPane.setPreferredSize(new Dimension(720, 512));
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         this.scrollPane = scrollPane;
 
@@ -176,6 +176,7 @@ public class WarePricesDialog extends ModalDialog
                 .getString("changeWarePrices.used"));
             checkBox.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             checkBox.setBackground(color);
+            checkBox.setOpaque(true);
             checkBox.setSelected(used);
             this.warePricesPanel.add(checkBox, c);
 
@@ -184,23 +185,29 @@ public class WarePricesDialog extends ModalDialog
             final JLabel priceLabel = new JLabel(I18N
                 .getString("changeWarePrices.price")
                 + ":");
-            priceLabel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 0));
-            priceLabel.setBackground(color);
+            final JPanel pricePanel = new JPanel();
+            pricePanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 0));
+            pricePanel.setBackground(color);
             priceLabel.setEnabled(used);
-            priceLabel.setOpaque(true);
-            this.warePricesPanel.add(priceLabel, c);
+            pricePanel.add(priceLabel);
+            this.warePricesPanel.add(pricePanel, c);
 
             // Add the price slider
             c.gridx++;
             final JSlider slider = new JSlider(ware.getMinPrice(), ware
                 .getMaxPrice(), price);
-            slider.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            final JPanel sliderPanel = new JPanel(new BorderLayout());
+            sliderPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             slider.setEnabled(used);
-            slider.setBackground(color);
+            sliderPanel.setBackground(color);
             slider.setSnapToTicks(true);
             slider.setMinorTickSpacing(1);
+            slider.setPaintLabels(false);
+            slider.setPaintTicks(false);
+            slider.setPaintTrack(false);
             slider.setPreferredSize(new Dimension(100, 1));
-            this.warePricesPanel.add(slider, c);
+            sliderPanel.add(slider);
+            this.warePricesPanel.add(sliderPanel, c);
 
             // Add the price spinner
             c.gridx++;
@@ -209,6 +216,7 @@ public class WarePricesDialog extends ModalDialog
             final JSpinner spinner = new JSpinner(model);
             final JPanel spinnerPanel = new JPanel(new BorderLayout());
             spinner.setEnabled(used);
+            spinner.setPreferredSize(new Dimension(100, 1));
             SwingUtils.installSpinnerBugWorkaround(spinner);
             spinnerPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 5));
             spinnerPanel.setBackground(color);
@@ -221,11 +229,12 @@ public class WarePricesDialog extends ModalDialog
             // Add the credits label
             c.gridx++;
             final JLabel credits = new JLabel("Cr");
-            credits.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 5));
+            final JPanel creditsPanel = new JPanel();
+            creditsPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 5));
             credits.setEnabled(used);
-            credits.setBackground(color);
-            credits.setOpaque(true);
-            this.warePricesPanel.add(credits, c);
+            creditsPanel.setBackground(color);
+            creditsPanel.add(credits);
+            this.warePricesPanel.add(creditsPanel, c);
 
             // Add the reset button
             c.gridx++;
