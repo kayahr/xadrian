@@ -298,14 +298,14 @@
             [/#if]
           </tr>
         [/#list]
-        <tr class="sep">
-          [#if complex.sector??]
-          <td colspan="6"></td>
-          [#else]
-          <td colspan="5"></td>
-          [/#if]
-        </tr>
         [#if complex.shoppingList.kitQuantity > 0]
+          <tr class="sep">
+            [#if complex.sector??]
+            <td colspan="6"></td>
+            [#else]
+            <td colspan="5"></td>
+            [/#if]
+          </tr>
           [#if complex.shoppingList.items?size % 2 == 0]
             [#assign class="even" /]
           [#else]
