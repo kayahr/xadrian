@@ -186,7 +186,7 @@
                   [#if complexWare.price gt 0]
                     ${complexWare.price} Cr
                   [#else]
-                    N/A
+                    [@message key="complex.noTrade" /]
                   [/#if]
                 </a>
               [#else]
@@ -199,7 +199,7 @@
                   [#if complexWare.price gt 0]
                     ${complexWare.price} Cr
                   [#else]
-                    N/A
+                    [@message key="complex.noTrade" /]
                   [/#if]
                 </a>
               [#else]
