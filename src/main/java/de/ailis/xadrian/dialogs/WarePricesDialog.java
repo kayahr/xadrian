@@ -315,6 +315,10 @@ public class WarePricesDialog extends ModalDialog
                 + focusComponent.getHeight() / 2, 0, height));
             focusComponent.requestFocus();
         }
+        else
+        {
+            this.scrollPane.getVerticalScrollBar().setValue(0);
+        }
     }
 
 
