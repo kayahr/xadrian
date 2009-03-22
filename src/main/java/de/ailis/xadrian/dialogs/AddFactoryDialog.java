@@ -32,8 +32,7 @@ import de.ailis.xadrian.components.FactoryTreeCellRenderer;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.models.FactoryTreeModel;
-import de.ailis.xadrian.resources.Images;
-import de.ailis.xadrian.support.I18N;
+import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.ModalDialog;
 import freemarker.template.Template;
 
@@ -66,6 +65,9 @@ public class AddFactoryDialog extends ModalDialog implements
 
     /** The factory info text pane */
     private JTextPane textPane;
+    
+    /** The split pane between tree and info panel */
+    private JSplitPane splitPane;
 
 
     /**
@@ -74,7 +76,7 @@ public class AddFactoryDialog extends ModalDialog implements
 
     private AddFactoryDialog()
     {
-        super(Result.OK, Result.CANCEL);
+        super("addFactory", Result.OK, Result.CANCEL);
     }
 
 
@@ -85,8 +87,8 @@ public class AddFactoryDialog extends ModalDialog implements
     @Override
     protected void createUI()
     {
-        setTitle(I18N.getTitle("dialog.addFactory"));
-        setIconImages(Images.LOGOS);
+        // Enable resizing
+        setResizable(true);
 
         // Create the content controls
         this.factoriesTree = new JTree();
@@ -128,15 +130,16 @@ public class AddFactoryDialog extends ModalDialog implements
             .getResource("templates/"));
         
         // Create the split pane housing the factory pane and info pane
-        final JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+        this.splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
             factoryPane, infoPane);
+        this.splitPane.setName("infoSplitPane");
         
         // Create another container for just adding some border
         final JPanel contentPanel = new JPanel();
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-        contentPanel.add(splitPane);
-
+        contentPanel.add(this.splitPane);
+        
         // Put this last panel into the window
         add(contentPanel, BorderLayout.CENTER);
         
@@ -163,10 +166,18 @@ public class AddFactoryDialog extends ModalDialog implements
     @Override
     public Result open()
     {
-        this.factories = null;
-        this.factoriesTree.clearSelection();
-        setResultEnabled(Result.OK, false);
-        return super.open();
+        Config.restoreSplitPaneState(this.splitPane);
+        try
+        {
+            this.factories = null;
+            this.factoriesTree.clearSelection();
+            setResultEnabled(Result.OK, false);
+            return super.open();
+        }
+        finally
+        {
+            Config.saveSplitPaneState(this.splitPane);
+        }
     }
 
 

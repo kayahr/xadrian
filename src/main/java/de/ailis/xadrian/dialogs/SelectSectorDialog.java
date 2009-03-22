@@ -27,7 +27,6 @@ import javax.swing.border.BevelBorder;
 import de.ailis.xadrian.components.SectorSelector;
 import de.ailis.xadrian.components.SectorSelector.Mode;
 import de.ailis.xadrian.data.Sector;
-import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
@@ -60,7 +59,7 @@ public class SelectSectorDialog extends ModalDialog
 
     private SelectSectorDialog()
     {
-        super(Result.OK, Result.CANCEL);
+        super("selectSector", Result.OK, Result.CANCEL);
     }
 
 
@@ -71,9 +70,6 @@ public class SelectSectorDialog extends ModalDialog
     @Override
     protected void createUI()
     {
-        setTitle(I18N.getTitle("selectSector"));
-        setIconImages(Images.LOGOS);
-
         // Create the selector panel
         final JPanel selectorPanel = new JPanel();
         selectorPanel.setBorder(BorderFactory
@@ -108,9 +104,9 @@ public class SelectSectorDialog extends ModalDialog
             }
         });
         final JLabel quickSearchLabel = new JLabel(I18N
-            .getString("selectSector.filter"));
+            .getString("dialog.selectSector.filter"));
         quickSearchLabel.setDisplayedMnemonic(I18N
-            .getMnemonic("selectSector.filter"));
+            .getMnemonic("dialog.selectSector.filter"));
         quickSearchLabel.setLabelFor(quickSearch);
         final JComboBox modeComboBox = new JComboBox(SectorSelector.Mode
             .values());
@@ -124,9 +120,9 @@ public class SelectSectorDialog extends ModalDialog
             }
         });
         final JLabel modeLabel = new JLabel(I18N
-            .getString("selectSector.viewMode"));
+            .getString("dialog.selectSector.viewMode"));
         modeLabel.setDisplayedMnemonic(I18N
-            .getMnemonic("selectSector.viewMode"));
+            .getMnemonic("dialog.selectSector.viewMode"));
         modeLabel.setLabelFor(modeComboBox);
         controlsPanel.add(quickSearchLabel);
         controlsPanel.add(Box.createRigidArea(new Dimension(10, 0)));
@@ -137,11 +133,11 @@ public class SelectSectorDialog extends ModalDialog
         controlsPanel.add(modeComboBox);
 
         // Create another container for just adding some border
-        final JPanel contentPanel = new JPanel();
+        final JPanel contentPanel = new JPanel(new BorderLayout());
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-        contentPanel.add(controlsPanel);
-        contentPanel.add(selectorPanel);
+        //contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        contentPanel.add(controlsPanel, BorderLayout.NORTH);
+        contentPanel.add(selectorPanel, BorderLayout.CENTER);
 
         // Put this last panel into the window
         add(contentPanel, BorderLayout.CENTER);

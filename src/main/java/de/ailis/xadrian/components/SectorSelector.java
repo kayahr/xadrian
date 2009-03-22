@@ -73,7 +73,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         @Override
         public String toString()
         {
-            return I18N.getString("sectorSelector.viewMode."
+            return I18N.getString("component.sectorSelector.viewMode."
                 + this.name().toLowerCase());
         }
     }
@@ -274,15 +274,15 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
                 .deriveFont(10f / this.scale));
             textRenderer.setColor(detailColor);
             textRenderer.addText(String.format("%s: %d; %d", I18N
-                .getString("sectorSelector.location"), this.overSector.getX(),
+                .getString("component.sectorSelector.location"), this.overSector.getX(),
                 this.overSector.getY()));
             textRenderer.newLine();
             textRenderer.addText(String.format("%s: %s", I18N
-                .getString("sectorSelector.race"), this.overSector.getRace()
+                .getString("component.sectorSelector.race"), this.overSector.getRace()
                 .toString()));
             textRenderer.newLine();
             textRenderer.addText(String.format("%s: %s", I18N
-                .getString("sectorSelector.suns"), this.overSector.getSuns()
+                .getString("component.sectorSelector.suns"), this.overSector.getSuns()
                 .toString()));
 
             addYieldInfo(textRenderer, this.overSector, "siliconWafers");
@@ -336,7 +336,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
         // Output the title
         renderer.newLine();
-        renderer.addText(I18N.getString("sectorSelector." + wareId) + ": ");
+        renderer.addText(I18N.getString("component.sectorSelector." + wareId) + ": ");
         renderer.newLine();
 
         // Output the yields

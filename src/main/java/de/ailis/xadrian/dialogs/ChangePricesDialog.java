@@ -38,7 +38,6 @@ import javax.swing.event.ChangeListener;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
-import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
@@ -51,7 +50,7 @@ import de.ailis.xadrian.utils.SwingUtils;
  * @version $Revision$
  */
 
-public class WarePricesDialog extends ModalDialog
+public class ChangePricesDialog extends ModalDialog
 {
     /** Serial version UID */
     private static final long serialVersionUID = -7047840854198687941L;
@@ -60,7 +59,7 @@ public class WarePricesDialog extends ModalDialog
     private final Map<Ware, Integer> customPrices = new HashMap<Ware, Integer>();
 
     /** The singleton instance */
-    private final static WarePricesDialog instance = new WarePricesDialog();
+    private final static ChangePricesDialog instance = new ChangePricesDialog();
 
     /** The ware prices panel */
     private JPanel warePricesPanel;
@@ -76,9 +75,9 @@ public class WarePricesDialog extends ModalDialog
      * Constructor
      */
 
-    private WarePricesDialog()
+    private ChangePricesDialog()
     {
-        super(Result.OK, Result.CANCEL);
+        super("changePrices", Result.OK, Result.CANCEL);
     }
 
 
@@ -89,8 +88,8 @@ public class WarePricesDialog extends ModalDialog
     @Override
     protected void createUI()
     {
-        setTitle(I18N.getTitle("changeWarePrices"));
-        setIconImages(Images.LOGOS);
+        // Enable dialog resizing
+        setResizable(true);
 
         // Create the content panel
         this.warePricesPanel = new JPanel();
@@ -173,7 +172,7 @@ public class WarePricesDialog extends ModalDialog
             // Add the buy/sell checkbox
             c.gridx++;
             final JCheckBox checkBox = new JCheckBox(I18N
-                .getString("changeWarePrices.used"));
+                .getString("dialog.changePrices.used"));
             checkBox.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             checkBox.setBackground(color);
             checkBox.setOpaque(true);
@@ -183,7 +182,7 @@ public class WarePricesDialog extends ModalDialog
             // Add the price label
             c.gridx++;
             final JLabel priceLabel = new JLabel(I18N
-                .getString("changeWarePrices.price")
+                .getString("dialog.changePrices.price")
                 + ":");
             final JPanel pricePanel = new JPanel();
             pricePanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 0));
@@ -240,7 +239,7 @@ public class WarePricesDialog extends ModalDialog
             // Add the reset button
             c.gridx++;
             final JButton resetButton = new JButton(I18N
-                .getString("changeWarePrices.reset"));
+                .getString("dialog.changePrices.reset"));
             resetButton.setEnabled(!used || price != ware.getAvgPrice());
             final JPanel buttonPanel = new JPanel(new GridBagLayout());
             buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
@@ -304,7 +303,6 @@ public class WarePricesDialog extends ModalDialog
 
             c.gridy++;
         }
-        setResizable(true);
 
         validate();
 
@@ -399,7 +397,7 @@ public class WarePricesDialog extends ModalDialog
      * @return The singleton instance
      */
 
-    public static WarePricesDialog getInstance()
+    public static ChangePricesDialog getInstance()
     {
         return instance;
     }

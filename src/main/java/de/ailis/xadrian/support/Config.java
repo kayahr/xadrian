@@ -6,14 +6,20 @@
 
 package de.ailis.xadrian.support;
 
+import java.awt.Component;
+import java.awt.Frame;
+import java.awt.Window;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.Preferences;
 
+import javax.swing.JSplitPane;
+
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.factories.RaceFactory;
+import de.ailis.xadrian.exceptions.ConfigException;
 
 
 /**
@@ -26,10 +32,10 @@ import de.ailis.xadrian.data.factories.RaceFactory;
 public final class Config
 {
     /** Config key for ignored races */
-    private static final String IGNORED_RACES = "ignoredRaces";
+    private static final String IGNORED_RACES = "ignoredraces";
 
     /** Config key for last file chooser path */
-    private static final String LAST_FILE_CHOOSER_PATH = "lastFileChooserPath";
+    private static final String LAST_FILE_CHOOSER_PATH = "lastfilechooserpath";
 
     /** The singleton instance */
     private static final Config instance = new Config();
@@ -170,4 +176,95 @@ public final class Config
         this.lastFileChooserPath = lastFileChooserPath;
     }
 
+
+    /**
+     * Saves the window preferences.
+     * 
+     * @param window
+     *            The window
+     */
+
+    public static void saveWindowState(final Window window)
+    {
+        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+
+        // Window preferences are only saved if state is NORMAL
+        if (!(window instanceof Frame)
+            || ((Frame) window).getExtendedState() == Frame.NORMAL)
+        {
+            prefs.putInt(getPrefsName(window, "width"), window.getWidth());
+            prefs.putInt(getPrefsName(window, "height"), window.getHeight());
+            prefs.putInt(getPrefsName(window, "left"), window.getX());
+            prefs.putInt(getPrefsName(window, "top"), window.getY());
+        }
+    }
+
+
+    /**
+     * Restores the window state.
+     * 
+     * @param window
+     *            The window
+     */
+
+    public static void restoreWindowState(final Window window)
+    {
+        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+        window.setSize(prefs.getInt(getPrefsName(window, "width"), window.getWidth()),
+            prefs.getInt(getPrefsName(window, "height"), window.getHeight()));
+        window.setLocation(prefs.getInt(getPrefsName(window, "left"), window.getX()),
+            prefs.getInt(getPrefsName(window, "top"), window.getY()));
+    }
+
+
+    /**
+     * Saves the split pane preferences.
+     * 
+     * @param splitPane
+     *            The split pane
+     */
+
+    public static void saveSplitPaneState(final JSplitPane splitPane)
+    {
+        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+        prefs.putInt(getPrefsName(splitPane, "dividerLocation"), splitPane
+            .getDividerLocation());
+    }
+
+
+    /**
+     * Restores the split pane preferences.
+     * 
+     * @param splitPane
+     *            The split pane
+     */
+
+    public static void restoreSplitPaneState(final JSplitPane splitPane)
+    {
+        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+        splitPane.setDividerLocation(prefs.getInt(getPrefsName(splitPane,
+            "dividerLocation"), splitPane.getDividerLocation()));
+    }
+
+
+    /**
+     * Returns the preferences name for the specified component and for the
+     * specified key.
+     * 
+     * @param component
+     *            The component
+     * @param key
+     *            The key
+     * @return The preferences name.
+     */
+
+    private static String getPrefsName(final Component component,
+        final String key)
+    {
+        final String name = component.getName();
+        if (name == null)
+            throw new ConfigException(
+                "Unable to save state of component with no name: " + component);
+        return name.toLowerCase() + "." + key.toLowerCase();
+    }
 }

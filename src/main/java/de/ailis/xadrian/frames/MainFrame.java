@@ -11,7 +11,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.prefs.Preferences;
 
 import javax.swing.Action;
 import javax.swing.JCheckBoxMenuItem;
@@ -30,7 +29,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
 
-import de.ailis.xadrian.Main;
 import de.ailis.xadrian.actions.AboutAction;
 import de.ailis.xadrian.actions.AddFactoryAction;
 import de.ailis.xadrian.actions.ChangePricesAction;
@@ -148,6 +146,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     public MainFrame()
     {
         setTitle(I18N.getString("title"));
+        setName("mainFrame");
         setIconImages(Images.LOGOS);
 
         setSize(800, 600);
@@ -171,7 +170,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
         pack();
 
-        loadPreferences();
+        Config.restoreWindowState(this);
 
         this.tabs.requestFocus();
     }
@@ -507,43 +506,10 @@ public class MainFrame extends JFrame implements EditorStateListener,
     {
         if (closeAllTabs())
         {
-            savePreferences();
+            Config.saveWindowState(this);
             Config.getInstance().save();
             System.exit(0);
         }
-    }
-
-
-    /**
-     * Saves the frame preferences.
-     */
-
-    private void savePreferences()
-    {
-        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
-
-        // Window preferences are only saved if state is NORMAL
-        if (getExtendedState() == NORMAL)
-        {
-            prefs.putInt("MainFrame.width", getWidth());
-            prefs.putInt("MainFrame.height", getHeight());
-            prefs.putInt("MainFrame.left", getX());
-            prefs.putInt("MainFrame.top", getY());
-        }
-    }
-
-
-    /**
-     * Loads the previously saved preferences.
-     */
-
-    private void loadPreferences()
-    {
-        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
-        setSize(prefs.getInt("MainFrame.width", getWidth()), prefs.getInt(
-            "MainFrame.height", getHeight()));
-        setLocation(prefs.getInt("MainFrame.left", getX()), prefs.getInt(
-            "MainFrame.top", getY()));
     }
 
 

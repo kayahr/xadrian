@@ -26,6 +26,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import de.ailis.xadrian.resources.Images;
+
 
 /**
  * Base class for modal dialogs
@@ -38,6 +40,7 @@ public abstract class ModalDialog extends JDialog
 {
     /** Serial version UID */
     private static final long serialVersionUID = -7549471473035295150L;
+
 
     /**
      * The modal result enum.
@@ -96,14 +99,21 @@ public abstract class ModalDialog extends JDialog
     /**
      * Constructor
      * 
+     * @param id
+     *            The dialog id. The component name and the title is
+     *            automatically derived from it.
      * @param results
      *            The available results to create
      */
 
-    public ModalDialog(final Result... results)
+    public ModalDialog(final String id, final Result... results)
     {
         // Call super constructor
         super();
+        
+        setTitle(I18N.getTitle("dialog." + id));
+        setName(id + "Dialog");
+        setIconImages(Images.LOGOS);
 
         // Modal dialogs should not be resizable
         setResizable(false);
@@ -127,7 +137,7 @@ public abstract class ModalDialog extends JDialog
 
         // Determine the default buttons (for enter and escape)
         setDefaultButtons();
-        
+
         // Create the custom UO
         createUI();
 
@@ -208,8 +218,16 @@ public abstract class ModalDialog extends JDialog
 
     public Result open()
     {
-        setVisible(true);
-        return this.result;
+        try
+        {
+            Config.restoreWindowState(this);
+            setVisible(true);
+            return this.result;
+        }
+        finally
+        {
+            Config.saveWindowState(this);
+        }
     }
 
 

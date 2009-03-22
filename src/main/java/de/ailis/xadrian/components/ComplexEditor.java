@@ -50,12 +50,12 @@ import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.dialogs.AddFactoryDialog;
 import de.ailis.xadrian.dialogs.OpenComplexDialog;
-import de.ailis.xadrian.dialogs.QuantityDialog;
+import de.ailis.xadrian.dialogs.ChangeQuantityDialog;
 import de.ailis.xadrian.dialogs.SaveComplexDialog;
 import de.ailis.xadrian.dialogs.SelectSectorDialog;
-import de.ailis.xadrian.dialogs.SunsDialog;
-import de.ailis.xadrian.dialogs.WarePricesDialog;
-import de.ailis.xadrian.dialogs.YieldDialog;
+import de.ailis.xadrian.dialogs.ChangeSunsDialog;
+import de.ailis.xadrian.dialogs.ChangePricesDialog;
+import de.ailis.xadrian.dialogs.ChangeYieldDialog;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.interfaces.ClipboardProvider;
 import de.ailis.xadrian.interfaces.ComplexProvider;
@@ -350,7 +350,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     public void changeQuantity(final int index)
     {
-        final QuantityDialog dialog = QuantityDialog.getInstance();
+        final ChangeQuantityDialog dialog = ChangeQuantityDialog.getInstance();
         dialog.setQuantity(this.complex.getQuantity(index));
         if (dialog.open() == Result.OK)
         {
@@ -370,7 +370,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     public void changeYield(final int index)
     {
-        final YieldDialog dialog = YieldDialog.getInstance();
+        final ChangeYieldDialog dialog = ChangeYieldDialog.getInstance();
         dialog.setYield(this.complex.getYield(index));
         if (dialog.open() == Result.OK)
         {
@@ -387,7 +387,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     public void changeSuns()
     {
-        final SunsDialog dialog = SunsDialog.getInstance();
+        final ChangeSunsDialog dialog = ChangeSunsDialog.getInstance();
         dialog.setSuns(this.complex.getSuns());
         if (dialog.open() == Result.OK)
         {
@@ -900,7 +900,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     public void changePrices(final Ware focusedWare)
     {
-        final WarePricesDialog dialog = WarePricesDialog.getInstance();
+        final ChangePricesDialog dialog = ChangePricesDialog.getInstance();
         dialog.setCustomPrices(this.complex.getCustomPrices());
         dialog.setActiveWare(focusedWare);
         if (dialog.open() == Result.OK)

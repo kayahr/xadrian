@@ -22,7 +22,6 @@ import javax.swing.border.BevelBorder;
 
 import de.ailis.xadrian.components.JLinkLabel;
 import de.ailis.xadrian.resources.Icons;
-import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
@@ -46,7 +45,7 @@ public class AboutDialog extends ModalDialog
     
     public AboutDialog()
     {
-        super(Result.OK);
+        super("about", Result.OK);
     }
     
 
@@ -57,9 +56,6 @@ public class AboutDialog extends ModalDialog
     @Override
     protected void createUI()
     {
-        setTitle(I18N.getTitle("dialog.about"));
-        setIconImages(Images.LOGOS);
-        
         // Create the logo
         final JLabel logoLabel = new JLabel(Icons.LOGO);
 

@@ -17,38 +17,37 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
 
 
 /**
- * Dialog for selecting a yield.
+ * Dialog for selecting a quantity.
  * 
  * @author Klaus Reimer (k@ailis.de)
  * @version $Revision$
  */
 
-public class YieldDialog extends ModalDialog
+public class ChangeQuantityDialog extends ModalDialog
 {
     /** Serial version UID */
-    private static final long serialVersionUID = 7923240074315652594L;
+    private static final long serialVersionUID = 4157034476842995945L;
 
     /** The singleton instance of this dialog */
-    private final static YieldDialog instance = new YieldDialog();
+    private final static ChangeQuantityDialog instance = new ChangeQuantityDialog();
 
-    /** The yield spinner */
-    private JSpinner yieldSpinner;
+    /** The quantity spinner */
+    private JSpinner quantitySpinner;
 
     
     /**
      * Constructor
      */
 
-    private YieldDialog()
+    private ChangeQuantityDialog()
     {
-        super(Result.OK, Result.CANCEL);
+        super("changeQuantity", Result.OK, Result.CANCEL);
     }
 
 
@@ -59,27 +58,24 @@ public class YieldDialog extends ModalDialog
     @Override
     protected void createUI()
     {
-        setTitle(I18N.getTitle("dialog.setYield"));
-        setIconImages(Images.LOGOS);
-
         // Create the content controls
-        final JLabel yieldLabel = new JLabel(I18N
-            .getString("dialog.setYield.yield"));
-        this.yieldSpinner = new JSpinner();
+        final JLabel quantityLabel = new JLabel(I18N
+            .getString("dialog.changeQuantity.quantity"));
+        this.quantitySpinner = new JSpinner();
         final SpinnerNumberModel model = new SpinnerNumberModel();
-        model.setMinimum(0);
-        model.setMaximum(200);
-        this.yieldSpinner.setModel(model);
-        SwingUtils.installSpinnerBugWorkaround(this.yieldSpinner);
-        yieldLabel.setLabelFor(this.yieldSpinner);
+        model.setMinimum(1);
+        model.setMaximum(999);
+        this.quantitySpinner.setModel(model);
+        SwingUtils.installSpinnerBugWorkaround(this.quantitySpinner);
+        quantityLabel.setLabelFor(this.quantitySpinner);
 
         // Create the content panel
         final JPanel contentPanel = new JPanel();
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
-        contentPanel.add(yieldLabel);
+        contentPanel.add(quantityLabel);
         contentPanel.add(Box.createRigidArea(new Dimension(10, 0)));
-        contentPanel.add(this.yieldSpinner);
+        contentPanel.add(this.quantitySpinner);
 
         // Add the panels to the dialog
         add(contentPanel, BorderLayout.CENTER);
@@ -92,7 +88,7 @@ public class YieldDialog extends ModalDialog
      * @return The singleton instance
      */
 
-    public static YieldDialog getInstance()
+    public static ChangeQuantityDialog getInstance()
     {
         return instance;
     }
@@ -105,33 +101,33 @@ public class YieldDialog extends ModalDialog
     @Override
     public Result open()
     {
-        this.yieldSpinner.requestFocus();
+        this.quantitySpinner.requestFocus();
         final Result result = super.open();
         return result;
     }
 
 
     /**
-     * Sets the yield.
+     * Sets the quantity.
      * 
-     * @param yield
-     *            The yield to set
+     * @param quantity
+     *            The quantity to set
      */
 
-    public void setYield(final int yield)
+    public void setQuantity(final int quantity)
     {
-        this.yieldSpinner.setValue(yield);
+        this.quantitySpinner.setValue(quantity);
     }
 
 
     /**
-     * Returns the yield.
+     * Returns the quantity.
      * 
-     * @return The yield
+     * @return The quantity
      */
 
-    public int getYield()
+    public int getQuantity()
     {
-        return (Integer) this.yieldSpinner.getValue();
+        return (Integer) this.quantitySpinner.getValue();
     }
 }

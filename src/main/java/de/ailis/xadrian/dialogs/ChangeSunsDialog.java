@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.ailis.xadrian.data.Suns;
-import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
@@ -29,13 +28,13 @@ import de.ailis.xadrian.support.ModalDialog;
  * @version $Revision$
  */
 
-public class SunsDialog extends ModalDialog
+public class ChangeSunsDialog extends ModalDialog
 {
     /** Serial version UID */
     private static final long serialVersionUID = 5592052723685985901L;
 
     /** The singleton instance of this dialog */
-    private final static SunsDialog instance = new SunsDialog();
+    private final static ChangeSunsDialog instance = new ChangeSunsDialog();
 
     /** The suns combo box */
     private JComboBox sunsComboBox;
@@ -45,9 +44,9 @@ public class SunsDialog extends ModalDialog
      * Constructor
      */
 
-    private SunsDialog()
+    private ChangeSunsDialog()
     {
-        super(Result.OK, Result.CANCEL);
+        super("changeSuns", Result.OK, Result.CANCEL);
     }
 
 
@@ -58,9 +57,6 @@ public class SunsDialog extends ModalDialog
     @Override
     protected void createUI()
     {
-        setTitle(I18N.getTitle("dialog.changeSuns"));
-        setIconImages(Images.LOGOS);
-
         // Create the content controls
         final JLabel sunsLabel = new JLabel(I18N
             .getString("dialog.changeSuns.suns"));
@@ -86,7 +82,7 @@ public class SunsDialog extends ModalDialog
      * @return The singleton instance
      */
 
-    public static SunsDialog getInstance()
+    public static ChangeSunsDialog getInstance()
     {
         return instance;
     }

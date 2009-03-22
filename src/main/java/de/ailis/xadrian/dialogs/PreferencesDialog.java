@@ -20,7 +20,6 @@ import javax.swing.JSeparator;
 
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.factories.RaceFactory;
-import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
@@ -51,7 +50,7 @@ public class PreferencesDialog extends ModalDialog
 
     private PreferencesDialog()
     {
-        super(Result.OK, Result.CANCEL);
+        super("preferences", Result.OK, Result.CANCEL);
     }
 
 
@@ -62,9 +61,6 @@ public class PreferencesDialog extends ModalDialog
     @Override
     protected void createUI()
     {
-        setTitle(I18N.getTitle("dialog.preferences"));
-        setIconImages(Images.LOGOS);
-
         // Create the content panel
         final JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new GridBagLayout());
@@ -74,8 +70,8 @@ public class PreferencesDialog extends ModalDialog
 
         // Create the races headline
         final JLabel racesLabel =
-            new JLabel(I18N.getString("preferences.usedRaces"));
-        racesLabel.setToolTipText(I18N.getString("preferences.usedRaces.tooltip"));
+            new JLabel(I18N.getString("dialog.preferences.usedRaces"));
+        racesLabel.setToolTipText(I18N.getToolTip("dialog.preferences.usedRaces"));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.WEST;
         c.gridx = 0;
