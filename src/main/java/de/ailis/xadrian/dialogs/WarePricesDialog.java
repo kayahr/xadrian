@@ -204,7 +204,8 @@ public class WarePricesDialog extends ModalDialog
             slider.setMinorTickSpacing(1);
             slider.setPaintLabels(false);
             slider.setPaintTicks(false);
-            slider.setPaintTrack(false);
+            slider.setOpaque(false);
+            slider.setPaintTrack(true);
             slider.setPreferredSize(new Dimension(100, 1));
             sliderPanel.add(slider);
             this.warePricesPanel.add(sliderPanel, c);
