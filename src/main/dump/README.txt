@@ -6,7 +6,7 @@ How the dump works:
 3. Start a new game as Terran Defender.
 4. Activate the script editor by renaming the player to "Thereshallbewings"
 5. Start the script editor and run the script "ailis.dumpAll". This may take
-   a minute and feeld like the game is frozen. Don't worry, that's normal.
+   a minute and feel like the game is frozen. Don't worry, that's normal.
 6. You'll now find six log files in the folder "My Documents\Egosoft\X3TC"
    (log00000.txt to log00005.txt). Copy these files into the "en" folder.
    
