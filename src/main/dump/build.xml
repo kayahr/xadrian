@@ -36,7 +36,7 @@
         <delete file="out/log00003.txt" />
         <delete file="out/log00005.txt" />
         
-        <native2ascii src="out" includes="game-messages_de.txt"
+        <native2ascii encoding="UTF-8" src="out" includes="game-messages_de.txt"
                       dest="." />
         <delete file="out/game-messages_de.txt" />
         <move file="game-messages_de.txt"

@@ -19,19 +19,22 @@ import java.awt.Color;
 public enum Suns
 {
     /** 0% */
-    P0("0 %", 0, 76),
+    P0("0 %", 0, 305), // 76
 
     /** 100% */
-    P100("100 %", 100, 118),
+    P100("100 %", 100, 239), // 118
 
     /** 150% */
-    P150("150 %", 150, 106),
+    P150("150 %", 150, 215), // 106
 
-    /** 200% */
-    P200("200 %", 200, 98),
+//    /** 200% */
+//    P200("200 %", 200, 215),  // 98
 
-    /** 300% or more */
-    P300(">= 300 %", 300, 90);
+    /** 300% */
+    P300("300 %", 300, 166), // 90
+
+    /** 400% */
+    P400("400 %", 400, 156); // 90
 
     /** The suns caption text */
     private String text;
@@ -131,7 +134,7 @@ public enum Suns
     
     public Color getColor()
     {
-        final int intensity = Math.min(255, 255 * this.percent / 300);
+        final int intensity = Math.min(255, 255 * this.percent / 400);
         return new Color(intensity, intensity, 0);
     }
 }
