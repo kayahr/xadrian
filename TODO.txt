@@ -6,3 +6,4 @@
 * Remove size restore for sector window
 * Check mine and solar power plant data.
 * Fix endless-loop in base complex addition.
+* Fix exception when adding a factory and deleting it again.
