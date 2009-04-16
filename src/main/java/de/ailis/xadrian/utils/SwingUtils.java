@@ -6,6 +6,9 @@
 
 package de.ailis.xadrian.utils;
 
+import java.awt.Dialog;
+import java.awt.Frame;
+import java.awt.Window;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
@@ -121,5 +124,22 @@ public final class SwingUtils
                 }
             }
         });
+    }
+
+
+    /**
+     * Checks if the specified window (may it be a dialog or a frame) is
+     * resizable.
+     * 
+     * @param window
+     *            The window
+     * @return True if window is resizable, false if not
+     */
+
+    public static boolean isResizable(final Window window)
+    {
+        if (window instanceof Dialog) return ((Dialog) window).isResizable();
+        if (window instanceof Frame) return ((Frame) window).isResizable();
+        return false;
     }
 }

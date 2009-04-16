@@ -20,6 +20,7 @@ import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.exceptions.ConfigException;
+import de.ailis.xadrian.utils.SwingUtils;
 
 
 /**
@@ -192,8 +193,12 @@ public final class Config
         if (!(window instanceof Frame)
             || ((Frame) window).getExtendedState() == Frame.NORMAL)
         {
-            prefs.putInt(getPrefsName(window, "width"), window.getWidth());
-            prefs.putInt(getPrefsName(window, "height"), window.getHeight());
+            if (SwingUtils.isResizable(window))
+            {
+                prefs.putInt(getPrefsName(window, "width"), window.getWidth());
+                prefs
+                    .putInt(getPrefsName(window, "height"), window.getHeight());
+            }
             prefs.putInt(getPrefsName(window, "left"), window.getX());
             prefs.putInt(getPrefsName(window, "top"), window.getY());
         }
@@ -210,10 +215,14 @@ public final class Config
     public static void restoreWindowState(final Window window)
     {
         final Preferences prefs = Preferences.userNodeForPackage(Main.class);
-        window.setSize(prefs.getInt(getPrefsName(window, "width"), window.getWidth()),
-            prefs.getInt(getPrefsName(window, "height"), window.getHeight()));
-        window.setLocation(prefs.getInt(getPrefsName(window, "left"), window.getX()),
-            prefs.getInt(getPrefsName(window, "top"), window.getY()));
+        if (SwingUtils.isResizable(window))
+        {
+            window.setSize(prefs.getInt(getPrefsName(window, "width"), window
+                .getWidth()), prefs.getInt(getPrefsName(window, "height"),
+                window.getHeight()));
+        }
+        window.setLocation(prefs.getInt(getPrefsName(window, "left"), window
+            .getX()), prefs.getInt(getPrefsName(window, "top"), window.getY()));
     }
 
 
