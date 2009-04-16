@@ -5,7 +5,14 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.2.0" date="2009-04-02" desc="Minor update">
+    <release version="1.2.0" date="2009-04-16" desc="Major update">
+      <action dev="k" type="add" date="2009-04-16">
+        Updates database to X3 Terran Conflict 2.0.        
+      </action>
+      <action dev="k" type="add" date="2009-04-16">
+        Improved base-complex calculation: Xadrian now also considers crystal
+        fabs from other races instead of always using the cheapest one.        
+      </action>
       <action dev="k" type="fix" date="2009-04-02">
         Fixed german translation of "Silicon".
       </action>

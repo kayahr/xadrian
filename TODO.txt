@@ -3,6 +3,4 @@
 * Implement bought/needed interaction in shopping list.
 * Add X3R support.
 * Max-Complex calculation.
-* Check mine and solar power plant data.
-* Fix exception when adding a factory and deleting it again.
-* Fix confusion produced by the Terrna Crystal Fab L
+* Check mine data.

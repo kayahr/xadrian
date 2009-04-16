@@ -24,8 +24,10 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 import de.ailis.xadrian.data.factories.FactoryFactory;
+import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.data.factories.SectorFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
+import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.MultiCollection;
 
@@ -41,7 +43,7 @@ public class Complex implements Serializable
 {
     /** Serial version UID */
     private static final long serialVersionUID = 2128684141345704703L;
-    
+
     /** The logger */
     private static final Log log = LogFactory.getLog(Complex.class);
 
@@ -159,9 +161,9 @@ public class Complex implements Serializable
 
 
     /**
-     * Returns the total factory price.
+     * Returns the total complex price.
      * 
-     * @return The total factory price
+     * @return The total complex price
      */
 
     public long getTotalPrice()
@@ -484,18 +486,21 @@ public class Complex implements Serializable
                 .attributeValue("quantity"));
             complex.addFactory(new ComplexFactory(factory, quantity, yield));
         }
-        
+
         // Read the complex wares
         final Element waresE = root.element("complexWares");
         if (waresE != null)
         {
             complex.customPrices.clear();
-            for (final Object item: waresE.elements("complexWare"))
+            for (final Object item : waresE.elements("complexWare"))
             {
                 final Element element = (Element) item;
-                final Ware ware = wareFactory.getWare(element.attributeValue("ware"));
-                final boolean use = Boolean.parseBoolean(element.attributeValue("use"));
-                final int price = Integer.parseInt(element.attributeValue("price"));
+                final Ware ware = wareFactory.getWare(element
+                    .attributeValue("ware"));
+                final boolean use = Boolean.parseBoolean(element
+                    .attributeValue("use"));
+                final int price = Integer.parseInt(element
+                    .attributeValue("price"));
                 complex.customPrices.put(ware, use ? price : -price);
             }
         }
@@ -674,16 +679,56 @@ public class Complex implements Serializable
      */
 
     private void calculateBaseComplex()
-    {
+    {        
+        final FactoryFactory factoryFactory = FactoryFactory.getInstance();
+        final RaceFactory raceFactory = RaceFactory.getInstance();
+        final Ware crystals = WareFactory.getInstance().getWare("crystals");
+        final Config config = Config.getInstance();
+        long currentPrice;
+        long price;
+        final List<ComplexFactory> backup = new ArrayList<ComplexFactory>();
+        
         // First of all remove all automatically added factories
         this.autoFactories.clear();
 
         if (!this.addBaseComplex) return;
 
-        // Repeat adding base complex factories until all needs are fulfilled
-        while (true)
+        // First of all we build a base complex without specific crystal fab
+        // race and remember the price
+        while (true) if (!addBaseComplex(null)) break;
+        currentPrice = getTotalPrice();
+        
+        // Now cycle over all races and check if the complex gets cheaper if
+        // the crystal fabs are bought from them
+        for (final Race race: raceFactory.getRaces())
         {
-            if (!addBaseComplex()) break;
+            // If race is ignored then don't use it
+            if (config.isRaceIgnored(race)) continue;
+            
+            // If race has no crystal fabs then don't use it
+            if (!factoryFactory.hasFactories(race, crystals)) continue;
+            
+            // Backup current automatically added factories, clear the
+            // calculated factories and then calculate the complex again with
+            // a specific "crystal race"
+            backup.addAll(this.autoFactories);
+            this.autoFactories.clear();
+            while (true) if (!addBaseComplex(race)) break;
+            
+            // Check if new price is cheaper then the old one. If cheaper
+            // then the new complex is used (and checked against the next
+            // available race). If not cheaper then the old complex is restored
+            price = getTotalPrice();
+            if (price < currentPrice)
+            {
+                currentPrice = price;
+            }
+            else
+            {
+                this.autoFactories.clear();
+                this.autoFactories.addAll(backup);
+            }
+            backup.clear();           
         }
     }
 
@@ -704,11 +749,14 @@ public class Complex implements Serializable
      * fixed) then this method returns true. If all needs are already fulfilled
      * then it returns false.
      * 
+     * @param crystalRace
+     *            Optional race from which crystal fabs should be bought. If
+     *            null then the cheapest fab is searched.
      * @return True if a need was found and fixed, false if everything is
      *         finished
      */
 
-    private boolean addBaseComplex()
+    private boolean addBaseComplex(final Race crystalRace)
     {
         for (final ComplexWare ware : getWares())
         {
@@ -720,7 +768,9 @@ public class Complex implements Serializable
             // factories for this ware and then restart the adding of factories
             if (ware.getMissing() > 0)
             {
-                if (!addBaseComplexForWare(ware)) continue;
+                final Race race = ware.getWare().getId().equals("crystals") ? crystalRace
+                    : null;
+                if (!addBaseComplexForWare(ware, race)) continue;
                 return true;
             }
 
@@ -735,11 +785,15 @@ public class Complex implements Serializable
      * 
      * @param complexWare
      *            The complex ware for which factories must be added
+     * @param race
+     *            The race from which factories should be bought. If null then
+     *            the cheapest factory is used.
      * @return True if a new factories were added, false if this was not
      *         possible
      */
 
-    private boolean addBaseComplexForWare(final ComplexWare complexWare)
+    private boolean addBaseComplexForWare(final ComplexWare complexWare,
+        final Race race)
     {
         final Ware ware = complexWare.getWare();
         final FactoryFactory factoryFactory = FactoryFactory.getInstance();
@@ -761,7 +815,7 @@ public class Complex implements Serializable
         }
 
         // Determine the available factory sizes
-        final FactorySize[] sizes = factoryFactory.getFactorySizes(ware)
+        final FactorySize[] sizes = factoryFactory.getFactorySizes(ware, race)
             .toArray(new FactorySize[0]);
 
         // Abort if no factories were found
@@ -771,7 +825,12 @@ public class Complex implements Serializable
         final Map<FactorySize, Factory> factories = new HashMap<FactorySize, Factory>();
         for (final FactorySize size : sizes)
         {
-            factories.put(size, factoryFactory.getCheapestFactory(ware, size));
+            if (race == null)
+                factories.put(size, factoryFactory.getCheapestFactory(ware,
+                    size));
+            else
+                factories
+                    .put(size, factoryFactory.getFactory(ware, size, race));
         }
 
         // Get the smallest possible production quantity
@@ -788,7 +847,8 @@ public class Complex implements Serializable
                 .getQuantity();
 
             // Calculate the number of factories of the current size needed
-            log.debug("Need " + need + " units of " + ware + ". Considering " + factory + " which produces " + product + " units");
+            log.debug("Need " + need + " units of " + ware + ". Considering "
+                + factory + " which produces " + product + " units");
             final int quantity = (int) Math.floor((need + minProduction - 0.1)
                 / product);
 
@@ -800,7 +860,8 @@ public class Complex implements Serializable
                     .add(new ComplexFactory(factory, quantity, 0));
                 need -= quantity * product;
             }
-            else log.debug("Not adding any " + factory);
+            else
+                log.debug("Not adding any " + factory);
         }
         if (need == oldNeed)
         {

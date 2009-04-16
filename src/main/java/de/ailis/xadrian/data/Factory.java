@@ -396,9 +396,10 @@ public class Factory implements Serializable, Comparable<Factory>
         final String wareId = ware.getId();
 
         // If no suns are present and this factory is a solar power plant then
-        // it produces only the half product
-        if (suns == Suns.P0 && wareId.equals("energyCells"))
-            return new Product(ware, this.product.getQuantity() / 2);
+        // it produces only the half product (For X3TC 2.0 this is no longer
+        // needed)
+        //if (suns == Suns.P0 && wareId.equals("energyCells"))
+        //    return new Product(ware, this.product.getQuantity() / 2);
 
         // Handle silicon mines
         if (wareId.equals("siliconWafers"))
@@ -438,15 +439,16 @@ public class Factory implements Serializable, Comparable<Factory>
         final String wareId = this.product.getWare().getId();
 
         // If no suns are present and this factory is a solar power plant then
-        // return half the resources
-        if (suns == Suns.P0 && wareId.equals("energyCells"))
-        {
-            final Product resources[] = new Product[1];
-            final Product resource = this.resources[0];
-            resources[0] = new Product(resource.getWare(), resource
-                .getQuantity() / 2);
-            return resources;
-        }
+        // return half the resources (For X3TC 2.0 this is no longer needed)
+        //if (suns == Suns.P0 && wareId.equals("energyCells"))
+        //{
+        //    final Product resources[] = new Product[1];
+        //    final Product resource = this.resources[0];
+        //    resources[0] = new Product(resource.getWare(), resource
+        //        .getQuantity() / 2);
+        //    return resources;
+        //}
+        
 
         // Handle silicon mines
         if (wareId.equals("siliconWafers"))

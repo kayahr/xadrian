@@ -94,7 +94,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /** The text pane */
     private final JTextPane textPane;
-    
+
     /** The edited complex */
     private final Complex complex;
 
@@ -219,7 +219,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         model.put("print", false);
         final String content = TemplateFactory.processTemplate(template, model);
         this.textPane.setText(content);
-        this.textPane.setCaretPosition(c);
+        this.textPane.setCaretPosition(Math.min(this.textPane.getDocument()
+            .getLength() - 1, c));
         this.textPane.requestFocus();
     }
 

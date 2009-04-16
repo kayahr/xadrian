@@ -19,22 +19,19 @@ import java.awt.Color;
 public enum Suns
 {
     /** 0% */
-    P0("0 %", 0, 305), // 76
+    P0("0 %", 0, 305),
 
     /** 100% */
-    P100("100 %", 100, 239), // 118
+    P100("100 %", 100, 239),
 
     /** 150% */
-    P150("150 %", 150, 215), // 106
-
-//    /** 200% */
-//    P200("200 %", 200, 215),  // 98
+    P150("150 %", 150, 215),
 
     /** 300% */
-    P300("300 %", 300, 166), // 90
+    P300("300 %", 300, 166),
 
     /** 400% */
-    P400("400 %", 400, 156); // 90
+    P400("400 %", 400, 145);
 
     /** The suns caption text */
     private String text;
@@ -79,8 +76,8 @@ public enum Suns
 
 
     /**
-     * Returns the suns with the specified percent value. If not found then 0 is
-     * returned.
+     * Returns the suns with the specified percent value. If not found then the
+     * default sun power of 150% is returned.
      * 
      * @param percent
      *            The percent value
@@ -94,11 +91,8 @@ public enum Suns
             if (suns.getPercent() == percent) return suns;
         }
         
-        // If sun power is higher then 300 then return this sun power
-        if (percent > 300) return P300;
-                        
-        // No match
-        return null;
+        // No match, return default sun
+        return P150;
     }
 
 
