@@ -3,3 +3,4 @@
 * Implement bought/needed interaction in shopping list.
 * Add X3R support.
 * Max-Complex calculation.
+* Display yield 26 data for mines in factory selection dialog.
