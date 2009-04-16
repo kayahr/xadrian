@@ -8,6 +8,8 @@ package de.ailis.xadrian.data;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 
 /**
  * A complex ware with the info how much units are produced and how much are
@@ -153,5 +155,17 @@ public class ComplexWare implements Serializable, Comparable<ComplexWare>
     public int compareTo(final ComplexWare o)
     {
         return this.ware.compareTo(o.ware);
+    }
+
+    
+    /**
+     * @see java.lang.Object#toString()
+     */
+    
+    @Override
+    public String toString()
+    {
+        return new ToStringBuilder(this).append("ware", this.ware).append(
+            "needed", this.needed).append("produced", this.produced).toString();
     }
 }

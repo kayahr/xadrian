@@ -16,6 +16,8 @@ import java.util.Map;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -39,6 +41,9 @@ public class Complex implements Serializable
 {
     /** Serial version UID */
     private static final long serialVersionUID = 2128684141345704703L;
+    
+    /** The logger */
+    private static final Log log = LogFactory.getLog(Complex.class);
 
     /** The single price of a complex construction kit */
     public static final int KIT_PRICE = 259696;
@@ -743,6 +748,7 @@ public class Complex implements Serializable
         // specified ware and calculate the real need which must be
         // fulfilled.
         double need = complexWare.getMissing();
+        final double oldNeed = need;
         for (final ComplexFactory complexFactory : new ArrayList<ComplexFactory>(
             this.autoFactories))
         {
@@ -782,16 +788,24 @@ public class Complex implements Serializable
                 .getQuantity();
 
             // Calculate the number of factories of the current size needed
-            final int quantity = (int) (need + minProduction - 1)
-                / (int) product;
+            log.debug("Need " + need + " units of " + ware + ". Considering " + factory + " which produces " + product + " units");
+            final int quantity = (int) Math.floor((need + minProduction - 0.1)
+                / product);
 
             // Add the number of factories and decrease the need
             if (quantity > 0)
             {
+                log.debug("Adding " + quantity + "x " + factory);
                 this.autoFactories
                     .add(new ComplexFactory(factory, quantity, 0));
                 need -= quantity * product;
             }
+            else log.debug("Not adding any " + factory);
+        }
+        if (need == oldNeed)
+        {
+            log.debug("Unable to calculate best matching factory. Aborting");
+            return false;
         }
         return true;
     }

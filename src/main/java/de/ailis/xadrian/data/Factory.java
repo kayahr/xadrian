@@ -491,7 +491,7 @@ public class Factory implements Serializable, Comparable<Factory>
     public final Product getProductPerHour(final Suns suns, final int yield)
     {
         final Product product = getRealProduct(suns, yield);
-        return new Product(product.getWare(), product.getQuantity() * 60 * 60
+        return new Product(product.getWare(), product.getQuantity() * 60d * 60d
             / getRealCycle(suns, yield));
     }
 
