@@ -350,29 +350,29 @@ public class FactoryTest
         // Test with suns 150%
         product = plant.getProductPerHour(Suns.P150, 0);
         assertEquals(energy, product.getWare());
-        assertEquals(18747, Math.round(product.getQuantity()));
+        assertEquals(18519, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P150, 0);
         assertEquals(1, resources.size());
         assertEquals(crystals, resources.iterator().next().getWare());
-        assertEquals(136, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(134, Math.round(resources.iterator().next().getQuantity()));
 
         // Test with suns 100%
         product = plant.getProductPerHour(Suns.P100, 0);
-        assertEquals(16841, Math.round(product.getQuantity()));
+        assertEquals(16659, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P100, 0);
-        assertEquals(122, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(121, Math.round(resources.iterator().next().getQuantity()));
 
         // Test with suns 0%
         product = plant.getProductPerHour(Suns.P0, 0);
-        assertEquals(13074, Math.round(product.getQuantity()));
+        assertEquals(13054, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P0, 0);
-        assertEquals(95, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(94, Math.round(resources.iterator().next().getQuantity()));
 
         // Test with suns 300%
         product = plant.getProductPerHour(Suns.P300, 0);
-        assertEquals(22080, Math.round(product.getQuantity()));
+        assertEquals(23986, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P300, 0);
-        assertEquals(160, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(173, Math.round(resources.iterator().next().getQuantity()));
     } 
     
     
@@ -391,29 +391,29 @@ public class FactoryTest
         // Test with suns 150%
         product = plant.getProductPerHour(Suns.P150, 0);
         assertEquals(energy, product.getWare());
-        assertEquals(46868, Math.round(product.getQuantity()));
+        assertEquals(46298, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P150, 0);
         assertEquals(1, resources.size());
         assertEquals(crystals, resources.iterator().next().getWare());
-        assertEquals(340, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(335, Math.round(resources.iterator().next().getQuantity()));
 
         // Test with suns 100%
         product = plant.getProductPerHour(Suns.P100, 0);
-        assertEquals(42102, Math.round(product.getQuantity()));
+        assertEquals(41649, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P100, 0);
-        assertEquals(305, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(301, Math.round(resources.iterator().next().getQuantity()));
 
         // Test with suns 0%
         product = plant.getProductPerHour(Suns.P0, 0);
-        assertEquals(32684, Math.round(product.getQuantity()));
+        assertEquals(32636, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P0, 0);
-        assertEquals(237, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(236, Math.round(resources.iterator().next().getQuantity()));
 
         // Test with suns 300%
         product = plant.getProductPerHour(Suns.P300, 0);
-        assertEquals(55200, Math.round(product.getQuantity()));
+        assertEquals(59964, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P300, 0);
-        assertEquals(400, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(434, Math.round(resources.iterator().next().getQuantity()));
     }    
     
     
@@ -432,28 +432,28 @@ public class FactoryTest
         // Test with suns 150%
         product = plant.getProductPerHour(Suns.P150, 0);
         assertEquals(energy, product.getWare());
-        assertEquals(46868*2, Math.round(product.getQuantity()));
+        assertEquals(92595, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P150, 0);
         assertEquals(1, resources.size());
         assertEquals(crystals, resources.iterator().next().getWare());
-        assertEquals(679, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(670, Math.round(resources.iterator().next().getQuantity()));
 
         // Test with suns 100%
         product = plant.getProductPerHour(Suns.P100, 0);
-        assertEquals(84203, Math.round(product.getQuantity()));
+        assertEquals(83297, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P100, 0);
-        assertEquals(305*2, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(603, Math.round(resources.iterator().next().getQuantity()));
 
         // Test with suns 0%
         product = plant.getProductPerHour(Suns.P0, 0);
-        assertEquals(32684*2, Math.round(product.getQuantity()));
+        assertEquals(65272, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P0, 0);
-        assertEquals(237*2, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(472, Math.round(resources.iterator().next().getQuantity()));
 
         // Test with suns 300%
         product = plant.getProductPerHour(Suns.P300, 0);
-        assertEquals(55200*2, Math.round(product.getQuantity()));
+        assertEquals(119928, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P300, 0);
-        assertEquals(400*2, Math.round(resources.iterator().next().getQuantity()));
+        assertEquals(867, Math.round(resources.iterator().next().getQuantity()));
     }    
 }

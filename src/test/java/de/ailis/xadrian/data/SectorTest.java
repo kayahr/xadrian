@@ -41,9 +41,10 @@ public class SectorTest
         assertEquals(16, sectorFactory.getSector(9, 14).getDistance(
             sectorFactory.getSector(3, 0)));
 
-        // Check distance between Friar's Retreat and Aldrin (Must fail with -1
-        // because Aldrin can't be reached without a jump drive)
+        // Check distance between Friar's Retreat and a Khaak sector 931 (Must
+        // fail with -1 because Khaak sector 931 can't be reached without a jump
+        // drive)
         assertEquals(-1, sectorFactory.getSector(9, 14).getDistance(
-            sectorFactory.getSector(13, 10)));
+            sectorFactory.getSector(16, 11)));
     }
 }
