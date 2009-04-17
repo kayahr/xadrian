@@ -25,6 +25,17 @@ public class SectorTest
     /** The sector factory */
     private static SectorFactory sectorFactory = SectorFactory.getInstance();
 
+    
+    /**
+     * Initializes the test
+     */
+    
+    @org.junit.BeforeClass
+    public static void init()
+    {
+        System.setProperty("xadrian.config", "false");
+    }
+
 
     /**
      * Checks the getDistance() method.

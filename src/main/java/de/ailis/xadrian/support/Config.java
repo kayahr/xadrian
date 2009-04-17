@@ -76,18 +76,21 @@ public final class Config
 
     private void load()
     {
-        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
-        final String races = prefs.get(IGNORED_RACES, null);
-        if (races != null)
+        if (System.getProperty("xadrian.config", "true").equals("true"))
         {
-            final RaceFactory factory = RaceFactory.getInstance();
-            for (final String raceId : races.split(" "))
+            final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+            final String races = prefs.get(IGNORED_RACES, null);
+            if (races != null)
             {
-                this.ignoredRaces.add(factory.getRace(raceId));
+                final RaceFactory factory = RaceFactory.getInstance();
+                for (final String raceId : races.split(" "))
+                {
+                    this.ignoredRaces.add(factory.getRace(raceId));
+                }
             }
+            final String tmp = prefs.get(LAST_FILE_CHOOSER_PATH, null);
+            this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
         }
-        final String tmp = prefs.get(LAST_FILE_CHOOSER_PATH, null);
-        this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
     }
 
 
@@ -97,24 +100,27 @@ public final class Config
 
     public void save()
     {
-        final Preferences prefs = Preferences.userNodeForPackage(Main.class);
-        if (this.ignoredRaces.isEmpty())
-            prefs.remove(IGNORED_RACES);
-        else
+        if (System.getProperty("xadrian.config", "true").equals("true"))
         {
-            final StringBuilder builder = new StringBuilder();
-            for (final Race race : this.ignoredRaces)
+            final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+            if (this.ignoredRaces.isEmpty())
+                prefs.remove(IGNORED_RACES);
+            else
             {
-                if (builder.length() > 0) builder.append(' ');
-                builder.append(race.getId());
+                final StringBuilder builder = new StringBuilder();
+                for (final Race race : this.ignoredRaces)
+                {
+                    if (builder.length() > 0) builder.append(' ');
+                    builder.append(race.getId());
+                }
+                prefs.put(IGNORED_RACES, builder.toString());
             }
-            prefs.put(IGNORED_RACES, builder.toString());
+            if (this.lastFileChooserPath != null)
+                prefs.put(LAST_FILE_CHOOSER_PATH, this.lastFileChooserPath
+                    .getPath());
+            else
+                prefs.remove(LAST_FILE_CHOOSER_PATH);
         }
-        if (this.lastFileChooserPath != null)
-            prefs.put(LAST_FILE_CHOOSER_PATH, this.lastFileChooserPath
-                .getPath());
-        else
-            prefs.remove(LAST_FILE_CHOOSER_PATH);
     }
 
 

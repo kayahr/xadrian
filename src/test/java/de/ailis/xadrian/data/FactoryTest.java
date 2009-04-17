@@ -47,6 +47,17 @@ public class FactoryTest
     /** Crystals */
     private static Ware crystals = wareFactory.getWare("crystals");
 
+    
+    /**
+     * Initializes the test
+     */
+    
+    @org.junit.BeforeClass
+    public static void init()
+    {
+        System.setProperty("xadrian.config", "false");
+    }
+    
 
     /**
      * Checks if the Teladi silicon mines are really the cheapest.
@@ -55,10 +66,10 @@ public class FactoryTest
     @Test
     public void testCheapestSiliconMines()
     {
-        final Race teladi = raceFactory.getRace("teladi");
-        assertEquals(teladi, factoryFactory.getCheapestFactory(silicon,
+        final Race terran = raceFactory.getRace("terran");
+        assertEquals(terran, factoryFactory.getCheapestFactory(silicon,
             FactorySize.M).getRace());
-        assertEquals(teladi, factoryFactory.getCheapestFactory(silicon,
+        assertEquals(terran, factoryFactory.getCheapestFactory(silicon,
             FactorySize.L).getRace());
     }
 
@@ -70,10 +81,10 @@ public class FactoryTest
     @Test
     public void testCheapestOreMines()
     {
-        final Race split = raceFactory.getRace("split");
-        assertEquals(split, factoryFactory.getCheapestFactory(ore,
+        final Race terran = raceFactory.getRace("terran");
+        assertEquals(terran, factoryFactory.getCheapestFactory(ore,
             FactorySize.M).getRace());
-        assertEquals(split, factoryFactory.getCheapestFactory(ore,
+        assertEquals(terran, factoryFactory.getCheapestFactory(ore,
             FactorySize.L).getRace());
     }
 
