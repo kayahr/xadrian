@@ -13,22 +13,35 @@ Download
 
 * Binärpakete
 
-  * Für Windows: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-windows.zip}xadrian-1.1.0-windows.zip}}
+  * Für Windows: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.2.0/xadrian-1.2.0-windows.zip}xadrian-1.2.0-windows.zip}}
   
-  * Für Linux/Unix: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-unix.tar.bz2}xadrian-1.1.0-unix.tar.bz2}}
+  * Für Linux/Unix: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.2.0/xadrian-1.2.0-unix.tar.bz2}xadrian-1.2.0-unix.tar.bz2}}
   
-  * Für Mac OS X: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-macosx.zip}xadrian-1.1.0-macosx.zip}}
+  * Für Mac OS X: {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.2.0/xadrian-1.2.0-macosx.zip}xadrian-1.2.0-macosx.zip}}
 
   []
 
 
 * Quellcode
 
-  * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-src.zip}xadrian-1.1.0-src.zip}}
+  * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.2.0/xadrian-1.2.0-src.zip}xadrian-1.2.0-src.zip}}
     
-  * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-src.tar.bz2}xadrian-1.1.0-src.tar.bz2}}
+  * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.2.0/xadrian-1.2.0-src.tar.bz2}xadrian-1.2.0-src.tar.bz2}}
     
   []
   
   Der Quellcode ist auch im {{{source-repository.html}Quellcodearchiv}} verfügbar.
   
+
+* Alte Versionen
+
+  * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-windows.zip}xadrian-1.1.0-windows.zip}}
+  
+  * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-unix.tar.bz2}xadrian-1.1.0-unix.tar.bz2}}
+  
+  * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-macosx.zip}xadrian-1.1.0-macosx.zip}}
+
+  * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-src.zip}xadrian-1.1.0-src.zip}}
+    
+  * {{{http://www.ailis.de/~k/maven2/de/ailis/xadrian/xadrian/1.1.0/xadrian-1.1.0-src.tar.bz2}xadrian-1.1.0-src.tar.bz2}}
+    

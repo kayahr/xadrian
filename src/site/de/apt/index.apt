@@ -13,7 +13,7 @@ Was ist Xadrian?
 
   Features:
 
-    * Kennt alle Fabriken die in einem regulären X3TC Spiel gekauft werden können.
+    * Kennt alle Fabriken die in einem regulären X3TC 2.0 Spiel gekauft werden können.
     
     * Optionale automatische Grundkomplex-Berechnung.
 
@@ -42,8 +42,10 @@ Erste Schritte
 
 Neuigkeiten
 
-  * 14.03.2009 - Version 1.1.0 veröffentlich. Siehe 
+  * 17.04.2009 - Version 1.2.0 veröffentlich. Siehe
     {{{changes-report.html}Changelog}} für nähere Informationen.
+
+  * 14.03.2009 - Version 1.1.0 veröffentlicht.
 
   * 04.03.2009 - Version 1.0.0 veröffentlicht.
 

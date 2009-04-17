@@ -7,7 +7,7 @@
   <body>
     <release version="1.2.0" date="2009-04-16" desc="Major update">
       <action dev="k" type="add" date="2009-04-16">
-        Updates database to X3 Terran Conflict 2.0.        
+        Updated database to X3 Terran Conflict 2.0.        
       </action>
       <action dev="k" type="add" date="2009-04-16">
         Improved base-complex calculation: Xadrian now also considers crystal
