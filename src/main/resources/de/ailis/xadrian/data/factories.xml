@@ -25,6 +25,14 @@
     <manufacturer station="BSYBD-51" sector="sec-0-13" />
     <manufacturer station="BSYVC-43" sector="sec-17-14" />
   </factory>
+  <factory id="crystalFabL-boron" race="boron" volume="20500" price="6622236" cycle="480" size="L">
+    <product ware="crystals" quantity="40" storage="1660" />
+    <resource ware="energyCells" quantity="600" storage="25000" />
+    <resource ware="bofu" quantity="100" storage="4160" />
+    <resource ware="siliconWafers" quantity="25" storage="1040" />
+    <manufacturer station="BSYYF-49" sector="sec-0-0" />
+    <manufacturer station="BSYVC-43" sector="sec-17-14" />
+  </factory>
   <factory id="crystalFabM-boron" race="boron" volume="15000" price="2973516" cycle="480" size="M">
     <product ware="crystals" quantity="16" storage="664" />
     <resource ware="energyCells" quantity="240" storage="10000" />
@@ -602,6 +610,17 @@
     <manufacturer station="ASYCE-38" sector="sec-8-7" />
     <manufacturer station="ASYVD-59" sector="sec-14-8" />
   </factory>
+  <factory id="crystalFabL-argon" race="argon" volume="20500" price="6492388" cycle="480" size="L">
+    <product ware="crystals" quantity="40" storage="1660" />
+    <resource ware="energyCells" quantity="600" storage="25000" />
+    <resource ware="siliconWafers" quantity="25" storage="1040" />
+    <resource ware="meatsteakCahoonas" quantity="400" storage="16660" />
+    <manufacturer station="ASYIF-64" sector="sec-1-3" />
+    <manufacturer station="ASYRE-55" sector="sec-2-5" />
+    <manufacturer station="ASYGE-79" sector="sec-13-6" />
+    <manufacturer station="ASYCE-70" sector="sec-7-7" />
+    <manufacturer station="ASYCE-38" sector="sec-8-7" />
+  </factory>
   <factory id="crystalFabM-argon" race="argon" volume="15000" price="3129332" cycle="480" size="M">
     <product ware="crystals" quantity="16" storage="664" />
     <resource ware="energyCells" quantity="240" storage="10000" />
@@ -675,6 +694,16 @@
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="rastarOil" quantity="15" storage="500" />
+    <manufacturer station="SSYGF-31" sector="sec-9-3" />
+    <manufacturer station="SSYLE-60" sector="sec-19-5" />
+    <manufacturer station="SSYHD-70" sector="sec-4-11" />
+    <manufacturer station="SSYTC-23" sector="sec-14-15" />
+  </factory>
+  <factory id="crystalFabL-split" race="split" volume="20500" price="6583284" cycle="480" size="L">
+    <product ware="crystals" quantity="40" storage="1660" />
+    <resource ware="energyCells" quantity="600" storage="25000" />
+    <resource ware="siliconWafers" quantity="25" storage="1040" />
+    <resource ware="rastarOil" quantity="60" storage="2500" />
     <manufacturer station="SSYGF-31" sector="sec-9-3" />
     <manufacturer station="SSYLE-60" sector="sec-19-5" />
     <manufacturer station="SSYHD-70" sector="sec-4-11" />
@@ -832,6 +861,14 @@
     <resource ware="ore" quantity="573" storage="1666" />
     <resource ware="nostropOil" quantity="2292" storage="6666" />
     <manufacturer station="TSYYE-34" sector="sec-5-4" />
+  </factory>
+  <factory id="crystalFabL-teladi" race="teladi" volume="20500" price="6557312" cycle="480" size="L">
+    <product ware="crystals" quantity="40" storage="1660" />
+    <resource ware="energyCells" quantity="600" storage="25000" />
+    <resource ware="siliconWafers" quantity="25" storage="1040" />
+    <resource ware="nostropOil" quantity="400" storage="16660" />
+    <manufacturer station="TSYYE-34" sector="sec-5-4" />
+    <manufacturer station="TSYNE-32" sector="sec-11-5" />
   </factory>
   <factory id="crystalFabM-teladi" race="teladi" volume="15000" price="3129332" cycle="480" size="M">
     <product ware="crystals" quantity="16" storage="664" />
@@ -1469,6 +1506,16 @@
     <resource ware="energyCells" quantity="480" storage="5000" />
     <resource ware="ore" quantity="80" storage="832" />
     <resource ware="sojaHusk" quantity="64" storage="666" />
+    <manufacturer station="PSYKE-69" sector="sec-1-6" />
+    <manufacturer station="PSYGD-69" sector="sec-7-11" />
+    <manufacturer station="PSYVC-59" sector="sec-11-14" />
+    <manufacturer station="PSYTC-69" sector="sec-10-15" />
+  </factory>
+  <factory id="crystalFabL-paranid" race="paranid" volume="20500" price="6531344" cycle="480" size="L">
+    <product ware="crystals" quantity="40" storage="1660" />
+    <resource ware="energyCells" quantity="600" storage="25000" />
+    <resource ware="sojaHusk" quantity="80" storage="3330" />
+    <resource ware="siliconWafers" quantity="25" storage="1040" />
     <manufacturer station="PSYKE-69" sector="sec-1-6" />
     <manufacturer station="PSYGD-69" sector="sec-7-11" />
     <manufacturer station="PSYVC-59" sector="sec-11-14" />
