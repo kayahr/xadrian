@@ -5,8 +5,14 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
+    <release version="1.2.2" date="2009-06-14" desc="Minor update">
+      <action dev="k" type="add" date="2009-06-14">
+        Added missing Protein Paste Blending Facility L which was introduced in
+        X3TC 2.1.        
+      </action>
+    </release>
     <release version="1.2.1" date="2009-06-11" desc="Minor update">
-      <action dev="k" type="add" date="2009-04-16">
+      <action dev="k" type="add" date="2009-06-11">
         Added Crystal fabs of size L for all races which were added in
         X3TC 2.1.        
       </action>

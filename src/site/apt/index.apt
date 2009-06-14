@@ -13,7 +13,7 @@ What is Xadrian?
 
   Notable features:
 
-    * Knows all factories which can be buyed in a regular X3TC 2.0 game.
+    * Knows all factories which can be bought in a regular X3TC 2.1 game.
     
     * Optional automatic base complex calculation.
 
@@ -22,7 +22,7 @@ What is Xadrian?
     * Sun power is configurable per complex.
     
     * Complex can be connected to a sector for automatic sun power
-      configuration and calculation of next shipyards where the factories
+      configuration and calculation of next ship yards where the factories
       can be bought.
     
     * Cross-platform GUI application. Runs on any platform supporting
@@ -42,6 +42,9 @@ Getting started
 
 News
 
+  * 2009/06/14 - Version 1.2.2 has been released with support for the 
+    Protein Paste Blending Facility L which was introduced in X3TC 2.1.
+    
   * 2009/06/11 - Version 1.2.1 has been released with support for the crystal
     fabs of size L which were introduced in X3TC 2.1.
     

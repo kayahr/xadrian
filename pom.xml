@@ -6,7 +6,7 @@
   <groupId>de.ailis.xadrian</groupId>
   <artifactId>xadrian</artifactId>
   <name>Xadrian</name>
-  <version>1.2.1</version>
+  <version>1.2.2</version>
   <packaging>jar</packaging>
   <url>http://www.ailis.de/~k/projects/xadrian</url>
   <description>

@@ -2071,6 +2071,11 @@
     <resource ware="energyCells" quantity="30" storage="10000" />
     <manufacturer station="ESYYX-67" sector="sec-15-10" />
   </factory>
+  <factory id="proteinPasteBlendingFacilityL-terran" race="terran" volume="18500" price="811548" cycle="60" size="L">
+    <product ware="proteinPaste" quantity="50" storage="16660" />
+    <resource ware="energyCells" quantity="75" storage="25000" />
+    <manufacturer station="ESYYX-67" sector="sec-15-10" />
+  </factory>
   <factory id="phantomMissileFabricationFacility-terran" race="terran" volume="13500" price="2889112" cycle="1200" size="S">
     <product ware="phantomMissile" quantity="3" storage="24" />
     <resource ware="energyCells" quantity="300" storage="5000" />
