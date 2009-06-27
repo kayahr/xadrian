@@ -564,9 +564,9 @@ public class SectorView extends JComponent implements SectorProvider,
         g.drawString("+X", Math.max(5 / this.scale, sizeX / 2 - this.offset.x
             - 25 / this.scale), -5 / this.scale);
         final char label = this.frontView ? 'Y' : 'Z';
-        g.drawString("-" + label, 5 / this.scale, Math.min(-5 / this.scale,
+        g.drawString("+" + label, 5 / this.scale, Math.min(-5 / this.scale,
             -sizeY / 2 - this.offset.y + 17 / this.scale));
-        g.drawString("+" + label, -25 / this.scale, Math.max(17 / this.scale,
+        g.drawString("-" + label, -25 / this.scale, Math.max(17 / this.scale,
             sizeY / 2 - this.offset.y - 5 / this.scale));
 
         for (final Asteroid asteroid: this.sector.getAsteroids())
