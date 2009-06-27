@@ -49,14 +49,16 @@ import de.ailis.xadrian.actions.SelectAllAction;
 import de.ailis.xadrian.actions.ToggleBaseComplexAction;
 import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.data.Complex;
+import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.dialogs.AboutDialog;
 import de.ailis.xadrian.dialogs.PreferencesDialog;
 import de.ailis.xadrian.interfaces.ClipboardProvider;
 import de.ailis.xadrian.interfaces.ComplexProvider;
+import de.ailis.xadrian.interfaces.SectorProvider;
 import de.ailis.xadrian.listeners.ClipboardStateListener;
-import de.ailis.xadrian.listeners.ComplexStateListener;
 import de.ailis.xadrian.listeners.EditorStateListener;
 import de.ailis.xadrian.listeners.MainStateListener;
+import de.ailis.xadrian.listeners.StateListener;
 import de.ailis.xadrian.resources.Images;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
@@ -72,7 +74,7 @@ import de.ailis.xadrian.support.ModalDialog.Result;
 
 public class MainFrame extends JFrame implements EditorStateListener,
     ChangeListener, ClipboardProvider, ClipboardStateListener,
-    ComplexProvider, ComplexStateListener
+    ComplexProvider, SectorProvider, StateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = 7989554637240491666L;
@@ -120,7 +122,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     private final Action changeSunsAction = new ChangeSunsAction(this);
 
     /** The "changeSector" action */
-    private final Action changeSectorAction = new ChangeSectorAction(this);
+    private final Action changeSectorAction = new ChangeSectorAction(this, "complex");
 
     /** The "changePrices" action */
     private final Action changePricesAction = new ChangePricesAction(this);
@@ -313,7 +315,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         for (int i = listeners.length - 2; i >= 0; i -= 2)
             if (listeners[i] == MainStateListener.class)
                 ((MainStateListener) listeners[i + 1]).mainStateChanged(this);
-        fireComplexState();
+        changeState();
         fireClipboardState();
     }
 
@@ -340,8 +342,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
     {
         this.tabs.addTab(editor.getComplex().getName(), editor);
         this.tabs.setSelectedComponent(editor);
-        editor.addStateListener(this);
-        editor.addComplexStateListener(this);
+        editor.addStateListener((EditorStateListener) this);
+        editor.addStateListener((StateListener) this);
         editor.addClipboardStateListener(this);
         this.fireChange();
     }
@@ -685,52 +687,29 @@ public class MainFrame extends JFrame implements EditorStateListener,
         return ((ComplexProvider) tab).canAddFactory();
     }
 
-
-    /**
-     * @see de.ailis.xadrian.interfaces.ComplexProvider#addComplexStateListener(de.ailis.xadrian.listeners.ComplexStateListener)
-     */
-
-    @Override
-    public void addComplexStateListener(final ComplexStateListener listener)
-    {
-        this.listenerList.add(ComplexStateListener.class, listener);
-    }
-
-
-    /**
-     * @see de.ailis.xadrian.interfaces.ComplexProvider#removeComplexStateListener(de.ailis.xadrian.listeners.ComplexStateListener)
-     */
-
-    @Override
-    public void removeComplexStateListener(final ComplexStateListener listener)
-    {
-        this.listenerList.remove(ComplexStateListener.class, listener);
-    }
-
-
     
     /**
-     * @see de.ailis.xadrian.listeners.ComplexStateListener#complexStateChanged(de.ailis.xadrian.interfaces.ComplexProvider)
+     * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
     
     @Override
-    public void complexStateChanged(final ComplexProvider provider)
+    public void stateChanged()
     {
-        fireComplexState();
+        changeState();
     }
 
     
     /**
-     * Fire the complex state event.
+     * Fire the state change event.
      */
 
-    private void fireComplexState()
+    private void changeState()
     {
         final Object[] listeners = this.listenerList.getListenerList();
         for (int i = listeners.length - 2; i >= 0; i -= 2)
-            if (listeners[i] == ComplexStateListener.class)
-                ((ComplexStateListener) listeners[i + 1])
-                    .complexStateChanged(this);
+            if (listeners[i] == StateListener.class)
+                ((StateListener) listeners[i + 1])
+                    .stateChanged();
     }
 
     
@@ -846,5 +825,50 @@ public class MainFrame extends JFrame implements EditorStateListener,
     public void changePrices()
     {
         ((ComplexProvider) getCurrentTab()).changePrices();
+    }
+
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.StateProvider#addStateListener(de.ailis.xadrian.listeners.StateListener)
+     */
+    
+    @Override
+    public void addStateListener(final StateListener listener)
+    {
+        this.listenerList.add(StateListener.class, listener);
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.StateProvider#removeStateListener(de.ailis.xadrian.listeners.StateListener)
+     */
+    
+    @Override
+    public void removeStateListener(final StateListener listener)
+    {
+        this.listenerList.remove(StateListener.class, listener);
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.SectorProvider#getSector()
+     */
+    
+    @Override
+    public Sector getSector()
+    {
+        return ((SectorProvider) getCurrentTab()).getSector();
+    }
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.SectorProvider#setSector(de.ailis.xadrian.data.Sector)
+     */
+    
+    @Override
+    public void setSector(final Sector sector)
+    {
+        ((SectorProvider) getCurrentTab()).setSector(sector);
     }
 }

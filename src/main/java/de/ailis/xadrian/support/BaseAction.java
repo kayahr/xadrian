@@ -57,6 +57,24 @@ public abstract class BaseAction extends AbstractAction
 
 
     /**
+     * Constructor
+     * 
+     * @param name
+     *            The action name
+     * @param icon
+     *            The action icon
+     * @param context
+     *            The context name (For actions which have different settings in
+     *            different contexts)
+     */
+
+    public BaseAction(final String name, final Icon icon, final String context)
+    {
+        this(name + "." + context, icon);
+    }
+
+
+    /**
      * Sets the selection state.
      * 
      * @param selected

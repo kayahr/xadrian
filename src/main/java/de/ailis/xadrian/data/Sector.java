@@ -336,6 +336,31 @@ public class Sector implements Serializable, Comparable<Sector>
         return SectorFactory.getInstance().getSector(this.eastId);
     }
 
+    
+    /**
+     * Returns the size of the sector. This size is chosen so all objects in
+     * it fit into this sector size. So this size can be used as the width
+     * and height and depth to display the sector on the screen.
+     * 
+     * @return The sector size
+     */
+    
+    public int getSize()
+    {
+        int maxX = 0;
+        int maxY = 0;
+        int maxZ = 0;
+        
+        for (final Asteroid asteroid: this.asteroids)
+        {
+            maxX = Math.max(maxX, Math.abs(asteroid.getX()));
+            maxY = Math.max(maxY, Math.abs(asteroid.getY()));
+            maxZ = Math.max(maxZ, Math.abs(asteroid.getZ()));
+        }
+
+        return Math.max(50000, Math.max(Math.max(maxX, maxY), maxZ) * 2 + 10000);
+    }
+
 
     /**
      * Returns the distance from this sector to the specified sector. If the

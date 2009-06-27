@@ -9,10 +9,13 @@ package de.ailis.xadrian.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.ailis.xadrian.interfaces.ComplexProvider;
-import de.ailis.xadrian.listeners.ComplexStateListener;
+import de.ailis.xadrian.dialogs.SelectSectorDialog;
+import de.ailis.xadrian.interfaces.SectorProvider;
+import de.ailis.xadrian.interfaces.StateProvider;
+import de.ailis.xadrian.listeners.StateListener;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.BaseAction;
+import de.ailis.xadrian.support.ModalDialog.Result;
 
 
 /**
@@ -22,28 +25,33 @@ import de.ailis.xadrian.support.BaseAction;
  * @version $Revision$
  */
 
-public class ChangeSectorAction extends BaseAction implements ComplexStateListener
+public class ChangeSectorAction extends BaseAction implements StateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = -5290504312967776304L;
-    
-    /** The complex provider */
-    private final ComplexProvider provider;
 
-    
+    /** The complex provider */
+    private final SectorProvider provider;
+
+
     /**
      * Constructor
      * 
      * @param provider
      *            The provider
+     * @param context
+     *            The context name (for having different action settings per
+     *            context)
      */
 
-    public ChangeSectorAction(final ComplexProvider provider)
+    public ChangeSectorAction(final SectorProvider provider,
+        final String context)
     {
-        super("changeSector", Icons.SECTOR);
+        super("changeSector", Icons.SECTOR, context);
         this.provider = provider;
         setEnabled(provider.canChangeSector());
-        provider.addComplexStateListener(this);
+        if (provider instanceof StateProvider)
+            ((StateProvider) provider).addStateListener(this);
     }
 
 
@@ -53,17 +61,20 @@ public class ChangeSectorAction extends BaseAction implements ComplexStateListen
 
     public void actionPerformed(final ActionEvent e)
     {
-        this.provider.changeSector();
+        final SelectSectorDialog dialog = SelectSectorDialog.getInstance();
+        dialog.setSelected(this.provider.getSector());
+        if (dialog.open() == Result.OK)
+            this.provider.setSector(dialog.getSelected());
     }
 
-    
+
     /**
-     * @see ComplexStateListener#complexStateChanged(ComplexProvider)
+     * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
-    
+
     @Override
-    public void complexStateChanged(final ComplexProvider provider)
+    public void stateChanged()
     {
-        setEnabled(provider.canChangeSector());
+        setEnabled(this.provider.canChangeSector());
     }
 }

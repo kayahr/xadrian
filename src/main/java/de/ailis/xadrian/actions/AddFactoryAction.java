@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.ailis.xadrian.interfaces.ComplexProvider;
-import de.ailis.xadrian.listeners.ComplexStateListener;
+import de.ailis.xadrian.listeners.StateListener;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.BaseAction;
 
@@ -22,7 +22,7 @@ import de.ailis.xadrian.support.BaseAction;
  * @version $Revision$
  */
 
-public class AddFactoryAction extends BaseAction implements ComplexStateListener
+public class AddFactoryAction extends BaseAction implements StateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = -458513467199019742L;
@@ -43,7 +43,7 @@ public class AddFactoryAction extends BaseAction implements ComplexStateListener
         super("addFactory", Icons.ADD);
         this.provider = provider;
         setEnabled(provider.canAddFactory());
-        provider.addComplexStateListener(this);
+        provider.addStateListener(this);
     }
 
 
@@ -58,12 +58,12 @@ public class AddFactoryAction extends BaseAction implements ComplexStateListener
 
     
     /**
-     * @see de.ailis.xadrian.listeners.ComplexStateListener#complexStateChanged(de.ailis.xadrian.interfaces.ComplexProvider)
+     * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
     
     @Override
-    public void complexStateChanged(final ComplexProvider provider)
+    public void stateChanged()
     {
-        setEnabled(provider.canAddFactory());
+        setEnabled(this.provider.canAddFactory());
     }
 }

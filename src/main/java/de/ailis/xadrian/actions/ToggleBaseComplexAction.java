@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.ailis.xadrian.interfaces.ComplexProvider;
-import de.ailis.xadrian.listeners.ComplexStateListener;
+import de.ailis.xadrian.listeners.StateListener;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.BaseAction;
 
@@ -23,11 +23,11 @@ import de.ailis.xadrian.support.BaseAction;
  */
 
 public class ToggleBaseComplexAction extends BaseAction implements
-    ComplexStateListener
+    StateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = 5699001225424519853L;
-    
+
     /** The complex provider */
     private final ComplexProvider provider;
 
@@ -45,7 +45,7 @@ public class ToggleBaseComplexAction extends BaseAction implements
         this.provider = provider;
         setEnabled(provider.canToggleBaseComplex());
         setSelected(false);
-        provider.addComplexStateListener(this);
+        provider.addStateListener(this);
     }
 
 
@@ -60,13 +60,13 @@ public class ToggleBaseComplexAction extends BaseAction implements
 
 
     /**
-     * @see de.ailis.xadrian.listeners.ComplexStateListener#complexStateChanged(de.ailis.xadrian.interfaces.ComplexProvider)
+     * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
 
     @Override
-    public void complexStateChanged(final ComplexProvider provider)
+    public void stateChanged()
     {
-        setEnabled(provider.canToggleBaseComplex());
-        setSelected(provider.isAddBaseComplex());
+        setEnabled(this.provider.canToggleBaseComplex());
+        setSelected(this.provider.isAddBaseComplex());
     }
 }

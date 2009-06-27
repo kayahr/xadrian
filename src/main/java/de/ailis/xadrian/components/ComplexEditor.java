@@ -45,6 +45,7 @@ import de.ailis.xadrian.actions.SelectAllAction;
 import de.ailis.xadrian.actions.ToggleBaseComplexAction;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.data.Factory;
+import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.dialogs.AddFactoryDialog;
@@ -58,9 +59,11 @@ import de.ailis.xadrian.dialogs.SelectSectorDialog;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.interfaces.ClipboardProvider;
 import de.ailis.xadrian.interfaces.ComplexProvider;
+import de.ailis.xadrian.interfaces.SectorProvider;
+import de.ailis.xadrian.interfaces.StateProvider;
 import de.ailis.xadrian.listeners.ClipboardStateListener;
-import de.ailis.xadrian.listeners.ComplexStateListener;
 import de.ailis.xadrian.listeners.EditorStateListener;
+import de.ailis.xadrian.listeners.StateListener;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
 import de.ailis.xadrian.utils.FileUtils;
@@ -77,7 +80,7 @@ import freemarker.template.Template;
  */
 
 public class ComplexEditor extends JComponent implements HyperlinkListener,
-    CaretListener, ClipboardProvider, ComplexProvider
+    CaretListener, ClipboardProvider, ComplexProvider, SectorProvider
 {
     /** Serial version UID */
     private static final long serialVersionUID = -582597303446091577L;
@@ -134,7 +137,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         popupMenu.add(new SelectAllAction(this));
         popupMenu.addSeparator();
         popupMenu.add(new AddFactoryAction(this));
-        popupMenu.add(new ChangeSectorAction(this));
+        popupMenu.add(new ChangeSectorAction(this, "complex"));
         popupMenu.add(new ChangeSunsAction(this));
         popupMenu.add(new ChangePricesAction(this));
         popupMenu.add(new JCheckBoxMenuItem(new ToggleBaseComplexAction(this)));
@@ -778,26 +781,26 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         return true;
     }
 
-
+    
     /**
-     * @see de.ailis.xadrian.interfaces.ComplexProvider#addComplexStateListener(de.ailis.xadrian.listeners.ComplexStateListener)
+     * @see StateProvider#addStateListener(StateListener)
      */
-
+    
     @Override
-    public void addComplexStateListener(final ComplexStateListener listener)
+    public void addStateListener(final StateListener listener)
     {
-        this.listenerList.add(ComplexStateListener.class, listener);
+        this.listenerList.add(StateListener.class, listener);
     }
 
 
     /**
-     * @see de.ailis.xadrian.interfaces.ComplexProvider#removeComplexStateListener(de.ailis.xadrian.listeners.ComplexStateListener)
+     * @see StateProvider#removeStateListener(StateListener)
      */
-
+    
     @Override
-    public void removeComplexStateListener(final ComplexStateListener listener)
+    public void removeStateListener(final StateListener listener)
     {
-        this.listenerList.remove(ComplexStateListener.class, listener);
+        this.listenerList.remove(StateListener.class, listener);
     }
 
 
@@ -809,9 +812,9 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     {
         final Object[] listeners = this.listenerList.getListenerList();
         for (int i = listeners.length - 2; i >= 0; i -= 2)
-            if (listeners[i] == ComplexStateListener.class)
-                ((ComplexStateListener) listeners[i + 1])
-                    .complexStateChanged(this);
+            if (listeners[i] == StateListener.class)
+                ((StateListener) listeners[i + 1])
+                    .stateChanged();
     }
 
 
@@ -912,5 +915,31 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public void changePrices()
     {
         changePrices(null);
+    }
+
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.SectorProvider#getSector()
+     */
+    
+    @Override
+    public Sector getSector()
+    {
+        return this.complex.getSector();
+    }
+
+
+    
+    /**
+     * @see de.ailis.xadrian.interfaces.SectorProvider#setSector(de.ailis.xadrian.data.Sector)
+     */
+    
+    @Override
+    public void setSector(final Sector sector)
+    {
+        this.complex.setSector(sector);
+        doChange();
+        redraw();
     }
 }

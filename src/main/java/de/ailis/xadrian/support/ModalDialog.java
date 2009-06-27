@@ -14,12 +14,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.Action;
+import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -87,7 +90,14 @@ public abstract class ModalDialog extends JDialog
     private final Map<Result, Action> actions = new HashMap<Result, Action>();
 
     /** The dialog buttons */
-    private final Map<Result, JButton> buttons = new HashMap<Result, JButton>();
+    private final Map<Result, JButton> buttons =
+        new HashMap<Result, JButton>();
+
+    /**
+     * List with dialog actions which are displayed as buttons in the button
+     * panel
+     */
+    private final List<Action> dialogActions;
 
     /** The cancel button */
     private JButton cancelButton;
@@ -110,7 +120,7 @@ public abstract class ModalDialog extends JDialog
     {
         // Call super constructor
         super();
-        
+
         setTitle(I18N.getTitle("dialog." + id));
         setName(id + "Dialog");
         setIconImages(Images.LOGOS);
@@ -131,6 +141,9 @@ public abstract class ModalDialog extends JDialog
         getRootPane().registerKeyboardAction(this.escKeyListener,
             KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
             JComponent.WHEN_IN_FOCUSED_WINDOW);
+
+        // Create the dialog actions
+        this.dialogActions = createDialogActions();
 
         // Create the default UI
         createDefaultUI(results);
@@ -153,6 +166,19 @@ public abstract class ModalDialog extends JDialog
 
 
     /**
+     * Create the dialog actions which are displayed in form of buttons in the
+     * button panel (left side). Returning null means using no dialog actions.
+     * 
+     * @return The list of dialog actions or null for none.
+     */
+
+    protected List<Action> createDialogActions()
+    {
+        return null;
+    }
+
+
+    /**
      * Sets the default buttons (for Enter and Escape).
      */
 
@@ -160,7 +186,7 @@ public abstract class ModalDialog extends JDialog
     {
         Result cancelResult = null;
         Result defaultResult = null;
-        for (final Result result : this.buttons.keySet())
+        for (final Result result: this.buttons.keySet())
         {
             if (cancelResult == null || result == Result.CANCEL
                 || result == Result.NO) cancelResult = result;
@@ -181,17 +207,47 @@ public abstract class ModalDialog extends JDialog
 
     private void createDefaultUI(final Result[] results)
     {
+        boolean first;
+
         // Create the button panel
         final JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+
+        first = true;
+        if (this.dialogActions != null)
+        {
+            for (final Action action: this.dialogActions)
+            {
+                if (first)
+                    first = false;
+                else
+                    buttonPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+                final JButton button = new JButton(action);
+                buttonPanel.add(button);
+                
+                
+                KeyStroke ks = null;
+                final InputMap imap = button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+                final ActionMap amap = button.getActionMap();
+         
+                ks = (KeyStroke) action.getValue(Action.ACCELERATOR_KEY);
+                imap.put(ks, action.getValue(Action.NAME));
+                amap.put(action.getValue(Action.NAME), action);
+
+            }
+        }
+
         buttonPanel.add(Box.createHorizontalGlue());
 
-        for (final Result result : results)
+        first = true;
+        for (final Result result: results)
         {
             final Action action = new ModalDialogAction(this, result);
             final JButton button = new JButton(action);
-            if (this.buttons.size() > 0)
+            if (first)
+                first = false;
+            else
                 buttonPanel.add(Box.createRigidArea(new Dimension(10, 0)));
             buttonPanel.add(button);
             this.actions.put(result, action);

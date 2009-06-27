@@ -226,6 +226,8 @@ public final class Config
             window.setSize(prefs.getInt(getPrefsName(window, "width"), window
                 .getWidth()), prefs.getInt(getPrefsName(window, "height"),
                 window.getHeight()));
+//            window.setPreferredSize(window.getSize());
+            //window.setMaximumSize(window.getSize());
         }
         window.setLocation(prefs.getInt(getPrefsName(window, "left"), window
             .getX()), prefs.getInt(getPrefsName(window, "top"), window.getY()));

@@ -6,7 +6,6 @@
 
 package de.ailis.xadrian.interfaces;
 
-import de.ailis.xadrian.listeners.ComplexStateListener;
 
 
 
@@ -17,28 +16,8 @@ import de.ailis.xadrian.listeners.ComplexStateListener;
  * @version $Revision$
  */
 
-public interface ComplexProvider
+public interface ComplexProvider extends StateProvider
 {
-    /**
-     * Adds a complex state listener.
-     * 
-     * @param listener
-     *            The listener to add
-     */
-
-    public void addComplexStateListener(ComplexStateListener listener);
-
-
-    /**
-     * Removes a complex state listener.
-     * 
-     * @param listener
-     *            The listener to remove
-     */
-
-    public void removeComplexStateListener(ComplexStateListener listener);
-
-    
     /**
      * Adds a factory.
      */

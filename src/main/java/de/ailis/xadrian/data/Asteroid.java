@@ -151,9 +151,9 @@ public class Asteroid implements Serializable, Comparable<Asteroid>
     @Override
     public int compareTo(final Asteroid o)
     {
-        int result = this.ware.compareTo(o.ware);
+        int result = this.ware.compareTo(o.ware) * -1;
         if (result == 0)
-            result = Integer.valueOf(this.yield).compareTo(o.yield);
+            result = Integer.valueOf(this.yield).compareTo(o.yield) * -1;
         if (result == 0) result = this.id.compareTo(o.id);
         return result;
     }

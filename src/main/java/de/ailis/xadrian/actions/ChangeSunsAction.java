@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.ailis.xadrian.interfaces.ComplexProvider;
-import de.ailis.xadrian.listeners.ComplexStateListener;
+import de.ailis.xadrian.listeners.StateListener;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.BaseAction;
 
@@ -22,7 +22,7 @@ import de.ailis.xadrian.support.BaseAction;
  * @version $Revision$
  */
 
-public class ChangeSunsAction extends BaseAction implements ComplexStateListener
+public class ChangeSunsAction extends BaseAction implements StateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = 4088425344137553110L;
@@ -43,7 +43,7 @@ public class ChangeSunsAction extends BaseAction implements ComplexStateListener
         super("changeSuns", Icons.SUNS);
         this.provider = provider;
         setEnabled(provider.canChangeSuns());
-        provider.addComplexStateListener(this);
+        provider.addStateListener(this);
     }
 
 
@@ -55,15 +55,15 @@ public class ChangeSunsAction extends BaseAction implements ComplexStateListener
     {
         this.provider.changeSuns();
     }
-
+    
     
     /**
-     * @see de.ailis.xadrian.listeners.ComplexStateListener#complexStateChanged(de.ailis.xadrian.interfaces.ComplexProvider)
+     * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
     
     @Override
-    public void complexStateChanged(final ComplexProvider provider)
+    public void stateChanged()
     {
-        setEnabled(provider.canChangeSuns());
+        setEnabled(this.provider.canChangeSuns());
     }
 }

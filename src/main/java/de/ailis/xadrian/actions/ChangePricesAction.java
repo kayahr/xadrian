@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.ailis.xadrian.interfaces.ComplexProvider;
-import de.ailis.xadrian.listeners.ComplexStateListener;
+import de.ailis.xadrian.listeners.StateListener;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.BaseAction;
 
@@ -22,7 +22,7 @@ import de.ailis.xadrian.support.BaseAction;
  * @version $Revision$
  */
 
-public class ChangePricesAction extends BaseAction implements ComplexStateListener
+public class ChangePricesAction extends BaseAction implements StateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = -4477579341504318226L;
@@ -43,7 +43,7 @@ public class ChangePricesAction extends BaseAction implements ComplexStateListen
         super("changePrices", Icons.PRICES);
         this.provider = provider;
         setEnabled(provider.canChangePrices());
-        provider.addComplexStateListener(this);
+        provider.addStateListener(this);
     }
 
 
@@ -56,14 +56,14 @@ public class ChangePricesAction extends BaseAction implements ComplexStateListen
         this.provider.changePrices();
     }
 
-    
+
     /**
-     * @see ComplexStateListener#complexStateChanged(ComplexProvider)
+     * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
     
     @Override
-    public void complexStateChanged(final ComplexProvider provider)
+    public void stateChanged()
     {
-        setEnabled(provider.canChangePrices());
+        setEnabled(this.provider.canChangePrices());
     }
 }
