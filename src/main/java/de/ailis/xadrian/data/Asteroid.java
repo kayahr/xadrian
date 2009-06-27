@@ -109,6 +109,21 @@ public class Asteroid implements Serializable, Comparable<Asteroid>
 
 
     /**
+     * Returns the yield of the specified ware.
+     * 
+     * @param ware
+     *            The ware
+     * @return The yield for the specified ware
+     */
+
+    public int getYield(final Ware ware)
+    {
+        if (this.ware.equals(ware)) return this.yield;
+        return 0;
+    }
+
+
+    /**
      * Returns the X position.
      * 
      * @return The X position
@@ -155,10 +170,11 @@ public class Asteroid implements Serializable, Comparable<Asteroid>
         if (result == 0)
             result = Integer.valueOf(this.yield).compareTo(o.yield) * -1;
         if (result == 0) result = this.id.compareTo(o.id);
+        if (result == 0) throw new RuntimeException();
         return result;
     }
 
-    
+
     /**
      * @see java.lang.Object#hashCode()
      */
@@ -184,11 +200,11 @@ public class Asteroid implements Serializable, Comparable<Asteroid>
         return new EqualsBuilder().append(this.id, other.id).isEquals();
     }
 
-    
+
     /**
      * @see java.lang.Object#toString()
      */
-    
+
     @Override
     public String toString()
     {

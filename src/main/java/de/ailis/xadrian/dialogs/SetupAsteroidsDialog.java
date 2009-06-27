@@ -13,19 +13,16 @@ import java.util.List;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.BevelBorder;
 
 import de.ailis.xadrian.actions.ChangeSectorAction;
 import de.ailis.xadrian.components.AsteroidCheckList;
-import de.ailis.xadrian.components.SectorComboBox;
 import de.ailis.xadrian.components.SectorView;
-import de.ailis.xadrian.data.Sector;
-import de.ailis.xadrian.interfaces.SectorProvider;
-import de.ailis.xadrian.listeners.SectorListener;
-import de.ailis.xadrian.listeners.StateListener;
+import de.ailis.xadrian.data.Ware;
+import de.ailis.xadrian.data.factories.WareFactory;
+import de.ailis.xadrian.models.AsteroidSelectionModel;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
 
@@ -38,8 +35,7 @@ import de.ailis.xadrian.utils.SwingUtils;
  * @version $Revision: 839 $
  */
 
-public class SetupAsteroidsDialog extends ModalDialog implements
-    SectorProvider, StateListener
+public class SetupAsteroidsDialog extends ModalDialog
 {
     /** Serial version UID */
     private static final long serialVersionUID = -2929706815604197020L;
@@ -47,24 +43,36 @@ public class SetupAsteroidsDialog extends ModalDialog implements
     /** The sector view */
     private SectorView sectorView;
 
-    /** The sector combo box */
-    private SectorComboBox sectorComboBox;
-
     /** The asteroid check list */
     private AsteroidCheckList asteroidCheckList;
 
-    /** The currently selected sector */
-    private Sector sector;
+    /** The asteroid selection model */
+    private AsteroidSelectionModel model;
 
 
     /**
      * Constructor
+     * 
+     * @param ware
+     *            The ware for which asteroids are selected
      */
 
-    private SetupAsteroidsDialog()
+    private SetupAsteroidsDialog(final Ware ware)
     {
         super("setupAsteroids", Result.OK, Result.CANCEL);
+        this.model.setWare(ware);
         setResizable(true);
+    }
+
+
+    /**
+     * @see de.ailis.xadrian.support.ModalDialog#init()
+     */
+
+    @Override
+    protected void init()
+    {
+        this.model = new AsteroidSelectionModel();
     }
 
 
@@ -80,40 +88,27 @@ public class SetupAsteroidsDialog extends ModalDialog implements
         sectorViewPanel.setLayout(new BorderLayout());
         sectorViewPanel.setBorder(BorderFactory
             .createBevelBorder(BevelBorder.LOWERED));
-        this.sectorView = new SectorView();
-        this.sectorView.addSectorListener(new SectorListener()
-        {
-            public void sectorChanged(final Sector sector)
-            {
-                setSector(sector);
-            }
-        });
+        this.sectorView = new SectorView(this.model);
         sectorViewPanel.add(this.sectorView, BorderLayout.CENTER);
 
         // Create the controls panel
         final JPanel controlsPanel = new JPanel();
         controlsPanel
             .setLayout(new BoxLayout(controlsPanel, BoxLayout.Y_AXIS));
-        this.sectorComboBox = new SectorComboBox();
-        // modeComboBox.setSelectedItem(selector.getMode());
-        final JLabel sectorLabel = new JLabel("Sector");
-        sectorLabel.setAlignmentX(LEFT_ALIGNMENT);
-        //controlsPanel.add(sectorLabel);
-        //controlsPanel.add(this.sectorComboBox);
-//        this.sectorComboBox.setAlignmentX(LEFT_ALIGNMENT);
 
-        this.asteroidCheckList = new AsteroidCheckList();
+        this.asteroidCheckList = new AsteroidCheckList(this.model);
         this.asteroidCheckList.setAlignmentX(LEFT_ALIGNMENT);
         controlsPanel.add(this.asteroidCheckList);
         SwingUtils.setPreferredHeight(controlsPanel, 512);
 
 
         // controlsPanel.add(Box.createGlue());
-      final JPanel contentPanel = new JPanel(new BorderLayout());
+        final JPanel contentPanel = new JPanel(new BorderLayout());
         contentPanel
             .setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        final JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        final JSplitPane splitPane =
+            new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
         // Create another container for just adding some border
         // contentPanel.setLayout(new BoxLayout(contentPanel,
@@ -121,7 +116,7 @@ public class SetupAsteroidsDialog extends ModalDialog implements
         splitPane.add(controlsPanel);
         splitPane.setDividerSize(10);
         splitPane.setContinuousLayout(true);
-        
+
         splitPane.add(sectorViewPanel);
         contentPanel.add(splitPane, BorderLayout.CENTER);
 
@@ -150,56 +145,8 @@ public class SetupAsteroidsDialog extends ModalDialog implements
     protected List<Action> createDialogActions()
     {
         final List<Action> dialogActions = new ArrayList<Action>();
-        dialogActions.add(new ChangeSectorAction(this, "sector"));
+        dialogActions.add(new ChangeSectorAction(this.model, "sector"));
         return dialogActions;
-    }
-
-
-    /**
-     * @see de.ailis.xadrian.interfaces.SectorProvider#canChangeSector()
-     */
-
-    @Override
-    public boolean canChangeSector()
-    {
-        return true;
-    }
-
-
-    /**
-     * @see de.ailis.xadrian.interfaces.SectorProvider#getSector()
-     */
-
-    @Override
-    public Sector getSector()
-    {
-        return this.sector;
-    }
-
-
-    /**
-     * @see de.ailis.xadrian.interfaces.SectorProvider#setSector(de.ailis.xadrian.data.Sector)
-     */
-
-    @Override
-    public void setSector(final Sector sector)
-    {
-        if (sector != this.sector)
-        {
-            this.sector = sector;
-            this.sectorView.setSector(sector);
-            this.asteroidCheckList.setSector(sector);
-        }
-    }
-
-    /**
-     * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
-     */
-
-    @Override
-    public void stateChanged()
-    {
-        setSector(this.sectorView.getSector());
     }
 
 
@@ -216,7 +163,8 @@ public class SetupAsteroidsDialog extends ModalDialog implements
     {
         SwingUtils.prepareGUI();
 
-        new SetupAsteroidsDialog().open();
+        new SetupAsteroidsDialog(WareFactory.getInstance().getWare(
+            "siliconWafers")).open();
         System.exit(0);
     }
 }

@@ -27,17 +27,15 @@ import java.awt.image.BufferedImage;
 import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
-import javax.swing.event.EventListenerList;
 
 import de.ailis.xadrian.actions.ChangeSectorAction;
 import de.ailis.xadrian.actions.ResetSectorViewAction;
 import de.ailis.xadrian.data.Asteroid;
 import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.factories.SectorFactory;
-import de.ailis.xadrian.interfaces.SectorProvider;
-import de.ailis.xadrian.interfaces.StateProvider;
-import de.ailis.xadrian.listeners.SectorListener;
-import de.ailis.xadrian.listeners.StateListener;
+import de.ailis.xadrian.data.factories.WareFactory;
+import de.ailis.xadrian.listeners.AsteroidSelectionModelListener;
+import de.ailis.xadrian.models.AsteroidSelectionModel;
 import de.ailis.xadrian.support.TextRenderer;
 import de.ailis.xadrian.utils.SwingUtils;
 
@@ -49,14 +47,10 @@ import de.ailis.xadrian.utils.SwingUtils;
  * @version $Revision: 839 $
  */
 
-public class SectorView extends JComponent implements SectorProvider,
-    StateProvider
+public class SectorView extends JComponent
 {
     /** Serial version UID */
     private static final long serialVersionUID = -1232035187510492730L;
-
-    /** The event listener list */
-    private final EventListenerList listenerList = new EventListenerList();
 
     /** The graphics buffer */
     private BufferedImage buffer;
@@ -73,34 +67,37 @@ public class SectorView extends JComponent implements SectorProvider,
     /** The minimum scale factor */
     private float minScale;
 
-    /** The sector to display */
-    private Sector sector;
-
     /** If sector should be displayed from the front */
     private boolean frontView = false;
 
-    /** The asteroid the mouse is currently over */
-    private Asteroid focusesAsteroid;
+    /** The asteroid selection model */
+    private final AsteroidSelectionModel model;
 
 
     /**
      * Constructor
+     * 
+     * @param model
+     *            The asteroid selection model
      */
 
-    public SectorView()
+    public SectorView(final AsteroidSelectionModel model)
     {
         super();
+
+        this.model = model;
 
         setMinimumSize(new Dimension(64, 64));
         setPreferredSize(new Dimension(512, 512));
         setFocusable(false);
+        setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 
         setupListeners();
 
         final JPopupMenu popupMenu = new JPopupMenu();
 
         final Action changeSectorAction =
-            new ChangeSectorAction(this, "sector");
+            new ChangeSectorAction(this.model, "sector");
         popupMenu.add(changeSectorAction);
         SwingUtils.addComponentAction(this, changeSectorAction);
 
@@ -156,17 +153,7 @@ public class SectorView extends JComponent implements SectorProvider,
             @Override
             public void mouseDragged(final MouseEvent e)
             {
-                // Handle drag operation.
-                if (this.dragPoint != null)
-                {
-                    final float dx = e.getX() - this.dragPoint.x;
-                    final float dy = e.getY() - this.dragPoint.y;
-                    final float scale = getScale();
-                    final Point offset = getOffset();
-                    offset.translate((int) (dx / scale), (int) (dy / scale));
-                    setOffset(offset);
-                    this.dragPoint = e.getPoint();
-                }
+                mouseMoved(e);
             }
 
 
@@ -178,7 +165,19 @@ public class SectorView extends JComponent implements SectorProvider,
             @Override
             public void mouseMoved(final MouseEvent e)
             {
-                final Sector sector = getSector();
+                // Handle drag operation.
+                if (this.dragPoint != null)
+                {
+                    final float dx = e.getX() - this.dragPoint.x;
+                    final float dy = e.getY() - this.dragPoint.y;
+                    final float scale = getScale();
+                    final Point offset = getOffset();
+                    offset.translate((int) (dx / scale), (int) (dy / scale));
+                    setOffset(offset);
+                    this.dragPoint = e.getPoint();
+                }
+
+                final Sector sector = SectorView.this.model.getSector();
                 if (sector == null) return;
 
                 final float scale = getScale();
@@ -190,13 +189,13 @@ public class SectorView extends JComponent implements SectorProvider,
                         .round((e.getY() - getHeight() / 2) / scale - offset.y);
                 final int w2 = Math.round(11f / scale / 2);
                 final int h2 = Math.round(9f / scale / 2);
-                // System.out.println(w2 + "x" + h2);
 
                 Asteroid focused = null;
                 for (final Asteroid asteroid: sector.getAsteroids())
                 {
                     final int ax = asteroid.getX();
-                    final int ay = isFrontView() ? -asteroid.getY() : -asteroid.getZ();
+                    final int ay =
+                        isFrontView() ? -asteroid.getY() : -asteroid.getZ();
                     if (mx + w2 >= ax && mx - w2 <= ax && my + h2 >= ay
                         && my - h2 <= ay)
                     {
@@ -204,7 +203,11 @@ public class SectorView extends JComponent implements SectorProvider,
                         break;
                     }
                 }
-                focusAsteroid(focused);
+                SectorView.this.model.focus(focused);
+                if (focused == null)
+                    setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+                else
+                    setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
 
 
@@ -224,13 +227,18 @@ public class SectorView extends JComponent implements SectorProvider,
 
             /**
              * Double-clicking toggles the view between front view and top view.
+             * Single-clicking selects/deselects focused asteroids
              */
 
             @Override
             public void mouseClicked(final MouseEvent e)
             {
-                if (e.getButton() == MouseEvent.BUTTON1
-                    && e.getClickCount() == 2) toggleView();
+                if (e.getButton() == MouseEvent.BUTTON1)
+                {
+                    if (e.getClickCount() == 1)
+                        SectorView.this.model.toggleFocusedSelection();
+                    if (e.getClickCount() == 2) toggleView();
+                }
             }
         };
         addMouseWheelListener(mouseAdapter);
@@ -242,6 +250,40 @@ public class SectorView extends JComponent implements SectorProvider,
             public void componentResized(final ComponentEvent e)
             {
                 reset();
+            }
+        });
+        this.model.addModelListener(new AsteroidSelectionModelListener()
+        {
+            /**
+             * Repaint view when asteroid focus has been changed.
+             */
+
+            @Override
+            public void focusChanged(final AsteroidSelectionModel model)
+            {
+                repaint();
+            }
+
+
+            /**
+             * Reset view when sector was changed.
+             */
+
+            @Override
+            public void sectorChanged(final AsteroidSelectionModel model)
+            {
+                reset();
+            }
+
+
+            /**
+             * Repaint view when asteroid selection has been changed.
+             */
+
+            @Override
+            public void selectionChanged(final AsteroidSelectionModel model)
+            {
+                repaint();
             }
         });
     }
@@ -320,58 +362,22 @@ public class SectorView extends JComponent implements SectorProvider,
 
     public void reset()
     {
-        if (this.sector != null)
+        final Sector sector = this.model.getSector();
+        if (sector != null)
         {
             final Dimension viewSize = getSize();
             if (viewSize.width > 0 && viewSize.height > 0)
             {
-                final int size = this.sector.getSize();
+                final int size = sector.getSize();
                 this.scale =
                     (float) Math.min(viewSize.width, viewSize.height) / size;
                 this.minScale = this.scale / 10;
                 this.maxScale = this.scale * 20;
             }
         }
+        if (isFrontView()) toggleView();
         this.offset.setLocation(0, 0);
         repaint();
-    }
-
-
-    /**
-     * @see SectorProvider#canChangeSector()
-     */
-
-    @Override
-    public boolean canChangeSector()
-    {
-        return true;
-    }
-
-
-    /**
-     * @see SectorProvider#getSector()
-     */
-
-    @Override
-    public Sector getSector()
-    {
-        return this.sector;
-    }
-
-
-    /**
-     * @see SectorProvider#setSector(Sector)
-     */
-
-    @Override
-    public void setSector(final Sector sector)
-    {
-        if (sector != this.sector)
-        {
-            this.sector = sector;
-            reset();
-            fireSectorChanged();
-        }
     }
 
 
@@ -399,102 +405,6 @@ public class SectorView extends JComponent implements SectorProvider,
 
 
     /**
-     * Focuses a specific asteroid (or none if null is specified)
-     * 
-     * @param asteroid
-     *            The asteroid to focus (null for none)
-     */
-
-    private void focusAsteroid(final Asteroid asteroid)
-    {
-        if (asteroid != this.focusesAsteroid)
-        {
-            this.focusesAsteroid = asteroid;
-            System.out.println(asteroid);
-            if (asteroid != null)
-                setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            else
-                setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-            repaint();
-        }
-    }
-
-
-    /**
-     * Fires the sectorChanged event.
-     */
-
-    protected void fireSectorChanged()
-    {
-        final Object[] listeners = this.listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2)
-            if (listeners[i] == SectorListener.class)
-                ((SectorListener) listeners[i + 1]).sectorChanged(this.sector);
-    }
-
-
-    /**
-     * Adds a new sector listener.
-     * 
-     * @param listener
-     *            The listener to add
-     */
-
-    public void addSectorListener(final SectorListener listener)
-    {
-        this.listenerList.add(SectorListener.class, listener);
-    }
-
-
-    /**
-     * Removes a sector listener.
-     * 
-     * @param listener
-     *            The listener to remove
-     */
-
-    public void removeSectorListener(final StateListener listener)
-    {
-        this.listenerList.remove(StateListener.class, listener);
-    }
-
-
-    /**
-     * Fires the stateChanged event.
-     */
-
-    protected void fireStateChanged()
-    {
-        final Object[] listeners = this.listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2)
-            if (listeners[i] == StateListener.class)
-                ((StateListener) listeners[i + 1]).stateChanged();
-    }
-
-
-    /**
-     * @see StateProvider#addStateListener(StateListener)
-     */
-
-    @Override
-    public void addStateListener(final StateListener listener)
-    {
-        this.listenerList.add(StateListener.class, listener);
-    }
-
-
-    /**
-     * @see StateProvider#removeStateListener(StateListener)
-     */
-
-    @Override
-    public void removeStateListener(final StateListener listener)
-    {
-        this.listenerList.remove(StateListener.class, listener);
-    }
-
-
-    /**
      * @see JComponent#paintComponent(Graphics)
      */
 
@@ -503,8 +413,10 @@ public class SectorView extends JComponent implements SectorProvider,
     {
         super.paintComponent(graphics);
 
+
         // If no sector is set yet then do nothing
-        if (this.sector == null) return;
+        final Sector sector = this.model.getSector();
+        if (sector == null) return;
 
         final int width = getWidth();
         final int height = getHeight();
@@ -569,18 +481,54 @@ public class SectorView extends JComponent implements SectorProvider,
         g.drawString("-" + label, -25 / this.scale, Math.max(17 / this.scale,
             sizeY / 2 - this.offset.y - 5 / this.scale));
 
-        for (final Asteroid asteroid: this.sector.getAsteroids())
+        // Draw the asteroids
+        for (final Asteroid asteroid: sector.getAsteroids())
         {
             final int w = (int) (9f / this.scale);
             final int h = (int) (7f / this.scale);
-            final int x = asteroid.getX() - w / 2;
-            final int y =
-                (this.frontView ? asteroid.getY() : asteroid.getZ()) + h / 2;
+            final int x = asteroid.getX();
+            final int y = (this.frontView ? asteroid.getY() : asteroid.getZ());
 
             g.setColor(new Color(0x7b, 0x91, 0xbd));
-            g.fillOval(x, -y, w, h);
+            g.fillOval(x - w / 2, -y - h / 2, w, h);
             g.setColor(Color.BLACK);
-            g.drawOval(x, -y, w, h);
+            g.drawOval(x - w / 2, -y - h / 2, w, h);
+
+        }
+
+        // Draw the frame around the focused asteroid
+        final Asteroid focusedAsteroid = this.model.getFocused();
+        if (focusedAsteroid != null)
+        {
+            final int w = (int) (8f / this.scale);
+            final int h = (int) (6f / this.scale);
+            final int x = focusedAsteroid.getX();
+            final int y =
+                (this.frontView ? focusedAsteroid.getY() : focusedAsteroid
+                    .getZ());
+            g.setColor(Color.YELLOW);
+            g.drawLine(x - w, -y - h, x - w, -y + h);
+            g.drawLine(x + w, -y - h, x + w, -y + h);
+            g.drawLine(x - w, -y - h, x - w / 2, -y - h);
+            g.drawLine(x + w, -y - h, x + w / 2, -y - h);
+            g.drawLine(x - w, -y + h, x - w / 2, -y + h);
+            g.drawLine(x + w, -y + h, x + w / 2, -y + h);
+        }
+
+        // Draw the selection frames around selected asteroids
+        for (final Asteroid asteroid: this.model.getSelection())
+        {
+            final int w = (int) (8f / this.scale);
+            final int h = (int) (6f / this.scale);
+            final int x = asteroid.getX();
+            final int y = (this.frontView ? asteroid.getY() : asteroid.getZ());
+            g.setColor(Color.GREEN);
+            g.drawLine(x - w, -y - h, x - w, -y + h);
+            g.drawLine(x + w, -y - h, x + w, -y + h);
+            g.drawLine(x - w, -y - h, x - w / 2, -y - h);
+            g.drawLine(x + w, -y - h, x + w / 2, -y - h);
+            g.drawLine(x - w, -y + h, x - w / 2, -y + h);
+            g.drawLine(x + w, -y + h, x + w / 2, -y + h);
         }
 
         // Reset the original transformation
@@ -612,8 +560,10 @@ public class SectorView extends JComponent implements SectorProvider,
         SwingUtils.prepareGUI();
 
         final Sector sector = SectorFactory.getInstance().getSector(14, 7);
-        final SectorView component = new SectorView();
-        component.setSector(sector);
+        final AsteroidSelectionModel model = new AsteroidSelectionModel();
+        model.setSector(sector);
+        model.setWare(WareFactory.getInstance().getWare("siliconWafers"));
+        final SectorView component = new SectorView(model);
         SwingUtils.testComponent(component);
     }
 }

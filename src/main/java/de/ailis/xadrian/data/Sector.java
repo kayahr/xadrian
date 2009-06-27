@@ -336,21 +336,21 @@ public class Sector implements Serializable, Comparable<Sector>
         return SectorFactory.getInstance().getSector(this.eastId);
     }
 
-    
+
     /**
-     * Returns the size of the sector. This size is chosen so all objects in
-     * it fit into this sector size. So this size can be used as the width
-     * and height and depth to display the sector on the screen.
+     * Returns the size of the sector. This size is chosen so all objects in it
+     * fit into this sector size. So this size can be used as the width and
+     * height and depth to display the sector on the screen.
      * 
      * @return The sector size
      */
-    
+
     public int getSize()
     {
         int maxX = 0;
         int maxY = 0;
         int maxZ = 0;
-        
+
         for (final Asteroid asteroid: this.asteroids)
         {
             maxX = Math.max(maxX, Math.abs(asteroid.getX()));
@@ -358,7 +358,8 @@ public class Sector implements Serializable, Comparable<Sector>
             maxZ = Math.max(maxZ, Math.abs(asteroid.getZ()));
         }
 
-        return Math.max(50000, Math.max(Math.max(maxX, maxY), maxZ) * 2 + 10000);
+        return Math.max(50000,
+            Math.max(Math.max(maxX, maxY), maxZ) * 2 + 10000);
     }
 
 
@@ -386,7 +387,7 @@ public class Sector implements Serializable, Comparable<Sector>
         while (todo.size() > 0)
         {
             final Set<Sector> newTodo = new HashSet<Sector>();
-            for (final Sector sector : todo)
+            for (final Sector sector: todo)
             {
                 // When we have reached our destination sector then return
                 // the distance traveled so far
@@ -441,7 +442,7 @@ public class Sector implements Serializable, Comparable<Sector>
         while (todo.size() > 0)
         {
             final Set<Sector> newTodo = new HashSet<Sector>();
-            for (final Sector sector : todo)
+            for (final Sector sector: todo)
             {
                 // When we have reached a sector with a shipyard and the player
                 // can buy from it then return it.
@@ -495,7 +496,7 @@ public class Sector implements Serializable, Comparable<Sector>
     public int getTotalSiliconYield()
     {
         int yield = 0;
-        for (final Asteroid asteroid : this.asteroids)
+        for (final Asteroid asteroid: this.asteroids)
             if (asteroid.getWare().getId().equals("siliconWafers"))
                 yield += asteroid.getYield();
         return yield;
@@ -511,7 +512,7 @@ public class Sector implements Serializable, Comparable<Sector>
     public int getTotalOreYield()
     {
         int yield = 0;
-        for (final Asteroid asteroid : this.asteroids)
+        for (final Asteroid asteroid: this.asteroids)
             if (asteroid.getWare().getId().equals("ore"))
                 yield += asteroid.getYield();
         return yield;
@@ -527,7 +528,7 @@ public class Sector implements Serializable, Comparable<Sector>
     public int getTotalNividiumYield()
     {
         int yield = 0;
-        for (final Asteroid asteroid : this.asteroids)
+        for (final Asteroid asteroid: this.asteroids)
             if (asteroid.getWare().getId().equals("nividium"))
                 yield += asteroid.getYield();
         return yield;
@@ -543,7 +544,7 @@ public class Sector implements Serializable, Comparable<Sector>
     public int getTotalIceYield()
     {
         int yield = 0;
-        for (final Asteroid asteroid : this.asteroids)
+        for (final Asteroid asteroid: this.asteroids)
             if (asteroid.getWare().getId().equals("ice"))
                 yield += asteroid.getYield();
         return yield;
@@ -629,11 +630,11 @@ public class Sector implements Serializable, Comparable<Sector>
 
     public SortedMap<Integer, Integer> getYieldsMap(final String wareId)
     {
-        final SortedMap<Integer, Integer> yields = new TreeMap<Integer, Integer>(
-            new ReverseIntegerComparator());
+        final SortedMap<Integer, Integer> yields =
+            new TreeMap<Integer, Integer>(new ReverseIntegerComparator());
 
         // Iterate over all asteroids
-        for (final Asteroid asteroid : this.asteroids)
+        for (final Asteroid asteroid: this.asteroids)
         {
             // If this asteroid is not of the searched type then ignore it
             if (!wareId.equals(asteroid.getWare().getId())) continue;
@@ -663,7 +664,7 @@ public class Sector implements Serializable, Comparable<Sector>
         final List<Integer> yields = new ArrayList<Integer>();
 
         // Iterate over all asteroids
-        for (final Asteroid asteroid : this.asteroids)
+        for (final Asteroid asteroid: this.asteroids)
         {
             // If this asteroid is not of the searched type then ignore it
             if (!wareId.equals(asteroid.getWare().getId())) continue;
@@ -672,5 +673,21 @@ public class Sector implements Serializable, Comparable<Sector>
         }
         Collections.sort(yields, new ReverseIntegerComparator());
         return yields;
+    }
+
+
+    /**
+     * Checks if the specified asteroid is in the sector.
+     * 
+     * @param asteroid
+     *            The asteroid to check
+     * @return True if asteroid is in sector, false if not
+     */
+
+    public boolean hasAsteroid(final Asteroid asteroid)
+    {
+        for (final Asteroid sectorAsteroid: this.asteroids)
+            if (sectorAsteroid.equals(asteroid)) return true;
+        return false;
     }
 }

@@ -120,6 +120,9 @@ public abstract class ModalDialog extends JDialog
     {
         // Call super constructor
         super();
+        
+        // Initialize the non-visual parts of the dialog
+        init();
 
         setTitle(I18N.getTitle("dialog." + id));
         setName(id + "Dialog");
@@ -162,6 +165,18 @@ public abstract class ModalDialog extends JDialog
 
         // Center the dialog
         setLocationRelativeTo(null);
+    }
+    
+    
+    /**
+     * Initializes the non-visual parts of the dialog. This is the first
+     * method called by the constructor so this is a good place to initialized
+     * models and stuff like that.
+     */
+    
+    protected void init()
+    {
+        // Empty
     }
 
 
