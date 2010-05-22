@@ -3,77 +3,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                              http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <artifactId>maven-java</artifactId>
+    <groupId>de.ailis.maven</groupId>
+    <version>1</version>
+  </parent>   
+  
   <groupId>de.ailis.xadrian</groupId>
   <artifactId>xadrian</artifactId>
-  <name>Xadrian</name>
-  <version>1.2.2</version>
   <packaging>jar</packaging>
-  <url>http://www.ailis.de/~k/projects/xadrian</url>
+  <name>Xadrian</name>
+  <version>1.3.0-SNAPSHOT</version>
+  <url>http://www.ailis.de/~k/projects/xadrian/</url>
   <description>
     A factory complex calculator tool for X3 Terran Conflict.
   </description>
-  <inceptionYear>2009</inceptionYear>
+  <inceptionYear>2010</inceptionYear>
   <organization>
     <name>Klaus Reimer</name>
     <url>http://www.ailis.de/~k/</url>
   </organization>
-  
-  <scm>
-    <url>https://scm.ailis.de/viewvc/java/xadrian/trunk/?root=svn</url>
-    <connection>scm:svn:https://scm.ailis.de/svn/java/xadrian/trunk</connection>
-  </scm>
-  
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <configuration>
-            <archive>
-              <manifest>
-                <mainClass>de.ailis.xadrian.Main</mainClass>
-                <packageName>de.ailis.xadrian</packageName>
-                <addClasspath>true</addClasspath>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <source>1.6</source>
-            <target>1.6</target>
-            <encoding>UTF-8</encoding>
-          </configuration>
-        </plugin>
-         <plugin> 
-          <artifactId>maven-assembly-plugin</artifactId>
-          <configuration>
-            <descriptors>
-              <descriptor>src/main/assembly/windows.xml</descriptor>
-              <descriptor>src/main/assembly/unix.xml</descriptor>
-              <descriptor>src/main/assembly/macosx.xml</descriptor>
-              <descriptor>src/main/assembly/src.xml</descriptor>
-            </descriptors>
-          </configuration>
-          <executions>
-            <execution>
-              <id>package-assembly</id>
-              <goals>
-                <goal>attached</goal>
-              </goals>
-            </execution>
-          </executions> 
-        </plugin>        
-        <plugin>
-          <artifactId>maven-surefire-report-plugin</artifactId>
-          <groupId>org.apache.maven.plugins</groupId>
-        </plugin>   
-      </plugins>
-    </pluginManagement>
-  </build>
   
   <licenses>
     <license>
@@ -83,105 +33,68 @@
     </license>
   </licenses>
   
-  <reporting>
+  <scm>
+    <url>http://www.ailis.de/~k/hg/java/xadrian</url>
+    <connection>scm:hg:http://www.ailis.de/~k/hg/java/xadrian</connection>
+    <developerConnection>scm:hg:ssh://k@ailis.de/hg/java/xadrian</developerConnection>
+  </scm>  
+  
+  <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>taglist-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jxr-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
+        <artifactId>maven-jar-plugin</artifactId>
         <configuration>
-          <links>
-            <link>http://java.sun.com/javase/6/docs/api/</link>
-          </links>
+          <archive>
+            <manifest>
+              <mainClass>de.ailis.xadrian.Main</mainClass>
+              <packageName>de.ailis.xadrian</packageName>
+              <addClasspath>true</addClasspath>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-         <reportSets>
-           <reportSet>
-             <reports>
-               <report>dependencies</report>
-               <report>project-team</report>
-               <report>license</report>
-               <report>scm</report>
-             </reports>
-           </reportSet>
-        </reportSets>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-      </plugin>
-      <plugin>
-         <groupId>org.apache.maven.plugins</groupId>
-         <artifactId>maven-pmd-plugin</artifactId>
-         <configuration>
-            <targetJdk>1.6</targetJdk>
-            <rulesets>
-               <ruleset>/rulesets/basic.xml</ruleset>
-            </rulesets>
-            <format>xml</format>
-            <linkXref>true</linkXref>
-            <sourceEncoding>utf-8</sourceEncoding>
-            <minimumTokens>100</minimumTokens>
-         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>2.0-beta-6</version>
+      <plugin> 
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-3</version>
         <configuration>
-          <locales>en,de</locales>
-          <inputEncoding>UTF-8</inputEncoding>
-          <outputEncoding>UTF-8</outputEncoding>
+          <descriptors>
+            <descriptor>src/main/assembly/windows.xml</descriptor>
+            <descriptor>src/main/assembly/unix.xml</descriptor>
+            <descriptor>src/main/assembly/macosx.xml</descriptor>
+            <descriptor>src/main/assembly/src.xml</descriptor>
+          </descriptors>
         </configuration>
-      </plugin>      
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>changes-maven-plugin</artifactId>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>changes-report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
+        <executions>
+          <execution>
+            <id>package-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attached</goal>
+            </goals>
+          </execution>
+        </executions> 
+      </plugin>        
     </plugins>
-  </reporting>
-  <ciManagement>
-  	<system>Hudson</system>
-  	<url>https://hudson.scm.ailis.de/job/xadrian/</url>
-  </ciManagement>
+  </build>
   
-  <developers>
-    <developer>
-      <id>k</id>
-      <name>Klaus Reimer</name>
-      <email>k@ailis.de</email>
-      <roles>
-        <role>Architect</role>
-      </roles>
-      <timezone>+2</timezone>
-      <url>http://www.ailis.de/~k/</url>
-    </developer>        
-  </developers>
-
-  <distributionManagement>
+  <repositories>  
     <repository>
-      <id>ailis-ssh</id>
-      <name>Ailis Maven Repository</name>
-      <url>scpexe://k@ailis.de/home/k/public_html/maven2/</url>
+      <id>ailis-releases</id>
+      <name>Ailis Maven Releases</name>
+      <url>http://www.ailis.de/nexus/content/groups/public/</url>
     </repository>
+    <repository>
+      <id>ailis-snapshots</id>
+      <name>Ailis Maven Snapshots</name>
+      <url>http://www.ailis.de/nexus/content/groups/public-snapshots/</url>
+      <snapshots />
+    </repository>
+  </repositories>
+   
+  <distributionManagement>
     <site>
-      <id>ailis-ssh</id>
+      <id>project-website</id>
       <url>scpexe://k@ailis.de/home/k/public_html/projects/xadrian/</url>
     </site>
   </distributionManagement>

@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.I18N;
 
 /**
  * Dialog for opening a complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -24,16 +24,13 @@ public class OpenComplexDialog extends JFileChooser
 {
     /** Serial version UID */
     private static final long serialVersionUID = -2849909205937284265L;
-    
-    /** The singleton instance */
-    private static final OpenComplexDialog instance = new OpenComplexDialog();
 
 
     /**
      * Constructor
      */
 
-    private OpenComplexDialog()
+    public OpenComplexDialog()
     {
         super();
         setFileFilter(new FileNameExtensionFilter(I18N
@@ -44,20 +41,8 @@ public class OpenComplexDialog extends JFileChooser
 
 
     /**
-     * Returns the singleton instance.
-     * 
-     * @return The singleton instance
-     */
-
-    public static OpenComplexDialog getInstance()
-    {
-        return instance;
-    }
-
-
-    /**
      * Opens the dialog. Returns the selected file or null if canceled.
-     * 
+     *
      * @return The selected file or null if canceled
      */
 

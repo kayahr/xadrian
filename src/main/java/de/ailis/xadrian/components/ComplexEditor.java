@@ -420,7 +420,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     public void saveAs()
     {
-        final SaveComplexDialog dialog = SaveComplexDialog.getInstance();
+        final SaveComplexDialog dialog = new SaveComplexDialog();
         dialog.setSelectedFile(getFile());
         File file = dialog.open();
         if (file != null)
@@ -451,9 +451,9 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     public static ComplexEditor open()
     {
-        final OpenComplexDialog dialog = OpenComplexDialog.getInstance();
+        final OpenComplexDialog dialog = new OpenComplexDialog();
 
-        dialog.setSelectedFile(new File(""));
+        dialog.setSelectedFile(null);
         final File file = dialog.open();
         if (file != null)
         {
