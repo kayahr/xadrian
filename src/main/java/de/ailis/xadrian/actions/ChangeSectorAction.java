@@ -22,7 +22,6 @@ import de.ailis.xadrian.support.ModalDialog.Result;
  * Changes the sector of the complex.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ChangeSectorAction extends BaseAction implements StateListener

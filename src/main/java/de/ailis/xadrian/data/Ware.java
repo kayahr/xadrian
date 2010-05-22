@@ -18,7 +18,6 @@ import de.ailis.xadrian.support.I18N;
  * A product
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class Ware implements Serializable, Comparable<Ware>

@@ -12,16 +12,15 @@ import de.ailis.xadrian.data.Sector;
 /**
  * This interface is implemented by all components which contain a sector the
  * user can change.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 788 $
  */
 
 public interface SectorProvider
 {
     /**
      * Sets the sector.
-     * 
+     *
      * @param sector
      *            The sector to set
      */
@@ -31,7 +30,7 @@ public interface SectorProvider
 
     /**
      * Returns the sector.
-     * 
+     *
      * @return Return the sector
      */
 
@@ -40,7 +39,7 @@ public interface SectorProvider
 
     /**
      * Checks if the sector can be changed.
-     * 
+     *
      * @return True if sector can be changed, false if not
      */
 

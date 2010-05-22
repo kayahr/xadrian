@@ -19,7 +19,6 @@ import org.dom4j.io.XMLWriter;
  * Static XML utility methods.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public final class XmlUtils

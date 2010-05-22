@@ -35,7 +35,6 @@ import de.ailis.xadrian.support.ModalDialog;
  * Dialog for selecting a sector.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class SelectSectorDialog extends ModalDialog

@@ -36,7 +36,6 @@ import de.ailis.xadrian.support.MultiCollection;
  * A complex
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class Complex implements Serializable

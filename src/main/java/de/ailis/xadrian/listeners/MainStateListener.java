@@ -15,7 +15,6 @@ import de.ailis.xadrian.frames.MainFrame;
  * Listener interface for main frame state changes.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public interface MainStateListener extends EventListener

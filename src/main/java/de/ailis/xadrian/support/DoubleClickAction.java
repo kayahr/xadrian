@@ -18,7 +18,6 @@ import javax.swing.Action;
  * enabled.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class DoubleClickAction extends MouseAdapter

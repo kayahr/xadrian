@@ -19,7 +19,6 @@ import de.ailis.xadrian.support.BaseAction;
  * Changes the ware prices of the complex.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ChangePricesAction extends BaseAction implements StateListener

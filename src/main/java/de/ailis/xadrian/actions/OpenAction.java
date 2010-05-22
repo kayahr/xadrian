@@ -19,7 +19,6 @@ import de.ailis.xadrian.support.FrameAction;
  * Opens a previously saved factory complex.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class OpenAction extends FrameAction<MainFrame>

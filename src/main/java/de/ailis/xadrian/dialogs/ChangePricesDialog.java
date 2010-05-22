@@ -47,7 +47,6 @@ import de.ailis.xadrian.utils.SwingUtils;
  * Dialog for setting up the ware prices.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ChangePricesDialog extends ModalDialog

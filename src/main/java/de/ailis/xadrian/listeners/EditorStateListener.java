@@ -15,7 +15,6 @@ import de.ailis.xadrian.components.ComplexEditor;
  * Listener interface for editor changes.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public interface EditorStateListener extends EventListener

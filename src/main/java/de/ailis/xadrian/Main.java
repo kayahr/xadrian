@@ -14,7 +14,6 @@ import de.ailis.xadrian.utils.SwingUtils;
  * Main class.
  *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class Main

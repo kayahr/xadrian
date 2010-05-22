@@ -13,7 +13,6 @@ package de.ailis.xadrian.interfaces;
  * This interface is implemented by all components which works with a complex.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public interface ComplexProvider extends StateProvider

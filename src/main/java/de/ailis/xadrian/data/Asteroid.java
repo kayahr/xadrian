@@ -16,7 +16,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * An asteroid
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class Asteroid implements Serializable, Comparable<Asteroid>

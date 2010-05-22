@@ -37,7 +37,6 @@ import de.ailis.xadrian.support.Config;
  * Factory for Factory objects.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class FactoryFactory

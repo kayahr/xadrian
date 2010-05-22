@@ -18,7 +18,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * A factory (or multiple factories with same configuration) in a complex.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ComplexFactory implements Serializable, Comparable<ComplexFactory>

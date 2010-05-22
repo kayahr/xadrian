@@ -13,7 +13,6 @@ import java.io.File;
  * Static file utility methods.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public final class FileUtils

@@ -19,7 +19,6 @@ import de.ailis.xadrian.support.BaseAction;
  * Copies the selected text into the clipboard.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class CopyAction extends BaseAction implements ClipboardStateListener

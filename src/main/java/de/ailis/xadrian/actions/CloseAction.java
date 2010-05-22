@@ -19,7 +19,6 @@ import de.ailis.xadrian.support.FrameAction;
  * Closes the currently active tab.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class CloseAction extends FrameAction<MainFrame> implements MainStateListener

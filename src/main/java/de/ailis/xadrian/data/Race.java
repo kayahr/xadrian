@@ -19,7 +19,6 @@ import de.ailis.xadrian.support.I18N;
  * A race
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class Race implements Serializable, Comparable<Race>

@@ -76,7 +76,6 @@ import freemarker.template.Template;
  * Complex Editor component.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ComplexEditor extends JComponent implements HyperlinkListener,

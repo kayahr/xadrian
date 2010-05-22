@@ -13,16 +13,15 @@ import de.ailis.xadrian.data.Sector;
 
 /**
  * Listener interface for receiving events about sector changes.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 789 $
  */
 
 public interface SectorListener extends EventListener
 {
     /**
      * Called when the sector has been changed.
-     * 
+     *
      * @param sector
      *            The new sector
      */

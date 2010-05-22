@@ -19,7 +19,6 @@ import de.ailis.xadrian.support.BaseAction;
  * Changes the sun power.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ChangeSunsAction extends BaseAction implements StateListener

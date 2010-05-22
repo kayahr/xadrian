@@ -16,7 +16,6 @@ import java.util.List;
  * The shopping list.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ShoppingList implements Serializable

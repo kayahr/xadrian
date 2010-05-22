@@ -19,7 +19,6 @@ import de.ailis.xadrian.support.I18N;
  * Dialog for saving a complex.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class SaveComplexDialog extends JFileChooser

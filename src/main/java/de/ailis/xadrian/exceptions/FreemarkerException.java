@@ -11,7 +11,6 @@ package de.ailis.xadrian.exceptions;
  * Thrown when something goes wrong with freemarker templates.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public final class FreemarkerException extends X3ToolsException

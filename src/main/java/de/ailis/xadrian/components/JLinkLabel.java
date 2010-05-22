@@ -23,7 +23,6 @@ import org.apache.commons.logging.LogFactory;
  * external browser when clicked.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class JLinkLabel extends JLabel

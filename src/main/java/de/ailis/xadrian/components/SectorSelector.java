@@ -36,7 +36,6 @@ import de.ailis.xadrian.support.TextRenderer;
  * select one.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class SectorSelector extends JComponent implements MouseMotionListener,

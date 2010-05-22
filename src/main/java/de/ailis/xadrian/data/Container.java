@@ -11,7 +11,6 @@ package de.ailis.xadrian.data;
  * Container classes
  *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public enum Container

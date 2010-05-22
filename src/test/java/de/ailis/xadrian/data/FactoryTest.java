@@ -21,7 +21,6 @@ import de.ailis.xadrian.data.factories.WareFactory;
  * Tests the data of some factories.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class FactoryTest

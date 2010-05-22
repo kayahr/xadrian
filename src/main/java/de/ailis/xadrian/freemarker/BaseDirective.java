@@ -17,7 +17,6 @@ import freemarker.template.TemplateModelException;
  * BaseDirective
  * 
  * @author k
- * @version $Revision$
  */
 
 public abstract class BaseDirective implements TemplateDirectiveModel

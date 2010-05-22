@@ -21,7 +21,6 @@ import de.ailis.xadrian.support.FrameAction;
  * Saves the current file under a new name.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class SaveAsAction extends FrameAction<MainFrame> implements MainStateListener

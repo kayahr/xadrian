@@ -20,7 +20,6 @@ import de.ailis.xadrian.Main;
  * Simple internationalization utility class.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public final class I18N

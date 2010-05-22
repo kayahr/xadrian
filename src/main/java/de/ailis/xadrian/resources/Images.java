@@ -21,7 +21,6 @@ import de.ailis.xadrian.exceptions.ResourceException;
  * The images used in this application.
  * 
  * @author Klaus Reimer (k@ailis.de
- * @version $Revision$
  */
 
 public final class Images

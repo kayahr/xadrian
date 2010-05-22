@@ -19,7 +19,6 @@ import de.ailis.xadrian.support.BaseAction;
  * Adds a new factory to the complex.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class AddFactoryAction extends BaseAction implements StateListener

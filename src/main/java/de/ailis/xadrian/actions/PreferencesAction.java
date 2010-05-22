@@ -18,7 +18,6 @@ import de.ailis.xadrian.support.FrameAction;
  * Displays the preferences dialog.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class PreferencesAction extends FrameAction<MainFrame>

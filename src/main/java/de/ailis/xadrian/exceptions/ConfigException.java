@@ -11,7 +11,6 @@ package de.ailis.xadrian.exceptions;
  * Thrown when something goes wrong with the configuration.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public final class ConfigException extends X3ToolsException

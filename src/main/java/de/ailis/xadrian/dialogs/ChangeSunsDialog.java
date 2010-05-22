@@ -25,7 +25,6 @@ import de.ailis.xadrian.support.ModalDialog;
  * Dialog for selecting the suns in percent.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ChangeSunsDialog extends ModalDialog

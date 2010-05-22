@@ -24,7 +24,6 @@ import freemarker.template.TemplateException;
  * the model.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public final class TemplateFactory

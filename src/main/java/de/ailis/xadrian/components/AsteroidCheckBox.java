@@ -19,7 +19,6 @@ import de.ailis.xadrian.utils.SwingUtils;
  * A check box to select an asteroid.
  *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class AsteroidCheckBox extends JCheckBox

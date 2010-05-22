@@ -29,7 +29,6 @@ import de.ailis.xadrian.support.ReverseIntegerComparator;
  * A sector.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class Sector implements Serializable, Comparable<Sector>

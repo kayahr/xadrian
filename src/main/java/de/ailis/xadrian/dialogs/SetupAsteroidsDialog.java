@@ -32,7 +32,6 @@ import de.ailis.xadrian.utils.SwingUtils;
  * current complex.
  *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 839 $
  */
 
 public class SetupAsteroidsDialog extends ModalDialog

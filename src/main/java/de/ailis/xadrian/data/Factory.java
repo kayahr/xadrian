@@ -20,7 +20,6 @@ import de.ailis.xadrian.support.I18N;
  * A factory
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class Factory implements Serializable, Comparable<Factory>

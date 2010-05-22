@@ -17,7 +17,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * A product
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class Product implements Serializable, Comparable<Product>

@@ -11,7 +11,6 @@ package de.ailis.xadrian.exceptions;
  * Thrown when something goes wrong with loading data.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public final class DataException extends X3ToolsException

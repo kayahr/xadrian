@@ -36,7 +36,6 @@ import de.ailis.xadrian.resources.Images;
  * Base class for modal dialogs
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public abstract class ModalDialog extends JDialog

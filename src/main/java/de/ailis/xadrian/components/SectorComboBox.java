@@ -16,7 +16,6 @@ import de.ailis.xadrian.utils.SwingUtils;
  * Component which displays a sector.
  *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 839 $
  */
 
 public class SectorComboBox extends JComboBox

@@ -30,7 +30,6 @@ import de.ailis.xadrian.support.I18N;
  * FactoryTreeModel
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class FactoryTreeModel implements TreeModel

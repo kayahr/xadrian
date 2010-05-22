@@ -18,7 +18,6 @@ import de.ailis.xadrian.support.FrameAction;
  * Starts a new factory complex tab.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class NewAction extends FrameAction<MainFrame>

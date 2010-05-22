@@ -13,7 +13,6 @@ import java.util.Comparator;
  * Reverse integer comparator
  *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ReverseIntegerComparator implements Comparator<Integer>

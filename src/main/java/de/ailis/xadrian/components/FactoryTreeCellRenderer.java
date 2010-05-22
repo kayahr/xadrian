@@ -21,7 +21,6 @@ import de.ailis.xadrian.data.Race;
  * is no parent path which defines the race.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class FactoryTreeCellRenderer extends DefaultTreeCellRenderer

@@ -15,7 +15,6 @@ import de.ailis.xadrian.components.SectorSelector;
  * Listener interface for sector selector changes.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public interface SectorSelectorStateListener extends EventListener

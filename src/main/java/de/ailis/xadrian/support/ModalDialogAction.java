@@ -17,7 +17,6 @@ import de.ailis.xadrian.support.ModalDialog.Result;
  * Closes a modal dialog with the specified modal result.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ModalDialogAction extends BaseAction

@@ -13,26 +13,25 @@ import de.ailis.xadrian.models.AsteroidSelectionModel;
 
 /**
  * Listener interface for listening for changes in an AsteroidSelectionModel.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 789 $
  */
 
 public interface AsteroidSelectionModelListener extends EventListener
 {
     /**
      * Called when the sector has been changed.
-     * 
+     *
      * @param model
      *            The changed model.
      */
 
     public void sectorChanged(AsteroidSelectionModel model);
 
-    
+
     /**
      * Called when the selection has been changed.
-     * 
+     *
      * @param model
      *            The changed model
      */
@@ -42,7 +41,7 @@ public interface AsteroidSelectionModelListener extends EventListener
 
     /**
      * Called when the focuses asteroid has been changed.
-     * 
+     *
      * @param model
      *            The changed model
      */

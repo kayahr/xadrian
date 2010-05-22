@@ -29,7 +29,6 @@ import de.ailis.xadrian.support.ModalDialog;
  * Dialog for setting up the application preferences.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class PreferencesDialog extends ModalDialog

@@ -13,7 +13,6 @@ import java.awt.Color;
  * Factory sizes
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public enum Suns

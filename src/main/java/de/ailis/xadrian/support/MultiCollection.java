@@ -18,7 +18,6 @@ import java.util.Iterator;
  *            The collection type
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class MultiCollection<T> implements Collection<T>

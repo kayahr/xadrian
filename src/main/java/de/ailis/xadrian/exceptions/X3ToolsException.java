@@ -11,7 +11,6 @@ package de.ailis.xadrian.exceptions;
  * Base class for all custom exceptions of this application.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public abstract class X3ToolsException extends RuntimeException

@@ -16,7 +16,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * needed.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ComplexWare implements Serializable, Comparable<ComplexWare>

@@ -11,7 +11,6 @@ package de.ailis.xadrian.data;
  * Factory sizes
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public enum FactorySize

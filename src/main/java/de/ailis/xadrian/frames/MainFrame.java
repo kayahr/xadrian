@@ -69,7 +69,6 @@ import de.ailis.xadrian.support.ModalDialog.Result;
  * The main frame.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class MainFrame extends JFrame implements EditorStateListener,

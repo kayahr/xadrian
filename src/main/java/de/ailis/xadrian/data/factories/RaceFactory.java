@@ -30,7 +30,6 @@ import de.ailis.xadrian.exceptions.DataException;
  * Factory for Race objects.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class RaceFactory

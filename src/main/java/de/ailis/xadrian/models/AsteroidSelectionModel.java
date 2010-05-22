@@ -24,7 +24,6 @@ import de.ailis.xadrian.listeners.AsteroidSelectionModelListener;
  * AsteroidSelectionModel
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class AsteroidSelectionModel implements Serializable, SectorProvider

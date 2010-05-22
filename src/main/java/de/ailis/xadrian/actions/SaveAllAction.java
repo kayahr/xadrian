@@ -21,7 +21,6 @@ import de.ailis.xadrian.support.FrameAction;
  * Saves all modified files.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class SaveAllAction extends FrameAction<MainFrame> implements MainStateListener

@@ -13,7 +13,6 @@ import de.ailis.xadrian.listeners.ClipboardStateListener;
  * This interface is implemented by all components which can use the clipboard.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public interface ClipboardProvider

@@ -22,7 +22,6 @@ import java.util.Properties;
  * CorrectMessageKeys
  * 
  * @author k
- * @version $Revision$
  */
 
 public class CorrectMessageKeys

@@ -9,9 +9,8 @@ package de.ailis.xadrian.interfaces;
 
 /**
  * This interface is implemented by all components which can be reseted.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 788 $
  */
 
 public interface ResetProvider
@@ -25,7 +24,7 @@ public interface ResetProvider
 
     /**
      * Checks if a reset is allowed.
-     * 
+     *
      * @return True if reset is allowed, false if not
      */
 

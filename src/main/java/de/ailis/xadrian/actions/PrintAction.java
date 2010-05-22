@@ -21,7 +21,6 @@ import de.ailis.xadrian.support.FrameAction;
  * Prints the current file.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class PrintAction extends FrameAction<MainFrame> implements MainStateListener

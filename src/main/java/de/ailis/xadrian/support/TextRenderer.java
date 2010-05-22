@@ -19,7 +19,6 @@ import java.util.List;
  * Text Renderer
  * 
  * @author Klaus Reimer (k@ailis.de
- * @version $Revision$
  */
 
 public class TextRenderer
@@ -157,7 +156,6 @@ public class TextRenderer
      * A single text line.
      * 
      * @author Klaus Reimer (k@ailis.de)
-     * @version $Revision$
      */
 
     class TextLine
@@ -243,7 +241,6 @@ public class TextRenderer
      * A single text part in a line.
      * 
      * @author Klaus Reimer (k@ailis.de)
-     * @version $Revision$
      */
 
     class TextPart

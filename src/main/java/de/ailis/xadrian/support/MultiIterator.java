@@ -20,7 +20,6 @@ import java.util.NoSuchElementException;
  *            The collection type
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class MultiIterator<T> implements Iterator<T>

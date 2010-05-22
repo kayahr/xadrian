@@ -16,7 +16,6 @@ import javax.swing.KeyStroke;
  * Base class for all actions.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public abstract class BaseAction extends AbstractAction

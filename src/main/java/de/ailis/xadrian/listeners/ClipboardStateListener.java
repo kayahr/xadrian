@@ -15,7 +15,6 @@ import de.ailis.xadrian.interfaces.ClipboardProvider;
  * Listener interface for clipboard state changes of a component.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public interface ClipboardStateListener extends EventListener

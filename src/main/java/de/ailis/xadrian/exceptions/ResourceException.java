@@ -11,7 +11,6 @@ package de.ailis.xadrian.exceptions;
  * Thrown when something goes wrong with loading resources.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public final class ResourceException extends X3ToolsException

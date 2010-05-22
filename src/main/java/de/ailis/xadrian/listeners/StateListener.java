@@ -11,9 +11,8 @@ import java.util.EventListener;
 
 /**
  * Listener interface for state changes of component
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision: 789 $
  */
 
 public interface StateListener extends EventListener

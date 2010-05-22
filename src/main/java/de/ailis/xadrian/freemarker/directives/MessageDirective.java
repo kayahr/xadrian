@@ -23,7 +23,6 @@ import freemarker.template.TemplateModelException;
  * Message directive for freemarker templates
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class MessageDirective extends BaseDirective

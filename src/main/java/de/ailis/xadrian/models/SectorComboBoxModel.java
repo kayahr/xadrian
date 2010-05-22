@@ -20,7 +20,6 @@ import de.ailis.xadrian.data.factories.SectorFactory;
  * Model which represents sectors to be listed in a combo box.
  *
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class SectorComboBoxModel implements ComboBoxModel

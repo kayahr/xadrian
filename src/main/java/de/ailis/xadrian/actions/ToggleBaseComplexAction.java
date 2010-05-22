@@ -19,7 +19,6 @@ import de.ailis.xadrian.support.BaseAction;
  * Toggles the addition of a base complex.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ToggleBaseComplexAction extends BaseAction implements

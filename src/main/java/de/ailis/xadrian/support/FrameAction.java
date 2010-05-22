@@ -16,7 +16,6 @@ import javax.swing.JFrame;
  * @param <T>
  *            The frame type
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public abstract class FrameAction<T extends JFrame> extends BaseAction

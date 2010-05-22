@@ -17,7 +17,6 @@ import de.ailis.xadrian.data.factories.SectorFactory;
  * Tests Sector class.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class SectorTest

@@ -26,7 +26,6 @@ import de.ailis.xadrian.utils.SwingUtils;
  * Dialog for selecting a yield.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class ChangeYieldDialog extends ModalDialog

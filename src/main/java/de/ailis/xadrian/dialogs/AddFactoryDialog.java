@@ -41,7 +41,6 @@ import freemarker.template.Template;
  * Dialog for selecting a complex factory.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class AddFactoryDialog extends ModalDialog implements

@@ -17,7 +17,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * Storage capacity for a single ware.
  * 
  * @author Klaus Reimer (k@ailis.de)
- * @version $Revision$
  */
 
 public class Capacity implements Serializable, Comparable<Capacity>
