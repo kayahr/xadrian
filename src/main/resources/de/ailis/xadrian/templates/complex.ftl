@@ -54,7 +54,13 @@
           [/#if]
           [#assign factory=complexFactory.factory]
           <tr class="${class}">
-            <td class="factory">${factory.name}</td>
+            <td class="factory">
+              [#if complexFactory.disabled]
+                <strike>${factory.name}</strike>
+              [#else]
+                ${factory.name}
+              [/#if]
+            </td>
             <td class="race">${factory.race.name}</td>
             <td class="yield">
               [#if complexFactory.factory.mine]
@@ -73,8 +79,15 @@
             <td class="singlePrice">${factory.price} Cr</td>
             <td class="price">${factory.price * complexFactory.quantity} Cr</td>
             [#if !print]
-            <td>       
-              <a href="file://removeFactory/${complexFactory_index}"><img src="../images/close.png" border="0" alt="" /></a>
+            <td>
+              <table class="layout"><tr>       
+                <td><a href="file://removeFactory/${complexFactory_index}"><img src="../images/close.png" border="0" /></a></td>
+                [#if complexFactory.disabled]
+                  <td><a href="file://enableFactory/${complexFactory_index}"><img src="../images/start.png" border="0" /></a></td>
+                [#else]
+                  <td><a href="file://disableFactory/${complexFactory_index}"><img src="../images/pause.png" border="0" /></a></td>
+                [/#if]
+              </tr></table>
             </td>
             [/#if]
           </tr>

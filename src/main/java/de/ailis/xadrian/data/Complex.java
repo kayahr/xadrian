@@ -244,6 +244,34 @@ public class Complex implements Serializable
 
 
     /**
+     * Disables the factory with the given index.
+     *
+     * @param index
+     *            The factory index
+     */
+
+    public void disableFactory(final int index)
+    {
+        this.factories.get(index).disable();
+        calculateBaseComplex();
+    }
+
+
+    /**
+     * Disables the factory with the given index.
+     *
+     * @param index
+     *            The factory index
+     */
+
+    public void enableFactory(final int index)
+    {
+        this.factories.get(index).enable();
+        calculateBaseComplex();
+    }
+
+
+    /**
      * Accepts the automatically added factory with the given index.
      *
      * @param index
@@ -413,7 +441,9 @@ public class Complex implements Serializable
                 factoryE.addAttribute("quantity", Integer.toString(factory
                     .getQuantity()));
                 factoryE.addAttribute("yield", Integer.toString(factory
-                    .getYield()));
+                        .getYield()));
+                factoryE.addAttribute("disabled", Boolean.toString(factory
+                        .isDisabled()));
             }
         }
         if (!this.customPrices.isEmpty())
@@ -481,7 +511,11 @@ public class Complex implements Serializable
             final int yield = Integer.parseInt(element.attributeValue("yield"));
             final int quantity = Integer.parseInt(element
                 .attributeValue("quantity"));
-            complex.addFactory(new ComplexFactory(factory, quantity, yield));
+            final ComplexFactory complexFactory = new ComplexFactory(factory,
+                quantity, yield);
+            if (Boolean.parseBoolean(element.attributeValue("disabled", "false")))
+                complexFactory.disable();
+            complex.addFactory(complexFactory);
         }
 
         // Read the complex wares

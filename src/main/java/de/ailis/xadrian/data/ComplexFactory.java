@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * A factory (or multiple factories with same configuration) in a complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -33,10 +33,13 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     /** The yield (for mines) */
     private int yield;
 
+    /** If this factory is currently disabled. */
+    private boolean disabled;
+
 
     /**
      * Constructor
-     * 
+     *
      * @param factory
      *            The factory
      * @param quantity
@@ -56,7 +59,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     /**
      * Return the factory.
-     * 
+     *
      * @return The factory
      */
 
@@ -68,7 +71,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     /**
      * Returns the number of factories.
-     * 
+     *
      * @return The number of factories
      */
 
@@ -80,7 +83,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     /**
      * Returns the yield (for mines)
-     * 
+     *
      * @return The yield
      */
 
@@ -136,7 +139,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     /**
      * Adds the specified quantity.
-     * 
+     *
      * @param quantity
      *            The quantity to add
      */
@@ -149,7 +152,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     /**
      * Sets the quantity.
-     * 
+     *
      * @param quantity
      *            The quantity to set
      */
@@ -162,7 +165,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     /**
      * Sets the yield.
-     * 
+     *
      * @param yield
      *            The yield to set
      */
@@ -175,7 +178,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     /**
      * Returns the product this complex factory/factories produces in one hour.
-     * 
+     *
      * @param suns
      *            The sun power to use in the calculation (for solar power
      *            plants)
@@ -187,14 +190,14 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         final Product product = this.factory
             .getProductPerHour(suns, this.yield);
         return new Product(product.getWare(), product.getQuantity()
-            * this.quantity);
+            * (this.disabled ? 0 : this.quantity));
     }
 
 
     /**
      * Returns the product this complex factory/factories produces in one hour
      * using a default sun power of 100%.
-     * 
+     *
      * @return The product per hour.
      */
 
@@ -206,7 +209,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     /**
      * Returns the resources this complex factory/factories needs in our hour.
-     * 
+     *
      * @param suns
      *            The sun power to use in the calculation (for solar power
      *            plants)
@@ -221,7 +224,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         {
             resources.add(new Product(resource.getWare(), resource
                 .getQuantity()
-                * this.quantity));
+                * (this.disabled ? 0 : this.quantity)));
         }
         return resources;
     }
@@ -229,7 +232,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     /**
      * Returns the resources this complex factory/factories needs in our hour
      * using a default sun power of 100%.
-     * 
+     *
      * @return The resources needed per hour
      */
 
@@ -241,7 +244,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     /**
      * Returns the storage capacities.
-     * 
+     *
      * @return The storage capacities
      */
 
@@ -252,8 +255,65 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         {
             capacities.add(new Capacity(capacity.getWare(), capacity
                 .getQuantity()
-                * this.quantity));
+                * (this.disabled ? 0 : this.quantity)));
         }
         return capacities;
+    }
+
+
+    /**
+     * Sets the disabled state of this factory.
+     *
+     * @param disabled
+     *            True to disable the factory, false to enable it
+     */
+
+    public void setDisabled(final boolean disabled)
+    {
+        this.disabled = disabled;
+    }
+
+
+    /**
+     * Enables the factory
+     */
+
+    public void enable()
+    {
+        setDisabled(false);
+    }
+
+
+    /**
+     * Disables the factory
+     */
+
+    public void disable()
+    {
+        setDisabled(true);
+    }
+
+
+    /**
+     * Checks if the factory is currently disabled.
+     *
+     * @return True if factory is disabled, false if not
+     */
+
+    public boolean isDisabled()
+    {
+        return this.disabled;
+    }
+
+
+    /**
+     * Checks if the factory is currently enabled.
+     *
+     * @return True if factory is enabled, false if not
+     */
+
+    public boolean isEnabled()
+    {
+        return !this.disabled;
     }
 }

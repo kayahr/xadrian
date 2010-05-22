@@ -17,7 +17,7 @@ import de.ailis.xadrian.support.I18N;
 
 /**
  * A factory
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -62,7 +62,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Constructor
-     * 
+     *
      * @param id
      *            The factory id
      * @param size
@@ -106,7 +106,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Return the factory id.
-     * 
+     *
      * @return The factory id
      */
 
@@ -118,7 +118,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Return the factory size.
-     * 
+     *
      * @return The factory size
      */
 
@@ -130,7 +130,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns true if this factory is a mine.
-     * 
+     *
      * @return True if this factory is a mine. False if not.
      */
 
@@ -143,7 +143,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the factory name.
-     * 
+     *
      * @return The factory name
      */
 
@@ -155,7 +155,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the race which manufactures this factory.
-     * 
+     *
      * @return The race
      */
 
@@ -167,7 +167,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the production cycle.
-     * 
+     *
      * @return The production cycle
      */
 
@@ -179,7 +179,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the production cycle as a human readable time string.
-     * 
+     *
      * @return The production cycle as a string
      */
 
@@ -198,7 +198,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the produces product per cycle.
-     * 
+     *
      * @return The product
      */
 
@@ -210,7 +210,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the factory price.
-     * 
+     *
      * @return The price
      */
 
@@ -222,7 +222,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the factory volume.
-     * 
+     *
      * @return The volume
      */
 
@@ -234,7 +234,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the needed resources per cycle.
-     * 
+     *
      * @return The resources
      */
 
@@ -246,7 +246,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the storage capacities.
-     * 
+     *
      * @return The storage capacities
      */
 
@@ -258,7 +258,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the manufacturer stations.
-     * 
+     *
      * @return The manufacturer stations
      */
 
@@ -341,7 +341,7 @@ public class Factory implements Serializable, Comparable<Factory>
     /**
      * Returns the real cycle of this factory by including the sun power and the
      * asteroid yield into the calculation.
-     * 
+     *
      * @param suns
      *            The sun power in percent
      * @param yield
@@ -380,7 +380,7 @@ public class Factory implements Serializable, Comparable<Factory>
     /**
      * Returns the real product of this factory by including the specified sun
      * power and asteroid yield into the calculation.
-     * 
+     *
      * @param suns
      *            The sun power in percent
      * @param yield
@@ -424,7 +424,7 @@ public class Factory implements Serializable, Comparable<Factory>
     /**
      * Returns the real resources of this factory by including the specified sun
      * power and asteroid yield into the calculation.
-     * 
+     *
      * @param suns
      *            The sun power in percent
      * @param yield
@@ -446,7 +446,7 @@ public class Factory implements Serializable, Comparable<Factory>
         //        .getQuantity() / 2);
         //    return resources;
         //}
-        
+
 
         // Handle silicon mines
         if (wareId.equals("siliconWafers"))
@@ -479,7 +479,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the product this factory produces in one hour.
-     * 
+     *
      * @param suns
      *            The sun power to use in the calculation (for solar power
      *            plants)
@@ -499,7 +499,7 @@ public class Factory implements Serializable, Comparable<Factory>
     /**
      * Returns the product this factory produces in one hour for a default yield
      * (100% for power plants, 25 for mines).
-     * 
+     *
      * @return The product produced per hour for a default yield
      */
 
@@ -511,7 +511,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     /**
      * Returns the resources this factory needs in our hour.
-     * 
+     *
      * @param suns
      *            The sun power to use in the calculation (for solar power
      *            plants)
@@ -523,7 +523,7 @@ public class Factory implements Serializable, Comparable<Factory>
     public Collection<Product> getResourcesPerHour(final Suns suns,
         final int yield)
     {
-        final Product[] resources = this.getRealResources(suns, yield);
+        final Product[] resources = getRealResources(suns, yield);
         final Collection<Product> resourcesPH = new ArrayList<Product>();
         for (final Product resource : resources)
         {
@@ -538,7 +538,7 @@ public class Factory implements Serializable, Comparable<Factory>
     /**
      * Returns the resources this factory needs in one hour for a default yield
      * (100% for power plants, 25 for mines).
-     * 
+     *
      * @return The resources needed per hour for a default yield
      */
 
@@ -551,7 +551,7 @@ public class Factory implements Serializable, Comparable<Factory>
     /**
      * Returns the manufacturer station which is nearest to the specified
      * sector.
-     * 
+     *
      * @param sector
      *            The source sector
      * @return The nearest manufacturer station

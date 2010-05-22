@@ -125,3 +125,13 @@ td.surplus
 	color: #00cc00;
 	font-weight: bold;
 }
+
+table.layout
+{
+    margin: 0;		
+}
+
+table.layout td
+{
+	padding: 0;
+}

@@ -249,6 +249,14 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             {
                 removeFactory(Integer.parseInt(url.getPath().substring(1)));
             }
+            else if ("disableFactory".equals(action))
+            {
+                disableFactory(Integer.parseInt(url.getPath().substring(1)));
+            }
+            else if ("enableFactory".equals(action))
+            {
+                enableFactory(Integer.parseInt(url.getPath().substring(1)));
+            }
             else if ("acceptFactory".equals(action))
             {
                 acceptFactory(Integer.parseInt(url.getPath().substring(1)));
@@ -324,6 +332,36 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public void removeFactory(final int index)
     {
         this.complex.removeFactory(index);
+        doChange();
+        redraw();
+    }
+
+
+    /**
+     * Disables the factory with the specified index.
+     *
+     * @param index
+     *            The index of the factory to disable
+     */
+
+    public void disableFactory(final int index)
+    {
+        this.complex.disableFactory(index);
+        doChange();
+        redraw();
+    }
+
+
+    /**
+     * Enables the factory with the specified index.
+     *
+     * @param index
+     *            The index of the factory to enable
+     */
+
+    public void enableFactory(final int index)
+    {
+        this.complex.enableFactory(index);
         doChange();
         redraw();
     }
