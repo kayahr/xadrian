@@ -14,22 +14,35 @@ body.print
 
 p
 {
-    margin: 0 0 9px 3px;
+    margin: 0 0 9px 0;
 }
 
 h1, h2
 {
     font-family: Times New Roman, serif;
-    font-size: 12px;
     font-weight: bold;
-    margin: 0 0 9px 3px;
-    text-decoration: underline;
+    margin: 0 0 9px 0;
+    width: 100%;
+}
+
+h1
+{
+	font-size: 14px;
+	background: #dddddd;
+	padding: 3px;
 }
 
 h2
 {
 	font-size: 11px;
-	margin-top: 15px;
+    padding: 2px;
+    background: #eeeeee;
+}
+
+h2 a
+{
+	color: #000000;
+	text-decoration: none;
 }
 
 .print h1
@@ -47,6 +60,11 @@ table
 	margin: 0 0 9px 0;
 }
 
+.indent
+{
+	margin-left: 16px;
+}
+
 .print table
 {
 	width: 100%;
@@ -61,11 +79,12 @@ td, th
 {
     text-align: left;
     vertical-align: center;
+    padding-left: 0;
 }
 
 tr.odd, tr.autoodd, tr.kitsodd
 {
-	background-color: #eeeeee;
+	background-color: #f4f4f4;
 }
 
 tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
@@ -141,4 +160,16 @@ table.layout
 table.layout td
 {
 	padding: 0;
+}
+
+.sep
+{
+	background: #888888;
+	padding: 0;
+}
+
+.print a
+{
+	color: #000000;
+	text-decoration: none;
 }

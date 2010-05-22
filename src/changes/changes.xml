@@ -10,13 +10,17 @@
         Added Polish translation. Thanks to Mariusz and sorry that it took
         a year until it was finally published...
       </action>      
-      <action dev="k" type="fix" date="2010-05-22">
-        Fixed error which occured sometimes when loading the same complex two
-        times.
-      </action>
       <action dev="k" type="add" date="2010-05-22">
         Added up/down buttons to control factory quantities without opening
         the quantity dialog.
+      </action>
+      <action dev="k" type="add" date="2010-05-22">
+        Applied nicer style to complex data. Sections can now be collapsed
+        and expanded by clicking the section headers. 
+      </action>
+      <action dev="k" type="fix" date="2010-05-22">
+        Fixed error which occured sometimes when loading the same complex two
+        times.
       </action>
     </release>
     <release version="1.2.2" date="2009-06-14" desc="Minor update">

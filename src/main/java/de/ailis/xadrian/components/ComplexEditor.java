@@ -290,6 +290,22 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
                 changePrices(WareFactory.getInstance().getWare(
                     url.getPath().substring(1)));
             }
+            else if ("toggleShowingProductionStats".equals(action))
+            {
+                toggleShowingProductionStats();
+            }
+            else if ("toggleShowingStorageCapacities".equals(action))
+            {
+                toggleShowingStorageCapacities();
+            }
+            else if ("toggleShowingShoppingList".equals(action))
+            {
+                toggleShowingShoppingList();
+            }
+            else if ("toggleShowingComplexSetup".equals(action))
+            {
+                toggleShowingComplexSetup();
+            }
         }
     }
 
@@ -327,6 +343,54 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             doChange();
             redraw();
         }
+    }
+
+
+    /**
+     * Toggles the display of the complex setup.
+     */
+
+    public void toggleShowingComplexSetup()
+    {
+        this.complex.toggleShowingComplexSetup();
+        doChange();
+        redraw();
+    }
+
+
+    /**
+     * Toggles the display of production statistics.
+     */
+
+    public void toggleShowingProductionStats()
+    {
+        this.complex.toggleShowingProductionStats();
+        doChange();
+        redraw();
+    }
+
+
+    /**
+     * Toggles the display of production statistics.
+     */
+
+    public void toggleShowingStorageCapacities()
+    {
+        this.complex.toggleShowingStorageCapacities();
+        doChange();
+        redraw();
+    }
+
+
+    /**
+     * Toggles the display of the shopping list.
+     */
+
+    public void toggleShowingShoppingList()
+    {
+        this.complex.toggleShowingShoppingList();
+        doChange();
+        redraw();
     }
 
 

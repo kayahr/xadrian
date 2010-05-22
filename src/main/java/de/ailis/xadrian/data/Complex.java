@@ -75,6 +75,18 @@ public class Complex implements Serializable
     /** Custom buy/sell prices in this complex */
     private final Map<Ware, Integer> customPrices;
 
+    /** If complex setup should be displayed */
+    private boolean showingComplexSetup = true;
+
+    /** If production statistics should be displayed */
+    private boolean showingProductionStats = false;
+
+    /** If storage capacities should be displayed */
+    private boolean showingStorageCapacities = false;
+
+    /** If shopping list should be displayed */
+    private boolean showingShoppingList = false;
+
 
     /**
      * Constructor
@@ -208,7 +220,7 @@ public class Complex implements Serializable
     public int hashCode()
     {
         return new HashCodeBuilder().append(this.name).append(this.factories)
-            .append(this.autoFactories).hashCode();
+                .append(this.autoFactories).hashCode();
     }
 
 
@@ -225,7 +237,7 @@ public class Complex implements Serializable
         final Complex other = (Complex) obj;
         return new EqualsBuilder().append(this.name, other.name).append(
             this.factories, other.factories).append(this.suns, other.suns)
-            .append(this.sector, other.sector).isEquals();
+                .append(this.sector, other.sector).isEquals();
     }
 
 
@@ -457,17 +469,25 @@ public class Complex implements Serializable
         if (this.sector != null)
             root.addAttribute("sector", this.sector.getId());
         root.addAttribute("addBaseComplex", Boolean
-            .toString(this.addBaseComplex));
+                .toString(this.addBaseComplex));
+        root.addAttribute("showingProductionStats", Boolean
+                .toString(this.showingProductionStats));
+        root.addAttribute("showingShoppingList", Boolean
+                .toString(this.showingShoppingList));
+        root.addAttribute("showingStorageCapacities", Boolean
+                .toString(this.showingStorageCapacities));
+        root.addAttribute("showingComplexSetup", Boolean
+                .toString(this.showingComplexSetup));
         if (!this.factories.isEmpty())
         {
             final Element factoriesE = root.addElement("complexFactories");
             for (final ComplexFactory factory : this.factories)
             {
                 final Element factoryE = factoriesE
-                    .addElement("complexFactory");
+                        .addElement("complexFactory");
                 factoryE.addAttribute("factory", factory.getFactory().getId());
                 factoryE.addAttribute("quantity", Integer.toString(factory
-                    .getQuantity()));
+                        .getQuantity()));
                 factoryE.addAttribute("yield", Integer.toString(factory
                         .getYield()));
                 factoryE.addAttribute("disabled", Boolean.toString(factory
@@ -478,14 +498,15 @@ public class Complex implements Serializable
         {
             final Element waresE = root.addElement("complexWares");
             for (final Map.Entry<Ware, Integer> entry : this.customPrices
-                .entrySet())
+                    .entrySet())
             {
                 final Ware ware = entry.getKey();
                 final int price = entry.getValue();
                 final Element wareE = waresE.addElement("complexWare");
                 wareE.addAttribute("ware", ware.getId());
                 wareE
-                    .addAttribute("use", Boolean.valueOf(price > 0).toString());
+                        .addAttribute("use", Boolean.valueOf(price > 0)
+                                .toString());
                 wareE.addAttribute("price", Integer.toString(Math.abs(price)));
             }
         }
@@ -519,11 +540,19 @@ public class Complex implements Serializable
         if (version > 2) throw new DocumentException("File is too new");
 
         complex.setSuns(Suns.valueOf(Integer.parseInt(root
-            .attributeValue("suns"))));
+                .attributeValue("suns"))));
         complex.setSector(sectorFactory
-            .getSector(root.attributeValue("sector")));
+                .getSector(root.attributeValue("sector")));
         complex.setAddBaseComplex(Boolean.parseBoolean(root
-            .attributeValue("addBaseComplex")));
+                .attributeValue("addBaseComplex", "false")));
+        complex.showingProductionStats = Boolean.parseBoolean(root
+                .attributeValue("showingProductionStats", "false"));
+        complex.showingShoppingList = Boolean.parseBoolean(root.attributeValue(
+            "showingShoppingList", "false"));
+        complex.showingStorageCapacities = Boolean.parseBoolean(root
+            .attributeValue("showingStorageCapacities", "false"));
+        complex.showingComplexSetup = Boolean.parseBoolean(root
+            .attributeValue("showingComplexSetup", "true"));
 
         // Get the factories parent element (In older version this was the root
         // node)
@@ -535,13 +564,14 @@ public class Complex implements Serializable
         {
             final Element element = (Element) item;
             final Factory factory = factoryFactory.getFactory(element
-                .attributeValue("factory"));
+                    .attributeValue("factory"));
             final int yield = Integer.parseInt(element.attributeValue("yield"));
             final int quantity = Integer.parseInt(element
-                .attributeValue("quantity"));
+                    .attributeValue("quantity"));
             final ComplexFactory complexFactory = new ComplexFactory(factory,
                 quantity, yield);
-            if (Boolean.parseBoolean(element.attributeValue("disabled", "false")))
+            if (Boolean.parseBoolean(element
+                    .attributeValue("disabled", "false")))
                 complexFactory.disable();
             complex.addFactory(complexFactory);
         }
@@ -555,11 +585,11 @@ public class Complex implements Serializable
             {
                 final Element element = (Element) item;
                 final Ware ware = wareFactory.getWare(element
-                    .attributeValue("ware"));
+                        .attributeValue("ware"));
                 final boolean use = Boolean.parseBoolean(element
-                    .attributeValue("use"));
+                        .attributeValue("use"));
                 final int price = Integer.parseInt(element
-                    .attributeValue("price"));
+                        .attributeValue("price"));
                 complex.customPrices.put(ware, use ? price : -price);
             }
         }
@@ -601,7 +631,7 @@ public class Complex implements Serializable
                 products.put(ware.getId(), product);
             else
                 products.put(ware.getId(), new Product(ware, mapProduct
-                    .getQuantity()
+                        .getQuantity()
                     + product.getQuantity()));
         }
         return products.values();
@@ -620,7 +650,7 @@ public class Complex implements Serializable
         for (final ComplexFactory factory : getAllFactories())
         {
             for (final Product resource : factory
-                .getResourcesPerHour(getSuns()))
+                    .getResourcesPerHour(getSuns()))
             {
                 final Ware ware = resource.getWare();
                 final Product mapResource = resources.get(ware.getId());
@@ -628,7 +658,7 @@ public class Complex implements Serializable
                     resources.put(ware.getId(), resource);
                 else
                     resources.put(ware.getId(), new Product(ware, mapResource
-                        .getQuantity()
+                            .getQuantity()
                         + resource.getQuantity()));
             }
         }
@@ -671,7 +701,7 @@ public class Complex implements Serializable
         }
 
         final List<ComplexWare> result = new ArrayList<ComplexWare>(wares
-            .values());
+                .values());
         Collections.sort(result);
         return result;
     }
@@ -754,12 +784,13 @@ public class Complex implements Serializable
 
         // First of all we build a base complex without specific crystal fab
         // race and remember the price
-        while (true) if (!addBaseComplex(null)) break;
+        while (true)
+            if (!addBaseComplex(null)) break;
         currentPrice = getTotalPrice();
 
         // Now cycle over all races and check if the complex gets cheaper if
         // the crystal fabs are bought from them
-        for (final Race race: raceFactory.getRaces())
+        for (final Race race : raceFactory.getRaces())
         {
             // If race is ignored then don't use it
             if (config.isRaceIgnored(race)) continue;
@@ -772,7 +803,8 @@ public class Complex implements Serializable
             // a specific "crystal race"
             backup.addAll(this.autoFactories);
             this.autoFactories.clear();
-            while (true) if (!addBaseComplex(race)) break;
+            while (true)
+                if (!addBaseComplex(race)) break;
 
             // Check if new price is cheaper then the old one. If cheaper
             // then the new complex is used (and checked against the next
@@ -827,7 +859,8 @@ public class Complex implements Serializable
             // factories for this ware and then restart the adding of factories
             if (ware.getMissing() > 0)
             {
-                final Race race = ware.getWare().getId().equals("crystals") ? crystalRace
+                final Race race = ware.getWare().getId().equals("crystals")
+                    ? crystalRace
                     : null;
                 if (!addBaseComplexForWare(ware, race)) continue;
                 return true;
@@ -868,14 +901,14 @@ public class Complex implements Serializable
             if (complexFactory.getFactory().getProduct().getWare().equals(ware))
             {
                 need += complexFactory.getProductPerHour(getSuns())
-                    .getQuantity();
+                        .getQuantity();
                 this.autoFactories.remove(complexFactory);
             }
         }
 
         // Determine the available factory sizes
         final FactorySize[] sizes = factoryFactory.getFactorySizes(ware, race)
-            .toArray(new FactorySize[0]);
+                .toArray(new FactorySize[0]);
 
         // Abort if no factories were found
         if (sizes.length == 0) return false;
@@ -889,7 +922,7 @@ public class Complex implements Serializable
                     size));
             else
                 factories
-                    .put(size, factoryFactory.getFactory(ware, size, race));
+                        .put(size, factoryFactory.getFactory(ware, size, race));
         }
 
         // Get the smallest possible production quantity
@@ -903,7 +936,7 @@ public class Complex implements Serializable
             final FactorySize size = sizes[i];
             final Factory factory = factories.get(size);
             final double product = factory.getProductPerHour(getSuns(), 0)
-                .getQuantity();
+                    .getQuantity();
 
             // Calculate the number of factories of the current size needed
             log.debug("Need " + need + " units of " + ware + ". Considering "
@@ -916,7 +949,7 @@ public class Complex implements Serializable
             {
                 log.debug("Adding " + quantity + "x " + factory);
                 this.autoFactories
-                    .add(new ComplexFactory(factory, quantity, 0));
+                        .add(new ComplexFactory(factory, quantity, 0));
                 need -= quantity * product;
             }
             else
@@ -986,12 +1019,12 @@ public class Complex implements Serializable
                     capacities.put(ware.getId(), capacity);
                 else
                     capacities.put(ware.getId(), new Capacity(ware, mapCapacity
-                        .getQuantity()
+                            .getQuantity()
                         + capacity.getQuantity()));
             }
         }
         final List<Capacity> result = new ArrayList<Capacity>(capacities
-            .values());
+                .values());
         Collections.sort(result);
         return result;
     }
@@ -1070,14 +1103,14 @@ public class Complex implements Serializable
         for (final ComplexFactory factory : this.factories)
         {
             list.addItem(new ShoppingListItem(factory.getFactory(), factory
-                .getQuantity(), this.sector == null ? null : factory
-                .getFactory().getNearestManufacturer(this.sector)));
+                    .getQuantity(), this.sector == null ? null : factory
+                    .getFactory().getNearestManufacturer(this.sector)));
         }
         for (final ComplexFactory factory : this.autoFactories)
         {
             list.addItem(new ShoppingListItem(factory.getFactory(), factory
-                .getQuantity(), this.sector == null ? null : factory
-                .getFactory().getNearestManufacturer(this.sector)));
+                    .getQuantity(), this.sector == null ? null : factory
+                    .getFactory().getNearestManufacturer(this.sector)));
         }
         return list;
     }
@@ -1125,5 +1158,92 @@ public class Complex implements Serializable
     {
         this.customPrices.clear();
         this.customPrices.putAll(customPrices);
+    }
+
+
+    /**
+     * Checks if complex setup should be displayed.
+     *
+     * @return True if complex setup should be displayed, false if not
+     */
+
+    public boolean isShowingComplexSetup()
+    {
+        return this.showingComplexSetup;
+    }
+
+
+    /**
+     * Toggles the display of the complex setup.
+     */
+
+    public void toggleShowingComplexSetup()
+    {
+        this.showingComplexSetup = !this.showingComplexSetup;
+    }
+
+    /**
+     * Checks if production stats should be displayed.
+     *
+     * @return True if production stats should be displayed, false if not
+     */
+
+    public boolean isShowingProductionStats()
+    {
+        return this.showingProductionStats;
+    }
+
+
+    /**
+     * Toggles the display of production statistics.
+     */
+
+    public void toggleShowingProductionStats()
+    {
+        this.showingProductionStats = !this.showingProductionStats;
+    }
+
+
+    /**
+     * Checks if storage capacities should be displayed.
+     *
+     * @return True if storage capacities should be displayed, false if not
+     */
+
+    public boolean isShowingStorageCapacities()
+    {
+        return this.showingStorageCapacities;
+    }
+
+
+    /**
+     * Toggles the display of storage capacities.
+     */
+
+    public void toggleShowingStorageCapacities()
+    {
+        this.showingStorageCapacities = !this.showingStorageCapacities;
+    }
+
+
+    /**
+     * Checks if the shopping list should be displayed.
+     *
+     * @return True if the shopping list should be displayed, false if not
+     */
+
+    public boolean isShowingShoppingList()
+    {
+        return this.showingShoppingList;
+    }
+
+
+    /**
+     * Toggles the display of the shopping list.
+     */
+
+    public void toggleShowingShoppingList()
+    {
+        this.showingShoppingList = !this.showingShoppingList;
     }
 }
