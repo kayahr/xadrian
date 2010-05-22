@@ -33,7 +33,7 @@ import de.ailis.xadrian.support.MultiCollection;
 
 /**
  * A complex
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -88,7 +88,7 @@ public class Complex implements Serializable
 
     /**
      * Constructor
-     * 
+     *
      * @param name
      *            The complex name
      */
@@ -104,21 +104,20 @@ public class Complex implements Serializable
 
     /**
      * Returns a new name for a complex.
-     * 
+     *
      * @return A new complex name
      */
 
     private static String createComplexName()
     {
         complexCounter++;
-        return String.format(I18N.getString("complex.nameTemplate"),
-            complexCounter);
+        return I18N.getString("complex.nameTemplate", complexCounter);
     }
 
 
     /**
      * Returns the name.
-     * 
+     *
      * @return The name
      */
 
@@ -130,7 +129,7 @@ public class Complex implements Serializable
 
     /**
      * Sets the complex name.
-     * 
+     *
      * @param name
      *            The complex name to set
      */
@@ -143,7 +142,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the total number of factories in the complex
-     * 
+     *
      * @return The total number of factories in the complex
      */
 
@@ -160,7 +159,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the total complex price.
-     * 
+     *
      * @return The total complex price
      */
 
@@ -179,7 +178,7 @@ public class Complex implements Serializable
 
     /**
      * A immutable copy of the factories in this complex.
-     * 
+     *
      * @return The factories in this complex
      */
 
@@ -191,7 +190,7 @@ public class Complex implements Serializable
 
     /**
      * A immutable copy of the automatically added factories in this complex.
-     * 
+     *
      * @return The automatically added factories in this complex
      */
 
@@ -232,7 +231,7 @@ public class Complex implements Serializable
 
     /**
      * Removes the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      */
@@ -246,7 +245,7 @@ public class Complex implements Serializable
 
     /**
      * Accepts the automatically added factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      */
@@ -260,7 +259,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the quantity of the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      * @return The quantity
@@ -275,7 +274,7 @@ public class Complex implements Serializable
     /**
      * Sets the quantity of the factory with the given index to the specified
      * quantity.
-     * 
+     *
      * @param index
      *            The factory index
      * @param quantity
@@ -291,7 +290,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the yield of the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      * @return The yield
@@ -306,7 +305,7 @@ public class Complex implements Serializable
     /**
      * Sets the yield of the factory with the given index to the specified
      * yield.
-     * 
+     *
      * @param index
      *            The factory index
      * @param yield
@@ -322,7 +321,7 @@ public class Complex implements Serializable
 
     /**
      * Sets the suns in percent.
-     * 
+     *
      * @param suns
      *            The suns in percent to set
      */
@@ -336,7 +335,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the suns in percent.
-     * 
+     *
      * @return The suns in percent
      */
 
@@ -349,7 +348,7 @@ public class Complex implements Serializable
 
     /**
      * Adds a factory to the complex.
-     * 
+     *
      * @param factory
      *            The factory to add
      */
@@ -363,7 +362,7 @@ public class Complex implements Serializable
 
     /**
      * Adds the specified factory/factories to the complex.
-     * 
+     *
      * @param complexFactory
      *            The factory/factories to add
      */
@@ -389,7 +388,7 @@ public class Complex implements Serializable
 
     /**
      * Converts the complex into XML and returns it.
-     * 
+     *
      * @return The complex as XML
      */
 
@@ -438,7 +437,7 @@ public class Complex implements Serializable
 
     /**
      * Loads a complex from the specified XML document and returns it.
-     * 
+     *
      * @param document
      *            The XML document
      * @return The complex
@@ -510,7 +509,7 @@ public class Complex implements Serializable
 
     /**
      * Returns all factories (Manually and automatically added ones):
-     * 
+     *
      * @return All factories
      */
 
@@ -524,7 +523,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the products this complex produces in one hour.
-     * 
+     *
      * @return The products per hour.
      */
 
@@ -549,7 +548,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the resources this complex needs in one hour.
-     * 
+     *
      * @return The needed resources per hour.
      */
 
@@ -577,7 +576,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the list of complex wares (Produced and needed).
-     * 
+     *
      * @return The list of complex wares
      */
 
@@ -618,7 +617,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the profit of this complex.
-     * 
+     *
      * @return The profit
      */
 
@@ -637,7 +636,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the number of needed complex construction kits in this complex.
-     * 
+     *
      * @return The number of needed complex construction kits.
      */
 
@@ -649,7 +648,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the price of a single complex construction kit.
-     * 
+     *
      * @return The price of a single complex construction kit
      */
 
@@ -661,7 +660,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the total price of all needed complex construction kits.
-     * 
+     *
      * @return The total price of all needed complex construction kits
      */
 
@@ -677,7 +676,7 @@ public class Complex implements Serializable
      */
 
     private void calculateBaseComplex()
-    {        
+    {
         final FactoryFactory factoryFactory = FactoryFactory.getInstance();
         final RaceFactory raceFactory = RaceFactory.getInstance();
         final Ware crystals = WareFactory.getInstance().getWare("crystals");
@@ -685,7 +684,7 @@ public class Complex implements Serializable
         long currentPrice;
         long price;
         final List<ComplexFactory> backup = new ArrayList<ComplexFactory>();
-        
+
         // First of all remove all automatically added factories
         this.autoFactories.clear();
 
@@ -695,24 +694,24 @@ public class Complex implements Serializable
         // race and remember the price
         while (true) if (!addBaseComplex(null)) break;
         currentPrice = getTotalPrice();
-        
+
         // Now cycle over all races and check if the complex gets cheaper if
         // the crystal fabs are bought from them
         for (final Race race: raceFactory.getRaces())
         {
             // If race is ignored then don't use it
             if (config.isRaceIgnored(race)) continue;
-            
+
             // If race has no crystal fabs then don't use it
             if (!factoryFactory.hasFactories(race, crystals)) continue;
-            
+
             // Backup current automatically added factories, clear the
             // calculated factories and then calculate the complex again with
             // a specific "crystal race"
             backup.addAll(this.autoFactories);
             this.autoFactories.clear();
             while (true) if (!addBaseComplex(race)) break;
-            
+
             // Check if new price is cheaper then the old one. If cheaper
             // then the new complex is used (and checked against the next
             // available race). If not cheaper then the old complex is restored
@@ -726,7 +725,7 @@ public class Complex implements Serializable
                 this.autoFactories.clear();
                 this.autoFactories.addAll(backup);
             }
-            backup.clear();           
+            backup.clear();
         }
     }
 
@@ -737,7 +736,7 @@ public class Complex implements Serializable
 
     public void updateBaseComplex()
     {
-        this.calculateBaseComplex();
+        calculateBaseComplex();
     }
 
 
@@ -746,7 +745,7 @@ public class Complex implements Serializable
      * and adds the necessary factories for this. If a need was found (and
      * fixed) then this method returns true. If all needs are already fulfilled
      * then it returns false.
-     * 
+     *
      * @param crystalRace
      *            Optional race from which crystal fabs should be bought. If
      *            null then the cheapest fab is searched.
@@ -780,7 +779,7 @@ public class Complex implements Serializable
     /**
      * Adds the factories needed to fulfill the need of the specified complex
      * ware.
-     * 
+     *
      * @param complexWare
      *            The complex ware for which factories must be added
      * @param race
@@ -883,7 +882,7 @@ public class Complex implements Serializable
 
     /**
      * Enables or disabled base complex addition.
-     * 
+     *
      * @param addBaseComplex
      *            True if base complex should be added, false if not
      */
@@ -896,7 +895,7 @@ public class Complex implements Serializable
 
     /**
      * Checks whether a base complex was added or not.
-     * 
+     *
      * @return True if a base complex was added. False if not.
      */
 
@@ -908,7 +907,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the storage capacities.
-     * 
+     *
      * @return The storage capacities.
      */
 
@@ -938,7 +937,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the total storage capacity
-     * 
+     *
      * @return The total storage capacity;
      */
 
@@ -953,7 +952,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the total storage volume
-     * 
+     *
      * @return The total storage volume;
      */
 
@@ -968,7 +967,7 @@ public class Complex implements Serializable
 
     /**
      * Sets the sector in which to build this complex
-     * 
+     *
      * @param sector
      *            The sector to set
      */
@@ -986,7 +985,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the sector in which this complex is build.
-     * 
+     *
      * @return The sector
      */
 
@@ -998,7 +997,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the factory shopping list.
-     * 
+     *
      * @return The factory shopping list
      */
 
@@ -1026,7 +1025,7 @@ public class Complex implements Serializable
      * Returns the price for the specified ware. If the price has a custom price
      * then this one is returned. If not then the standard average price of the
      * ware is returned.
-     * 
+     *
      * @param ware
      *            The ware
      * @return The price
@@ -1043,7 +1042,7 @@ public class Complex implements Serializable
 
     /**
      * Returns the map with custom prices.
-     * 
+     *
      * @return The map with custom prices
      */
 
@@ -1055,7 +1054,7 @@ public class Complex implements Serializable
 
     /**
      * Sets a new map with custom prices.
-     * 
+     *
      * @param customPrices
      *            The new map with custom prices
      */

@@ -17,7 +17,7 @@ import de.ailis.xadrian.Main;
 
 /**
  * Simple internationalization utility class.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -25,7 +25,7 @@ public final class I18N
 {
     /** The messages */
     private static final ResourceBundle messages = ResourceBundle
-        .getBundle(Main.class.getPackage().getName() + ".messages");
+            .getBundle(Main.class.getPackage().getName() + ".messages");
 
 
     /**
@@ -41,7 +41,7 @@ public final class I18N
     /**
      * Returns the message resource with the specified key. If not found then
      * null is returned.
-     * 
+     *
      * @param key
      *            The message resource key
      * @return The message resource value or null if not found
@@ -63,23 +63,25 @@ public final class I18N
     /**
      * Returns the message resource with the specified key. If not found then a
      * special string is returned indicating the missing message resource.
-     * 
+     *
      * @param key
      *            The message resource key
+     * @param args
+     *            Message arguments
      * @return The message resource value
      */
 
-    public static String getString(final String key)
+    public static String getString(final String key, final Object... args)
     {
         final String value = get(key);
         if (value == null) return "???" + key + "???";
-        return value;
+        return String.format(value, args);
     }
 
 
     /**
      * Returns a title message resource.
-     * 
+     *
      * @param key
      *            The base key of the message resource (without .title suffix)
      * @return The title message resource value
@@ -94,7 +96,7 @@ public final class I18N
     /**
      * Returns an accelerator message resource. If message resource is not found
      * or is empty then null is returned.
-     * 
+     *
      * @param key
      *            The base key of the message resource (without .accelerator
      *            suffix)
@@ -112,7 +114,7 @@ public final class I18N
     /**
      * Returns a mnemonic message resource. If message resource is not found or
      * is empty then null is returned.
-     * 
+     *
      * @param key
      *            The base key of the message resource (without .mnemonic
      *            suffix)
@@ -132,7 +134,7 @@ public final class I18N
     /**
      * Returns a tool tip message resource. If not found or empty then null is
      * returned.
-     * 
+     *
      * @param key
      *            The base key of the message resource (without .tooltip suffix)
      * @return The tooltip message resource value
@@ -147,7 +149,7 @@ public final class I18N
     /**
      * Creates a new menu and configures the title, accelerator, tooltip and
      * mnemonic automatically.
-     * 
+     *
      * @param menuBar
      *            The menu bar (or menu) to which the new menu should be added
      * @param name
@@ -155,8 +157,7 @@ public final class I18N
      * @return The created menu
      */
 
-    public static JMenu createMenu(final JComponent menuBar,
-        final String name)
+    public static JMenu createMenu(final JComponent menuBar, final String name)
     {
         final String key = "menu." + name;
         final JMenu menu = new JMenu(getTitle(key));
