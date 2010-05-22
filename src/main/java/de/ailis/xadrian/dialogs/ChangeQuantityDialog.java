@@ -23,7 +23,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Dialog for selecting a quantity.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -38,7 +38,7 @@ public class ChangeQuantityDialog extends ModalDialog
     /** The quantity spinner */
     private JSpinner quantitySpinner;
 
-    
+
     /**
      * Constructor
      */
@@ -61,7 +61,7 @@ public class ChangeQuantityDialog extends ModalDialog
             .getString("dialog.changeQuantity.quantity"));
         this.quantitySpinner = new JSpinner();
         final SpinnerNumberModel model = new SpinnerNumberModel();
-        model.setMinimum(1);
+        model.setMinimum(0);
         model.setMaximum(999);
         this.quantitySpinner.setModel(model);
         SwingUtils.installSpinnerBugWorkaround(this.quantitySpinner);
@@ -82,7 +82,7 @@ public class ChangeQuantityDialog extends ModalDialog
 
     /**
      * Returns the singleton instance
-     * 
+     *
      * @return The singleton instance
      */
 
@@ -107,7 +107,7 @@ public class ChangeQuantityDialog extends ModalDialog
 
     /**
      * Sets the quantity.
-     * 
+     *
      * @param quantity
      *            The quantity to set
      */
@@ -120,7 +120,7 @@ public class ChangeQuantityDialog extends ModalDialog
 
     /**
      * Returns the quantity.
-     * 
+     *
      * @return The quantity
      */
 
