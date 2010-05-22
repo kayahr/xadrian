@@ -14,7 +14,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Component which displays a sector.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  * @version $Revision: 839 $
  */
@@ -24,11 +24,11 @@ public class SectorComboBox extends JComboBox
     /** serialVersionUID */
     private static final long serialVersionUID = 3002228245039658859L;
 
-    
+
     /**
      * Constructor
      */
-    
+
     public SectorComboBox()
     {
         super(new SectorComboBoxModel());
@@ -38,10 +38,11 @@ public class SectorComboBox extends JComboBox
 
     /**
      * Tests the component.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
+     *            When something goes wrong
      */
 
     public static void main(final String[] args) throws Exception

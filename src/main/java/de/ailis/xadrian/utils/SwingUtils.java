@@ -32,7 +32,7 @@ import javax.swing.text.JTextComponent;
 
 /**
  * Static utility methods for common Swing tasks.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  * @version $Revision$
  */
@@ -51,7 +51,7 @@ public final class SwingUtils
 
     /**
      * Gives a component a popup menu
-     * 
+     *
      * @param component
      *            The target component
      * @param popup
@@ -86,7 +86,7 @@ public final class SwingUtils
 
     /**
      * Installs a workaround for bug #4699955 in a JSpinner.
-     * 
+     *
      * @param spinner
      *            The spinner to fix
      */
@@ -139,7 +139,7 @@ public final class SwingUtils
     /**
      * Checks if the specified window (may it be a dialog or a frame) is
      * resizable.
-     * 
+     *
      * @param window
      *            The window
      * @return True if window is resizable, false if not
@@ -169,8 +169,9 @@ public final class SwingUtils
     /**
      * Prepares the theme. The theme can be overridden with the environment
      * variable XADRIAN_SYSTHEME. The default is the system look and feel.
-     * 
+     *
      * @throws Exception
+     *            When theme could not be prepared
      */
 
     public static void prepareTheme() throws Exception
@@ -184,8 +185,9 @@ public final class SwingUtils
 
     /**
      * Prepares the Swing GUI.
-     * 
+     *
      * @throws Exception
+     *             When GUI could not be prepared
      */
 
     public static void prepareGUI() throws Exception
@@ -198,10 +200,11 @@ public final class SwingUtils
     /**
      * Runs the specified component in an empty test frame. This method is used
      * to test single components during development.
-     * 
+     *
      * @param component
      *            The component to test
      * @throws Exception
+     *            When something goes wrong
      */
 
     public static void testComponent(final JComponent component)
@@ -218,7 +221,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred height of the specified component.
-     * 
+     *
      * @param component
      *            The component
      * @param height
@@ -235,7 +238,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred width of the specified component.
-     * 
+     *
      * @param component
      *            The component
      * @param width
@@ -252,7 +255,7 @@ public final class SwingUtils
 
     /**
      * Adds a component action.
-     * 
+     *
      * @param component
      *            The compoennt to add the action to
      * @param action

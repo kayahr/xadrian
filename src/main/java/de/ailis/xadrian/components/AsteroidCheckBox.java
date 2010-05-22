@@ -17,7 +17,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * A check box to select an asteroid.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  * @version $Revision$
  */
@@ -33,7 +33,7 @@ public class AsteroidCheckBox extends JCheckBox
 
     /**
      * Constructor
-     * 
+     *
      * @param asteroid
      *            The asteroid
      */
@@ -48,7 +48,7 @@ public class AsteroidCheckBox extends JCheckBox
 
     /**
      * Returns the asteroid.
-     * 
+     *
      * @return The asteroid
      */
 
@@ -60,10 +60,11 @@ public class AsteroidCheckBox extends JCheckBox
 
     /**
      * Tests the component.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
+     *            When something goes wrong
      */
 
     public static void main(final String[] args) throws Exception

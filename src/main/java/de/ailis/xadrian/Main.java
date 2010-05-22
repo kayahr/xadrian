@@ -12,7 +12,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Main class.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  * @version $Revision$
  */
@@ -21,10 +21,11 @@ public class Main
 {
     /**
      * Main method.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
+     *            When something goes wrong
      */
 
     public static void main(final String[] args) throws Exception

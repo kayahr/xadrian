@@ -42,7 +42,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Component which displays a sector.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  * @version $Revision: 839 $
  */
@@ -71,12 +71,12 @@ public class SectorView extends JComponent
     private boolean frontView = false;
 
     /** The asteroid selection model */
-    private final AsteroidSelectionModel model;
+    final AsteroidSelectionModel model;
 
 
     /**
      * Constructor
-     * 
+     *
      * @param model
      *            The asteroid selection model
      */
@@ -290,7 +290,7 @@ public class SectorView extends JComponent
 
     /**
      * Returns the current scale factor.
-     * 
+     *
      * @return The current scale factor
      */
 
@@ -303,7 +303,7 @@ public class SectorView extends JComponent
     /**
      * Sets a new scale factor. It is automatically corrected to be in the range
      * between the calculated minimum and maximum scale factor.
-     * 
+     *
      * @param scale
      *            The scale factor to set
      */
@@ -319,7 +319,7 @@ public class SectorView extends JComponent
      * Multiplies the current scale factor with the specified factor. The
      * resulting scale factor is automatically corrected to be in the range
      * between the calculated minimum and maximum scale factor.
-     * 
+     *
      * @param factor
      *            The factor to multiply the current scale factor with
      */
@@ -332,7 +332,7 @@ public class SectorView extends JComponent
 
     /**
      * Returns the current offset.
-     * 
+     *
      * @return The current offset
      */
 
@@ -344,7 +344,7 @@ public class SectorView extends JComponent
 
     /**
      * Sets a new offset.
-     * 
+     *
      * @param offset
      *            The offset to set
      */
@@ -394,7 +394,7 @@ public class SectorView extends JComponent
 
     /**
      * Checks if front view is currently selected.
-     * 
+     *
      * @return True if front view, false if top view
      */
 
@@ -549,10 +549,11 @@ public class SectorView extends JComponent
 
     /**
      * Tests the component.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
+     *            When something goes wrong
      */
 
     public static void main(final String[] args) throws Exception

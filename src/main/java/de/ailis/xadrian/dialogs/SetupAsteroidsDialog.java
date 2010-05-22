@@ -30,7 +30,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 /**
  * Dialog for setting the asteroids to use for a specific mine type in the
  * current complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  * @version $Revision: 839 $
  */
@@ -52,7 +52,7 @@ public class SetupAsteroidsDialog extends ModalDialog
 
     /**
      * Constructor
-     * 
+     *
      * @param ware
      *            The ware for which asteroids are selected
      */
@@ -152,11 +152,11 @@ public class SetupAsteroidsDialog extends ModalDialog
 
     /**
      * Tests the component.
-     * 
+     *
      * @param args
      *            Command line arguments
-     * 
      * @throws Exception
+     *            When something goes wrong
      */
 
     public static void main(final String args[]) throws Exception

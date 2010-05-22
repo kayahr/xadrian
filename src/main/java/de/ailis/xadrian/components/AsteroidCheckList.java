@@ -34,7 +34,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 /**
  * Component which displays a list of asteroids of a sector which can be
  * checked.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  * @version $Revision: 839 $
  */
@@ -48,12 +48,12 @@ public class AsteroidCheckList extends JScrollPane
     private JPanel panel;
 
     /** The asteroid selection model */
-    private final AsteroidSelectionModel model;
+    final AsteroidSelectionModel model;
 
 
     /**
      * Constructor.
-     * 
+     *
      * @param model
      *            The asteroid selection model
      */
@@ -112,7 +112,7 @@ public class AsteroidCheckList extends JScrollPane
      * Sync the statuses of the checkboxes with the model.
      */
 
-    private void syncSelections()
+    void syncSelections()
     {
         for (final Component component: this.panel.getComponents())
         {
@@ -128,7 +128,7 @@ public class AsteroidCheckList extends JScrollPane
      * Sync the focus status of the checkboxes with the model.
      */
 
-    private void syncFocus()
+    void syncFocus()
     {
         for (final Component component: this.panel.getComponents())
         {
@@ -151,7 +151,7 @@ public class AsteroidCheckList extends JScrollPane
      * Resets the check list. Must be called every time the sector changed
      */
 
-    private void reset()
+    void reset()
     {
         final Sector sector = this.model.getSector();
 
@@ -215,10 +215,11 @@ public class AsteroidCheckList extends JScrollPane
 
     /**
      * Tests the component.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
+     *            When something goes wrong
      */
 
     public static void main(final String[] args) throws Exception
