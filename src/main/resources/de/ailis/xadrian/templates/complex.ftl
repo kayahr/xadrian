@@ -71,7 +71,11 @@
             </td>
             <td class="quantity">
               [#if !print]
-                <a href="file://changeQuantity/${complexFactory_index}">${complexFactory.quantity}</a>
+                <table class="layout"><tr>
+                  <td><a href="file://changeQuantity/${complexFactory_index}">${complexFactory.quantity}</a>&nbsp;&nbsp;</td>
+                  <td><a href="file://increaseQuantity/${complexFactory_index}"><img src="../images/up12.png" border="0" /></a></td>
+                  <td><a href="file://decreaseQuantity/${complexFactory_index}"><img src="../images/down12.png" border="0" /></a></td>
+                </tr></table>
               [#else]
                 ${complexFactory.quantity}
               [/#if]

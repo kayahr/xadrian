@@ -80,9 +80,16 @@ tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
 	width: 100%;
 }
 
-.quantity, .yield, .race, .container
+.yield, .race, .container
 {
     text-align: center;
+    margin: 0 0 0 10px;
+    white-space: nowrap;
+}
+
+.quantity
+{
+	text-align: right;
     margin: 0 0 0 10px;
     white-space: nowrap;
 }

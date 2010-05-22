@@ -300,6 +300,34 @@ public class Complex implements Serializable
 
 
     /**
+     * Increases the quantity of the factory with the given index.
+     *
+     * @param index
+     *            The factory index
+     * @return True if quantity was changed, false if not.
+     */
+
+    public boolean increaseQuantity(final int index)
+    {
+        return this.factories.get(index).increaseQuantity();
+    }
+
+
+    /**
+     * Decreases the quantity of the factory with the given index.
+     *
+     * @param index
+     *            The factory index
+     * @return True if quantity was changed, false if not.
+     */
+
+    public boolean decreaseQuantity(final int index)
+    {
+        return this.factories.get(index).decreaseQuantity();
+    }
+
+
+    /**
      * Sets the quantity of the factory with the given index to the specified
      * quantity.
      *

@@ -82,6 +82,33 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
 
     /**
+     * Increases the number of factories.
+     *
+     * @return True if quantity was changed, false if not
+     */
+
+    public boolean increaseQuantity()
+    {
+        this.quantity++;
+        return true;
+    }
+
+
+    /**
+     * Decreases the number of factories.
+     *
+     * @return True if quantity was changed, false if not
+     */
+
+    public boolean decreaseQuantity()
+    {
+        if (this.quantity == 0) return false;
+        this.quantity--;
+        return true;
+    }
+
+
+    /**
      * Returns the yield (for mines)
      *
      * @return The yield

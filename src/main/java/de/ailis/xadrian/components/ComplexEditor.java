@@ -265,6 +265,14 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             {
                 changeQuantity(Integer.parseInt(url.getPath().substring(1)));
             }
+            else if ("increaseQuantity".equals(action))
+            {
+                increaseQuantity(Integer.parseInt(url.getPath().substring(1)));
+            }
+            else if ("decreaseQuantity".equals(action))
+            {
+                decreaseQuantity(Integer.parseInt(url.getPath().substring(1)));
+            }
             else if ("changeYield".equals(action))
             {
                 changeYield(Integer.parseInt(url.getPath().substring(1)));
@@ -381,6 +389,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         redraw();
     }
 
+
     /**
      * Changes the quantity of the factory with the specified index.
      *
@@ -395,6 +404,40 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         if (dialog.open() == Result.OK)
         {
             this.complex.setQuantity(index, dialog.getQuantity());
+            doChange();
+            redraw();
+        }
+    }
+
+
+    /**
+     * Increases the quantity of the factory with the specified index.
+     *
+     * @param index
+     *            The index of the factory to change
+     */
+
+    public void increaseQuantity(final int index)
+    {
+        if (this.complex.increaseQuantity(index))
+        {
+            doChange();
+            redraw();
+        }
+    }
+
+
+    /**
+     * Decreases the quantity of the factory with the specified index.
+     *
+     * @param index
+     *            The index of the factory to change
+     */
+
+    public void decreaseQuantity(final int index)
+    {
+        if (this.complex.decreaseQuantity(index))
+        {
             doChange();
             redraw();
         }
