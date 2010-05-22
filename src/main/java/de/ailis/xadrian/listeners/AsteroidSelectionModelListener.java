@@ -1,6 +1,6 @@
 /*
  * $Id: ComplexStateListener.java 789 2009-03-08 14:46:22Z k $
- * Copyright (C) 2009 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information
  */
 
