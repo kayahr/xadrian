@@ -12,7 +12,6 @@ import java.io.Writer;
 import java.util.Properties;
 
 /*
- * $Id$
  * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information
  */

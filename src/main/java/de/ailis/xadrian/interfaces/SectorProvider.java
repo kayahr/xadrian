@@ -1,5 +1,4 @@
 /*
- * $Id: ClipboardProvider.java 788 2009-03-08 14:14:51Z k $
  * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */

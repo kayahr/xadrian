@@ -1,5 +1,4 @@
 /*
- * $Id$
  * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
