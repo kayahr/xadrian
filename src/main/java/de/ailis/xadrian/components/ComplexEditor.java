@@ -78,7 +78,7 @@ import freemarker.template.Template;
  */
 
 public class ComplexEditor extends JComponent implements HyperlinkListener,
-    CaretListener, ClipboardProvider, ComplexProvider, SectorProvider
+        CaretListener, ClipboardProvider, ComplexProvider, SectorProvider
 {
     /** Serial version UID */
     private static final long serialVersionUID = -582597303446091577L;
@@ -88,7 +88,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /** The freemarker template for the content */
     private static final Template template = TemplateFactory
-        .getTemplate("complex.ftl");
+            .getTemplate("complex.ftl");
 
     /** The event listener list */
     private final EventListenerList listenerList = new EventListenerList();
@@ -143,7 +143,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
         // Set the base URL of the text pane
         ((HTMLDocument) this.textPane.getDocument()).setBase(Main.class
-            .getResource("templates/"));
+                .getResource("templates/"));
 
         // Create the scroll pane
         final JScrollPane scrollPane = new JScrollPane(this.textPane);
@@ -192,7 +192,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         for (int i = listeners.length - 2; i >= 0; i -= 2)
             if (listeners[i] == EditorStateListener.class)
                 ((EditorStateListener) listeners[i + 1])
-                    .editorStateChanged(this);
+                        .editorStateChanged(this);
     }
 
 
@@ -221,7 +221,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         final String content = TemplateFactory.processTemplate(template, model);
         this.textPane.setText(content);
         this.textPane.setCaretPosition(Math.min(this.textPane.getDocument()
-            .getLength() - 1, c));
+                .getLength() - 1, c));
         this.textPane.requestFocus();
     }
 
@@ -288,7 +288,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             else if ("changePrice".equals(action))
             {
                 changePrices(WareFactory.getInstance().getWare(
-                    url.getPath().substring(1)));
+                        url.getPath().substring(1)));
             }
             else if ("toggleShowingProductionStats".equals(action))
             {
@@ -305,6 +305,14 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             else if ("toggleShowingComplexSetup".equals(action))
             {
                 toggleShowingComplexSetup();
+            }
+            else if ("buildFactory".equals(action))
+            {
+                buildFactory(url.getPath().substring(1));
+            }
+            else if ("destroyFactory".equals(action))
+            {
+                destroyFactory(url.getPath().substring(1));
             }
         }
     }
@@ -353,6 +361,36 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public void toggleShowingComplexSetup()
     {
         this.complex.toggleShowingComplexSetup();
+        doChange();
+        redraw();
+    }
+
+
+    /**
+     * Builds the factory with the given id.
+     *
+     * @param id
+     *            The ID of the factory to build
+     */
+
+    public void buildFactory(final String id)
+    {
+        this.complex.buildFactory(id);
+        doChange();
+        redraw();
+    }
+
+
+    /**
+     * Destroys the factory with the given id.
+     *
+     * @param id
+     *            The ID of the factory to destroy
+     */
+
+    public void destroyFactory(final String id)
+    {
+        this.complex.destroyFactory(id);
         doChange();
         redraw();
     }
@@ -577,9 +615,10 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             // Save the file if it does not yet exists are user confirms
             // overwrite
             if (!file.exists()
-                || JOptionPane.showConfirmDialog(null, I18N
-                    .getString("confirm.overwrite"), I18N
-                    .getString("confirm.title"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+                    || JOptionPane.showConfirmDialog(null, I18N
+                            .getString("confirm.overwrite"), I18N
+                            .getString("confirm.title"),
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             {
                 save(file);
             }
@@ -615,11 +654,11 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             }
             catch (final DocumentException e)
             {
-                JOptionPane.showMessageDialog(null, I18N
-                    .getString("error.cantReadComplex", file), I18N
-                    .getString("error.title"), JOptionPane.ERROR_MESSAGE);
-                log.error(
-                    "Unable to load complex from file '" + file + "': " + e, e);
+                JOptionPane.showMessageDialog(null, I18N.getString(
+                        "error.cantReadComplex", file), I18N
+                        .getString("error.title"), JOptionPane.ERROR_MESSAGE);
+                log.error("Unable to load complex from file '" + file + "': "
+                        + e, e);
                 return null;
             }
         }
@@ -648,9 +687,9 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         }
         catch (final IOException e)
         {
-            JOptionPane.showMessageDialog(null, I18N
-                .getString("error.cantWriteComplex", file), I18N
-                .getString("error.title"), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, I18N.getString(
+                    "error.cantWriteComplex", file), I18N
+                    .getString("error.title"), JOptionPane.ERROR_MESSAGE);
             log.error("Unable to save complex to file '" + file + "': " + e, e);
         }
     }
@@ -710,7 +749,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         final JTextPane printPane = new JTextPane();
         printPane.setContentType("text/html");
         ((HTMLDocument) printPane.getDocument()).setBase(Main.class
-            .getResource("templates/"));
+                .getResource("templates/"));
         printPane.setText(content);
 
         // Print the text pane
@@ -721,8 +760,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         catch (final PrinterException e)
         {
             JOptionPane.showMessageDialog(null, I18N
-                .getString("error.cantPrint"), I18N.getString("error.title"),
-                JOptionPane.ERROR_MESSAGE);
+                    .getString("error.cantPrint"), I18N
+                    .getString("error.title"), JOptionPane.ERROR_MESSAGE);
             log.error("Unable to print complex: " + e, e);
         }
     }
@@ -738,7 +777,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public boolean isNew()
     {
         return !this.changed && this.file == null
-            && this.complex.getFactories().size() == 0;
+                && this.complex.getFactories().size() == 0;
     }
 
 
@@ -883,7 +922,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     @Override
     public void removeClipboardStateListener(
-        final ClipboardStateListener listener)
+            final ClipboardStateListener listener)
     {
         this.listenerList.remove(ClipboardStateListener.class, listener);
     }
@@ -899,7 +938,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         for (int i = listeners.length - 2; i >= 0; i -= 2)
             if (listeners[i] == ClipboardStateListener.class)
                 ((ClipboardStateListener) listeners[i + 1])
-                    .clipboardStateChanged(this);
+                        .clipboardStateChanged(this);
     }
 
 
@@ -956,8 +995,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         final Object[] listeners = this.listenerList.getListenerList();
         for (int i = listeners.length - 2; i >= 0; i -= 2)
             if (listeners[i] == StateListener.class)
-                ((StateListener) listeners[i + 1])
-                    .stateChanged();
+                ((StateListener) listeners[i + 1]).stateChanged();
     }
 
 
@@ -1061,7 +1099,6 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     }
 
 
-
     /**
      * @see de.ailis.xadrian.interfaces.SectorProvider#getSector()
      */
@@ -1071,7 +1108,6 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     {
         return this.complex.getSector();
     }
-
 
 
     /**

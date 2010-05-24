@@ -15,7 +15,7 @@
     <h2>
       <a href="file://toggleShowingComplexSetup">
         [#if !print]
-          <img src="../images/[#if complex.showingComplexSetup]expanded[#else]collapsed[/#if].png" border="0" />
+          <img src="../images/[#if complex.showingComplexSetup]expanded[#else]collapsed[/#if].png" border="0" width="16" height="16" />
         [/#if]
         [@message key="complex.complexSetup" /]
       </a>
@@ -52,8 +52,8 @@
             [#if !print]<td class="buttons"></td>[/#if]
           </tr>
           <tr>
-            <td colspan="6" class="sep"<img src="../images/blank.png" /></td>
-            [#if !print]<td class="sep"<img src="../images/blank.png" /></td>[/#if]
+            <td colspan="6" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
+            [#if !print]<td class="sep"<img src="../images/blank.png" width="1" height="1" /></td>[/#if]
           </tr>
           [#list complex.factories as complexFactory]
             [#if complexFactory_index %2 == 0]
@@ -82,8 +82,8 @@
                 [#if !print]
                   <table class="layout"><tr>
                     <td><a href="file://changeQuantity/${complexFactory_index}">${complexFactory.quantity}</a>&nbsp;&nbsp;</td>
-                    <td><a href="file://increaseQuantity/${complexFactory_index}"><img src="../images/up12.png" border="0" /></a></td>
-                    <td><a href="file://decreaseQuantity/${complexFactory_index}"><img src="../images/down12.png" border="0" /></a></td>
+                    <td><a href="file://increaseQuantity/${complexFactory_index}"><img src="../images/up12.png" border="0" width="12" height="12" /></a></td>
+                    <td><a href="file://decreaseQuantity/${complexFactory_index}"><img src="../images/down12.png" border="0" width="12" height="12" /></a></td>
                   </tr></table>
                 [#else]
                   ${complexFactory.quantity}
@@ -94,11 +94,11 @@
               [#if !print]
               <td>
                 <table class="layout"><tr>       
-                  <td><a href="file://removeFactory/${complexFactory_index}"><img src="../images/close.png" border="0" /></a></td>
+                  <td><a href="file://removeFactory/${complexFactory_index}"><img src="../images/close.png" border="0" width="16" height="16" /></a></td>
                   [#if complexFactory.disabled]
-                    <td><a href="file://enableFactory/${complexFactory_index}"><img src="../images/start.png" border="0" /></a></td>
+                    <td><a href="file://enableFactory/${complexFactory_index}"><img src="../images/start.png" border="0" width="16" height="16" /></a></td>
                   [#else]
-                    <td><a href="file://disableFactory/${complexFactory_index}"><img src="../images/pause.png" border="0" /></a></td>
+                    <td><a href="file://disableFactory/${complexFactory_index}"><img src="../images/pause.png" border="0" width="16" height="16" /></a></td>
                   [/#if]
                 </tr></table>
               </td>
@@ -106,7 +106,7 @@
             </tr>
           [/#list]
           [#if complex.autoFactories?size > 0]
-            <tr><td colspan="7" class="sep"><img src="../images/blank.png" /></td></tr>
+            <tr><td colspan="7" class="sep"><img src="../images/blank.png" width="1" height="1" /></td></tr>
             [#list complex.autoFactories as complexFactory]
               [#if (complex.factories?size + complexFactory_index) % 2 == 0]
                 [#assign class="autoeven" /]
@@ -127,7 +127,7 @@
                 <td class="price">${factory.price * complexFactory.quantity} Cr</td>
                 [#if !print]
                 <td>       
-                  <a href="file://acceptFactory/${complexFactory_index}"><img src="../images/add.png" border="0" alt="" /></a>
+                  <a href="file://acceptFactory/${complexFactory_index}"><img src="../images/add.png" border="0" alt="" width="16" height="16" /></a>
                 </td>
                 [/#if]
               </tr>
@@ -139,7 +139,7 @@
             [#else]
               [#assign class="kitsodd" /]
             [/#if]
-            <tr><td colspan="7" class="sep"><img src="../images/blank.png" /></td></tr>
+            <tr><td colspan="7" class="sep"><img src="../images/blank.png" width="1" height="1" /></td></tr>
             <tr class="${class}">
               <td colspan="3" class="factory">[@message key="complex.kit" /]</td>
               <td class="quantity">${complex.kitQuantity}</td>
@@ -149,8 +149,8 @@
             </tr>
           [/#if]
           <tr>
-            <td colspan="6" class="sep"<img src="../images/blank.png" /></td>
-            [#if !print]<td class="sep"<img src="../images/blank.png" /></td>[/#if]
+            <td colspan="6" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
+            [#if !print]<td class="sep"<img src="../images/blank.png" width="1" height="1" /></td>[/#if]
           </tr>
           <tr>
             <th colspan="3">[@message key="complex.total" /]</th>
@@ -177,7 +177,7 @@
       <h2>
         <a href="file://toggleShowingProductionStats">
           [#if !print]
-            <img src="../images/[#if complex.showingProductionStats]expanded[#else]collapsed[/#if].png" border="0" />
+            <img src="../images/[#if complex.showingProductionStats]expanded[#else]collapsed[/#if].png" border="0" width="16" height="14" />
           [/#if]
           [@message key="complex.productionStats" /]
         </a>
@@ -194,8 +194,8 @@
             <th class="profit">[@message key="complex.profit" /]</th>
           </tr>
           <tr>
-            <td colspan="4" class="sep"<img src="../images/blank.png" /></td>
-            <td colspan="3" class="sep"<img src="../images/blank.png" /></td>
+            <td colspan="4" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
+            <td colspan="3" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
           </tr>
           [#list complex.wares as complexWare]
             [#if complexWare_index %2 == 0]
@@ -246,8 +246,8 @@
             </tr>
           [/#list]
           <tr>
-            <td colspan="4" class="sep"<img src="../images/blank.png" /></td>
-            <td colspan="3" class="sep"<img src="../images/blank.png" /></td>
+            <td colspan="4" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
+            <td colspan="3" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
           </tr>
           <tr>
             <th class="profit" colspan="6">[@message key="complex.total" /]</th>
@@ -259,7 +259,7 @@
       <h2>
         <a href="file://toggleShowingStorageCapacities">
           [#if !print]
-            <img src="../images/[#if complex.showingStorageCapacities]expanded[#else]collapsed[/#if].png" border="0" />
+            <img src="../images/[#if complex.showingStorageCapacities]expanded[#else]collapsed[/#if].png" border="0" width="16" height="14" />
           [/#if]
           [@message key="complex.storageCapacities" /]
         </a>
@@ -274,7 +274,7 @@
             <th class="volume">[@message key="complex.storageVolume" /]</th>
           </tr>
           <tr>
-            <td colspan="5" class="sep"<img src="../images/blank.png" /></td>
+            <td colspan="5" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
           </tr>
           [#list complex.capacities as capacity]
             [#if capacity_index %2 == 0]
@@ -291,7 +291,7 @@
             </tr>
           [/#list]
           <tr>
-            <td colspan="5" class="sep"<img src="../images/blank.png" /></td>
+            <td colspan="5" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
           </tr>
           <tr>
             <th class="ware">[@message key="complex.total" /]</th>
@@ -306,7 +306,7 @@
       <h2>
         <a href="file://toggleShowingShoppingList">
           [#if !print]
-            <img src="../images/[#if complex.showingShoppingList]expanded[#else]collapsed[/#if].png" border="0" />
+            <img src="../images/[#if complex.showingShoppingList]expanded[#else]collapsed[/#if].png" border="0" width="16" height="14" />
           [/#if]
           [@message key="complex.shoppingList" /]
         </a>
@@ -322,6 +322,8 @@
             <th class="ware">[@message key="complex.factory" /]</th>
             <th class="race">[@message key="complex.race" /]</th>
             <th class="quantity">[@message key="complex.quantity" /]</th>
+            <th class="quantity" style="padding-right:24px">[@message key="complex.builtQuantity" /]&nbsp;&nbsp;</th>
+            <th class="quantity">[@message key="complex.leftQuantity" /]</th>
             <th class="volume">[@message key="complex.factoryVolume" /]</th>
             <th class="volume">[@message key="complex.totalFactoryVolume" /]</th>
             [#if complex.sector??]
@@ -330,9 +332,9 @@
           </tr>
           <tr>
             [#if complex.sector??]
-            <td colspan="6" class="sep"<img src="../images/blank.png" /></td>
+            <td colspan="8" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
             [#else]
-            <td colspan="5" class="sep"<img src="../images/blank.png" /></td>
+            <td colspan="7" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
             [/#if]
           </tr>
           [#list complex.shoppingList.items as item]
@@ -345,6 +347,18 @@
               <td class="factory">${item.factory}</td>
               <td class="race">${item.factory.race}</td>
               <td class="quantity">${item.quantity}</td>
+              <td class="quantity">
+                [#if !print]
+                  <table class="layout"><tr>
+                    <td>${item.built}&nbsp;&nbsp;</td>
+                    <td><a href="file://buildFactory/${item.factory.id}"><img src="../images/up12.png" border="0" width="12" height="12" /></a></td>
+                    <td><a href="file://destroyFactory/${item.factory.id}"><img src="../images/down12.png" border="0" width="12" height="12" /></a></td>
+                  </tr></table>
+                [#else]
+                  ${item.built}
+                [/#if]
+              </td>
+              <td class="quantity">${item.left}</td>
               <td class="volume">${item.volume}</td>
               <td class="volume">${item.totalVolume}</td>
               [#if complex.sector??]
@@ -355,9 +369,9 @@
           [#if complex.shoppingList.kitQuantity > 0]
             <tr>
               [#if complex.sector??]
-              <td colspan="6" class="sep"><img src="../images/blank.png" /></td>
+              <td colspan="8" class="sep"><img src="../images/blank.png" width="1" height="1" /></td>
               [#else]
-              <td colspan="5" class="sep"><img src="../images/blank.png" /></td>
+              <td colspan="7" class="sep"><img src="../images/blank.png" width="1" height="1" /></td>
               [/#if]
             </tr>
             [#if complex.shoppingList.items?size % 2 == 0]
@@ -367,6 +381,8 @@
             [/#if]
             <tr class="${class}">
               <td class="factory" colspan="2">[@message key="complex.kit" /]</td>
+              <td class="quantity">${complex.shoppingList.kitQuantity}</td>
+              <td class="quantity">${complex.shoppingList.kitQuantity}</td>
               <td class="quantity">${complex.shoppingList.kitQuantity}</td>
               <td class="volume">${complex.shoppingList.kitVolume}</td>
               <td class="volume">${complex.shoppingList.totalKitVolume}</td>
@@ -381,14 +397,16 @@
           [/#if]
           <tr>
             [#if complex.sector??]
-            <td colspan="6" class="sep"><img src="../images/blank.png" /></td>
+            <td colspan="8" class="sep"><img src="../images/blank.png" width="1" height="1" /></td>
             [#else]
-            <td colspan="5" class="sep"<img src="../images/blank.png" /></td>
+            <td colspan="7" class="sep"<img src="../images/blank.png" width="1" height="1" /></td>
             [/#if]
           </tr>
           <tr>
             <th class="factory">[@message key="complex.total" /]</th>
             <td></td>
+            <td class="quantity">${complex.shoppingList.totalQuantity}</td>          
+            <td class="quantity">${complex.shoppingList.totalQuantity}</td>          
             <td class="quantity">${complex.shoppingList.totalQuantity}</td>          
             <td></td>      
             <td class="volume">${complex.shoppingList.totalVolume}</td>

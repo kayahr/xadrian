@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * The shopping list.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -40,7 +40,7 @@ public class ShoppingList implements Serializable
 
     /**
      * Constructor.
-     * 
+     *
      * @param nearestShipyard
      *            The nearest shipyard where the player can buy complex kits.
      *            Can be null if not known.
@@ -51,9 +51,10 @@ public class ShoppingList implements Serializable
         this.nearestShipyard = nearestShipyard;
     }
 
+
     /**
      * Adds a new shopping list item to the list.
-     * 
+     *
      * @param item
      *            The shopping list item to add
      */
@@ -73,8 +74,9 @@ public class ShoppingList implements Serializable
             if (oldItem.getFactory().equals(item.getFactory()))
             {
                 this.items.set(i, new ShoppingListItem(item.getFactory(), item
-                    .getQuantity()
-                    + oldItem.getQuantity(), item.getNearestManufacturer()));
+                        .getQuantity()
+                        + oldItem.getQuantity(), item.getNearestManufacturer(),
+                        item.getBuilt()));
                 return;
             }
         }
@@ -87,7 +89,7 @@ public class ShoppingList implements Serializable
 
     /**
      * Returns the shopping list items.
-     * 
+     *
      * @return The shopping list items
      */
 
@@ -99,7 +101,7 @@ public class ShoppingList implements Serializable
 
     /**
      * Returns the total volume.
-     * 
+     *
      * @return The total volume
      */
 
@@ -111,7 +113,7 @@ public class ShoppingList implements Serializable
 
     /**
      * Returns the total quantity.
-     * 
+     *
      * @return The total quantity
      */
 
@@ -123,7 +125,7 @@ public class ShoppingList implements Serializable
 
     /**
      * Returns the total price.
-     * 
+     *
      * @return The total price
      */
 
@@ -132,22 +134,22 @@ public class ShoppingList implements Serializable
         return this.totalPrice + getTotalKitPrice();
     }
 
-    
+
     /**
      * Returns the kit quantity.
-     * 
+     *
      * @return The kit quantity
      */
-    
+
     public int getKitQuantity()
     {
         return Math.max(0, this.totalQuantity - 1);
     }
-    
-    
+
+
     /**
      * Returns the single kit price
-     * 
+     *
      * @return The single kit price
      */
 
@@ -156,13 +158,13 @@ public class ShoppingList implements Serializable
         return Complex.KIT_PRICE;
     }
 
-    
+
     /**
      * Returns the total kit price.
-     * 
+     *
      * @return The total kit price
      */
-    
+
     public int getTotalKitPrice()
     {
         return getKitPrice() * getKitQuantity();
@@ -172,7 +174,7 @@ public class ShoppingList implements Serializable
     /**
      * Returns the nearest shipyard where the player can buy complex
      * construction kits. Can be null if no shipyard is available.
-     * 
+     *
      * @return The nearest shipyard or null if none
      */
 
@@ -180,26 +182,26 @@ public class ShoppingList implements Serializable
     {
         return this.nearestShipyard;
     }
-    
+
 
     /**
      * Returns the kit volume.
-     * 
+     *
      * @return The kit volume
      */
-    
+
     public int getKitVolume()
     {
         return Complex.KIT_VOLUME;
     }
-    
-    
+
+
     /**
      * Returns the total kit volume.
-     * 
+     *
      * @return The total kit volume
      */
-    
+
     public int getTotalKitVolume()
     {
         return getKitVolume() * getKitQuantity();

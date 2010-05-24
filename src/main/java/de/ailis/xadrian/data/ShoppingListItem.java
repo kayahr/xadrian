@@ -10,12 +10,12 @@ import java.io.Serializable;
 
 /**
  * A single item on the factory factory shopping list
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
 public class ShoppingListItem implements Serializable,
-    Comparable<ShoppingListItem>
+        Comparable<ShoppingListItem>
 {
     /** Serial version UID */
     private static final long serialVersionUID = -1834341071680921642L;
@@ -29,30 +29,36 @@ public class ShoppingListItem implements Serializable,
     /** The nearest manufacturer of this factory */
     private final Station nearestManufacturer;
 
+    /** The number of built factories */
+    private final int built;
+
 
     /**
      * Constructor
-     * 
+     *
      * @param factory
      *            The factory
      * @param quantity
      *            The number of factories
      * @param nearestManufacturer
      *            The nearest manufacturer
+     * @param built
+     *            The number of built factories
      */
 
     public ShoppingListItem(final Factory factory, final int quantity,
-        final Station nearestManufacturer)
+            final Station nearestManufacturer, final int built)
     {
         this.factory = factory;
         this.quantity = quantity;
         this.nearestManufacturer = nearestManufacturer;
+        this.built = built;
     }
 
 
     /**
      * Returns the factory.
-     * 
+     *
      * @return The factory
      */
 
@@ -64,7 +70,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the quantity.
-     * 
+     *
      * @return The quantity
      */
 
@@ -76,7 +82,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the nearest manufacturer.
-     * 
+     *
      * @return The nearest manufacturer
      */
 
@@ -99,7 +105,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the volume of a single factory.
-     * 
+     *
      * @return The volume of a single factory
      */
 
@@ -111,7 +117,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the total volume of all factories.
-     * 
+     *
      * @return The total volume of all factories
      */
 
@@ -123,7 +129,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the price of a single factory.
-     * 
+     *
      * @return The price of a single factory
      */
 
@@ -135,12 +141,36 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the total price of all factories.
-     * 
+     *
      * @return The total price of all factories
      */
 
     public int getTotalPrice()
     {
         return getPrice() * this.quantity;
+    }
+
+
+    /**
+     * Returns the number of built factories.
+     *
+     * @return The number of built factories
+     */
+
+    public int getBuilt()
+    {
+        return this.built;
+    }
+
+
+    /**
+     * Returns the number of factories left.
+     *
+     * @return The number of factories left
+     */
+
+    public int getLeft()
+    {
+        return this.quantity - this.built;
     }
 }
