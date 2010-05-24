@@ -314,6 +314,14 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             {
                 destroyFactory(url.getPath().substring(1));
             }
+            else if ("buildKit".equals(action))
+            {
+                buildKit();
+            }
+            else if ("destroyKit".equals(action))
+            {
+                destroyKit();
+            }
         }
     }
 
@@ -391,6 +399,30 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public void destroyFactory(final String id)
     {
         this.complex.destroyFactory(id);
+        doChange();
+        redraw();
+    }
+
+
+    /**
+     * Builds the factory with the given id.
+     */
+
+    public void buildKit()
+    {
+        this.complex.buildKit();
+        doChange();
+        redraw();
+    }
+
+
+    /**
+     * Destroys a kit.
+     */
+
+    public void destroyKit()
+    {
+        this.complex.destroyKit();
         doChange();
         redraw();
     }

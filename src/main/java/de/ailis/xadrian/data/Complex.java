@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -89,6 +90,9 @@ public class Complex implements Serializable
 
     /** The built factories */
     private final Map<String, Integer> builtFactories;
+
+    /** The number of built kits */
+    private int builtKits;
 
     /** The cached shopping list */
     private ShoppingList shoppingList;
@@ -259,6 +263,7 @@ public class Complex implements Serializable
     {
         this.factories.remove(index);
         calculateBaseComplex();
+        updateShoppingList();
     }
 
 
@@ -373,6 +378,7 @@ public class Complex implements Serializable
         {
             factory.setQuantity(quantity);
             calculateBaseComplex();
+            updateShoppingList();
         }
     }
 
@@ -446,6 +452,7 @@ public class Complex implements Serializable
     {
         addFactory(new ComplexFactory(factory, 1, factory.isMine() ? 25 : 0));
         calculateBaseComplex();
+        updateShoppingList();
     }
 
 
@@ -532,6 +539,18 @@ public class Complex implements Serializable
                 wareE.addAttribute("price", Integer.toString(Math.abs(price)));
             }
         }
+
+        final Element shoppingListE = root.addElement("built");
+        shoppingListE.addAttribute("kits", Integer.toString(this.builtKits));
+        for (final Entry<String, Integer> entry: this.builtFactories.entrySet())
+        {
+            final String id = entry.getKey();
+            final int quantity = entry.getValue();
+            final Element factoryE = shoppingListE.addElement("factory");
+            factoryE.addAttribute("id", id);
+            factoryE.addAttribute("quantity", Integer.toString(quantity));
+        }
+
         return document;
     }
 
@@ -613,6 +632,19 @@ public class Complex implements Serializable
                 final int price = Integer.parseInt(element
                         .attributeValue("price"));
                 complex.customPrices.put(ware, use ? price : -price);
+            }
+        }
+
+        final Element builtE = root.element("built");
+        if (builtE != null)
+        {
+            complex.builtKits = Integer.parseInt(builtE.attributeValue("kits", "0"));
+            for (final Object item: builtE.elements("factory"))
+            {
+                final Element element = (Element) item;
+                final String id = element.attributeValue("id");
+                final int quantity = Integer.parseInt(element.attributeValue("quantity"));
+                complex.builtFactories.put(id, quantity);
             }
         }
 
@@ -864,6 +896,17 @@ public class Complex implements Serializable
     public void updateShoppingList()
     {
         this.shoppingList = null;
+        this.builtKits = Math.max(0, Math.min(this.builtKits,
+            getTotalQuantity() - 1));
+        for (final Map.Entry<String, Integer> entry : this.builtFactories
+                .entrySet())
+        {
+            final String id = entry.getKey();
+            final int max = getMaxFactories(id);
+            final int quantity = Math.min(entry.getValue(), max);
+            this.builtFactories.put(id, quantity);
+        }
+        this.shoppingList = null;
     }
 
 
@@ -1106,6 +1149,7 @@ public class Complex implements Serializable
         {
             this.sector = sector;
             calculateBaseComplex();
+            updateShoppingList();
         }
     }
 
@@ -1134,7 +1178,7 @@ public class Complex implements Serializable
         if (this.shoppingList != null) return this.shoppingList;
 
         final ShoppingList list = new ShoppingList(this.sector == null ? null
-                : this.sector.getNearestShipyardSector());
+                : this.sector.getNearestShipyardSector(), this.builtKits);
         for (final ComplexFactory factory : this.factories)
         {
             list.addItem(new ShoppingListItem(factory.getFactory(), factory
@@ -1338,6 +1382,30 @@ public class Complex implements Serializable
         if (oldCount == null) return;
         if (oldCount == 0) return;
         this.builtFactories.put(id, oldCount - 1);
+        updateShoppingList();
+    }
+
+
+    /**
+     * Build a kit.
+     */
+
+    public void buildKit()
+    {
+        if (this.builtKits >= getTotalQuantity() - 1) return;
+        this.builtKits++;
+        updateShoppingList();
+    }
+
+
+    /**
+     * Destroys a kit.
+     */
+
+    public void destroyKit()
+    {
+        if (this.builtKits == 0) return;
+        this.builtKits--;
         updateShoppingList();
     }
 

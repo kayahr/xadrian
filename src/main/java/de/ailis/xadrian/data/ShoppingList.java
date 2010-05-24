@@ -34,6 +34,12 @@ public class ShoppingList implements Serializable
     /** The total price */
     private int totalPrice = 0;
 
+    /** The total built factories */
+    private int totalBuilt = 0;
+
+    /** The number of built kits */
+    private int kitQuantityBuilt = 0;
+
     /** The sector with the nearest shipyard */
     private final Sector nearestShipyard;
 
@@ -44,11 +50,14 @@ public class ShoppingList implements Serializable
      * @param nearestShipyard
      *            The nearest shipyard where the player can buy complex kits.
      *            Can be null if not known.
+     * @param kitsBuilt
+     *            The number of built kits
      */
 
-    public ShoppingList(final Sector nearestShipyard)
+    public ShoppingList(final Sector nearestShipyard, final int kitsBuilt)
     {
         this.nearestShipyard = nearestShipyard;
+        this.kitQuantityBuilt = kitsBuilt;
     }
 
 
@@ -66,6 +75,7 @@ public class ShoppingList implements Serializable
         this.totalVolume += item.getTotalVolume();
         this.totalQuantity += item.getQuantity();
         this.totalPrice += item.getTotalPrice();
+        this.totalBuilt += item.getQuantityBuilt();
 
         // Try to update an existing list item first
         for (i = 0, max = this.items.size(); i < max; i++)
@@ -76,7 +86,7 @@ public class ShoppingList implements Serializable
                 this.items.set(i, new ShoppingListItem(item.getFactory(), item
                         .getQuantity()
                         + oldItem.getQuantity(), item.getNearestManufacturer(),
-                        item.getBuilt()));
+                        item.getQuantityBuilt()));
                 return;
             }
         }
@@ -124,6 +134,30 @@ public class ShoppingList implements Serializable
 
 
     /**
+     * Returns the total quantity of built factories and kits.
+     *
+     * @return The total quantity
+     */
+
+    public int getTotalQuantityBuilt()
+    {
+        return this.totalBuilt + getKitQuantityBuilt();
+    }
+
+
+    /**
+     * Returns the total quantity of built factories and kits left.
+     *
+     * @return The total quantity left
+     */
+
+    public int getTotalQuantityLeft()
+    {
+        return getTotalQuantity() - getTotalQuantityBuilt();
+    }
+
+
+    /**
      * Returns the total price.
      *
      * @return The total price
@@ -144,6 +178,30 @@ public class ShoppingList implements Serializable
     public int getKitQuantity()
     {
         return Math.max(0, this.totalQuantity - 1);
+    }
+
+
+    /**
+     * Returns the number of built kits.
+     *
+     * @return The number built kits
+     */
+
+    public int getKitQuantityBuilt()
+    {
+        return this.kitQuantityBuilt;
+    }
+
+
+    /**
+     * Returns the number of kits left.
+     *
+     * @return The number kits left
+     */
+
+    public int getKitQuantityLeft()
+    {
+        return getKitQuantity() - getKitQuantityBuilt();
     }
 
 
