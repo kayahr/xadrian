@@ -335,6 +335,7 @@ public class Complex implements Serializable
     {
         if (this.factories.get(index).increaseQuantity())
         {
+            calculateBaseComplex();
             updateShoppingList();
             return true;
         }
@@ -354,6 +355,7 @@ public class Complex implements Serializable
     {
         if (this.factories.get(index).decreaseQuantity())
         {
+            calculateBaseComplex();
             updateShoppingList();
             return true;
         }
@@ -833,6 +835,7 @@ public class Complex implements Serializable
 
         // First of all remove all automatically added factories
         this.autoFactories.clear();
+        updateShoppingList();
 
         if (!this.addBaseComplex) return;
 
