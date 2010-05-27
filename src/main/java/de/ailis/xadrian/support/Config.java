@@ -24,7 +24,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * The configuration
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -36,6 +36,9 @@ public final class Config
     /** Config key for last file chooser path */
     private static final String LAST_FILE_CHOOSER_PATH = "lastfilechooserpath";
 
+    /** Config key for displaying factory resources in complex table */
+    private static final String SHOW_FACTORY_RESOURCES = "showfactoryresources";
+
     /** The singleton instance */
     private static final Config instance = new Config();
 
@@ -44,6 +47,9 @@ public final class Config
 
     /** The last file chooser path */
     private File lastFileChooserPath = null;
+
+    /** The Factory Description flag */
+    private boolean showFactoryResources = true;
 
 
     /**
@@ -58,7 +64,7 @@ public final class Config
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance
      */
 
@@ -76,7 +82,8 @@ public final class Config
     {
         if (System.getProperty("xadrian.config", "true").equals("true"))
         {
-            final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+            final Preferences prefs = Preferences
+                    .userNodeForPackage(Main.class);
             final String races = prefs.get(IGNORED_RACES, null);
             if (races != null)
             {
@@ -88,6 +95,8 @@ public final class Config
             }
             final String tmp = prefs.get(LAST_FILE_CHOOSER_PATH, null);
             this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
+            this.showFactoryResources = prefs.getBoolean(
+                    SHOW_FACTORY_RESOURCES, true);
         }
     }
 
@@ -100,7 +109,8 @@ public final class Config
     {
         if (System.getProperty("xadrian.config", "true").equals("true"))
         {
-            final Preferences prefs = Preferences.userNodeForPackage(Main.class);
+            final Preferences prefs = Preferences
+                    .userNodeForPackage(Main.class);
             if (this.ignoredRaces.isEmpty())
                 prefs.remove(IGNORED_RACES);
             else
@@ -115,16 +125,17 @@ public final class Config
             }
             if (this.lastFileChooserPath != null)
                 prefs.put(LAST_FILE_CHOOSER_PATH, this.lastFileChooserPath
-                    .getPath());
+                        .getPath());
             else
                 prefs.remove(LAST_FILE_CHOOSER_PATH);
+            prefs.putBoolean(SHOW_FACTORY_RESOURCES, this.showFactoryResources);
         }
     }
 
 
     /**
      * Returns true if the specified race is ignored.
-     * 
+     *
      * @param race
      *            The race to check
      * @return True if the specified race is ignored
@@ -137,8 +148,34 @@ public final class Config
 
 
     /**
+     * Checks if the factory resources should be displayed in the
+     * complex table.
+     *
+     * @return True if factory resources should be displayed, false if not
+     */
+
+    public boolean isShowFactoryResources()
+    {
+        return this.showFactoryResources;
+    }
+
+
+    /**
+     * Enables or disables the display of factory resources in complex table.
+     *
+     * @param showFactoryResources
+     *            True if resources should be displayed, false if not
+     */
+
+    public void setShowFactoryResources(final boolean showFactoryResources)
+    {
+        this.showFactoryResources = showFactoryResources;
+    }
+
+
+    /**
      * Sets the ignore status of a race.
-     * 
+     *
      * @param race
      *            The race
      * @param ignored
@@ -159,7 +196,7 @@ public final class Config
 
     /**
      * Returns the last file chooser path.
-     * 
+     *
      * @return The last file chooser path
      */
 
@@ -171,7 +208,7 @@ public final class Config
 
     /**
      * Sets the last file chooser path.
-     * 
+     *
      * @param lastFileChooserPath
      *            The last file chooser path to set
      */
@@ -184,7 +221,7 @@ public final class Config
 
     /**
      * Saves the window preferences.
-     * 
+     *
      * @param window
      *            The window
      */
@@ -195,13 +232,14 @@ public final class Config
 
         // Window preferences are only saved if state is NORMAL
         if (!(window instanceof Frame)
-            || ((Frame) window).getExtendedState() == Frame.NORMAL)
+                || ((Frame) window).getExtendedState() == Frame.NORMAL)
         {
             if (SwingUtils.isResizable(window))
             {
                 prefs.putInt(getPrefsName(window, "width"), window.getWidth());
                 prefs
-                    .putInt(getPrefsName(window, "height"), window.getHeight());
+                        .putInt(getPrefsName(window, "height"), window
+                                .getHeight());
             }
             prefs.putInt(getPrefsName(window, "left"), window.getX());
             prefs.putInt(getPrefsName(window, "top"), window.getY());
@@ -211,7 +249,7 @@ public final class Config
 
     /**
      * Restores the window state.
-     * 
+     *
      * @param window
      *            The window
      */
@@ -222,19 +260,20 @@ public final class Config
         if (SwingUtils.isResizable(window))
         {
             window.setSize(prefs.getInt(getPrefsName(window, "width"), window
-                .getWidth()), prefs.getInt(getPrefsName(window, "height"),
-                window.getHeight()));
-//            window.setPreferredSize(window.getSize());
-            //window.setMaximumSize(window.getSize());
+                    .getWidth()), prefs.getInt(getPrefsName(window, "height"),
+                    window.getHeight()));
+            // window.setPreferredSize(window.getSize());
+            // window.setMaximumSize(window.getSize());
         }
         window.setLocation(prefs.getInt(getPrefsName(window, "left"), window
-            .getX()), prefs.getInt(getPrefsName(window, "top"), window.getY()));
+                .getX()), prefs.getInt(getPrefsName(window, "top"), window
+                .getY()));
     }
 
 
     /**
      * Saves the split pane preferences.
-     * 
+     *
      * @param splitPane
      *            The split pane
      */
@@ -243,13 +282,13 @@ public final class Config
     {
         final Preferences prefs = Preferences.userNodeForPackage(Main.class);
         prefs.putInt(getPrefsName(splitPane, "dividerLocation"), splitPane
-            .getDividerLocation());
+                .getDividerLocation());
     }
 
 
     /**
      * Restores the split pane preferences.
-     * 
+     *
      * @param splitPane
      *            The split pane
      */
@@ -258,14 +297,14 @@ public final class Config
     {
         final Preferences prefs = Preferences.userNodeForPackage(Main.class);
         splitPane.setDividerLocation(prefs.getInt(getPrefsName(splitPane,
-            "dividerLocation"), splitPane.getDividerLocation()));
+                "dividerLocation"), splitPane.getDividerLocation()));
     }
 
 
     /**
      * Returns the preferences name for the specified component and for the
      * specified key.
-     * 
+     *
      * @param component
      *            The component
      * @param key
@@ -274,12 +313,13 @@ public final class Config
      */
 
     private static String getPrefsName(final Component component,
-        final String key)
+            final String key)
     {
         final String name = component.getName();
         if (name == null)
             throw new ConfigException(
-                "Unable to save state of component with no name: " + component);
+                    "Unable to save state of component with no name: "
+                            + component);
         return name.toLowerCase() + "." + key.toLowerCase();
     }
 }

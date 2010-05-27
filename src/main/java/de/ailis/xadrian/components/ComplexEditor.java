@@ -63,6 +63,7 @@ import de.ailis.xadrian.interfaces.StateProvider;
 import de.ailis.xadrian.listeners.ClipboardStateListener;
 import de.ailis.xadrian.listeners.EditorStateListener;
 import de.ailis.xadrian.listeners.StateListener;
+import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
 import de.ailis.xadrian.utils.FileUtils;
@@ -216,8 +217,10 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     {
         final int c = this.textPane.getCaretPosition();
         final Map<String, Object> model = new HashMap<String, Object>();
+        final Config config = Config.getInstance();
         model.put("complex", this.complex);
         model.put("print", false);
+        model.put("config", config);
         final String content = TemplateFactory.processTemplate(template, model);
         this.textPane.setText(content);
         this.textPane.setCaretPosition(Math.min(this.textPane.getDocument()

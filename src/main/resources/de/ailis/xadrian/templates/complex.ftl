@@ -69,6 +69,15 @@
                 [#else]
                   ${factory.name}
                 [/#if]
+                [#if config.showFactoryResources]
+                  <div class="factory-resources">
+                    [#if complexFactory.disabled]
+                      <strike>[#list factory.resources as resource]${resource.ware.name}[#if resource_has_next], [/#if][/#list]</strike>
+                    [#else]
+                      [#list factory.resources as resource]${resource.ware.name}[#if resource_has_next], [/#if][/#list]
+                    [/#if]
+                  </div>
+                [/#if]
               </td>
               <td class="race">${factory.race.name}</td>
               <td class="yield">
@@ -115,7 +124,13 @@
               [/#if]
               [#assign factory=complexFactory.factory]
               <tr class="${class}">
-                <td class="factory">${factory.name}</td>
+                <td class="factory">${factory.name}
+                  [#if config.showFactoryResources]
+                    <div class="factory-resources">
+                      [#list factory.resources as resource]${resource.ware.name}[#if resource_has_next], [/#if][/#list]
+                    </div>
+                  [/#if]
+                </td>
                 <td class="race">${factory.race.name}</td>
                 <td class="yield">
                   [#if complexFactory.factory.mine]

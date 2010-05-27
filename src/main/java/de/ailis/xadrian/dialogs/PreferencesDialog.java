@@ -26,7 +26,7 @@ import de.ailis.xadrian.support.ModalDialog;
 
 /**
  * Dialog for setting up the application preferences.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -39,8 +39,10 @@ public class PreferencesDialog extends ModalDialog
     private final static PreferencesDialog instance = new PreferencesDialog();
 
     /** The checkboxes for allowed manufacturer races */
-    private Map<Race, JCheckBox> racesCheckboxes;
+    private Map<Race, JCheckBox> racesCheckBoxes;
 
+    /** The checkbox for enable Factory description (resources needed) in Complex table */
+    private JCheckBox showFactoryResourcesCheckBox;
 
     /**
      * Constructor
@@ -94,7 +96,7 @@ public class PreferencesDialog extends ModalDialog
         c2.anchor = GridBagConstraints.WEST;
         c2.gridx = 0;
         c2.gridy = 0;
-        this.racesCheckboxes = new HashMap<Race, JCheckBox>();
+        this.racesCheckBoxes = new HashMap<Race, JCheckBox>();
         for (final Race race: RaceFactory.getInstance().getManufacturerRaces())
         {
             final JCheckBox raceCheckBox = new JCheckBox(race.getName());
@@ -104,12 +106,31 @@ public class PreferencesDialog extends ModalDialog
                 c2.gridy++;
             }
             racePanel.add(raceCheckBox, c2);
-            this.racesCheckboxes.put(race, raceCheckBox);
+            this.racesCheckBoxes.put(race, raceCheckBox);
             c2.gridx++;
         }
         c.insets.left = 20;
         c.insets.top = 5;
         contentPanel.add(racePanel, c);
+
+        // Create the factory description separator
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 2;
+        c.weightx = 1;
+        c.insets.left = 0;
+        final JSeparator factoryDescSeparator = new JSeparator();
+        contentPanel.add(factoryDescSeparator, c);
+        c.weightx = 0;
+
+        // Create the factors resource display checkbox
+        c.gridy = 3;
+        c.insets.left = 20;
+        this.showFactoryResourcesCheckBox = new JCheckBox(
+            I18N.getString("dialog.preferences.showFactoryResources"));
+        this.showFactoryResourcesCheckBox.setToolTipText(
+            I18N.getToolTip("dialog.preferences.showFactoryResources"));
+        contentPanel.add(this.showFactoryResourcesCheckBox, c);
 
         // Put this last panel into the window
         add(contentPanel, BorderLayout.CENTER);
@@ -118,7 +139,7 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Returns the singleton instance
-     * 
+     *
      * @return The singleton instance
      */
 
@@ -136,17 +157,21 @@ public class PreferencesDialog extends ModalDialog
     public Result open()
     {
         final Config config = Config.getInstance();
-        for (final Map.Entry<Race, JCheckBox> entry: this.racesCheckboxes
+
+        // Load preference values
+        for (final Map.Entry<Race, JCheckBox> entry: this.racesCheckBoxes
             .entrySet())
         {
             final Race race = entry.getKey();
             final JCheckBox checkBox = entry.getValue();
             checkBox.setSelected(!config.isRaceIgnored(race));
         }
+        this.showFactoryResourcesCheckBox.setSelected(config.isShowFactoryResources());
         final Result result = super.open();
         if (result == Result.OK)
         {
-            for (final Map.Entry<Race, JCheckBox> entry: this.racesCheckboxes
+            // Save preference values
+            for (final Map.Entry<Race, JCheckBox> entry: this.racesCheckBoxes
                 .entrySet())
             {
                 final Race race = entry.getKey();
@@ -154,6 +179,7 @@ public class PreferencesDialog extends ModalDialog
                 config
                     .setRaceIgnored(race, !checkBox.isSelected());
             }
+            config.setShowFactoryResources(this.showFactoryResourcesCheckBox.isSelected());
         }
         return result;
     }

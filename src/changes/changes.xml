@@ -16,11 +16,14 @@
       </action>
       <action dev="k" type="add" date="2010-05-22">
         Applied nicer style to complex data. Sections can now be collapsed
-        and expanded by clicking the section headers. 
+        and expanded by clicking the section headers.
       </action>
       <action dev="k" type="fix" date="2010-05-22">
         Fixed error which occured sometimes when loading the same complex two
         times.
+      </action>
+      <action type="add" date="2010-05-26">
+        Added new preference for displaying factory resources in complex table.
       </action>
     </release>
     <release version="1.2.2" date="2009-06-14" desc="Minor update">

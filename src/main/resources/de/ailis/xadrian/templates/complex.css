@@ -9,7 +9,7 @@ body
 
 body.print
 {
-	font-size: 7px;
+    font-size: 7px;
 }
 
 p
@@ -27,52 +27,52 @@ h1, h2
 
 h1
 {
-	font-size: 14px;
-	background: #dddddd;
-	padding: 3px;
+    font-size: 14px;
+    background: #dddddd;
+    padding: 3px;
 }
 
 h2
 {
-	font-size: 11px;
+    font-size: 11px;
     padding: 2px;
     background: #eeeeee;
 }
 
 h2 a
 {
-	color: #000000;
-	text-decoration: none;
+    color: #000000;
+    text-decoration: none;
 }
 
 .print h1
 {
-	font-size: 10px;
+    font-size: 10px;
 }
 
 .print h2
 {
-	font-size: 9px;
+    font-size: 9px;
 }
 
 table
 {
-	margin: 0 0 9px 0;
+    margin: 0 0 9px 0;
 }
 
 .indent
 {
-	margin-left: 16px;
+    margin-left: 16px;
 }
 
 .print table
 {
-	width: 100%;
+    width: 100%;
 }
 
 tr.sep td
 {
-	font-size: 2px;
+    font-size: 2px;
 }
 
 td, th
@@ -84,19 +84,26 @@ td, th
 
 tr.odd, tr.autoodd, tr.kitsodd
 {
-	background-color: #f4f4f4;
+    background-color: #f4f4f4;
 }
 
 tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
 {
-	color: #888888;
+    color: #888888;
 }
 
 .factory, .ware
 {
-	text-align: left;
-	white-space: nowrap;
-	width: 100%;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.factory-resources
+{
+    padding-left:15px;
+    font-size:90%;
+    font-style: italic;
 }
 
 .yield, .race, .container
@@ -108,7 +115,7 @@ tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
 
 .quantity
 {
-	text-align: right;
+    text-align: right;
     margin: 0 0 0 10px;
     white-space: nowrap;
 }
@@ -124,52 +131,52 @@ tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
 {
     text-align: right;
     margin: 0 0 0 10px;
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 .singlePrice
 {
-	text-align: right;
-	white-space: nowrap;
-	margin: 0 0 0 10px;
+    text-align: right;
+    white-space: nowrap;
+    margin: 0 0 0 10px;
 }
 
 .buttons
 {
-	text-align: right;
-	white-space: nowrap;
+    text-align: right;
+    white-space: nowrap;
 }
 
 td.missing
 {
-	color: #ff0000;
-	font-weight: bold;
+    color: #ff0000;
+    font-weight: bold;
 }
 
 td.surplus
 {
-	color: #00cc00;
-	font-weight: bold;
+    color: #00cc00;
+    font-weight: bold;
 }
 
 table.layout
 {
-    margin: 0;		
+    margin: 0;        
 }
 
 table.layout td
 {
-	padding: 0;
+    padding: 0;
 }
 
 .sep
 {
-	background: #888888;
-	padding: 0;
+    background: #888888;
+    padding: 0;
 }
 
 .print a
 {
-	color: #000000;
-	text-decoration: none;
+    color: #000000;
+    text-decoration: none;
 }
