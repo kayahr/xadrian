@@ -9,16 +9,18 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Collection;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
+import de.ailis.xadrian.support.Config;
 
 
 /**
  * Tests the data of some factories.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -45,17 +47,17 @@ public class FactoryTest
     /** Crystals */
     private static Ware crystals = wareFactory.getWare("crystals");
 
-    
+
     /**
      * Initializes the test
      */
-    
-    @org.junit.BeforeClass
+
+    @BeforeClass
     public static void init()
     {
-        System.setProperty("xadrian.config", "false");
+        Config.getInstance().reset();
     }
-    
+
 
     /**
      * Checks if the Teladi silicon mines are really the cheapest.
@@ -102,7 +104,7 @@ public class FactoryTest
         assertEquals(boron, factoryFactory.getCheapestFactory(energy,
             FactorySize.XL).getRace());
     }
-    
+
 
     /**
      * Tests the product and resources of the Silicon Mine M with yield 100.
@@ -143,7 +145,7 @@ public class FactoryTest
         assertEquals(1858, Math.round(resources.iterator().next().getQuantity()));
     }
 
-    
+
     /**
      * Tests the product and resources of the Silicon Mine M with yield 0.
      */
@@ -203,7 +205,7 @@ public class FactoryTest
         assertEquals(4645, Math.round(resources.iterator().next().getQuantity()));
     }
 
-    
+
     /**
      * Tests the product and resources of the Silicon Mine L with yield 0.
      */
@@ -222,8 +224,8 @@ public class FactoryTest
         assertEquals(energy, resources.iterator().next().getWare());
         assertEquals(180, Math.round(resources.iterator().next().getQuantity()));
     }
-    
-    
+
+
     /**
      * Tests the product and resources of the Ore Mine M with yield 100.
      */
@@ -263,7 +265,7 @@ public class FactoryTest
         assertEquals(1800, Math.round(resources.iterator().next().getQuantity()));
     }
 
-    
+
     /**
      * Tests the product and resources of the Ore Mine M with yield 0.
      */
@@ -323,7 +325,7 @@ public class FactoryTest
         assertEquals(4500, Math.round(resources.iterator().next().getQuantity()));
     }
 
-    
+
     /**
      * Tests the product and resources of the Ore Mine L with yield 0.
      */
@@ -342,8 +344,8 @@ public class FactoryTest
         assertEquals(energy, resources.iterator().next().getWare());
         assertEquals(180, Math.round(resources.iterator().next().getQuantity()));
     }
-    
-    
+
+
     /**
      * Tests the Solar Power Plant M with various suns.
      */
@@ -382,9 +384,9 @@ public class FactoryTest
         assertEquals(23986, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P300, 0);
         assertEquals(173, Math.round(resources.iterator().next().getQuantity()));
-    } 
-    
-    
+    }
+
+
     /**
      * Tests the Solar Power Plant L with various suns.
      */
@@ -423,9 +425,9 @@ public class FactoryTest
         assertEquals(59964, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P300, 0);
         assertEquals(434, Math.round(resources.iterator().next().getQuantity()));
-    }    
-    
-    
+    }
+
+
     /**
      * Tests the Solar Power Plant XL with various suns.
      */
@@ -464,5 +466,5 @@ public class FactoryTest
         assertEquals(119928, Math.round(product.getQuantity()));
         resources = plant.getResourcesPerHour(Suns.P300, 0);
         assertEquals(867, Math.round(resources.iterator().next().getQuantity()));
-    }    
+    }
 }

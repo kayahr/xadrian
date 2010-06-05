@@ -80,24 +80,34 @@ public final class Config
 
     private void load()
     {
-        if (System.getProperty("xadrian.config", "true").equals("true"))
+        final Preferences prefs = Preferences
+                .userNodeForPackage(Main.class);
+        final String races = prefs.get(IGNORED_RACES, null);
+        if (races != null)
         {
-            final Preferences prefs = Preferences
-                    .userNodeForPackage(Main.class);
-            final String races = prefs.get(IGNORED_RACES, null);
-            if (races != null)
+            final RaceFactory factory = RaceFactory.getInstance();
+            for (final String raceId : races.split(" "))
             {
-                final RaceFactory factory = RaceFactory.getInstance();
-                for (final String raceId : races.split(" "))
-                {
-                    this.ignoredRaces.add(factory.getRace(raceId));
-                }
+                this.ignoredRaces.add(factory.getRace(raceId));
             }
-            final String tmp = prefs.get(LAST_FILE_CHOOSER_PATH, null);
-            this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
-            this.showFactoryResources = prefs.getBoolean(
-                    SHOW_FACTORY_RESOURCES, true);
         }
+        final String tmp = prefs.get(LAST_FILE_CHOOSER_PATH, null);
+        this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
+        this.showFactoryResources = prefs.getBoolean(
+                SHOW_FACTORY_RESOURCES, true);
+    }
+
+
+    /**
+     * Resets the configuration.
+     */
+
+    public void reset()
+    {
+        this.ignoredRaces.clear();
+        this.showFactoryResources = true;
+        this.lastFileChooserPath = null;
+
     }
 
 
@@ -107,29 +117,26 @@ public final class Config
 
     public void save()
     {
-        if (System.getProperty("xadrian.config", "true").equals("true"))
+        final Preferences prefs = Preferences
+                .userNodeForPackage(Main.class);
+        if (this.ignoredRaces.isEmpty())
+            prefs.remove(IGNORED_RACES);
+        else
         {
-            final Preferences prefs = Preferences
-                    .userNodeForPackage(Main.class);
-            if (this.ignoredRaces.isEmpty())
-                prefs.remove(IGNORED_RACES);
-            else
+            final StringBuilder builder = new StringBuilder();
+            for (final Race race : this.ignoredRaces)
             {
-                final StringBuilder builder = new StringBuilder();
-                for (final Race race : this.ignoredRaces)
-                {
-                    if (builder.length() > 0) builder.append(' ');
-                    builder.append(race.getId());
-                }
-                prefs.put(IGNORED_RACES, builder.toString());
+                if (builder.length() > 0) builder.append(' ');
+                builder.append(race.getId());
             }
-            if (this.lastFileChooserPath != null)
-                prefs.put(LAST_FILE_CHOOSER_PATH, this.lastFileChooserPath
-                        .getPath());
-            else
-                prefs.remove(LAST_FILE_CHOOSER_PATH);
-            prefs.putBoolean(SHOW_FACTORY_RESOURCES, this.showFactoryResources);
+            prefs.put(IGNORED_RACES, builder.toString());
         }
+        if (this.lastFileChooserPath != null)
+            prefs.put(LAST_FILE_CHOOSER_PATH, this.lastFileChooserPath
+                    .getPath());
+        else
+            prefs.remove(LAST_FILE_CHOOSER_PATH);
+        prefs.putBoolean(SHOW_FACTORY_RESOURCES, this.showFactoryResources);
     }
 
 
