@@ -1368,7 +1368,7 @@
     <manufacturer station="SSYTC-23" sector="sec-14-15" />
   </factory>
   <factory id="trackerMineFab-split" race="split" volume="15000" price="2246368" cycle="2040" size="S">
-    <product ware="ionMine" quantity="3" storage="26" />
+    <product ware="trackerMine" quantity="6" storage="54" />
     <resource ware="energyCells" quantity="510" storage="5000" />
     <resource ware="ore" quantity="85" storage="832" />
     <resource ware="rastarOil" quantity="51" storage="500" />
@@ -1933,7 +1933,7 @@
     <manufacturer station="BSYVC-43" sector="sec-17-14" />
   </factory>
   <factory id="ionMineFab-boron" race="boron" volume="15000" price="2246368" cycle="2040" size="S">
-    <product ware="trackerMine" quantity="6" storage="54" />
+    <product ware="ionMine" quantity="3" storage="26" />
     <resource ware="energyCells" quantity="510" storage="5000" />
     <resource ware="ore" quantity="85" storage="832" />
     <resource ware="bofu" quantity="85" storage="832" />
