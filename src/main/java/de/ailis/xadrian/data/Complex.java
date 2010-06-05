@@ -527,7 +527,7 @@ public class Complex implements Serializable
     {
         final Document document = DocumentHelper.createDocument();
         final Element root = document.addElement("complex");
-        root.addAttribute("version", "2");
+        root.addAttribute("version", "3");
         root.addAttribute("suns", Integer.toString(getSuns().getPercent()));
         if (this.sector != null)
             root.addAttribute("sector", this.sector.getId());
@@ -549,13 +549,22 @@ public class Complex implements Serializable
                 final Element factoryE = factoriesE
                         .addElement("complexFactory");
                 factoryE.addAttribute("factory", factory.getFactory().getId());
-                factoryE.addAttribute("quantity", Integer.toString(factory
-                        .getQuantity()));
-                // TODO Implement me correctly
-                factoryE.addAttribute("yield", Double.toString(factory
-                        .getYield()));
                 factoryE.addAttribute("disabled", Boolean.toString(factory
                         .isDisabled()));
+                if (factory.getFactory().isMine())
+                {
+                    final Element yieldsE = factoryE.addElement("yields");
+                    for (final Integer yield: factory.getYields())
+                    {
+                        final Element yieldE = yieldsE.addElement("yield");
+                        yieldE.setText(Integer.toString(yield));
+                    }
+                }
+                else
+                {
+                    factoryE.addAttribute("quantity", Integer.toString(factory
+                        .getQuantity()));
+                }
             }
         }
         if (!this.customPrices.isEmpty())
@@ -614,7 +623,7 @@ public class Complex implements Serializable
         final String versionStr = root.attributeValue("version");
         int version = 1;
         if (versionStr != null) version = Integer.parseInt(versionStr);
-        if (version > 2) throw new DocumentException("File is too new");
+        if (version > 3) throw new DocumentException(I18N.getString("error.fileFormatTooNew"));
 
         complex.setSuns(Suns.valueOf(Integer.parseInt(root
                 .attributeValue("suns"))));
@@ -642,11 +651,26 @@ public class Complex implements Serializable
             final Element element = (Element) item;
             final Factory factory = factoryFactory.getFactory(element
                     .attributeValue("factory"));
-            final int yield = Integer.parseInt(element.attributeValue("yield"));
-            final int quantity = Integer.parseInt(element
-                    .attributeValue("quantity"));
-            final ComplexFactory complexFactory = new ComplexFactory(factory,
-                    quantity, yield);
+            final ComplexFactory complexFactory;
+            final Element yieldsE = element.element("yields");
+            if (yieldsE == null)
+            {
+                final int yield = Integer.parseInt(element.attributeValue("yield", "0"));
+                final int quantity = Integer.parseInt(element
+                        .attributeValue("quantity"));
+                complexFactory = new ComplexFactory(factory, quantity, yield);
+            }
+            else
+            {
+                final List<Integer> yields = new ArrayList<Integer>();
+                for (final Object yieldItem : yieldsE.elements("yield"))
+                {
+                    final Element yieldE = (Element) yieldItem;
+                    yields.add(Integer.parseInt(yieldE.getText()));
+                }
+                System.out.println(yields);
+                complexFactory = new ComplexFactory(factory, yields);
+            }
             if (Boolean.parseBoolean(element
                     .attributeValue("disabled", "false")))
                 complexFactory.disable();

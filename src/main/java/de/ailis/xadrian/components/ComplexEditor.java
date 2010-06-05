@@ -693,7 +693,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             catch (final DocumentException e)
             {
                 JOptionPane.showMessageDialog(null, I18N.getString(
-                        "error.cantReadComplex", file), I18N
+                        "error.cantReadComplex", file, e.getMessage()), I18N
                         .getString("error.title"), JOptionPane.ERROR_MESSAGE);
                 log.error("Unable to load complex from file '" + file + "': "
                         + e, e);

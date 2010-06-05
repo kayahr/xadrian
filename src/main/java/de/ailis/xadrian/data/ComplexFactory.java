@@ -69,6 +69,23 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
 
     /**
+     * Constructor for adding a mine with multiple yields.
+     *
+     * @param factory
+     *            The mine
+     * @param yields
+     *            The yields
+     */
+
+    public ComplexFactory(final Factory factory, final List<Integer> yields)
+    {
+        this.factory = factory;
+        this.yields = new ArrayList<Integer>();
+        setYields(yields);
+    }
+
+
+    /**
      * Return the factory.
      *
      * @return The factory
@@ -252,6 +269,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     {
         this.yields.clear();
         this.yields.addAll(yields);
+        this.quantity = this.yields.size();
     }
 
 
