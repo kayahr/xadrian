@@ -499,7 +499,6 @@ public class Sector implements Serializable, Comparable<Sector>
         for (final Asteroid asteroid: this.asteroids)
             if (asteroid.getWare().getId().equals("siliconWafers"))
                 asteroids.add(asteroid);
-        System.out.println(asteroids);
         return asteroids.toArray(new Asteroid[0]);
     }
 

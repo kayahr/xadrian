@@ -651,7 +651,6 @@ public class Complex implements Serializable
                     final Element yieldE = (Element) yieldItem;
                     yields.add(Integer.parseInt(yieldE.getText()));
                 }
-                System.out.println(yields);
                 complexFactory = new ComplexFactory(factory, yields);
             }
             if (Boolean.parseBoolean(element
