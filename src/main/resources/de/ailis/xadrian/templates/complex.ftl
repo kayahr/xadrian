@@ -74,7 +74,7 @@
               <td class="race">${factory.race.name}</td>
               <td class="yield">
                 [#if complexFactory.factory.mine]
-                  [#if !print]<a href="file://changeYield/${complexFactory_index}">[/#if][#if complexFactory.quantity > 1]~[/#if] ${complexFactory.yield}[#if !print]</a>[/#if]
+                  [#if !print]<a href="file://changeYield/${complexFactory_index}">[/#if][#if !complexFactory.homogenousYield]~[/#if] ${complexFactory.yield}[#if !print]</a>[/#if]
                 [/#if]
               </td>
               <td class="quantity">

@@ -147,6 +147,8 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public int getYield()
     {
+        if (isHomogenousYield()) return this.yields.get(0);
+
         final boolean oldDisabled = this.disabled;
         this.disabled = false;
         double productPerHour = getProductPerHour().getQuantity()
@@ -157,6 +159,22 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         final double quantity = this.factory.getProduct().getQuantity();
         return (int) Math.round((productPerHour * base)
             / ((1800 * quantity) - productPerHour) - 1);
+    }
+
+
+    /**
+     * Checks if the yield is homogenous for all mines.
+     *
+     * @return True if the yield is homogenous, false if not
+     */
+
+    public boolean isHomogenousYield()
+    {
+        if (this.yields.isEmpty()) return false;
+        final int yield = this.yields.get(0);
+        for (int i = 1, max = this.yields.size(); i < max; i++)
+            if (this.yields.get(i) != yield) return false;
+        return true;
     }
 
 
