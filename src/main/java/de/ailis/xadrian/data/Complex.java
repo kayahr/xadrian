@@ -27,9 +27,11 @@ import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.data.factories.SectorFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
+import de.ailis.xadrian.dialogs.SetYieldsDialog;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.MultiCollection;
+import de.ailis.xadrian.support.ModalDialog.Result;
 
 
 /**
@@ -467,9 +469,25 @@ public class Complex implements Serializable
 
     public void addFactory(final Factory factory)
     {
-        addFactory(new ComplexFactory(factory, 1, factory.isMine() ? 25 : 0));
-        calculateBaseComplex();
-        updateShoppingList();
+        if (factory.isMine())
+        {
+            final SetYieldsDialog dialog = new SetYieldsDialog(factory);
+            dialog.setYields(null);
+            dialog.setSector(getSector());
+            if (dialog.open() == Result.OK)
+            {
+                setSector(dialog.getSector());
+                addFactory(new ComplexFactory(factory, dialog.getYields()));
+                calculateBaseComplex();
+                updateShoppingList();
+            }
+        }
+        else
+        {
+            addFactory(new ComplexFactory(factory, 1, 0));
+            calculateBaseComplex();
+            updateShoppingList();
+        }
     }
 
 

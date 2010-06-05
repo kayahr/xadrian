@@ -228,7 +228,8 @@ public class SetYieldsDialog extends ModalDialog
     public void setYields(final List<Integer> yields)
     {
         this.yields.clear();
-        this.yields.addAll(yields);
+        if (yields != null) this.yields.addAll(yields);
+        setResultEnabled(Result.OK, this.yields.size() > 0);
     }
 
 

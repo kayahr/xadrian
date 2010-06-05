@@ -29,6 +29,9 @@
         Added new preference for displaying factory resources in complex table.
         (Patch contributed by Milan Gvoždík)
       </action>
+      <action dev="k" type="add" date="2010-06-05">
+        Implemented asteroid yield selection for mines.
+      </action>
     </release>
     <release version="1.2.2" date="2009-06-14" description="Minor update">
       <action dev="k" type="add" date="2009-06-14">
