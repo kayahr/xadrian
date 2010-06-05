@@ -193,6 +193,8 @@ public class SetYieldsDialog extends ModalDialog
                 yields.append(yield);
             }
             this.inputPane.setText(yields.toString());
+            this.inputPane.requestFocus();
+            this.inputPane.setCaretPosition(this.inputPane.getText().length());
 
             final Result result = super.open();
             return result;
