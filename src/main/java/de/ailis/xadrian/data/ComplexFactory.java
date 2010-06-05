@@ -169,24 +169,6 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
 
     /**
-     * Returns the yields as a string to be displayed in the complex table.
-     *
-     * @return The yields as a string
-     */
-
-    public String getYieldsAsString()
-    {
-        final StringBuilder builder = new StringBuilder();
-        for (final Integer yield : this.yields)
-        {
-            if (builder.length() > 0) builder.append(", ");
-            builder.append(yield);
-        }
-        return builder.toString();
-    }
-
-
-    /**
      * @see java.lang.Object#hashCode()
      */
 
