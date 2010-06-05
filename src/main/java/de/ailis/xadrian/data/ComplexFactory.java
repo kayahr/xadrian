@@ -54,15 +54,15 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         final int yield)
     {
         this.factory = factory;
+        this.quantity = quantity;
         if (factory.isMine())
         {
             this.yields = new ArrayList<Integer>();
-            this.yields.add(yield);
-            this.quantity = 1;
+            for (int i = 0; i < quantity; i++)
+                this.yields.add(yield);
         }
         else
         {
-            this.quantity = quantity;
             this.yields = null;
         }
     }
