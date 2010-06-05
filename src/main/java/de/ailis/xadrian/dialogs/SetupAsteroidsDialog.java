@@ -17,10 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import de.ailis.xadrian.actions.ChangeSectorAction;
 import de.ailis.xadrian.components.AsteroidsInfoPane;
 import de.ailis.xadrian.data.Factory;
+import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
@@ -54,6 +57,9 @@ public class SetupAsteroidsDialog extends ModalDialog
     /** The label */
     private JLabel label;
 
+    /** The yields */
+    private final List<Integer> yields = new ArrayList<Integer>();
+
 
     /**
      * Constructor
@@ -62,7 +68,7 @@ public class SetupAsteroidsDialog extends ModalDialog
      *            The mine type
      */
 
-    private SetupAsteroidsDialog(final Factory mineType)
+    public SetupAsteroidsDialog(final Factory mineType)
     {
         super("setupAsteroids", Result.OK, Result.CANCEL);
         setResizable(false);
@@ -95,6 +101,26 @@ public class SetupAsteroidsDialog extends ModalDialog
 
         // Create the content controls
         final JTextPane input = this.inputPane = new JTextPane();
+        input.getDocument().addDocumentListener(new DocumentListener()
+        {
+            @Override
+            public void removeUpdate(final DocumentEvent e)
+            {
+                updateYields();
+            }
+
+            @Override
+            public void insertUpdate(final DocumentEvent e)
+            {
+                updateYields();
+            }
+
+            @Override
+            public void changedUpdate(final DocumentEvent e)
+            {
+                updateYields();
+            }
+        });
 
         // Create the factory pane
         final JScrollPane factoryPane = new JScrollPane(input);
@@ -123,12 +149,51 @@ public class SetupAsteroidsDialog extends ModalDialog
 
 
     /**
+     * Updates the yields
+     */
+
+    void updateYields()
+    {
+        final String text = this.inputPane.getText();
+        this.yields.clear();
+        for (final String part : text.split("[,\\s\\n\\r][\\s\\n\\r]*"))
+        {
+            try
+            {
+                final Integer yield = Integer.parseInt(part);
+                if (yield < 0 || yield > 999)
+                {
+                    setResultEnabled(Result.OK, false);
+                    return;
+                }
+                this.yields.add(yield);
+            }
+            catch (final NumberFormatException e)
+            {
+                setResultEnabled(Result.OK, false);
+                return;
+            }
+        }
+        setResultEnabled(Result.OK, this.yields.size() > 0);
+    }
+
+
+    /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
      */
 
     @Override
     public Result open()
     {
+        // Initialize the input pane with the yields
+        final StringBuilder yields = new StringBuilder();
+        for (final Integer yield : this.yields)
+        {
+            if (yields.length() > 0) yields.append(", ");
+            yields.append(yield);
+        }
+        this.inputPane.setText(yields.toString());
+
         final Result result = super.open();
         return result;
     }
@@ -149,6 +214,57 @@ public class SetupAsteroidsDialog extends ModalDialog
 
 
     /**
+     * Sets the yields
+     *
+     * @param yields
+     *            The yields to set
+     */
+
+    public void setYields(final List<Integer> yields)
+    {
+        this.yields.clear();
+        this.yields.addAll(yields);
+    }
+
+
+    /**
+     * Returns the yields.
+     *
+     * @return The yields
+     */
+
+    public List<Integer> getYields()
+    {
+        return this.yields;
+    }
+
+
+    /**
+     * Sets the sector.
+     *
+     * @param sector
+     *            The sector to set
+     */
+
+    public void setSector(final Sector sector)
+    {
+        this.asteroidsInfoPane.setSector(sector);
+    }
+
+
+    /**
+     * Returns the sector
+     *
+     * @return The sector
+     */
+
+    public Sector getSector()
+    {
+        return this.asteroidsInfoPane.getSector();
+    }
+
+
+    /**
      * Tests the component.
      *
      * @param args
@@ -164,7 +280,14 @@ public class SetupAsteroidsDialog extends ModalDialog
         final Factory mineType = FactoryFactory.getInstance().getFactory(
             "siliconMineL-teladi");
         final SetupAsteroidsDialog dialog = new SetupAsteroidsDialog(mineType);
+        final List<Integer> yields = new ArrayList<Integer>();
+        yields.add(10);
+        yields.add(25);
+        yields.add(25);
+        yields.add(128);
+        dialog.setYields(yields);
         dialog.open();
+        System.out.println(dialog.getYields());
         System.exit(0);
     }
 }

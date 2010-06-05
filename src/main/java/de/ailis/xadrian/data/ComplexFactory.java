@@ -8,6 +8,8 @@ package de.ailis.xadrian.data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -30,8 +32,8 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     /** The number of factories */
     private int quantity;
 
-    /** The yield (for mines) */
-    private int yield;
+    /** The yields (for mines) */
+    private final List<Integer> yields;
 
     /** If this factory is currently disabled. */
     private boolean disabled;
@@ -52,8 +54,17 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         final int yield)
     {
         this.factory = factory;
-        this.quantity = quantity;
-        this.yield = yield;
+        if (factory.isMine())
+        {
+            this.yields = new ArrayList<Integer>();
+            this.yields.add(yield);
+            this.quantity = 1;
+        }
+        else
+        {
+            this.quantity = quantity;
+            this.yields = null;
+        }
     }
 
 
@@ -77,6 +88,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public int getQuantity()
     {
+        if (this.factory.isMine()) return this.yields.size();
         return this.quantity;
     }
 
@@ -89,6 +101,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public boolean increaseQuantity()
     {
+        if (this.factory.isMine()) return false;
         this.quantity++;
         return true;
     }
@@ -102,6 +115,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public boolean decreaseQuantity()
     {
+        if (this.factory.isMine()) return false;
         if (this.quantity == 0) return false;
         this.quantity--;
         return true;
@@ -116,7 +130,42 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public int getYield()
     {
-        return this.yield;
+        final double productPerHour = getProductPerHour().getQuantity()
+            / getQuantity();
+        final int base = this.factory.isSiliconMine() ? 2400 : 600;
+        final double quantity = this.factory.getProduct().getQuantity();
+        return (int) Math.round((productPerHour * base)
+            / ((1800 * quantity) - productPerHour) - 1);
+    }
+
+
+    /**
+     * Returns the asteroid yields (for mines)
+     *
+     * @return The asteroid yields
+     */
+
+    public List<Integer> getYields()
+    {
+        return Collections.unmodifiableList(this.yields);
+    }
+
+
+    /**
+     * Returns the yields as a string to be displayed in the complex table.
+     *
+     * @return The yields as a string
+     */
+
+    public String getYieldsAsString()
+    {
+        final StringBuilder builder = new StringBuilder();
+        for (final Integer yield : this.yields)
+        {
+            if (builder.length() > 0) builder.append(", ");
+            builder.append(yield);
+        }
+        return builder.toString();
     }
 
 
@@ -128,7 +177,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     public int hashCode()
     {
         return new HashCodeBuilder().append(this.factory).append(this.quantity)
-            .append(this.yield).hashCode();
+                .append(this.yields).hashCode();
     }
 
 
@@ -144,8 +193,8 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         if (obj.getClass() != getClass()) return false;
         final ComplexFactory other = (ComplexFactory) obj;
         return new EqualsBuilder().append(this.factory, other.factory).append(
-            this.quantity, other.quantity).append(this.yield, other.yield)
-            .isEquals();
+            this.quantity, other.quantity).append(this.yields, other.yields)
+                .isEquals();
     }
 
 
@@ -159,7 +208,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         final int result = this.factory.getName().compareTo(
             other.factory.getName());
         if (result == 0)
-            return -1 * Integer.valueOf(this.yield).compareTo(other.yield);
+            return -1 * Integer.valueOf(getYield()).compareTo(other.getYield());
         return result;
     }
 
@@ -173,6 +222,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public void addQuantity(final int quantity)
     {
+        if (this.factory.isMine()) return;
         this.quantity += quantity;
     }
 
@@ -186,20 +236,22 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public void setQuantity(final int quantity)
     {
+        if (this.factory.isMine()) return;
         this.quantity = quantity;
     }
 
 
     /**
-     * Sets the yield.
+     * Sets the yields.
      *
-     * @param yield
-     *            The yield to set
+     * @param yields
+     *            The yields to set
      */
 
-    public void setYield(final int yield)
+    public void setYields(final List<Integer> yields)
     {
-        this.yield = yield;
+        this.yields.clear();
+        this.yields.addAll(yields);
     }
 
 
@@ -214,8 +266,21 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public Product getProductPerHour(final Suns suns)
     {
+        if (this.factory.isMine())
+        {
+            double quantity = 0;
+            for (final Integer yield : this.yields)
+            {
+                final Product product = this.factory
+                        .getProductPerHour(suns, yield);
+                quantity += product.getQuantity();
+            }
+            return new Product(this.factory.getProduct().getWare(), quantity
+                * (this.disabled ? 0 : 1));
+        }
+
         final Product product = this.factory
-            .getProductPerHour(suns, this.yield);
+                .getProductPerHour(suns, 0);
         return new Product(product.getWare(), product.getQuantity()
             * (this.disabled ? 0 : this.quantity));
     }
@@ -246,11 +311,28 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     public Collection<Product> getResourcesPerHour(final Suns suns)
     {
         final Collection<Product> resources = new ArrayList<Product>();
+
+        if (this.factory.isMine())
+        {
+            for (final Integer yield : this.yields)
+            {
+                for (final Product resource : this.factory.getResourcesPerHour(
+                    suns,
+                    yield))
+                {
+                    resources.add(new Product(resource.getWare(), resource
+                            .getQuantity()
+                        * (this.disabled ? 0 : 1)));
+                }
+                return resources;
+            }
+        }
+
         for (final Product resource : this.factory.getResourcesPerHour(suns,
-            this.yield))
+            0))
         {
             resources.add(new Product(resource.getWare(), resource
-                .getQuantity()
+                    .getQuantity()
                 * (this.disabled ? 0 : this.quantity)));
         }
         return resources;
@@ -281,8 +363,8 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         for (final Capacity capacity : this.factory.getCapacities())
         {
             capacities.add(new Capacity(capacity.getWare(), capacity
-                .getQuantity()
-                * (this.disabled ? 0 : this.quantity)));
+                    .getQuantity()
+                * (this.disabled ? 0 : getQuantity())));
         }
         return capacities;
     }

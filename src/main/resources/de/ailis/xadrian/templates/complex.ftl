@@ -15,7 +15,7 @@
     <h2>
       <a href="file://toggleShowingComplexSetup">
         [#if !print]
-          <img src="../images/[#if complex.showingComplexSetup]expanded[#else]collapsed[/#if].png" border="0" width="16" height="16" />
+          <img src="../images/[#if complex.showingComplexSetup]expanded[#else]collapsed[/#if].png" border="0" width="16" height="14" />
         [/#if]
         [@message key="complex.complexSetup" /]
       </a>
@@ -23,20 +23,12 @@
     [#if complex.showingComplexSetup || print]
       <p class="indent">
         [@message key="complex.sector" /]:
-        [#if !print]<a href="file://changeSector">[/#if]
-        [#if complex.sector??]
-          ${complex.sector}
-        [#else]
-          [@message key="complex.noSector" /]
-        [/#if]
-        [#if !print]</a>[/#if]
+        [#if !print]<a href="file://changeSector">[/#if][#if complex.sector??]${complex.sector}[#else][@message key="complex.noSector" /][/#if][#if !print]</a>[/#if]
       
         <br />
       
         [@message key="complex.suns" /]:
-        [#if !print && !complex.sector??]<a href="file://changeSuns">[/#if]
-        ${complex.suns}
-        [#if !print && !complex.sector??]</a>[/#if]
+        [#if !print && !complex.sector??]<a href="file://changeSuns">[/#if]${complex.suns}[#if !print && !complex.sector??]</a>[/#if]
       </p>
       [#if complex.factories?size == 0]
         <p class="indent">[@message key="complex.noFactories" /]</p>
@@ -82,17 +74,21 @@
               <td class="race">${factory.race.name}</td>
               <td class="yield">
                 [#if complexFactory.factory.mine]
-                  [#if !print]<a href="file://changeYield/${complexFactory_index}">[/#if]
-                    ${complexFactory.yield}
-                  [#if !print]</a>[/#if]
+                  [#if !print]<a href="file://changeYield/${complexFactory_index}">[/#if][#if complexFactory.quantity > 1]~[/#if] ${complexFactory.yield}[#if !print]</a>[/#if]
                 [/#if]
               </td>
               <td class="quantity">
                 [#if !print]
                   <table class="layout"><tr>
-                    <td><a href="file://changeQuantity/${complexFactory_index}">${complexFactory.quantity}</a>&nbsp;&nbsp;</td>
-                    <td><a href="file://increaseQuantity/${complexFactory_index}"><img src="../images/up12.png" border="0" width="12" height="12" /></a></td>
-                    <td><a href="file://decreaseQuantity/${complexFactory_index}"><img src="../images/down12.png" border="0" width="12" height="12" /></a></td>
+                    [#if complexFactory.factory.mine]
+                      <td>${complexFactory.quantity}&nbsp;&nbsp;</td>
+                      <td><img src="../images/blank.png" width="12" height="12" /></td>
+                      <td><img src="../images/blank.png" width="12" height="12" /></td>
+                    [#else]
+                      <td><a href="file://changeQuantity/${complexFactory_index}">${complexFactory.quantity}</a>&nbsp;&nbsp;</td>
+                      <td><a href="file://increaseQuantity/${complexFactory_index}"><img src="../images/up12.png" border="0" width="12" height="12" /></a></td>
+                      <td><a href="file://decreaseQuantity/${complexFactory_index}"><img src="../images/down12.png" border="0" width="12" height="12" /></a></td>
+                    [/#if]
                   </tr></table>
                 [#else]
                   ${complexFactory.quantity}
@@ -233,26 +229,14 @@
               <td class="${class}">${surplus?round}</td>
               <td class="price">
                 [#if surplus lt 0]
-                  <a href="file://changePrice/${complexWare.ware.id}">
-                    [#if complexWare.price gt 0]
-                      ${complexWare.price} Cr
-                    [#else]
-                      [@message key="complex.noTrade" /]
-                    [/#if]
-                  </a>
+                  <a href="file://changePrice/${complexWare.ware.id}">[#if complexWare.price gt 0]${complexWare.price} Cr[#else][@message key="complex.noTrade" /][/#if]</a>
                 [#else]
                   -
                 [/#if]
               </td>          
               <td class="price">
                 [#if surplus gt 0]
-                  <a href="file://changePrice/${complexWare.ware.id}">
-                    [#if complexWare.price gt 0]
-                      ${complexWare.price} Cr
-                    [#else]
-                      [@message key="complex.noTrade" /]
-                    [/#if]
-                  </a>
+                  <a href="file://changePrice/${complexWare.ware.id}">[#if complexWare.price gt 0]${complexWare.price} Cr[#else][@message key="complex.noTrade" /][/#if]</a>
                 [#else]
                   -
                 [/#if]

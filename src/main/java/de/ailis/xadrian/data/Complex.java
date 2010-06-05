@@ -393,9 +393,41 @@ public class Complex implements Serializable
      * @return The yield
      */
 
-    public int getYield(final int index)
+    public List<Integer> getYields(final int index)
     {
-        return this.factories.get(index).getYield();
+        return this.factories.get(index).getYields();
+    }
+
+
+    /**
+     * Sets the yields of the factory with the given index.
+     *
+     * @param index
+     *            The factory index
+     * @param yields
+     *            The yields to set
+     */
+
+    public void setYields(final int index, final List<Integer> yields)
+    {
+        final ComplexFactory factory = this.factories.get(index);
+        factory.setYields(yields);
+        calculateBaseComplex();
+        updateShoppingList();
+    }
+
+
+    /**
+     * Returns the factory type of factory with the given index.
+     *
+     * @param index
+     *            The factory index
+     * @return The factory
+     */
+
+    public Factory getFactory(final int index)
+    {
+        return this.factories.get(index).getFactory();
     }
 
 
@@ -411,7 +443,7 @@ public class Complex implements Serializable
 
     public void setYield(final int index, final int yield)
     {
-        this.factories.get(index).setYield(yield);
+        // TODO this.factories.get(index).setYield(yield);
         calculateBaseComplex();
     }
 
@@ -519,7 +551,8 @@ public class Complex implements Serializable
                 factoryE.addAttribute("factory", factory.getFactory().getId());
                 factoryE.addAttribute("quantity", Integer.toString(factory
                         .getQuantity()));
-                factoryE.addAttribute("yield", Integer.toString(factory
+                // TODO Implement me correctly
+                factoryE.addAttribute("yield", Double.toString(factory
                         .getYield()));
                 factoryE.addAttribute("disabled", Boolean.toString(factory
                         .isDisabled()));
@@ -544,7 +577,8 @@ public class Complex implements Serializable
 
         final Element shoppingListE = root.addElement("built");
         shoppingListE.addAttribute("kits", Integer.toString(this.builtKits));
-        for (final Entry<String, Integer> entry: this.builtFactories.entrySet())
+        for (final Entry<String, Integer> entry : this.builtFactories
+                .entrySet())
         {
             final String id = entry.getKey();
             final int quantity = entry.getValue();
@@ -640,12 +674,14 @@ public class Complex implements Serializable
         final Element builtE = root.element("built");
         if (builtE != null)
         {
-            complex.builtKits = Integer.parseInt(builtE.attributeValue("kits", "0"));
-            for (final Object item: builtE.elements("factory"))
+            complex.builtKits = Integer.parseInt(builtE.attributeValue("kits",
+                "0"));
+            for (final Object item : builtE.elements("factory"))
             {
                 final Element element = (Element) item;
                 final String id = element.attributeValue("id");
-                final int quantity = Integer.parseInt(element.attributeValue("quantity"));
+                final int quantity = Integer.parseInt(element
+                        .attributeValue("quantity"));
                 complex.builtFactories.put(id, quantity);
             }
         }

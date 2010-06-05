@@ -142,6 +142,32 @@ public class Factory implements Serializable, Comparable<Factory>
 
 
     /**
+     * Returns true if this factory is a silicon mine.
+     *
+     * @return True if this factory is a silicon mine. False if not.
+     */
+
+    public boolean isSiliconMine()
+    {
+        final String wareId = this.product.getWare().getId();
+        return wareId.equals("siliconWafers");
+    }
+
+
+    /**
+     * Returns true if this factory is an ore mine.
+     *
+     * @return True if this factory is an ore mine. False if not.
+     */
+
+    public boolean isOreMine()
+    {
+        final String wareId = this.product.getWare().getId();
+        return wareId.equals("ore");
+    }
+
+
+    /**
      * Returns the factory name.
      *
      * @return The factory name
