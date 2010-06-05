@@ -147,8 +147,9 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public int getYield()
     {
-        final double productPerHour = getProductPerHour().getQuantity()
+        double productPerHour = getProductPerHour().getQuantity()
             / getQuantity();
+        if (this.factory.isOreMine()) productPerHour *= 2;
         final int base = this.factory.isSiliconMine() ? 2400 : 600;
         final double quantity = this.factory.getProduct().getQuantity();
         return (int) Math.round((productPerHour * base)
