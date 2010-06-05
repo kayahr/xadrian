@@ -342,8 +342,8 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
                             .getQuantity()
                         * (this.disabled ? 0 : 1)));
                 }
-                return resources;
             }
+            return resources;
         }
 
         for (final Product resource : this.factory.getResourcesPerHour(suns,

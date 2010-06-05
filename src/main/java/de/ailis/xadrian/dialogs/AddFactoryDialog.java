@@ -130,7 +130,7 @@ public class AddFactoryDialog extends ModalDialog implements
         // Create the split pane housing the factory pane and info pane
         this.splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
             factoryPane, infoPane);
-        this.splitPane.setName("infoSplitPane");
+        this.splitPane.setName("factoryInfoSplitPane");
 
         // Create another container for just adding some border
         final JPanel contentPanel = new JPanel();

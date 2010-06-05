@@ -33,7 +33,7 @@ import de.ailis.xadrian.support.TextRenderer;
 /**
  * Component which displays the sectors in a graphical way and let the user
  * select one.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -72,7 +72,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         public String toString()
         {
             return I18N.getString("component.sectorSelector.viewMode."
-                + this.name().toLowerCase());
+                + name().toLowerCase());
         }
     }
 
@@ -101,7 +101,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Constructor
-     * 
+     *
      * @param maxW
      *            The maximum width
      * @param maxH
@@ -315,7 +315,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Outputs the yield info.
-     * 
+     *
      * @param renderer
      *            The text renderer
      * @param sector
@@ -366,9 +366,9 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
     @Override
     public void mouseDragged(final MouseEvent e)
     {
-        // TODO Auto-generated method stub
-
+        // Ignored
     }
+
 
     /**
      * @see java.awt.event.MouseMotionListener#mouseMoved(MouseEvent)
@@ -447,7 +447,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Sets the filter.
-     * 
+     *
      * @param filter
      *            The filter to set
      */
@@ -462,7 +462,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Adds alpha to the specified color.
-     * 
+     *
      * @param color
      *            The original color
      * @param alpha
@@ -479,7 +479,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Sets the view mode.
-     * 
+     *
      * @param mode
      *            The view mode to set.
      */
@@ -494,7 +494,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Returns the current view mode.
-     * 
+     *
      * @return The view mode
      */
 
@@ -506,7 +506,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Returns the selected sector.
-     * 
+     *
      * @return The selected sector
      */
 
@@ -518,7 +518,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Sets the selected sector. null deselectes the currently selected sector.
-     * 
+     *
      * @param sector
      *            The sector to select
      */
@@ -537,7 +537,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Adds a sector selector state listener.
-     * 
+     *
      * @param listener
      *            The listener to add
      */
@@ -551,7 +551,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /**
      * Removes a sector selector state listener.
-     * 
+     *
      * @param listener
      *            The listener to remove
      */

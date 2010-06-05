@@ -25,19 +25,20 @@ import de.ailis.xadrian.components.AsteroidsInfoPane;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.factories.FactoryFactory;
+import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
 
 
 /**
- * Dialog for setting the asteroids to use for a specific mine type in the
+ * Dialog for setting the yields to use for a specific mine type in the
  * current complex.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
 
-public class SetupAsteroidsDialog extends ModalDialog
+public class SetYieldsDialog extends ModalDialog
 {
     /** Serial version UID */
     private static final long serialVersionUID = 1;
@@ -50,9 +51,6 @@ public class SetupAsteroidsDialog extends ModalDialog
 
     /** The sector view */
     private JTextPane inputPane;
-
-    /** The mine type to setup the asteroids for */
-    private final Factory mineType;
 
     /** The label */
     private JLabel label;
@@ -68,13 +66,12 @@ public class SetupAsteroidsDialog extends ModalDialog
      *            The mine type
      */
 
-    public SetupAsteroidsDialog(final Factory mineType)
+    public SetYieldsDialog(final Factory mineType)
     {
-        super("setupAsteroids", Result.OK, Result.CANCEL);
+        super("setYields", Result.OK, Result.CANCEL);
         setResizable(false);
-        this.label.setText(I18N.getString("dialog.setupAsteroids.yields",
+        this.label.setText(I18N.getString("dialog.setYields.yields",
             mineType.getRace().toString() + " " + mineType.toString()));
-        this.mineType = mineType;
     }
 
 
@@ -134,7 +131,7 @@ public class SetupAsteroidsDialog extends ModalDialog
         final JSplitPane splitPane = this.splitPane = new JSplitPane(
             JSplitPane.HORIZONTAL_SPLIT,
             factoryPane, infoPane);
-        splitPane.setName("infoSplitPane");
+        splitPane.setName("asteroidsInfoSplitPane");
 
         // Create another container for just adding some border
         final JPanel contentPanel = new JPanel(new BorderLayout(5, 5));
@@ -185,17 +182,25 @@ public class SetupAsteroidsDialog extends ModalDialog
     @Override
     public Result open()
     {
-        // Initialize the input pane with the yields
-        final StringBuilder yields = new StringBuilder();
-        for (final Integer yield : this.yields)
+        Config.restoreSplitPaneState(this.splitPane);
+        try
         {
-            if (yields.length() > 0) yields.append(", ");
-            yields.append(yield);
-        }
-        this.inputPane.setText(yields.toString());
+            // Initialize the input pane with the yields
+            final StringBuilder yields = new StringBuilder();
+            for (final Integer yield : this.yields)
+            {
+                if (yields.length() > 0) yields.append(", ");
+                yields.append(yield);
+            }
+            this.inputPane.setText(yields.toString());
 
-        final Result result = super.open();
-        return result;
+            final Result result = super.open();
+            return result;
+        }
+        finally
+        {
+            Config.saveSplitPaneState(this.splitPane);
+        }
     }
 
 
@@ -279,7 +284,7 @@ public class SetupAsteroidsDialog extends ModalDialog
 
         final Factory mineType = FactoryFactory.getInstance().getFactory(
             "siliconMineL-teladi");
-        final SetupAsteroidsDialog dialog = new SetupAsteroidsDialog(mineType);
+        final SetYieldsDialog dialog = new SetYieldsDialog(mineType);
         final List<Integer> yields = new ArrayList<Integer>();
         yields.add(10);
         yields.add(25);

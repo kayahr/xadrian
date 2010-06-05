@@ -54,7 +54,7 @@ import de.ailis.xadrian.dialogs.ChangeSunsDialog;
 import de.ailis.xadrian.dialogs.OpenComplexDialog;
 import de.ailis.xadrian.dialogs.SaveComplexDialog;
 import de.ailis.xadrian.dialogs.SelectSectorDialog;
-import de.ailis.xadrian.dialogs.SetupAsteroidsDialog;
+import de.ailis.xadrian.dialogs.SetYieldsDialog;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.interfaces.ClipboardProvider;
 import de.ailis.xadrian.interfaces.ComplexProvider;
@@ -591,7 +591,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public void changeYield(final int index)
     {
         final Factory mineType = this.complex.getFactory(index);
-        final SetupAsteroidsDialog dialog = new SetupAsteroidsDialog(mineType);
+        final SetYieldsDialog dialog = new SetYieldsDialog(mineType);
         dialog.setYields(this.complex.getYields(index));
         dialog.setSector(this.complex.getSector());
         if (dialog.open() == Result.OK)

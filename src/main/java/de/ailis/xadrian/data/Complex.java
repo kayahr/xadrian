@@ -432,23 +432,6 @@ public class Complex implements Serializable
 
 
     /**
-     * Sets the yield of the factory with the given index to the specified
-     * yield.
-     *
-     * @param index
-     *            The factory index
-     * @param yield
-     *            The yield to set
-     */
-
-    public void setYield(final int index, final int yield)
-    {
-        // TODO this.factories.get(index).setYield(yield);
-        calculateBaseComplex();
-    }
-
-
-    /**
      * Sets the suns in percent.
      *
      * @param suns
