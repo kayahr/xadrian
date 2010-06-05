@@ -2,13 +2,19 @@ body
 {
     font-family: Arial, sans-serif;
     font-size: 9px;
-    color: #000000;       
-    margin: 0;
+    color: #000000;    
+    margin: 2px;
+    background: #ffffaa;
 }
 
 p
 {
     margin: 0 0 9px 0;
+}
+
+p.yields
+{
+	margin-left: 9px;
 }
 
 h1
@@ -17,15 +23,12 @@ h1
     font-size: 12px;
     font-weight: bold;
     margin: 0 0 9px 0;
-    text-decoration: underline;
 }
 
-dt
+h2
 {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
     font-weight: bold;
-}
-
-dd
-{
-    margin-left: 10px;
+    margin: 1em 0 0 0;
 }

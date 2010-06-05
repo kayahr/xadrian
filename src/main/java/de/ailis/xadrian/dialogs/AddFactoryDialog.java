@@ -38,20 +38,20 @@ import freemarker.template.Template;
 
 /**
  * Dialog for selecting a complex factory.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
 public class AddFactoryDialog extends ModalDialog implements
-    TreeSelectionListener
+        TreeSelectionListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = 4157034476842995945L;
 
     /** The freemarker template for the factory info */
     private static final Template template = TemplateFactory
-        .getTemplate("factory.ftl");
-    
+            .getTemplate("factory.ftl");
+
     /** The singleton instance of this dialog */
     private final static AddFactoryDialog instance = new AddFactoryDialog();
 
@@ -63,7 +63,7 @@ public class AddFactoryDialog extends ModalDialog implements
 
     /** The factory info text pane */
     private JTextPane textPane;
-    
+
     /** The split pane between tree and info panel */
     private JSplitPane splitPane;
 
@@ -125,29 +125,29 @@ public class AddFactoryDialog extends ModalDialog implements
 
         // Set the base URL of the text pane
         ((HTMLDocument) this.textPane.getDocument()).setBase(Main.class
-            .getResource("templates/"));
-        
+                .getResource("templates/"));
+
         // Create the split pane housing the factory pane and info pane
         this.splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
             factoryPane, infoPane);
         this.splitPane.setName("infoSplitPane");
-        
+
         // Create another container for just adding some border
         final JPanel contentPanel = new JPanel();
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.add(this.splitPane);
-        
+
         // Put this last panel into the window
         add(contentPanel, BorderLayout.CENTER);
-        
+
         redraw();
     }
 
 
     /**
      * Returns the singleton instance
-     * 
+     *
      * @return The singleton instance
      */
 
@@ -216,7 +216,7 @@ public class AddFactoryDialog extends ModalDialog implements
 
     /**
      * Returns the factories to add.
-     * 
+     *
      * @return The factories to add
      */
 
@@ -225,7 +225,7 @@ public class AddFactoryDialog extends ModalDialog implements
         return this.factories;
     }
 
-    
+
     /**
      * Redraws the freemarker template.
      */
@@ -233,10 +233,24 @@ public class AddFactoryDialog extends ModalDialog implements
     private void redraw()
     {
         final Map<String, Object> model = new HashMap<String, Object>();
-        model.put("factories", this.factories == null ? new Object[0] : this.factories);
+        model.put("factories", this.factories == null ? new Object[0]
+            : this.factories);
         final String content = TemplateFactory.processTemplate(template,
             model);
         this.textPane.setText(content);
         this.textPane.setCaretPosition(0);
+    }
+
+
+    /**
+     * Test main method.
+     *
+     * @param args
+     *            Command line arguments
+     */
+
+    public static void main(final String args[])
+    {
+        System.out.println(getInstance().open());
     }
 }

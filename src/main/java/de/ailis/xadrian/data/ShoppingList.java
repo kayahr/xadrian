@@ -75,7 +75,6 @@ public class ShoppingList implements Serializable
         this.totalVolume += item.getTotalVolume();
         this.totalQuantity += item.getQuantity();
         this.totalPrice += item.getTotalPrice();
-        this.totalBuilt += item.getQuantityBuilt();
 
         // Try to update an existing list item first
         for (i = 0, max = this.items.size(); i < max; i++)
@@ -93,6 +92,7 @@ public class ShoppingList implements Serializable
 
         // Add the new item
         this.items.add(item);
+        this.totalBuilt += item.getQuantityBuilt();
         Collections.sort(this.items);
     }
 

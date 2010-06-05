@@ -6,22 +6,23 @@
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Action;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.border.BevelBorder;
+import javax.swing.JTextPane;
 
 import de.ailis.xadrian.actions.ChangeSectorAction;
-import de.ailis.xadrian.components.AsteroidCheckList;
-import de.ailis.xadrian.components.SectorView;
-import de.ailis.xadrian.data.Ware;
-import de.ailis.xadrian.data.factories.WareFactory;
-import de.ailis.xadrian.models.AsteroidSelectionModel;
+import de.ailis.xadrian.components.AsteroidsInfoPane;
+import de.ailis.xadrian.data.Factory;
+import de.ailis.xadrian.data.factories.FactoryFactory;
+import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
 
@@ -36,30 +37,38 @@ import de.ailis.xadrian.utils.SwingUtils;
 public class SetupAsteroidsDialog extends ModalDialog
 {
     /** Serial version UID */
-    private static final long serialVersionUID = -2929706815604197020L;
+    private static final long serialVersionUID = 1;
+
+    /** The split pane */
+    private JSplitPane splitPane;
+
+    /** The asteroids info pane */
+    private AsteroidsInfoPane asteroidsInfoPane;
 
     /** The sector view */
-    private SectorView sectorView;
+    private JTextPane inputPane;
 
-    /** The asteroid check list */
-    private AsteroidCheckList asteroidCheckList;
+    /** The mine type to setup the asteroids for */
+    private final Factory mineType;
 
-    /** The asteroid selection model */
-    private AsteroidSelectionModel model;
+    /** The label */
+    private JLabel label;
 
 
     /**
      * Constructor
      *
-     * @param ware
-     *            The ware for which asteroids are selected
+     * @param mineType
+     *            The mine type
      */
 
-    private SetupAsteroidsDialog(final Ware ware)
+    private SetupAsteroidsDialog(final Factory mineType)
     {
         super("setupAsteroids", Result.OK, Result.CANCEL);
-        this.model.setWare(ware);
-        setResizable(true);
+        setResizable(false);
+        this.label.setText(I18N.getString("dialog.setupAsteroids.yields",
+            mineType.getRace().toString() + " " + mineType.toString()));
+        this.mineType = mineType;
     }
 
 
@@ -70,7 +79,7 @@ public class SetupAsteroidsDialog extends ModalDialog
     @Override
     protected void init()
     {
-        this.model = new AsteroidSelectionModel();
+        this.asteroidsInfoPane = new AsteroidsInfoPane();
     }
 
 
@@ -81,42 +90,32 @@ public class SetupAsteroidsDialog extends ModalDialog
     @Override
     protected void createUI()
     {
-        // Create the sector view panel
-        final JPanel sectorViewPanel = new JPanel();
-        sectorViewPanel.setLayout(new BorderLayout());
-        sectorViewPanel.setBorder(BorderFactory
-            .createBevelBorder(BevelBorder.LOWERED));
-        this.sectorView = new SectorView(this.model);
-        sectorViewPanel.add(this.sectorView, BorderLayout.CENTER);
+        // Enable resizing
+        setResizable(true);
 
-        // Create the controls panel
-        final JPanel controlsPanel = new JPanel();
-        controlsPanel
-            .setLayout(new BoxLayout(controlsPanel, BoxLayout.Y_AXIS));
+        // Create the content controls
+        final JTextPane input = this.inputPane = new JTextPane();
 
-        this.asteroidCheckList = new AsteroidCheckList(this.model);
-        this.asteroidCheckList.setAlignmentX(LEFT_ALIGNMENT);
-        controlsPanel.add(this.asteroidCheckList);
-        SwingUtils.setPreferredHeight(controlsPanel, 512);
+        // Create the factory pane
+        final JScrollPane factoryPane = new JScrollPane(input);
+        factoryPane.setPreferredSize(new Dimension(320, 240));
 
+        // Create the info pane
+        final AsteroidsInfoPane infoPane = this.asteroidsInfoPane;
+        infoPane.setPreferredSize(new Dimension(210, 240));
 
-        // controlsPanel.add(Box.createGlue());
-        final JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel
-            .setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        final JSplitPane splitPane =
-            new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        // Create the split pane housing the factory pane and info pane
+        final JSplitPane splitPane = this.splitPane = new JSplitPane(
+            JSplitPane.HORIZONTAL_SPLIT,
+            factoryPane, infoPane);
+        splitPane.setName("infoSplitPane");
 
         // Create another container for just adding some border
-        // contentPanel.setLayout(new BoxLayout(contentPanel,
-        // BoxLayout.Y_AXIS));
-        splitPane.add(controlsPanel);
-        splitPane.setDividerSize(10);
-        splitPane.setContinuousLayout(true);
-
-        splitPane.add(sectorViewPanel);
+        final JPanel contentPanel = new JPanel(new BorderLayout(5, 5));
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         contentPanel.add(splitPane, BorderLayout.CENTER);
+        this.label = new JLabel();
+        contentPanel.add(this.label, BorderLayout.NORTH);
 
         // Put this last panel into the window
         add(contentPanel, BorderLayout.CENTER);
@@ -143,7 +142,8 @@ public class SetupAsteroidsDialog extends ModalDialog
     protected List<Action> createDialogActions()
     {
         final List<Action> dialogActions = new ArrayList<Action>();
-        dialogActions.add(new ChangeSectorAction(this.model, "sector"));
+        dialogActions.add(new ChangeSectorAction(this.asteroidsInfoPane,
+            "sector"));
         return dialogActions;
     }
 
@@ -154,15 +154,17 @@ public class SetupAsteroidsDialog extends ModalDialog
      * @param args
      *            Command line arguments
      * @throws Exception
-     *            When something goes wrong
+     *             When something goes wrong
      */
 
     public static void main(final String args[]) throws Exception
     {
         SwingUtils.prepareGUI();
 
-        new SetupAsteroidsDialog(WareFactory.getInstance().getWare(
-            "siliconWafers")).open();
+        final Factory mineType = FactoryFactory.getInstance().getFactory(
+            "siliconMineL-teladi");
+        final SetupAsteroidsDialog dialog = new SetupAsteroidsDialog(mineType);
+        dialog.open();
         System.exit(0);
     }
 }
