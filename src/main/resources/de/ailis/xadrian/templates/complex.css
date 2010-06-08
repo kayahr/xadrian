@@ -101,9 +101,10 @@ tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
 
 .factory-resources
 {
-    padding-left:15px;
-    font-size:90%;
+    padding-left: 15px;
+    font-size: 90%;
     font-style: italic;
+    color: #aaaaaa;
 }
 
 .yield, .race, .container
