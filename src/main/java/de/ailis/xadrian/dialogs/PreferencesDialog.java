@@ -12,11 +12,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
+import javax.swing.border.EmptyBorder;
 
+import de.ailis.xadrian.components.LabelSeparator;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.support.Config;
@@ -44,6 +47,10 @@ public class PreferencesDialog extends ModalDialog
     /** The checkbox for enable Factory description (resources needed) in Complex table */
     private JCheckBox showFactoryResourcesCheckBox;
 
+    /** The player sector combo box */
+    private JComboBox playerSectorComboBox;
+
+
     /**
      * Constructor
      */
@@ -63,77 +70,131 @@ public class PreferencesDialog extends ModalDialog
     {
         // Create the content panel
         final JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridBagLayout());
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.PAGE_AXIS));
         contentPanel
             .setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        final GridBagConstraints c = new GridBagConstraints();
 
-        // Create the races headline
-        final JLabel racesLabel =
-            new JLabel(I18N.getString("dialog.preferences.usedRaces"));
-        racesLabel.setToolTipText(I18N.getToolTip("dialog.preferences.usedRaces"));
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.WEST;
-        c.gridx = 0;
-        c.gridy = 0;
-        contentPanel.add(racesLabel, c);
-        c.gridx = 1;
-        c.weightx = 1;
-        c.insets.left = 5;
-        final JSeparator racesSeparator = new JSeparator();
-        contentPanel.add(racesSeparator, c);
-        c.weightx = 0;
-        c.insets.left = 0;
+        contentPanel.add(createUsedRaces());
+        contentPanel.add(createGameSettings());
+        contentPanel.add(createViewSettings());
+
+        add(contentPanel, BorderLayout.CENTER);
+    }
+
+
+    /**
+     * Creates and returns the panel with the races settings.
+     *
+     * @return The created panel
+     */
+
+    private JPanel createUsedRaces()
+    {
+        final JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+
+        // Create the races separator
+        final LabelSeparator separator =
+            new LabelSeparator(I18N.getString("dialog.preferences.usedRaces"));
+        separator.setToolTipText(I18N.getToolTip("dialog.preferences.usedRaces"));
+        panel.add(separator);
 
         // Create the race checkboxes
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridwidth = 2;
         final JPanel racePanel = new JPanel();
         racePanel.setLayout(new GridBagLayout());
-        final GridBagConstraints c2 = new GridBagConstraints();
-        c2.fill = GridBagConstraints.HORIZONTAL;
-        c2.anchor = GridBagConstraints.WEST;
-        c2.gridx = 0;
-        c2.gridy = 0;
+        racePanel.setBorder(new EmptyBorder(2, 20, 5, 0));
+
+        final GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.WEST;
+        c.weightx = 1;
+        c.gridx = 0;
+        c.gridy = 0;
         this.racesCheckBoxes = new HashMap<Race, JCheckBox>();
         for (final Race race: RaceFactory.getInstance().getManufacturerRaces())
         {
             final JCheckBox raceCheckBox = new JCheckBox(race.getName());
-            if (c2.gridx == 3)
+            if (c.gridx == 3)
             {
-                c2.gridx = 0;
-                c2.gridy++;
+                c.gridx = 0;
+                c.gridy++;
             }
-            racePanel.add(raceCheckBox, c2);
+            racePanel.add(raceCheckBox, c);
             this.racesCheckBoxes.put(race, raceCheckBox);
-            c2.gridx++;
+            c.gridx++;
         }
-        c.insets.left = 20;
-        c.insets.top = 5;
-        contentPanel.add(racePanel, c);
+        panel.add(racePanel);
+        return panel;
+    }
 
-        // Create the factory description separator
+
+    /**
+     * Creates and returns the panel with the game settings.
+     *
+     * @return The created panel
+     */
+
+    private JPanel createGameSettings()
+    {
+        final JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+
+        // Create the separator
+        final LabelSeparator separator =
+            new LabelSeparator(I18N.getString("dialog.preferences.gameSettings"));
+        panel.add(separator);
+
+        // Create the control panel
+        final JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new GridBagLayout());
+        controlPanel.setBorder(new EmptyBorder(2, 20, 5, 0));
+        final GridBagConstraints c = new GridBagConstraints();
+        final JLabel label = new JLabel("Player sector");
         c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 2;
-        c.weightx = 1;
-        c.insets.left = 0;
-        final JSeparator factoryDescSeparator = new JSeparator();
-        contentPanel.add(factoryDescSeparator, c);
-        c.weightx = 0;
+        c.gridy = 0;
+        controlPanel.add(label, c);
+        c.gridx = 1;
+        c.insets.left = 5;
+        this.playerSectorComboBox = new JComboBox();
+        for (int i = 0; i < 5; i++)
+        {
+            this.playerSectorComboBox.addItem(I18N.getString("sector.sec-20-2-" + i));
+        }
+        controlPanel.add(this.playerSectorComboBox, c);
+        panel.add(controlPanel);
+        return panel;
+    }
 
-        // Create the factors resource display checkbox
-        c.gridy = 3;
-        c.insets.left = 20;
+
+
+    /**
+     * Creates and returns the panel with the view settings.
+     *
+     * @return The created panel
+     */
+
+    private JPanel createViewSettings()
+    {
+        final JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+
+        // Create the separator
+        final LabelSeparator separator =
+            new LabelSeparator(I18N.getString("dialog.preferences.viewSettings"));
+        panel.add(separator);
+
+        // Create the control panel
+        final JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new BorderLayout());
+        controlPanel.setBorder(new EmptyBorder(2, 20, 5, 0));
         this.showFactoryResourcesCheckBox = new JCheckBox(
             I18N.getString("dialog.preferences.showFactoryResources"));
         this.showFactoryResourcesCheckBox.setToolTipText(
             I18N.getToolTip("dialog.preferences.showFactoryResources"));
-        contentPanel.add(this.showFactoryResourcesCheckBox, c);
+        controlPanel.add(this.showFactoryResourcesCheckBox);
 
-        // Put this last panel into the window
-        add(contentPanel, BorderLayout.CENTER);
+        panel.add(controlPanel, BorderLayout.CENTER);
+        return panel;
     }
 
 
@@ -167,6 +228,7 @@ public class PreferencesDialog extends ModalDialog
             checkBox.setSelected(!config.isRaceIgnored(race));
         }
         this.showFactoryResourcesCheckBox.setSelected(config.isShowFactoryResources());
+        this.playerSectorComboBox.setSelectedIndex(config.getPlayerSector());
         final Result result = super.open();
         if (result == Result.OK)
         {
@@ -180,6 +242,7 @@ public class PreferencesDialog extends ModalDialog
                     .setRaceIgnored(race, !checkBox.isSelected());
             }
             config.setShowFactoryResources(this.showFactoryResourcesCheckBox.isSelected());
+            config.setPlayerSector(this.playerSectorComboBox.getSelectedIndex());
         }
         return result;
     }
