@@ -1,6 +1,3 @@
 * Add Yes/no-to-all option in close all action.
-* Implement better way to select asteroids.
-* Add X3R support.
 * Max-Complex calculation.
-* Display yield 26 data for mines in factory selection dialog.
 
