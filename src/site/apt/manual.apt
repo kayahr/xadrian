@@ -7,13 +7,13 @@ Manual
   When Xadrian is started then it begins with a fresh new factory complex as
   shown in this figure:
 
-[images/screen1s] Starting with a new empty factory complex
+[images/screen1s.png] Starting with a new empty factory complex
 
   You can now begin adding factories to this new complex by clicking the
   <Add a factory> hyperlink or by clicking the corresponding function in
   the menu or the toolbar. This will open this dialog window:
 
-[images/screen2s] Adding a factory
+[images/screen2s.png] Adding a factory
 
   Factories are grouped by their races in form of a tree. Select the
   factory (or multiple factories) you want to add to your complex. On the
@@ -28,7 +28,8 @@ Manual
   quantity.
 
   To change the yield of a mine simply click the yield value and enter a
-  new yield.
+  new yield. You can also enter multiple values to quickly integrated lot of
+  mines into the complex.
   
   You can change the sun power by clicking the suns percent value at the
   top of the complex view. This influences the effectivity of solar power
@@ -53,7 +54,7 @@ Manual
 
   A finished complex looks like this:
 
-[images/screen3s] A complete factory complex
+[images/screen3s.png] A complete factory complex
 
   As you can see in the production statistics this complex is completely
   self-sustaining.

@@ -13,7 +13,7 @@ Was ist Xadrian?
 
   Features:
 
-    * Kennt alle Fabriken die in einem regulären X3TC 2.1 Spiel gekauft werden können.
+    * Kennt alle Fabriken die in einem regulären X3TC 2.7 Spiel gekauft werden können.
     
     * Optionale automatische Grundkomplex-Berechnung.
 
@@ -24,6 +24,9 @@ Was ist Xadrian?
     * Komplex kann mit einem Sektor verbunden werden. Sonnenstärke wird 
       dann automatisch konfiguriert und außerdem werden die nächstgelegenen
       Schiffswerften zum Kauf der Fabriken angezeigt.
+      
+    * Einfache Erstellung von Minen. Einfach einen Minen-Typ hinzufügen und
+      beliebig viele Asteroiden-Ausbeuten für diesen Typ eingeben.
     
     * Plattform-unabhängige Applikation. Läuft auf jeder Platform die
       {{{http://java.sun.com/javase/6/}Java SE 6}} oder höher unterstützt.
@@ -36,11 +39,14 @@ Was ist Xadrian?
       
 Erste Schritte
 
-  Das aktuellste Binärpaket von Xadrian {{{download.html}herunterladen}}, 
-  {{{install.html}installieren}} und dann die
-  {{{manual.html}Anleitung lesen}}.
+  Das aktuellste Binärpaket von Xadrian {{{./download.html}herunterladen}}, 
+  {{{./install.html}installieren}} und dann die
+  {{{./manual.html}Anleitung lesen}}.
 
 Neuigkeiten
+
+  * 08.06.2010 - Version 1.3.0 veröffentlicht mit Unterstützung von X3TC
+    2.7. Siehe {{{./changes-report.html}Changelog}} für nähere Informationen.
 
   * 14.06.2009 - Version 1.2.2 veröffentlicht mit Unterstützung für die
     Proteinpastenmischerei L, die mit X3TC 2.1 eingeführt wurde. 
@@ -49,7 +55,7 @@ Neuigkeiten
     Größe L, die mit X3TC 2.1 eingeführt wurden. 
   
   * 17.04.2009 - Version 1.2.0 veröffentlicht. Siehe
-    {{{changes-report.html}Changelog}} für nähere Informationen.
+    {{{./changes-report.html}Changelog}} für nähere Informationen.
 
   * 14.03.2009 - Version 1.1.0 veröffentlicht.
 

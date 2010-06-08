@@ -18,12 +18,12 @@
     </links>
     
     <menu name="Xadrian">
-      <item name="Info" href="index.html" />
-      <item name="Download" href="download.html" />
-      <item name="Installation" href="install.html" />
-      <item name="Anleitung" href="manual.html" />
-      <item name="FAQ" href="faq.html" />
-      <item name="Probleme berichten" href="problems.html" />
+      <item name="Info" href="./index.html" />
+      <item name="Download" href="./download.html" />
+      <item name="Installation" href="./install.html" />
+      <item name="Anleitung" href="./manual.html" />
+      <item name="FAQ" href="./faq.html" />
+      <item name="Probleme berichten" href="./problems.html" />
     </menu>
     
     <menu ref="reports" />

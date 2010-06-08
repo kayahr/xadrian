@@ -15,7 +15,7 @@ Installation
   
 * Installing Xadrian
 
-  After you have {{{download.html}downloaded}} the Xadrian binary
+  After you have {{{./download.html}downloaded}} the Xadrian binary
   archive you have to unpack it somewhere on your system. Windows users may choose
   <C:\Program Files> for it while Unix users may prefer </opt> or 
   </usr/local>.

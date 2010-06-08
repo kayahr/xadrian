@@ -14,7 +14,7 @@ Installation
   
 * Xadrian installieren
 
-  Nach dem {{{download.html}Download}} das Xadrian Binärpaket
+  Nach dem {{{./download.html}Download}} das Xadrian Binärpaket
   irgendwo entpacken. Unter Windows bietet sich z.B.
   <C:\Programme> an, unter Unix hingegen eher </opt> oder </usr/local>.
 

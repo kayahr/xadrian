@@ -7,14 +7,14 @@ Anleitung
   Wenn Xadrian gestartet wird, dann startet es immer mit einem frischen leeren
   Fabrik-Komplex wie in dieser Abbildung zu sehen:
 
-[../images/screen1s] Programm-Start mit einem neuen leeren Fabrik-Komplex
+[../images/screen1s.png] Programm-Start mit einem neuen leeren Fabrik-Komplex
 
   Du kannst nun damit beginnen Fabriken zu diesem neuen Komplex hinzuzufügen,
   indem du auf den <Fabrik hinzufügen> Link klickst oder die entsprechende 
   Funktion im Menü oder in der Toolbar anklickst. Dies öffnet dann folgenden
   Dialog:
 
-[../images/screen2s] Eine Fabrik hinzufügen
+[../images/screen2s.png] Eine Fabrik hinzufügen
 
   Fabriken sind gemäß ihrer Rassen gruppiert und werden in einer Baumansicht
   aufgelistet. Wähle die Fabrik (oder auch mehrere Fabriken), die du zum
@@ -30,7 +30,9 @@ Anleitung
   Link dargestellt ist) klicken und eine neue Anzahl auswählen.
   
   Um die Ausbeute bei einer Mine zu ändern, einfach auf den Ausbeute-Wert klicken
-  und einen neuen Wert eingeben.
+  und einen neuen Wert eingeben. Es können auch mit Kommas getrennt mehrere
+  Ausbeuten eingegeben werden. Auf diese Weise ist es sehr einfach viele
+  Asteroiden in einem Schwung in den Komplex einzubinden.
   
   Die Sonnenstärke kann mit einem Klick auf den Prozent-Wert oben in der
   Komplex-Ansicht geändert werden. Dies beinflusst die Effektivität von
@@ -54,7 +56,7 @@ Anleitung
 
   Ein fertiger Komplex sieht dann z.B. so aus:
   
-[../images/screen3s] Ein fertiger Fabrik-Komplex
+[../images/screen3s.png] Ein fertiger Fabrik-Komplex
 
   Wie du in der Produktions-Statistik sehen kannst, ist dieser Komplex 
   komplett selbstversorgend.
