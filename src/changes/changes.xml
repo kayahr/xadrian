@@ -18,6 +18,10 @@
         the quantity dialog.
       </action>
       <action dev="k" type="add" date="2010-05-22">
+        Improved shopping list. You can now use up/down counters to note which
+        factories you have already built. 
+      </action>
+      <action dev="k" type="add" date="2010-05-22">
         Applied nicer style to complex data. Sections can now be collapsed
         and expanded by clicking the section headers.
       </action>
