@@ -39,6 +39,9 @@ public final class Config
     /** Config key for displaying factory resources in complex table */
     private static final String SHOW_FACTORY_RESOURCES = "showfactoryresources";
 
+    /** COnfig key for the index of the chosen player sector */
+    private static final String PLAYER_SECTOR = "playerSector";
+
     /** The singleton instance */
     private static final Config instance = new Config();
 
@@ -50,6 +53,9 @@ public final class Config
 
     /** The Factory Description flag */
     private boolean showFactoryResources = true;
+
+    /** The index of the chosen player sector */
+    private int playerSector = 0;
 
 
     /**
@@ -95,6 +101,7 @@ public final class Config
         this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
         this.showFactoryResources = prefs.getBoolean(
                 SHOW_FACTORY_RESOURCES, true);
+        this.playerSector = prefs.getInt(PLAYER_SECTOR, 0);
     }
 
 
@@ -137,6 +144,7 @@ public final class Config
         else
             prefs.remove(LAST_FILE_CHOOSER_PATH);
         prefs.putBoolean(SHOW_FACTORY_RESOURCES, this.showFactoryResources);
+        prefs.putInt(PLAYER_SECTOR, this.playerSector);
     }
 
 
@@ -332,6 +340,19 @@ public final class Config
 
 
     /**
+     * Sets the player sector.
+     *
+     * @param playerSector
+     *            The player sector to set
+     */
+
+    public void setPlayerSector(final int playerSector)
+    {
+        this.playerSector = playerSector;
+    }
+
+
+    /**
      * Returns the index of the selected player sector.
      *
      * @return The player sector index
@@ -339,6 +360,6 @@ public final class Config
 
     public int getPlayerSector()
     {
-        return 0;
+        return this.playerSector;
     }
 }
