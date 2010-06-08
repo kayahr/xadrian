@@ -11,5 +11,5 @@
   <race id="terran" color="#ED7E3A" />
   <race id="xenon" color="#FFFFFF" />
   <race id="yaki" color="#B47660" />
-  <race id="player" color="#123456" />
+  <race id="player" color="#00ff00" />
 </races>
