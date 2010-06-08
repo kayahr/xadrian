@@ -149,7 +149,7 @@ public class PreferencesDialog extends ModalDialog
         controlPanel.setLayout(new GridBagLayout());
         controlPanel.setBorder(new EmptyBorder(2, 20, 5, 0));
         final GridBagConstraints c = new GridBagConstraints();
-        final JLabel label = new JLabel("Player sector");
+        final JLabel label = new JLabel(I18N.getString("dialog.preferences.playerSector"));
         c.gridx = 0;
         c.gridy = 0;
         controlPanel.add(label, c);
