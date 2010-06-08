@@ -2493,7 +2493,7 @@
       <station id="SDOLE-61" class="tradingDock" type="splitTradingPort" x="-1506" y="2134" z="-3941" />
     </stations>
   </sector>
-  <sector id="sec-20-5" x="20" y="5" race="unknown" planets="1" suns="100" core="false" west="sec-19-5">
+  <sector id="sec-20-5" x="20" y="5" race="unknown" planets="1" suns="100" core="false" west="sec-19-5" north="sec-20-2">
     <asteroids>
       <asteroid id="ASOG-08" ware="ore" yield="5" x="-24078" y="-8206" z="-26394" />
       <asteroid id="ASOG-16" ware="ore" yield="15" x="1957" y="731" z="5336" />
@@ -6027,8 +6027,175 @@
       <asteroid id="ASPC-21" ware="ore" yield="10" x="-12862" y="4608" z="-17660" />
     </asteroids>
   </sector>
-  <!--
-  <sector id="sec-23-19" x="23" y="19" race="unknown" planets="0" suns="0" core="false">
+
+  <sector id="sec-20-2" x="20" y="2" race="player" planets="3" suns="300" core="false" south="sec-20-5">
+    <!-- Ceo's Wellspring -->
+    <switch>
+      <asteroids>
+        <asteroid id="AS??-01" ware="ore" yield="39" x="10200" y="11200" z="46800" />
+        <asteroid id="AS??-02" ware="ore" yield="38" x="18500" y="9620" z="24000" />
+        <asteroid id="AS??-03" ware="ore" yield="38" x="9780" y="-200" z="34300" />
+        <asteroid id="AS??-04" ware="ore" yield="34" x="-4120" y="-10900" z="-15800" />
+        <asteroid id="AS??-05" ware="ore" yield="25" x="35200" y="7030" z="-17500" />
+        <asteroid id="AS??-06" ware="ore" yield="23" x="22800" y="-8930" z="13000" />
+        <asteroid id="AS??-07" ware="ore" yield="22" x="26800" y="6180" z="-7560" />
+        <asteroid id="AS??-08" ware="ore" yield="21" x="22200" y="-9820" z="-26300" />
+        <asteroid id="AS??-09" ware="ore" yield="21" x="14300" y="-3700" z="-6940" />
+        <asteroid id="AS??-10" ware="ore" yield="19" x="38700" y="-22500" z="5710" />
+        <asteroid id="AS??-11" ware="ore" yield="19" x="34400" y="-10600" z="18000" />
+        <asteroid id="AS??-12" ware="ore" yield="19" x="15900" y="-8710" z="15600" />
+        <asteroid id="AS??-13" ware="ore" yield="19" x="6180" y="-10300" z="15800" />
+        <asteroid id="AS??-14" ware="ore" yield="19" x="4980" y="-9820" z="-11400" />
+        <asteroid id="AS??-15" ware="ore" yield="14" x="41300" y="-15300" z="-900" />
+        <asteroid id="AS??-16" ware="siliconWafers" yield="40" x="27500" y="16500" z="29500" />
+        <asteroid id="AS??-17" ware="siliconWafers" yield="39" x="41900" y="2750" z="26800" />
+        <asteroid id="AS??-18" ware="siliconWafers" yield="32" x="-8240" y="6180" z="24000" />
+        <asteroid id="AS??-19" ware="siliconWafers" yield="25" x="35700" y="12300" z="-17800" />
+        <asteroid id="AS??-20" ware="siliconWafers" yield="25" x="23500" y="14400" z="-17300" />
+        <asteroid id="AS??-21" ware="siliconWafers" yield="24" x="33600" y="4810" z="-30200" />
+        <asteroid id="AS??-22" ware="siliconWafers" yield="19" x="41600" y="-4850" z="10100" />
+        <asteroid id="AS??-23" ware="siliconWafers" yield="18" x="7390" y="-17400" z="5570" />
+        <asteroid id="AS??-24" ware="siliconWafers" yield="16" x="-8240" y="9620" z="4810" />
+        <asteroid id="AS??-25" ware="siliconWafers" yield="14" x="11000" y="10300" z="-19200" />
+        <asteroid id="AS??-26" ware="siliconWafers" yield="11" x="19900" y="-6180" z="6180" />
+        <asteroid id="AS??-27" ware="nividium" yield="15" x="12300" y="-9620" z="-61100" />
+      </asteroids>
+    </switch>
+    
+    <!-- Twisted Skies -->
+    <switch>
+      <asteroids>
+        <asteroid id="AS??-01" ware="ore" yield="43" x="27000" y="-13400" z="-29900" />
+        <asteroid id="AS??-02" ware="ore" yield="40" x="-8240" y="-8240" z="25500" />
+        <asteroid id="AS??-03" ware="ore" yield="27" x="9000" y="-6740" z="-30700" />
+        <asteroid id="AS??-04" ware="ore" yield="24" x="-8990" y="-17900" z="-23900" />
+        <asteroid id="AS??-05" ware="ore" yield="22" x="28300" y="17100" z="22900" />
+        <asteroid id="AS??-06" ware="ore" yield="21" x="-5000" y="9260" z="4860" />
+        <asteroid id="AS??-07" ware="ore" yield="19" x="13000" y="13400" z="22400" />
+        <asteroid id="AS??-08" ware="ore" yield="18" x="30500" y="9160" z="10400" />
+        <asteroid id="AS??-09" ware="ore" yield="18" x="24400" y="40100" z="-200" />
+        <asteroid id="AS??-10" ware="ore" yield="18" x="22800" y="3570" z="2650" />
+        <asteroid id="AS??-11" ware="ore" yield="18" x="16600" y="14000" z="5510" />
+        <asteroid id="AS??-12" ware="ore" yield="18" x="9920" y="13600" z="6580" />
+        <asteroid id="AS??-13" ware="ore" yield="18" x="8160" y="19400" z="-9390" />
+        <asteroid id="AS??-14" ware="ore" yield="18" x="2560" y="11500" z="-17300" />
+        <asteroid id="AS??-15" ware="ore" yield="16" x="-9380" y="15000" z="-11500" />
+        <asteroid id="AS??-16" ware="ore" yield="12" x="-10400" y="7500" z="12700" />
+        <asteroid id="AS??-17" ware="siliconWafers" yield="43" x="36700" y="9000" z="28500" />
+        <asteroid id="AS??-18" ware="siliconWafers" yield="36" x="11200" y="9000" z="40500" />
+        <asteroid id="AS??-19" ware="siliconWafers" yield="34" x="18000" y="15700" z="-42400" />
+        <asteroid id="AS??-20" ware="siliconWafers" yield="30" x="21000" y="6000" z="-7490" />
+        <asteroid id="AS??-21" ware="siliconWafers" yield="28" x="37500" y="-8240" z="10" />
+        <asteroid id="AS??-22" ware="siliconWafers" yield="25" x="16500" y="-8240" z="-16400" />
+        <asteroid id="AS??-23" ware="siliconWafers" yield="25" x="-22400" y="12700" z="-5990" />
+        <asteroid id="AS??-24" ware="siliconWafers" yield="20" x="39700" y="14200" z="21000" />
+        <asteroid id="AS??-25" ware="siliconWafers" yield="19" x="20100" y="25600" z="31600" />
+        <asteroid id="AS??-26" ware="siliconWafers" yield="14" x="6750" y="19500" z="21000" />
+        <asteroid id="AS??-27" ware="siliconWafers" yield="13" x="9000" y="-16400" z="-56900" />
+        <asteroid id="AS??-28" ware="nividium" yield="17" x="25500" y="28500" z="60000" />
+      </asteroids>
+    </switch>
+
+    <!-- Spires of Elusion -->
+    <switch>
+      <asteroids>
+        <asteroid id="AS??-01" ware="ore" yield="40" x="35700" y="8250" z="-32299" />
+        <asteroid id="AS??-02" ware="ore" yield="33" x="19200" y="11600" z="-46700" />
+        <asteroid id="AS??-03" ware="ore" yield="28" x="-20600" y="-5490" z="5500" />
+        <asteroid id="AS??-04" ware="ore" yield="25" x="-17800" y="14400" z="-20600" />
+        <asteroid id="AS??-05" ware="ore" yield="24" x="-9020" y="20900" z="-10400" />
+        <asteroid id="AS??-06" ware="ore" yield="22" x="-40200" y="22400" z="4010" />
+        <asteroid id="AS??-07" ware="ore" yield="21" x="37800" y="8250" z="-10300" />
+        <asteroid id="AS??-08" ware="ore" yield="20" x="3430" y="4120" z="-30200" />
+        <asteroid id="AS??-09" ware="ore" yield="20" x="-49900" y="5710" z="-18400" />
+        <asteroid id="AS??-10" ware="ore" yield="19" x="-38400" y="9620" z="-12300" />
+        <asteroid id="AS??-11" ware="ore" yield="18" x="68700" y="11000" z="19900" />
+        <asteroid id="AS??-12" ware="ore" yield="18" x="-20100" y="11200" z="20800" />
+        <asteroid id="AS??-13" ware="ore" yield="18" x="-27800" y="14500" z="23300" />
+        <asteroid id="AS??-14" ware="ore" yield="18" x="-77700" y="14100" z="16800" />
+        <asteroid id="AS??-15" ware="ore" yield="16" x="19000" y="12400" z="-23100" />
+        <asteroid id="AS??-16" ware="ore" yield="16" x="18700" y="9210" z="16700" />
+        <asteroid id="AS??-17" ware="siliconWafers" yield="41" x="38500" y="10" z="34300" />
+        <asteroid id="AS??-18" ware="siliconWafers" yield="39" x="18500" y="4120" z="-9620" />
+        <asteroid id="AS??-19" ware="siliconWafers" yield="38" x="10" y="13700" z="41900" />
+        <asteroid id="AS??-20" ware="siliconWafers" yield="34" x="-23300" y="7560" z="34300" />
+        <asteroid id="AS??-21" ware="siliconWafers" yield="25" x="9620" y="19200" z="8930" />
+        <asteroid id="AS??-22" ware="siliconWafers" yield="23" x="-46000" y="17800" z="23300" />
+        <asteroid id="AS??-23" ware="siliconWafers" yield="18" x="11000" y="-8930" z="22600" />
+        <asteroid id="AS??-24" ware="siliconWafers" yield="18" x="-2130" y="1850" z="20000" />
+        <asteroid id="AS??-25" ware="siliconWafers" yield="15" x="32299" y="18500" z="10300" />
+        <asteroid id="AS??-26" ware="siliconWafers" yield="12" x="-35700" y="19900" z="-32299" />
+        <asteroid id="AS??-27" ware="nividium" yield="16" x="61800" y="13700" z="41900" />
+      </asteroids>
+    </switch>
+
+    <!-- Guiding Star  -->
+    <switch>
+      <asteroids>
+        <asteroid id="AS??-01" ware="ore" yield="37" x="47400" y="-10300" z="41900" />
+        <asteroid id="AS??-02" ware="ore" yield="30" x="21300" y="6870" z="24700" />
+        <asteroid id="AS??-03" ware="ore" yield="27" x="-21900" y="15800" z="28100" />
+        <asteroid id="AS??-04" ware="ore" yield="26" x="16900" y="-2410" z="9490" />
+        <asteroid id="AS??-05" ware="ore" yield="22" x="10700" y="-900" z="12600" />
+        <asteroid id="AS??-06" ware="ore" yield="21" x="44900" y="5170" z="7500" />
+        <asteroid id="AS??-07" ware="ore" yield="20" x="-10900" y="8930" z="-23300" />
+        <asteroid id="AS??-08" ware="ore" yield="19" x="54900" y="-5300" z="-15400" />
+        <asteroid id="AS??-09" ware="ore" yield="19" x="40900" y="-5020" z="-35700" />
+        <asteroid id="AS??-10" ware="ore" yield="19" x="17100" y="-5490" z="-17800" />
+        <asteroid id="AS??-11" ware="ore" yield="19" x="16000" y="-6500" z="-4130" />
+        <asteroid id="AS??-12" ware="ore" yield="19" x="15700" y="-2180" z="-300" />
+        <asteroid id="AS??-13" ware="ore" yield="19" x="-13300" y="-30600" z="-4460" />
+        <asteroid id="AS??-14" ware="ore" yield="19" x="-20400" y="-1000" z="-36700" />
+        <asteroid id="AS??-15" ware="ore" yield="16" x="-2740" y="-5490" z="14400" />
+        <asteroid id="AS??-16" ware="siliconWafers" yield="40" x="39100" y="-7560" z="-10900" />
+        <asteroid id="AS??-17" ware="siliconWafers" yield="36" x="28800" y="11600" z="-28100" />
+        <asteroid id="AS??-18" ware="siliconWafers" yield="35" x="17800" y="29500" z="-26800" />
+        <asteroid id="AS??-19" ware="siliconWafers" yield="34" x="-57000" y="3430" z="22600" />
+        <asteroid id="AS??-20" ware="siliconWafers" yield="25" x="7560" y="8940" z="41200" />
+        <asteroid id="AS??-21" ware="siliconWafers" yield="23" x="31600" y="1370" z="1" />
+        <asteroid id="AS??-22" ware="siliconWafers" yield="23" x="-32900" y="-13700" z="-18500" />
+        <asteroid id="AS??-23" ware="siliconWafers" yield="22" x="2570" y="229" z="-13300" />
+        <asteroid id="AS??-24" ware="siliconWafers" yield="21" x="-48200" y="-1070" z="-9230" />
+        <asteroid id="AS??-25" ware="siliconWafers" yield="13" x="-20000" y="-5560" z="-1680" />
+        <asteroid id="AS??-26" ware="siliconWafers" yield="13" x="-22500" y="-10000" z="-11000" />
+        <asteroid id="AS??-27" ware="siliconWafers" yield="13" x="-40500" y="-5490" z="11600" />
+        <asteroid id="AS??-28" ware="nividium" yield="18" x="-11700" y="-3610" z="57500" />
+        <asteroid id="AS??-29" ware="nividium" yield="15" x="-1170" y="1060" z="59900" />
+      </asteroids>
+    </switch>
+       
+    <!-- Cathedral of Xaar -->
+    <switch>
+      <asteroids>
+        <asteroid id="AS??-01" ware="ore" yield="40" x="29200" y="14200" z="-14900" />
+        <asteroid id="AS??-02" ware="ore" yield="37" x="-7490" y="-7490" z="-34400" />
+        <asteroid id="AS??-03" ware="ore" yield="36" x="-13400" y="-4490" z="-46400" />
+        <asteroid id="AS??-04" ware="ore" yield="33" x="45000" y="8250" z="-26200" />
+        <asteroid id="AS??-05" ware="ore" yield="26" x="16800" y="-4650" z="6450" />
+        <asteroid id="AS??-06" ware="ore" yield="26" x="-52400" y="-3740" z="16500" />
+        <asteroid id="AS??-07" ware="ore" yield="24" x="-35900" y="-8240" z="-40400" />
+        <asteroid id="AS??-08" ware="ore" yield="23" x="18700" y="9750" z="21700" />
+        <asteroid id="AS??-09" ware="ore" yield="22" x="-57200" y="9540" z="-4430" />
+        <asteroid id="AS??-10" ware="ore" yield="19" x="26400" y="13900" z="-31400" />
+        <asteroid id="AS??-11" ware="ore" yield="18" x="-23700" y="15300" z="-12500" />
+        <asteroid id="AS??-12" ware="ore" yield="17" x="11200" y="11200" z="-20892" />
+        <asteroid id="AS??-13" ware="ore" yield="16" x="47200" y="10500" z="-6740" />
+        <asteroid id="AS??-14" ware="ore" yield="16" x="-19400" y="11500" z="-19200" />
+        <asteroid id="AS??-15" ware="siliconWafers" yield="44" x="24000" y="-9740" z="-45700" />
+        <asteroid id="AS??-16" ware="siliconWafers" yield="35" x="39000" y="-11900" z="12000" />
+        <asteroid id="AS??-17" ware="siliconWafers" yield="33" x="-31400" y="6750" z="15000" />
+        <asteroid id="AS??-18" ware="siliconWafers" yield="27" x="-43400" y="8250" z="-14200" />
+        <asteroid id="AS??-19" ware="siliconWafers" yield="27" x="-80200" y="-10200" z="2150" />
+        <asteroid id="AS??-20" ware="siliconWafers" yield="25" x="-3580" y="18200" z="-21800" />
+        <asteroid id="AS??-21" ware="siliconWafers" yield="18" x="-8680" y="6430" z="17800" />
+        <asteroid id="AS??-22" ware="siliconWafers" yield="17" x="18000" y="-16400" z="-8990" />
+        <asteroid id="AS??-23" ware="siliconWafers" yield="15" x="-35200" y="-4490" z="-5240" />
+        <asteroid id="AS??-24" ware="siliconWafers" yield="14" x="-15700" y="-13400" z="-6740" />
+        <asteroid id="AS??-25" ware="siliconWafers" yield="13" x="-10700" y="-16600" z="-1030" />
+        <asteroid id="AS??-26" ware="nividium" yield="17" x="72700" y="28500" z="10" />
+        <asteroid id="AS??-27" ware="nividium" yield="15" x="7500" y="-8240" z="-70400" />
+      </asteroids>
+    </switch>
   </sector>
-  -->
+  
 </sectors>

@@ -329,4 +329,16 @@ public final class Config
                             + component);
         return name.toLowerCase() + "." + key.toLowerCase();
     }
+
+
+    /**
+     * Returns the index of the selected player sector.
+     *
+     * @return The player sector index
+     */
+
+    public int getPlayerSector()
+    {
+        return 0;
+    }
 }
