@@ -779,6 +779,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("complex", this.complex);
         model.put("print", true);
+        model.put("config", Config.getInstance());
 
         // Generate content
         final String content = TemplateFactory.processTemplate(template, model);
