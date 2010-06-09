@@ -38,7 +38,17 @@
             <th class="factory">[@message key="complex.factory" /]</th>
             <th class="race">[@message key="complex.race" /]</th>
             <th class="yield">[@message key="complex.yield" /]</th>
-            <th class="quantity">[@message key="complex.quantity" /]</th>
+            <th class="quantity">
+              [#if !print]
+                <table class="layout"><tr>
+                  <td>[@message key="complex.quantity" /]&nbsp;&nbsp;</td>
+                  <td><img src="../images/blank.png" width="12" height="12" /></td>
+                  <td><img src="../images/blank.png" width="12" height="12" /></td>
+                </tr></table>
+              [#else]
+                [@message key="complex.quantity" /]
+              [/#if]            
+            </th>
             <th class="singlePrice">[@message key="complex.unitPrice" /]</th>
             <th class="price">[@message key="complex.price" /]</th>
             [#if !print]<td class="buttons"></td>[/#if]
@@ -153,7 +163,17 @@
             <tr><td colspan="7" class="sep"><img src="../images/blank.png" width="1" height="1" /></td></tr>
             <tr class="${class}">
               <td colspan="3" class="factory">[@message key="complex.kit" /]</td>
-              <td class="quantity">${complex.kitQuantity}</td>
+              <td class="quantity">
+                [#if !print]
+                  <table class="layout"><tr>
+                    <td>${complex.kitQuantity}&nbsp;&nbsp;</td>
+                    <td><img src="../images/blank.png" width="12" height="12" /></td>
+                    <td><img src="../images/blank.png" width="12" height="12" /></td>
+                  </tr></table>
+                [#else]
+                  ${complex.kitQuantity}
+                [/#if]              
+              </td>
               <td class="singlePrice">${complex.kitPrice} Cr</td>
               <td class="price">${complex.totalKitPrice} Cr</td>
               [#if !print]<td></td>[/#if]
@@ -166,9 +186,14 @@
           <tr>
             <th colspan="3">[@message key="complex.total" /]</th>
             <td class="quantity">
-              ${complex.totalQuantity}
-              [#if complex.kitQuantity > 0]
-              (+${complex.kitQuantity})
+              [#if !print]
+                <table class="layout"><tr>
+                  <td>${complex.totalQuantity}[#if complex.kitQuantity > 0] (+${complex.kitQuantity})[/#if]&nbsp;&nbsp;</td>
+                  <td><img src="../images/blank.png" width="12" height="12" /></td>
+                  <td><img src="../images/blank.png" width="12" height="12" /></td>
+                </tr></table>
+              [#else]
+                ${complex.totalQuantity}[#if complex.kitQuantity > 0] (+${complex.kitQuantity})[/#if]
               [/#if]
             </td>
             <td></td>
