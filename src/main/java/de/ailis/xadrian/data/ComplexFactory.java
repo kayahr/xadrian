@@ -170,7 +170,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public boolean isHomogenousYield()
     {
-        if (this.yields.isEmpty()) return false;
+        if (this.yields == null || this.yields.isEmpty()) return false;
         final int yield = this.yields.get(0);
         for (int i = 1, max = this.yields.size(); i < max; i++)
             if (this.yields.get(i) != yield) return false;
