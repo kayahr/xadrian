@@ -13,7 +13,7 @@ What is Xadrian?
 
   Notable features:
 
-    * Knows all factories which can be bought in a regular X3TC 2.7 game.
+    * Knows all factories which can be bought in a regular X3TC 2.7.1 game.
     
     * Optional automatic base complex calculation.
 
@@ -44,6 +44,9 @@ Getting started
   read the {{{./manual.html}manual}}.
 
 News
+
+  * 2010/08/25 - Version 1.3.2 has been released. Just added two missing
+    asteroids in Guiding star.
 
   * 2010/06/09 - Version 1.3.1 has been released with some minor text and
     color changes and also some small bugfixes.
