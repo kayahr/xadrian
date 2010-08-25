@@ -20,7 +20,7 @@ import freemarker.template.TemplateModelException;
 
 /**
  * Message directive for freemarker templates
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -32,8 +32,8 @@ public class MessageDirective extends BaseDirective
      */
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void execute(final Environment env, final Map params,
+    public void execute(final Environment env,
+        @SuppressWarnings("rawtypes") final Map params,
         final TemplateModel[] loopVars, final TemplateDirectiveBody body)
         throws TemplateException, IOException
     {

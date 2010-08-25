@@ -94,6 +94,7 @@ public class AsteroidsInfoPane extends JComponent implements SectorProvider
      *            The sector to set;
      */
 
+    @Override
     public void setSector(final Sector sector)
     {
         if (sector == this.sector) return;
@@ -109,6 +110,7 @@ public class AsteroidsInfoPane extends JComponent implements SectorProvider
      * @return The sector or null if none set
      */
 
+    @Override
     public Sector getSector()
     {
         return this.sector;

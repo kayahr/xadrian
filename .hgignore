@@ -1,2 +1,6 @@
 syntax: glob
 target
+.settings
+.classpath
+.project
+

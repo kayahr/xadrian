@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.FrameAction;
 
 /**
  * Closes all open tabs.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -28,7 +28,7 @@ public class CloseAllAction extends FrameAction<MainFrame> implements MainStateL
 
     /**
      * Constructor
-     * 
+     *
      * @param frame
      *            The frame
      */
@@ -45,6 +45,7 @@ public class CloseAllAction extends FrameAction<MainFrame> implements MainStateL
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.frame.closeAllTabs();
@@ -54,7 +55,7 @@ public class CloseAllAction extends FrameAction<MainFrame> implements MainStateL
     /**
      * @see MainStateListener#mainStateChanged(MainFrame)
      */
-    
+
     @Override
     public void mainStateChanged(final MainFrame sender)
     {

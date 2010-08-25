@@ -22,10 +22,10 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
+import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.text.JTextComponent;
 
 
@@ -103,6 +103,7 @@ public final class SwingUtils
                             ((JTextComponent) e.getSource());
                         SwingUtilities.invokeLater(new Runnable()
                         {
+                            @Override
                             public void run()
                             {
                                 text.selectAll();
@@ -123,6 +124,7 @@ public final class SwingUtils
                             .getEditor()).getTextField();
                     SwingUtilities.invokeLater(new Runnable()
                     {
+                        @Override
                         public void run()
                         {
                             text.requestFocus();

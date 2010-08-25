@@ -15,7 +15,7 @@ import de.ailis.xadrian.support.FrameAction;
 
 /**
  * Starts a new factory complex tab.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -27,7 +27,7 @@ public class NewAction extends FrameAction<MainFrame>
 
     /**
      * Constructor
-     * 
+     *
      * @param frame
      *            The frame
      */
@@ -42,6 +42,7 @@ public class NewAction extends FrameAction<MainFrame>
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.frame.createComplexTab();

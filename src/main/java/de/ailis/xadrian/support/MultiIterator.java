@@ -14,10 +14,10 @@ import java.util.NoSuchElementException;
 
 /**
  * Iterator which iterates over multiple collections
- * 
+ *
  * @param <T>
  *            The collection type
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -32,7 +32,7 @@ public class MultiIterator<T> implements Iterator<T>
 
     /**
      * Creates iterator which iterates over all specified collections
-     * 
+     *
      * @param collections
      *            The collections to iterate
      */
@@ -57,6 +57,7 @@ public class MultiIterator<T> implements Iterator<T>
      * @see java.util.Iterator#hasNext()
      */
 
+    @Override
     public boolean hasNext()
     {
         if (this.current == null) return false;
@@ -69,6 +70,7 @@ public class MultiIterator<T> implements Iterator<T>
      * @see java.util.Iterator#next()
      */
 
+    @Override
     public T next()
     {
         if (this.current == null)
@@ -88,6 +90,7 @@ public class MultiIterator<T> implements Iterator<T>
      * @see java.util.Iterator#remove()
      */
 
+    @Override
     public void remove()
     {
         throw new UnsupportedOperationException("Read-only iterator");

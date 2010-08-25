@@ -18,7 +18,7 @@ import de.ailis.xadrian.support.FrameAction;
 
 /**
  * Saves the current file under a new name.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -30,7 +30,7 @@ public class SaveAsAction extends FrameAction<MainFrame> implements MainStateLis
 
     /**
      * Constructor
-     * 
+     *
      * @param frame
      *            The frame
      */
@@ -39,7 +39,7 @@ public class SaveAsAction extends FrameAction<MainFrame> implements MainStateLis
     {
         super(frame, "saveAs", Icons.SAVEAS);
         this.frame.addStateListener(this);
-        this.setEnabled(false);
+        setEnabled(false);
     }
 
 
@@ -47,21 +47,22 @@ public class SaveAsAction extends FrameAction<MainFrame> implements MainStateLis
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         final Component component = this.frame.getCurrentTab();
         if (component instanceof ComplexEditor)
             ((ComplexEditor) component).saveAs();
     }
-    
+
 
     /**
      * @see MainStateListener#mainStateChanged(MainFrame)
      */
-    
+
     @Override
     public void mainStateChanged(final MainFrame sender)
     {
         setEnabled(sender.getTabs().getComponentCount() > 0);
-    }    
+    }
 }

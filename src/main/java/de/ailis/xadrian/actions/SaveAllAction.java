@@ -18,7 +18,7 @@ import de.ailis.xadrian.support.FrameAction;
 
 /**
  * Saves all modified files.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -30,7 +30,7 @@ public class SaveAllAction extends FrameAction<MainFrame> implements MainStateLi
 
     /**
      * Constructor
-     * 
+     *
      * @param frame
      *            The frame
      */
@@ -47,6 +47,7 @@ public class SaveAllAction extends FrameAction<MainFrame> implements MainStateLi
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         for (final Component component: this.frame.getTabs().getComponents())
@@ -64,7 +65,7 @@ public class SaveAllAction extends FrameAction<MainFrame> implements MainStateLi
     /**
      * @see MainStateListener#mainStateChanged(MainFrame)
      */
-    
+
     @Override
     public void mainStateChanged(final MainFrame sender)
     {

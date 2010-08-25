@@ -24,8 +24,8 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.EventListenerList;
 import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
 import javax.swing.event.HyperlinkEvent.EventType;
+import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLDocument;
 
 import org.apache.commons.logging.Log;
@@ -333,6 +333,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
      * Adds a new factory to the complex.
      */
 
+    @Override
     public void addFactory()
     {
         final AddFactoryDialog dialog = AddFactoryDialog.getInstance();
@@ -352,6 +353,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
      * Sets the sector.
      */
 
+    @Override
     public void changeSector()
     {
         final SelectSectorDialog dialog = SelectSectorDialog.getInstance();
@@ -608,6 +610,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
      * Changes the suns.
      */
 
+    @Override
     public void changeSuns()
     {
         final ChangeSunsDialog dialog = ChangeSunsDialog.getInstance();
@@ -761,6 +764,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
      * Toggles the addition of automatically calculated base complex.
      */
 
+    @Override
     public void toggleBaseComplex()
     {
         this.complex.toggleAddBaseComplex();
@@ -868,6 +872,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
      * Selects all the text in the text pane.
      */
 
+    @Override
     public void selectAll()
     {
         this.textPane.requestFocus();
