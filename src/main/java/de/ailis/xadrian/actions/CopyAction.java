@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.BaseAction;
 
 /**
  * Copies the selected text into the clipboard.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -31,7 +31,7 @@ public class CopyAction extends BaseAction implements ClipboardStateListener
 
     /**
      * Constructor
-     * 
+     *
      * @param provider
      *            The connected component
      */
@@ -40,7 +40,7 @@ public class CopyAction extends BaseAction implements ClipboardStateListener
     {
         super("copy", Icons.COPY);
         this.provider = provider;
-        this.setEnabled(false);
+        setEnabled(false);
         provider.addClipboardStateListener(this);
     }
 
@@ -49,6 +49,7 @@ public class CopyAction extends BaseAction implements ClipboardStateListener
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.provider.copy();

@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.FrameAction;
 
 /**
  * Opens a previously saved factory complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -28,7 +28,7 @@ public class OpenAction extends FrameAction<MainFrame>
 
     /**
      * Constructor
-     * 
+     *
      * @param frame
      *            The frame
      */
@@ -43,6 +43,7 @@ public class OpenAction extends FrameAction<MainFrame>
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         final ComplexEditor complexEditor = ComplexEditor.open();

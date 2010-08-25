@@ -19,7 +19,7 @@ import de.ailis.xadrian.support.ModalDialog.Result;
 
 /**
  * Changes the sector of the complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -34,7 +34,7 @@ public class ChangeSectorAction extends BaseAction implements StateListener
 
     /**
      * Constructor
-     * 
+     *
      * @param provider
      *            The provider
      * @param context
@@ -57,6 +57,7 @@ public class ChangeSectorAction extends BaseAction implements StateListener
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         final SelectSectorDialog dialog = SelectSectorDialog.getInstance();

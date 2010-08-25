@@ -18,7 +18,7 @@ import de.ailis.xadrian.support.FrameAction;
 
 /**
  * Saves the current file.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -31,7 +31,7 @@ public class SaveAction extends FrameAction<MainFrame> implements
 
     /**
      * Constructor
-     * 
+     *
      * @param frame
      *            The frame
      */
@@ -48,6 +48,7 @@ public class SaveAction extends FrameAction<MainFrame> implements
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         final Component component = this.frame.getCurrentTab();

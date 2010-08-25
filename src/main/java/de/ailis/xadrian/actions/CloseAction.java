@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.FrameAction;
 
 /**
  * Closes the currently active tab.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -28,7 +28,7 @@ public class CloseAction extends FrameAction<MainFrame> implements MainStateList
 
     /**
      * Constructor
-     * 
+     *
      * @param frame
      *            The frame
      */
@@ -45,6 +45,7 @@ public class CloseAction extends FrameAction<MainFrame> implements MainStateList
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.frame.closeCurrentTab();
@@ -54,7 +55,7 @@ public class CloseAction extends FrameAction<MainFrame> implements MainStateList
     /**
      * @see MainStateListener#mainStateChanged(MainFrame)
      */
-    
+
     @Override
     public void mainStateChanged(final MainFrame sender)
     {

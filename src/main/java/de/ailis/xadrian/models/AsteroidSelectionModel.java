@@ -21,7 +21,7 @@ import de.ailis.xadrian.listeners.AsteroidSelectionModelListener;
 
 /**
  * AsteroidSelectionModel
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -51,11 +51,12 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Sets the sector.
-     * 
+     *
      * @param sector
      *            The sector to set
      */
 
+    @Override
     public void setSector(final Sector sector)
     {
         if (sector != this.sector)
@@ -74,7 +75,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Sets the ware for which asteroids are selected.
-     * 
+     *
      * @param ware
      *            The ware
      */
@@ -86,14 +87,14 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
             this.ware = ware;
         }
     }
-    
-    
+
+
     /**
      * Returns the ware for which asteroids are selected.
-     * 
+     *
      * @return The ware
      */
-    
+
     public Ware getWare()
     {
         return this.ware;
@@ -143,10 +144,11 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Returns the sector.
-     * 
+     *
      * @return The sector
      */
 
+    @Override
     public Sector getSector()
     {
         return this.sector;
@@ -155,7 +157,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Focuses the specified asteroid. Specify null to focus nothing.
-     * 
+     *
      * @param asteroid
      *            The asteroid to focus. Null means focusing nothing
      */
@@ -176,7 +178,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Returns the focused asteroid. Maybe null if no asteroid is focused.
-     * 
+     *
      * @return The focused asteroid or null if none
      */
 
@@ -188,7 +190,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Checks if the specified asteroid is selected.
-     * 
+     *
      * @param asteroid
      *            The asteroid to check
      * @return True if asteroid is selected, false if not
@@ -202,7 +204,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Selects the specified asteroid.
-     * 
+     *
      * @param asteroid
      *            The asteroid to select
      */
@@ -219,7 +221,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Deselects the specified asteroid.
-     * 
+     *
      * @param asteroid
      *            The asteroid to deselect
      */
@@ -236,7 +238,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Returns the list with selected asteroids.
-     * 
+     *
      * @return The list with selected asteroids
      */
 
@@ -290,7 +292,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Adds a new model listener.
-     * 
+     *
      * @param listener
      *            The listener to add
      */
@@ -303,7 +305,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Removes a model listener.
-     * 
+     *
      * @param listener
      *            The listener to remove
      */
@@ -340,7 +342,7 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
 
     /**
      * Toggles the selection of the specified asteroid.
-     * 
+     *
      * @param asteroid
      *            The asteroid to toggle the selection for
      */

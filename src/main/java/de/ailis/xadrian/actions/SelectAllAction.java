@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.BaseAction;
 
 /**
  * Selects all the text.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -24,14 +24,14 @@ public class SelectAllAction extends BaseAction implements ClipboardStateListene
 {
     /** Serial version UID */
     private static final long serialVersionUID = -8587288689179840559L;
-    
+
     /** The clipboard provider */
     private final ClipboardProvider provider;
 
 
     /**
      * Constructor
-     * 
+     *
      * @param provider
      *            The connected component
      */
@@ -40,7 +40,7 @@ public class SelectAllAction extends BaseAction implements ClipboardStateListene
     {
         super("selectAll", Icons.SELECT_ALL);
         this.provider = provider;
-        this.setEnabled(false);
+        setEnabled(false);
         provider.addClipboardStateListener(this);
     }
 
@@ -49,6 +49,7 @@ public class SelectAllAction extends BaseAction implements ClipboardStateListene
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.provider.selectAll();

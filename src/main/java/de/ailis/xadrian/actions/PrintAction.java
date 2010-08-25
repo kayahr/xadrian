@@ -18,7 +18,7 @@ import de.ailis.xadrian.support.FrameAction;
 
 /**
  * Prints the current file.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -30,7 +30,7 @@ public class PrintAction extends FrameAction<MainFrame> implements MainStateList
 
     /**
      * Constructor
-     * 
+     *
      * @param frame
      *            The frame
      */
@@ -47,22 +47,23 @@ public class PrintAction extends FrameAction<MainFrame> implements MainStateList
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         final Component component = this.frame.getCurrentTab();
         if (component instanceof ComplexEditor)
             ((ComplexEditor) component).print();
     }
-    
+
 
 
     /**
      * @see MainStateListener#mainStateChanged(MainFrame)
      */
-    
+
     @Override
     public void mainStateChanged(final MainFrame sender)
     {
         setEnabled(sender.getTabs().getComponentCount() > 0);
-    }    
+    }
 }

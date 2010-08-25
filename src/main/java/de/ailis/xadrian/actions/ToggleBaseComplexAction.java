@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.BaseAction;
 
 /**
  * Toggles the addition of a base complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -32,7 +32,7 @@ public class ToggleBaseComplexAction extends BaseAction implements
 
     /**
      * Constructor
-     * 
+     *
      * @param provider
      *            The provider
      */
@@ -51,6 +51,7 @@ public class ToggleBaseComplexAction extends BaseAction implements
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.provider.toggleBaseComplex();

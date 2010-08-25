@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.BaseAction;
 
 /**
  * Changes the sun power.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -28,10 +28,10 @@ public class ChangeSunsAction extends BaseAction implements StateListener
     /** The complex provider */
     private final ComplexProvider provider;
 
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param provider
      *            The provider
      */
@@ -49,16 +49,17 @@ public class ChangeSunsAction extends BaseAction implements StateListener
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.provider.changeSuns();
     }
-    
-    
+
+
     /**
      * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
-    
+
     @Override
     public void stateChanged()
     {

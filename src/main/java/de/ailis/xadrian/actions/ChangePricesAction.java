@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.BaseAction;
 
 /**
  * Changes the ware prices of the complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -24,14 +24,14 @@ public class ChangePricesAction extends BaseAction implements StateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = -4477579341504318226L;
-    
+
     /** The complex provider */
     private final ComplexProvider provider;
 
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param provider
      *            The provider
      */
@@ -49,6 +49,7 @@ public class ChangePricesAction extends BaseAction implements StateListener
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.provider.changePrices();
@@ -58,7 +59,7 @@ public class ChangePricesAction extends BaseAction implements StateListener
     /**
      * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
-    
+
     @Override
     public void stateChanged()
     {

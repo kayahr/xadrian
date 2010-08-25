@@ -14,7 +14,7 @@ import de.ailis.xadrian.support.ModalDialog.Result;
 
 /**
  * Closes a modal dialog with the specified modal result.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -25,14 +25,14 @@ public class ModalDialogAction extends BaseAction
 
     /** The modal dialog connected to this action */
     private final ModalDialog dialog;
-    
+
     /** The modal result */
     private final Result result;
 
 
     /**
      * Constructor
-     * 
+     *
      * @param dialog
      *            The modal dialog to control
      * @param result
@@ -51,6 +51,7 @@ public class ModalDialogAction extends BaseAction
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.dialog.close(this.result);

@@ -16,7 +16,7 @@ import de.ailis.xadrian.support.BaseAction;
 
 /**
  * Adds a new factory to the complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -27,11 +27,11 @@ public class AddFactoryAction extends BaseAction implements StateListener
 
     /** The complex provider */
     private final ComplexProvider provider;
-    
+
 
     /**
      * Constructor
-     * 
+     *
      * @param provider
      *            The complex provider
      */
@@ -49,16 +49,17 @@ public class AddFactoryAction extends BaseAction implements StateListener
      * @see ActionListener#actionPerformed(ActionEvent)
      */
 
+    @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.provider.addFactory();
     }
 
-    
+
     /**
      * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
-    
+
     @Override
     public void stateChanged()
     {
