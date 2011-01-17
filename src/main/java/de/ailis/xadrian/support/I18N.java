@@ -23,9 +23,24 @@ import de.ailis.xadrian.Main;
 
 public final class I18N
 {
-    /** The messages */
+    /** The messages. */
     private static final ResourceBundle messages = ResourceBundle
-            .getBundle(Main.class.getPackage().getName() + ".messages");
+        .getBundle(Main.class.getPackage().getName() + ".messages");
+
+    /** The custom messages. */
+    private static ResourceBundle customMessages;
+
+    static
+    {
+        try
+        {
+            customMessages = ResourceBundle.getBundle("messages");
+        }
+        catch (final MissingResourceException e)
+        {
+            customMessages = null;
+        }
+    }
 
 
     /**
@@ -51,6 +66,8 @@ public final class I18N
     {
         try
         {
+            if (customMessages != null && customMessages.containsKey(key))
+                return customMessages.getString(key);
             return messages.getString(key);
         }
         catch (final MissingResourceException e)

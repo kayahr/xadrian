@@ -15,14 +15,15 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import de.ailis.xadrian.data.Suns;
+import de.ailis.xadrian.data.Sun;
+import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
 
 /**
  * Dialog for selecting the suns in percent.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -58,7 +59,8 @@ public class ChangeSunsDialog extends ModalDialog
         // Create the content controls
         final JLabel sunsLabel = new JLabel(I18N
             .getString("dialog.changeSuns.suns"));
-        this.sunsComboBox = new JComboBox(Suns.values());
+        this.sunsComboBox = new JComboBox(SunFactory.getInstance()
+            .getSuns().toArray(new Sun[0]));
         sunsLabel.setLabelFor(this.sunsComboBox);
 
         // Create the content panel
@@ -76,7 +78,7 @@ public class ChangeSunsDialog extends ModalDialog
 
     /**
      * Returns the singleton instance
-     * 
+     *
      * @return The singleton instance
      */
 
@@ -101,12 +103,12 @@ public class ChangeSunsDialog extends ModalDialog
 
     /**
      * Sets the suns.
-     * 
+     *
      * @param suns
      *            The yield to set
      */
 
-    public void setSuns(final Suns suns)
+    public void setSuns(final Sun suns)
     {
         this.sunsComboBox.setSelectedItem(suns);
     }
@@ -114,12 +116,12 @@ public class ChangeSunsDialog extends ModalDialog
 
     /**
      * Returns the suns.
-     * 
+     *
      * @return The suns
      */
 
-    public Suns getSuns()
+    public Sun getSuns()
     {
-        return (Suns) this.sunsComboBox.getSelectedItem();
+        return (Sun) this.sunsComboBox.getSelectedItem();
     }
 }

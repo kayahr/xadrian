@@ -68,8 +68,11 @@
             <manifest>
               <mainClass>de.ailis.xadrian.Main</mainClass>
               <packageName>de.ailis.xadrian</packageName>
-              <addClasspath>true</addClasspath>
+              <addClasspath>true</addClasspath>              
             </manifest>
+            <manifestEntries>
+              <Class-Path>data/</Class-Path>
+            </manifestEntries>
           </archive>
         </configuration>
       </plugin>

@@ -27,7 +27,7 @@ import de.ailis.xadrian.exceptions.DataException;
 
 /**
  * Factory for Race objects.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -55,7 +55,7 @@ public class RaceFactory
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance
      */
 
@@ -71,7 +71,8 @@ public class RaceFactory
 
     private void readData()
     {
-        final URL url = Main.class.getResource("data/races.xml");
+        URL url = Main.class.getResource("/races.xml");
+        if (url == null) url = Main.class.getResource("data/races.xml");
         final SAXReader reader = new SAXReader();
         try
         {
@@ -97,7 +98,7 @@ public class RaceFactory
 
     /**
      * Returns all races.
-     * 
+     *
      * @return The races
      */
 
@@ -109,7 +110,7 @@ public class RaceFactory
 
     /**
      * Returns all races which have buyable factories.
-     * 
+     *
      * @return The races which habe buyable factories.
      */
 
@@ -127,7 +128,7 @@ public class RaceFactory
 
     /**
      * Returns the race with the specified id or null if not found.
-     * 
+     *
      * @param id
      *            The race id
      * @return The race or null if not found
@@ -141,7 +142,7 @@ public class RaceFactory
 
     /**
      * Returns the number of races.
-     * 
+     *
      * @return The number of races
      */
 

@@ -53,7 +53,7 @@ public class Sector implements Serializable, Comparable<Sector>
     private final int planets;
 
     /** The suns */
-    private final Suns suns;
+    private final Sun suns;
 
     /** If this is a core sector or not */
     private final boolean core;
@@ -112,7 +112,7 @@ public class Sector implements Serializable, Comparable<Sector>
      */
 
     public Sector(final String id, final int x, final int y, final Race race,
-        final int planets, final Suns suns, final boolean core,
+        final int planets, final Sun suns, final boolean core,
         final boolean shipyard, final String northId, final String eastId,
         final String southId, final String westId, final Asteroid[] asteroids)
     {
@@ -259,7 +259,7 @@ public class Sector implements Serializable, Comparable<Sector>
      * @return The suns
      */
 
-    public Suns getSuns()
+    public Sun getSuns()
     {
         return this.suns;
     }

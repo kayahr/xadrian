@@ -12,6 +12,7 @@ import java.util.Collection;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.support.I18N;
 
 
@@ -375,7 +376,7 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The production cycle
      */
 
-    private int getRealCycle(final Suns suns, final int yield)
+    private int getRealCycle(final Sun suns, final int yield)
     {
         final String wareId = this.product.getWare().getId();
 
@@ -414,7 +415,7 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The product
      */
 
-    private Product getRealProduct(final Suns suns, final int yield)
+    private Product getRealProduct(final Sun suns, final int yield)
     {
         final Ware ware = this.product.getWare();
         final String wareId = ware.getId();
@@ -452,7 +453,7 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The resources
      */
 
-    private Product[] getRealResources(final Suns suns, final int yield)
+    private Product[] getRealResources(final Sun suns, final int yield)
     {
         final String wareId = this.product.getWare().getId();
 
@@ -496,7 +497,7 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The product per hour.
      */
 
-    public final Product getProductPerHour(final Suns suns, final int yield)
+    public final Product getProductPerHour(final Sun suns, final int yield)
     {
         final Product product = getRealProduct(suns, yield);
         return new Product(product.getWare(), product.getQuantity() * 60d * 60d
@@ -513,7 +514,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     public Product getProductPerHour()
     {
-        return getProductPerHour(Suns.P100, 25);
+        return getProductPerHour(SunFactory.getInstance().getDefaultSun(), 25);
     }
 
 
@@ -528,7 +529,7 @@ public class Factory implements Serializable, Comparable<Factory>
      * @return The resources needed per hour
      */
 
-    public Collection<Product> getResourcesPerHour(final Suns suns,
+    public Collection<Product> getResourcesPerHour(final Sun suns,
         final int yield)
     {
         final Product[] resources = getRealResources(suns, yield);
@@ -552,7 +553,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     public Collection<Product> getResourcesPerHour()
     {
-        return getResourcesPerHour(Suns.P100, 25);
+        return getResourcesPerHour(SunFactory.getInstance().getDefaultSun(), 25);
     }
 
 

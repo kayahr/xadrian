@@ -25,7 +25,7 @@ import de.ailis.xadrian.exceptions.DataException;
 
 /**
  * Factory for Ware objects.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -53,7 +53,7 @@ public class WareFactory
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance
      */
 
@@ -69,7 +69,8 @@ public class WareFactory
 
     private void readData()
     {
-        final URL url = Main.class.getResource("data/wares.xml");
+        URL url = Main.class.getResource("/wares.xml");
+        if (url == null) url = Main.class.getResource("data/wares.xml");
         final SAXReader reader = new SAXReader();
         try
         {
@@ -97,7 +98,7 @@ public class WareFactory
 
     /**
      * Returns all wares.
-     * 
+     *
      * @return The wares
      */
 
@@ -109,7 +110,7 @@ public class WareFactory
 
     /**
      * Returns the ware with the specified id or null if not found.
-     * 
+     *
      * @param id
      *            The ware id
      * @return The ware or null if not found

@@ -26,12 +26,13 @@ import org.dom4j.Element;
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.data.factories.SectorFactory;
+import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.dialogs.SetYieldsDialog;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
-import de.ailis.xadrian.support.MultiCollection;
 import de.ailis.xadrian.support.ModalDialog.Result;
+import de.ailis.xadrian.support.MultiCollection;
 
 
 /**
@@ -67,7 +68,7 @@ public class Complex implements Serializable
     private final List<ComplexFactory> autoFactories;
 
     /** The sun power in percent */
-    private Suns suns = Suns.P100;
+    private Sun suns = SunFactory.getInstance().getDefaultSun();
 
     /** The sector where this complex is build */
     private Sector sector = null;
@@ -440,7 +441,7 @@ public class Complex implements Serializable
      *            The suns in percent to set
      */
 
-    public void setSuns(final Suns suns)
+    public void setSuns(final Sun suns)
     {
         this.suns = suns;
         calculateBaseComplex();
@@ -453,7 +454,7 @@ public class Complex implements Serializable
      * @return The suns in percent
      */
 
-    public Suns getSuns()
+    public Sun getSuns()
     {
         if (this.sector != null) return this.sector.getSuns();
         return this.suns;
@@ -619,6 +620,7 @@ public class Complex implements Serializable
         final FactoryFactory factoryFactory = FactoryFactory.getInstance();
         final SectorFactory sectorFactory = SectorFactory.getInstance();
         final WareFactory wareFactory = WareFactory.getInstance();
+        final SunFactory sunsFactory = SunFactory.getInstance();
 
         // Check the version
         final String versionStr = root.attributeValue("version");
@@ -626,7 +628,7 @@ public class Complex implements Serializable
         if (versionStr != null) version = Integer.parseInt(versionStr);
         if (version > 3) throw new DocumentException(I18N.getString("error.fileFormatTooNew"));
 
-        complex.setSuns(Suns.valueOf(Integer.parseInt(root
+        complex.setSuns(sunsFactory.getSun(Integer.parseInt(root
                 .attributeValue("suns"))));
         complex.setSector(sectorFactory
                 .getSector(root.attributeValue("sector")));

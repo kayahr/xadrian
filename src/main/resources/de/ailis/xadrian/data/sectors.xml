@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sectors>
 <sectors>
   <sector id="sec-0-0" x="0" y="0" race="boron" planets="3" suns="150" core="true" east="sec-1-0" south="sec-0-1">
     <stations>

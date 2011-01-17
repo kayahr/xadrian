@@ -23,7 +23,7 @@ import de.ailis.xadrian.data.Asteroid;
 import de.ailis.xadrian.data.PlayerSector;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.Sector;
-import de.ailis.xadrian.data.Suns;
+import de.ailis.xadrian.data.Sun;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
 
@@ -80,11 +80,13 @@ public class SectorFactory
 
     private void readData()
     {
-        final URL url = Main.class.getResource("data/sectors.xml");
+        URL url = Main.class.getResource("/sectors.xml");
+        if (url == null) url = Main.class.getResource("data/sectors.xml");
         final SAXReader reader = new SAXReader();
         try
         {
             final RaceFactory raceFactory = RaceFactory.getInstance();
+            final SunFactory sunsFactory = SunFactory.getInstance();
             final Document document = reader.read(url);
             for (final Object item : document.getRootElement().elements(
                 "sector"))
@@ -97,7 +99,7 @@ public class SectorFactory
                 this.maxY = Math.max(this.maxY, y);
                 final int planets = Integer.parseInt(element
                         .attributeValue("planets"));
-                final Suns suns = Suns.valueOf(Integer.parseInt(element
+                final Sun suns = sunsFactory.getSun(Integer.parseInt(element
                         .attributeValue("suns")));
                 final Race race = raceFactory.getRace(element
                         .attributeValue("race"));

@@ -34,7 +34,7 @@ import de.ailis.xadrian.support.Config;
 
 /**
  * Factory for Factory objects.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -65,7 +65,7 @@ public class FactoryFactory
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance
      */
 
@@ -81,7 +81,8 @@ public class FactoryFactory
 
     private void readData()
     {
-        final URL url = Main.class.getResource("data/factories.xml");
+        URL url = Main.class.getResource("/factories.xml");
+        if (url == null) url = Main.class.getResource("data/factories.xml");
         final SAXReader reader = new SAXReader();
         try
         {
@@ -163,7 +164,7 @@ public class FactoryFactory
 
     /**
      * Returns all factories.
-     * 
+     *
      * @return The factories
      */
 
@@ -175,7 +176,7 @@ public class FactoryFactory
 
     /**
      * Returns the factory with the specified id or null if not found.
-     * 
+     *
      * @param id
      *            The factory id
      * @return The factory or null if not found
@@ -189,7 +190,7 @@ public class FactoryFactory
 
     /**
      * Returns the factories of the specified race.
-     * 
+     *
      * @param race
      *            The race
      * @return The factories of the specified race
@@ -209,7 +210,7 @@ public class FactoryFactory
     /**
      * Returns the factories which produces the specified ware. This method only
      * uses factories which races are not set to be ignored.
-     * 
+     *
      * @param ware
      *            The ware
      * @return The factories which products the specified ware
@@ -235,7 +236,7 @@ public class FactoryFactory
      * specified size and belongs to the specified race. This method only uses
      * factories which races are not set to be ignored. So if no factory was
      * matched then null is returned.
-     * 
+     *
      * @param ware
      *            The ware
      * @param size
@@ -260,7 +261,7 @@ public class FactoryFactory
      * Returns the factories which produces the specified ware and have the
      * specified size. This method only uses factories which races are not set
      * to be ignored.
-     * 
+     *
      * @param ware
      *            The ware
      * @param size
@@ -286,7 +287,7 @@ public class FactoryFactory
     /**
      * Returns the available sizes of factories producing the specified ware.
      * This method only uses factories which races are not set to be ignored.
-     * 
+     *
      * @param ware
      *            The product id ware
      * @return The set with available factory sizes
@@ -302,7 +303,7 @@ public class FactoryFactory
      * Returns the available sizes of factories producing the specified ware and
      * belonging to the specified race. This method only uses factories which
      * races are not set to be ignored.
-     * 
+     *
      * @param ware
      *            The product id ware
      * @param race
@@ -334,7 +335,7 @@ public class FactoryFactory
      * Returns the cheapest factory of the given size which produces the
      * specified ware. Returns null if none found. This method only uses
      * factories which races are not set to be ignored.
-     * 
+     *
      * @param ware
      *            The ware
      * @param size
@@ -367,7 +368,7 @@ public class FactoryFactory
      * Checks if the specified race has at least one factory which produces the
      * specified ware. If the race is ignored then this method always returns
      * false.
-     * 
+     *
      * @param race
      *            The race
      * @param ware

@@ -34,7 +34,7 @@
             <key>MainClass</key>
             <string>de.ailis.xadrian.Main</string>
             <key>ClassPath</key>
-            <string>$JAVAROOT/xadrian.jar</string>
+            <string>$JAVAROOT/xadrian.jar:$JAVAROOT/data</string>
             <key>VMOptions</key>
             <string></string>
         </dict>

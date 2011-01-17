@@ -54,7 +54,7 @@ public class PlayerSector extends Sector
      */
 
     public PlayerSector(final String id, final int x, final int y, final Race race,
-        final int planets, final Suns suns, final boolean core,
+        final int planets, final Sun suns, final boolean core,
         final String northId, final String eastId,
         final String southId, final String westId, final Asteroid[][] asteroids)
     {

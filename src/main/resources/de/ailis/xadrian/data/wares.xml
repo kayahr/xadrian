@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE wares>
 <wares>
   <ware id="nividium" minPrice="3" avgPrice="4" maxPrice="5" volume="4" container="XL" />
   <ware id="energyCells" minPrice="12" avgPrice="16" maxPrice="20" volume="1" container="S" />

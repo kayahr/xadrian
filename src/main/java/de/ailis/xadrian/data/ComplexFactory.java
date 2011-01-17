@@ -14,6 +14,8 @@ import java.util.List;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import de.ailis.xadrian.data.factories.SunFactory;
+
 
 /**
  * A factory (or multiple factories with same configuration) in a complex.
@@ -286,7 +288,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
      * @return The product per hour.
      */
 
-    public Product getProductPerHour(final Suns suns)
+    public Product getProductPerHour(final Sun suns)
     {
         if (this.factory.isMine())
         {
@@ -317,7 +319,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public Product getProductPerHour()
     {
-        return getProductPerHour(Suns.P100);
+        return getProductPerHour(SunFactory.getInstance().getDefaultSun());
     }
 
 
@@ -330,7 +332,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
      * @return The resources needed per hour
      */
 
-    public Collection<Product> getResourcesPerHour(final Suns suns)
+    public Collection<Product> getResourcesPerHour(final Sun suns)
     {
         final Collection<Product> resources = new ArrayList<Product>();
 
@@ -369,7 +371,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public Collection<Product> getResourcesPerHour()
     {
-        return getResourcesPerHour(Suns.P100);
+        return getResourcesPerHour(SunFactory.getInstance().getDefaultSun());
     }
 
 
