@@ -53,10 +53,15 @@
   </contributors>
   
   <scm>
-    <url>http://www.ailis.de/~k/hg/java/xadrian</url>
-    <connection>scm:hg:http://www.ailis.de/~k/hg/java/xadrian</connection>
-    <developerConnection>scm:hg:ssh://k@ailis.de/hg/java/xadrian</developerConnection>
-  </scm>  
+    <connection>scm:git:git://github.com/kayahr/${artifactId}.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/kayahr/${artifactId}.git</developerConnection>
+    <url>http://github.com/kayahr/${artifactId}</url>
+  </scm>
+                  
+  <issueManagement>
+    <system>Github</system>
+    <url>https://github.com/kayahr/${artifactId}/issues</url>
+  </issueManagement>
   
   <build>
     <plugins>
