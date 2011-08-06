@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Info</title>
+    <title>Modding</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -50,8 +50,8 @@
                                 <h5>Xadrian</h5>
                   <ul>
                   <li class="none">
-            <strong>Info</strong>
-          </li>
+                          <a href="index.html" title="Info">Info</a>
+            </li>
                   <li class="none">
                           <a href="download.html" title="Download">Download</a>
             </li>
@@ -62,8 +62,8 @@
                           <a href="manual.html" title="Anleitung">Anleitung</a>
             </li>
                   <li class="none">
-                          <a href="modding.html" title="Modding">Modding</a>
-            </li>
+            <strong>Modding</strong>
+          </li>
                   <li class="none">
                           <a href="faq.html" title="FAQ">FAQ</a>
             </li>
@@ -89,7 +89,7 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section"><h2>Was ist Xadrian?<a name="Was_ist_Xadrian"></a></h2><p>Xadrian ist ein Fabrik-Komplex-Rechner f&#xfc;r das Spiel <a class="externalLink" href="http://www.egosoft.com/games/x3tc/info_de.php">X3 Terran Conflict</a>. Mit diesem Programm l&#xe4;sst sich ein Fabrik-Komplex planen bevor er dann im Spiel gebaut wird.</p><img src="../images/teaser.png" alt="" /><p>Features:</p><ul><li>Kennt alle Fabriken und Sektoren aus X3TC 3.1.1, inklusive dem Bonus Sektor &quot;Harmonische Ewigkeit&quot;.</li><li>Optionale automatische Grundkomplex-Berechnung.</li><li>Laden, Speichern und Drucken von Fabrik-Komplexen.</li><li>Sonnenst&#xe4;rke ist pro Komplex einstellbar.</li><li>Komplex kann mit einem Sektor verbunden werden. Sonnenst&#xe4;rke wird dann automatisch konfiguriert und au&#xdf;erdem werden die n&#xe4;chstgelegenen Schiffswerften zum Kauf der Fabriken angezeigt.</li><li>Einfache Erstellung von Minen. Einfach einen Minen-Typ hinzuf&#xfc;gen und beliebig viele Asteroiden-Ausbeuten f&#xfc;r diesen Typ eingeben.</li><li>Plattform-unabh&#xe4;ngige Applikation. L&#xe4;uft auf jeder Platform die <a class="externalLink" href="http://java.sun.com/javase/6/">Java SE 6</a> oder h&#xf6;her unterst&#xfc;tzt.</li><li>Natives Look-And-Feel unter Windows, Linux und Mac OS X.</li><li>Open Source (MIT Lizenz)</li></ul></div><div class="section"><h2>Erste Schritte<a name="Erste_Schritte"></a></h2><p>Das aktuellste Bin&#xe4;rpaket von Xadrian <a href="./download.html">herunterladen</a>, <a href="./install.html">installieren</a> und dann die <a href="./manual.html">Anleitung lesen</a>.</p></div>
+        <div class="section"><h2>Modding<a name="Modding"></a></h2><p>Seit Version 1.3.3 kann Xadrian &quot;gemodded&quot; werden. Dazu m&#xfc;ssen lediglich einige XML und Property Dateien in einem bestimmten Verzeichnis abgelegt werden.</p><p>Um mit dem Modding zu beginnen, muss zun&#xe4;chst im <i>lib</i> Verzeichnis der Xadrian-Installation ein Verzeichnis namens <i>data</i> angelegt werden. Aus diesem Verzeichnis liest Xadrian Daten, wenn vorhanden. Wenn eine Datei hier nicht vorhanden ist, dann wird einfach die eingebaute Default-Datei verwendet.</p><p>Folgende Dateien k&#xf6;nnen im <i>data</i> Verzeichnis abgelegt werden:</p><ul><li>factories.xml</li><li>races.xml</li><li>sectors.xml</li><li>suns.xml</li><li>wares.xml</li><li>messages.properties</li><li>messages_*.properties</li></ul><p>Die Default-XML-Dateien befinden sich <a class="externalLink" href="https://github.com/kayahr/xadrian/tree/master/src/main/resources/de/ailis/xadrian/data">hier</a>. Einfach downloaden, in das <i>data</i> Verzeichnis kopieren und dann nach belieben modifizieren. Ich hoffe die simple Struktur dieser Dateien ist selbsterkl&#xe4;rend.</p><p>Die Default-Property-Dateien (Welche die Texte von Xadrian beinhalten) befinden sich <a class="externalLink" href="https://github.com/kayahr/xadrian/tree/master/src/main/resources/de/ailis/xadrian">hier</a> aber diese m&#xfc;ssen nicht kopiert werden. Es reicht eine neue <i>messages.properties</i> Datei anzulegen und dort dann nur die ge&#xe4;nderten und neuen Texte reinzuschreiben.</p></div>
       </div>
     </div>
     <div class="clear">
