@@ -181,7 +181,7 @@
   <distributionManagement>
     <site>
       <id>project-website</id>
-      <url>scpexe://k@ailis.de/home/k/public_html/projects/xadrian/</url>
+      <url>file://${basedir}/../xadrian-site/</url>
     </site>
     <repository>
       <id>ailis-releases</id>
