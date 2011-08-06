@@ -2,25 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
-  <parent>
-    <artifactId>maven-java</artifactId>
-    <groupId>de.ailis.maven</groupId>
-    <version>7</version>
-  </parent>   
-  
   <groupId>de.ailis.xadrian</groupId>
   <artifactId>xadrian</artifactId>
   <packaging>jar</packaging>
   <name>Xadrian</name>
   <version>1.3.3-SNAPSHOT</version>
-  <url>http://www.ailis.de/~k/projects/xadrian/</url>
+  <url>http://kayahr.github.com/xadrian/</url>
   <description>
     A factory complex calculator tool for X3 Terran Conflict.
   </description>
-  <inceptionYear>2010</inceptionYear>
+  <inceptionYear>2009</inceptionYear>
   <organization>
     <name>Klaus Reimer</name>
-    <url>http://www.ailis.de/~k/</url>
+    <url>https://github.com/kayahr/</url>
   </organization>
   
   <licenses>
@@ -33,14 +27,14 @@
   
   <developers>
     <developer>
-      <id>k</id>
+      <id>kayahr</id>
       <name>Klaus Reimer</name>
       <email>k@ailis.de</email>
       <roles>
         <role>Architect</role>
       </roles>
       <timezone>+1</timezone>
-      <url>http://www.ailis.de/~k/</url>
+      <url>https://github.com/kayahr/</url>
     </developer>        
   </developers>
   
@@ -52,22 +46,82 @@
     </contributor>
   </contributors>
   
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
   <scm>
-    <connection>scm:git:git://github.com/kayahr/${artifactId}.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/kayahr/${artifactId}.git</developerConnection>
-    <url>http://github.com/kayahr/${artifactId}</url>
+    <connection>scm:git:git://github.com/kayahr/${project.artifactId}.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/kayahr/${project.artifactId}.git</developerConnection>
+    <url>http://github.com/kayahr/${project.artifactId}</url>
   </scm>
-                  
+       
   <issueManagement>
-    <system>Github</system>
-    <url>https://github.com/kayahr/${artifactId}/issues</url>
+    <system>GitHub</system>
+    <url>https://github.com/kayahr/${project.artifactId}/issues</url>
   </issueManagement>
   
   <build>
     <plugins>
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId> 
+        <version>3.0</version>
+        <configuration>
+          <chmod>false</chmod>
+          <locales>en,de</locales>
+          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+          <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+          <reportPlugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+              <version>2.4</version>
+              <configuration>
+                <dependencyDetailEnabled>false</dependencyDetailEnabled>
+                <dependencyLocationsEnabled>false</dependencyLocationsEnabled>                
+              </configuration>
+              <reports>
+                <report>summary</report>
+                <report>dependencies</report>
+                <report>project-team</report>
+                <report>issue-tracking</report>
+                <report>license</report>
+                <report>scm</report>
+              </reports>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-changes-plugin</artifactId>
+              <version>2.6</version>
+              <reportSets>
+                <reportSet>
+                  <reports>
+                    <report>changes-report</report>
+                  </reports>
+                </reportSet>
+              </reportSets>
+            </plugin>            
+          </reportPlugins>
+        </configuration>
+      </plugin>
+    
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.1</version>
         <configuration>
           <archive>
             <manifest>
@@ -81,9 +135,10 @@
           </archive>
         </configuration>
       </plugin>
+      
       <plugin> 
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.2-beta-3</version><!--$NO-MVN-MAN-VER$-->
+        <version>2.2.1</version><!--$NO-MVN-MAN-VER$-->
         <configuration>
           <descriptors>
             <descriptor>src/main/assembly/windows.xml</descriptor>
@@ -102,31 +157,24 @@
           </execution>
         </executions> 
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId> 
-        <version>2.1</version>
-        <configuration>  
-          <chmod>false</chmod>
-          <locales>en,de</locales>
-          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-          <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-        </configuration>
-      </plugin>
+
     </plugins>
   </build>
   
-  <repositories>  
+  <repositories>
     <repository>
       <id>ailis-releases</id>
       <name>Ailis Maven Releases</name>
       <url>http://www.ailis.de/nexus/content/groups/public/</url>
+      <releases><enabled>true</enabled></releases>
+      <snapshots><enabled>false</enabled></snapshots>
     </repository>
-    <repository>
+    <repository> 
       <id>ailis-snapshots</id>
       <name>Ailis Maven Snapshots</name>
       <url>http://www.ailis.de/nexus/content/groups/public-snapshots/</url>
-      <snapshots />
+      <releases><enabled>false</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
     </repository>
   </repositories>
    
@@ -135,6 +183,16 @@
       <id>project-website</id>
       <url>scpexe://k@ailis.de/home/k/public_html/projects/xadrian/</url>
     </site>
+    <repository>
+      <id>ailis-releases</id>
+      <name>Ailis Maven Releases</name>
+      <url>https://www.ailis.de/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>ailis-snapshots</id>
+      <name>Ailis Maven Snapshots</name>
+      <url>https://www.ailis.de/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>    
   </distributionManagement>
   
   <dependencies>
