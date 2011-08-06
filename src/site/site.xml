@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
 <project>
 
   <bannerLeft>
     <name>Xadrian</name>
     <src>images/logo.png</src>
-    <href>http://www.ailis.de/~k/projects/xadrian/</href>
+    <href>http://kayahr.github.com/xadrian/</href>
   </bannerLeft>
 
   <body>
