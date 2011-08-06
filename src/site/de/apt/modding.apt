@@ -1,0 +1,45 @@
+ -----------------------------------------------------------------------------
+ Modding
+ -----------------------------------------------------------------------------
+
+Modding
+
+  Seit Version 1.3.3 kann Xadrian "gemodded" werden. Dazu müssen lediglich
+  einige XML und Property Dateien in einem bestimmten Verzeichnis abgelegt
+  werden.
+  
+  Um mit dem Modding zu beginnen, muss zunächst im <lib> Verzeichnis der
+  Xadrian-Installation ein Verzeichnis namens <data> angelegt werden. Aus
+  diesem Verzeichnis liest Xadrian Daten, wenn vorhanden. Wenn eine Datei
+  hier nicht vorhanden ist, dann wird einfach die eingebaute Default-Datei
+  verwendet.
+  
+  Folgende Dateien können im <data> Verzeichnis abgelegt werden:
+  
+  * factories.xml
+  
+  * races.xml
+  
+  * sectors.xml
+  
+  * suns.xml
+  
+  * wares.xml
+  
+  * messages.properties
+  
+  * messages_*.properties
+  
+  []
+  
+  Die Default-XML-Dateien befinden sich {{{https://github.com/kayahr/xadrian/tree/master/src/main/resources/de/ailis/xadrian/data}hier}}.
+  Einfach downloaden, in das <data> Verzeichnis kopieren und dann nach 
+  belieben modifizieren. Ich hoffe die simple Struktur dieser Dateien ist
+  selbsterklärend.
+        
+  Die Default-Property-Dateien (Welche die Texte von Xadrian beinhalten)
+  befinden sich {{{https://github.com/kayahr/xadrian/tree/master/src/main/resources/de/ailis/xadrian}hier}}
+  aber diese müssen nicht kopiert werden. Es reicht eine neue 
+  <messages.properties> Datei anzulegen und dort dann nur die geänderten und
+  neuen Texte reinzuschreiben.
+   
