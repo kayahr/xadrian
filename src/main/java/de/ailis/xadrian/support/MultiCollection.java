@@ -182,7 +182,7 @@ public class MultiCollection<T> implements Collection<T>
 
 
     /**
-     * @see java.util.Collection#toArray(E[])
+     * @see java.util.Collection#toArray(Object[])
      */
 
     @Override
