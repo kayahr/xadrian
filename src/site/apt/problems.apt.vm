@@ -1,0 +1,9 @@
+ -----------------------------------------------------------------------------
+ Problems
+ -----------------------------------------------------------------------------
+
+Report problems
+
+  If you have any problems with ${project.name} or find bugs in the software or this
+  web site (even if it's just a typo) then please let me know by creating
+  an {{{${project.issueManagement.url}}issue on GitHub}}.
