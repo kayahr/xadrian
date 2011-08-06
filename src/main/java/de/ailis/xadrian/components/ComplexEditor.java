@@ -22,7 +22,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
-import javax.swing.event.EventListenerList;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkEvent.EventType;
 import javax.swing.event.HyperlinkListener;
@@ -90,9 +89,6 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     /** The freemarker template for the content */
     private static final Template template = TemplateFactory
             .getTemplate("complex.ftl");
-
-    /** The event listener list */
-    private final EventListenerList listenerList = new EventListenerList();
 
     /** The text pane */
     private final JTextPane textPane;

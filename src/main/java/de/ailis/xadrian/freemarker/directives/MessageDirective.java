@@ -32,8 +32,7 @@ public class MessageDirective extends BaseDirective
      */
 
     @Override
-    public void execute(final Environment env,
-        @SuppressWarnings("rawtypes") final Map params,
+    public void execute(final Environment env, final Map params,
         final TemplateModel[] loopVars, final TemplateDirectiveBody body)
         throws TemplateException, IOException
     {
