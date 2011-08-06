@@ -1960,6 +1960,18 @@
       <station id="ABIUE-25" class="factory" type="wheatFarmL-argon" serial="alpha" x="-5217" y="21" z="-13138" />
     </stations>
   </sector>
+  <sector id="sec-14-4" x="14" y="4" race="unknown" planets="1" suns="450" core="false" south="sec-14-5">
+    <stations>
+      <station id="YPOYN-15" class="factory" type="solarPowerPlantM-argon" serial="alpha" x="1560" y="-1" z="-18728" />
+    </stations>
+    <asteroids>
+      <asteroid id="ASXN-20" ware="siliconWafers" yield="18" x="-12170" y="426" z="25445" />
+      <asteroid id="ASXN-19" ware="ore" yield="16" x="-18814" y="19967" z="8623" />
+      <asteroid id="ASXN-23" ware="siliconWafers" yield="19" x="15020" y="6522" z="-8308" />
+      <asteroid id="ASXN-22" ware="siliconWafers" yield="20" x="-49513" y="-22257" z="-5283" />
+      <asteroid id="ASXN-21" ware="ore" yield="18" x="17381" y="-23894" z="-40858" />
+    </asteroids>
+  </sector>
   <sector id="sec-16-4" x="16" y="4" race="split" planets="3" suns="150" core="true" north="sec-16-3" east="sec-17-4" south="sec-16-5">
     <stations>
       <station id="SBIUE-08" class="factory" type="cheltSpaceAquariumL-split" serial="beta" x="-25054" y="-4357" z="-16361" />
@@ -2426,7 +2438,7 @@
       <asteroid id="ASME-41" ware="ore" yield="16" x="7979" y="0" z="5466" />
     </asteroids>
   </sector>
-  <sector id="sec-14-5" x="14" y="5" race="goner" planets="3" suns="100" core="false" south="sec-14-6">
+  <sector id="sec-14-5" x="14" y="5" race="goner" planets="3" suns="100" core="false" north="sec-14-4" south="sec-14-6">
     <stations>
       <station id="GPOME-32" class="factory" type="solarPowerPlantM-argon" serial="alpha" x="-8151" y="12" z="-6153" />
       <station id="GBIME-31" class="factory" type="wheatFarmM-argon" serial="alpha" x="-2625" y="-5250" z="-9000" />

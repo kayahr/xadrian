@@ -8,7 +8,10 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.3.3" date="2011-01-15" description="Minor update">
+    <release version="1.3.3" date="2011-08-06" description="Minor update">
+      <action dev="k" type="add" date="2011-08-06">
+        Added the new bonus sector "Harmony Of Perpetuity". 
+      </action>
       <action dev="k" type="add" date="2011-01-17">
         Added new suns.xml data file which replaces the hardcoded sun data.
       </action>
