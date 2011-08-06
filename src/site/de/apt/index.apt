@@ -13,7 +13,8 @@ Was ist Xadrian?
 
   Features:
 
-    * Kennt alle Fabriken die in einem regulären X3TC 2.7.1 Spiel gekauft werden können.
+    * Kennt alle Fabriken und Sektoren aus X3TC 3.1.1, inklusive dem Bonus
+      Sektor "Harmonische Ewigkeit".
     
     * Optionale automatische Grundkomplex-Berechnung.
 
@@ -42,29 +43,3 @@ Erste Schritte
   Das aktuellste Binärpaket von Xadrian {{{./download.html}herunterladen}}, 
   {{{./install.html}installieren}} und dann die
   {{{./manual.html}Anleitung lesen}}.
-
-Neuigkeiten
-
-  * 25.08.2010 - Version 1.3.2 veröffentlicht. Es wurden nur zwei fehlende
-    Asteroiden in Leitstern hinzugefügt.
-
-  * 09.06.2010 - Version 1.3.1 veröffentlicht mit ein paar Text und Farb
-    Änderungen sowie kleinere Bugfixes.
-
-  * 08.06.2010 - Version 1.3.0 veröffentlicht mit Unterstützung von X3TC
-    2.7. Siehe {{{./changes-report.html}Changelog}} für nähere Informationen.
-
-  * 14.06.2009 - Version 1.2.2 veröffentlicht mit Unterstützung für die
-    Proteinpastenmischerei L, die mit X3TC 2.1 eingeführt wurde. 
-    
-  * 11.06.2009 - Version 1.2.1 veröffentlicht mit neuen Kristallfabriken der
-    Größe L, die mit X3TC 2.1 eingeführt wurden. 
-  
-  * 17.04.2009 - Version 1.2.0 veröffentlicht. Siehe
-    {{{./changes-report.html}Changelog}} für nähere Informationen.
-
-  * 14.03.2009 - Version 1.1.0 veröffentlicht.
-
-  * 04.03.2009 - Version 1.0.0 veröffentlicht.
-
-  []

@@ -13,7 +13,8 @@ What is Xadrian?
 
   Notable features:
 
-    * Knows all factories which can be bought in a regular X3TC 2.7.1 game.
+    * Knows all factories and sectors of a regular X3TC 3.1.1 game. Also 
+      includes the bonus sector "Harmony Of Perpetuity".
     
     * Optional automatic base complex calculation.
 
@@ -42,30 +43,3 @@ Getting started
   {{{./download.html}Download}} the latest binary archive of Xadrian, 
   follow the {{{./install.html}installation instructions}} and then
   read the {{{./manual.html}manual}}.
-
-News
-
-  * 2010/08/25 - Version 1.3.2 has been released. Just added two missing
-    asteroids in Guiding star.
-
-  * 2010/06/09 - Version 1.3.1 has been released with some minor text and
-    color changes and also some small bugfixes.
-
-  * 2010/06/08 - Version 1.3.0 has been released with support for X3TC 2.7.
-    See {{{./changes-report.html}changelog}} for more details.
-
-  * 2009/06/14 - Version 1.2.2 has been released with support for the 
-    Protein Paste Blending Facility L which was introduced in X3TC 2.1.
-    
-  * 2009/06/11 - Version 1.2.1 has been released with support for the crystal
-    fabs of size L which were introduced in X3TC 2.1.
-    
-  * 2009/04/17 - Version 1.2.0 has been released.
-    See {{{./changes-report.html}changelog}} for details.
-
-  * 2009/03/14 - Version 1.1.0 has been released.
-
-  * 2009/03/04 -  Version 1.0.0 has been released.
-
-  []
-  
