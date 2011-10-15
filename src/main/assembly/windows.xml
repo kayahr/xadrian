@@ -17,15 +17,6 @@
       <directory>src/main/assembly/windows</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>*.ini</include>
-      </includes>
-      <fileMode>0644</fileMode>
-      <lineEnding>dos</lineEnding>
-    </fileSet>
-    <fileSet>
-      <directory>src/main/assembly/windows</directory>
-      <outputDirectory>/</outputDirectory>
-      <includes>
         <include>*.exe</include>
       </includes>
       <fileMode>0644</fileMode>
