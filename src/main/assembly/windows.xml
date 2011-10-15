@@ -17,8 +17,9 @@
       <directory>src/main/assembly/windows</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>*.exe</include>
-      </includes>
+        <include>xadrian.exe</include>
+        <include>xadrian64.exe</include>
+      </includes>      
       <fileMode>0644</fileMode>
     </fileSet>
   </fileSets>
