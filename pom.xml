@@ -7,7 +7,7 @@
   <packaging>jar</packaging>
   <name>Xadrian</name>
   <version>1.3.4-SNAPSHOT</version>
-  <url>http://kayahr.github.com/xadrian/</url>
+  <url>http://kayahr.github.com/${project.artifactId}/</url>
   <description>
     A factory complex calculator tool for X3 Terran Conflict.
   </description>
@@ -165,14 +165,14 @@
     <repository>
       <id>ailis-releases</id>
       <name>Ailis Maven Releases</name>
-      <url>http://www.ailis.de/nexus/content/groups/public/</url>
+      <url>http://nexus.ailis.de/content/groups/public/</url>
       <releases><enabled>true</enabled></releases>
       <snapshots><enabled>false</enabled></snapshots>
     </repository>
     <repository> 
       <id>ailis-snapshots</id>
       <name>Ailis Maven Snapshots</name>
-      <url>http://www.ailis.de/nexus/content/groups/public-snapshots/</url>
+      <url>http://nexus.ailis.de/content/groups/public-snapshots/</url>
       <releases><enabled>false</enabled></releases>
       <snapshots><enabled>true</enabled></snapshots>
     </repository>
@@ -181,17 +181,17 @@
   <distributionManagement>
     <site>
       <id>project-website</id>
-      <url>file://${basedir}/../xadrian-site/</url>
+      <url>file://${project.basedir}/../${project.artifactId}-site/</url>
     </site>
     <repository>
       <id>ailis-releases</id>
       <name>Ailis Maven Releases</name>
-      <url>https://www.ailis.de/nexus/content/repositories/releases</url>
+      <url>http://nexus.ailis.de/content/repositories/releases</url>
     </repository>
     <snapshotRepository>
       <id>ailis-snapshots</id>
       <name>Ailis Maven Snapshots</name>
-      <url>https://www.ailis.de/nexus/content/repositories/snapshots</url>
+      <url>http://nexus.ailis.de/content/repositories/snapshots</url>
     </snapshotRepository>    
   </distributionManagement>
   
