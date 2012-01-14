@@ -73,7 +73,7 @@ public class PlayerSector extends Sector
     public String getName()
     {
         final int playerSector = Config.getInstance().getPlayerSector();
-        return I18N.getString("sector." + this.id + "-" + playerSector);
+        return I18N.getString(this.game, "sector." + this.id + "-" + playerSector);
     }
 
     /**

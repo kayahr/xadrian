@@ -36,7 +36,7 @@ public class Sector implements Serializable, Comparable<Sector>
     private static final long serialVersionUID = -8004624270181949305L;
 
     /** The game this sector belongs to. */
-    private final Game game;
+    protected final Game game;
 
     /** The sector id */
     protected final String id;
