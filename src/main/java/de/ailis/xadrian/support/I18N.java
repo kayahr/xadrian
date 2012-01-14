@@ -96,9 +96,17 @@ public final class I18N
         ResourceBundle bundle = gameMessages.get(gameId);
         if (bundle == null)
         {
-            bundle =
-                ResourceBundle.getBundle(Main.class.getPackage().getName() +
-                    ".data." + gameId + ".messages");
+            try
+            {
+                bundle =
+                    ResourceBundle.getBundle(Main.class.getPackage().getName() +
+                        ".data." + gameId + ".messages");
+            }
+            catch (final MissingResourceException e)
+            {
+                bundle =
+                    ResourceBundle.getBundle(gameId + ".messages");
+            }
             gameMessages.put(gameId, bundle);
         }
         try
