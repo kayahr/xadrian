@@ -12,7 +12,7 @@ package de.ailis.xadrian.exceptions;
  * @author Klaus Reimer (k@ailis.de)
  */
 
-public final class FreemarkerException extends X3ToolsException
+public final class FreemarkerException extends XadrianException
 {
     /** Serial version UID */
     private static final long serialVersionUID = -2215161122911612446L;

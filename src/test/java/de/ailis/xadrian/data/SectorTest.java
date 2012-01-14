@@ -7,8 +7,10 @@ package de.ailis.xadrian.data;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.data.factories.SectorFactory;
 
 
@@ -21,16 +23,17 @@ import de.ailis.xadrian.data.factories.SectorFactory;
 public class SectorTest
 {
     /** The sector factory */
-    private static SectorFactory sectorFactory = SectorFactory.getInstance();
-
+    private static SectorFactory sectorFactory;
     
     /**
      * Initializes the test
      */
     
-    @org.junit.BeforeClass
+    @BeforeClass
     public static void init()
     {
+        Game game = GameFactory.getInstance().getGame("x3tc");
+        sectorFactory = game.getSectorFactory(); 
         System.setProperty("xadrian.config", "false");
     }
 

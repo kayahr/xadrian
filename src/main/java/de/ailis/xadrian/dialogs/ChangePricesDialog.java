@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
+ * information
  */
 
 package de.ailis.xadrian.dialogs;
@@ -34,13 +34,12 @@ import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Ware;
-import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
-
 
 /**
  * Dialog for setting up the ware prices.
@@ -54,10 +53,8 @@ public class ChangePricesDialog extends ModalDialog
     private static final long serialVersionUID = -7047840854198687941L;
 
     /** The map with custom prices */
-    private final Map<Ware, Integer> customPrices = new HashMap<Ware, Integer>();
-
-    /** The singleton instance */
-    private final static ChangePricesDialog instance = new ChangePricesDialog();
+    private final Map<Ware, Integer> customPrices =
+        new HashMap<Ware, Integer>();
 
     /** The ware prices panel */
     private JPanel warePricesPanel;
@@ -68,16 +65,23 @@ public class ChangePricesDialog extends ModalDialog
     /** The scroll pane */
     private JScrollPane scrollPane;
 
+    /** The game. */
+    private final Game game;
 
     /**
      * Constructor
+     * 
+     * @param game
+     *            The game. Must not be null.
      */
 
-    private ChangePricesDialog()
+    public ChangePricesDialog(final Game game)
     {
-        super("changePrices", Result.OK, Result.CANCEL);
+        if (game == null)
+            throw new IllegalArgumentException("game must be set");
+        this.game = game;
+        init("changePrices", Result.OK, Result.CANCEL);
     }
-
 
     /**
      * Creates the UI
@@ -109,14 +113,13 @@ public class ChangePricesDialog extends ModalDialog
         add(contentPanel, BorderLayout.CENTER);
     }
 
-
     /**
      * Initializes the content.
      */
 
     private void initContent()
     {
-        final WareFactory wareFactory = WareFactory.getInstance();
+        final WareFactory wareFactory = this.game.getWareFactory();
         final Color gray = new Color(0xee, 0xee, 0xee);
         final NumberFormat formatter = NumberFormat.getNumberInstance();
         JSpinner focusComponent = null;
@@ -131,7 +134,7 @@ public class ChangePricesDialog extends ModalDialog
         for (final Ware ware : wareFactory.getWares())
         {
             // If ware is not used by any buyable factory then ignore it
-            if (FactoryFactory.getInstance().getFactories(ware).isEmpty())
+            if (this.game.getFactoryFactory().getFactories(ware).isEmpty())
                 continue;
 
             // Get price and check if ware is used
@@ -317,7 +320,6 @@ public class ChangePricesDialog extends ModalDialog
         }
     }
 
-
     /**
      * Updates a custom price
      * 
@@ -337,7 +339,6 @@ public class ChangePricesDialog extends ModalDialog
             this.customPrices.put(ware, used ? price : -price);
     }
 
-
     /**
      * Releases the content.
      */
@@ -347,7 +348,6 @@ public class ChangePricesDialog extends ModalDialog
         for (final Component component : this.warePricesPanel.getComponents())
             this.warePricesPanel.remove(component);
     }
-
 
     /**
      * Sets the custom prices.
@@ -362,7 +362,6 @@ public class ChangePricesDialog extends ModalDialog
         this.customPrices.putAll(customPrices);
     }
 
-
     /**
      * Returns the custom prices.
      * 
@@ -373,7 +372,6 @@ public class ChangePricesDialog extends ModalDialog
     {
         return Collections.unmodifiableMap(this.customPrices);
     }
-
 
     /**
      * Sets the active ware. This is the ware which is focused when the dialog
@@ -387,19 +385,6 @@ public class ChangePricesDialog extends ModalDialog
     {
         this.activeWare = ware;
     }
-
-
-    /**
-     * Returns the singleton instance.
-     * 
-     * @return The singleton instance
-     */
-
-    public static ChangePricesDialog getInstance()
-    {
-        return instance;
-    }
-
 
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()

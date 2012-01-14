@@ -8,6 +8,7 @@ package de.ailis.xadrian.data.factories;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Station;
 
 
@@ -19,32 +20,21 @@ import de.ailis.xadrian.data.Station;
 
 public class StationFactory
 {
+    /** The game for which this factory is responsible. */
+    private final Game game;
+    
     /** The station map (for quick ID navigation) */
     private final Map<String, Station> stationMap = new HashMap<String, Station>();
 
-    /** The singleton instance */
-    private final static StationFactory instance = new StationFactory();
-
-
     /**
-     * Private constructor to prevent instantiation from outside.
-     */
-
-    private StationFactory()
-    {
-        // Empty
-    }
-
-
-    /**
-     * Returns the singleton instance.
+     * Constructor.
      * 
-     * @return The singleton instance
+     * @param game
+     *            The game for which this factory is responsible.
      */
-
-    public static final StationFactory getInstance()
+    public StationFactory(final Game game)
     {
-        return instance;
+        this.game = game;
     }
 
 
@@ -63,7 +53,7 @@ public class StationFactory
         Station shipYard = this.stationMap.get(id);
         if (shipYard == null)
         {
-            shipYard = new Station(id, SectorFactory.getInstance().getSector(
+            shipYard = new Station(id, this.game.getSectorFactory().getSector(
                 sectorId));
             this.stationMap.put(id, shipYard);
         }

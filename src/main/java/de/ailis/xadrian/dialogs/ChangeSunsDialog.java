@@ -15,8 +15,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sun;
-import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
@@ -32,20 +32,24 @@ public class ChangeSunsDialog extends ModalDialog
     /** Serial version UID */
     private static final long serialVersionUID = 5592052723685985901L;
 
-    /** The singleton instance of this dialog */
-    private final static ChangeSunsDialog instance = new ChangeSunsDialog();
-
     /** The suns combo box */
     private JComboBox sunsComboBox;
+    
+    /** The game. */
+    private final Game game;
 
 
     /**
-     * Constructor
+     * Constructor.
+     * 
+     * @param game
+     *            The game. Must not be null.
      */
-
-    private ChangeSunsDialog()
+    public ChangeSunsDialog(final Game game)
     {
-        super("changeSuns", Result.OK, Result.CANCEL);
+        if (game == null) throw new IllegalArgumentException("game must be set");
+        this.game = game;
+        init("changeSuns", Result.OK, Result.CANCEL);
     }
 
 
@@ -59,7 +63,7 @@ public class ChangeSunsDialog extends ModalDialog
         // Create the content controls
         final JLabel sunsLabel = new JLabel(I18N
             .getString("dialog.changeSuns.suns"));
-        this.sunsComboBox = new JComboBox(SunFactory.getInstance()
+        this.sunsComboBox = new JComboBox(this.game.getSunFactory()
             .getSuns().toArray(new Sun[0]));
         sunsLabel.setLabelFor(this.sunsComboBox);
 
@@ -73,18 +77,6 @@ public class ChangeSunsDialog extends ModalDialog
 
         // Add the panels to the dialog
         add(contentPanel, BorderLayout.CENTER);
-    }
-
-
-    /**
-     * Returns the singleton instance
-     *
-     * @return The singleton instance
-     */
-
-    public static ChangeSunsDialog getInstance()
-    {
-        return instance;
     }
 
 

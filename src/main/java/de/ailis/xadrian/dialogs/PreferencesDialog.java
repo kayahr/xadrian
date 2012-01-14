@@ -57,7 +57,7 @@ public class PreferencesDialog extends ModalDialog
 
     private PreferencesDialog()
     {
-        super("preferences", Result.OK, Result.CANCEL);
+        init("preferences", Result.OK, Result.CANCEL);
     }
 
 
@@ -111,18 +111,18 @@ public class PreferencesDialog extends ModalDialog
         c.gridx = 0;
         c.gridy = 0;
         this.racesCheckBoxes = new HashMap<Race, JCheckBox>();
-        for (final Race race: RaceFactory.getInstance().getManufacturerRaces())
-        {
-            final JCheckBox raceCheckBox = new JCheckBox(race.getName());
-            if (c.gridx == 3)
-            {
-                c.gridx = 0;
-                c.gridy++;
-            }
-            racePanel.add(raceCheckBox, c);
-            this.racesCheckBoxes.put(race, raceCheckBox);
-            c.gridx++;
-        }
+//        for (final Race race: RaceFactory.getInstance().getManufacturerRaces())
+//        {
+//            final JCheckBox raceCheckBox = new JCheckBox(race.getName());
+//            if (c.gridx == 3)
+//            {
+//                c.gridx = 0;
+//                c.gridy++;
+//            }
+//            racePanel.add(raceCheckBox, c);
+//            this.racesCheckBoxes.put(race, raceCheckBox);
+//            c.gridx++;
+//        }
         panel.add(racePanel);
         return panel;
     }

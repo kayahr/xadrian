@@ -19,6 +19,7 @@ import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Container;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
 
@@ -31,35 +32,25 @@ import de.ailis.xadrian.exceptions.DataException;
 
 public class WareFactory
 {
+    /** The game for which this factory is responsible. */
+    private final Game game;
+    
     /** The ware map (for quick ID navigation) */
     private final Map<String, Ware> wareMap = new HashMap<String, Ware>();
 
     /** The wares (sorted) */
     private final SortedSet<Ware> wares = new TreeSet<Ware>();
 
-    /** The singleton instance */
-    private final static WareFactory instance = new WareFactory();
-
-
     /**
-     * Private constructor to prevent instantiation from outside.
+     * Constructor.
+     * 
+     * @param game
+     *            The game for which this factory is responsible.
      */
-
-    private WareFactory()
+    public WareFactory(final Game game)
     {
+        this.game = game;
         readData();
-    }
-
-
-    /**
-     * Returns the singleton instance.
-     *
-     * @return The singleton instance
-     */
-
-    public static final WareFactory getInstance()
-    {
-        return instance;
     }
 
 
@@ -69,8 +60,10 @@ public class WareFactory
 
     private void readData()
     {
-        URL url = Main.class.getResource("/wares.xml");
-        if (url == null) url = Main.class.getResource("data/wares.xml");
+        String gameId = this.game.getId();
+        URL url = Main.class.getResource("/" + gameId + "/wares.xml");
+        if (url == null)
+            url = Main.class.getResource("data/" + gameId + "/wares.xml");
         final SAXReader reader = new SAXReader();
         try
         {

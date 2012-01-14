@@ -12,7 +12,7 @@ package de.ailis.xadrian.exceptions;
  * @author Klaus Reimer (k@ailis.de)
  */
 
-public final class ConfigException extends X3ToolsException
+public final class ConfigException extends XadrianException
 {
     /** Serial version UID */
 

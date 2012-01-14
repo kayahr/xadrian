@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.txt file for licensing information.
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
+ * licensing information.
  */
 
 package de.ailis.xadrian.data.factories;
@@ -20,6 +20,7 @@ import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Asteroid;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.PlayerSector;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.Sector;
@@ -27,17 +28,16 @@ import de.ailis.xadrian.data.Sun;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
 
-
 /**
  * Factory for Sector objects.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 
 public class SectorFactory
 {
-    /** The singleton instance */
-    private final static SectorFactory instance = new SectorFactory();
+    /** The game for which this factory is responsible. */
+    private final Game game;
 
     /** The sectors (sorted) */
     private final SortedSet<Sector> sectors = new TreeSet<Sector>();
@@ -63,16 +63,19 @@ public class SectorFactory
     /** The maximum ice yield in a single sector */
     private int maxIceYield = 0;
 
-
     /**
-     * Private constructor to prevent instantiation from outside.
+     * Constructor.
+     * 
+     * @param game
+     *            The game for which this factory is responsible.
      */
-
-    private SectorFactory()
+    public SectorFactory(final Game game)
     {
+        if (game == null)
+            throw new IllegalArgumentException("game must be set");
+        this.game = game;
         readData();
     }
-
 
     /**
      * Reads the data from the XML file.
@@ -80,13 +83,15 @@ public class SectorFactory
 
     private void readData()
     {
-        URL url = Main.class.getResource("/sectors.xml");
-        if (url == null) url = Main.class.getResource("data/sectors.xml");
+        String gameId = this.game.getId();
+        URL url = Main.class.getResource("/" + gameId + "/sectors.xml");
+        if (url == null)
+            url = Main.class.getResource("data/" + gameId + "/sectors.xml");
         final SAXReader reader = new SAXReader();
         try
         {
-            final RaceFactory raceFactory = RaceFactory.getInstance();
-            final SunFactory sunsFactory = SunFactory.getInstance();
+            final RaceFactory raceFactory = this.game.getRaceFactory();
+            final SunFactory sunsFactory = this.game.getSunFactory();
             final Document document = reader.read(url);
             for (final Object item : document.getRootElement().elements(
                 "sector"))
@@ -98,13 +103,13 @@ public class SectorFactory
                 final int y = Integer.parseInt(element.attributeValue("y"));
                 this.maxY = Math.max(this.maxY, y);
                 final int planets = Integer.parseInt(element
-                        .attributeValue("planets"));
+                    .attributeValue("planets"));
                 final Sun suns = sunsFactory.getSun(Integer.parseInt(element
-                        .attributeValue("suns")));
+                    .attributeValue("suns")));
                 final Race race = raceFactory.getRace(element
-                        .attributeValue("race"));
+                    .attributeValue("race"));
                 final boolean core = Boolean.parseBoolean(element
-                        .attributeValue("core"));
+                    .attributeValue("core"));
                 final String northId = element.attributeValue("north");
                 final String eastId = element.attributeValue("east");
                 final String southId = element.attributeValue("south");
@@ -116,34 +121,39 @@ public class SectorFactory
                 {
                     final boolean shipyard = hasShipyard(element);
                     final Asteroid[] asteroids = getAsteroids(element);
-                    sector = new Sector(id, x, y, race, planets, suns,
-                        core, shipyard, northId, eastId, southId, westId, asteroids);
+                    sector =
+                        new Sector(this.game, id, x, y, race, planets, suns,
+                            core, shipyard, northId, eastId, southId, westId,
+                            asteroids);
                 }
                 else
                 {
-                    final Asteroid[][] asteroidsList = new Asteroid[switches.size()][];
+                    final Asteroid[][] asteroidsList =
+                        new Asteroid[switches.size()][];
                     int i = 0;
-                    for (final Object switchItem: switches)
+                    for (final Object switchItem : switches)
                     {
                         final Element switchElement = (Element) switchItem;
                         asteroidsList[i] = getAsteroids(switchElement);
                         i++;
                     }
-                    sector = new PlayerSector(id, x, y, race, planets, suns,
-                        core, northId, eastId, southId, westId, asteroidsList);
+                    sector =
+                        new PlayerSector(this.game, id, x, y, race, planets,
+                            suns, core, northId, eastId, southId, westId,
+                            asteroidsList);
                 }
 
                 this.sectors.add(sector);
                 this.sectorMap.put(id, sector);
 
                 this.maxSiliconYield = Math.max(this.maxSiliconYield, sector
-                        .getTotalSiliconYield());
+                    .getTotalSiliconYield());
                 this.maxOreYield = Math.max(this.maxOreYield, sector
-                        .getTotalOreYield());
+                    .getTotalOreYield());
                 this.maxNividiumYield = Math.max(this.maxNividiumYield, sector
-                        .getTotalNividiumYield());
+                    .getTotalNividiumYield());
                 this.maxIceYield = Math.max(this.maxIceYield, sector
-                        .getTotalIceYield());
+                    .getTotalIceYield());
             }
         }
         catch (final DocumentException e)
@@ -152,10 +162,9 @@ public class SectorFactory
         }
     }
 
-
     /**
      * Checks if sector has a shipyard.
-     *
+     * 
      * @param element
      *            The sector XML element
      * @return True if sector has a shipyard, false if not
@@ -167,7 +176,7 @@ public class SectorFactory
         if (stationsElement != null)
         {
             for (final Object stationItem : stationsElement
-                    .elements("station"))
+                .elements("station"))
             {
                 final Element stationElement = (Element) stationItem;
                 if (stationElement.attributeValue("class").equals(
@@ -180,10 +189,9 @@ public class SectorFactory
         return false;
     }
 
-
     /**
      * Returns the asteroids of the sector.
-     *
+     * 
      * @param element
      *            The sector XML element
      * @return The asteroids
@@ -196,25 +204,25 @@ public class SectorFactory
         if (asteroidsElement != null)
         {
             final List<?> asteroidElements = asteroidsElement
-                    .elements("asteroid");
+                .elements("asteroid");
             asteroids = new Asteroid[asteroidElements.size()];
             int i = 0;
             for (final Object asteroidItem : asteroidElements)
             {
                 final Element asteroidElement = (Element) asteroidItem;
                 final String asteroidId = asteroidElement
-                        .attributeValue("id");
+                    .attributeValue("id");
                 final int yield = Integer.parseInt(asteroidElement
-                        .attributeValue("yield"));
+                    .attributeValue("yield"));
                 final int astX = Integer.parseInt(asteroidElement
-                        .attributeValue("x"));
+                    .attributeValue("x"));
                 final int astY = Integer.parseInt(asteroidElement
-                        .attributeValue("y"));
+                    .attributeValue("y"));
                 final int astZ = Integer.parseInt(asteroidElement
-                        .attributeValue("z"));
-                final Ware ware = WareFactory.getInstance().getWare(
+                    .attributeValue("z"));
+                final Ware ware = this.game.getWareFactory().getWare(
                     asteroidElement
-                            .attributeValue("ware"));
+                        .attributeValue("ware"));
                 final Asteroid asteroid = new Asteroid(asteroidId,
                     ware, yield, astX, astY, astZ);
                 asteroids[i] = asteroid;
@@ -228,20 +236,8 @@ public class SectorFactory
     }
 
     /**
-     * Returns the singleton instance.
-     *
-     * @return The singleton instance
-     */
-
-    public static final SectorFactory getInstance()
-    {
-        return instance;
-    }
-
-
-    /**
      * Returns all sectors.
-     *
+     * 
      * @return The sectors
      */
 
@@ -250,10 +246,9 @@ public class SectorFactory
         return Collections.unmodifiableSortedSet(this.sectors);
     }
 
-
     /**
      * Returns the sector with the specified id or null if not found.
-     *
+     * 
      * @param id
      *            The sector id
      * @return The sector or null if not found
@@ -264,10 +259,9 @@ public class SectorFactory
         return this.sectorMap.get(id);
     }
 
-
     /**
      * Returns the maximum X position in the universe.
-     *
+     * 
      * @return The maximum X position
      */
 
@@ -276,10 +270,9 @@ public class SectorFactory
         return this.maxX;
     }
 
-
     /**
      * Returns the maximum Y position in the universe.
-     *
+     * 
      * @return The maximum Y position
      */
 
@@ -288,11 +281,10 @@ public class SectorFactory
         return this.maxY;
     }
 
-
     /**
      * Returns the sector at the specified coordinates. Returns null if there is
      * no sector at this coordinate.
-     *
+     * 
      * @param x
      *            The X coordinate
      * @param y
@@ -305,10 +297,9 @@ public class SectorFactory
         return getSector(String.format("sec-%d-%d", x, y));
     }
 
-
     /**
      * Returns the maximum silicon yield in a single sector.
-     *
+     * 
      * @return The maximum silicon yield
      */
 
@@ -317,10 +308,9 @@ public class SectorFactory
         return this.maxSiliconYield;
     }
 
-
     /**
      * Returns the maximum ore yield in a single sector.
-     *
+     * 
      * @return The maximum ore yield
      */
 
@@ -329,10 +319,9 @@ public class SectorFactory
         return this.maxOreYield;
     }
 
-
     /**
      * Returns the maximum nividium yield in a single sector.
-     *
+     * 
      * @return The maximum nividium yield
      */
 
@@ -341,10 +330,9 @@ public class SectorFactory
         return this.maxNividiumYield;
     }
 
-
     /**
      * Returns the maximum ice yield in a single sector.
-     *
+     * 
      * @return The maximum ice yield
      */
 

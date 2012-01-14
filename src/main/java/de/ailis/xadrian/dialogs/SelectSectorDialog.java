@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
+ * information
  */
 
 package de.ailis.xadrian.dialogs;
@@ -25,10 +25,10 @@ import javax.swing.border.BevelBorder;
 
 import de.ailis.xadrian.components.SectorSelector;
 import de.ailis.xadrian.components.SectorSelector.Mode;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
-
 
 /**
  * Dialog for selecting a sector.
@@ -41,25 +41,28 @@ public class SelectSectorDialog extends ModalDialog
     /** Serial version UID */
     private static final long serialVersionUID = -3589101588161573682L;
 
-    /** The singleton instance of this dialog */
-    private final static SelectSectorDialog instance = new SelectSectorDialog();
-
     /** The sector selector */
     private SectorSelector selector;
-    
+
     /** The quick search text field */
     private JTextField quickSearch;
 
+    /** The game. */
+    private final Game game;
 
     /**
-     * Constructor
+     * Constructor.
+     * 
+     * @param game
+     *            The game. Must not be null.
      */
-
-    private SelectSectorDialog()
+    public SelectSectorDialog(final Game game)
     {
-        super("selectSector", Result.OK, Result.CANCEL);
+        if (game == null)
+            throw new IllegalArgumentException("game must be set");
+        this.game = game;
+        init("selectSector", Result.OK, Result.CANCEL);
     }
-
 
     /**
      * Creates the UI
@@ -72,7 +75,7 @@ public class SelectSectorDialog extends ModalDialog
         final JPanel selectorPanel = new JPanel();
         selectorPanel.setBorder(BorderFactory
             .createBevelBorder(BevelBorder.LOWERED));
-        final SectorSelector selector = new SectorSelector(512, 512);
+        final SectorSelector selector = new SectorSelector(this.game, 512, 512);
         this.selector = selector;
         selector.addMouseListener(new MouseAdapter()
         {
@@ -133,7 +136,8 @@ public class SelectSectorDialog extends ModalDialog
         // Create another container for just adding some border
         final JPanel contentPanel = new JPanel(new BorderLayout());
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        //contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        // contentPanel.setLayout(new BoxLayout(contentPanel,
+        // BoxLayout.Y_AXIS));
         contentPanel.add(controlsPanel, BorderLayout.NORTH);
         contentPanel.add(selectorPanel, BorderLayout.CENTER);
 
@@ -141,19 +145,6 @@ public class SelectSectorDialog extends ModalDialog
         add(contentPanel, BorderLayout.CENTER);
     }
 
-
-    /**
-     * Returns the singleton instance
-     * 
-     * @return The singleton instance
-     */
-
-    public static SelectSectorDialog getInstance()
-    {
-        return instance;
-    }
-
-    
     /**
      * Returns the selected sector.
      * 
@@ -164,7 +155,6 @@ public class SelectSectorDialog extends ModalDialog
     {
         return this.selector.getSelected();
     }
-
 
     /**
      * Sets the selected sector. null deselectes the currently selected sector.
@@ -177,9 +167,6 @@ public class SelectSectorDialog extends ModalDialog
     {
         this.selector.setSelected(sector);
     }
-    
-    
-
 
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
@@ -191,5 +178,5 @@ public class SelectSectorDialog extends ModalDialog
         this.quickSearch.requestFocus();
         final Result result = super.open();
         return result;
-    }    
+    }
 }

@@ -23,6 +23,7 @@ import java.util.SortedSet;
 
 import javax.swing.JComponent;
 
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.factories.SectorFactory;
 import de.ailis.xadrian.listeners.SectorSelectorStateListener;
@@ -85,6 +86,9 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /** The scale factor of the map */
     private final float scale;
+    
+    /** The game. */
+    private final Game game;
 
     /** The sector over which the mouse cursor hovers */
     private Sector overSector;
@@ -102,15 +106,18 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
     /**
      * Constructor
      *
+     * @param game
+     *            The game.
      * @param maxW
      *            The maximum width
      * @param maxH
      *            The maximum height
      */
 
-    public SectorSelector(final int maxW, final int maxH)
+    public SectorSelector(final Game game, final int maxW, final int maxH)
     {
-        final SectorFactory sectorFactory = SectorFactory.getInstance();
+        this.game = game;
+        final SectorFactory sectorFactory = game.getSectorFactory();
         final int uniWidth = sectorFactory.getMaxX() * 100 + 150;
         final int uniHeight = sectorFactory.getMaxY() * 100 + 150;
         final float scaleX = (float) maxW / uniWidth;
@@ -159,7 +166,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
                 BufferedImage.TYPE_INT_ARGB);
         final Graphics2D g = this.buffer.createGraphics();
 
-        final SectorFactory sectorFactory = SectorFactory.getInstance();
+        final SectorFactory sectorFactory = this.game.getSectorFactory();
         final SortedSet<Sector> sectors = sectorFactory.getSectors();
 
         g.setColor(Color.BLACK);
@@ -381,7 +388,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         final int sx = Math.round(((e.getX() / this.scale) - 75) / 100);
         final int sy = Math.round(((e.getY() / this.scale) - 75) / 100);
 
-        final Sector sector = SectorFactory.getInstance().getSector(sx, sy);
+        final Sector sector = this.game.getSectorFactory().getSector(sx, sy);
         if (sector != this.overSector)
         {
             this.overSector = sector;

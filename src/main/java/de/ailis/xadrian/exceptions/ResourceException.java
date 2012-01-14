@@ -12,7 +12,7 @@ package de.ailis.xadrian.exceptions;
  * @author Klaus Reimer (k@ailis.de)
  */
 
-public final class ResourceException extends X3ToolsException
+public final class ResourceException extends XadrianException
 {
     /** Serial version UID */
     private static final long serialVersionUID = 6729604082474516588L;

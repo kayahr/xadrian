@@ -24,6 +24,7 @@ import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Capacity;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.FactorySize;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Product;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.Station;
@@ -40,55 +41,47 @@ import de.ailis.xadrian.support.Config;
 
 public class FactoryFactory
 {
+    /** The game for which this factory is responsible. */
+    private final Game game;
+    
     /** The factory map (for quick ID navigation) */
     private final Map<String, Factory> factoryMap = new HashMap<String, Factory>();
 
     /** The factories (sorted) */
     private final SortedSet<Factory> factories = new TreeSet<Factory>();
 
-    /** The singleton instance */
-    private final static FactoryFactory instance = new FactoryFactory();
-
     /** The configuration */
     private final static Config config = Config.getInstance();
 
-
     /**
-     * Private constructor to prevent instantiation from outside.
+     * Constructor.
+     * 
+     * @param game
+     *            The game for which this factory is responsible.
      */
-
-    private FactoryFactory()
+    public FactoryFactory(final Game game)
     {
+        this.game = game;
         readData();
     }
 
-
-    /**
-     * Returns the singleton instance.
-     *
-     * @return The singleton instance
-     */
-
-    public static final FactoryFactory getInstance()
-    {
-        return instance;
-    }
-
-
+    
     /**
      * Reads the data from the XML file.
      */
 
     private void readData()
     {
-        URL url = Main.class.getResource("/factories.xml");
-        if (url == null) url = Main.class.getResource("data/factories.xml");
+        String gameId = this.game.getId();
+        URL url = Main.class.getResource("/" + gameId + "/factories.xml");
+        if (url == null)
+            url = Main.class.getResource("data/" + gameId + "/factories.xml");
         final SAXReader reader = new SAXReader();
         try
         {
             final Document document = reader.read(url);
-            final WareFactory wareFactory = WareFactory.getInstance();
-            final RaceFactory raceFactory = RaceFactory.getInstance();
+            final WareFactory wareFactory = this.game.getWareFactory();
+            final RaceFactory raceFactory = this.game.getRaceFactory();
             for (final Object item : document.getRootElement().elements(
                 "factory"))
             {
@@ -143,15 +136,17 @@ public class FactoryFactory
                 for (final Object manuItem : manuItems)
                 {
                     final Element manuElement = (Element) manuItem;
-                    manufacturers[i] = StationFactory.getInstance().getStation(
+                    manufacturers[i] = this.game.getStationFactory().getStation(
                         manuElement.attributeValue("station"),
                         manuElement.attributeValue("sector"));
                     i++;
                 }
                 Arrays.sort(resources);
                 Arrays.sort(storage);
-                final Factory factory = new Factory(id, size, race, cycle,
-                    product, price, volume, resources, storage, manufacturers);
+                final Factory factory =
+                    new Factory(this.game, id, size, race, cycle,
+                        product, price, volume, resources, storage,
+                        manufacturers);
                 this.factories.add(factory);
                 this.factoryMap.put(id, factory);
             }

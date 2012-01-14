@@ -12,7 +12,7 @@ package de.ailis.xadrian.exceptions;
  * @author Klaus Reimer (k@ailis.de)
  */
 
-public abstract class X3ToolsException extends RuntimeException
+public abstract class XadrianException extends RuntimeException
 {
     /** Serial version UID */
     private static final long serialVersionUID = 3076213970661745531L;
@@ -25,7 +25,7 @@ public abstract class X3ToolsException extends RuntimeException
      *            The exception message
      */
     
-    public X3ToolsException(final String message)
+    public XadrianException(final String message)
     {
         super(message);
     }
@@ -40,7 +40,7 @@ public abstract class X3ToolsException extends RuntimeException
      *            The root cause
      */
     
-    public X3ToolsException(final String message, final Throwable cause)
+    public XadrianException(final String message, final Throwable cause)
     {
         super(message, cause);
     }

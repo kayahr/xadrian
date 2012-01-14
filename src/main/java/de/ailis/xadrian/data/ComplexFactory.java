@@ -14,8 +14,6 @@ import java.util.List;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import de.ailis.xadrian.data.factories.SunFactory;
-
 
 /**
  * A factory (or multiple factories with same configuration) in a complex.
@@ -27,6 +25,9 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 {
     /** Serial version UID */
     private static final long serialVersionUID = -4731442033981700443L;
+    
+    /** The game this complex factory belongs to. */
+    private Game game;   
 
     /** The factory */
     private final Factory factory;
@@ -44,6 +45,8 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     /**
      * Constructor
      *
+     * @param game
+     *            The game this complex factory belongs to.
      * @param factory
      *            The factory
      * @param quantity
@@ -52,9 +55,10 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
      *            The yield (for mines)
      */
 
-    public ComplexFactory(final Factory factory, final int quantity,
-        final int yield)
+    public ComplexFactory(final Game game, final Factory factory,
+        final int quantity, final int yield)
     {
+        this.game = game; 
         this.factory = factory;
         this.quantity = quantity;
         if (factory.isMine())
@@ -319,7 +323,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public Product getProductPerHour()
     {
-        return getProductPerHour(SunFactory.getInstance().getDefaultSun());
+        return getProductPerHour(this.game.getSunFactory().getDefaultSun());
     }
 
 
@@ -371,7 +375,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 
     public Collection<Product> getResourcesPerHour()
     {
-        return getResourcesPerHour(SunFactory.getInstance().getDefaultSun());
+        return getResourcesPerHour(this.game.getSunFactory().getDefaultSun());
     }
 
 

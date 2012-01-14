@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
+ * information
  */
 
 package de.ailis.xadrian.actions;
@@ -8,6 +8,7 @@ package de.ailis.xadrian.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.dialogs.SelectSectorDialog;
 import de.ailis.xadrian.interfaces.SectorProvider;
 import de.ailis.xadrian.interfaces.StateProvider;
@@ -16,10 +17,9 @@ import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.BaseAction;
 import de.ailis.xadrian.support.ModalDialog.Result;
 
-
 /**
  * Changes the sector of the complex.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -31,10 +31,9 @@ public class ChangeSectorAction extends BaseAction implements StateListener
     /** The complex provider */
     private final SectorProvider provider;
 
-
     /**
      * Constructor
-     *
+     * 
      * @param provider
      *            The provider
      * @param context
@@ -52,7 +51,6 @@ public class ChangeSectorAction extends BaseAction implements StateListener
             ((StateProvider) provider).addStateListener(this);
     }
 
-
     /**
      * @see ActionListener#actionPerformed(ActionEvent)
      */
@@ -60,12 +58,13 @@ public class ChangeSectorAction extends BaseAction implements StateListener
     @Override
     public void actionPerformed(final ActionEvent e)
     {
-        final SelectSectorDialog dialog = SelectSectorDialog.getInstance();
-        dialog.setSelected(this.provider.getSector());
+        final Sector sector = this.provider.getSector();
+        final SelectSectorDialog dialog =
+            sector.getGame().getSelectSectorDialog();
+        dialog.setSelected(sector);
         if (dialog.open() == Result.OK)
             this.provider.setSector(dialog.getSelected());
     }
-
 
     /**
      * @see de.ailis.xadrian.listeners.StateListener#stateChanged()

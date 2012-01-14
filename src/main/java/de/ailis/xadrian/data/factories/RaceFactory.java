@@ -21,6 +21,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.exceptions.DataException;
 
@@ -33,35 +34,25 @@ import de.ailis.xadrian.exceptions.DataException;
 
 public class RaceFactory
 {
+    /** The game for which this factory is responsible. */
+    private final Game game;
+    
     /** The race map (for quick ID navigation) */
     private final Map<String, Race> raceMap = new HashMap<String, Race>();
 
     /** The races (sorted) */
     private final SortedSet<Race> races = new TreeSet<Race>();
 
-    /** The singleton instance */
-    private final static RaceFactory instance = new RaceFactory();
-
-
     /**
-     * Private constructor to prevent instantiation from outside.
+     * Constructor.
+     * 
+     * @param game
+     *            The game for which this factory is responsible.
      */
-
-    private RaceFactory()
+    public RaceFactory(final Game game)
     {
+        this.game = game;
         readData();
-    }
-
-
-    /**
-     * Returns the singleton instance.
-     *
-     * @return The singleton instance
-     */
-
-    public static final RaceFactory getInstance()
-    {
-        return instance;
     }
 
 
@@ -71,8 +62,10 @@ public class RaceFactory
 
     private void readData()
     {
-        URL url = Main.class.getResource("/races.xml");
-        if (url == null) url = Main.class.getResource("data/races.xml");
+        String gameId = this.game.getId();
+        URL url = Main.class.getResource("/" + gameId + "/races.xml");
+        if (url == null)
+            url = Main.class.getResource("data/" + gameId + "/races.xml");
         final SAXReader reader = new SAXReader();
         try
         {
@@ -117,7 +110,7 @@ public class RaceFactory
     public Collection<Race> getManufacturerRaces()
     {
         final Collection<Race> races = new ArrayList<Race>();
-        final FactoryFactory factory = FactoryFactory.getInstance();
+        final FactoryFactory factory = this.game.getFactoryFactory();
         for (final Race race : this.races)
         {
             if (factory.getFactories(race).size() > 0) races.add(race);

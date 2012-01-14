@@ -12,7 +12,7 @@ package de.ailis.xadrian.exceptions;
  * @author Klaus Reimer (k@ailis.de)
  */
 
-public final class DataException extends X3ToolsException
+public final class DataException extends XadrianException
 {
     /** Serial version UID */
     private static final long serialVersionUID = -5264397343641378695L;

@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
+ * information
  */
 
 package de.ailis.xadrian.data;
@@ -8,10 +8,9 @@ package de.ailis.xadrian.data;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 
-
 /**
  * The player sector.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -23,10 +22,11 @@ public class PlayerSector extends Sector
     /** The asteorids */
     private final Asteroid[][] asteroids;
 
-
     /**
      * Constructor
-     *
+     * 
+     * @param game
+     *            The game this sector belongs to.
      * @param id
      *            The sector id
      * @param x
@@ -53,20 +53,19 @@ public class PlayerSector extends Sector
      *            Array or array with asteroids in this sector
      */
 
-    public PlayerSector(final String id, final int x, final int y, final Race race,
-        final int planets, final Sun suns, final boolean core,
-        final String northId, final String eastId,
+    public PlayerSector(final Game game, final String id, final int x,
+        final int y, final Race race, final int planets, final Sun suns,
+        final boolean core, final String northId, final String eastId,
         final String southId, final String westId, final Asteroid[][] asteroids)
     {
-        super(id, x, y, race, planets, suns, core, false, northId, eastId,
+        super(game, id, x, y, race, planets, suns, core, false, northId, eastId,
             southId, westId, null);
         this.asteroids = asteroids;
     }
 
-
     /**
      * Returns the name.
-     *
+     * 
      * @return The name
      */
 
@@ -77,10 +76,9 @@ public class PlayerSector extends Sector
         return I18N.getString("sector." + this.id + "-" + playerSector);
     }
 
-
     /**
      * Returns the array with asteroids.
-     *
+     * 
      * @return The array with asteroids
      */
 

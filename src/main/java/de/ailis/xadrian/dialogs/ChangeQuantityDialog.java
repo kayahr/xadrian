@@ -45,7 +45,7 @@ public class ChangeQuantityDialog extends ModalDialog
 
     private ChangeQuantityDialog()
     {
-        super("changeQuantity", Result.OK, Result.CANCEL);
+        init("changeQuantity", Result.OK, Result.CANCEL);
     }
 
 

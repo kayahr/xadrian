@@ -16,8 +16,9 @@ import javax.swing.JTextPane;
 import javax.swing.text.html.HTMLDocument;
 
 import de.ailis.xadrian.Main;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
-import de.ailis.xadrian.data.factories.SectorFactory;
+import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.interfaces.SectorProvider;
 import de.ailis.xadrian.utils.SwingUtils;
@@ -130,8 +131,9 @@ public class AsteroidsInfoPane extends JComponent implements SectorProvider
     {
         SwingUtils.prepareGUI();
 
+        Game game = GameFactory.getInstance().getGame("x3tc");            
         final AsteroidsInfoPane component = new AsteroidsInfoPane();
-        component.setSector(SectorFactory.getInstance().getSector("sec-2-11"));
+        component.setSector(game.getSectorFactory().getSector("sec-2-11"));
         SwingUtils.testComponent(component);
     }
 

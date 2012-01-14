@@ -95,7 +95,7 @@ public abstract class ModalDialog extends JDialog
      * List with dialog actions which are displayed as buttons in the button
      * panel
      */
-    private final List<Action> dialogActions;
+    private List<Action> dialogActions;
 
     /** The cancel button */
     private JButton cancelButton;
@@ -114,11 +114,8 @@ public abstract class ModalDialog extends JDialog
      *            The available results to create
      */
 
-    public ModalDialog(final String id, final Result... results)
+    public void init(final String id, final Result... results)
     {
-        // Call super constructor
-        super();
-        
         // Initialize the non-visual parts of the dialog
         init();
 

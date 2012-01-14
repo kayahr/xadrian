@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.txt file for licensing information.
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
+ * licensing information.
  */
 
 package de.ailis.xadrian.models;
@@ -17,13 +17,11 @@ import javax.swing.tree.TreePath;
 
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.FactorySize;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.data.factories.FactoryFactory;
-import de.ailis.xadrian.data.factories.RaceFactory;
-import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.support.I18N;
-
 
 /**
  * FactoryTreeModel
@@ -44,7 +42,7 @@ public class FactoryTreeModel implements TreeModel
 
     /** The cheapest factories for wares */
     private final List<Factory> cheapest = new ArrayList<Factory>();
-    
+
     /** The title for the cheapest entry */
     private final String cheapestEntry = I18N.getString("addFactory.cheapest");
 
@@ -55,22 +53,27 @@ public class FactoryTreeModel implements TreeModel
     private final String byRaceEntry = I18N.getString("addFactory.byRace");
 
     /** The factories by races */
-    private final Map<Race, List<Factory>> byRaceFactories = new TreeMap<Race, List<Factory>>();
+    private final Map<Race, List<Factory>> byRaceFactories =
+        new TreeMap<Race, List<Factory>>();
 
     /** The factories by wares */
-    private final Map<Ware, List<Factory>> byWareFactories = new TreeMap<Ware, List<Factory>>();
-
+    private final Map<Ware, List<Factory>> byWareFactories =
+        new TreeMap<Ware, List<Factory>>();
 
     /**
-     * Constructor
+     * Constructor.
+     * 
+     * @param game
+     *            The game.
      */
 
-    public FactoryTreeModel()
+    public FactoryTreeModel(Game game)
     {
-        final FactoryFactory factoryFactory = FactoryFactory.getInstance();
+        if (game == null) throw new IllegalArgumentException("game must be set");
+        final FactoryFactory factoryFactory = game.getFactoryFactory();
 
         // Build the list with cheapest factories
-        for (final Ware ware : WareFactory.getInstance().getWares())
+        for (final Ware ware : game.getWareFactory().getWares())
         {
             for (final FactorySize size : factoryFactory.getFactorySizes(ware))
             {
@@ -82,11 +85,10 @@ public class FactoryTreeModel implements TreeModel
         this.topLevel.add(this.cheapestEntry);
         Collections.sort(this.cheapest);
 
-        
         // Build map with factories by wares
-        for (final Ware ware : WareFactory.getInstance().getWares())
+        for (final Ware ware : game.getWareFactory().getWares())
         {
-            final List<Factory> factories = FactoryFactory.getInstance()
+            final List<Factory> factories = game.getFactoryFactory()
                 .getFactories(ware);
             if (factories.size() > 0)
             {
@@ -97,9 +99,9 @@ public class FactoryTreeModel implements TreeModel
         this.topLevel.add(this.byWareEntry);
 
         // Build map with factories by races
-        for (final Race race : RaceFactory.getInstance().getRaces())
+        for (final Race race : game.getRaceFactory().getRaces())
         {
-            final List<Factory> factories = FactoryFactory.getInstance()
+            final List<Factory> factories = game.getFactoryFactory()
                 .getFactories(race);
             if (factories.size() > 0)
             {
@@ -110,7 +112,6 @@ public class FactoryTreeModel implements TreeModel
         this.topLevel.add(this.byRaceEntry);
     }
 
-
     /**
      * @see TreeModel#getRoot()
      */
@@ -120,7 +121,6 @@ public class FactoryTreeModel implements TreeModel
     {
         return Boolean.TRUE;
     }
-
 
     /**
      * @see TreeModel#getChildCount(Object)
@@ -144,7 +144,6 @@ public class FactoryTreeModel implements TreeModel
         else
             return this.topLevel.size();
     }
-
 
     /**
      * @see TreeModel#getChild(Object, int)
@@ -188,7 +187,6 @@ public class FactoryTreeModel implements TreeModel
             return this.topLevel.indexOf(child);
     }
 
-
     /**
      * @see TreeModel#isLeaf(Object)
      */
@@ -198,7 +196,6 @@ public class FactoryTreeModel implements TreeModel
     {
         return node instanceof Factory;
     }
-
 
     /**
      * @see TreeModel#valueForPathChanged(TreePath, Object)
@@ -210,7 +207,6 @@ public class FactoryTreeModel implements TreeModel
         // Not implemented
     }
 
-
     /**
      * @see TreeModel#addTreeModelListener(TreeModelListener)
      */
@@ -220,7 +216,6 @@ public class FactoryTreeModel implements TreeModel
     {
         // Not implemented
     }
-
 
     /**
      * @see TreeModel#removeTreeModelListener(TreeModelListener)

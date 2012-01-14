@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
+ * information
  */
 
 package de.ailis.xadrian.dialogs;
@@ -23,18 +23,18 @@ import javax.swing.event.DocumentListener;
 import de.ailis.xadrian.actions.ChangeSectorAction;
 import de.ailis.xadrian.components.AsteroidsInfoPane;
 import de.ailis.xadrian.data.Factory;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
-import de.ailis.xadrian.data.factories.FactoryFactory;
+import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
 
-
 /**
- * Dialog for setting the yields to use for a specific mine type in the
- * current complex.
- *
+ * Dialog for setting the yields to use for a specific mine type in the current
+ * complex.
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -58,22 +58,20 @@ public class SetYieldsDialog extends ModalDialog
     /** The yields */
     private final List<Integer> yields = new ArrayList<Integer>();
 
-
     /**
      * Constructor
-     *
+     * 
      * @param mineType
      *            The mine type
      */
 
     public SetYieldsDialog(final Factory mineType)
     {
-        super("setYields", Result.OK, Result.CANCEL);
+        init("setYields", Result.OK, Result.CANCEL);
         setResizable(false);
         this.label.setText(I18N.getString("dialog.setYields.yields",
             mineType.getRace().toString() + " " + mineType.toString()));
     }
-
 
     /**
      * @see de.ailis.xadrian.support.ModalDialog#init()
@@ -84,7 +82,6 @@ public class SetYieldsDialog extends ModalDialog
     {
         this.asteroidsInfoPane = new AsteroidsInfoPane();
     }
-
 
     /**
      * Creates the UI
@@ -144,7 +141,6 @@ public class SetYieldsDialog extends ModalDialog
         add(contentPanel, BorderLayout.CENTER);
     }
 
-
     /**
      * Updates the yields
      */
@@ -173,7 +169,6 @@ public class SetYieldsDialog extends ModalDialog
         }
         setResultEnabled(Result.OK, this.yields.size() > 0);
     }
-
 
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
@@ -205,7 +200,6 @@ public class SetYieldsDialog extends ModalDialog
         }
     }
 
-
     /**
      * @see de.ailis.xadrian.support.ModalDialog#createDialogActions()
      */
@@ -219,10 +213,9 @@ public class SetYieldsDialog extends ModalDialog
         return dialogActions;
     }
 
-
     /**
      * Sets the yields
-     *
+     * 
      * @param yields
      *            The yields to set
      */
@@ -234,10 +227,9 @@ public class SetYieldsDialog extends ModalDialog
         setResultEnabled(Result.OK, this.yields.size() > 0);
     }
 
-
     /**
      * Returns the yields.
-     *
+     * 
      * @return The yields
      */
 
@@ -246,10 +238,9 @@ public class SetYieldsDialog extends ModalDialog
         return this.yields;
     }
 
-
     /**
      * Sets the sector.
-     *
+     * 
      * @param sector
      *            The sector to set
      */
@@ -259,10 +250,9 @@ public class SetYieldsDialog extends ModalDialog
         this.asteroidsInfoPane.setSector(sector);
     }
 
-
     /**
      * Returns the sector
-     *
+     * 
      * @return The sector
      */
 
@@ -271,10 +261,9 @@ public class SetYieldsDialog extends ModalDialog
         return this.asteroidsInfoPane.getSector();
     }
 
-
     /**
      * Tests the component.
-     *
+     * 
      * @param args
      *            Command line arguments
      * @throws Exception
@@ -285,8 +274,9 @@ public class SetYieldsDialog extends ModalDialog
     {
         SwingUtils.prepareGUI();
 
-        final Factory mineType = FactoryFactory.getInstance().getFactory(
-            "siliconMineL-teladi");
+        Game game = GameFactory.getInstance().getGame("x3tc");
+        final Factory mineType =
+            game.getFactoryFactory().getFactory("siliconMineL-teladi");
         final SetYieldsDialog dialog = new SetYieldsDialog(mineType);
         final List<Integer> yields = new ArrayList<Integer>();
         yields.add(10);

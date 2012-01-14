@@ -43,7 +43,7 @@ public class AboutDialog extends ModalDialog
     
     public AboutDialog()
     {
-        super("about", Result.OK);
+        init("about", Result.OK);
     }
     
 

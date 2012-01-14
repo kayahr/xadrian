@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.txt file for licensing information.
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
+ * licensing information.
  */
 
 package de.ailis.xadrian.models;
@@ -11,13 +11,12 @@ import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
-import de.ailis.xadrian.data.factories.SectorFactory;
-
 
 /**
  * Model which represents sectors to be listed in a combo box.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -25,22 +24,25 @@ public class SectorComboBoxModel implements ComboBoxModel
 {
     /** The selected item */
     private Object selectedItem;
-    
+
     /** The sectors */
     private final List<Sector> sectors;
-    
-    
+
     /**
      * Constructor
+     * 
+     * @param game
+     *            The game. Must not be null.
      */
-    
-    public SectorComboBoxModel()
+    public SectorComboBoxModel(final Game game)
     {
-        this.sectors = new ArrayList<Sector>(SectorFactory.getInstance().getSectors());
+        if (game == null)
+            throw new IllegalArgumentException("game must be set");
+        this.sectors =
+            new ArrayList<Sector>(game.getSectorFactory().getSectors());
         this.sectors.add(0, null);
     }
-    
-    
+
     /**
      * @see javax.swing.ComboBoxModel#getSelectedItem()
      */
@@ -50,7 +52,6 @@ public class SectorComboBoxModel implements ComboBoxModel
     {
         return this.selectedItem;
     }
-
 
     /**
      * @see javax.swing.ComboBoxModel#setSelectedItem(java.lang.Object)
@@ -62,7 +63,6 @@ public class SectorComboBoxModel implements ComboBoxModel
         this.selectedItem = selectedItem;
     }
 
-
     /**
      * @see javax.swing.ListModel#addListDataListener(javax.swing.event.ListDataListener)
      */
@@ -72,7 +72,6 @@ public class SectorComboBoxModel implements ComboBoxModel
     {
         // Not used
     }
-
 
     /**
      * @see javax.swing.ListModel#getElementAt(int)
@@ -84,7 +83,6 @@ public class SectorComboBoxModel implements ComboBoxModel
         return this.sectors.get(index);
     }
 
-
     /**
      * @see javax.swing.ListModel#getSize()
      */
@@ -94,7 +92,6 @@ public class SectorComboBoxModel implements ComboBoxModel
     {
         return this.sectors.size();
     }
-
 
     /**
      * @see javax.swing.ListModel#removeListDataListener(javax.swing.event.ListDataListener)

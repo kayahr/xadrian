@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE races>
+<races>
+  <race id="unknown" color="#a0a0a0" />
+  <race id="argon" color="#225CA9" />
+  <race id="boron" color="#07816F"  />
+  <race id="goner" color="#719F35" />
+  <race id="khaak" color="#695586" />
+  <race id="paranid" color="#63B7F4" />
+  <race id="pirates" color="#D0084B" />
+  <race id="split" color="#ECC052" />
+  <race id="teladi" color="#AF6EA2" />
+  <race id="terran" color="#ED7E3A" />
+  <race id="xenon" color="#FFFFFF" />
+  <race id="yaki" color="#B47660" />
+  <race id="player" color="#00ff00" />
+</races>

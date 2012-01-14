@@ -18,6 +18,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sun;
 import de.ailis.xadrian.exceptions.DataException;
 
@@ -30,38 +31,28 @@ import de.ailis.xadrian.exceptions.DataException;
 
 public class SunFactory
 {
+    /** The game for which this factory is responsible. */
+    private final Game game;
+    
     /** The Suns map (percent to Suns). */
     private final Map<Integer, Sun> sunMap = new HashMap<Integer, Sun>();
 
     /** The suns (sorted). */
     private final SortedSet<Sun> suns = new TreeSet<Sun>();
 
-    /** The singleton instance. */
-    private final static SunFactory instance = new SunFactory();
-
     /** The default suns. */
     private Sun defaultSuns;
 
-
     /**
-     * Private constructor to prevent instantiation from outside.
+     * Constructor.
+     * 
+     * @param game
+     *            The game for which this factory is responsible.
      */
-
-    private SunFactory()
+    public SunFactory(final Game game)
     {
+        this.game = game;
         readData();
-    }
-
-
-    /**
-     * Returns the singleton instance.
-     *
-     * @return The singleton instance
-     */
-
-    public static final SunFactory getInstance()
-    {
-        return instance;
     }
 
 
@@ -71,8 +62,10 @@ public class SunFactory
 
     private void readData()
     {
-        URL url = Main.class.getResource("/suns.xml");
-        if (url == null) url = Main.class.getResource("data/suns.xml");
+        String gameId = this.game.getId();
+        URL url = Main.class.getResource("/" + gameId + "/suns.xml");
+        if (url == null)
+            url = Main.class.getResource("data/" + gameId + "/suns.xml");
         final SAXReader reader = new SAXReader();
         try
         {
@@ -84,7 +77,7 @@ public class SunFactory
                     .attributeValue("percent"));
                 final int cycle = Integer.parseInt(element
                     .attributeValue("cycle"));
-                final Sun suns = new Sun(percent, cycle);
+                final Sun suns = new Sun(this.game, percent, cycle);
                 if (this.defaultSuns == null
                     || Boolean.parseBoolean(element
                         .attributeValue("default", "false")))

@@ -11,8 +11,6 @@ import java.io.Serializable;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import de.ailis.xadrian.data.factories.SunFactory;
-
 
 /**
  * A sun.
@@ -24,6 +22,9 @@ public class Sun implements Serializable, Comparable<Sun>
 {
     /** Serial version UID */
     private static final long serialVersionUID = 1L;
+    
+    /** The game this sun belongs to. */
+    private final Game game;
 
     /** The Suns percent. */
     private final int percent;
@@ -35,14 +36,17 @@ public class Sun implements Serializable, Comparable<Sun>
     /**
      * Constructor
      *
+     * @param game
+     *            The game this sun belongs to.
      * @param percent
      *            The sun percent.
      * @param cycle
      *            The sun cycle.
      */
 
-    public Sun(final int percent, final int cycle)
+    public Sun(final Game game, final int percent, final int cycle)
     {
+        this.game = game;
         this.percent = percent;
         this.cycle = cycle;
     }
@@ -142,7 +146,7 @@ public class Sun implements Serializable, Comparable<Sun>
     public Color getColor()
     {
         final int intensity = Math.min(255, 255 * this.percent
-            / SunFactory.getInstance().getMaxPercent());
+            / this.game.getSunFactory().getMaxPercent());
         return new Color(intensity, intensity, 0);
     }
 }

@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.ailis.xadrian.data.factories.FactoryFactory;
+import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
@@ -27,41 +28,44 @@ import de.ailis.xadrian.support.Config;
 
 public class FactoryTest
 {
+    /** The game. */
+    private static Game game;
+    
     /** The factory factory */
-    private static FactoryFactory factoryFactory = FactoryFactory.getInstance();
+    private static FactoryFactory factoryFactory;
 
     /** The ware factory */
-    private static WareFactory wareFactory = WareFactory.getInstance();
+    private static WareFactory wareFactory;
 
     /** The race factory */
-    private static RaceFactory raceFactory = RaceFactory.getInstance();
+    private static RaceFactory raceFactory;
 
     /** The suns factory */
-    private static SunFactory sunsFactory = SunFactory.getInstance();
+    private static SunFactory sunsFactory;
 
     /** Energy cells */
-    private static Ware energy = wareFactory.getWare("energyCells");
+    private static Ware energy;
 
     /** Silicon wafers */
-    private static Ware silicon = wareFactory.getWare("siliconWafers");
+    private static Ware silicon;
 
     /** Ore */
-    private static Ware ore = wareFactory.getWare("ore");
+    private static Ware ore;
 
     /** Crystals */
-    private static Ware crystals = wareFactory.getWare("crystals");
+    private static Ware crystals;
 
     /** Suns with 0% */
-    private static Sun P0 = sunsFactory.getSun(0);
+    private static Sun P0;
 
     /** Suns with 100% */
-    private static Sun P100 = sunsFactory.getSun(100);
+    private static Sun P100;
 
     /** Suns with 150% */
-    private static Sun P150 = sunsFactory.getSun(150);
+    private static Sun P150;
 
     /** Suns with 300% */
-    private static Sun P300 = sunsFactory.getSun(300);
+    private static Sun P300;
 
 
     /**
@@ -71,6 +75,19 @@ public class FactoryTest
     @BeforeClass
     public static void init()
     {
+        game = GameFactory.getInstance().getGame("x3tc");
+        factoryFactory = game.getFactoryFactory();
+        wareFactory = game.getWareFactory();
+        raceFactory = game.getRaceFactory();
+        sunsFactory = game.getSunFactory();
+        energy = wareFactory.getWare("energyCells");
+        silicon = wareFactory.getWare("siliconWafers");
+        ore = wareFactory.getWare("ore");
+        crystals = wareFactory.getWare("crystals");
+        P0 = sunsFactory.getSun(0);
+        P100 = sunsFactory.getSun(100);
+        P150 = sunsFactory.getSun(150);
+        P300 = sunsFactory.getSun(300);        
         Config.getInstance().reset();
     }
 

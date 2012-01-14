@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
+ * information
  */
 
 package de.ailis.xadrian.data;
@@ -12,13 +12,11 @@ import java.util.Collection;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.support.I18N;
-
 
 /**
  * A factory
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -26,6 +24,9 @@ public class Factory implements Serializable, Comparable<Factory>
 {
     /** Serial version UID */
     private static final long serialVersionUID = 4851121299100273466L;
+
+    /** The game to which this factory belongs. */
+    private final Game game;
 
     /** The factory id */
     private final String id;
@@ -60,10 +61,11 @@ public class Factory implements Serializable, Comparable<Factory>
     /** The factory size */
     private final FactorySize size;
 
-
     /**
      * Constructor
-     *
+     * 
+     * @param game
+     *            The game this factory belongs to.
      * @param id
      *            The factory id
      * @param size
@@ -86,11 +88,12 @@ public class Factory implements Serializable, Comparable<Factory>
      *            The manufacturer stations
      */
 
-    public Factory(final String id, final FactorySize size, final Race race,
-        final int cycle, final Product product, final int price,
-        final int volume, final Product[] resources, final Capacity[] storage,
-        final Station[] manufacturers)
+    public Factory(final Game game, final String id, final FactorySize size,
+        final Race race, final int cycle, final Product product,
+        final int price, final int volume, final Product[] resources,
+        final Capacity[] storage, final Station[] manufacturers)
     {
+        this.game = game;
         this.id = id;
         this.size = size;
         this.race = race;
@@ -104,10 +107,9 @@ public class Factory implements Serializable, Comparable<Factory>
         this.messageId = "factory." + id.substring(0, id.lastIndexOf("-"));
     }
 
-
     /**
      * Return the factory id.
-     *
+     * 
      * @return The factory id
      */
 
@@ -116,10 +118,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.id;
     }
 
-
     /**
      * Return the factory size.
-     *
+     * 
      * @return The factory size
      */
 
@@ -128,10 +129,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.size;
     }
 
-
     /**
      * Returns true if this factory is a mine.
-     *
+     * 
      * @return True if this factory is a mine. False if not.
      */
 
@@ -141,10 +141,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return wareId.equals("siliconWafers") || wareId.equals("ore");
     }
 
-
     /**
      * Returns true if this factory is a silicon mine.
-     *
+     * 
      * @return True if this factory is a silicon mine. False if not.
      */
 
@@ -154,10 +153,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return wareId.equals("siliconWafers");
     }
 
-
     /**
      * Returns true if this factory is an ore mine.
-     *
+     * 
      * @return True if this factory is an ore mine. False if not.
      */
 
@@ -167,10 +165,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return wareId.equals("ore");
     }
 
-
     /**
      * Returns the factory name.
-     *
+     * 
      * @return The factory name
      */
 
@@ -179,10 +176,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return I18N.getString(this.messageId);
     }
 
-
     /**
      * Returns the race which manufactures this factory.
-     *
+     * 
      * @return The race
      */
 
@@ -191,10 +187,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.race;
     }
 
-
     /**
      * Returns the production cycle.
-     *
+     * 
      * @return The production cycle
      */
 
@@ -203,10 +198,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.cycle;
     }
 
-
     /**
      * Returns the production cycle as a human readable time string.
-     *
+     * 
      * @return The production cycle as a string
      */
 
@@ -222,10 +216,9 @@ public class Factory implements Serializable, Comparable<Factory>
             return Integer.toString(cycle);
     }
 
-
     /**
      * Returns the produces product per cycle.
-     *
+     * 
      * @return The product
      */
 
@@ -234,10 +227,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.product;
     }
 
-
     /**
      * Returns the factory price.
-     *
+     * 
      * @return The price
      */
 
@@ -246,10 +238,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.price;
     }
 
-
     /**
      * Returns the factory volume.
-     *
+     * 
      * @return The volume
      */
 
@@ -258,10 +249,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.volume;
     }
 
-
     /**
      * Returns the needed resources per cycle.
-     *
+     * 
      * @return The resources
      */
 
@@ -270,10 +260,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.resources;
     }
 
-
     /**
      * Returns the storage capacities.
-     *
+     * 
      * @return The storage capacities
      */
 
@@ -282,10 +271,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.capacities;
     }
 
-
     /**
      * Returns the manufacturer stations.
-     *
+     * 
      * @return The manufacturer stations
      */
 
@@ -304,7 +292,6 @@ public class Factory implements Serializable, Comparable<Factory>
         return new HashCodeBuilder().append(this.id).toHashCode();
     }
 
-
     /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
@@ -318,7 +305,6 @@ public class Factory implements Serializable, Comparable<Factory>
         final Factory other = (Factory) obj;
         return new EqualsBuilder().append(this.id, other.id).isEquals();
     }
-
 
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
@@ -353,7 +339,6 @@ public class Factory implements Serializable, Comparable<Factory>
         return result;
     }
 
-
     /**
      * @see java.lang.Object#toString()
      */
@@ -364,11 +349,10 @@ public class Factory implements Serializable, Comparable<Factory>
         return getName();
     }
 
-
     /**
      * Returns the real cycle of this factory by including the sun power and the
      * asteroid yield into the calculation.
-     *
+     * 
      * @param suns
      *            The sun power in percent
      * @param yield
@@ -403,11 +387,10 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.cycle;
     }
 
-
     /**
      * Returns the real product of this factory by including the specified sun
      * power and asteroid yield into the calculation.
-     *
+     * 
      * @param suns
      *            The sun power in percent
      * @param yield
@@ -441,11 +424,10 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.product;
     }
 
-
     /**
      * Returns the real resources of this factory by including the specified sun
      * power and asteroid yield into the calculation.
-     *
+     * 
      * @param suns
      *            The sun power in percent
      * @param yield
@@ -485,10 +467,9 @@ public class Factory implements Serializable, Comparable<Factory>
         return this.resources;
     }
 
-
     /**
      * Returns the product this factory produces in one hour.
-     *
+     * 
      * @param suns
      *            The sun power to use in the calculation (for solar power
      *            plants)
@@ -504,23 +485,21 @@ public class Factory implements Serializable, Comparable<Factory>
             / getRealCycle(suns, yield));
     }
 
-
     /**
      * Returns the product this factory produces in one hour for a default yield
      * (100% for power plants, 25 for mines).
-     *
+     * 
      * @return The product produced per hour for a default yield
      */
 
     public Product getProductPerHour()
     {
-        return getProductPerHour(SunFactory.getInstance().getDefaultSun(), 25);
+        return getProductPerHour(this.game.getSunFactory().getDefaultSun(), 25);
     }
-
 
     /**
      * Returns the resources this factory needs in our hour.
-     *
+     * 
      * @param suns
      *            The sun power to use in the calculation (for solar power
      *            plants)
@@ -543,24 +522,22 @@ public class Factory implements Serializable, Comparable<Factory>
         return resourcesPH;
     }
 
-
     /**
      * Returns the resources this factory needs in one hour for a default yield
      * (100% for power plants, 25 for mines).
-     *
+     * 
      * @return The resources needed per hour for a default yield
      */
 
     public Collection<Product> getResourcesPerHour()
     {
-        return getResourcesPerHour(SunFactory.getInstance().getDefaultSun(), 25);
+        return getResourcesPerHour(this.game.getSunFactory().getDefaultSun(), 25);
     }
-
 
     /**
      * Returns the manufacturer station which is nearest to the specified
      * sector.
-     *
+     * 
      * @param sector
      *            The source sector
      * @return The nearest manufacturer station

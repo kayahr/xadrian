@@ -89,14 +89,15 @@ public final class Config
         final Preferences prefs = Preferences
                 .userNodeForPackage(Main.class);
         final String races = prefs.get(IGNORED_RACES, null);
-        if (races != null)
-        {
-            final RaceFactory factory = RaceFactory.getInstance();
-            for (final String raceId : races.split(" "))
-            {
-                this.ignoredRaces.add(factory.getRace(raceId));
-            }
-        }
+        // TODO Implement me differently to support multiple games.
+//        if (races != null)
+//        {
+//            final RaceFactory factory = RaceFactory.getInstance();
+//            for (final String raceId : races.split(" "))
+//            {
+//                this.ignoredRaces.add(factory.getRace(raceId));
+//            }
+//        }
         final String tmp = prefs.get(LAST_FILE_CHOOSER_PATH, null);
         this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
         this.showFactoryResources = prefs.getBoolean(
