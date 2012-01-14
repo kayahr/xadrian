@@ -50,9 +50,9 @@ import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
-import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.dialogs.AboutDialog;
 import de.ailis.xadrian.dialogs.PreferencesDialog;
+import de.ailis.xadrian.dialogs.SelectGameDialog;
 import de.ailis.xadrian.interfaces.ClipboardProvider;
 import de.ailis.xadrian.interfaces.ComplexProvider;
 import de.ailis.xadrian.interfaces.SectorProvider;
@@ -326,9 +326,12 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     public void createComplexTab()
     {
-        // TODO Need a dialog here.
-        Game game = GameFactory.getInstance().getGame("x3tc");
-        createComplexTab(new ComplexEditor(new Complex(game)));
+        SelectGameDialog dialog = SelectGameDialog.getInstance();
+        if (dialog.open() == Result.OK)
+        {
+            Game game = dialog.getGame();
+            createComplexTab(new ComplexEditor(new Complex(game)));
+        }
     }
 
 
