@@ -128,4 +128,15 @@ public class ChangeQuantityDialog extends ModalDialog
     {
         return (Integer) this.quantitySpinner.getValue();
     }
+    
+    /**
+     * Test main method.
+     * 
+     * @param args
+     *            Command line arguments
+     */
+    public static void main(String[] args)
+    {
+        new ChangeQuantityDialog().open();
+    }
 }

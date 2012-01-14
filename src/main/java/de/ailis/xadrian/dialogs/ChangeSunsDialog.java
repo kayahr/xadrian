@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sun;
+import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
@@ -115,5 +116,17 @@ public class ChangeSunsDialog extends ModalDialog
     public Sun getSuns()
     {
         return (Sun) this.sunsComboBox.getSelectedItem();
+    }
+    
+    /**
+     * Test main method.
+     * 
+     * @param args
+     *            Command line arguments
+     */
+    public static void main(String[] args)
+    {
+        Game game = GameFactory.getInstance().getGame("x3tc");
+        new ChangeSunsDialog(game).open();
     }
 }

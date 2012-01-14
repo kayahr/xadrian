@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
+ * information
  */
 
 package de.ailis.xadrian.dialogs;
@@ -10,6 +10,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -20,15 +22,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import de.ailis.xadrian.components.LabelSeparator;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Race;
+import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
-
 /**
  * Dialog for setting up the application preferences.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -43,12 +46,14 @@ public class PreferencesDialog extends ModalDialog
     /** The checkboxes for allowed manufacturer races */
     private Map<Race, JCheckBox> racesCheckBoxes;
 
-    /** The checkbox for enable Factory description (resources needed) in Complex table */
+    /**
+     * The checkbox for enable Factory description (resources needed) in Complex
+     * table
+     */
     private JCheckBox showFactoryResourcesCheckBox;
 
     /** The player sector combo box */
     private JComboBox playerSectorComboBox;
-
 
     /**
      * Constructor
@@ -59,7 +64,6 @@ public class PreferencesDialog extends ModalDialog
         init("preferences", Result.OK, Result.CANCEL);
     }
 
-
     /**
      * Creates the UI
      */
@@ -69,21 +73,21 @@ public class PreferencesDialog extends ModalDialog
     {
         // Create the content panel
         final JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.PAGE_AXIS));
+        contentPanel
+            .setLayout(new BoxLayout(contentPanel, BoxLayout.PAGE_AXIS));
         contentPanel
             .setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         contentPanel.add(createUsedRaces());
-        contentPanel.add(createGameSettings());
+        contentPanel.add(createX3TCSettings());
         contentPanel.add(createViewSettings());
 
         add(contentPanel, BorderLayout.CENTER);
     }
 
-
     /**
      * Creates and returns the panel with the races settings.
-     *
+     * 
      * @return The created panel
      */
 
@@ -95,7 +99,8 @@ public class PreferencesDialog extends ModalDialog
         // Create the races separator
         final LabelSeparator separator =
             new LabelSeparator(I18N.getString("dialog.preferences.usedRaces"));
-        separator.setToolTipText(I18N.getToolTip("dialog.preferences.usedRaces"));
+        separator.setToolTipText(I18N
+            .getToolTip("dialog.preferences.usedRaces"));
         panel.add(separator);
 
         // Create the race checkboxes
@@ -110,37 +115,54 @@ public class PreferencesDialog extends ModalDialog
         c.gridx = 0;
         c.gridy = 0;
         this.racesCheckBoxes = new HashMap<Race, JCheckBox>();
-//        for (final Race race: RaceFactory.getInstance().getManufacturerRaces())
-//        {
-//            final JCheckBox raceCheckBox = new JCheckBox(race.getName());
-//            if (c.gridx == 3)
-//            {
-//                c.gridx = 0;
-//                c.gridy++;
-//            }
-//            racePanel.add(raceCheckBox, c);
-//            this.racesCheckBoxes.put(race, raceCheckBox);
-//            c.gridx++;
-//        }
+        for (final Race race : getIgnorableRaces())
+        {
+            final JCheckBox raceCheckBox = new JCheckBox(race.getName());
+            if (c.gridx == 3)
+            {
+                c.gridx = 0;
+                c.gridy++;
+            }
+            racePanel.add(raceCheckBox, c);
+            this.racesCheckBoxes.put(race, raceCheckBox);
+            c.gridx++;
+        }
         panel.add(racePanel);
         return panel;
     }
-
+    
+    /**
+     * Creates and returns the list of ignorable races.
+     * 
+     * @return The list of ignorable races.
+     */
+    private SortedSet<Race> getIgnorableRaces()
+    {
+        SortedSet<Race> races = new TreeSet<Race>();
+        for (Game game: GameFactory.getInstance().getGames())
+        {
+            for (Race race: game.getRaceFactory().getManufacturerRaces())
+            {
+                races.add(race);
+            }
+        }
+        return races;
+    }
 
     /**
      * Creates and returns the panel with the game settings.
-     *
+     * 
      * @return The created panel
      */
 
-    private JPanel createGameSettings()
+    private JPanel createX3TCSettings()
     {
         final JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
         // Create the separator
         final LabelSeparator separator =
-            new LabelSeparator(I18N.getString("dialog.preferences.gameSettings"));
+            new LabelSeparator(I18N.getString("game.x3tc"));
         panel.add(separator);
 
         // Create the control panel
@@ -148,27 +170,28 @@ public class PreferencesDialog extends ModalDialog
         controlPanel.setLayout(new GridBagLayout());
         controlPanel.setBorder(new EmptyBorder(2, 20, 5, 0));
         final GridBagConstraints c = new GridBagConstraints();
-        final JLabel label = new JLabel(I18N.getString("dialog.preferences.playerSector"));
+        final JLabel label =
+            new JLabel(I18N.getString("dialog.preferences.playerSector"));
         c.gridx = 0;
         c.gridy = 0;
         controlPanel.add(label, c);
         c.gridx = 1;
         c.insets.left = 5;
         this.playerSectorComboBox = new JComboBox();
+        Game x3tc = GameFactory.getInstance().getGame("x3tc");
         for (int i = 0; i < 5; i++)
         {
-            this.playerSectorComboBox.addItem(I18N.getString("sector.sec-20-2-" + i));
+            this.playerSectorComboBox.addItem(I18N.getString(x3tc,
+                "sector.sec-20-2-" + i));
         }
         controlPanel.add(this.playerSectorComboBox, c);
         panel.add(controlPanel);
         return panel;
     }
 
-
-
     /**
      * Creates and returns the panel with the view settings.
-     *
+     * 
      * @return The created panel
      */
 
@@ -179,7 +202,8 @@ public class PreferencesDialog extends ModalDialog
 
         // Create the separator
         final LabelSeparator separator =
-            new LabelSeparator(I18N.getString("dialog.preferences.viewSettings"));
+            new LabelSeparator(
+                I18N.getString("dialog.preferences.viewSettings"));
         panel.add(separator);
 
         // Create the control panel
@@ -196,10 +220,9 @@ public class PreferencesDialog extends ModalDialog
         return panel;
     }
 
-
     /**
      * Returns the singleton instance
-     *
+     * 
      * @return The singleton instance
      */
 
@@ -207,7 +230,6 @@ public class PreferencesDialog extends ModalDialog
     {
         return instance;
     }
-
 
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
@@ -219,30 +241,43 @@ public class PreferencesDialog extends ModalDialog
         final Config config = Config.getInstance();
 
         // Load preference values
-        for (final Map.Entry<Race, JCheckBox> entry: this.racesCheckBoxes
+        for (final Map.Entry<Race, JCheckBox> entry : this.racesCheckBoxes
             .entrySet())
         {
             final Race race = entry.getKey();
             final JCheckBox checkBox = entry.getValue();
             checkBox.setSelected(!config.isRaceIgnored(race));
         }
-        this.showFactoryResourcesCheckBox.setSelected(config.isShowFactoryResources());
+        this.showFactoryResourcesCheckBox.setSelected(config
+            .isShowFactoryResources());
         this.playerSectorComboBox.setSelectedIndex(config.getPlayerSector());
         final Result result = super.open();
         if (result == Result.OK)
         {
             // Save preference values
-            for (final Map.Entry<Race, JCheckBox> entry: this.racesCheckBoxes
+            for (final Map.Entry<Race, JCheckBox> entry : this.racesCheckBoxes
                 .entrySet())
             {
                 final Race race = entry.getKey();
                 final JCheckBox checkBox = entry.getValue();
-                config
-                    .setRaceIgnored(race, !checkBox.isSelected());
+                config.setRaceIgnored(race, !checkBox.isSelected());
             }
-            config.setShowFactoryResources(this.showFactoryResourcesCheckBox.isSelected());
-            config.setPlayerSector(this.playerSectorComboBox.getSelectedIndex());
+            config.setShowFactoryResources(this.showFactoryResourcesCheckBox
+                .isSelected());
+            config
+                .setPlayerSector(this.playerSectorComboBox.getSelectedIndex());
         }
         return result;
+    }
+
+    /**
+     * Test main method.
+     * 
+     * @param args
+     *            Command line arguments
+     */
+    public static void main(String[] args)
+    {
+        new PreferencesDialog().open();
     }
 }
