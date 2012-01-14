@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
@@ -46,6 +47,7 @@ public class ChangeQuantityDialog extends ModalDialog
     private ChangeQuantityDialog()
     {
         init("changeQuantity", Result.OK, Result.CANCEL);
+        SplashFrame.getInstance().advanceProgress();
     }
 
 

@@ -27,6 +27,7 @@ import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.Sun;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
+import de.ailis.xadrian.frames.SplashFrame;
 
 /**
  * Factory for Sector objects.
@@ -75,6 +76,7 @@ public class SectorFactory
             throw new IllegalArgumentException("game must be set");
         this.game = game;
         readData();
+        SplashFrame.getInstance().advanceProgress();
     }
 
     /**

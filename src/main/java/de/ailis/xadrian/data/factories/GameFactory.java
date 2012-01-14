@@ -8,6 +8,7 @@ package de.ailis.xadrian.data.factories;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -21,6 +22,7 @@ import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.exceptions.DataException;
 import de.ailis.xadrian.exceptions.GameNotFoundException;
+import de.ailis.xadrian.frames.SplashFrame;
 
 /**
  * Factory for Game objects.
@@ -67,7 +69,9 @@ public class GameFactory
         try
         {
             final Document document = reader.read(url);
-            for (final Object item : document.getRootElement().elements("game"))
+            List<Object> games = document.getRootElement().elements("game");
+            SplashFrame.getInstance().setNumberOfGames(games.size());
+            for (final Object item : games)
             {
                 final Element element = (Element) item;
                 final String id = element.attributeValue("id");

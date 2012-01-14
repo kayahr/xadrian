@@ -31,6 +31,7 @@ import de.ailis.xadrian.components.FactoryTreeCellRenderer;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.factories.GameFactory;
+import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.models.FactoryTreeModel;
 import de.ailis.xadrian.support.Config;
@@ -79,6 +80,7 @@ public class AddFactoryDialog extends ModalDialog implements
     {
         this.game = game;
         init("addFactory", Result.OK, Result.CANCEL);
+        SplashFrame.getInstance().advanceProgress();
     }
 
     /**

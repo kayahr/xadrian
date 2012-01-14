@@ -20,6 +20,7 @@ import javax.swing.JTextPane;
 import javax.swing.border.BevelBorder;
 
 import de.ailis.xadrian.components.JLinkLabel;
+import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
@@ -36,14 +37,18 @@ public class AboutDialog extends ModalDialog
     /** Serial version UID */
     private static final long serialVersionUID = 4157034476842995945L;
     
+    /** The singleton instance. */
+    private static final AboutDialog instance = new AboutDialog();
+    
     
     /**
      * Constructor
      */
     
-    public AboutDialog()
+    private AboutDialog()
     {
         init("about", Result.OK);
+        SplashFrame.getInstance().advanceProgress();
     }
     
 
@@ -110,5 +115,15 @@ public class AboutDialog extends ModalDialog
         contentPanel.add(licenseScrollPane, c);
         
         add(contentPanel, BorderLayout.CENTER);
+    }
+
+    /**
+     * Returns the singleton instance.
+     *
+     * @return The singleton instance.
+     */
+    public static AboutDialog getInstance()
+    {
+        return instance;
     }
 }

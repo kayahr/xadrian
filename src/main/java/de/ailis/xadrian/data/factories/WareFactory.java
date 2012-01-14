@@ -22,6 +22,7 @@ import de.ailis.xadrian.data.Container;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
+import de.ailis.xadrian.frames.SplashFrame;
 
 /**
  * Factory for Ware objects.
@@ -50,6 +51,7 @@ public class WareFactory
     {
         this.game = game;
         readData();
+        SplashFrame.getInstance().advanceProgress();
     }
 
     /**

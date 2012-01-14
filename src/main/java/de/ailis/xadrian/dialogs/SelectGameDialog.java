@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.factories.GameFactory;
+import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
@@ -42,6 +43,7 @@ public class SelectGameDialog extends ModalDialog
     private SelectGameDialog()
     {
         init("selectGame", Result.OK, Result.CANCEL);
+        SplashFrame.getInstance().advanceProgress();
     }
     
     /**

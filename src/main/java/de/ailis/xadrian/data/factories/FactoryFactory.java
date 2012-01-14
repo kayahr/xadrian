@@ -30,6 +30,7 @@ import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.Station;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
+import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.Config;
 
 
@@ -63,6 +64,7 @@ public class FactoryFactory
     {
         this.game = game;
         readData();
+        SplashFrame.getInstance().advanceProgress();
     }
 
     

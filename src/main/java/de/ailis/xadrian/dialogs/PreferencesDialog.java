@@ -25,6 +25,7 @@ import de.ailis.xadrian.components.LabelSeparator;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.data.factories.GameFactory;
+import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
@@ -62,6 +63,7 @@ public class PreferencesDialog extends ModalDialog
     private PreferencesDialog()
     {
         init("preferences", Result.OK, Result.CANCEL);
+        SplashFrame.getInstance().advanceProgress();
     }
 
     /**

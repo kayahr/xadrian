@@ -37,6 +37,7 @@ import javax.swing.event.ChangeListener;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.data.factories.WareFactory;
+import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
@@ -81,6 +82,7 @@ public class ChangePricesDialog extends ModalDialog
             throw new IllegalArgumentException("game must be set");
         this.game = game;
         init("changePrices", Result.OK, Result.CANCEL);
+        SplashFrame.getInstance().advanceProgress();
     }
 
     /**

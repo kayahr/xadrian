@@ -10,6 +10,7 @@ import java.util.Map;
 
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Station;
+import de.ailis.xadrian.frames.SplashFrame;
 
 
 /**
@@ -35,6 +36,7 @@ public class StationFactory
     public StationFactory(final Game game)
     {
         this.game = game;
+        SplashFrame.getInstance().advanceProgress();
     }
 
 

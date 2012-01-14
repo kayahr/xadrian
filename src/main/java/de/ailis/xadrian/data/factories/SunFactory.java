@@ -21,6 +21,7 @@ import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sun;
 import de.ailis.xadrian.exceptions.DataException;
+import de.ailis.xadrian.frames.SplashFrame;
 
 
 /**
@@ -53,6 +54,7 @@ public class SunFactory
     {
         this.game = game;
         readData();
+        SplashFrame.getInstance().advanceProgress();
     }
 
 

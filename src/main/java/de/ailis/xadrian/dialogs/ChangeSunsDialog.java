@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sun;
 import de.ailis.xadrian.data.factories.GameFactory;
+import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
@@ -51,6 +52,7 @@ public class ChangeSunsDialog extends ModalDialog
         if (game == null) throw new IllegalArgumentException("game must be set");
         this.game = game;
         init("changeSuns", Result.OK, Result.CANCEL);
+        SplashFrame.getInstance().advanceProgress();
     }
 
 

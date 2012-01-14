@@ -27,6 +27,7 @@ import de.ailis.xadrian.components.SectorSelector;
 import de.ailis.xadrian.components.SectorSelector.Mode;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
+import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
@@ -62,6 +63,7 @@ public class SelectSectorDialog extends ModalDialog
             throw new IllegalArgumentException("game must be set");
         this.game = game;
         init("selectSector", Result.OK, Result.CANCEL);
+        SplashFrame.getInstance().advanceProgress();
     }
 
     /**

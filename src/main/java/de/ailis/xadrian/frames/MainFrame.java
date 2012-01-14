@@ -139,9 +139,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     private final Action toggleBaseComplexAction =
         new ToggleBaseComplexAction(this);
 
-    /** The about dialog */
-    private final AboutDialog aboutDialog = new AboutDialog();
-
     /** The tabbed pane. */
     private JTabbedPane tabs;
     
@@ -497,7 +494,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     public void about()
     {
-        this.aboutDialog.open();
+        AboutDialog.getInstance().open();
     }
 
 
