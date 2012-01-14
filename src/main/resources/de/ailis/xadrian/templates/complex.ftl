@@ -22,6 +22,10 @@
     </h2>
     [#if complex.showingComplexSetup || print]
       <p class="indent">
+        [@message key="complex.game" /]: ${complex.game}
+        
+        <br />
+        
         [@message key="complex.sector" /]:
         [#if !print]<a href="file://changeSector">[/#if][#if complex.sector??]${complex.sector}[#else][@message key="complex.noSector" /][/#if][#if !print]</a>[/#if]
       
