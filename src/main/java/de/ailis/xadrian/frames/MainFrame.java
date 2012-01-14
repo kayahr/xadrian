@@ -8,16 +8,21 @@ package de.ailis.xadrian.frames;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
@@ -137,8 +142,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /** The about dialog */
     private final AboutDialog aboutDialog = new AboutDialog();
 
-    /** The tabbed pane */
+    /** The tabbed pane. */
     private JTabbedPane tabs;
+    
+    /** The welcome panel. */
+    private JPanel welcomePanel;
 
 
     /**
@@ -167,8 +175,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
         createToolBar();
         createContent();
         createStatusBar();
-
-        createComplexTab();
 
         pack();
 
@@ -261,9 +267,42 @@ public class MainFrame extends JFrame implements EditorStateListener,
     private void createContent()
     {
         this.tabs = new JTabbedPane();
-        add(this.tabs, BorderLayout.CENTER);
+//        add(this.tabs, BorderLayout.CENTER);
         this.tabs.setPreferredSize(new Dimension(640, 480));
         this.tabs.addChangeListener(this);
+        
+        JPanel welcomePanel = this.welcomePanel = new JPanel();
+        welcomePanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        
+        welcomePanel.setPreferredSize(new Dimension(640, 480));
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridBagLayout());
+        c.anchor = GridBagConstraints.CENTER;
+        welcomePanel.add(buttonPanel, c);
+        
+        JButton newButton = new JButton(this.newAction);
+        newButton.setHorizontalAlignment(SwingConstants.LEFT);
+        newButton.setIconTextGap(10);
+        newButton.setText("<html><body><strong>" + newButton.getText() +
+            "</strong><br />" + newButton.getToolTipText() + "</body></html>");
+        newButton.setToolTipText(null);
+        newButton.setMargin(new Insets(5, 10, 5, 10));
+        c.gridy = 0;
+        c.fill = GridBagConstraints.BOTH;
+        c.insets.set(5, 5, 5, 5);
+        buttonPanel.add(newButton, c);
+        
+        JButton openButton = new JButton(this.openAction);
+        openButton.setHorizontalAlignment(SwingConstants.LEFT);
+        openButton.setText("<html><body><strong>" + openButton.getText() +
+            "</strong><br />" + openButton.getToolTipText() + "</body></html>");
+        openButton.setToolTipText(null);
+        openButton.setMargin(new Insets(5, 10, 5, 10));
+        c.gridy++;
+        buttonPanel.add(openButton, c);
+        
+        add(welcomePanel, BorderLayout.CENTER);
     }
 
 
@@ -345,8 +384,13 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     private void createComplexTab(final ComplexEditor editor)
     {
+        // Replace the welcome panel with the complex tab control
+        remove(this.welcomePanel);
+        add(this.tabs, BorderLayout.CENTER);
+        
         this.tabs.addTab(editor.getComplex().getName(), editor);
         this.tabs.setSelectedComponent(editor);
+        
         editor.addStateListener((EditorStateListener) this);
         editor.addStateListener((StateListener) this);
         editor.addClipboardStateListener(this);
@@ -415,6 +459,15 @@ public class MainFrame extends JFrame implements EditorStateListener,
             }
 
             this.tabs.remove(current);
+
+            // Replace the tab control with the welcome panel if no tabs present
+            if (this.tabs.getTabCount() == 0)
+            {
+                remove(this.tabs);
+                add(this.welcomePanel, BorderLayout.CENTER);
+                repaint();
+            }
+            
             fireChange();
             return true;
         }
