@@ -156,7 +156,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     public String getName()
     {
-        return I18N.getString(this.messageId);
+        return I18N.getString(this.game, this.messageId);
     }
 
     /**

@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.txt file for licensing information.
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
+ * licensing information.
  */
 
 package de.ailis.xadrian.data.factories;
@@ -23,10 +23,9 @@ import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
 
-
 /**
  * Factory for Ware objects.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -34,7 +33,7 @@ public class WareFactory
 {
     /** The game for which this factory is responsible. */
     private final Game game;
-    
+
     /** The ware map (for quick ID navigation) */
     private final Map<String, Ware> wareMap = new HashMap<String, Ware>();
 
@@ -53,7 +52,6 @@ public class WareFactory
         readData();
     }
 
-
     /**
      * Reads the data from the XML file.
      */
@@ -68,16 +66,23 @@ public class WareFactory
         try
         {
             final Document document = reader.read(url);
-            for (final Object item: document.getRootElement().elements("ware"))
+            for (final Object item : document.getRootElement().elements("ware"))
             {
                 final Element element = (Element) item;
                 final String id = element.attributeValue("id");
-                final int minPrice = Integer.parseInt(element.attributeValue("minPrice"));
-                final int avgPrice = Integer.parseInt(element.attributeValue("avgPrice"));
-                final int maxPrice = Integer.parseInt(element.attributeValue("maxPrice"));
-                final int volume = Integer.parseInt(element.attributeValue("volume"));
-                final Container container = Container.valueOf(element.attributeValue("container"));
-                final Ware ware = new Ware(id, minPrice, avgPrice, maxPrice, volume, container);
+                final int minPrice =
+                    Integer.parseInt(element.attributeValue("minPrice"));
+                final int avgPrice =
+                    Integer.parseInt(element.attributeValue("avgPrice"));
+                final int maxPrice =
+                    Integer.parseInt(element.attributeValue("maxPrice"));
+                final int volume =
+                    Integer.parseInt(element.attributeValue("volume"));
+                final Container container =
+                    Container.valueOf(element.attributeValue("container"));
+                final Ware ware =
+                    new Ware(this.game, id, minPrice, avgPrice, maxPrice,
+                        volume, container);
                 this.wares.add(ware);
                 this.wareMap.put(id, ware);
             }
@@ -88,10 +93,9 @@ public class WareFactory
         }
     }
 
-
     /**
      * Returns all wares.
-     *
+     * 
      * @return The wares
      */
 
@@ -100,10 +104,9 @@ public class WareFactory
         return Collections.unmodifiableSortedSet(this.wares);
     }
 
-
     /**
      * Returns the ware with the specified id or null if not found.
-     *
+     * 
      * @param id
      *            The ware id
      * @return The ware or null if not found

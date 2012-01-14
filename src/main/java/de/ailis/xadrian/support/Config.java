@@ -17,7 +17,6 @@ import javax.swing.JSplitPane;
 
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Race;
-import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.exceptions.ConfigException;
 import de.ailis.xadrian.utils.SwingUtils;
 

@@ -77,7 +77,7 @@ public class RaceFactory
                 final String colorStr = element.attributeValue("color");
                 final Color color = new Color(Integer.parseInt(colorStr
                     .substring(1), 16));
-                final Race race = new Race(id, color);
+                final Race race = new Race(this.game, id, color);
                 this.races.add(race);
                 this.raceMap.put(id, race);
             }

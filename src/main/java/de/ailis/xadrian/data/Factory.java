@@ -173,7 +173,7 @@ public class Factory implements Serializable, Comparable<Factory>
 
     public String getName()
     {
-        return I18N.getString(this.messageId);
+        return I18N.getString(this.game, this.messageId);
     }
 
     /**

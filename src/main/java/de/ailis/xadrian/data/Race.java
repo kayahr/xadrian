@@ -33,19 +33,24 @@ public class Race implements Serializable, Comparable<Race>
 
     /** The message id */
     private final String messageId;
+    
+    /** The game. */
+    private final Game game;
 
 
     /**
      * Constructor
      * 
+     * @param game
+     *            The game.
      * @param id
      *            The race id
      * @param color
      *            The race color
      */
-
-    public Race(final String id, final Color color)
+    public Race(final Game game, final String id, final Color color)
     {
+        this.game = game;
         this.id = id;
         this.color = color;
         this.messageId = "race." + id;
@@ -99,7 +104,7 @@ public class Race implements Serializable, Comparable<Race>
 
     public String getName()
     {
-        return I18N.getString(this.messageId);
+        return I18N.getString(this.game, this.messageId);
     }
 
 

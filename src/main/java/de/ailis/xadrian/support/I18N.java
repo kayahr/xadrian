@@ -1,10 +1,12 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
+ * information
  */
 
 package de.ailis.xadrian.support;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -13,11 +15,11 @@ import javax.swing.JMenu;
 import javax.swing.KeyStroke;
 
 import de.ailis.xadrian.Main;
-
+import de.ailis.xadrian.data.Game;
 
 /**
  * Simple internationalization utility class.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 
@@ -26,6 +28,10 @@ public final class I18N
     /** The messages. */
     private static final ResourceBundle messages = ResourceBundle
         .getBundle(Main.class.getPackage().getName() + ".messages");
+
+    /** The game messages. */
+    private static Map<String, ResourceBundle> gameMessages =
+        new HashMap<String, ResourceBundle>();
 
     /** The custom messages. */
     private static ResourceBundle customMessages;
@@ -42,7 +48,6 @@ public final class I18N
         }
     }
 
-
     /**
      * Private constructor to prevent instantiation
      */
@@ -52,11 +57,10 @@ public final class I18N
         // Empty
     }
 
-
     /**
      * Returns the message resource with the specified key. If not found then
      * null is returned.
-     *
+     * 
      * @param key
      *            The message resource key
      * @return The message resource value or null if not found
@@ -76,11 +80,41 @@ public final class I18N
         }
     }
 
+    /**
+     * Returns the game message resource with the specified key. If not found
+     * then null is returned.
+     * 
+     * @param game
+     *            The game.
+     * @param key
+     *            The message resource key
+     * @return The message resource value or null if not found
+     */
+    private static String get(final Game game, final String key)
+    {
+        String gameId = game.getId();
+        ResourceBundle bundle = gameMessages.get(gameId);
+        if (bundle == null)
+        {
+            bundle =
+                ResourceBundle.getBundle(Main.class.getPackage().getName() +
+                    ".data." + gameId + ".messages");
+            gameMessages.put(gameId, bundle);
+        }
+        try
+        {
+            return bundle.getString(key);
+        }
+        catch (final MissingResourceException e)
+        {
+            return null;
+        }
+    }
 
     /**
      * Returns the message resource with the specified key. If not found then a
      * special string is returned indicating the missing message resource.
-     *
+     * 
      * @param key
      *            The message resource key
      * @param args
@@ -95,10 +129,30 @@ public final class I18N
         return String.format(value, args);
     }
 
+    /**
+     * Returns the game message resource with the specified key. If not found
+     * then a special string is returned indicating the missing message
+     * resource.
+     * 
+     * @param game
+     *            The game.
+     * @param key
+     *            The message resource key
+     * @param args
+     *            Message arguments
+     * @return The message resource value
+     */
+    public static String getString(final Game game, final String key,
+        final Object... args)
+    {
+        final String value = get(game, key);
+        if (value == null) return "???" + key + "???";
+        return String.format(value, args);
+    }
 
     /**
      * Returns a title message resource.
-     *
+     * 
      * @param key
      *            The base key of the message resource (without .title suffix)
      * @return The title message resource value
@@ -109,11 +163,10 @@ public final class I18N
         return getString(key + ".title");
     }
 
-
     /**
      * Returns an accelerator message resource. If message resource is not found
      * or is empty then null is returned.
-     *
+     * 
      * @param key
      *            The base key of the message resource (without .accelerator
      *            suffix)
@@ -127,11 +180,10 @@ public final class I18N
         return KeyStroke.getKeyStroke(value);
     }
 
-
     /**
      * Returns a mnemonic message resource. If message resource is not found or
      * is empty then null is returned.
-     *
+     * 
      * @param key
      *            The base key of the message resource (without .mnemonic
      *            suffix)
@@ -147,11 +199,10 @@ public final class I18N
         return vk;
     }
 
-
     /**
      * Returns a tool tip message resource. If not found or empty then null is
      * returned.
-     *
+     * 
      * @param key
      *            The base key of the message resource (without .tooltip suffix)
      * @return The tooltip message resource value
@@ -162,11 +213,10 @@ public final class I18N
         return get(key + ".tooltip");
     }
 
-
     /**
      * Creates a new menu and configures the title, accelerator, tooltip and
      * mnemonic automatically.
-     *
+     * 
      * @param menuBar
      *            The menu bar (or menu) to which the new menu should be added
      * @param name

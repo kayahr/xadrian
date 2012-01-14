@@ -21,7 +21,6 @@ import javax.swing.border.EmptyBorder;
 
 import de.ailis.xadrian.components.LabelSeparator;
 import de.ailis.xadrian.data.Race;
-import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
