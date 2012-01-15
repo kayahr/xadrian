@@ -39,6 +39,9 @@ public class GameFactory
 
     /** The singleton instance */
     private final static GameFactory instance = new GameFactory();
+    
+    /** The default game. */
+    private Game defaultGame;
 
     /**
      * Private constructor to prevent instantiation from outside.
@@ -78,6 +81,10 @@ public class GameFactory
                 final Game game = new Game(id);
                 this.games.add(game);
                 this.gameMap.put(id, game);
+                if (this.defaultGame == null
+                    || Boolean.parseBoolean(element
+                        .attributeValue("default", "false")))
+                    this.defaultGame = game;
             }
         }
         catch (final DocumentException e)
@@ -119,5 +126,15 @@ public class GameFactory
     public int countGames()
     {
         return this.games.size();
+    }
+
+    /**
+     * Returns the default game.
+     *
+     * @return The default game.
+     */
+    public Game getDefaultGame()
+    {
+        return this.defaultGame;
     }
 }

@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2012 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2012 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
+ * information
  */
 
 package de.ailis.xadrian.dialogs;
@@ -23,7 +23,7 @@ import de.ailis.xadrian.support.ModalDialog;
 
 /**
  * Dialog for selecting the game.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class SelectGameDialog extends ModalDialog
@@ -33,7 +33,7 @@ public class SelectGameDialog extends ModalDialog
 
     /** The game combo box */
     private JComboBox gameComboBox;
-    
+
     /** The singleton instance. */
     private static final SelectGameDialog instance = new SelectGameDialog();
 
@@ -45,7 +45,7 @@ public class SelectGameDialog extends ModalDialog
         init("selectGame", Result.OK, Result.CANCEL);
         SplashFrame.getInstance().advanceProgress();
     }
-    
+
     /**
      * Returns the singleton instance.
      * 
@@ -68,6 +68,8 @@ public class SelectGameDialog extends ModalDialog
         this.gameComboBox =
             new JComboBox(GameFactory.getInstance().getGames()
                 .toArray(new Game[0]));
+        this.gameComboBox.setSelectedItem(GameFactory.getInstance()
+            .getDefaultGame());
         gameLabel.setLabelFor(this.gameComboBox);
 
         // Create the content panel
@@ -95,14 +97,14 @@ public class SelectGameDialog extends ModalDialog
 
     /**
      * Returns the selected game.
-     *
+     * 
      * @return The selected game
      */
     public Game getGame()
     {
         return (Game) this.gameComboBox.getSelectedItem();
     }
-    
+
     /**
      * Test main method.
      * 
