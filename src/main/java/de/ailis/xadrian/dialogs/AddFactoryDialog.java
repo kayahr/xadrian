@@ -6,7 +6,6 @@
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -123,8 +122,8 @@ public class AddFactoryDialog extends ModalDialog implements
         this.textPane = new JTextPane();
         final JScrollPane infoPane = new JScrollPane(this.textPane);
         infoPane.setPreferredSize(new Dimension(210, 420));
+        this.textPane.setBorder(null);
         this.textPane.setEditable(false);
-        this.textPane.setBackground(new Color(0xff, 0xff, 0xaa));
         this.textPane.setContentType("text/html");
         this.textPane.setDoubleBuffered(true);
 

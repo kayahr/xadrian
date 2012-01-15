@@ -3,7 +3,8 @@ body
     font-family: Arial, sans-serif;
     font-size: 9px;
     color: #000000;       
-    margin: 0;
+    margin: 5px;
+    background: #ffffaa;
 }
 
 p
