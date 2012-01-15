@@ -28,6 +28,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.text.JTextComponent;
 
+import de.ailis.xadrian.support.Config;
+
 
 /**
  * Static utility methods for common Swing tasks.
@@ -176,10 +178,29 @@ public final class SwingUtils
 
     public static void prepareTheme() throws Exception
     {
-        final String sysThemeStr = System.getenv().get("XADRIAN_SYSTHEME");
-        if (sysThemeStr == null || Boolean.parseBoolean(sysThemeStr))
+        String theme = Config.getInstance().getTheme();
+        if (theme != null)
+        {
+            try
+            {
+                UIManager.setLookAndFeel(theme);
+                return;
+            }
+            catch (Exception e)
+            {
+                // Fall back to system LaF
+            }            
+        }
+        
+        try
+        {
             UIManager
                 .setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (Exception e)
+        {
+            // Fall back to standard Swing theme.
+        }
     }
 
 

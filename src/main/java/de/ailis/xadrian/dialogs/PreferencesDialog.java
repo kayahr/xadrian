@@ -19,16 +19,20 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import de.ailis.xadrian.components.LabelSeparator;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Race;
+import de.ailis.xadrian.data.Theme;
 import de.ailis.xadrian.data.factories.GameFactory;
+import de.ailis.xadrian.data.factories.ThemeFactory;
 import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
+import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Dialog for setting up the application preferences.
@@ -55,6 +59,9 @@ public class PreferencesDialog extends ModalDialog
 
     /** The player sector combo box */
     private JComboBox playerSectorComboBox;
+
+    /** The theme combo box. */
+    private JComboBox themeComboBox;
 
     /**
      * Constructor
@@ -132,7 +139,7 @@ public class PreferencesDialog extends ModalDialog
         panel.add(racePanel);
         return panel;
     }
-    
+
     /**
      * Creates and returns the list of ignorable races.
      * 
@@ -141,9 +148,9 @@ public class PreferencesDialog extends ModalDialog
     private SortedSet<Race> getIgnorableRaces()
     {
         SortedSet<Race> races = new TreeSet<Race>();
-        for (Game game: GameFactory.getInstance().getGames())
+        for (Game game : GameFactory.getInstance().getGames())
         {
-            for (Race race: game.getRaceFactory().getManufacturerRaces())
+            for (Race race : game.getRaceFactory().getManufacturerRaces())
             {
                 races.add(race);
             }
@@ -210,15 +217,39 @@ public class PreferencesDialog extends ModalDialog
 
         // Create the control panel
         final JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new BorderLayout());
+        controlPanel.setLayout(new GridBagLayout());
         controlPanel.setBorder(new EmptyBorder(2, 20, 5, 0));
+        final GridBagConstraints c = new GridBagConstraints();
+        final JLabel label =
+            new JLabel(I18N.getString("dialog.preferences.theme"));
+        c.anchor = GridBagConstraints.LINE_START;
+        c.gridx = 0;
+        c.gridy = 0;
+        controlPanel.add(label, c);
+        c.gridx = 1;
+        c.insets.left = 5;
+        this.themeComboBox = new JComboBox();
+        for (Theme theme : ThemeFactory.getInstance().getThemes())
+        {
+            this.themeComboBox.addItem(theme);
+        }
+        controlPanel.add(this.themeComboBox, c);
+        panel.add(controlPanel);
+        
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 2;
         this.showFactoryResourcesCheckBox = new JCheckBox(
             I18N.getString("dialog.preferences.showFactoryResources"));
         this.showFactoryResourcesCheckBox.setToolTipText(
             I18N.getToolTip("dialog.preferences.showFactoryResources"));
-        controlPanel.add(this.showFactoryResourcesCheckBox);
+        c.weightx = 1;
+        c.gridy++;
+        c.gridx = 0;
+        c.gridwidth = 2;
+        controlPanel.add(this.showFactoryResourcesCheckBox, c);
 
-        panel.add(controlPanel, BorderLayout.CENTER);
+        panel.add(controlPanel);
         return panel;
     }
 
@@ -252,6 +283,8 @@ public class PreferencesDialog extends ModalDialog
         }
         this.showFactoryResourcesCheckBox.setSelected(config
             .isShowFactoryResources());
+        this.themeComboBox.setSelectedItem(ThemeFactory.getInstance().getTheme(
+            UIManager.getLookAndFeel().getClass().getName()));
         this.playerSectorComboBox.setSelectedIndex(config.getPlayerSector());
         final Result result = super.open();
         if (result == Result.OK)
@@ -268,6 +301,8 @@ public class PreferencesDialog extends ModalDialog
                 .isSelected());
             config
                 .setPlayerSector(this.playerSectorComboBox.getSelectedIndex());
+            config.setTheme(((Theme) this.themeComboBox.getSelectedItem())
+                .getClassName());
         }
         return result;
     }
@@ -277,9 +312,14 @@ public class PreferencesDialog extends ModalDialog
      * 
      * @param args
      *            Command line arguments
+     * @throws Exception
+     *             When something goes wrong.
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws Exception
     {
+        SwingUtils.prepareGUI();
         new PreferencesDialog().open();
+        Config.getInstance().save();
+        System.exit(0);
     }
 }

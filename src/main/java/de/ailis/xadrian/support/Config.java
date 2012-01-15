@@ -37,8 +37,11 @@ public final class Config
     /** Config key for displaying factory resources in complex table */
     private static final String SHOW_FACTORY_RESOURCES = "showfactoryresources";
 
-    /** COnfig key for the index of the chosen player sector */
+    /** Config key for the index of the chosen player sector */
     private static final String PLAYER_SECTOR = "playerSector";
+
+    /** Config key for the theme */
+    private static final String THEME = "theme";
 
     /** The singleton instance. */
     private static final Config instance = new Config();
@@ -54,6 +57,9 @@ public final class Config
 
     /** The index of the chosen player sector */
     private int playerSector = 0;
+
+    /** The theme (LookAndFeel class name or null for system) */
+    private String theme = null;
 
     /**
      * Private constructor to prevent instantiation
@@ -92,6 +98,7 @@ public final class Config
         this.showFactoryResources = prefs.getBoolean(
             SHOW_FACTORY_RESOURCES, true);
         this.playerSector = prefs.getInt(PLAYER_SECTOR, 0);
+        this.theme = prefs.get(THEME, null);
     }
 
     /**
@@ -103,7 +110,7 @@ public final class Config
         this.ignoredRaces.clear();
         this.showFactoryResources = true;
         this.lastFileChooserPath = null;
-
+        this.theme = null;
     }
 
     /**
@@ -133,6 +140,10 @@ public final class Config
             prefs.remove(LAST_FILE_CHOOSER_PATH);
         prefs.putBoolean(SHOW_FACTORY_RESOURCES, this.showFactoryResources);
         prefs.putInt(PLAYER_SECTOR, this.playerSector);
+        if (this.theme == null)
+            prefs.remove(THEME);
+        else
+            prefs.put(THEME, this.theme);
     }
 
     /**
@@ -335,5 +346,26 @@ public final class Config
     public int getPlayerSector()
     {
         return this.playerSector;
+    }
+
+    /**
+     * Returns the theme.
+     * 
+     * @return The theme.
+     */
+    public String getTheme()
+    {
+        return this.theme;
+    }
+
+    /**
+     * Sets the theme.
+     * 
+     * @param theme
+     *            The theme to set. Null for system theme.
+     */
+    public void setTheme(String theme)
+    {
+        this.theme = theme;
     }
 }
