@@ -26,6 +26,7 @@ import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.factories.GameFactory;
+import de.ailis.xadrian.interfaces.GameProvider;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
@@ -58,6 +59,9 @@ public class SetYieldsDialog extends ModalDialog
     /** The yields */
     private final List<Integer> yields = new ArrayList<Integer>();
 
+    /** The game provider. */
+    private final GameProvider gameProvider;
+
     /**
      * Constructor
      * 
@@ -67,6 +71,9 @@ public class SetYieldsDialog extends ModalDialog
 
     public SetYieldsDialog(final Factory mineType)
     {
+        if (mineType == null)
+            throw new IllegalArgumentException("mineType must be set");
+        this.gameProvider = mineType;
         init("setYields", Result.OK, Result.CANCEL);
         setResizable(false);
         this.label.setText(I18N.getString("dialog.setYields.yields",
@@ -208,8 +215,8 @@ public class SetYieldsDialog extends ModalDialog
     protected List<Action> createDialogActions()
     {
         final List<Action> dialogActions = new ArrayList<Action>();
-        dialogActions.add(new ChangeSectorAction(this.asteroidsInfoPane,
-            "sector"));
+        dialogActions.add(new ChangeSectorAction(this.gameProvider,
+            this.asteroidsInfoPane, "sector"));
         return dialogActions;
     }
 

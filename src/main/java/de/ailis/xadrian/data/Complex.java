@@ -30,6 +30,7 @@ import de.ailis.xadrian.data.factories.SectorFactory;
 import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.dialogs.SetYieldsDialog;
+import de.ailis.xadrian.interfaces.GameProvider;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
@@ -41,7 +42,7 @@ import de.ailis.xadrian.support.MultiCollection;
  * @author Klaus Reimer (k@ailis.de)
  */
 
-public class Complex implements Serializable
+public class Complex implements Serializable, GameProvider
 {
     /** Serial version UID */
     private static final long serialVersionUID = 2128684141345704703L;
@@ -1447,10 +1448,9 @@ public class Complex implements Serializable
     }
     
     /**
-     * Returns the game this complex belongs to.
-     * 
-     * @return The game this complex belongs to
+     * @see de.ailis.xadrian.interfaces.GameProvider#getGame()
      */
+    @Override
     public Game getGame()
     {
         return this.game;

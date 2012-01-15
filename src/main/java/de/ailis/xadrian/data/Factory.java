@@ -12,6 +12,7 @@ import java.util.Collection;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import de.ailis.xadrian.interfaces.GameProvider;
 import de.ailis.xadrian.support.I18N;
 
 /**
@@ -20,7 +21,7 @@ import de.ailis.xadrian.support.I18N;
  * @author Klaus Reimer (k@ailis.de)
  */
 
-public class Factory implements Serializable, Comparable<Factory>
+public class Factory implements Serializable, Comparable<Factory>, GameProvider
 {
     /** Serial version UID */
     private static final long serialVersionUID = 4851121299100273466L;
@@ -65,7 +66,7 @@ public class Factory implements Serializable, Comparable<Factory>
      * Constructor
      * 
      * @param game
-     *            The game this factory belongs to.
+     *            The game this factory belongs to. Must not be null.
      * @param id
      *            The factory id
      * @param size
@@ -93,6 +94,7 @@ public class Factory implements Serializable, Comparable<Factory>
         final int price, final int volume, final Product[] resources,
         final Capacity[] storage, final Station[] manufacturers)
     {
+        if (game == null) throw new IllegalArgumentException("game must be set");
         this.game = game;
         this.id = id;
         this.size = size;
@@ -558,5 +560,14 @@ public class Factory implements Serializable, Comparable<Factory>
             }
         }
         return nearest;
+    }
+
+    /**
+     * @see de.ailis.xadrian.interfaces.GameProvider#getGame()
+     */
+    @Override
+    public Game getGame()
+    {
+        return this.game;
     }
 }
