@@ -6399,7 +6399,4 @@
       <asteroid id="ASFA-85" ware="ore" yield="25" x="26720" y="-3654" z="-2470" />
     </asteroids>
   </sector>
-  <!-- Unknown Sector -->
-  <sector id="sec-23-19" x="23" y="19" race="unknown" planets="0" suns="0" core="false">
-  </sector>
 </sectors>
