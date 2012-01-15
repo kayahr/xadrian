@@ -292,6 +292,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         
         JButton openButton = new JButton(this.openAction);
         openButton.setHorizontalAlignment(SwingConstants.LEFT);
+        openButton.setIconTextGap(10);
         openButton.setText("<html><body><strong>" + openButton.getText() +
             "</strong><br />" + openButton.getToolTipText() + "</body></html>");
         openButton.setToolTipText(null);
