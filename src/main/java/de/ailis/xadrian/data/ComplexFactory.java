@@ -27,7 +27,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     private static final long serialVersionUID = -4731442033981700443L;
     
     /** The game this complex factory belongs to. */
-    private Game game;   
+    private final Game game;   
 
     /** The factory */
     private final Factory factory;
@@ -58,6 +58,7 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     public ComplexFactory(final Game game, final Factory factory,
         final int quantity, final int yield)
     {
+        if (game == null) throw new IllegalArgumentException("game must be set");
         this.game = game; 
         this.factory = factory;
         this.quantity = quantity;
@@ -77,14 +78,18 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     /**
      * Constructor for adding a mine with multiple yields.
      *
+     * @param game
+     *            The game this complex factory belongs to.
      * @param factory
      *            The mine
      * @param yields
      *            The yields
      */
-
-    public ComplexFactory(final Factory factory, final List<Integer> yields)
+    public ComplexFactory(Game game, final Factory factory, final List<Integer> yields)
     {
+        if (game == null)
+            throw new IllegalArgumentException("game must be set");
+        this.game = game;
         this.factory = factory;
         this.yields = new ArrayList<Integer>();
         setYields(yields);

@@ -463,7 +463,7 @@ public class Complex implements Serializable, GameProvider
             if (dialog.open() == Result.OK)
             {
                 setSector(dialog.getSector());
-                addFactory(new ComplexFactory(factory, dialog.getYields()));
+                addFactory(new ComplexFactory(this.game, factory, dialog.getYields()));
                 calculateBaseComplex();
                 updateShoppingList();
             }
@@ -664,7 +664,7 @@ public class Complex implements Serializable, GameProvider
                     final Element yieldE = (Element) yieldItem;
                     yields.add(Integer.parseInt(yieldE.getText()));
                 }
-                complexFactory = new ComplexFactory(factory, yields);
+                complexFactory = new ComplexFactory(game, factory, yields);
             }
             if (Boolean.parseBoolean(element
                 .attributeValue("disabled", "false")))
