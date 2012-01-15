@@ -7,7 +7,7 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.4.0" date="2012-01-14" description="Major update">
+    <release version="1.4.0" date="2012-01-15" description="Major update">
       <action dev="k" type="add" date="2012-01-14">
         Added multi-game feature to support X3TC and X3AP in the same
         application.          
