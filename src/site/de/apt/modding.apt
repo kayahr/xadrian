@@ -4,7 +4,7 @@
 
 Modding
 
-  Seit Version 1.3.3 kann Xadrian "gemodded" werden. Dazu müssen lediglich
+  Xadrian kann "gemodded" werden. Dazu müssen lediglich
   einige XML und Property Dateien in einem bestimmten Verzeichnis abgelegt
   werden.
   
@@ -16,6 +16,19 @@ Modding
   
   Folgende Dateien können im <data> Verzeichnis abgelegt werden:
   
+  * games.xml
+  
+  * messages.properties
+  
+  * messages_*.properties
+  
+  []
+  
+  Die Datei <games.xml> beinhaltet eine Liste der untstützten Spiele. Für jedes
+  Spiel wird ein Unterordner benannt nach der ID des Spiels (Also z.B. "x3tc"
+  und "x3ap") im <data> Verzeihnis erwartet. Dort können folgende Dateien
+  abgelegt werden:
+
   * factories.xml
   
   * races.xml

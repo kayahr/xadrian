@@ -4,8 +4,10 @@
 
 What is Xadrian?
 
-  Xadrian is a factory complex calculator for the game
-  {{{http://www.egosoft.com/games/x3tc/info_en.php}X3 Terran Conflict}}.
+  Xadrian is a factory complex calculator for the games
+  {{{http://www.egosoft.com/games/x3tc/info_en.php}X³: Terran Conflict}}
+  and
+  {{{http://www.egosoft.com/games/x3ap/info_en.php}X³: Albion Prelude}}
   With this tool you can plan your factory complexes before you build them
   in-game.
 
@@ -13,8 +15,8 @@ What is Xadrian?
 
   Notable features:
 
-    * Knows all factories and sectors of a regular X3TC 3.1.1 game. Also 
-      includes the bonus sector "Harmony Of Perpetuity".
+    * Knows all factories and sectors of a regular unmodified X3TC or X3AP game.
+      Also includes the X3TC bonus sector "Harmony Of Perpetuity".
     
     * Optional automatic base complex calculation.
 

@@ -4,8 +4,9 @@
 
 Was ist Xadrian?
 
-  Xadrian ist ein Fabrik-Komplex-Rechner für das Spiel
-  {{{http://www.egosoft.com/games/x3tc/info_de.php}X3 Terran Conflict}}.
+  Xadrian ist ein Fabrik-Komplex-Rechner für die Spiele
+  {{{http://www.egosoft.com/games/x3tc/info_de.php}X³: Terran Conflict}} und
+  {{{http://www.egosoft.com/games/x3ap/info_de.php}X³: Albion Prelude}}
   Mit diesem Programm lässt sich ein Fabrik-Komplex planen bevor er dann im
   Spiel gebaut wird.
 
@@ -13,8 +14,8 @@ Was ist Xadrian?
 
   Features:
 
-    * Kennt alle Fabriken und Sektoren aus X3TC 3.1.1, inklusive dem Bonus
-      Sektor "Harmonische Ewigkeit".
+    * Kennt alle Fabriken und Sektoren aus einem  unmodifizierten X3TC und X3AP
+      Spiel. Inklusive dem X3TC Bonus Sektor "Harmonische Ewigkeit".
     
     * Optionale automatische Grundkomplex-Berechnung.
 
