@@ -1,7 +1,6 @@
 body
 {
     font-family: Arial, sans-serif;
-    font-size: 9px;
     color: #000000;       
     margin: 5px; 
 }
@@ -26,14 +25,14 @@ h1, h2
 
 h1
 {
-    font-size: 14px;
+    font-size: 155%;
     background: #dddddd;
     padding: 3px;
 }
 
 h2
 {
-    font-size: 11px;
+    font-size: 122%;
     padding: 2px;
     background: #eeeeee;
 }

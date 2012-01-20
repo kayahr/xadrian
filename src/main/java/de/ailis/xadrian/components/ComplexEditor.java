@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.HyperlinkEvent;
@@ -115,6 +116,9 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         this.complex = complex;
 
         // Create the text pane
+        System.out.println(UIManager.get("Label.font"));
+        System.out.println(UIManager.get("TextPane.font"));
+
         this.textPane = new JTextPane();
         this.textPane.setEditable(false);
         this.textPane.setBackground(Color.WHITE);

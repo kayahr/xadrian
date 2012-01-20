@@ -1,7 +1,6 @@
 body
 {
     font-family: Arial, sans-serif;
-    font-size: 9px;
     color: #000000;       
     margin: 5px;
     background: #ffffaa;
@@ -15,7 +14,7 @@ p
 h1
 {
     font-family: Times New Roman, serif;
-    font-size: 12px;
+    font-size: 133%;
     font-weight: bold;
     margin: 0 0 9px 0;
     text-decoration: underline;

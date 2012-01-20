@@ -21,6 +21,10 @@
         Game can now be configured in the preferences to avoid asking for
         it every time a new complex is created.
       </action>                 
+      <action dev="k" type="fix" date="2012-01-20">
+        Removed fixed font sizes in HTML text panes so font size can be
+        controlled by the operating system.
+      </action>                 
     </release>
     <release version="1.4.0" date="2012-01-15" description="Major update">
       <action dev="k" type="add" date="2012-01-14">
