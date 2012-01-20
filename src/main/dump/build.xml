@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE project>
 <project name="x3tc-dump" default="build">
     
     <target name="build">

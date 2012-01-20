@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE factories>
 <factories>
   <factory id="particleAcceleratorCannonForge-boron" race="boron" volume="16000" price="4028788" cycle="840" size="S">
     <product ware="particleAcceleratorCannon" quantity="1" storage="32" />
