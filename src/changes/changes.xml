@@ -25,6 +25,9 @@
         Removed fixed font sizes in HTML text panes so font size can be
         controlled by the operating system.
       </action>                 
+      <action dev="k" type="fix" date="2012-01-21">
+        Made all dialogs resizable and sector map scalable. 
+      </action>                 
     </release>
     <release version="1.4.0" date="2012-01-15" description="Major update">
       <action dev="k" type="add" date="2012-01-14">
