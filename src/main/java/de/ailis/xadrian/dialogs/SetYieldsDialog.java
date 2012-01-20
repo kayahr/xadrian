@@ -72,7 +72,7 @@ public class SetYieldsDialog extends ModalDialog
             throw new IllegalArgumentException("mineType must be set");
         this.gameProvider = mineType;
         init("setYields", Result.OK, Result.CANCEL);
-        setResizable(false);
+        setResizable(true);
         this.label.setText(I18N.getString("dialog.setYields.yields",
             mineType.getRace().toString() + " " + mineType.toString()));
     }
