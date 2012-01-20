@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2012 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
 package de.ailis.xadrian.data;
