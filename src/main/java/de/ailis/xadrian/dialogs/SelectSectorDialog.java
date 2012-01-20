@@ -26,9 +26,11 @@ import de.ailis.xadrian.components.SectorSelector;
 import de.ailis.xadrian.components.SectorSelector.Mode;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
+import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
+import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Dialog for selecting a sector.
@@ -61,6 +63,7 @@ public class SelectSectorDialog extends ModalDialog
             throw new IllegalArgumentException("game must be set");
         this.game = game;
         init("selectSector", Result.OK, Result.CANCEL);
+        setResizable(true);
         SplashFrame.getInstance().advanceProgress();
     }
 
@@ -71,10 +74,10 @@ public class SelectSectorDialog extends ModalDialog
     protected void createUI()
     {
         // Create the selector panel
-        final JPanel selectorPanel = new JPanel();
+        final JPanel selectorPanel = new JPanel(new BorderLayout());
         selectorPanel.setBorder(BorderFactory
             .createBevelBorder(BevelBorder.LOWERED));
-        final SectorSelector selector = new SectorSelector(this.game, 512, 512);
+        final SectorSelector selector = new SectorSelector(this.game);
         this.selector = selector;
         selector.addMouseListener(new MouseAdapter()
         {
@@ -86,7 +89,7 @@ public class SelectSectorDialog extends ModalDialog
                     getRootPane().getDefaultButton().doClick(0);
             }
         });
-        selectorPanel.add(selector);
+        selectorPanel.add(selector, BorderLayout.CENTER);
 
         // Create the controls panel
         final JPanel controlsPanel = new JPanel();
@@ -174,5 +177,24 @@ public class SelectSectorDialog extends ModalDialog
         this.quickSearch.requestFocus();
         final Result result = super.open();
         return result;
+    }
+    
+    /**
+     * Tests the component.
+     *
+     * @param args
+     *            Command line arguments
+     * @throws Exception
+     *             When something goes wrong
+     */
+    public static void main(String[] args) throws Exception
+    {
+        SwingUtils.prepareTheme();
+
+        Game game = GameFactory.getInstance().getGame("x3tc");
+        final SelectSectorDialog dialog = new SelectSectorDialog(game);
+        dialog.open();
+        System.out.println(dialog.getSelected());
+        System.exit(0);        
     }
 }

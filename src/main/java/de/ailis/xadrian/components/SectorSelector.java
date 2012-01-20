@@ -25,10 +25,12 @@ import javax.swing.JComponent;
 
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
+import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.data.factories.SectorFactory;
 import de.ailis.xadrian.listeners.SectorSelectorStateListener;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.TextRenderer;
+import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Component which displays the sectors in a graphical way and let the user
@@ -80,7 +82,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
     private transient BufferedImage buffer;
 
     /** The scale factor of the map */
-    private final float scale;
+    private float scale;
 
     /** The game. */
     private final Game game;
@@ -102,15 +104,26 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
      *
      * @param game
      *            The game.
-     * @param maxW
-     *            The maximum width
-     * @param maxH
-     *            The maximum height
      */
-    public SectorSelector(final Game game, final int maxW, final int maxH)
+    public SectorSelector(final Game game)
     {
         this.game = game;
-        final SectorFactory sectorFactory = game.getSectorFactory();
+        setPreferredSize(new Dimension(650, 512));
+        addMouseMotionListener(this);
+        addMouseListener(this);
+    }
+
+    /**
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
+    @Override
+    public void paintComponent(final Graphics graphics)
+    {
+        super.paintComponent(graphics);
+        
+        final int maxW = getWidth();
+        final int maxH = getHeight();
+        final SectorFactory sectorFactory = this.game.getSectorFactory();
         final int uniWidth = sectorFactory.getMaxX() * 100 + 150;
         final int uniHeight = sectorFactory.getMaxY() * 100 + 150;
         final float scaleX = (float) maxW / uniWidth;
@@ -131,25 +144,8 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
             width = maxH * uniWidth / uniHeight;
             this.scale = scaleY;
         }
-
-        setPreferredSize(new Dimension(width, height));
-        setMinimumSize(getPreferredSize());
-        setMaximumSize(getPreferredSize());
-
-        addMouseMotionListener(this);
-        addMouseListener(this);
-    }
-
-    /**
-     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-     */
-    @Override
-    public void paintComponent(final Graphics graphics)
-    {
-        super.paintComponent(graphics);
-
-        final int width = getWidth();
-        final int height = getHeight();
+        
+        if (width <= 0 || height <= 0) return;
 
         if (this.buffer == null || this.buffer.getWidth() != width
             || this.buffer.getHeight() != height)
@@ -157,7 +153,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
                 BufferedImage.TYPE_INT_ARGB);
         final Graphics2D g = this.buffer.createGraphics();
 
-        final SectorFactory sectorFactory = this.game.getSectorFactory();
         final SortedSet<Sector> sectors = sectorFactory.getSectors();
 
         g.setColor(Color.BLACK);
@@ -306,7 +301,10 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
             textRenderer.render(g, infoLeft + borderX, infoTop + borderY);
         }
 
-        graphics.drawImage(this.buffer, 0, 0, null);
+        graphics.setColor(Color.BLACK);
+        graphics.fillRect(0, 0, getWidth(), getHeight());
+        graphics.drawImage(this.buffer, (getWidth() - width) / 2, 
+            (getHeight() - height) / 2, null);
     }
 
     /**
@@ -368,9 +366,10 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
     @Override
     public void mouseMoved(final MouseEvent e)
     {
-
-        final int sx = Math.round(((e.getX() / this.scale) - 75) / 100);
-        final int sy = Math.round(((e.getY() / this.scale) - 75) / 100);
+        final int x = e.getX() - (this.getWidth() - this.buffer.getWidth()) / 2;
+        final int y = e.getY() - (this.getHeight() - this.buffer.getHeight()) / 2;
+        final int sx = Math.round(((x / this.scale) - 75) / 100);
+        final int sy = Math.round(((y / this.scale) - 75) / 100);
 
         final Sector sector = this.game.getSectorFactory().getSector(sx, sy);
         if (sector != this.overSector)
@@ -537,5 +536,22 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
             if (listeners[i] == SectorSelectorStateListener.class)
                 ((SectorSelectorStateListener) listeners[i + 1])
                     .sectorSelectorChanged(this);
+    }
+
+    /**
+     * Tests the component.
+     *
+     * @param args
+     *            Command line arguments
+     * @throws Exception
+     *             When something goes wrong
+     */
+    public static void main(final String[] args) throws Exception
+    {
+        SwingUtils.prepareGUI();
+
+        Game game = GameFactory.getInstance().getGame("x3tc");
+        final SectorSelector component = new SectorSelector(game);
+        SwingUtils.testComponent(component);
     }
 }
