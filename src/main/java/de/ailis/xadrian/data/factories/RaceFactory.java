@@ -5,6 +5,7 @@
 package de.ailis.xadrian.data.factories;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,8 +31,11 @@ import de.ailis.xadrian.frames.SplashFrame;
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-public class RaceFactory
+public class RaceFactory implements Serializable
 {
+    /** Serial version UID. */
+    private static final long serialVersionUID = 1L;
+
     /** The game for which this factory is responsible. */
     private final Game game;
 

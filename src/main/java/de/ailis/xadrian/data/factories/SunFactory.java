@@ -4,6 +4,7 @@
  */
 package de.ailis.xadrian.data.factories;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,8 +28,11 @@ import de.ailis.xadrian.frames.SplashFrame;
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-public class SunFactory
+public class SunFactory implements Serializable
 {
+    /** Serial version UID. */
+    private static final long serialVersionUID = 1L;
+
     /** The game for which this factory is responsible. */
     private final Game game;
 

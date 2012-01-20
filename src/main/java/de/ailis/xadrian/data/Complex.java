@@ -1035,7 +1035,7 @@ public class Complex implements Serializable, GameProvider
             else
                 log.debug("Not adding any " + factory);
         }
-        if (need == oldNeed)
+        if (Math.abs(need - oldNeed) < .0000001)
         {
             log.debug("Unable to calculate best matching factory. Aborting");
             return false;

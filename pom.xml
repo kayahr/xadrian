@@ -62,6 +62,54 @@
     <url>https://github.com/kayahr/${project.artifactId}/issues</url>
   </issueManagement>
   
+  <ciManagement>
+    <system>jenkins</system>
+    <url>https://ci.ailis.de/job/${project.artifactId}/</url>
+  </ciManagement>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <dependencyDetailEnabled>false</dependencyDetailEnabled>
+          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>                
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>summary</report>
+              <report>project-team</report>
+              <report>issue-tracking</report>
+              <report>scm</report>
+              <report>cim</report>
+              <report>license</report>
+              <report>dependencies</report>
+              <report>plugins</report>
+              <report>plugin-management</report>
+            </reports>            
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changes-plugin</artifactId>
+        <version>2.6</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>        
+        <version>2.4.0</version>
+        <configuration>
+          <effort>Max</effort>
+          <threshold>High</threshold>        
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+  
   <build>
     <plugins>
     
@@ -85,37 +133,6 @@
           <locales>en,de</locales>
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-          <reportPlugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-project-info-reports-plugin</artifactId>
-              <version>2.4</version>
-              <configuration>
-                <dependencyDetailEnabled>false</dependencyDetailEnabled>
-                <dependencyLocationsEnabled>false</dependencyLocationsEnabled>                
-              </configuration>
-              <reports>
-                <report>summary</report>
-                <report>dependencies</report>
-                <report>project-team</report>
-                <report>issue-tracking</report>
-                <report>license</report>
-                <report>scm</report>
-              </reports>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-changes-plugin</artifactId>
-              <version>2.6</version>
-              <reportSets>
-                <reportSet>
-                  <reports>
-                    <report>changes-report</report>
-                  </reports>
-                </reportSet>
-              </reportSets>
-            </plugin>            
-          </reportPlugins>
         </configuration>
       </plugin>
     
@@ -158,10 +175,10 @@
           </execution>
         </executions> 
       </plugin>
-
     </plugins>
   </build>
   
+
   <repositories>
     <repository>
       <id>ailis-releases</id>

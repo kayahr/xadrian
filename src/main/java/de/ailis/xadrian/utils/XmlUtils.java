@@ -5,8 +5,9 @@
 package de.ailis.xadrian.utils;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import org.dom4j.Document;
 import org.dom4j.io.OutputFormat;
@@ -41,7 +42,9 @@ public final class XmlUtils
         throws IOException
     {
         final OutputFormat format = OutputFormat.createPrettyPrint();
-        final XMLWriter writer = new XMLWriter(new FileWriter(file), format);
+        final XMLWriter writer =
+            new XMLWriter(new OutputStreamWriter(new FileOutputStream(file),
+                "UTF-8"), format);
         try
         {
             writer.write(document);
