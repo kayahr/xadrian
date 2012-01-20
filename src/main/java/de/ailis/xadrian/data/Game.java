@@ -249,4 +249,14 @@ public class Game implements Serializable, Comparable<Game>
     {
         return this.changePricesDialog;
     }
+    
+    /**
+     * Checks if the game is X3: Terrn Conflict.
+     * 
+     * @return True if game is X3TC, false if not.
+     */
+    public boolean isX3TC()
+    {
+        return this.id.equals("x3tc");
+    }
 }

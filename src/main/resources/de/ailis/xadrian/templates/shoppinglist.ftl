@@ -111,8 +111,8 @@
         <td class="volume">${complex.shoppingList.totalKitVolume}</td>
         [#if complex.sector??]            
           <td class="manufacturer">
-            [#if complex.shoppingList.nearestShipyard??]
-              ${complex.shoppingList.nearestShipyard}
+            [#if complex.shoppingList.nearestKitSellingSector??]
+              ${complex.shoppingList.nearestKitSellingSector}
             [/#if]
           </td>
         [/#if]

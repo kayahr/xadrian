@@ -38,20 +38,20 @@ public class ShoppingList implements Serializable
     private int kitQuantityBuilt = 0;
 
     /** The sector with the nearest shipyard */
-    private final Sector nearestShipyard;
+    private final Sector nearestKitSellingSector;
 
     /**
      * Constructor.
      *
-     * @param nearestShipyard
-     *            The nearest shipyard where the player can buy complex kits.
+     * @param nearestKitSellingSector
+     *            The nearest sector where the player can buy complex kits.
      *            Can be null if not known.
      * @param kitsBuilt
      *            The number of built kits
      */
-    public ShoppingList(final Sector nearestShipyard, final int kitsBuilt)
+    public ShoppingList(final Sector nearestKitSellingSector, final int kitsBuilt)
     {
-        this.nearestShipyard = nearestShipyard;
+        this.nearestKitSellingSector = nearestKitSellingSector;
         this.kitQuantityBuilt = kitsBuilt;
     }
 
@@ -205,9 +205,9 @@ public class ShoppingList implements Serializable
      *
      * @return The nearest shipyard or null if none
      */
-    public Sector getNearestShipyard()
+    public Sector getNearestKitSellingSector()
     {
-        return this.nearestShipyard;
+        return this.nearestKitSellingSector;
     }
 
     /**

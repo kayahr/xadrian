@@ -1169,7 +1169,7 @@ public class Complex implements Serializable, GameProvider
         if (this.shoppingList != null) return this.shoppingList;
 
         final ShoppingList list = new ShoppingList(this.sector == null ? null
-            : this.sector.getNearestShipyardSector(), this.builtKits);
+            : this.sector.getNearestKitSellingSector(), this.builtKits);
         for (final ComplexFactory factory : this.factories)
         {
             list.addItem(new ShoppingListItem(factory.getFactory(), factory

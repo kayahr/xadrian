@@ -2,6 +2,7 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information.
  */
+
 package de.ailis.xadrian.data;
 
 import java.awt.Color;
@@ -25,7 +26,7 @@ import de.ailis.xadrian.support.ReverseIntegerComparator;
 
 /**
  * A sector.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class Sector implements Serializable, Comparable<Sector>
@@ -80,7 +81,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Constructor
-     *
+     * 
      * @param game
      *            The game this sector belongs to. Must not be null.
      * @param id
@@ -138,7 +139,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Return the sector id.
-     *
+     * 
      * @return The sector id
      */
     public String getId()
@@ -148,7 +149,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the name.
-     *
+     * 
      * @return The name
      */
     public String getName()
@@ -198,7 +199,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the x position in the universe.
-     *
+     * 
      * @return The x position in the universe
      */
     public int getX()
@@ -208,7 +209,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the y position in the universe.
-     *
+     * 
      * @return The y position in the universe
      */
     public int getY()
@@ -218,7 +219,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the race to which this sector belongs.
-     *
+     * 
      * @return The race to which this sector belongs
      */
     public Race getRace()
@@ -228,7 +229,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the number of planets.
-     *
+     * 
      * @return The number of planets
      */
     public int getPlanets()
@@ -238,7 +239,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the suns.
-     *
+     * 
      * @return The suns
      */
     public Sun getSuns()
@@ -248,7 +249,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Checks if this sector is a core sector or not.
-     *
+     * 
      * @return True if core sector, false if not
      */
     public boolean isCore()
@@ -258,7 +259,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Checks if this sector has a shipyard or not.
-     *
+     * 
      * @return True if sector has a shipyard, false if not
      */
     public boolean hasShipyard()
@@ -268,7 +269,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the sector behind the north gate.
-     *
+     * 
      * @return The sector behind the north gate
      */
     public Sector getNorth()
@@ -278,7 +279,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the sector behind the south gate.
-     *
+     * 
      * @return The sector behind the south gate
      */
     public Sector getSouth()
@@ -288,7 +289,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the sector behind the west gate.
-     *
+     * 
      * @return The sector behind the west gate
      */
     public Sector getWest()
@@ -298,7 +299,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the sector behind the east gate.
-     *
+     * 
      * @return The sector behind the east gate
      */
     public Sector getEast()
@@ -310,7 +311,7 @@ public class Sector implements Serializable, Comparable<Sector>
      * Returns the size of the sector. This size is chosen so all objects in it
      * fit into this sector size. So this size can be used as the width and
      * height and depth to display the sector on the screen.
-     *
+     * 
      * @return The sector size
      */
     public int getSize()
@@ -334,7 +335,7 @@ public class Sector implements Serializable, Comparable<Sector>
      * Returns the distance from this sector to the specified sector. If the
      * destination sector is unreachable (because it can't be reached via gates)
      * then -1 is returned.
-     *
+     * 
      * @param dest
      *            The destination sector
      * @return The distance. -1 if destination sector is unreachable
@@ -386,13 +387,14 @@ public class Sector implements Serializable, Comparable<Sector>
     }
 
     /**
-     * Returns the nearest sector with a shipyard. This method honors the
-     * ignored races the player has configured. It never considers a shipyard of
-     * the Xenon. If no shipyard was found then null is returned.
-     *
-     * @return The nearest sector with a shipyard or null if none
+     * Returns the nearest sector with a shipyard which sells complex
+     * construction kits. This method honors the ignored races the player
+     * has configured. If no shipyard was found then null is returned.
+     * 
+     * @return The nearest sector with a shipyard selling complex construction
+     *         kits or null if none.
      */
-    public Sector getNearestShipyardSector()
+    public Sector getNearestKitSellingSector()
     {
         final Config config = Config.getInstance();
         final Set<Sector> seen = new HashSet<Sector>();
@@ -409,11 +411,12 @@ public class Sector implements Serializable, Comparable<Sector>
             for (final Sector sector : todo)
             {
                 // When we have reached a sector with a shipyard and the player
-                // can buy from it then return it.
-                if (sector.hasShipyard()
-                    && !sector.getRace().getId().equals("xenon")
-                    && !sector.getRace().getId().equals("terran")
-                    && !config.isRaceIgnored(sector.getRace())) return sector;
+                // can buy complex construction kits from it then return it.
+                if (sector.hasShipyard() 
+                    && !config.isRaceIgnored(sector.getRace())
+                    && !sector.getRace().getId().equals("xenon")                   
+                    && (!sector.getRace().getId().equals("terran") 
+                        || !this.game.isX3TC())) return sector;
 
                 // Mark this sector as already seen
                 seen.add(sector);
@@ -440,7 +443,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the array with asteroids.
-     *
+     * 
      * @return The array with asteroids.
      */
     public Asteroid[] getAsteroids()
@@ -450,7 +453,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the silicon asteroids of this sector.
-     *
+     * 
      * @return The silicon asteroids
      */
     public Asteroid[] getSiliconAsteroids()
@@ -464,7 +467,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the ore asteroids of this sector.
-     *
+     * 
      * @return The ore asteroids
      */
     public Asteroid[] getOreAsteroids()
@@ -478,7 +481,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the ice asteroids of this sector.
-     *
+     * 
      * @return The ice asteroids
      */
     public Asteroid[] getIceAsteroids()
@@ -492,7 +495,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the nividium asteroids of this sector.
-     *
+     * 
      * @return The nividium asteroids
      */
     public Asteroid[] getNividiumAsteroids()
@@ -506,7 +509,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the total silicon yield of this sector.
-     *
+     * 
      * @return The total silicon yield
      */
     public int getTotalSiliconYield()
@@ -520,7 +523,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the total ore yield of this sector.
-     *
+     * 
      * @return The total ore yield
      */
     public int getTotalOreYield()
@@ -534,7 +537,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the total nividium yield of this sector.
-     *
+     * 
      * @return The total nividium yield
      */
     public int getTotalNividiumYield()
@@ -548,7 +551,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the total ice yield of this sector.
-     *
+     * 
      * @return The total ice yield
      */
     public int getTotalIceYield()
@@ -563,7 +566,7 @@ public class Sector implements Serializable, Comparable<Sector>
     /**
      * Returns the silicon color of this sector. The brighter the more silicon
      * is available.
-     *
+     * 
      * @return The silicon color
      */
     public Color getSiliconColor()
@@ -578,7 +581,7 @@ public class Sector implements Serializable, Comparable<Sector>
     /**
      * Returns the ore color of this sector. The brighter the more ore is
      * available.
-     *
+     * 
      * @return The ore color
      */
     public Color getOreColor()
@@ -593,7 +596,7 @@ public class Sector implements Serializable, Comparable<Sector>
     /**
      * Returns the nividium color of this sector. The brighter the more ore is
      * available.
-     *
+     * 
      * @return The nividium color
      */
     public Color getNividiumColor()
@@ -608,7 +611,7 @@ public class Sector implements Serializable, Comparable<Sector>
     /**
      * Returns the ice color of this sector. The brighter the more ore is
      * available.
-     *
+     * 
      * @return The ice color
      */
     public Color getIceColor()
@@ -623,7 +626,7 @@ public class Sector implements Serializable, Comparable<Sector>
     /**
      * Returns the yield map. This map has the yield as key and the number of
      * asteroids with this yield as value.
-     *
+     * 
      * @param wareId
      *            The id of the asteroid ware to search for
      * @return The yield map
@@ -652,7 +655,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns a list with the yields of the specified asteroid ware.
-     *
+     * 
      * @param wareId
      *            The id of the asteroid ware
      * @return The list with the yields. Can be empty. Never null.
@@ -675,7 +678,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Checks if the specified asteroid is in the sector.
-     *
+     * 
      * @param asteroid
      *            The asteroid to check
      * @return True if asteroid is in sector, false if not
@@ -689,7 +692,7 @@ public class Sector implements Serializable, Comparable<Sector>
 
     /**
      * Returns the game this sector belongs to.
-     *
+     * 
      * @return The game. Never null.
      */
     public Game getGame()
