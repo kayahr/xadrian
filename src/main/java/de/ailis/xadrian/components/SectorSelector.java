@@ -22,6 +22,7 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 
 import javax.swing.JComponent;
+import javax.swing.UIManager;
 
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
@@ -255,13 +256,13 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
             final Color titleColor = new Color(0x40, 0x40, 0x40);
             final Color detailColor = new Color(0x50, 0x50, 0x50);
             final TextRenderer textRenderer = new TextRenderer();
-            textRenderer.setFont(new Font("Arial", Font.BOLD, 12)
-                .deriveFont(12f / this.scale));
+            Font font = UIManager.getFont("Label.font");
+            if (font == null) font = new Font("Arial", Font.PLAIN, 12);
+            textRenderer.setFont(font.deriveFont(Font.BOLD, font.getSize2D() * 1.2f / this.scale));
             textRenderer.setColor(titleColor);
             textRenderer.addText(this.overSector.getName());
             textRenderer.newLine();
-            textRenderer.setFont(new Font("Arial", Font.BOLD, 10)
-                .deriveFont(10f / this.scale));
+            textRenderer.setFont(font.deriveFont(Font.PLAIN, font.getSize2D() / this.scale));
             textRenderer.setColor(detailColor);
             textRenderer.addText(String.format("%s: %d; %d", I18N
                 .getString("component.sectorSelector.location"), this.overSector.getX(),
