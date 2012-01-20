@@ -1390,4 +1390,33 @@ public class Complex implements Serializable, GameProvider
     {
         return this.game;
     }
+    
+    /**
+     * Checks if the complex uses the specified ware as product or resource.
+     * 
+     * @param ware
+     *            The ware to check.
+     * @return True if ware is used, false if not.
+     */
+    public boolean usesWare(final Ware ware)
+    {
+        for (final ComplexFactory complexFactory: getAllFactories())
+        {
+            final Factory factory = complexFactory.getFactory();
+            if (factory.getProduct().getWare().equals(ware)) return true;
+            for (final Product product: factory.getResources())
+                if (product.getWare().equals(ware)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the complex is empty.
+     *
+     * @return True when the complex is empty, false if not.
+     */
+    public boolean isEmpty()
+    {
+        return this.factories.isEmpty();
+    }
 }

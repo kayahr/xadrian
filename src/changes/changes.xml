@@ -12,6 +12,11 @@
         Terran Shipyards are now considered for buying complex construction
         kits in X3: Albion Prelude.
       </action>                 
+      <action dev="k" type="add" date="2012-01-20">
+        The change-prices dialog now only displays the wares which are used
+        by the current complex. This also solves the missing Ice problem
+        in X3: Albion Prelude.
+      </action>                 
     </release>
     <release version="1.4.0" date="2012-01-15" description="Major update">
       <action dev="k" type="add" date="2012-01-14">

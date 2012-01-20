@@ -2,6 +2,7 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information.
  */
+
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
@@ -11,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +35,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.data.factories.WareFactory;
@@ -43,10 +46,10 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Dialog for setting up the ware prices.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
-public class ChangePricesDialog extends ModalDialog
+final public class ChangePricesDialog extends ModalDialog
 {
     /** Serial version UID */
     private static final long serialVersionUID = -7047840854198687941L;
@@ -69,7 +72,7 @@ public class ChangePricesDialog extends ModalDialog
 
     /**
      * Constructor
-     *
+     * 
      * @param game
      *            The game. Must not be null.
      */
@@ -113,8 +116,11 @@ public class ChangePricesDialog extends ModalDialog
 
     /**
      * Initializes the content.
+     * 
+     * @param complex
+     *            The current complex
      */
-    private void initContent()
+    private void initContent(final Complex complex)
     {
         final WareFactory wareFactory = this.game.getWareFactory();
         final Color gray = new Color(0xee, 0xee, 0xee);
@@ -130,9 +136,8 @@ public class ChangePricesDialog extends ModalDialog
         c.fill = GridBagConstraints.BOTH;
         for (final Ware ware : wareFactory.getWares())
         {
-            // If ware is not used by any buyable factory then ignore it
-            if (this.game.getFactoryFactory().getFactories(ware).isEmpty())
-                continue;
+            // Ignore ware if not used by the complex
+            if (!complex.usesWare(ware)) continue;
 
             // Get price and check if ware is used
             int price;
@@ -182,11 +187,11 @@ public class ChangePricesDialog extends ModalDialog
             final JLabel priceLabel = new JLabel(I18N
                 .getString("dialog.changePrices.price")
                 + ":");
-            final JPanel pricePanel = new JPanel();
+            final JPanel pricePanel = new JPanel(new BorderLayout());
             pricePanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 0));
             pricePanel.setBackground(color);
             priceLabel.setEnabled(used);
-            pricePanel.add(priceLabel);
+            pricePanel.add(priceLabel, BorderLayout.CENTER);
             this.warePricesPanel.add(pricePanel, c);
 
             // Add the price slider
@@ -227,11 +232,11 @@ public class ChangePricesDialog extends ModalDialog
             // Add the credits label
             c.gridx++;
             final JLabel credits = new JLabel("Cr");
-            final JPanel creditsPanel = new JPanel();
+            final JPanel creditsPanel = new JPanel(new BorderLayout());
             creditsPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 5));
             credits.setEnabled(used);
             creditsPanel.setBackground(color);
-            creditsPanel.add(credits);
+            creditsPanel.add(credits, BorderLayout.CENTER);
             this.warePricesPanel.add(creditsPanel, c);
 
             // Add the reset button
@@ -301,7 +306,9 @@ public class ChangePricesDialog extends ModalDialog
 
             c.gridy++;
         }
-
+        
+        c.weighty = 1;
+        this.warePricesPanel.add(new Panel(), c);
         validate();
 
         if (focusComponent != null)
@@ -319,7 +326,7 @@ public class ChangePricesDialog extends ModalDialog
 
     /**
      * Updates a custom price
-     *
+     * 
      * @param ware
      *            The ware
      * @param used
@@ -346,7 +353,7 @@ public class ChangePricesDialog extends ModalDialog
 
     /**
      * Sets the custom prices.
-     *
+     * 
      * @param customPrices
      *            The custom prices to set
      */
@@ -358,7 +365,7 @@ public class ChangePricesDialog extends ModalDialog
 
     /**
      * Returns the custom prices.
-     *
+     * 
      * @return The custom prices
      */
     public Map<Ware, Integer> getCustomPrices()
@@ -369,7 +376,7 @@ public class ChangePricesDialog extends ModalDialog
     /**
      * Sets the active ware. This is the ware which is focused when the dialog
      * starts. Set it to null to not use a focused ware.
-     *
+     * 
      * @param ware
      *            The ware to focus (or null for none)
      */
@@ -377,14 +384,29 @@ public class ChangePricesDialog extends ModalDialog
     {
         this.activeWare = ware;
     }
-
+    
     /**
-     * @see de.ailis.xadrian.support.ModalDialog#open()
+     * @deprecated This method is not supported by this dialog. Use the
+     * {@link ChangePricesDialog#open(Complex)} method instead.
      */
     @Override
+    @Deprecated
     public Result open()
     {
-        initContent();
+        throw new UnsupportedOperationException("Use the open(complex) method");
+    }
+
+    /**
+     * Opens the dialog for the specified complex.
+     * 
+     * @param complex
+     *            The complex. Only the wares used by this complex are
+     *            displayed.
+     * @return The dialog result.
+     */
+    public Result open(final Complex complex)
+    {
+        initContent(complex);
         try
         {
             return super.open();

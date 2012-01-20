@@ -986,7 +986,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     @Override
     public boolean canChangePrices()
     {
-        return true;
+        return !this.complex.isEmpty();
     }
 
     /**
@@ -1001,7 +1001,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             this.complex.getGame().getChangePricesDialog();
         dialog.setCustomPrices(this.complex.getCustomPrices());
         dialog.setActiveWare(focusedWare);
-        if (dialog.open() == Result.OK)
+        if (dialog.open(this.complex) == Result.OK)
         {
             this.complex.setCustomPrices(dialog.getCustomPrices());
             doChange();
