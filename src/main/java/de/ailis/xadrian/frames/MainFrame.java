@@ -2,6 +2,7 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information.
  */
+
 package de.ailis.xadrian.frames;
 
 import java.awt.BorderLayout;
@@ -54,6 +55,7 @@ import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
+import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.dialogs.AboutDialog;
 import de.ailis.xadrian.dialogs.PreferencesDialog;
 import de.ailis.xadrian.dialogs.SelectGameDialog;
@@ -72,7 +74,7 @@ import de.ailis.xadrian.support.ModalDialog.Result;
 
 /**
  * The main frame.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class MainFrame extends JFrame implements EditorStateListener,
@@ -306,7 +308,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Adds a state listener.
-     *
+     * 
      * @param listener
      *            The state listener to add
      */
@@ -317,7 +319,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Removes a state listener.
-     *
+     * 
      * @param listener
      *            The state listener to remove
      */
@@ -344,18 +346,29 @@ public class MainFrame extends JFrame implements EditorStateListener,
      */
     public void createComplexTab()
     {
-        SelectGameDialog dialog = SelectGameDialog.getInstance();
-        if (dialog.open() == Result.OK)
+        // Try to read game from the configuration
+        final Config config = Config.getInstance();
+        final String defaultGameId = config.getDefaultGame();
+        GameFactory gameFactory = GameFactory.getInstance();
+        Game game = defaultGameId == null ||
+            !gameFactory.hasGame(defaultGameId) ? null
+            : gameFactory.getGame(defaultGameId);
+        
+        // If no default game is set then ask for it
+        if (game == null)
         {
-            Game game = dialog.getGame();
-            createComplexTab(new ComplexEditor(new Complex(game)));
+            final SelectGameDialog dialog = SelectGameDialog.getInstance();
+            if (dialog.open() != Result.OK) return;
+            game = dialog.getGame();
+            if (dialog.isRemember()) config.setDefaultGame(game.getId());
         }
+        createComplexTab(new ComplexEditor(new Complex(game)));
     }
 
     /**
      * Creates a new factory complex tab with the specified complex editor in
      * it.
-     *
+     * 
      * @param editor
      *            The complex editor
      */
@@ -376,7 +389,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Creates a complex editor tab with a loaded complex.
-     *
+     * 
      * @param editor
      *            The complex editor
      */
@@ -392,7 +405,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the current tab component or null if no tab is currently present.
-     *
+     * 
      * @return The current tab component
      */
     public Component getCurrentTab()
@@ -404,7 +417,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
      * Closes the current tab. Prompts for saving unsaved changes before
      * closing. Returns true if the tab was closed or false if it was not
      * closed.
-     *
+     * 
      * @return True if tab was closed, false if not
      */
     public boolean closeCurrentTab()
@@ -448,7 +461,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Closes all open tabs. Prompts for unsaved changes. Returns true if all
      * tabs have been closed or false if at least one tab was not closed.
-     *
+     * 
      * @return True if all tabs were closed, false if not.
      */
     public boolean closeAllTabs()
@@ -487,7 +500,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the tabs.
-     *
+     * 
      * @return The tabs
      */
     public JTabbedPane getTabs()

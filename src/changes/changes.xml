@@ -17,6 +17,10 @@
         by the current complex. This also solves the missing Ice problem
         in X3: Albion Prelude.
       </action>                 
+      <action dev="k" type="add" date="2012-01-20">
+        Game can now be configured in the preferences to avoid asking for
+        it every time a new complex is created.
+      </action>                 
     </release>
     <release version="1.4.0" date="2012-01-15" description="Major update">
       <action dev="k" type="add" date="2012-01-14">

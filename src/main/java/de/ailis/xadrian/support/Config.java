@@ -39,6 +39,9 @@ public final class Config
     /** Config key for the index of the chosen player sector */
     private static final String PLAYER_SECTOR = "playerSector";
 
+    /** Config key for default game */
+    private static final String DEFAULT_GAME = "defaultgame";
+    
     /** Config key for the theme */
     private static final String THEME = "theme";
 
@@ -59,7 +62,10 @@ public final class Config
 
     /** The theme (LookAndFeel class name or null for system) */
     private String theme = null;
-
+    
+    /** The ID of the default game. Null if none. */
+    private String defaultGame = null;
+    
     /**
      * Private constructor to prevent instantiation
      */
@@ -95,6 +101,7 @@ public final class Config
             SHOW_FACTORY_RESOURCES, true);
         this.playerSector = prefs.getInt(PLAYER_SECTOR, 0);
         this.theme = prefs.get(THEME, null);
+        this.defaultGame = prefs.get(DEFAULT_GAME, null);
     }
 
     /**
@@ -138,6 +145,10 @@ public final class Config
             prefs.remove(THEME);
         else
             prefs.put(THEME, this.theme);
+        if (this.defaultGame == null)
+            prefs.remove(DEFAULT_GAME);
+        else
+            prefs.put(DEFAULT_GAME, this.defaultGame);
     }
 
     /**
@@ -348,5 +359,26 @@ public final class Config
     public void setTheme(String theme)
     {
         this.theme = theme;
+    }
+    
+    /**
+     * Returns the ID of the default game.
+     * 
+     * @return The ID of the default game or null if none.
+     */
+    public String getDefaultGame()
+    {
+        return this.defaultGame;
+    }
+    
+    /**
+     * Sets the ID of the default game.
+     * 
+     * @param defaultGame
+     *            The ID of the default game to set. Null to unset.
+     */
+    public void setDefaultGame(final String defaultGame)
+    {
+        this.defaultGame = defaultGame; 
     }
 }
