@@ -104,7 +104,7 @@
         <version>2.4.0</version>
         <configuration>
           <effort>Max</effort>
-          <threshold>High</threshold>        
+          <threshold>Default</threshold>        
         </configuration>
       </plugin>
     </plugins>

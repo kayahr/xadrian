@@ -108,7 +108,9 @@ public class Sector implements Serializable, Comparable<Sector>
      * @param westId
      *            The id of the sector behind the west gate
      * @param asteroids
-     *            Array with asteroids in this sector
+     *            Array with asteroids in this sector. May be null for
+     *            special sectors which have a dynamic asteroids list (Like
+     *            the player sector in X3TC).
      */
     public Sector(final Game game, final String id, final int x, final int y,
         final Race race, final int planets, final Sun suns, final boolean core,
@@ -131,7 +133,7 @@ public class Sector implements Serializable, Comparable<Sector>
         this.southId = southId;
         this.westId = westId;
         this.eastId = eastId;
-        this.asteroids = asteroids;
+        this.asteroids = asteroids == null ? null : asteroids.clone();
     }
 
     /**
@@ -439,11 +441,11 @@ public class Sector implements Serializable, Comparable<Sector>
     /**
      * Returns the array with asteroids.
      *
-     * @return The array with asteroids
+     * @return The array with asteroids.
      */
     public Asteroid[] getAsteroids()
     {
-        return this.asteroids;
+        return this.asteroids.clone();
     }
 
     /**

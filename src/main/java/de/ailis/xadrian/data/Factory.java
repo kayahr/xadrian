@@ -100,9 +100,9 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
         this.product = product;
         this.price = price;
         this.volume = volume;
-        this.resources = resources;
-        this.capacities = storage;
-        this.manufacturers = manufacturers;
+        this.resources = resources.clone();
+        this.capacities = storage.clone();
+        this.manufacturers = manufacturers.clone();
         this.messageId = "factory." + id.substring(0, id.lastIndexOf("-"));
     }
 
@@ -243,7 +243,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      */
     public Product[] getResources()
     {
-        return this.resources;
+        return this.resources.clone();
     }
 
     /**
@@ -253,7 +253,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      */
     public Capacity[] getCapacities()
     {
-        return this.capacities;
+        return this.capacities.clone();
     }
 
     /**
@@ -263,7 +263,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      */
     public Station[] getManufacturers()
     {
-        return this.manufacturers;
+        return this.manufacturers.clone();
     }
 
     /**

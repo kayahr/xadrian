@@ -4,6 +4,9 @@
  */
 package de.ailis.xadrian.data;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 
@@ -57,7 +60,7 @@ public class PlayerSector extends Sector
     {
         super(game, id, x, y, race, planets, suns, core, false, northId, eastId,
             southId, westId, null);
-        this.asteroids = asteroids;
+        this.asteroids = asteroids.clone();
     }
 
     /**
@@ -83,4 +86,26 @@ public class PlayerSector extends Sector
         final int playerSector = Config.getInstance().getPlayerSector();
         return this.asteroids[playerSector];
     }
+    
+    /**
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode()
+    {
+        return new HashCodeBuilder().append(this.id).toHashCode();
+    }
+
+    /**
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(final Object obj)
+    {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (obj.getClass() != getClass()) return false;
+        final PlayerSector other = (PlayerSector) obj;
+        return new EqualsBuilder().append(this.id, other.id).isEquals();
+    }    
 }

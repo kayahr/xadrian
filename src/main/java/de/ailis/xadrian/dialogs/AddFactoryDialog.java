@@ -204,7 +204,7 @@ public class AddFactoryDialog extends ModalDialog implements
      */
     public Factory[] getFactories()
     {
-        return this.factories;
+        return this.factories.clone();
     }
 
     /**

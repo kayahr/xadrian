@@ -115,7 +115,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         final float scaleX = (float) maxW / uniWidth;
         final float scaleY = (float) maxH / uniHeight;
         final float uniAR = (float) uniWidth / uniHeight;
-        final float winAR = maxW / maxH;
+        final float winAR = maxW / (float) maxH;
         final int width, height;
 
         if (uniAR > winAR)

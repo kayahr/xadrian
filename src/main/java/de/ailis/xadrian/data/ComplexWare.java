@@ -6,6 +6,8 @@ package de.ailis.xadrian.data;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
@@ -133,11 +135,37 @@ public class ComplexWare implements Serializable, Comparable<ComplexWare>
     {
         return this.ware.compareTo(o.ware);
     }
+    
+    /**
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(final Object obj)
+    {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (obj.getClass() != getClass()) return false;
+        final ComplexWare other = (ComplexWare) obj;
+        return new EqualsBuilder().append(this.ware, other.ware)
+            .append(this.needed, other.needed)
+            .append(this.produced, other.produced)
+            .append(this.price, other.price).isEquals();
+    }
+
+    /**
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode()
+    {
+        return new HashCodeBuilder().append(this.ware).append(this.needed)
+            .append(this.produced).append(this.price)
+            .toHashCode();
+    }
 
     /**
      * @see java.lang.Object#toString()
      */
-
     @Override
     public String toString()
     {

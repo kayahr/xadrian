@@ -2,17 +2,21 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information.
  */
+
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * A single item on the factory factory shopping list
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class ShoppingListItem implements Serializable,
-        Comparable<ShoppingListItem>
+    Comparable<ShoppingListItem>
 {
     /** Serial version UID */
     private static final long serialVersionUID = -1834341071680921642L;
@@ -31,7 +35,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Constructor
-     *
+     * 
      * @param factory
      *            The factory
      * @param quantity
@@ -42,7 +46,7 @@ public class ShoppingListItem implements Serializable,
      *            The number of built factories
      */
     public ShoppingListItem(final Factory factory, final int quantity,
-            final Station nearestManufacturer, final int quantityBuilt)
+        final Station nearestManufacturer, final int quantityBuilt)
     {
         this.factory = factory;
         this.quantity = quantity;
@@ -52,7 +56,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the factory.
-     *
+     * 
      * @return The factory
      */
     public Factory getFactory()
@@ -62,7 +66,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the quantity.
-     *
+     * 
      * @return The quantity
      */
     public int getQuantity()
@@ -72,7 +76,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the nearest manufacturer.
-     *
+     * 
      * @return The nearest manufacturer
      */
     public Station getNearestManufacturer()
@@ -90,8 +94,36 @@ public class ShoppingListItem implements Serializable,
     }
 
     /**
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode()
+    {
+        return new HashCodeBuilder().append(this.factory).append(this.quantity)
+            .append(this.quantityBuilt).append(this.nearestManufacturer)
+            .toHashCode();
+    }
+
+    /**
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(final Object obj)
+    {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (obj.getClass() != getClass()) return false;
+        final ShoppingListItem other = (ShoppingListItem) obj;
+        return new EqualsBuilder().append(this.factory, other.factory)
+            .append(this.quantity, other.quantity)
+            .append(this.quantityBuilt, other.quantityBuilt)
+            .append(this.nearestManufacturer, other.nearestManufacturer)
+            .isEquals();
+    }
+
+    /**
      * Returns the volume of a single factory.
-     *
+     * 
      * @return The volume of a single factory
      */
     public int getVolume()
@@ -101,7 +133,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the total volume of all factories.
-     *
+     * 
      * @return The total volume of all factories
      */
     public int getTotalVolume()
@@ -111,7 +143,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the price of a single factory.
-     *
+     * 
      * @return The price of a single factory
      */
     public int getPrice()
@@ -121,7 +153,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the total price of all factories.
-     *
+     * 
      * @return The total price of all factories
      */
     public int getTotalPrice()
@@ -131,7 +163,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the number of built factories.
-     *
+     * 
      * @return The number of built factories
      */
     public int getQuantityBuilt()
@@ -141,7 +173,7 @@ public class ShoppingListItem implements Serializable,
 
     /**
      * Returns the number of factories left.
-     *
+     * 
      * @return The number of factories left
      */
     public int getQuantityLeft()

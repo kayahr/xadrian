@@ -140,7 +140,7 @@ public class TextRenderer
      *
      * @author Klaus Reimer (k@ailis.de)
      */
-    class TextLine
+    static class TextLine
     {
         /** The text parts in this line */
         private final List<TextPart> parts = new ArrayList<TextPart>();
@@ -217,7 +217,7 @@ public class TextRenderer
      *
      * @author Klaus Reimer (k@ailis.de)
      */
-    class TextPart
+    static class TextPart
     {
         /** The font */
         private final Font font;
