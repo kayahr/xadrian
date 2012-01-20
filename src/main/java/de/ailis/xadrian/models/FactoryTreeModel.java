@@ -126,15 +126,15 @@ public class FactoryTreeModel implements TreeModel
     {
         if (parent instanceof Factory)
             return 0;
-        else if (parent == this.byRaceEntry)
+        else if (parent.equals(this.byRaceEntry))
             return this.races.size();
         else if (parent instanceof Race)
             return this.byRaceFactories.get(parent).size();
-        else if (parent == this.byWareEntry)
+        else if (parent.equals(this.byWareEntry))
             return this.wares.size();
         else if (parent instanceof Ware)
             return this.byWareFactories.get(parent).size();
-        else if (parent == this.cheapestEntry)
+        else if (parent.equals(this.cheapestEntry))
             return this.cheapest.size();
         else
             return this.topLevel.size();
@@ -148,13 +148,13 @@ public class FactoryTreeModel implements TreeModel
     {
         if (parent instanceof Race)
             return this.byRaceFactories.get(parent).get(index);
-        else if (parent == this.byRaceEntry)
+        else if (parent.equals(this.byRaceEntry))
             return this.races.get(index);
         else if (parent instanceof Ware)
             return this.byWareFactories.get(parent).get(index);
-        else if (parent == this.byWareEntry)
+        else if (parent.equals(this.byWareEntry))
             return this.wares.get(index);
-        else if (parent == this.cheapestEntry)
+        else if (parent.equals(this.cheapestEntry))
             return this.cheapest.get(index);
         else
             return this.topLevel.get(index);
@@ -168,13 +168,13 @@ public class FactoryTreeModel implements TreeModel
     {
         if (parent instanceof Race)
             return this.byRaceFactories.get(parent).indexOf(child);
-        else if (parent == this.byRaceEntry)
+        else if (parent.equals(this.byRaceEntry))
             return this.races.indexOf(child);
         else if (parent instanceof Ware)
             return this.byWareFactories.get(parent).indexOf(child);
-        else if (parent == this.byWareEntry)
+        else if (parent.equals(this.byWareEntry))
             return this.wares.indexOf(child);
-        else if (parent == this.cheapestEntry)
+        else if (parent.equals(this.cheapestEntry))
             return this.cheapest.indexOf(child);
         else
             return this.topLevel.indexOf(child);

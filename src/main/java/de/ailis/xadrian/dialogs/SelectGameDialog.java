@@ -6,6 +6,7 @@ package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.SortedSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -64,9 +65,9 @@ public class SelectGameDialog extends ModalDialog
         // Create the content controls
         final JLabel gameLabel = new JLabel(I18N
             .getString("dialog.selectGame.game"));
+        final SortedSet<Game> games = GameFactory.getInstance().getGames();
         this.gameComboBox =
-            new JComboBox(GameFactory.getInstance().getGames()
-                .toArray(new Game[0]));
+            new JComboBox(games.toArray(new Game[games.size()]));
         this.gameComboBox.setSelectedItem(GameFactory.getInstance()
             .getDefaultGame());
         gameLabel.setLabelFor(this.gameComboBox);

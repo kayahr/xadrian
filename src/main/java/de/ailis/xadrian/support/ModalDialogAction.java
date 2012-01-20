@@ -6,6 +6,7 @@ package de.ailis.xadrian.support;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 
 import de.ailis.xadrian.support.ModalDialog.Result;
 
@@ -36,7 +37,7 @@ public class ModalDialogAction extends BaseAction
      */
     public ModalDialogAction(final ModalDialog dialog, final Result result)
     {
-        super(result.toString().toLowerCase());
+        super(result.toString().toLowerCase(Locale.getDefault()));
         this.dialog = dialog;
         this.result = result;
     }

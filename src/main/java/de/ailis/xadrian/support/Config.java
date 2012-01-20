@@ -10,6 +10,7 @@ import java.awt.Window;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.prefs.Preferences;
 
 import javax.swing.JSplitPane;
@@ -304,7 +305,7 @@ public final class Config
             throw new ConfigException(
                 "Unable to save state of component with no name: "
                     + component);
-        return name.toLowerCase() + "." + key.toLowerCase();
+        return name.toLowerCase(Locale.getDefault()) + "." + key.toLowerCase(Locale.getDefault());
     }
 
     /**

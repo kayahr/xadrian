@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.util.Locale;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.SortedSet;
@@ -68,7 +69,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         public String toString()
         {
             return I18N.getString("component.sectorSelector.viewMode."
-                + name().toLowerCase());
+                + name().toLowerCase(Locale.getDefault()));
         }
     }
 
@@ -76,7 +77,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
     private static final long serialVersionUID = 42133575643122689L;
 
     /** The graphics buffer */
-    private BufferedImage buffer;
+    private transient BufferedImage buffer;
 
     /** The scale factor of the map */
     private final float scale;
@@ -204,8 +205,8 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
             if (this.filter != null && !this.filter.isEmpty())
             {
-                if (sector.getName().toLowerCase().contains(
-                    this.filter.toLowerCase()))
+                if (sector.getName().toLowerCase(Locale.getDefault()).contains(
+                    this.filter.toLowerCase(Locale.getDefault())))
                     borderColor = Color.GREEN;
                 else
                     sectorColor = getAlphaColor(sectorColor, 32);

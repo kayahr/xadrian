@@ -6,6 +6,7 @@ package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.SortedSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -60,8 +61,9 @@ public class ChangeSunsDialog extends ModalDialog
         // Create the content controls
         final JLabel sunsLabel = new JLabel(I18N
             .getString("dialog.changeSuns.suns"));
-        this.sunsComboBox = new JComboBox(this.game.getSunFactory()
-            .getSuns().toArray(new Sun[0]));
+        final SortedSet<Sun> sunsSet = this.game.getSunFactory().getSuns();
+        this.sunsComboBox =
+            new JComboBox(sunsSet.toArray(new Sun[sunsSet.size()]));
         sunsLabel.setLabelFor(this.sunsComboBox);
 
         // Create the content panel

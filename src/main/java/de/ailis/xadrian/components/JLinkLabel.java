@@ -2,6 +2,7 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
+
 package de.ailis.xadrian.components;
 
 import java.awt.Cursor;
@@ -18,7 +19,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Label component which styles the label as a hyperlink and opens a url in an
  * external browser when clicked.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class JLinkLabel extends JLabel
@@ -30,8 +31,44 @@ public class JLinkLabel extends JLabel
     static final Log log = LogFactory.getLog(JLinkLabel.class);
 
     /**
+     * Opens a URL on click.
+     */
+    private static class LinkClickHandler extends MouseAdapter
+    {
+        /** The URL to open. */
+        private String url;
+
+        /**
+         * Constructor.
+         * 
+         * @param url
+         *            The URL to open.
+         */
+        LinkClickHandler(final String url)
+        {
+            this.url = url;
+        }
+
+        /**
+         * @see MouseAdapter#mouseClicked(MouseEvent)
+         */
+        @Override
+        public void mouseClicked(final MouseEvent event)
+        {
+            try
+            {
+                Desktop.getDesktop().browse(new URI(this.url));
+            }
+            catch (final Exception e)
+            {
+                log.error("Unable to external browser: " + e, e);
+            }
+        }
+    }
+
+    /**
      * Constructor
-     *
+     * 
      * @param text
      *            The label text
      * @param url
@@ -41,20 +78,6 @@ public class JLinkLabel extends JLabel
     {
         super("<html><a href=\"#\">" + text + "</a></html>");
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        this.addMouseListener(new MouseAdapter()
-        {
-            @Override
-            public void mouseClicked(final MouseEvent event)
-            {
-                try
-                {
-                    Desktop.getDesktop().browse(new URI(url));
-                }
-                catch (final Exception e)
-                {
-                    log.error("Unable to external browser: " + e, e);
-                }
-            }
-        });
+        this.addMouseListener(new LinkClickHandler(url));
     }
 }

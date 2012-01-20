@@ -459,7 +459,7 @@ public class Sector implements Serializable, Comparable<Sector>
         for (final Asteroid asteroid : getAsteroids())
             if (asteroid.getWare().getId().equals("siliconWafers"))
                 asteroids.add(asteroid);
-        return asteroids.toArray(new Asteroid[0]);
+        return asteroids.toArray(new Asteroid[asteroids.size()]);
     }
 
     /**
@@ -473,7 +473,7 @@ public class Sector implements Serializable, Comparable<Sector>
         for (final Asteroid asteroid : getAsteroids())
             if (asteroid.getWare().getId().equals("ore"))
                 asteroids.add(asteroid);
-        return asteroids.toArray(new Asteroid[0]);
+        return asteroids.toArray(new Asteroid[asteroids.size()]);
     }
 
     /**
@@ -487,7 +487,7 @@ public class Sector implements Serializable, Comparable<Sector>
         for (final Asteroid asteroid : getAsteroids())
             if (asteroid.getWare().getId().equals("ice"))
                 asteroids.add(asteroid);
-        return asteroids.toArray(new Asteroid[0]);
+        return asteroids.toArray(new Asteroid[asteroids.size()]);
     }
 
     /**
@@ -501,7 +501,7 @@ public class Sector implements Serializable, Comparable<Sector>
         for (final Asteroid asteroid : getAsteroids())
             if (asteroid.getWare().getId().equals("nividium"))
                 asteroids.add(asteroid);
-        return asteroids.toArray(new Asteroid[0]);
+        return asteroids.toArray(new Asteroid[asteroids.size()]);
     }
 
     /**

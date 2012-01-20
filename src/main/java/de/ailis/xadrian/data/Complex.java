@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.SortedSet;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -986,8 +987,10 @@ public class Complex implements Serializable, GameProvider
         }
 
         // Determine the available factory sizes
-        final FactorySize[] sizes = factoryFactory.getFactorySizes(ware, race)
-            .toArray(new FactorySize[0]);
+        final SortedSet<FactorySize> sizesSet =
+            factoryFactory.getFactorySizes(ware, race);
+        final FactorySize[] sizes =
+            sizesSet.toArray(new FactorySize[sizesSet.size()]);
 
         // Abort if no factories were found
         if (sizes.length == 0) return false;

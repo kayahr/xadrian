@@ -148,7 +148,7 @@ public class MultiCollection<T> implements Collection<T>
     @Override
     public Object[] toArray()
     {
-        return this.toArray(new Object[0]);
+        return this.toArray(new Object[size()]);
     }
 
     /**
