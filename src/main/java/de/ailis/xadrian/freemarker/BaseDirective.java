@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.freemarker;
 
 import java.util.Map;
@@ -11,25 +10,22 @@ import freemarker.template.SimpleScalar;
 import freemarker.template.TemplateDirectiveModel;
 import freemarker.template.TemplateModelException;
 
-
 /**
  * BaseDirective
- * 
+ *
  * @author k
  */
-
 public abstract class BaseDirective implements TemplateDirectiveModel
 {
     /**
      * Returns a parameter as string. Returns null if parameter was not found.
-     * 
+     *
      * @param params
      *            The parameters
      * @param name
      *            The parameter name
      * @return The parameter value or null if not set
      */
-
     protected String getString(final Map<?, ?> params, final String name)
     {
         final SimpleScalar value = (SimpleScalar) params.get(name);
@@ -37,10 +33,9 @@ public abstract class BaseDirective implements TemplateDirectiveModel
         return value.getAsString();
     }
 
-
     /**
      * Returns a parameter as string. Throws exception if parameter is not set
-     * 
+     *
      * @param params
      *            The parameters
      * @param name
@@ -49,7 +44,7 @@ public abstract class BaseDirective implements TemplateDirectiveModel
      * @throws TemplateModelException
      *             If parameter is not set
      */
-    
+
     protected String getRequiredString(final Map<?, ?> params, final String name)
         throws TemplateModelException
     {

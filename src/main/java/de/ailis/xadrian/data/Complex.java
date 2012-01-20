@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -38,10 +37,9 @@ import de.ailis.xadrian.support.MultiCollection;
 
 /**
  * A complex
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class Complex implements Serializable, GameProvider
 {
     /** Serial version UID */
@@ -106,7 +104,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Constructor
-     * 
+     *
      * @param game
      *            The game this complex belongs to.
      */
@@ -117,13 +115,12 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Constructor
-     * 
+     *
      * @param game
      *            The game this complex belongs to.
      * @param name
      *            The complex name
      */
-
     public Complex(final Game game, final String name)
     {
         this.game = game;
@@ -137,10 +134,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns a new name for a complex.
-     * 
+     *
      * @return A new complex name
      */
-
     private static String createComplexName()
     {
         complexCounter++;
@@ -149,10 +145,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the name.
-     * 
+     *
      * @return The name
      */
-
     public String getName()
     {
         return this.name;
@@ -160,11 +155,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets the complex name.
-     * 
+     *
      * @param name
      *            The complex name to set
      */
-
     public void setName(final String name)
     {
         this.name = name;
@@ -172,10 +166,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total number of factories in the complex
-     * 
+     *
      * @return The total number of factories in the complex
      */
-
     public int getTotalQuantity()
     {
         int quantity = 0;
@@ -188,10 +181,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total complex price.
-     * 
+     *
      * @return The total complex price
      */
-
     public long getTotalPrice()
     {
         long price = 0;
@@ -206,10 +198,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * A immutable copy of the factories in this complex.
-     * 
+     *
      * @return The factories in this complex
      */
-
     public List<ComplexFactory> getFactories()
     {
         return Collections.unmodifiableList(this.factories);
@@ -217,10 +208,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * A immutable copy of the automatically added factories in this complex.
-     * 
+     *
      * @return The automatically added factories in this complex
      */
-
     public List<ComplexFactory> getAutoFactories()
     {
         return Collections.unmodifiableList(this.autoFactories);
@@ -229,7 +219,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * @see java.lang.Object#hashCode()
      */
-
     @Override
     public int hashCode()
     {
@@ -240,7 +229,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
-
     @Override
     public boolean equals(final Object obj)
     {
@@ -255,11 +243,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Removes the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      */
-
     public void removeFactory(final int index)
     {
         this.factories.remove(index);
@@ -269,11 +256,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Disables the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      */
-
     public void disableFactory(final int index)
     {
         this.factories.get(index).disable();
@@ -282,11 +268,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Disables the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      */
-
     public void enableFactory(final int index)
     {
         this.factories.get(index).enable();
@@ -295,11 +280,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Accepts the automatically added factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      */
-
     public void acceptFactory(final int index)
     {
         addFactory(this.autoFactories.get(index));
@@ -308,12 +292,11 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the quantity of the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      * @return The quantity
      */
-
     public int getQuantity(final int index)
     {
         return this.factories.get(index).getQuantity();
@@ -321,12 +304,11 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Increases the quantity of the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      * @return True if quantity was changed, false if not.
      */
-
     public boolean increaseQuantity(final int index)
     {
         if (this.factories.get(index).increaseQuantity())
@@ -340,12 +322,11 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Decreases the quantity of the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      * @return True if quantity was changed, false if not.
      */
-
     public boolean decreaseQuantity(final int index)
     {
         if (this.factories.get(index).decreaseQuantity())
@@ -360,13 +341,12 @@ public class Complex implements Serializable, GameProvider
     /**
      * Sets the quantity of the factory with the given index to the specified
      * quantity.
-     * 
+     *
      * @param index
      *            The factory index
      * @param quantity
      *            The quantity to set
      */
-
     public void setQuantity(final int index, final int quantity)
     {
         final ComplexFactory factory = this.factories.get(index);
@@ -380,12 +360,11 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the yield of the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      * @return The yield
      */
-
     public List<Integer> getYields(final int index)
     {
         return this.factories.get(index).getYields();
@@ -393,13 +372,12 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets the yields of the factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      * @param yields
      *            The yields to set
      */
-
     public void setYields(final int index, final List<Integer> yields)
     {
         final ComplexFactory factory = this.factories.get(index);
@@ -410,12 +388,11 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the factory type of factory with the given index.
-     * 
+     *
      * @param index
      *            The factory index
      * @return The factory
      */
-
     public Factory getFactory(final int index)
     {
         return this.factories.get(index).getFactory();
@@ -423,11 +400,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets the suns in percent.
-     * 
+     *
      * @param suns
      *            The suns in percent to set
      */
-
     public void setSuns(final Sun suns)
     {
         this.suns = suns;
@@ -436,10 +412,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the suns in percent.
-     * 
+     *
      * @return The suns in percent
      */
-
     public Sun getSuns()
     {
         if (this.sector != null) return this.sector.getSuns();
@@ -448,11 +423,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Adds a factory to the complex.
-     * 
+     *
      * @param factory
      *            The factory to add
      */
-
     public void addFactory(final Factory factory)
     {
         if (factory.isMine())
@@ -478,11 +452,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Adds the specified factory/factories to the complex.
-     * 
+     *
      * @param complexFactory
      *            The factory/factories to add
      */
-
     private void addFactory(final ComplexFactory complexFactory)
     {
         if (!complexFactory.getFactory().isMine())
@@ -504,10 +477,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Converts the complex into XML and returns it.
-     * 
+     *
      * @return The complex as XML
      */
-
     public Document toXML()
     {
         final Document document = DocumentHelper.createDocument();
@@ -587,14 +559,13 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Loads a complex from the specified XML document and returns it.
-     * 
+     *
      * @param document
      *            The XML document
      * @return The complex
      * @throws DocumentException
      *             If XML file could not be read
      */
-
     public static Complex fromXML(final Document document)
         throws DocumentException
     {
@@ -711,10 +682,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns all factories (Manually and automatically added ones):
-     * 
+     *
      * @return All factories
      */
-
     @SuppressWarnings("unchecked")
     private Collection<ComplexFactory> getAllFactories()
     {
@@ -724,10 +694,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the products this complex produces in one hour.
-     * 
+     *
      * @return The products per hour.
      */
-
     public Collection<Product> getProductsPerHour()
     {
         final Map<String, Product> products = new HashMap<String, Product>();
@@ -748,10 +717,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the resources this complex needs in one hour.
-     * 
+     *
      * @return The needed resources per hour.
      */
-
     public Collection<Product> getResourcesPerHour()
     {
         final Map<String, Product> resources = new HashMap<String, Product>();
@@ -775,10 +743,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the list of complex wares (Produced and needed).
-     * 
+     *
      * @return The list of complex wares
      */
-
     public Collection<ComplexWare> getWares()
     {
         final Map<String, ComplexWare> wares =
@@ -816,10 +783,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the profit of this complex.
-     * 
+     *
      * @return The profit
      */
-
     public double getProfit()
     {
         double profit;
@@ -834,10 +800,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the number of needed complex construction kits in this complex.
-     * 
+     *
      * @return The number of needed complex construction kits.
      */
-
     public int getKitQuantity()
     {
         return Math.max(0, getTotalQuantity() - 1);
@@ -845,10 +810,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the price of a single complex construction kit.
-     * 
+     *
      * @return The price of a single complex construction kit
      */
-
     public int getKitPrice()
     {
         return KIT_PRICE;
@@ -856,10 +820,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total price of all needed complex construction kits.
-     * 
+     *
      * @return The total price of all needed complex construction kits
      */
-
     public int getTotalKitPrice()
     {
         return getKitQuantity() * getKitPrice();
@@ -869,7 +832,6 @@ public class Complex implements Serializable, GameProvider
      * Calculates and adds the factories needed to keep the factories of this
      * complex running stable.
      */
-
     private void calculateBaseComplex()
     {
         final FactoryFactory factoryFactory = this.game.getFactoryFactory();
@@ -931,7 +893,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * Updates the base complex.
      */
-
     public void updateBaseComplex()
     {
         calculateBaseComplex();
@@ -940,7 +901,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * Updates the shopping list.
      */
-
     public void updateShoppingList()
     {
         this.shoppingList = null;
@@ -962,14 +922,13 @@ public class Complex implements Serializable, GameProvider
      * and adds the necessary factories for this. If a need was found (and
      * fixed) then this method returns true. If all needs are already fulfilled
      * then it returns false.
-     * 
+     *
      * @param crystalRace
      *            Optional race from which crystal fabs should be bought. If
      *            null then the cheapest fab is searched.
      * @return True if a need was found and fixed, false if everything is
      *         finished
      */
-
     private boolean addBaseComplex(final Race crystalRace)
     {
         for (final ComplexWare ware : getWares())
@@ -995,7 +954,7 @@ public class Complex implements Serializable, GameProvider
     /**
      * Adds the factories needed to fulfill the need of the specified complex
      * ware.
-     * 
+     *
      * @param complexWare
      *            The complex ware for which factories must be added
      * @param race
@@ -1004,7 +963,6 @@ public class Complex implements Serializable, GameProvider
      * @return True if a new factories were added, false if this was not
      *         possible
      */
-
     private boolean addBaseComplexForWare(final ComplexWare complexWare,
         final Race race)
     {
@@ -1088,7 +1046,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * Toggles the addition of automatically calculated base complex.
      */
-
     public void toggleAddBaseComplex()
     {
         this.addBaseComplex = !this.addBaseComplex;
@@ -1097,11 +1054,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Enables or disabled base complex addition.
-     * 
+     *
      * @param addBaseComplex
      *            True if base complex should be added, false if not
      */
-
     public void setAddBaseComplex(final boolean addBaseComplex)
     {
         this.addBaseComplex = addBaseComplex;
@@ -1109,10 +1065,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks whether a base complex was added or not.
-     * 
+     *
      * @return True if a base complex was added. False if not.
      */
-
     public boolean isAddBaseComplex()
     {
         return this.addBaseComplex;
@@ -1120,10 +1075,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the storage capacities.
-     * 
+     *
      * @return The storage capacities.
      */
-
     public Collection<Capacity> getCapacities()
     {
         final Map<String, Capacity> capacities =
@@ -1150,10 +1104,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total storage capacity
-     * 
+     *
      * @return The total storage capacity;
      */
-
     public long getTotalCapacity()
     {
         long total = 0;
@@ -1164,10 +1117,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total storage volume
-     * 
+     *
      * @return The total storage volume;
      */
-
     public long getTotalStorageVolume()
     {
         long total = 0;
@@ -1178,11 +1130,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets the sector in which to build this complex
-     * 
+     *
      * @param sector
      *            The sector to set
      */
-
     public void setSector(final Sector sector)
     {
         if ((sector != null && !sector.equals(this.sector))
@@ -1196,10 +1147,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the sector in which this complex is build.
-     * 
+     *
      * @return The sector
      */
-
     public Sector getSector()
     {
         return this.sector;
@@ -1207,10 +1157,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the factory shopping list.
-     * 
+     *
      * @return The factory shopping list
      */
-
     public ShoppingList getShoppingList()
     {
         // Return cached shopping list if present
@@ -1241,12 +1190,11 @@ public class Complex implements Serializable, GameProvider
      * Returns the price for the specified ware. If the price has a custom price
      * then this one is returned. If not then the standard average price of the
      * ware is returned.
-     * 
+     *
      * @param ware
      *            The ware
      * @return The price
      */
-
     public int getWarePrice(final Ware ware)
     {
         final Integer price = this.customPrices.get(ware);
@@ -1257,10 +1205,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the map with custom prices.
-     * 
+     *
      * @return The map with custom prices
      */
-
     public Map<Ware, Integer> getCustomPrices()
     {
         return Collections.unmodifiableMap(this.customPrices);
@@ -1268,11 +1215,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets a new map with custom prices.
-     * 
+     *
      * @param customPrices
      *            The new map with custom prices
      */
-
     public void setCustomPrices(final Map<Ware, Integer> customPrices)
     {
         this.customPrices.clear();
@@ -1281,10 +1227,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks if complex setup should be displayed.
-     * 
+     *
      * @return True if complex setup should be displayed, false if not
      */
-
     public boolean isShowingComplexSetup()
     {
         return this.showingComplexSetup;
@@ -1293,7 +1238,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * Toggles the display of the complex setup.
      */
-
     public void toggleShowingComplexSetup()
     {
         this.showingComplexSetup = !this.showingComplexSetup;
@@ -1301,10 +1245,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks if production stats should be displayed.
-     * 
+     *
      * @return True if production stats should be displayed, false if not
      */
-
     public boolean isShowingProductionStats()
     {
         return this.showingProductionStats;
@@ -1313,7 +1256,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * Toggles the display of production statistics.
      */
-
     public void toggleShowingProductionStats()
     {
         this.showingProductionStats = !this.showingProductionStats;
@@ -1321,10 +1263,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks if storage capacities should be displayed.
-     * 
+     *
      * @return True if storage capacities should be displayed, false if not
      */
-
     public boolean isShowingStorageCapacities()
     {
         return this.showingStorageCapacities;
@@ -1333,7 +1274,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * Toggles the display of storage capacities.
      */
-
     public void toggleShowingStorageCapacities()
     {
         this.showingStorageCapacities = !this.showingStorageCapacities;
@@ -1341,10 +1281,9 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks if the shopping list should be displayed.
-     * 
+     *
      * @return True if the shopping list should be displayed, false if not
      */
-
     public boolean isShowingShoppingList()
     {
         return this.showingShoppingList;
@@ -1353,7 +1292,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * Toggles the display of the shopping list.
      */
-
     public void toggleShowingShoppingList()
     {
         this.showingShoppingList = !this.showingShoppingList;
@@ -1362,12 +1300,11 @@ public class Complex implements Serializable, GameProvider
     /**
      * Returns the maximum number of factories in the shopping list for the
      * specified factory id.
-     * 
+     *
      * @param id
      *            The id of the factory
      * @return The number of factories in the shopping list
      */
-
     private int getMaxFactories(final String id)
     {
         final ShoppingList list = getShoppingList();
@@ -1381,11 +1318,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Builds a factory with the specified id
-     * 
+     *
      * @param id
      *            The id of the factory to build
      */
-
     public void buildFactory(final String id)
     {
         Integer oldCount = this.builtFactories.get(id);
@@ -1397,11 +1333,10 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Destroys a factory with the specified id.
-     * 
+     *
      * @param id
      *            The id of the factory to destroy
      */
-
     public void destroyFactory(final String id)
     {
         final Integer oldCount = this.builtFactories.get(id);
@@ -1414,7 +1349,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * Build a kit.
      */
-
     public void buildKit()
     {
         if (this.builtKits >= getTotalQuantity() - 1) return;
@@ -1425,7 +1359,6 @@ public class Complex implements Serializable, GameProvider
     /**
      * Destroys a kit.
      */
-
     public void destroyKit()
     {
         if (this.builtKits == 0) return;
@@ -1435,18 +1368,17 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the number of built factories of the specified type.
-     * 
+     *
      * @param factory
      *            The factory type
      * @return The number of built factores of the specified type
      */
-
     private int getFactoriesBuilt(final Factory factory)
     {
         final Integer count = this.builtFactories.get(factory.getId());
         return count == null ? 0 : count;
     }
-    
+
     /**
      * @see de.ailis.xadrian.interfaces.GameProvider#getGame()
      */

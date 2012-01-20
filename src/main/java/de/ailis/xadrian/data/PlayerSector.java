@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import de.ailis.xadrian.support.Config;
@@ -10,10 +9,9 @@ import de.ailis.xadrian.support.I18N;
 
 /**
  * The player sector.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class PlayerSector extends Sector
 {
     /** Serial version UID */
@@ -24,7 +22,7 @@ public class PlayerSector extends Sector
 
     /**
      * Constructor
-     * 
+     *
      * @param game
      *            The game this sector belongs to.
      * @param id
@@ -52,7 +50,6 @@ public class PlayerSector extends Sector
      * @param asteroids
      *            Array or array with asteroids in this sector
      */
-
     public PlayerSector(final Game game, final String id, final int x,
         final int y, final Race race, final int planets, final Sun suns,
         final boolean core, final String northId, final String eastId,
@@ -65,10 +62,9 @@ public class PlayerSector extends Sector
 
     /**
      * Returns the name.
-     * 
+     *
      * @return The name
      */
-
     @Override
     public String getName()
     {
@@ -78,10 +74,9 @@ public class PlayerSector extends Sector
 
     /**
      * Returns the array with asteroids.
-     * 
+     *
      * @return The array with asteroids
      */
-
     @Override
     public Asteroid[] getAsteroids()
     {

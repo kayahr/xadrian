@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
- * licensing information.
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.data.factories;
 
 import java.net.URL;
@@ -26,10 +25,9 @@ import de.ailis.xadrian.frames.SplashFrame;
 
 /**
  * Factory for Ware objects.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class WareFactory
 {
     /** The game for which this factory is responsible. */
@@ -43,7 +41,7 @@ public class WareFactory
 
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game for which this factory is responsible.
      */
@@ -57,7 +55,6 @@ public class WareFactory
     /**
      * Reads the data from the XML file.
      */
-
     private void readData()
     {
         String gameId = this.game.getId();
@@ -97,10 +94,9 @@ public class WareFactory
 
     /**
      * Returns all wares.
-     * 
+     *
      * @return The wares
      */
-
     public SortedSet<Ware> getWares()
     {
         return Collections.unmodifiableSortedSet(this.wares);
@@ -108,12 +104,11 @@ public class WareFactory
 
     /**
      * Returns the ware with the specified id or null if not found.
-     * 
+     *
      * @param id
      *            The ware id
      * @return The ware or null if not found
      */
-
     public Ware getWare(final String id)
     {
         return this.wareMap.get(id);

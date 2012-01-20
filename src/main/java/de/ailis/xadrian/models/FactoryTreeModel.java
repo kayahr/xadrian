@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
- * licensing information.
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.models;
 
 import java.util.ArrayList;
@@ -25,10 +24,9 @@ import de.ailis.xadrian.support.I18N;
 
 /**
  * FactoryTreeModel
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class FactoryTreeModel implements TreeModel
 {
     /** The top level entries */
@@ -62,11 +60,10 @@ public class FactoryTreeModel implements TreeModel
 
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game.
      */
-
     public FactoryTreeModel(Game game)
     {
         if (game == null) throw new IllegalArgumentException("game must be set");
@@ -115,7 +112,6 @@ public class FactoryTreeModel implements TreeModel
     /**
      * @see TreeModel#getRoot()
      */
-
     @Override
     public Object getRoot()
     {
@@ -125,7 +121,6 @@ public class FactoryTreeModel implements TreeModel
     /**
      * @see TreeModel#getChildCount(Object)
      */
-
     @Override
     public int getChildCount(final Object parent)
     {
@@ -148,7 +143,6 @@ public class FactoryTreeModel implements TreeModel
     /**
      * @see TreeModel#getChild(Object, int)
      */
-
     @Override
     public Object getChild(final Object parent, final int index)
     {
@@ -169,7 +163,6 @@ public class FactoryTreeModel implements TreeModel
     /**
      * @see TreeModel#getIndexOfChild(Object, Object)
      */
-
     @Override
     public int getIndexOfChild(final Object parent, final Object child)
     {
@@ -190,7 +183,6 @@ public class FactoryTreeModel implements TreeModel
     /**
      * @see TreeModel#isLeaf(Object)
      */
-
     @Override
     public boolean isLeaf(final Object node)
     {
@@ -200,7 +192,6 @@ public class FactoryTreeModel implements TreeModel
     /**
      * @see TreeModel#valueForPathChanged(TreePath, Object)
      */
-
     @Override
     public void valueForPathChanged(final TreePath path, final Object newValue)
     {
@@ -210,7 +201,6 @@ public class FactoryTreeModel implements TreeModel
     /**
      * @see TreeModel#addTreeModelListener(TreeModelListener)
      */
-
     @Override
     public void addTreeModelListener(final TreeModelListener l)
     {
@@ -220,7 +210,6 @@ public class FactoryTreeModel implements TreeModel
     /**
      * @see TreeModel#removeTreeModelListener(TreeModelListener)
      */
-
     @Override
     public void removeTreeModelListener(final TreeModelListener l)
     {

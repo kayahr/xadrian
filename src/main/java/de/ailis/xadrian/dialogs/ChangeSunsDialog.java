@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
@@ -22,13 +21,11 @@ import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
-
 /**
  * Dialog for selecting the suns in percent.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class ChangeSunsDialog extends ModalDialog
 {
     /** Serial version UID */
@@ -36,14 +33,13 @@ public class ChangeSunsDialog extends ModalDialog
 
     /** The suns combo box */
     private JComboBox sunsComboBox;
-    
+
     /** The game. */
     private final Game game;
 
-
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game. Must not be null.
      */
@@ -55,11 +51,9 @@ public class ChangeSunsDialog extends ModalDialog
         SplashFrame.getInstance().advanceProgress();
     }
 
-
     /**
      * Creates the UI
      */
-
     @Override
     protected void createUI()
     {
@@ -82,11 +76,9 @@ public class ChangeSunsDialog extends ModalDialog
         add(contentPanel, BorderLayout.CENTER);
     }
 
-
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
      */
-
     @Override
     public Result open()
     {
@@ -95,34 +87,30 @@ public class ChangeSunsDialog extends ModalDialog
         return result;
     }
 
-
     /**
      * Sets the suns.
      *
      * @param suns
      *            The yield to set
      */
-
     public void setSuns(final Sun suns)
     {
         this.sunsComboBox.setSelectedItem(suns);
     }
-
 
     /**
      * Returns the suns.
      *
      * @return The suns
      */
-
     public Sun getSuns()
     {
         return (Sun) this.sunsComboBox.getSelectedItem();
     }
-    
+
     /**
      * Test main method.
-     * 
+     *
      * @param args
      *            Command line arguments
      */

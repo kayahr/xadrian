@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2012 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
- * licensing information.
+ * Copyright (C) 2012-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.data.factories;
 
 import java.net.URL;
@@ -26,7 +25,7 @@ import de.ailis.xadrian.frames.SplashFrame;
 
 /**
  * Factory for Game objects.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class GameFactory
@@ -39,7 +38,7 @@ public class GameFactory
 
     /** The singleton instance */
     private final static GameFactory instance = new GameFactory();
-    
+
     /** The default game. */
     private Game defaultGame;
 
@@ -53,7 +52,7 @@ public class GameFactory
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance
      */
     public static final GameFactory getInstance()
@@ -95,7 +94,7 @@ public class GameFactory
 
     /**
      * Returns all games.
-     * 
+     *
      * @return The games
      */
     public SortedSet<Game> getGames()
@@ -105,7 +104,7 @@ public class GameFactory
 
     /**
      * Returns the game with the specified id.
-     * 
+     *
      * @param id
      *            The game id
      * @return The game.
@@ -120,7 +119,7 @@ public class GameFactory
 
     /**
      * Returns the number of games.
-     * 
+     *
      * @return The number of games
      */
     public int countGames()

@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.support;
 
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 
 /**
  * Iterator which iterates over multiple collections
@@ -20,7 +18,6 @@ import java.util.NoSuchElementException;
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class MultiIterator<T> implements Iterator<T>
 {
     /** Iterator over all iterators */
@@ -29,14 +26,12 @@ public class MultiIterator<T> implements Iterator<T>
     /** Current iterator. Null if end of wrapped collections is reached. */
     private Iterator<T> current;
 
-
     /**
      * Creates iterator which iterates over all specified collections
      *
      * @param collections
      *            The collections to iterate
      */
-
     public MultiIterator(final Collection<T>[] collections)
     {
         final List<Iterator<T>> iterators =
@@ -52,11 +47,9 @@ public class MultiIterator<T> implements Iterator<T>
             this.current = null;
     }
 
-
     /**
      * @see java.util.Iterator#hasNext()
      */
-
     @Override
     public boolean hasNext()
     {
@@ -65,11 +58,9 @@ public class MultiIterator<T> implements Iterator<T>
 
     }
 
-
     /**
      * @see java.util.Iterator#next()
      */
-
     @Override
     public T next()
     {
@@ -85,11 +76,9 @@ public class MultiIterator<T> implements Iterator<T>
         return next;
     }
 
-
     /**
      * @see java.util.Iterator#remove()
      */
-
     @Override
     public void remove()
     {

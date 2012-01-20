@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian;
 
 import de.ailis.xadrian.data.factories.GameFactory;
@@ -16,13 +15,11 @@ import de.ailis.xadrian.frames.MainFrame;
 import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.utils.SwingUtils;
 
-
 /**
  * Main class.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class Main
 {
     /**
@@ -33,16 +30,15 @@ public class Main
      * @throws Exception
      *            When something goes wrong
      */
-
     public static void main(final String[] args) throws Exception
     {
         SwingUtils.prepareGUI();
-        
+
         // Open the splash screen.
         SplashFrame splash = SplashFrame.getInstance();
         splash.setVisible(true);
-        
-        // Preload everything        
+
+        // Preload everything
         GameFactory.getInstance().getGames();
         AboutDialog.getInstance();
         OpenComplexDialog.getInstance();
@@ -50,11 +46,10 @@ public class Main
         ChangeQuantityDialog.getInstance();
         PreferencesDialog.getInstance();
         SelectGameDialog.getInstance();
-        
-        
+
         // Close the splash screen and open the main window
         splash.setVisible(false);
-        
+
         new MainFrame().setVisible(true);
     }
 }

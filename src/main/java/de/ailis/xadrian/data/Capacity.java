@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -11,13 +10,11 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-
 /**
  * Storage capacity for a single ware.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class Capacity implements Serializable, Comparable<Capacity>
 {
     /** Serial version UID */
@@ -28,64 +25,55 @@ public class Capacity implements Serializable, Comparable<Capacity>
 
     /** The quantity */
     private final long quantity;
-    
 
     /**
      * Constructor
-     * 
+     *
      * @param ware
      *            The ware
      * @param quantity
      *            The quantity
      */
-
     public Capacity(final Ware ware, final long quantity)
     {
         this.ware = ware;
         this.quantity = quantity;
     }
 
-
     /**
      * Return the ware.
-     * 
+     *
      * @return The ware
      */
-
     public Ware getWare()
     {
         return this.ware;
     }
 
-
     /**
      * Returns the quantity.
-     * 
+     *
      * @return The quantity
      */
-
     public long getQuantity()
     {
         return this.quantity;
     }
-    
-    
+
     /**
      * Returns the storage volume.
-     * 
+     *
      * @return The storage volume
      */
-    
+
     public long getVolume()
     {
         return this.ware.getVolume() * this.quantity;
     }
 
-
     /**
      * @see java.lang.Object#hashCode()
      */
-
     @Override
     public int hashCode()
     {
@@ -93,11 +81,9 @@ public class Capacity implements Serializable, Comparable<Capacity>
             .toHashCode();
     }
 
-
     /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
-
     @Override
     public boolean equals(final Object obj)
     {
@@ -109,11 +95,9 @@ public class Capacity implements Serializable, Comparable<Capacity>
             this.quantity, other.quantity).isEquals();
     }
 
-
     /**
      * @see java.lang.Object#toString()
      */
-
     @Override
     public String toString()
     {
@@ -121,11 +105,10 @@ public class Capacity implements Serializable, Comparable<Capacity>
             "quantity", this.quantity).toString();
     }
 
-
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-    
+
     @Override
     public int compareTo(final Capacity o)
     {

@@ -1,12 +1,10 @@
 /*
- * Copyright (C) 2012 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2012-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.interfaces;
 
 import de.ailis.xadrian.data.Game;
-
 
 /**
  * This interface is implemented by all components which provide a reference
@@ -14,7 +12,6 @@ import de.ailis.xadrian.data.Game;
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public interface GameProvider
 {
     /**

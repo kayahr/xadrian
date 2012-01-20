@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -10,13 +9,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * The shopping list.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class ShoppingList implements Serializable
 {
     /** Serial version UID */
@@ -43,7 +40,6 @@ public class ShoppingList implements Serializable
     /** The sector with the nearest shipyard */
     private final Sector nearestShipyard;
 
-
     /**
      * Constructor.
      *
@@ -53,13 +49,11 @@ public class ShoppingList implements Serializable
      * @param kitsBuilt
      *            The number of built kits
      */
-
     public ShoppingList(final Sector nearestShipyard, final int kitsBuilt)
     {
         this.nearestShipyard = nearestShipyard;
         this.kitQuantityBuilt = kitsBuilt;
     }
-
 
     /**
      * Adds a new shopping list item to the list.
@@ -67,7 +61,6 @@ public class ShoppingList implements Serializable
      * @param item
      *            The shopping list item to add
      */
-
     public void addItem(final ShoppingListItem item)
     {
         int i, max;
@@ -96,138 +89,115 @@ public class ShoppingList implements Serializable
         Collections.sort(this.items);
     }
 
-
     /**
      * Returns the shopping list items.
      *
      * @return The shopping list items
      */
-
     public List<ShoppingListItem> getItems()
     {
         return Collections.unmodifiableList(this.items);
     }
-
 
     /**
      * Returns the total volume.
      *
      * @return The total volume
      */
-
     public int getTotalVolume()
     {
         return this.totalVolume + getTotalKitVolume();
     }
-
 
     /**
      * Returns the total quantity.
      *
      * @return The total quantity
      */
-
     public int getTotalQuantity()
     {
         return this.totalQuantity + getKitQuantity();
     }
-
 
     /**
      * Returns the total quantity of built factories and kits.
      *
      * @return The total quantity
      */
-
     public int getTotalQuantityBuilt()
     {
         return this.totalBuilt + getKitQuantityBuilt();
     }
-
 
     /**
      * Returns the total quantity of built factories and kits left.
      *
      * @return The total quantity left
      */
-
     public int getTotalQuantityLeft()
     {
         return getTotalQuantity() - getTotalQuantityBuilt();
     }
-
 
     /**
      * Returns the total price.
      *
      * @return The total price
      */
-
     public int getTotalPrice()
     {
         return this.totalPrice + getTotalKitPrice();
     }
-
 
     /**
      * Returns the kit quantity.
      *
      * @return The kit quantity
      */
-
     public int getKitQuantity()
     {
         return Math.max(0, this.totalQuantity - 1);
     }
-
 
     /**
      * Returns the number of built kits.
      *
      * @return The number built kits
      */
-
     public int getKitQuantityBuilt()
     {
         return this.kitQuantityBuilt;
     }
-
 
     /**
      * Returns the number of kits left.
      *
      * @return The number kits left
      */
-
     public int getKitQuantityLeft()
     {
         return getKitQuantity() - getKitQuantityBuilt();
     }
-
 
     /**
      * Returns the single kit price
      *
      * @return The single kit price
      */
-
     public int getKitPrice()
     {
         return Complex.KIT_PRICE;
     }
-
 
     /**
      * Returns the total kit price.
      *
      * @return The total kit price
      */
-
     public int getTotalKitPrice()
     {
         return getKitPrice() * getKitQuantity();
     }
-
 
     /**
      * Returns the nearest shipyard where the player can buy complex
@@ -235,31 +205,26 @@ public class ShoppingList implements Serializable
      *
      * @return The nearest shipyard or null if none
      */
-
     public Sector getNearestShipyard()
     {
         return this.nearestShipyard;
     }
-
 
     /**
      * Returns the kit volume.
      *
      * @return The kit volume
      */
-
     public int getKitVolume()
     {
         return Complex.KIT_VOLUME;
     }
-
 
     /**
      * Returns the total kit volume.
      *
      * @return The total kit volume
      */
-
     public int getTotalKitVolume()
     {
         return getKitVolume() * getKitQuantity();

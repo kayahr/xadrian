@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
- * licensing information.
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.data.factories;
 
 import java.net.URL;
@@ -31,10 +30,9 @@ import de.ailis.xadrian.frames.SplashFrame;
 
 /**
  * Factory for Sector objects.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SectorFactory
 {
     /** The game for which this factory is responsible. */
@@ -66,7 +64,7 @@ public class SectorFactory
 
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game for which this factory is responsible.
      */
@@ -82,7 +80,6 @@ public class SectorFactory
     /**
      * Reads the data from the XML file.
      */
-
     private void readData()
     {
         String gameId = this.game.getId();
@@ -166,12 +163,11 @@ public class SectorFactory
 
     /**
      * Checks if sector has a shipyard.
-     * 
+     *
      * @param element
      *            The sector XML element
      * @return True if sector has a shipyard, false if not
      */
-
     private boolean hasShipyard(final Element element)
     {
         final Element stationsElement = element.element("stations");
@@ -193,12 +189,11 @@ public class SectorFactory
 
     /**
      * Returns the asteroids of the sector.
-     * 
+     *
      * @param element
      *            The sector XML element
      * @return The asteroids
      */
-
     private Asteroid[] getAsteroids(final Element element)
     {
         final Element asteroidsElement = element.element("asteroids");
@@ -239,10 +234,9 @@ public class SectorFactory
 
     /**
      * Returns all sectors.
-     * 
+     *
      * @return The sectors
      */
-
     public SortedSet<Sector> getSectors()
     {
         return Collections.unmodifiableSortedSet(this.sectors);
@@ -250,12 +244,11 @@ public class SectorFactory
 
     /**
      * Returns the sector with the specified id or null if not found.
-     * 
+     *
      * @param id
      *            The sector id
      * @return The sector or null if not found
      */
-
     public Sector getSector(final String id)
     {
         return this.sectorMap.get(id);
@@ -263,10 +256,9 @@ public class SectorFactory
 
     /**
      * Returns the maximum X position in the universe.
-     * 
+     *
      * @return The maximum X position
      */
-
     public int getMaxX()
     {
         return this.maxX;
@@ -274,10 +266,9 @@ public class SectorFactory
 
     /**
      * Returns the maximum Y position in the universe.
-     * 
+     *
      * @return The maximum Y position
      */
-
     public int getMaxY()
     {
         return this.maxY;
@@ -286,14 +277,13 @@ public class SectorFactory
     /**
      * Returns the sector at the specified coordinates. Returns null if there is
      * no sector at this coordinate.
-     * 
+     *
      * @param x
      *            The X coordinate
      * @param y
      *            The Y coordinate
      * @return The sector at this coordinate or null if none
      */
-
     public Sector getSector(final int x, final int y)
     {
         return getSector(String.format("sec-%d-%d", x, y));
@@ -301,10 +291,9 @@ public class SectorFactory
 
     /**
      * Returns the maximum silicon yield in a single sector.
-     * 
+     *
      * @return The maximum silicon yield
      */
-
     public int getMaxSiliconYield()
     {
         return this.maxSiliconYield;
@@ -312,10 +301,9 @@ public class SectorFactory
 
     /**
      * Returns the maximum ore yield in a single sector.
-     * 
+     *
      * @return The maximum ore yield
      */
-
     public int getMaxOreYield()
     {
         return this.maxOreYield;
@@ -323,10 +311,9 @@ public class SectorFactory
 
     /**
      * Returns the maximum nividium yield in a single sector.
-     * 
+     *
      * @return The maximum nividium yield
      */
-
     public int getMaxNividiumYield()
     {
         return this.maxNividiumYield;
@@ -334,10 +321,9 @@ public class SectorFactory
 
     /**
      * Returns the maximum ice yield in a single sector.
-     * 
+     *
      * @return The maximum ice yield
      */
-
     public int getMaxIceYield()
     {
         return this.maxIceYield;

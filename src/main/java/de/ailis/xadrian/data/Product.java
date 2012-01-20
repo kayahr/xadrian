@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -11,13 +10,11 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-
 /**
  * A product
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class Product implements Serializable, Comparable<Product>
 {
     /** Serial version UID */
@@ -28,52 +25,44 @@ public class Product implements Serializable, Comparable<Product>
 
     /** The quantity */
     private final double quantity;
-    
 
     /**
      * Constructor
-     * 
+     *
      * @param ware
      *            The ware
      * @param quantity
      *            The quantity
      */
-
     public Product(final Ware ware, final double quantity)
     {
         this.ware = ware;
         this.quantity = quantity;
     }
 
-
     /**
      * Return the ware.
-     * 
+     *
      * @return The ware
      */
-
     public Ware getWare()
     {
         return this.ware;
     }
 
-
     /**
      * Returns the quantity.
-     * 
+     *
      * @return The quantity
      */
-
     public double getQuantity()
     {
         return this.quantity;
     }
 
-
     /**
      * @see java.lang.Object#hashCode()
      */
-
     @Override
     public int hashCode()
     {
@@ -81,11 +70,9 @@ public class Product implements Serializable, Comparable<Product>
             .toHashCode();
     }
 
-
     /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
-
     @Override
     public boolean equals(final Object obj)
     {
@@ -97,11 +84,9 @@ public class Product implements Serializable, Comparable<Product>
             this.quantity, other.quantity).isEquals();
     }
 
-
     /**
      * @see java.lang.Object#toString()
      */
-
     @Override
     public String toString()
     {
@@ -109,11 +94,10 @@ public class Product implements Serializable, Comparable<Product>
             "quantity", this.quantity).toString();
     }
 
-
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-    
+
     @Override
     public int compareTo(final Product o)
     {

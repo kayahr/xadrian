@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import static org.junit.Assert.assertEquals;
@@ -13,35 +12,31 @@ import org.junit.Test;
 import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.data.factories.SectorFactory;
 
-
 /**
  * Tests Sector class.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SectorTest
 {
     /** The sector factory */
     private static SectorFactory sectorFactory;
-    
+
     /**
      * Initializes the test
      */
-    
+
     @BeforeClass
     public static void init()
     {
         Game game = GameFactory.getInstance().getGame("x3tc");
-        sectorFactory = game.getSectorFactory(); 
+        sectorFactory = game.getSectorFactory();
         System.setProperty("xadrian.config", "false");
     }
-
 
     /**
      * Checks the getDistance() method.
      */
-
     @Test
     public void testGetDistance()
     {

@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
- * licensing information.
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.components;
 
 import javax.swing.JComboBox;
@@ -14,10 +13,9 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Component which displays a sector.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SectorComboBox extends JComboBox
 {
     /** serialVersionUID */
@@ -25,11 +23,10 @@ public class SectorComboBox extends JComboBox
 
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game. Must not be null.
      */
-
     public SectorComboBox(final Game game)
     {
         super(new SectorComboBoxModel(game));
@@ -38,13 +35,12 @@ public class SectorComboBox extends JComboBox
 
     /**
      * Tests the component.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
      *             When something goes wrong
      */
-
     public static void main(final String[] args) throws Exception
     {
         SwingUtils.prepareGUI();

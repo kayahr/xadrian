@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.resources;
 
 import java.awt.Image;
@@ -15,13 +14,11 @@ import javax.imageio.ImageIO;
 
 import de.ailis.xadrian.exceptions.ResourceException;
 
-
 /**
  * The images used in this application.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de
  */
-
 public final class Images
 {
     /** The 16x16 logo */
@@ -43,25 +40,21 @@ public final class Images
     public static final List<Image> LOGOS = Arrays.asList(LOGO_16, LOGO_32,
         LOGO_48, LOGO_64, LOGO_128);
 
-
     /**
      * Private constructor to prevent instantiation.
      */
-
     private Images()
     {
         // Empty
     }
 
-
     /**
      * Creates the icon for the specified filename and returns it.
-     * 
+     *
      * @param filename
      *            The icon name (just the filename without extension)
      * @return The icon
      */
-
     private static Image createImage(final String filename)
     {
         final URL url = Images.class.getResource("/de/ailis/xadrian/images/"

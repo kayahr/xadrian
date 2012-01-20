@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
@@ -36,10 +35,9 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Dialog for setting up the application preferences.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class PreferencesDialog extends ModalDialog
 {
     /** Serial version UID */
@@ -66,7 +64,6 @@ public class PreferencesDialog extends ModalDialog
     /**
      * Constructor
      */
-
     private PreferencesDialog()
     {
         init("preferences", Result.OK, Result.CANCEL);
@@ -76,7 +73,6 @@ public class PreferencesDialog extends ModalDialog
     /**
      * Creates the UI
      */
-
     @Override
     protected void createUI()
     {
@@ -96,10 +92,9 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Creates and returns the panel with the races settings.
-     * 
+     *
      * @return The created panel
      */
-
     private JPanel createUsedRaces()
     {
         final JPanel panel = new JPanel();
@@ -142,7 +137,7 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Creates and returns the list of ignorable races.
-     * 
+     *
      * @return The list of ignorable races.
      */
     private SortedSet<Race> getIgnorableRaces()
@@ -160,10 +155,9 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Creates and returns the panel with the game settings.
-     * 
+     *
      * @return The created panel
      */
-
     private JPanel createX3TCSettings()
     {
         final JPanel panel = new JPanel();
@@ -200,10 +194,9 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Creates and returns the panel with the view settings.
-     * 
+     *
      * @return The created panel
      */
-
     private JPanel createViewSettings()
     {
         final JPanel panel = new JPanel();
@@ -235,7 +228,7 @@ public class PreferencesDialog extends ModalDialog
         }
         controlPanel.add(this.themeComboBox, c);
         panel.add(controlPanel);
-        
+
         c.gridx = 0;
         c.gridy = 1;
         c.gridwidth = 2;
@@ -255,10 +248,9 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Returns the singleton instance
-     * 
+     *
      * @return The singleton instance
      */
-
     public static PreferencesDialog getInstance()
     {
         return instance;
@@ -267,7 +259,6 @@ public class PreferencesDialog extends ModalDialog
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
      */
-
     @Override
     public Result open()
     {
@@ -309,7 +300,7 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Test main method.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception

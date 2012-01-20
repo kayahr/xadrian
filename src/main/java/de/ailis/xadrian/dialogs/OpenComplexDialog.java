@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.dialogs;
 
 import java.io.File;
@@ -14,26 +13,22 @@ import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 
-
 /**
  * Dialog for opening a complex.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class OpenComplexDialog extends JFileChooser
 {
     /** Serial version UID */
     private static final long serialVersionUID = 1L;
-    
+
     /** The singleton instance. */
     private static final OpenComplexDialog instance = new OpenComplexDialog();
-
 
     /**
      * Constructor
      */
-
     private OpenComplexDialog()
     {
         super();
@@ -43,10 +38,10 @@ public class OpenComplexDialog extends JFileChooser
         setFileSelectionMode(FILES_ONLY);
         SplashFrame.getInstance().advanceProgress();
     }
-    
+
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance.
      */
     public static OpenComplexDialog getInstance()
@@ -54,13 +49,11 @@ public class OpenComplexDialog extends JFileChooser
         return instance;
     }
 
-
     /**
      * Opens the dialog. Returns the selected file or null if canceled.
      *
      * @return The selected file or null if canceled
      */
-
     public File open()
     {
         setCurrentDirectory(Config.getInstance().getLastFileChooserPath());

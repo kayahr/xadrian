@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.freemarker.directives;
 
 import java.io.IOException;
@@ -17,20 +16,17 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
 
-
 /**
  * Message directive for freemarker templates
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class MessageDirective extends BaseDirective
 {
     /**
      * @see TemplateDirectiveModel#execute(Environment, Map, TemplateModel[],
      *      TemplateDirectiveBody)
      */
-
     @Override
     public void execute(final Environment env, final Map params,
         final TemplateModel[] loopVars, final TemplateDirectiveBody body)

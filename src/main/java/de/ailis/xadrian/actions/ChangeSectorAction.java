@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.actions;
 
 import java.awt.event.ActionEvent;
@@ -20,10 +19,9 @@ import de.ailis.xadrian.support.ModalDialog.Result;
 
 /**
  * Changes the sector of the complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class ChangeSectorAction extends BaseAction implements StateListener
 {
     /** Serial version UID */
@@ -37,7 +35,7 @@ public class ChangeSectorAction extends BaseAction implements StateListener
 
     /**
      * Constructor
-     * 
+     *
      * @param gameProvider
      *            The game provider.
      * @param sectorProvider
@@ -46,7 +44,6 @@ public class ChangeSectorAction extends BaseAction implements StateListener
      *            The context name (for having different action settings per
      *            context)
      */
-
     public ChangeSectorAction(final GameProvider gameProvider,
         final SectorProvider sectorProvider, final String context)
     {
@@ -63,7 +60,6 @@ public class ChangeSectorAction extends BaseAction implements StateListener
     /**
      * @see ActionListener#actionPerformed(ActionEvent)
      */
-
     @Override
     public void actionPerformed(final ActionEvent e)
     {
@@ -78,7 +74,6 @@ public class ChangeSectorAction extends BaseAction implements StateListener
     /**
      * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
-
     @Override
     public void stateChanged()
     {

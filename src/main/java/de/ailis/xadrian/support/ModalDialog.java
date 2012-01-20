@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.support;
 
 import java.awt.BorderLayout;
@@ -30,23 +29,19 @@ import javax.swing.KeyStroke;
 
 import de.ailis.xadrian.resources.Images;
 
-
 /**
  * Base class for modal dialogs
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public abstract class ModalDialog extends JDialog
 {
     /** Serial version UID */
     private static final long serialVersionUID = -7549471473035295150L;
 
-
     /**
      * The modal result enum.
      */
-
     public enum Result
     {
         /** The OK modal result */
@@ -103,17 +98,15 @@ public abstract class ModalDialog extends JDialog
     /** The modal result */
     private Result result;
 
-
     /**
      * Constructor
-     * 
+     *
      * @param id
      *            The dialog id. The component name and the title is
      *            automatically derived from it.
      * @param results
      *            The available results to create
      */
-
     public void init(final String id, final Result... results)
     {
         // Initialize the non-visual parts of the dialog
@@ -161,37 +154,32 @@ public abstract class ModalDialog extends JDialog
         // Center the dialog
         setLocationRelativeTo(null);
     }
-    
-    
+
     /**
      * Initializes the non-visual parts of the dialog. This is the first
      * method called by the constructor so this is a good place to initialized
      * models and stuff like that.
      */
-    
+
     protected void init()
     {
         // Empty
     }
 
-
     /**
      * Create the dialog actions which are displayed in form of buttons in the
      * button panel (left side). Returning null means using no dialog actions.
-     * 
+     *
      * @return The list of dialog actions or null for none.
      */
-
     protected List<Action> createDialogActions()
     {
         return null;
     }
 
-
     /**
      * Sets the default buttons (for Enter and Escape).
      */
-
     private void setDefaultButtons()
     {
         Result cancelResult = null;
@@ -207,14 +195,12 @@ public abstract class ModalDialog extends JDialog
         this.cancelButton = this.buttons.get(cancelResult);
     }
 
-
     /**
      * Create the default UI elements of a modal dialog.
-     * 
+     *
      * @param results
      *            The available results to create
      */
-
     private void createDefaultUI(final Result[] results)
     {
         boolean first;
@@ -235,12 +221,11 @@ public abstract class ModalDialog extends JDialog
                     buttonPanel.add(Box.createRigidArea(new Dimension(10, 0)));
                 final JButton button = new JButton(action);
                 buttonPanel.add(button);
-                
-                
+
                 KeyStroke ks = null;
                 final InputMap imap = button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
                 final ActionMap amap = button.getActionMap();
-         
+
                 ks = (KeyStroke) action.getValue(Action.ACCELERATOR_KEY);
                 imap.put(ks, action.getValue(Action.NAME));
                 amap.put(action.getValue(Action.NAME), action);
@@ -268,20 +253,16 @@ public abstract class ModalDialog extends JDialog
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-
     /**
      * Creates the UI.
      */
-
     protected abstract void createUI();
-
 
     /**
      * Opens the modal dialog.
-     * 
+     *
      * @return The modal result
      */
-
     public Result open()
     {
         try
@@ -296,54 +277,46 @@ public abstract class ModalDialog extends JDialog
         }
     }
 
-
     /**
      * Closes the modal dialog with the specified result.
-     * 
+     *
      * @param result
      *            The modal result
      */
-
     public void close(final Result result)
     {
         this.result = result;
         setVisible(false);
     }
 
-
     /**
      * Cancels the dialog.
      */
-
     public void cancel()
     {
         this.cancelButton.doClick(0);
     }
 
-
     /**
      * Enables or disables the specified modal result.
-     * 
+     *
      * @param result
      *            The modal result to enable/disable
      * @param enabled
      *            True for enable, false for disable
      */
-
     public void setResultEnabled(final Result result, final boolean enabled)
     {
         this.actions.get(result).setEnabled(enabled);
     }
 
-
     /**
      * Returns true if specified result is enabled or false if it is disabled.
-     * 
+     *
      * @param result
      *            The modal result to query
      * @return True if enabled, false if disabled
      */
-
     public boolean isResultEnabled(final Result result)
     {
         return this.actions.get(result).isEnabled();

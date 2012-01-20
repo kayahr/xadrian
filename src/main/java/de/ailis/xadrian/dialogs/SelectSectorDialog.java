@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
@@ -33,10 +32,9 @@ import de.ailis.xadrian.support.ModalDialog;
 
 /**
  * Dialog for selecting a sector.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SelectSectorDialog extends ModalDialog
 {
     /** Serial version UID */
@@ -53,7 +51,7 @@ public class SelectSectorDialog extends ModalDialog
 
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game. Must not be null.
      */
@@ -69,7 +67,6 @@ public class SelectSectorDialog extends ModalDialog
     /**
      * Creates the UI
      */
-
     @Override
     protected void createUI()
     {
@@ -149,10 +146,9 @@ public class SelectSectorDialog extends ModalDialog
 
     /**
      * Returns the selected sector.
-     * 
+     *
      * @return The selected sector
      */
-
     public Sector getSelected()
     {
         return this.selector.getSelected();
@@ -160,11 +156,10 @@ public class SelectSectorDialog extends ModalDialog
 
     /**
      * Sets the selected sector. null deselectes the currently selected sector.
-     * 
+     *
      * @param sector
      *            The sector to select
      */
-
     public void setSelected(final Sector sector)
     {
         this.selector.setSelected(sector);
@@ -173,7 +168,6 @@ public class SelectSectorDialog extends ModalDialog
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
      */
-
     @Override
     public Result open()
     {

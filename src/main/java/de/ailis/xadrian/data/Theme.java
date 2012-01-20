@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2012 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
- * licensing information.
+ * Copyright (C) 2012-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -12,7 +11,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Theme.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class Theme implements Serializable, Comparable<Theme>
@@ -28,7 +27,7 @@ public class Theme implements Serializable, Comparable<Theme>
 
     /**
      * Constructor.
-     * 
+     *
      * @param name
      *            The theme name.
      * @param className
@@ -42,7 +41,7 @@ public class Theme implements Serializable, Comparable<Theme>
 
     /**
      * Returns the theme name.
-     * 
+     *
      * @return The theme name
      */
     public String getName()
@@ -52,7 +51,7 @@ public class Theme implements Serializable, Comparable<Theme>
 
     /**
      * Returns the theme class name.
-     * 
+     *
      * @return The theme class name.
      */
     public String getClassName()
@@ -75,7 +74,7 @@ public class Theme implements Serializable, Comparable<Theme>
     @Override
     public int compareTo(Theme o)
     {
-        return getName().compareTo(o.getName()); 
+        return getName().compareTo(o.getName());
     }
 
     /**
@@ -89,7 +88,7 @@ public class Theme implements Serializable, Comparable<Theme>
 
     /**
      * @see java.lang.Object#equals(java.lang.Object)
-     */    
+     */
     @Override
     public boolean equals(Object obj)
     {

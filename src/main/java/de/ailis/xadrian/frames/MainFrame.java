@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.frames;
 
 import java.awt.BorderLayout;
@@ -73,10 +72,9 @@ import de.ailis.xadrian.support.ModalDialog.Result;
 
 /**
  * The main frame.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class MainFrame extends JFrame implements EditorStateListener,
     ChangeListener, ClipboardProvider, ClipboardStateListener,
     ComplexProvider, SectorProvider, StateListener, GameProvider
@@ -149,7 +147,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Constructor
      */
-
     public MainFrame()
     {
         setTitle(I18N.getString("title"));
@@ -183,7 +180,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Creates the menu.
      */
-
     private void createMenuBar()
     {
         // Create the menu bar
@@ -229,7 +225,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Creates the tool bar.
      */
-
     private void createToolBar()
     {
         final JToolBar toolBar = new JToolBar(SwingConstants.HORIZONTAL);
@@ -257,7 +252,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Creates the content.
      */
-
     private void createContent()
     {
         this.tabs = new JTabbedPane();
@@ -303,7 +297,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Creates the status bar.
      */
-
     private void createStatusBar()
     {
         final JLabel statusBar = new JLabel(" ");
@@ -313,11 +306,10 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Adds a state listener.
-     * 
+     *
      * @param listener
      *            The state listener to add
      */
-
     public void addStateListener(final MainStateListener listener)
     {
         this.listenerList.add(MainStateListener.class, listener);
@@ -325,11 +317,10 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Removes a state listener.
-     * 
+     *
      * @param listener
      *            The state listener to remove
      */
-
     public void removeStateListener(final MainStateListener listener)
     {
         this.listenerList.remove(MainStateListener.class, listener);
@@ -338,7 +329,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Fire the state change event.
      */
-
     private void fireChange()
     {
         final Object[] listeners = this.listenerList.getListenerList();
@@ -352,7 +342,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Creates a new factory complex tab
      */
-
     public void createComplexTab()
     {
         SelectGameDialog dialog = SelectGameDialog.getInstance();
@@ -366,11 +355,10 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Creates a new factory complex tab with the specified complex editor in
      * it.
-     * 
+     *
      * @param editor
      *            The complex editor
      */
-
     private void createComplexTab(final ComplexEditor editor)
     {
         // Replace the welcome panel with the complex tab control
@@ -388,11 +376,10 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Creates a complex editor tab with a loaded complex.
-     * 
+     *
      * @param editor
      *            The complex editor
      */
-
     public void createLoadedComplexTab(final ComplexEditor editor)
     {
         // If current tab is new then close this one in favor of the new one
@@ -405,10 +392,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the current tab component or null if no tab is currently present.
-     * 
+     *
      * @return The current tab component
      */
-
     public Component getCurrentTab()
     {
         return this.tabs == null ? null : this.tabs.getSelectedComponent();
@@ -418,10 +404,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
      * Closes the current tab. Prompts for saving unsaved changes before
      * closing. Returns true if the tab was closed or false if it was not
      * closed.
-     * 
+     *
      * @return True if tab was closed, false if not
      */
-
     public boolean closeCurrentTab()
     {
         final Component current = getCurrentTab();
@@ -463,10 +448,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Closes all open tabs. Prompts for unsaved changes. Returns true if all
      * tabs have been closed or false if at least one tab was not closed.
-     * 
+     *
      * @return True if all tabs were closed, false if not.
      */
-
     public boolean closeAllTabs()
     {
         while (this.tabs.getComponentCount() > 0)
@@ -478,7 +462,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Shows the about dialog.
      */
-
     public void about()
     {
         AboutDialog.getInstance().open();
@@ -487,7 +470,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Shows the preferences dialog.
      */
-
     public void preferences()
     {
         if (PreferencesDialog.getInstance().open() == Result.OK)
@@ -505,10 +487,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the tabs.
-     * 
+     *
      * @return The tabs
      */
-
     public JTabbedPane getTabs()
     {
         return this.tabs;
@@ -517,7 +498,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.listeners.EditorStateListener#editorStateChanged(de.ailis.xadrian.components.ComplexEditor)
      */
-
     @Override
     public void editorStateChanged(final ComplexEditor sender)
     {
@@ -530,7 +510,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent)
      */
-
     @Override
     public void stateChanged(final ChangeEvent e)
     {
@@ -540,7 +519,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Exits the application. Prompts for saving unsaved changes before that.
      */
-
     public void exit()
     {
         if (closeAllTabs())
@@ -554,7 +532,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#canCopy()
      */
-
     @Override
     public boolean canCopy()
     {
@@ -567,7 +544,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#canCut()
      */
-
     @Override
     public boolean canCut()
     {
@@ -580,7 +556,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#canPaste()
      */
-
     @Override
     public boolean canPaste()
     {
@@ -593,7 +568,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#copy()
      */
-
     @Override
     public void copy()
     {
@@ -603,7 +577,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#cut()
      */
-
     @Override
     public void cut()
     {
@@ -613,7 +586,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#paste()
      */
-
     @Override
     public void paste()
     {
@@ -623,7 +595,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#addClipboardStateListener(de.ailis.xadrian.listeners.ClipboardStateListener)
      */
-
     @Override
     public void
         addClipboardStateListener(final ClipboardStateListener listener)
@@ -634,7 +605,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#removeClipboardStateListener(de.ailis.xadrian.listeners.ClipboardStateListener)
      */
-
     @Override
     public void removeClipboardStateListener(
         final ClipboardStateListener listener)
@@ -645,7 +615,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Fire the clipboard state event.
      */
-
     private void fireClipboardState()
     {
         final Object[] listeners = this.listenerList.getListenerList();
@@ -658,7 +627,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#selectAll()
      */
-
     @Override
     public void selectAll()
     {
@@ -668,7 +636,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.listeners.ClipboardStateListener#clipboardStateChanged(de.ailis.xadrian.interfaces.ClipboardProvider)
      */
-
     @Override
     public void clipboardStateChanged(final ClipboardProvider provider)
     {
@@ -678,7 +645,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ClipboardProvider#canSelectAll()
      */
-
     @Override
     public boolean canSelectAll()
     {
@@ -691,7 +657,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#addFactory()
      */
-
     @Override
     public void addFactory()
     {
@@ -701,7 +666,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#canAddFactory()
      */
-
     @Override
     public boolean canAddFactory()
     {
@@ -714,7 +678,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
-
     @Override
     public void stateChanged()
     {
@@ -724,7 +687,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Fire the state change event.
      */
-
     private void changeState()
     {
         final Object[] listeners = this.listenerList.getListenerList();
@@ -737,7 +699,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#canChangeSuns()
      */
-
     @Override
     public boolean canChangeSuns()
     {
@@ -750,7 +711,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#canToggleBaseComplex()
      */
-
     @Override
     public boolean canToggleBaseComplex()
     {
@@ -763,7 +723,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#changeSuns()
      */
-
     @Override
     public void changeSuns()
     {
@@ -773,7 +732,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#toggleBaseComplex()
      */
-
     @Override
     public void toggleBaseComplex()
     {
@@ -783,7 +741,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#isAddBaseComplex()
      */
-
     @Override
     public boolean isAddBaseComplex()
     {
@@ -796,7 +753,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see ComplexProvider#canChangeSector()
      */
-
     @Override
     public boolean canChangeSector()
     {
@@ -809,7 +765,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see ComplexProvider#changeSector()
      */
-
     @Override
     public void changeSector()
     {
@@ -819,7 +774,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#canChangePrices()
      */
-
     @Override
     public boolean canChangePrices()
     {
@@ -832,7 +786,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.ComplexProvider#changePrices()
      */
-
     @Override
     public void changePrices()
     {
@@ -842,7 +795,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.StateProvider#addStateListener(de.ailis.xadrian.listeners.StateListener)
      */
-
     @Override
     public void addStateListener(final StateListener listener)
     {
@@ -852,7 +804,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.StateProvider#removeStateListener(de.ailis.xadrian.listeners.StateListener)
      */
-
     @Override
     public void removeStateListener(final StateListener listener)
     {
@@ -862,7 +813,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.SectorProvider#getSector()
      */
-
     @Override
     public Sector getSector()
     {
@@ -872,7 +822,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * @see de.ailis.xadrian.interfaces.SectorProvider#setSector(de.ailis.xadrian.data.Sector)
      */
-
     @Override
     public void setSector(final Sector sector)
     {

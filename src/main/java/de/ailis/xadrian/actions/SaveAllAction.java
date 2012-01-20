@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.actions;
 
 import java.awt.Component;
@@ -15,18 +14,15 @@ import de.ailis.xadrian.listeners.MainStateListener;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.FrameAction;
 
-
 /**
  * Saves all modified files.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SaveAllAction extends FrameAction<MainFrame> implements MainStateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = -455313858214195938L;
-
 
     /**
      * Constructor
@@ -34,7 +30,6 @@ public class SaveAllAction extends FrameAction<MainFrame> implements MainStateLi
      * @param frame
      *            The frame
      */
-
     public SaveAllAction(final MainFrame frame)
     {
         super(frame, "saveAll", Icons.SAVEALL);
@@ -42,11 +37,9 @@ public class SaveAllAction extends FrameAction<MainFrame> implements MainStateLi
         setEnabled(false);
     }
 
-
     /**
      * @see ActionListener#actionPerformed(ActionEvent)
      */
-
     @Override
     public void actionPerformed(final ActionEvent e)
     {
@@ -61,11 +54,9 @@ public class SaveAllAction extends FrameAction<MainFrame> implements MainStateLi
         }
     }
 
-
     /**
      * @see MainStateListener#mainStateChanged(MainFrame)
      */
-
     @Override
     public void mainStateChanged(final MainFrame sender)
     {

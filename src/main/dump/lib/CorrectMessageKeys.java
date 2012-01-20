@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
+ */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,28 +15,21 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Properties;
 
-/*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
- */
-
-
 /**
- * CorrectMessageKeys
- * 
- * @author k
+ * Corrects the message keys.
+ *
+ * @author Klaus Reimer
  */
-
 public class CorrectMessageKeys
 {
     public static void main(String[] args) throws Exception
     {
         Properties mapping = new Properties();
         mapping.load(new FileReader("mapping.properties"));
-        
+
         BufferedReader in = new BufferedReader(new FileReader(args[0]));
         Writer out = new FileWriter(args[1]);
-        
+
         String line;
         while ((line = in.readLine()) != null)
         {

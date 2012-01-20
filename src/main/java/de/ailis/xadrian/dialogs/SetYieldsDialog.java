@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
@@ -35,10 +34,9 @@ import de.ailis.xadrian.utils.SwingUtils;
 /**
  * Dialog for setting the yields to use for a specific mine type in the current
  * complex.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SetYieldsDialog extends ModalDialog
 {
     /** Serial version UID */
@@ -64,11 +62,10 @@ public class SetYieldsDialog extends ModalDialog
 
     /**
      * Constructor
-     * 
+     *
      * @param mineType
      *            The mine type
      */
-
     public SetYieldsDialog(final Factory mineType)
     {
         if (mineType == null)
@@ -83,7 +80,6 @@ public class SetYieldsDialog extends ModalDialog
     /**
      * @see de.ailis.xadrian.support.ModalDialog#init()
      */
-
     @Override
     protected void init()
     {
@@ -93,7 +89,6 @@ public class SetYieldsDialog extends ModalDialog
     /**
      * Creates the UI
      */
-
     @Override
     protected void createUI()
     {
@@ -151,7 +146,6 @@ public class SetYieldsDialog extends ModalDialog
     /**
      * Updates the yields
      */
-
     void updateYields()
     {
         final String text = this.inputPane.getText();
@@ -180,7 +174,6 @@ public class SetYieldsDialog extends ModalDialog
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
      */
-
     @Override
     public Result open()
     {
@@ -210,7 +203,6 @@ public class SetYieldsDialog extends ModalDialog
     /**
      * @see de.ailis.xadrian.support.ModalDialog#createDialogActions()
      */
-
     @Override
     protected List<Action> createDialogActions()
     {
@@ -222,11 +214,10 @@ public class SetYieldsDialog extends ModalDialog
 
     /**
      * Sets the yields
-     * 
+     *
      * @param yields
      *            The yields to set
      */
-
     public void setYields(final List<Integer> yields)
     {
         this.yields.clear();
@@ -236,10 +227,9 @@ public class SetYieldsDialog extends ModalDialog
 
     /**
      * Returns the yields.
-     * 
+     *
      * @return The yields
      */
-
     public List<Integer> getYields()
     {
         return this.yields;
@@ -247,11 +237,10 @@ public class SetYieldsDialog extends ModalDialog
 
     /**
      * Sets the sector.
-     * 
+     *
      * @param sector
      *            The sector to set
      */
-
     public void setSector(final Sector sector)
     {
         this.asteroidsInfoPane.setSector(sector);
@@ -259,10 +248,9 @@ public class SetYieldsDialog extends ModalDialog
 
     /**
      * Returns the sector
-     * 
+     *
      * @return The sector
      */
-
     public Sector getSector()
     {
         return this.asteroidsInfoPane.getSector();
@@ -270,13 +258,12 @@ public class SetYieldsDialog extends ModalDialog
 
     /**
      * Tests the component.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
      *             When something goes wrong
      */
-
     public static void main(final String args[]) throws Exception
     {
         SwingUtils.prepareGUI();

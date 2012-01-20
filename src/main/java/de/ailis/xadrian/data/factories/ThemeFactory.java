@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2012 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2012-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.data.factories;
 
 import java.util.Collections;
@@ -28,7 +27,7 @@ public class ThemeFactory
 
     /** The themes (sorted) */
     private final SortedSet<Theme> themes = new TreeSet<Theme>();
-    
+
     /** The singleton instance. */
     private final static ThemeFactory instance = new ThemeFactory();
 
@@ -44,10 +43,10 @@ public class ThemeFactory
             this.themes.add(theme);
         }
     }
-    
+
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance.
      */
     public static ThemeFactory getInstance()

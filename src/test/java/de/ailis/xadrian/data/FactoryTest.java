@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import static org.junit.Assert.assertEquals;
@@ -19,18 +18,16 @@ import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.support.Config;
 
-
 /**
  * Tests the data of some factories.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class FactoryTest
 {
     /** The game. */
     private static Game game;
-    
+
     /** The factory factory */
     private static FactoryFactory factoryFactory;
 
@@ -67,11 +64,9 @@ public class FactoryTest
     /** Suns with 300% */
     private static Sun P300;
 
-
     /**
      * Initializes the test
      */
-
     @BeforeClass
     public static void init()
     {
@@ -87,15 +82,13 @@ public class FactoryTest
         P0 = sunsFactory.getSun(0);
         P100 = sunsFactory.getSun(100);
         P150 = sunsFactory.getSun(150);
-        P300 = sunsFactory.getSun(300);        
+        P300 = sunsFactory.getSun(300);
         Config.getInstance().reset();
     }
-
 
     /**
      * Checks if the Teladi silicon mines are really the cheapest.
      */
-
     @Test
     public void testCheapestSiliconMines()
     {
@@ -106,11 +99,9 @@ public class FactoryTest
             FactorySize.L).getRace());
     }
 
-
     /**
      * Checks if the Split ore mines are really the cheapest.
      */
-
     @Test
     public void testCheapestOreMines()
     {
@@ -121,11 +112,9 @@ public class FactoryTest
             FactorySize.L).getRace());
     }
 
-
     /**
      * Checks if the Boron power plants are really the cheapest.
      */
-
     @Test
     public void testCheapestPowerPlants()
     {
@@ -138,11 +127,9 @@ public class FactoryTest
             FactorySize.XL).getRace());
     }
 
-
     /**
      * Tests the product and resources of the Silicon Mine M with yield 100.
      */
-
     @Test
     public void testSiliconMineM100()
     {
@@ -158,11 +145,9 @@ public class FactoryTest
         assertEquals(7200, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Silicon Mine M with yield 25.
      */
-
     @Test
     public void testSiliconMineM25()
     {
@@ -178,11 +163,9 @@ public class FactoryTest
         assertEquals(1858, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Silicon Mine M with yield 0.
      */
-
     @Test
     public void testSiliconMineM0()
     {
@@ -198,11 +181,9 @@ public class FactoryTest
         assertEquals(72, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Silicon Mine L with yield 100.
      */
-
     @Test
     public void testSiliconMineL100()
     {
@@ -218,11 +199,9 @@ public class FactoryTest
         assertEquals(18000, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Silicon Mine L with yield 25.
      */
-
     @Test
     public void testSiliconMineL25()
     {
@@ -238,11 +217,9 @@ public class FactoryTest
         assertEquals(4645, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Silicon Mine L with yield 0.
      */
-
     @Test
     public void testSiliconMineL0()
     {
@@ -258,11 +235,9 @@ public class FactoryTest
         assertEquals(180, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Ore Mine M with yield 100.
      */
-
     @Test
     public void testOreMineM100()
     {
@@ -278,11 +253,9 @@ public class FactoryTest
         assertEquals(7200, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Ore Mine M with yield 25.
      */
-
     @Test
     public void testOreMineM25()
     {
@@ -298,11 +271,9 @@ public class FactoryTest
         assertEquals(1800, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Ore Mine M with yield 0.
      */
-
     @Test
     public void testOreMineM0()
     {
@@ -318,11 +289,9 @@ public class FactoryTest
         assertEquals(72, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Ore Mine L with yield 100.
      */
-
     @Test
     public void testOreMineL100()
     {
@@ -338,11 +307,9 @@ public class FactoryTest
         assertEquals(18000, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Ore Mine L with yield 25.
      */
-
     @Test
     public void testOreMineL25()
     {
@@ -358,11 +325,9 @@ public class FactoryTest
         assertEquals(4500, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the product and resources of the Ore Mine L with yield 0.
      */
-
     @Test
     public void testOreMineL0()
     {
@@ -378,11 +343,9 @@ public class FactoryTest
         assertEquals(180, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the Solar Power Plant M with various suns.
      */
-
     @Test
     public void testSolarPowerPlantM()
     {
@@ -419,11 +382,9 @@ public class FactoryTest
         assertEquals(173, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the Solar Power Plant L with various suns.
      */
-
     @Test
     public void testSolarPowerPlantL()
     {
@@ -460,11 +421,9 @@ public class FactoryTest
         assertEquals(434, Math.round(resources.iterator().next().getQuantity()));
     }
 
-
     /**
      * Tests the Solar Power Plant XL with various suns.
      */
-
     @Test
     public void testSolarPowerPlantXL()
     {

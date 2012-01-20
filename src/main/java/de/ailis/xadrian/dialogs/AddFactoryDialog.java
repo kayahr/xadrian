@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
@@ -39,10 +38,9 @@ import freemarker.template.Template;
 
 /**
  * Dialog for selecting a complex factory.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class AddFactoryDialog extends ModalDialog implements
     TreeSelectionListener
 {
@@ -64,17 +62,16 @@ public class AddFactoryDialog extends ModalDialog implements
 
     /** The split pane between tree and info panel */
     private JSplitPane splitPane;
-    
+
     /** The game. */
     private final Game game;
 
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game.
      */
-
     public AddFactoryDialog(final Game game)
     {
         this.game = game;
@@ -85,7 +82,6 @@ public class AddFactoryDialog extends ModalDialog implements
     /**
      * Creates the UI
      */
-
     @Override
     protected void createUI()
     {
@@ -151,7 +147,6 @@ public class AddFactoryDialog extends ModalDialog implements
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
      */
-
     @Override
     public Result open()
     {
@@ -172,7 +167,6 @@ public class AddFactoryDialog extends ModalDialog implements
     /**
      * @see javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.TreeSelectionEvent)
      */
-
     @Override
     public void valueChanged(final TreeSelectionEvent e)
     {
@@ -205,10 +199,9 @@ public class AddFactoryDialog extends ModalDialog implements
 
     /**
      * Returns the factories to add.
-     * 
+     *
      * @return The factories to add
      */
-
     public Factory[] getFactories()
     {
         return this.factories;
@@ -217,7 +210,6 @@ public class AddFactoryDialog extends ModalDialog implements
     /**
      * Redraws the freemarker template.
      */
-
     private void redraw()
     {
         final Map<String, Object> model = new HashMap<String, Object>();
@@ -231,11 +223,10 @@ public class AddFactoryDialog extends ModalDialog implements
 
     /**
      * Test main method.
-     * 
+     *
      * @param args
      *            Command line arguments
      */
-
     public static void main(final String args[])
     {
         Game game = GameFactory.getInstance().getGame("x3tc");

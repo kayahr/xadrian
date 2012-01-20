@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.support;
 
 import java.awt.Component;
@@ -22,10 +21,9 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * The configuration
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public final class Config
 {
     /** Config key for ignored races */
@@ -64,7 +62,6 @@ public final class Config
     /**
      * Private constructor to prevent instantiation
      */
-
     private Config()
     {
         load();
@@ -72,10 +69,9 @@ public final class Config
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance
      */
-
     public static Config getInstance()
     {
         return instance;
@@ -84,7 +80,6 @@ public final class Config
     /**
      * Loads the configuration.
      */
-
     private void load()
     {
         final Preferences prefs = Preferences
@@ -104,7 +99,6 @@ public final class Config
     /**
      * Resets the configuration.
      */
-
     public void reset()
     {
         this.ignoredRaces.clear();
@@ -116,7 +110,6 @@ public final class Config
     /**
      * Saves the configuration.
      */
-
     public void save()
     {
         final Preferences prefs = Preferences
@@ -148,12 +141,11 @@ public final class Config
 
     /**
      * Returns true if the specified race is ignored.
-     * 
+     *
      * @param race
      *            The race to check
      * @return True if the specified race is ignored
      */
-
     public boolean isRaceIgnored(final Race race)
     {
         return this.ignoredRaces.contains(race.getId());
@@ -161,10 +153,9 @@ public final class Config
 
     /**
      * Checks if the factory resources should be displayed in the complex table.
-     * 
+     *
      * @return True if factory resources should be displayed, false if not
      */
-
     public boolean isShowFactoryResources()
     {
         return this.showFactoryResources;
@@ -172,11 +163,10 @@ public final class Config
 
     /**
      * Enables or disables the display of factory resources in complex table.
-     * 
+     *
      * @param showFactoryResources
      *            True if resources should be displayed, false if not
      */
-
     public void setShowFactoryResources(final boolean showFactoryResources)
     {
         this.showFactoryResources = showFactoryResources;
@@ -184,13 +174,12 @@ public final class Config
 
     /**
      * Sets the ignore status of a race.
-     * 
+     *
      * @param race
      *            The race.
      * @param ignored
      *            If the race should be ignored or not
      */
-
     public void setRaceIgnored(Race race, final boolean ignored)
     {
         // Do nothing if state is not changed
@@ -204,10 +193,9 @@ public final class Config
 
     /**
      * Returns the last file chooser path.
-     * 
+     *
      * @return The last file chooser path
      */
-
     public File getLastFileChooserPath()
     {
         return this.lastFileChooserPath;
@@ -215,11 +203,10 @@ public final class Config
 
     /**
      * Sets the last file chooser path.
-     * 
+     *
      * @param lastFileChooserPath
      *            The last file chooser path to set
      */
-
     public void setLastFileChooserPath(final File lastFileChooserPath)
     {
         this.lastFileChooserPath = lastFileChooserPath;
@@ -227,11 +214,10 @@ public final class Config
 
     /**
      * Saves the window preferences.
-     * 
+     *
      * @param window
      *            The window
      */
-
     public static void saveWindowState(final Window window)
     {
         final Preferences prefs = Preferences.userNodeForPackage(Main.class);
@@ -254,11 +240,10 @@ public final class Config
 
     /**
      * Restores the window state.
-     * 
+     *
      * @param window
      *            The window
      */
-
     public static void restoreWindowState(final Window window)
     {
         final Preferences prefs = Preferences.userNodeForPackage(Main.class);
@@ -277,11 +262,10 @@ public final class Config
 
     /**
      * Saves the split pane preferences.
-     * 
+     *
      * @param splitPane
      *            The split pane
      */
-
     public static void saveSplitPaneState(final JSplitPane splitPane)
     {
         final Preferences prefs = Preferences.userNodeForPackage(Main.class);
@@ -291,11 +275,10 @@ public final class Config
 
     /**
      * Restores the split pane preferences.
-     * 
+     *
      * @param splitPane
      *            The split pane
      */
-
     public static void restoreSplitPaneState(final JSplitPane splitPane)
     {
         final Preferences prefs = Preferences.userNodeForPackage(Main.class);
@@ -306,14 +289,13 @@ public final class Config
     /**
      * Returns the preferences name for the specified component and for the
      * specified key.
-     * 
+     *
      * @param component
      *            The component
      * @param key
      *            The key
      * @return The preferences name.
      */
-
     private static String getPrefsName(final Component component,
         final String key)
     {
@@ -327,11 +309,10 @@ public final class Config
 
     /**
      * Sets the player sector.
-     * 
+     *
      * @param playerSector
      *            The player sector to set
      */
-
     public void setPlayerSector(final int playerSector)
     {
         this.playerSector = playerSector;
@@ -339,10 +320,9 @@ public final class Config
 
     /**
      * Returns the index of the selected player sector.
-     * 
+     *
      * @return The player sector index
      */
-
     public int getPlayerSector()
     {
         return this.playerSector;
@@ -350,7 +330,7 @@ public final class Config
 
     /**
      * Returns the theme.
-     * 
+     *
      * @return The theme.
      */
     public String getTheme()
@@ -360,7 +340,7 @@ public final class Config
 
     /**
      * Sets the theme.
-     * 
+     *
      * @param theme
      *            The theme to set. Null for system theme.
      */

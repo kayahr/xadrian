@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.components;
 
 import java.awt.BasicStroke;
@@ -30,21 +29,18 @@ import de.ailis.xadrian.listeners.SectorSelectorStateListener;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.TextRenderer;
 
-
 /**
  * Component which displays the sectors in a graphical way and let the user
  * select one.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SectorSelector extends JComponent implements MouseMotionListener,
     MouseListener
 {
     /**
      * View mode
      */
-
     public enum Mode
     {
         /** Political view mode */
@@ -68,7 +64,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         /**
          * @see java.lang.Enum#toString()
          */
-
         @Override
         public String toString()
         {
@@ -76,7 +71,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
                 + name().toLowerCase());
         }
     }
-
 
     /** Serial version UID */
     private static final long serialVersionUID = 42133575643122689L;
@@ -86,7 +80,7 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
 
     /** The scale factor of the map */
     private final float scale;
-    
+
     /** The game. */
     private final Game game;
 
@@ -102,7 +96,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
     /** The view mode */
     private Mode mode = Mode.POLITICAL;
 
-
     /**
      * Constructor
      *
@@ -113,7 +106,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
      * @param maxH
      *            The maximum height
      */
-
     public SectorSelector(final Game game, final int maxW, final int maxH)
     {
         this.game = game;
@@ -147,11 +139,9 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         addMouseListener(this);
     }
 
-
     /**
      * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
      */
-
     @Override
     public void paintComponent(final Graphics graphics)
     {
@@ -238,7 +228,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
             g.drawRect(sx * 100 - 40, sy * 100 - 40, 80, 80);
         }
 
-
         if (this.selectedSector != null)
         {
             final int sx = this.selectedSector.getX();
@@ -319,7 +308,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         graphics.drawImage(this.buffer, 0, 0, null);
     }
 
-
     /**
      * Outputs the yield info.
      *
@@ -330,7 +318,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
      * @param wareId
      *            The id of the asteroid ware
      */
-
     private void addYieldInfo(final TextRenderer renderer, final Sector sector,
         final String wareId)
     {
@@ -365,22 +352,18 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         renderer.addText(text.substring(0, text.length() - 2));
     }
 
-
     /**
      * @see java.awt.event.MouseMotionListener#mouseDragged(MouseEvent)
      */
-
     @Override
     public void mouseDragged(final MouseEvent e)
     {
         // Ignored
     }
 
-
     /**
      * @see java.awt.event.MouseMotionListener#mouseMoved(MouseEvent)
      */
-
     @Override
     public void mouseMoved(final MouseEvent e)
     {
@@ -396,61 +379,50 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         }
     }
 
-
     /**
      * @see MouseListener#mouseClicked(MouseEvent)
      */
-
     @Override
     public void mouseClicked(final MouseEvent e)
     {
         // Not used
     }
 
-
     /**
      * @see MouseListener#mouseEntered(MouseEvent)
      */
-
     @Override
     public void mouseEntered(final MouseEvent e)
     {
         // Not used
     }
 
-
     /**
      * @see MouseListener#mouseExited(MouseEvent)
      */
-
     @Override
     public void mouseExited(final MouseEvent e)
     {
         // Not used
     }
 
-
     /**
      * @see MouseListener#mousePressed(MouseEvent)
      */
-
     @Override
     public void mousePressed(final MouseEvent e)
     {
         setSelected(this.overSector);
     }
 
-
     /**
      * @see MouseListener#mouseReleased(MouseEvent)
      */
-
     @Override
     public void mouseReleased(final MouseEvent e)
     {
         // Not used
     }
-
 
     /**
      * Sets the filter.
@@ -458,14 +430,12 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
      * @param filter
      *            The filter to set
      */
-
     public void setFilter(final String filter)
     {
         this.filter = filter;
         repaint();
         fireSectorSelectorState();
     }
-
 
     /**
      * Adds alpha to the specified color.
@@ -476,13 +446,11 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
      *            The alpha value
      * @return The color with added alpha
      */
-
     private Color getAlphaColor(final Color color, final int alpha)
     {
         return new Color(color.getRed(), color.getGreen(), color.getBlue(),
             alpha);
     }
-
 
     /**
      * Sets the view mode.
@@ -490,7 +458,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
      * @param mode
      *            The view mode to set.
      */
-
     public void setMode(final Mode mode)
     {
         this.mode = mode;
@@ -498,30 +465,25 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         fireSectorSelectorState();
     }
 
-
     /**
      * Returns the current view mode.
      *
      * @return The view mode
      */
-
     public Mode getMode()
     {
         return this.mode;
     }
-
 
     /**
      * Returns the selected sector.
      *
      * @return The selected sector
      */
-
     public Sector getSelected()
     {
         return this.selectedSector;
     }
-
 
     /**
      * Sets the selected sector. null deselectes the currently selected sector.
@@ -529,7 +491,6 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
      * @param sector
      *            The sector to select
      */
-
     public void setSelected(final Sector sector)
     {
         if ((sector != null && !sector.equals(this.selectedSector))
@@ -541,20 +502,17 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
         }
     }
 
-
     /**
      * Adds a sector selector state listener.
      *
      * @param listener
      *            The listener to add
      */
-
     public void addSectorSelectorStateListener(
         final SectorSelectorStateListener listener)
     {
         this.listenerList.add(SectorSelectorStateListener.class, listener);
     }
-
 
     /**
      * Removes a sector selector state listener.
@@ -562,18 +520,15 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
      * @param listener
      *            The listener to remove
      */
-
     public void removeSectorSelectorStateListener(
         final SectorSelectorStateListener listener)
     {
         this.listenerList.remove(SectorSelectorStateListener.class, listener);
     }
 
-
     /**
      * Fire the sector selector state event.
      */
-
     private void fireSectorSelectorState()
     {
         final Object[] listeners = this.listenerList.getListenerList();

@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.utils;
 
 import java.io.File;
@@ -13,28 +12,24 @@ import org.dom4j.Document;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
-
 /**
  * Static XML utility methods.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public final class XmlUtils
 {
     /**
      * Private constructor to prevent instantiation
      */
-
     private XmlUtils()
     {
         // Empty
     }
 
-
     /**
      * Writes the specified document to the specified file.
-     * 
+     *
      * @param document
      *            The document to write
      * @param file
@@ -42,7 +37,6 @@ public final class XmlUtils
      * @throws IOException
      *             If file could not be written
      */
-
     public static void write(final Document document, final File file)
         throws IOException
     {

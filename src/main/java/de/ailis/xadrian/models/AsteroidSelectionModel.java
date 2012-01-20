@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.models;
 
 import java.io.Serializable;
@@ -18,13 +17,11 @@ import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.interfaces.SectorProvider;
 import de.ailis.xadrian.listeners.AsteroidSelectionModelListener;
 
-
 /**
  * AsteroidSelectionModel
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class AsteroidSelectionModel implements Serializable, SectorProvider
 {
     /** Serial version UID */
@@ -48,14 +45,12 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
     /** The focused asteroid */
     private Asteroid focused;
 
-
     /**
      * Sets the sector.
      *
      * @param sector
      *            The sector to set
      */
-
     @Override
     public void setSector(final Sector sector)
     {
@@ -72,14 +67,12 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
         }
     }
 
-
     /**
      * Sets the ware for which asteroids are selected.
      *
      * @param ware
      *            The ware
      */
-
     public void setWare(final Ware ware)
     {
         if (ware != this.ware)
@@ -88,23 +81,19 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
         }
     }
 
-
     /**
      * Returns the ware for which asteroids are selected.
      *
      * @return The ware
      */
-
     public Ware getWare()
     {
         return this.ware;
     }
 
-
     /**
      * Backup the selected asteroids into the rest yield list.
      */
-
     private void backupYields()
     {
         for (final Asteroid asteroid: this.selection)
@@ -114,11 +103,9 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
         }
     }
 
-
     /**
      * Restores selected asteroids from the rest yield list.
      */
-
     private void restoreYields()
     {
         // Do nothing if no sector is set
@@ -141,19 +128,16 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
         }
     }
 
-
     /**
      * Returns the sector.
      *
      * @return The sector
      */
-
     @Override
     public Sector getSector()
     {
         return this.sector;
     }
-
 
     /**
      * Focuses the specified asteroid. Specify null to focus nothing.
@@ -161,7 +145,6 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
      * @param asteroid
      *            The asteroid to focus. Null means focusing nothing
      */
-
     public void focus(final Asteroid asteroid)
     {
         if (asteroid != this.focused)
@@ -175,18 +158,15 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
         }
     }
 
-
     /**
      * Returns the focused asteroid. Maybe null if no asteroid is focused.
      *
      * @return The focused asteroid or null if none
      */
-
     public Asteroid getFocused()
     {
         return this.focused;
     }
-
 
     /**
      * Checks if the specified asteroid is selected.
@@ -195,12 +175,10 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
      *            The asteroid to check
      * @return True if asteroid is selected, false if not
      */
-
     public boolean isSelected(final Asteroid asteroid)
     {
         return this.selection.contains(asteroid);
     }
-
 
     /**
      * Selects the specified asteroid.
@@ -208,7 +186,6 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
      * @param asteroid
      *            The asteroid to select
      */
-
     public void select(final Asteroid asteroid)
     {
         if (!isSelected(asteroid))
@@ -218,14 +195,12 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
         }
     }
 
-
     /**
      * Deselects the specified asteroid.
      *
      * @param asteroid
      *            The asteroid to deselect
      */
-
     public void deselect(final Asteroid asteroid)
     {
         if (isSelected(asteroid))
@@ -235,23 +210,19 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
         }
     }
 
-
     /**
      * Returns the list with selected asteroids.
      *
      * @return The list with selected asteroids
      */
-
     public List<Asteroid> getSelection()
     {
         return Collections.unmodifiableList(this.selection);
     }
 
-
     /**
      * Fires the sectorChanged event.
      */
-
     protected void fireSectorChanged()
     {
         final Object[] listeners = this.listenerList.getListenerList();
@@ -261,11 +232,9 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
                     .sectorChanged(this);
     }
 
-
     /**
      * Fires the selectionChanged event.
      */
-
     protected void fireSelectionChanged()
     {
         final Object[] listeners = this.listenerList.getListenerList();
@@ -275,11 +244,9 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
                     .selectionChanged(this);
     }
 
-
     /**
      * Fires the selectionChanged event.
      */
-
     protected void fireFocusChanged()
     {
         final Object[] listeners = this.listenerList.getListenerList();
@@ -289,19 +256,16 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
                     .focusChanged(this);
     }
 
-
     /**
      * Adds a new model listener.
      *
      * @param listener
      *            The listener to add
      */
-
     public void addModelListener(final AsteroidSelectionModelListener listener)
     {
         this.listenerList.add(AsteroidSelectionModelListener.class, listener);
     }
-
 
     /**
      * Removes a model listener.
@@ -309,7 +273,6 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
      * @param listener
      *            The listener to remove
      */
-
     public void removeSectorListener(
         final AsteroidSelectionModelListener listener)
     {
@@ -317,28 +280,23 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
             listener);
     }
 
-
     /**
      * @see de.ailis.xadrian.interfaces.SectorProvider#canChangeSector()
      */
-
     @Override
     public boolean canChangeSector()
     {
         return true;
     }
 
-
     /**
      * Toggles the selection of the currently focused asteroid.
      */
-
     public void toggleFocusedSelection()
     {
         if (this.focused == null) return;
         toggleSelection(this.focused);
     }
-
 
     /**
      * Toggles the selection of the specified asteroid.
@@ -346,7 +304,6 @@ public class AsteroidSelectionModel implements Serializable, SectorProvider
      * @param asteroid
      *            The asteroid to toggle the selection for
      */
-
     public void toggleSelection(final Asteroid asteroid)
     {
         if (isSelected(asteroid))

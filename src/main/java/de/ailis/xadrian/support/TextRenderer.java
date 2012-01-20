@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.support;
 
 import java.awt.Color;
@@ -13,13 +12,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Text Renderer
- * 
+ *
  * @author Klaus Reimer (k@ailis.de
  */
-
 public class TextRenderer
 {
     /** The text lines */
@@ -34,40 +31,34 @@ public class TextRenderer
     /** The current color */
     private Color currentColor = Color.BLACK;
 
-
     /**
      * Sets the current font.
-     * 
+     *
      * @param font
      *            The current font to set
      */
-
     public void setFont(final Font font)
     {
         this.currentFont = font;
     }
 
-
     /**
      * Sets the current color.
-     * 
+     *
      * @param color
      *            The current color to set
      */
-
     public void setColor(final Color color)
     {
         this.currentColor = color;
     }
 
-
     /**
      * Adds a new text.
-     * 
+     *
      * @param text
      *            The text to add
      */
-
     public void addText(final String text)
     {
         final TextPart part = new TextPart(this.currentFont, this.currentColor,
@@ -80,21 +71,18 @@ public class TextRenderer
         this.currentLine.add(part);
     }
 
-
     /**
      * Inserts a line break
      */
-
     public void newLine()
     {
         this.currentLine = new TextLine();
         this.lines.add(this.currentLine);
     }
 
-
     /**
      * Renders the text
-     * 
+     *
      * @param g
      *            The graphics context
      * @param x
@@ -102,7 +90,6 @@ public class TextRenderer
      * @param y
      *            The y position
      */
-
     public void render(final Graphics2D g, final double x, final double y)
     {
         double curY = y;
@@ -113,15 +100,13 @@ public class TextRenderer
         }
     }
 
-
     /**
      * Returns the text bounds.
-     * 
+     *
      * @param context
      *            The font render context
      * @return The text bounds
      */
-
     public Rectangle2D getBounds(final FontRenderContext context)
     {
         double y = 0;
@@ -150,40 +135,34 @@ public class TextRenderer
         return new Rectangle2D.Double(x, y, width, height);
     }
 
-
     /**
      * A single text line.
-     * 
+     *
      * @author Klaus Reimer (k@ailis.de)
      */
-
     class TextLine
     {
         /** The text parts in this line */
         private final List<TextPart> parts = new ArrayList<TextPart>();
 
-
         /**
          * Adds a text part.
-         * 
+         *
          * @param part
          *            The text part to add
          */
-
         public void add(final TextPart part)
         {
             this.parts.add(part);
         }
 
-
         /**
          * Returns the text bounds.
-         * 
+         *
          * @param context
          *            The font render context
          * @return The text bounds
          */
-
         public Rectangle2D getBounds(final FontRenderContext context)
         {
             double y = 0;
@@ -212,10 +191,9 @@ public class TextRenderer
             return new Rectangle2D.Double(x, y, width, height);
         }
 
-
         /**
          * Renders the text line
-         * 
+         *
          * @param g
          *            The graphics context
          * @param x
@@ -223,7 +201,6 @@ public class TextRenderer
          * @param y
          *            The y position
          */
-
         public void render(final Graphics2D g, final double x, final double y)
         {
             double curX = x;
@@ -235,13 +212,11 @@ public class TextRenderer
         }
     }
 
-
     /**
      * A single text part in a line.
-     * 
+     *
      * @author Klaus Reimer (k@ailis.de)
      */
-
     class TextPart
     {
         /** The font */
@@ -253,10 +228,9 @@ public class TextRenderer
         /** The text */
         private final String text;
 
-
         /**
          * Creates a new text part.
-         * 
+         *
          * @param font
          *            The font
          * @param color
@@ -264,7 +238,6 @@ public class TextRenderer
          * @param text
          *            The text
          */
-
         public TextPart(final Font font, final Color color, final String text)
         {
             this.font = font;
@@ -272,24 +245,21 @@ public class TextRenderer
             this.color = color;
         }
 
-
         /**
          * Returns the text bounds.
-         * 
+         *
          * @param context
          *            The font render context
          * @return The text bounds
          */
-
         public Rectangle2D getBounds(final FontRenderContext context)
         {
             return this.font.getStringBounds(this.text, context);
         }
 
-
         /**
          * Renders the text part
-         * 
+         *
          * @param g
          *            The graphics context
          * @param x
@@ -297,7 +267,6 @@ public class TextRenderer
          * @param y
          *            The y position
          */
-
         public void render(final Graphics2D g, final double x, final double y)
         {
             final Rectangle2D bounds = getBounds(g.getFontRenderContext());

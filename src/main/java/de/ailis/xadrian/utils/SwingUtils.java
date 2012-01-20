@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.utils;
 
 import java.awt.Dialog;
@@ -30,24 +29,20 @@ import javax.swing.text.JTextComponent;
 
 import de.ailis.xadrian.support.Config;
 
-
 /**
  * Static utility methods for common Swing tasks.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public final class SwingUtils
 {
     /**
      * Private constructor to prevent instantiation
      */
-
     private SwingUtils()
     {
         // Empty
     }
-
 
     /**
      * Gives a component a popup menu
@@ -57,7 +52,6 @@ public final class SwingUtils
      * @param popup
      *            The popup menu
      */
-
     public static void setPopupMenu(final JComponent component,
         final JPopupMenu popup)
     {
@@ -83,14 +77,12 @@ public final class SwingUtils
         });
     }
 
-
     /**
      * Installs a workaround for bug #4699955 in a JSpinner.
      *
      * @param spinner
      *            The spinner to fix
      */
-
     public static void installSpinnerBugWorkaround(final JSpinner spinner)
     {
         ((DefaultEditor) spinner.getEditor()).getTextField().addFocusListener(
@@ -137,7 +129,6 @@ public final class SwingUtils
         });
     }
 
-
     /**
      * Checks if the specified window (may it be a dialog or a frame) is
      * resizable.
@@ -146,7 +137,6 @@ public final class SwingUtils
      *            The window
      * @return True if window is resizable, false if not
      */
-
     public static boolean isResizable(final Window window)
     {
         if (window instanceof Dialog) return ((Dialog) window).isResizable();
@@ -154,19 +144,16 @@ public final class SwingUtils
         return false;
     }
 
-
     /**
      * Prepares the locale. The language can be overridden with the environment
      * variable XADRIAN_LANG. Set it to "de" to enforce German language for
      * example. The default is the system locale.
      */
-
     public static void prepareLocale()
     {
         final String language = System.getenv().get("XADRIAN_LANG");
         if (language != null) Locale.setDefault(new Locale(language));
     }
-
 
     /**
      * Prepares the theme. The theme can be overridden with the environment
@@ -175,7 +162,6 @@ public final class SwingUtils
      * @throws Exception
      *            When theme could not be prepared
      */
-
     public static void prepareTheme() throws Exception
     {
         String theme = Config.getInstance().getTheme();
@@ -189,9 +175,9 @@ public final class SwingUtils
             catch (Exception e)
             {
                 // Fall back to system LaF
-            }            
+            }
         }
-        
+
         try
         {
             UIManager
@@ -203,20 +189,17 @@ public final class SwingUtils
         }
     }
 
-
     /**
      * Prepares the Swing GUI.
      *
      * @throws Exception
      *             When GUI could not be prepared
      */
-
     public static void prepareGUI() throws Exception
     {
         prepareLocale();
         prepareTheme();
     }
-
 
     /**
      * Runs the specified component in an empty test frame. This method is used
@@ -227,7 +210,6 @@ public final class SwingUtils
      * @throws Exception
      *            When something goes wrong
      */
-
     public static void testComponent(final JComponent component)
         throws Exception
     {
@@ -239,7 +221,6 @@ public final class SwingUtils
         frame.setVisible(true);
     }
 
-
     /**
      * Sets the preferred height of the specified component.
      *
@@ -248,14 +229,12 @@ public final class SwingUtils
      * @param height
      *            The preferred height
      */
-
     public static void setPreferredHeight(final JComponent component,
         final int height)
     {
         component.setPreferredSize(new Dimension(
             component.getPreferredSize().width, height));
     }
-
 
     /**
      * Sets the preferred width of the specified component.
@@ -265,14 +244,12 @@ public final class SwingUtils
      * @param width
      *            The preferred width
      */
-
     public static void setPreferredWidth(final JComponent component,
         final int width)
     {
         component.setPreferredSize(new Dimension(width, component
             .getPreferredSize().height));
     }
-
 
     /**
      * Adds a component action.
@@ -282,7 +259,6 @@ public final class SwingUtils
      * @param action
      *            The action to add
      */
-
     public static void addComponentAction(final JComponent component,
         final Action action)
     {

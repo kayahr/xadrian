@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
@@ -25,37 +24,33 @@ import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 
-
 /**
  * The about frame.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class AboutDialog extends ModalDialog
 {
     /** Serial version UID */
     private static final long serialVersionUID = 4157034476842995945L;
-    
+
     /** The singleton instance. */
     private static final AboutDialog instance = new AboutDialog();
-    
-    
+
     /**
      * Constructor
      */
-    
+
     private AboutDialog()
     {
         init("about", Result.OK);
         SplashFrame.getInstance().advanceProgress();
     }
-    
 
     /**
      * @see de.ailis.xadrian.support.ModalDialog#createUI()
      */
-    
+
     @Override
     protected void createUI()
     {
@@ -87,7 +82,7 @@ public class AboutDialog extends ModalDialog
         final JPanel contentPanel = new JPanel();
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         contentPanel.setLayout(new GridBagLayout());
-        final GridBagConstraints c = new GridBagConstraints();        
+        final GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridheight = 3;
         c.anchor = GridBagConstraints.WEST;
@@ -98,7 +93,7 @@ public class AboutDialog extends ModalDialog
         c.gridx = 1;
         c.gridy = 0;
         c.weighty = 1;
-        contentPanel.add(titleLabel, c);        
+        contentPanel.add(titleLabel, c);
         c.gridy = 1;
         contentPanel.add(copyrightLabel, c);
         c.gridx = 2;
@@ -113,7 +108,7 @@ public class AboutDialog extends ModalDialog
         c.insets.top = 10;
         c.gridwidth = 3;
         contentPanel.add(licenseScrollPane, c);
-        
+
         add(contentPanel, BorderLayout.CENTER);
     }
 

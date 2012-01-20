@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.data.factories;
 
 import java.net.URL;
@@ -33,18 +32,16 @@ import de.ailis.xadrian.exceptions.DataException;
 import de.ailis.xadrian.frames.SplashFrame;
 import de.ailis.xadrian.support.Config;
 
-
 /**
  * Factory for Factory objects.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class FactoryFactory
 {
     /** The game for which this factory is responsible. */
     private final Game game;
-    
+
     /** The factory map (for quick ID navigation) */
     private final Map<String, Factory> factoryMap = new HashMap<String, Factory>();
 
@@ -56,7 +53,7 @@ public class FactoryFactory
 
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game for which this factory is responsible.
      */
@@ -67,11 +64,9 @@ public class FactoryFactory
         SplashFrame.getInstance().advanceProgress();
     }
 
-    
     /**
      * Reads the data from the XML file.
      */
-
     private void readData()
     {
         String gameId = this.game.getId();
@@ -164,12 +159,10 @@ public class FactoryFactory
      *
      * @return The factories
      */
-
     public SortedSet<Factory> getFactories()
     {
         return Collections.unmodifiableSortedSet(this.factories);
     }
-
 
     /**
      * Returns the factory with the specified id or null if not found.
@@ -178,12 +171,10 @@ public class FactoryFactory
      *            The factory id
      * @return The factory or null if not found
      */
-
     public Factory getFactory(final String id)
     {
         return this.factoryMap.get(id);
     }
-
 
     /**
      * Returns the factories of the specified race.
@@ -192,7 +183,6 @@ public class FactoryFactory
      *            The race
      * @return The factories of the specified race
      */
-
     public List<Factory> getFactories(final Race race)
     {
         final List<Factory> factories = new ArrayList<Factory>();
@@ -203,7 +193,6 @@ public class FactoryFactory
         return factories;
     }
 
-
     /**
      * Returns the factories which produces the specified ware. This method only
      * uses factories which races are not set to be ignored.
@@ -212,7 +201,6 @@ public class FactoryFactory
      *            The ware
      * @return The factories which products the specified ware
      */
-
     public List<Factory> getFactories(final Ware ware)
     {
         final List<Factory> factories = new ArrayList<Factory>();
@@ -226,7 +214,6 @@ public class FactoryFactory
         }
         return factories;
     }
-
 
     /**
      * Returns the factory which produces the specified ware and have the
@@ -242,7 +229,6 @@ public class FactoryFactory
      *            The owner race
      * @return The matching factory or null if none matched
      */
-
     public Factory getFactory(final Ware ware, final FactorySize size,
         final Race race)
     {
@@ -252,7 +238,6 @@ public class FactoryFactory
         }
         return null;
     }
-
 
     /**
      * Returns the factories which produces the specified ware and have the
@@ -265,7 +250,6 @@ public class FactoryFactory
      *            The factory size
      * @return The matching factories
      */
-
     public List<Factory> getFactories(final Ware ware, final FactorySize size)
     {
         final List<Factory> factories = new ArrayList<Factory>();
@@ -280,7 +264,6 @@ public class FactoryFactory
         return factories;
     }
 
-
     /**
      * Returns the available sizes of factories producing the specified ware.
      * This method only uses factories which races are not set to be ignored.
@@ -289,12 +272,10 @@ public class FactoryFactory
      *            The product id ware
      * @return The set with available factory sizes
      */
-
     public SortedSet<FactorySize> getFactorySizes(final Ware ware)
     {
         return getFactorySizes(ware, null);
     }
-
 
     /**
      * Returns the available sizes of factories producing the specified ware and
@@ -307,7 +288,6 @@ public class FactoryFactory
      *            Optional race to filter for. Maybe null
      * @return The set with available factory sizes
      */
-
     public SortedSet<FactorySize> getFactorySizes(final Ware ware,
         final Race race)
     {
@@ -327,7 +307,6 @@ public class FactoryFactory
         return sizes;
     }
 
-
     /**
      * Returns the cheapest factory of the given size which produces the
      * specified ware. Returns null if none found. This method only uses
@@ -339,7 +318,6 @@ public class FactoryFactory
      *            The factory size
      * @return The cheapest matching factory or null if none found.
      */
-
     public Factory getCheapestFactory(final Ware ware, final FactorySize size)
     {
         Factory cheapestFactory = null;
@@ -360,7 +338,6 @@ public class FactoryFactory
         return cheapestFactory;
     }
 
-
     /**
      * Checks if the specified race has at least one factory which produces the
      * specified ware. If the race is ignored then this method always returns
@@ -372,7 +349,6 @@ public class FactoryFactory
      *            The ware
      * @return True if the race has matching factories, false if not
      */
-
     public boolean hasFactories(final Race race, final Ware ware)
     {
         // If race is ignored then it can't have matching factories

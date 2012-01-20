@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.resources;
 
 import java.net.URL;
@@ -10,18 +9,16 @@ import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-
 /**
  * The icons used in this application.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de
  */
-
 public final class Icons
 {
     /** The logo icon (Used in about dialog) */
     public static final Icon LOGO = createIcon("xadrian-64");
-    
+
     /** The EXIT icon */
     public static final Icon EXIT = createIcon("exit");
 
@@ -85,25 +82,21 @@ public final class Icons
     /** The PREFS icon */
     public static final Icon PREFS = createIcon("prefs");
 
-
     /**
      * Private constructor to prevent instantiation.
      */
-
     private Icons()
     {
         // Empty
     }
 
-
     /**
      * Creates the icon for the specified filename and returns it.
-     * 
+     *
      * @param filename
      *            The icon name (just the filename without extension)
      * @return The icon
      */
-
     private static ImageIcon createIcon(final String filename)
     {
         final URL url = Icons.class.getResource("/de/ailis/xadrian/images/"

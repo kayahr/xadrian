@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.data.factories;
 
 import java.awt.Color;
@@ -26,18 +25,16 @@ import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.exceptions.DataException;
 import de.ailis.xadrian.frames.SplashFrame;
 
-
 /**
  * Factory for Race objects.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class RaceFactory
 {
     /** The game for which this factory is responsible. */
     private final Game game;
-    
+
     /** The race map (for quick ID navigation) */
     private final Map<String, Race> raceMap = new HashMap<String, Race>();
 
@@ -46,7 +43,7 @@ public class RaceFactory
 
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game for which this factory is responsible.
      */
@@ -57,11 +54,9 @@ public class RaceFactory
         SplashFrame.getInstance().advanceProgress();
     }
 
-
     /**
      * Reads the data from the XML file.
      */
-
     private void readData()
     {
         String gameId = this.game.getId();
@@ -90,25 +85,21 @@ public class RaceFactory
         }
     }
 
-
     /**
      * Returns all races.
      *
      * @return The races
      */
-
     public SortedSet<Race> getRaces()
     {
         return Collections.unmodifiableSortedSet(this.races);
     }
-
 
     /**
      * Returns all races which have buyable factories.
      *
      * @return The races which habe buyable factories.
      */
-
     public Collection<Race> getManufacturerRaces()
     {
         final Collection<Race> races = new ArrayList<Race>();
@@ -120,7 +111,6 @@ public class RaceFactory
         return races;
     }
 
-
     /**
      * Returns the race with the specified id or null if not found.
      *
@@ -128,19 +118,16 @@ public class RaceFactory
      *            The race id
      * @return The race or null if not found
      */
-
     public Race getRace(final String id)
     {
         return this.raceMap.get(id);
     }
-
 
     /**
      * Returns the number of races.
      *
      * @return The number of races
      */
-
     public int countRaces()
     {
         return this.races.size();

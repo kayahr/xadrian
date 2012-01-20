@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.actions;
 
 import java.awt.Component;
@@ -15,19 +14,16 @@ import de.ailis.xadrian.listeners.MainStateListener;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.FrameAction;
 
-
 /**
  * Saves the current file.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SaveAction extends FrameAction<MainFrame> implements
     MainStateListener
 {
     /** Serial version UID */
     private static final long serialVersionUID = -4809645810085531314L;
-
 
     /**
      * Constructor
@@ -35,7 +31,6 @@ public class SaveAction extends FrameAction<MainFrame> implements
      * @param frame
      *            The frame
      */
-
     public SaveAction(final MainFrame frame)
     {
         super(frame, "save", Icons.SAVE);
@@ -43,11 +38,9 @@ public class SaveAction extends FrameAction<MainFrame> implements
         setEnabled(false);
     }
 
-
     /**
      * @see ActionListener#actionPerformed(ActionEvent)
      */
-
     @Override
     public void actionPerformed(final ActionEvent e)
     {
@@ -56,11 +49,9 @@ public class SaveAction extends FrameAction<MainFrame> implements
             ((ComplexEditor) component).save();
     }
 
-
     /**
      * @see MainStateListener#mainStateChanged(MainFrame)
      */
-
     @Override
     public void mainStateChanged(final MainFrame sender)
     {

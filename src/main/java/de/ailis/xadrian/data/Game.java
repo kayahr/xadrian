@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2012 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2012-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -22,13 +21,11 @@ import de.ailis.xadrian.dialogs.ChangeSunsDialog;
 import de.ailis.xadrian.dialogs.SelectSectorDialog;
 import de.ailis.xadrian.support.I18N;
 
-
 /**
  * A game.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class Game implements Serializable, Comparable<Game>
 {
     /** Serial version UID */
@@ -39,19 +36,19 @@ public class Game implements Serializable, Comparable<Game>
 
     /** The message id */
     private final String messageId;
-    
+
     /** The sector factory. */
     private final SectorFactory sectorFactory;
-    
+
     /** The factory factory. */
     private final FactoryFactory factoryFactory;
-    
+
     /** The race factory. */
     private final RaceFactory raceFactory;
-    
+
     /** The station factory. */
     private final StationFactory stationFactory;
-    
+
     /** The sun factory. */
     private final SunFactory sunFactory;
 
@@ -72,7 +69,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Constructor.
-     * 
+     *
      * @param id
      *            The race id
      */
@@ -86,7 +83,7 @@ public class Game implements Serializable, Comparable<Game>
         this.sectorFactory = new SectorFactory(this);
         this.stationFactory = new StationFactory(this);
         this.factoryFactory = new FactoryFactory(this);
-        
+
         this.addFactoryDialog = new AddFactoryDialog(this);
         this.selectSectorDialog = new SelectSectorDialog(this);
         this.changeSunsDialog = new ChangeSunsDialog(this);
@@ -95,7 +92,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Return the id.
-     * 
+     *
      * @return The id
      */
     public String getId()
@@ -105,7 +102,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the name.
-     * 
+     *
      * @return The name
      */
     public String getName()
@@ -152,10 +149,10 @@ public class Game implements Serializable, Comparable<Game>
     {
         return getName();
     }
-    
+
     /**
      * Returns the sector factory for this game.
-     * 
+     *
      * @return The sector factory for this game.
      */
     public SectorFactory getSectorFactory()
@@ -167,7 +164,7 @@ public class Game implements Serializable, Comparable<Game>
      * Returns the factory factory for this game.
      *
      * @return The factory factory for this game.
-     */   
+     */
     public FactoryFactory getFactoryFactory()
     {
         return this.factoryFactory;
@@ -177,7 +174,7 @@ public class Game implements Serializable, Comparable<Game>
      * Returns the race factory for this game.
      *
      * @return The race factory for this game.
-     */    
+     */
     public RaceFactory getRaceFactory()
     {
         return this.raceFactory;
@@ -187,7 +184,7 @@ public class Game implements Serializable, Comparable<Game>
      * Returns the station factory for this game.
      *
      * @return The station factory for this game.
-     */    
+     */
     public StationFactory getStationFactory()
     {
         return this.stationFactory;
@@ -197,7 +194,7 @@ public class Game implements Serializable, Comparable<Game>
      * Returns the sun factory for this game.
      *
      * @return The sun factory for this game.
-     */    
+     */
     public SunFactory getSunFactory()
     {
         return this.sunFactory;
@@ -207,7 +204,7 @@ public class Game implements Serializable, Comparable<Game>
      * Returns the ware factory for this game.
      *
      * @return The ware factory for this game.
-     */    
+     */
     public WareFactory getWareFactory()
     {
         return this.wareFactory;
@@ -217,7 +214,7 @@ public class Game implements Serializable, Comparable<Game>
      * Returns the add factory dialog.
      *
      * @return The add factory dialog.
-     */    
+     */
     public AddFactoryDialog getAddFactoryDialog()
     {
         return this.addFactoryDialog;

@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.actions;
 
 import java.awt.event.ActionEvent;
@@ -13,13 +12,11 @@ import de.ailis.xadrian.listeners.ClipboardStateListener;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.BaseAction;
 
-
 /**
  * Copies the selected text into the clipboard.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class CopyAction extends BaseAction implements ClipboardStateListener
 {
     /** Serial version UID */
@@ -28,14 +25,12 @@ public class CopyAction extends BaseAction implements ClipboardStateListener
     /** The clipboard provider */
     private final ClipboardProvider provider;
 
-
     /**
      * Constructor
      *
      * @param provider
      *            The connected component
      */
-
     public CopyAction(final ClipboardProvider provider)
     {
         super("copy", Icons.COPY);
@@ -44,22 +39,18 @@ public class CopyAction extends BaseAction implements ClipboardStateListener
         provider.addClipboardStateListener(this);
     }
 
-
     /**
      * @see ActionListener#actionPerformed(ActionEvent)
      */
-
     @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.provider.copy();
     }
 
-
     /**
      * @see ClipboardStateListener#clipboardStateChanged(ClipboardProvider)
      */
-
     @Override
     public void clipboardStateChanged(final ClipboardProvider provider)
     {

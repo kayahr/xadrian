@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.components;
 
 import java.awt.Cursor;
@@ -16,32 +15,28 @@ import javax.swing.JLabel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-
 /**
  * Label component which styles the label as a hyperlink and opens a url in an
  * external browser when clicked.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class JLinkLabel extends JLabel
 {
     /** Serial version UID */
     private static final long serialVersionUID = -6860272513583477660L;
-    
+
     /** The logger */
     static final Log log = LogFactory.getLog(JLinkLabel.class);
 
-
     /**
      * Constructor
-     * 
+     *
      * @param text
      *            The label text
      * @param url
      *            The URL to open in a browser
      */
-
     public JLinkLabel(final String text, final String url)
     {
         super("<html><a href=\"#\">" + text + "</a></html>");

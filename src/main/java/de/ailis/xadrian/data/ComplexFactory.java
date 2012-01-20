@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -14,20 +13,18 @@ import java.util.List;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-
 /**
  * A factory (or multiple factories with same configuration) in a complex.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
 {
     /** Serial version UID */
     private static final long serialVersionUID = -4731442033981700443L;
-    
+
     /** The game this complex factory belongs to. */
-    private final Game game;   
+    private final Game game;
 
     /** The factory */
     private final Factory factory;
@@ -41,7 +38,6 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
     /** If this factory is currently disabled. */
     private boolean disabled;
 
-
     /**
      * Constructor
      *
@@ -54,12 +50,11 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
      * @param yield
      *            The yield (for mines)
      */
-
     public ComplexFactory(final Game game, final Factory factory,
         final int quantity, final int yield)
     {
         if (game == null) throw new IllegalArgumentException("game must be set");
-        this.game = game; 
+        this.game = game;
         this.factory = factory;
         this.quantity = quantity;
         if (factory.isMine())
@@ -73,7 +68,6 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
             this.yields = null;
         }
     }
-
 
     /**
      * Constructor for adding a mine with multiple yields.
@@ -95,38 +89,32 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         setYields(yields);
     }
 
-
     /**
      * Return the factory.
      *
      * @return The factory
      */
-
     public Factory getFactory()
     {
         return this.factory;
     }
-
 
     /**
      * Returns the number of factories.
      *
      * @return The number of factories
      */
-
     public int getQuantity()
     {
         if (this.factory.isMine()) return this.yields.size();
         return this.quantity;
     }
 
-
     /**
      * Increases the number of factories.
      *
      * @return True if quantity was changed, false if not
      */
-
     public boolean increaseQuantity()
     {
         if (this.factory.isMine()) return false;
@@ -134,13 +122,11 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         return true;
     }
 
-
     /**
      * Decreases the number of factories.
      *
      * @return True if quantity was changed, false if not
      */
-
     public boolean decreaseQuantity()
     {
         if (this.factory.isMine()) return false;
@@ -149,13 +135,11 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         return true;
     }
 
-
     /**
      * Returns the yield (for mines)
      *
      * @return The yield
      */
-
     public int getYield()
     {
         if (isHomogenousYield()) return this.yields.get(0);
@@ -172,13 +156,11 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
             / ((1800 * quantity) - productPerHour) - 1);
     }
 
-
     /**
      * Checks if the yield is homogenous for all mines.
      *
      * @return True if the yield is homogenous, false if not
      */
-
     public boolean isHomogenousYield()
     {
         if (this.yields == null || this.yields.isEmpty()) return false;
@@ -188,23 +170,19 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         return true;
     }
 
-
     /**
      * Returns the asteroid yields (for mines)
      *
      * @return The asteroid yields
      */
-
     public List<Integer> getYields()
     {
         return Collections.unmodifiableList(this.yields);
     }
 
-
     /**
      * @see java.lang.Object#hashCode()
      */
-
     @Override
     public int hashCode()
     {
@@ -212,11 +190,9 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
                 .append(this.yields).hashCode();
     }
 
-
     /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
-
     @Override
     public boolean equals(final Object obj)
     {
@@ -229,11 +205,9 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
                 .isEquals();
     }
 
-
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-
     @Override
     public int compareTo(final ComplexFactory other)
     {
@@ -244,20 +218,17 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         return result;
     }
 
-
     /**
      * Adds the specified quantity.
      *
      * @param quantity
      *            The quantity to add
      */
-
     public void addQuantity(final int quantity)
     {
         if (this.factory.isMine()) return;
         this.quantity += quantity;
     }
-
 
     /**
      * Sets the quantity.
@@ -265,13 +236,11 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
      * @param quantity
      *            The quantity to set
      */
-
     public void setQuantity(final int quantity)
     {
         if (this.factory.isMine()) return;
         this.quantity = quantity;
     }
-
 
     /**
      * Sets the yields.
@@ -279,14 +248,12 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
      * @param yields
      *            The yields to set
      */
-
     public void setYields(final List<Integer> yields)
     {
         this.yields.clear();
         this.yields.addAll(yields);
         this.quantity = this.yields.size();
     }
-
 
     /**
      * Returns the product this complex factory/factories produces in one hour.
@@ -296,7 +263,6 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
      *            plants)
      * @return The product per hour.
      */
-
     public Product getProductPerHour(final Sun suns)
     {
         if (this.factory.isMine())
@@ -318,19 +284,16 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
             * (this.disabled ? 0 : this.quantity));
     }
 
-
     /**
      * Returns the product this complex factory/factories produces in one hour
      * using a default sun power of 100%.
      *
      * @return The product per hour.
      */
-
     public Product getProductPerHour()
     {
         return getProductPerHour(this.game.getSunFactory().getDefaultSun());
     }
-
 
     /**
      * Returns the resources this complex factory/factories needs in our hour.
@@ -340,7 +303,6 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
      *            plants)
      * @return The resources needed per hour
      */
-
     public Collection<Product> getResourcesPerHour(final Sun suns)
     {
         final Collection<Product> resources = new ArrayList<Product>();
@@ -377,19 +339,16 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
      *
      * @return The resources needed per hour
      */
-
     public Collection<Product> getResourcesPerHour()
     {
         return getResourcesPerHour(this.game.getSunFactory().getDefaultSun());
     }
-
 
     /**
      * Returns the storage capacities.
      *
      * @return The storage capacities
      */
-
     public Collection<Capacity> getCapacities()
     {
         final Collection<Capacity> capacities = new ArrayList<Capacity>();
@@ -402,58 +361,48 @@ public class ComplexFactory implements Serializable, Comparable<ComplexFactory>
         return capacities;
     }
 
-
     /**
      * Sets the disabled state of this factory.
      *
      * @param disabled
      *            True to disable the factory, false to enable it
      */
-
     public void setDisabled(final boolean disabled)
     {
         this.disabled = disabled;
     }
 
-
     /**
      * Enables the factory
      */
-
     public void enable()
     {
         setDisabled(false);
     }
 
-
     /**
      * Disables the factory
      */
-
     public void disable()
     {
         setDisabled(true);
     }
-
 
     /**
      * Checks if the factory is currently disabled.
      *
      * @return True if factory is disabled, false if not
      */
-
     public boolean isDisabled()
     {
         return this.disabled;
     }
-
 
     /**
      * Checks if the factory is currently enabled.
      *
      * @return True if factory is enabled, false if not
      */
-
     public boolean isEnabled()
     {
         return !this.disabled;

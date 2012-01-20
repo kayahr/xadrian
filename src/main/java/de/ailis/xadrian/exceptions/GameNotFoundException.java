@@ -1,14 +1,12 @@
 /*
- * Copyright (C) 2012 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2012-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.exceptions;
-
 
 /**
  * Thrown when a game was not found.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public final class GameNotFoundException extends XadrianException
@@ -18,10 +16,10 @@ public final class GameNotFoundException extends XadrianException
 
     /**
      * Constructor
-     * 
+     *
      * @param id
      *           The ID of the game which was not found.
-     */    
+     */
     public GameNotFoundException(final String id)
     {
         super("No game with id " + id + " found");

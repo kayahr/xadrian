@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.data.factories;
 
 import java.net.URL;
@@ -23,18 +22,16 @@ import de.ailis.xadrian.data.Sun;
 import de.ailis.xadrian.exceptions.DataException;
 import de.ailis.xadrian.frames.SplashFrame;
 
-
 /**
  * Factory for sun objects.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SunFactory
 {
     /** The game for which this factory is responsible. */
     private final Game game;
-    
+
     /** The Suns map (percent to Suns). */
     private final Map<Integer, Sun> sunMap = new HashMap<Integer, Sun>();
 
@@ -46,7 +43,7 @@ public class SunFactory
 
     /**
      * Constructor.
-     * 
+     *
      * @param game
      *            The game for which this factory is responsible.
      */
@@ -57,11 +54,9 @@ public class SunFactory
         SplashFrame.getInstance().advanceProgress();
     }
 
-
     /**
      * Reads the data from the XML file.
      */
-
     private void readData()
     {
         String gameId = this.game.getId();
@@ -94,18 +89,15 @@ public class SunFactory
         }
     }
 
-
     /**
      * Returns all suns.
      *
      * @return The all suns.
      */
-
     public SortedSet<Sun> getSuns()
     {
         return Collections.unmodifiableSortedSet(this.suns);
     }
-
 
     /**
      * Returns the sun with the specified percent.
@@ -116,7 +108,6 @@ public class SunFactory
      * @throws DataException
      *             When no sun with specified percent was found.
      */
-
     public Sun getSun(final int percent)
     {
         if (!this.sunMap.containsKey(percent))
@@ -124,25 +115,21 @@ public class SunFactory
         return this.sunMap.get(percent);
     }
 
-
     /**
      * Returns the default sun.
      *
      * @return The default sun.
      */
-
     public Sun getDefaultSun()
     {
         return this.defaultSuns;
     }
-
 
     /**
      * Returns the maximum percent.
      *
      * @return The maximum percent.
      */
-
     public int getMaxPercent()
     {
         return this.suns.last().getPercent();

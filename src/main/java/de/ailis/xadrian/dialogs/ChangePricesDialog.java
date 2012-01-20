@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
@@ -44,10 +43,9 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Dialog for setting up the ware prices.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class ChangePricesDialog extends ModalDialog
 {
     /** Serial version UID */
@@ -71,11 +69,10 @@ public class ChangePricesDialog extends ModalDialog
 
     /**
      * Constructor
-     * 
+     *
      * @param game
      *            The game. Must not be null.
      */
-
     public ChangePricesDialog(final Game game)
     {
         if (game == null)
@@ -88,7 +85,6 @@ public class ChangePricesDialog extends ModalDialog
     /**
      * Creates the UI
      */
-
     @Override
     protected void createUI()
     {
@@ -118,7 +114,6 @@ public class ChangePricesDialog extends ModalDialog
     /**
      * Initializes the content.
      */
-
     private void initContent()
     {
         final WareFactory wareFactory = this.game.getWareFactory();
@@ -324,7 +319,7 @@ public class ChangePricesDialog extends ModalDialog
 
     /**
      * Updates a custom price
-     * 
+     *
      * @param ware
      *            The ware
      * @param used
@@ -332,7 +327,6 @@ public class ChangePricesDialog extends ModalDialog
      * @param price
      *            The price
      */
-
     void updateCustomWare(final Ware ware, final boolean used, final int price)
     {
         if (price == ware.getAvgPrice() && used)
@@ -344,7 +338,6 @@ public class ChangePricesDialog extends ModalDialog
     /**
      * Releases the content.
      */
-
     private void releaseContent()
     {
         for (final Component component : this.warePricesPanel.getComponents())
@@ -353,11 +346,10 @@ public class ChangePricesDialog extends ModalDialog
 
     /**
      * Sets the custom prices.
-     * 
+     *
      * @param customPrices
      *            The custom prices to set
      */
-
     public void setCustomPrices(final Map<Ware, Integer> customPrices)
     {
         this.customPrices.clear();
@@ -366,10 +358,9 @@ public class ChangePricesDialog extends ModalDialog
 
     /**
      * Returns the custom prices.
-     * 
+     *
      * @return The custom prices
      */
-
     public Map<Ware, Integer> getCustomPrices()
     {
         return Collections.unmodifiableMap(this.customPrices);
@@ -378,11 +369,10 @@ public class ChangePricesDialog extends ModalDialog
     /**
      * Sets the active ware. This is the ware which is focused when the dialog
      * starts. Set it to null to not use a focused ware.
-     * 
+     *
      * @param ware
      *            The ware to focus (or null for none)
      */
-
     public void setActiveWare(final Ware ware)
     {
         this.activeWare = ware;
@@ -391,7 +381,6 @@ public class ChangePricesDialog extends ModalDialog
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
      */
-
     @Override
     public Result open()
     {

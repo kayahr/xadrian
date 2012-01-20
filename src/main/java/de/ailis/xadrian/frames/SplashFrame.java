@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2012 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2012-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.frames;
 
 import java.awt.BorderLayout;
@@ -26,7 +25,7 @@ import de.ailis.xadrian.support.I18N;
 
 /**
  * The splash frame.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class SplashFrame extends JFrame
@@ -112,7 +111,7 @@ public class SplashFrame extends JFrame
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance.
      */
     public static SplashFrame getInstance()
@@ -145,7 +144,7 @@ public class SplashFrame extends JFrame
     /**
      * Sets the number of games. This is needed to correctly calculate the
      * maximum loading progress.
-     * 
+     *
      * @param numberOfGames
      *            The number of games.
      */

@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.actions;
 
 import java.awt.event.ActionEvent;
@@ -13,13 +12,11 @@ import de.ailis.xadrian.listeners.StateListener;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.BaseAction;
 
-
 /**
  * Toggles the addition of a base complex.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class ToggleBaseComplexAction extends BaseAction implements
     StateListener
 {
@@ -29,14 +26,12 @@ public class ToggleBaseComplexAction extends BaseAction implements
     /** The complex provider */
     private final ComplexProvider provider;
 
-
     /**
      * Constructor
      *
      * @param provider
      *            The provider
      */
-
     public ToggleBaseComplexAction(final ComplexProvider provider)
     {
         super("toggleBaseComplex", Icons.WAND);
@@ -46,22 +41,18 @@ public class ToggleBaseComplexAction extends BaseAction implements
         provider.addStateListener(this);
     }
 
-
     /**
      * @see ActionListener#actionPerformed(ActionEvent)
      */
-
     @Override
     public void actionPerformed(final ActionEvent e)
     {
         this.provider.toggleBaseComplex();
     }
 
-
     /**
      * @see de.ailis.xadrian.listeners.StateListener#stateChanged()
      */
-
     @Override
     public void stateChanged()
     {

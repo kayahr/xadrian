@@ -1,22 +1,19 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-
 /**
  * A complex ware with the info how much units are produced and how much are
  * needed.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class ComplexWare implements Serializable, Comparable<ComplexWare>
 {
     /** Serial version UID */
@@ -34,10 +31,9 @@ public class ComplexWare implements Serializable, Comparable<ComplexWare>
     /** The ware price */
     private final int price;
 
-
     /**
      * Constructor.
-     * 
+     *
      * @param ware
      *            The ware
      * @param produced
@@ -47,7 +43,6 @@ public class ComplexWare implements Serializable, Comparable<ComplexWare>
      * @param price
      *            The buy/sell price of the ware
      */
-
     public ComplexWare(final Ware ware, final double produced,
         final double needed, final int price)
     {
@@ -57,109 +52,92 @@ public class ComplexWare implements Serializable, Comparable<ComplexWare>
         this.price = price;
     }
 
-
     /**
      * Returns the ware.
-     * 
+     *
      * @return The ware
      */
-
     public Ware getWare()
     {
         return this.ware;
     }
 
-
     /**
      * Returns the number of produced units.
-     * 
+     *
      * @return The number of produced units
      */
-
     public double getProduced()
     {
         return this.produced;
     }
 
-
     /**
      * Returns the number of needed units.
-     * 
+     *
      * @return The number of needed units
      */
-
     public double getNeeded()
     {
         return this.needed;
     }
 
-
     /**
      * Returns the number of missing units. If more units are produced than
      * needed then this method returns 0.
-     * 
+     *
      * @return The number of missing units
      */
-
     public double getMissing()
     {
         return Math.max(0, this.needed - this.produced);
     }
 
-
     /**
      * Returns the surplus. Can return negative values if more units are needed
      * than produced.
-     * 
+     *
      * @return The surplus
      */
-
     public double getSurplus()
     {
         return this.produced - this.needed;
     }
 
-
     /**
      * Returns the buy/sell price.
-     * 
+     *
      * @return the buy/sell price
      */
-
     public int getPrice()
     {
         return this.price;
     }
 
-
     /**
      * Returns the profit per hour.
-     * 
+     *
      * @return The profit per hour
      */
-
     public double getProfit()
     {
         final double surplus = this.getSurplus();
         return surplus * this.price;
     }
 
-
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-
     @Override
     public int compareTo(final ComplexWare o)
     {
         return this.ware.compareTo(o.ware);
     }
 
-    
     /**
      * @see java.lang.Object#toString()
      */
-    
+
     @Override
     public String toString()
     {

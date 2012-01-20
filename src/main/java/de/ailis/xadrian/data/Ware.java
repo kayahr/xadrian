@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.TXT for licensing
- * information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -14,10 +13,9 @@ import de.ailis.xadrian.support.I18N;
 
 /**
  * A product
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class Ware implements Serializable, Comparable<Ware>
 {
     /** Serial version UID */
@@ -43,13 +41,13 @@ public class Ware implements Serializable, Comparable<Ware>
 
     /** The message id */
     private final String messageId;
-    
+
     /** The game. */
     private final Game game;
 
     /**
      * Constructor
-     * 
+     *
      * @param game
      *            The game.
      * @param id
@@ -65,7 +63,6 @@ public class Ware implements Serializable, Comparable<Ware>
      * @param container
      *            The container class
      */
-
     public Ware(final Game game, final String id, final int minPrice,
         final int avgPrice, final int maxPrice, final int volume,
         final Container container)
@@ -82,10 +79,9 @@ public class Ware implements Serializable, Comparable<Ware>
 
     /**
      * Return the id.
-     * 
+     *
      * @return The id
      */
-
     public String getId()
     {
         return this.id;
@@ -93,10 +89,9 @@ public class Ware implements Serializable, Comparable<Ware>
 
     /**
      * Returns the name.
-     * 
+     *
      * @return The name
      */
-
     public String getName()
     {
         return I18N.getString(this.game, this.messageId);
@@ -104,10 +99,9 @@ public class Ware implements Serializable, Comparable<Ware>
 
     /**
      * Returns the minimum price.
-     * 
+     *
      * @return The minimum price
      */
-
     public int getMinPrice()
     {
         return this.minPrice;
@@ -115,10 +109,9 @@ public class Ware implements Serializable, Comparable<Ware>
 
     /**
      * Returns the average price.
-     * 
+     *
      * @return The average price
      */
-
     public int getAvgPrice()
     {
         return this.avgPrice;
@@ -126,10 +119,9 @@ public class Ware implements Serializable, Comparable<Ware>
 
     /**
      * Returns the maximum price.
-     * 
+     *
      * @return The maximum price
      */
-
     public int getMaxPrice()
     {
         return this.maxPrice;
@@ -137,10 +129,9 @@ public class Ware implements Serializable, Comparable<Ware>
 
     /**
      * Returns the ware volume.
-     * 
+     *
      * @return The ware volume
      */
-
     public int getVolume()
     {
         return this.volume;
@@ -148,10 +139,9 @@ public class Ware implements Serializable, Comparable<Ware>
 
     /**
      * Returns the container class.
-     * 
+     *
      * @return The container class
      */
-
     public Container getContainer()
     {
         return this.container;
@@ -160,7 +150,6 @@ public class Ware implements Serializable, Comparable<Ware>
     /**
      * @see java.lang.Object#hashCode()
      */
-
     @Override
     public int hashCode()
     {
@@ -170,7 +159,6 @@ public class Ware implements Serializable, Comparable<Ware>
     /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
-
     @Override
     public boolean equals(final Object obj)
     {
@@ -184,7 +172,6 @@ public class Ware implements Serializable, Comparable<Ware>
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-
     @Override
     public int compareTo(final Ware o)
     {
@@ -194,7 +181,6 @@ public class Ware implements Serializable, Comparable<Ware>
     /**
      * @see java.lang.Object#toString()
      */
-
     @Override
     public String toString()
     {

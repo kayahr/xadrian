@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -10,13 +9,11 @@ import java.io.Serializable;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-
 /**
  * An asteroid
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class Asteroid implements Serializable, Comparable<Asteroid>
 {
     /** Serial version UID */
@@ -40,10 +37,9 @@ public class Asteroid implements Serializable, Comparable<Asteroid>
     /** The Z position */
     private final int z;
 
-
     /**
      * Constructor
-     * 
+     *
      * @param id
      *            The asteroid ID
      * @param ware
@@ -57,7 +53,6 @@ public class Asteroid implements Serializable, Comparable<Asteroid>
      * @param z
      *            The Z position
      */
-
     public Asteroid(final String id, final Ware ware, final int yield,
         final int x, final int y, final int z)
     {
@@ -69,98 +64,82 @@ public class Asteroid implements Serializable, Comparable<Asteroid>
         this.z = z;
     }
 
-
     /**
      * Returns the asteroid id.
-     * 
+     *
      * @return The asteroid id
      */
-
     public String getId()
     {
         return this.id;
     }
 
-
     /**
      * Returns the mining ware.
-     * 
+     *
      * @return The mining ware
      */
-
     public Ware getWare()
     {
         return this.ware;
     }
 
-
     /**
      * Returns the yield.
-     * 
+     *
      * @return The yield
      */
-
     public int getYield()
     {
         return this.yield;
     }
 
-
     /**
      * Returns the yield of the specified ware.
-     * 
+     *
      * @param ware
      *            The ware
      * @return The yield for the specified ware
      */
-
     public int getYield(final Ware ware)
     {
         if (this.ware.equals(ware)) return this.yield;
         return 0;
     }
 
-
     /**
      * Returns the X position.
-     * 
+     *
      * @return The X position
      */
-
     public int getX()
     {
         return this.x;
     }
 
-
     /**
      * Returns the Y position.
-     * 
+     *
      * @return The Y position
      */
-
     public int getY()
     {
         return this.y;
     }
 
-
     /**
      * Returns the Z position.
-     * 
+     *
      * @return The Z position
      */
-
     public int getZ()
     {
         return this.z;
     }
 
-
     /**
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-
     @Override
     public int compareTo(final Asteroid o)
     {
@@ -172,22 +151,18 @@ public class Asteroid implements Serializable, Comparable<Asteroid>
         return result;
     }
 
-
     /**
      * @see java.lang.Object#hashCode()
      */
-
     @Override
     public int hashCode()
     {
         return new HashCodeBuilder().append(this.id).toHashCode();
     }
 
-
     /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
-
     @Override
     public boolean equals(final Object obj)
     {
@@ -198,11 +173,9 @@ public class Asteroid implements Serializable, Comparable<Asteroid>
         return new EqualsBuilder().append(this.id, other.id).isEquals();
     }
 
-
     /**
      * @see java.lang.Object#toString()
      */
-
     @Override
     public String toString()
     {

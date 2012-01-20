@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt for licensing information.
  */
-
 package de.ailis.xadrian.components;
 
 import java.awt.GridBagConstraints;
@@ -14,13 +13,11 @@ import javax.swing.JSeparator;
 
 import de.ailis.xadrian.utils.SwingUtils;
 
-
 /**
  * A separator with a label
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class LabelSeparator extends JComponent
 {
     /** Serial version UID */
@@ -29,14 +26,12 @@ public class LabelSeparator extends JComponent
     /** The label */
     private final JLabel label;
 
-
     /**
      * Constructor
      *
      * @param text
      *            The text to use as separator label
      */
-
     public LabelSeparator(final String text)
     {
         setLayout(new GridBagLayout());
@@ -55,18 +50,15 @@ public class LabelSeparator extends JComponent
         add(separator, c);
     }
 
-
     /**
      * Returns the label text.
      *
      * @return The label text
      */
-
     public String getText()
     {
         return this.label.getText();
     }
-
 
     /**
      * Sets the label text
@@ -74,12 +66,10 @@ public class LabelSeparator extends JComponent
      * @param text
      *            The label text to set
      */
-
     public void setText(final String text)
     {
         this.label.setText(text);
     }
-
 
 
     /**
@@ -90,7 +80,6 @@ public class LabelSeparator extends JComponent
      * @throws Exception
      *            When something goes wrong
      */
-
     public static void main(final String[] args) throws Exception
     {
         SwingUtils.prepareGUI();

@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.freemarker;
 
 import java.io.IOException;
@@ -16,15 +15,13 @@ import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
-
 /**
  * This factory is used to access the freemarker templates. It also manages the
  * freemarker engine configuration and the interface between the templates and
  * the model.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public final class TemplateFactory
 {
     /** The singleton instance */
@@ -33,11 +30,9 @@ public final class TemplateFactory
     /** The freemarker configuration */
     private final Configuration cfg;
 
-
     /**
      * Private constructor to prevent instantiation of singleton
      */
-
     private TemplateFactory()
     {
         this.cfg = new Configuration();
@@ -48,15 +43,13 @@ public final class TemplateFactory
         this.cfg.setTagSyntax(Configuration.SQUARE_BRACKET_TAG_SYNTAX);
     }
 
-
     /**
      * Returns the template with the specified name.
-     * 
+     *
      * @param name
      *            The template name
      * @return The template
      */
-
     public static Template getTemplate(final String name)
     {
         try
@@ -70,17 +63,15 @@ public final class TemplateFactory
         }
     }
 
-
     /**
      * Processes the specified template and returns the result as a string.
-     * 
+     *
      * @param template
      *            The template to process
      * @param rootMap
      *            The root map
      * @return The output
      */
-
     public static String processTemplate(final Template template,
         final Object rootMap)
     {

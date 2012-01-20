@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de>
- * See LICENSE.TXT for licensing information
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.TXT for licensing information.
  */
-
 package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
@@ -21,13 +20,11 @@ import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog;
 import de.ailis.xadrian.utils.SwingUtils;
 
-
 /**
  * Dialog for selecting a quantity.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class ChangeQuantityDialog extends ModalDialog
 {
     /** Serial version UID */
@@ -39,22 +36,18 @@ public class ChangeQuantityDialog extends ModalDialog
     /** The quantity spinner */
     private JSpinner quantitySpinner;
 
-
     /**
      * Constructor
      */
-
     private ChangeQuantityDialog()
     {
         init("changeQuantity", Result.OK, Result.CANCEL);
         SplashFrame.getInstance().advanceProgress();
     }
 
-
     /**
      * Creates the UI
      */
-
     @Override
     protected void createUI()
     {
@@ -81,23 +74,19 @@ public class ChangeQuantityDialog extends ModalDialog
         add(contentPanel, BorderLayout.CENTER);
     }
 
-
     /**
      * Returns the singleton instance
      *
      * @return The singleton instance
      */
-
     public static ChangeQuantityDialog getInstance()
     {
         return instance;
     }
 
-
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
      */
-
     @Override
     public Result open()
     {
@@ -106,34 +95,30 @@ public class ChangeQuantityDialog extends ModalDialog
         return result;
     }
 
-
     /**
      * Sets the quantity.
      *
      * @param quantity
      *            The quantity to set
      */
-
     public void setQuantity(final int quantity)
     {
         this.quantitySpinner.setValue(quantity);
     }
-
 
     /**
      * Returns the quantity.
      *
      * @return The quantity
      */
-
     public int getQuantity()
     {
         return (Integer) this.quantitySpinner.getValue();
     }
-    
+
     /**
      * Test main method.
-     * 
+     *
      * @param args
      *            Command line arguments
      */

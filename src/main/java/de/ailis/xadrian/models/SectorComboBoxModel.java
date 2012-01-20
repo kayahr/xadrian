@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2010 Klaus Reimer <k@ailis.de> See LICENSE.txt file for
- * licensing information.
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
+ * See LICENSE.txt file for licensing information.
  */
-
 package de.ailis.xadrian.models;
 
 import java.util.ArrayList;
@@ -16,10 +15,9 @@ import de.ailis.xadrian.data.Sector;
 
 /**
  * Model which represents sectors to be listed in a combo box.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
-
 public class SectorComboBoxModel implements ComboBoxModel
 {
     /** The selected item */
@@ -30,7 +28,7 @@ public class SectorComboBoxModel implements ComboBoxModel
 
     /**
      * Constructor
-     * 
+     *
      * @param game
      *            The game. Must not be null.
      */
@@ -46,7 +44,6 @@ public class SectorComboBoxModel implements ComboBoxModel
     /**
      * @see javax.swing.ComboBoxModel#getSelectedItem()
      */
-
     @Override
     public Object getSelectedItem()
     {
@@ -56,7 +53,6 @@ public class SectorComboBoxModel implements ComboBoxModel
     /**
      * @see javax.swing.ComboBoxModel#setSelectedItem(java.lang.Object)
      */
-
     @Override
     public void setSelectedItem(final Object selectedItem)
     {
@@ -66,7 +62,6 @@ public class SectorComboBoxModel implements ComboBoxModel
     /**
      * @see javax.swing.ListModel#addListDataListener(javax.swing.event.ListDataListener)
      */
-
     @Override
     public void addListDataListener(final ListDataListener l)
     {
@@ -76,7 +71,6 @@ public class SectorComboBoxModel implements ComboBoxModel
     /**
      * @see javax.swing.ListModel#getElementAt(int)
      */
-
     @Override
     public Object getElementAt(final int index)
     {
@@ -86,7 +80,6 @@ public class SectorComboBoxModel implements ComboBoxModel
     /**
      * @see javax.swing.ListModel#getSize()
      */
-
     @Override
     public int getSize()
     {
@@ -96,7 +89,6 @@ public class SectorComboBoxModel implements ComboBoxModel
     /**
      * @see javax.swing.ListModel#removeListDataListener(javax.swing.event.ListDataListener)
      */
-
     @Override
     public void removeListDataListener(final ListDataListener l)
     {
