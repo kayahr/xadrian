@@ -63,7 +63,6 @@ public class SelectSectorDialog extends ModalDialog
             throw new IllegalArgumentException("game must be set");
         this.game = game;
         init("selectSector", Result.OK, Result.CANCEL);
-        setResizable(true);
         SplashFrame.getInstance().advanceProgress();
     }
 
@@ -73,6 +72,9 @@ public class SelectSectorDialog extends ModalDialog
     @Override
     protected void createUI()
     {
+        // Enable resizing
+        setResizable(true);
+        
         // Create the selector panel
         final JPanel selectorPanel = new JPanel(new BorderLayout());
         selectorPanel.setBorder(BorderFactory
