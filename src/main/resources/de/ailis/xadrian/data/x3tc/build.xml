@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE project>
+<project name="x3tc-messages" default="build">
+
+    <target name="build">
+        <mkdir dir="tmp" />
+        <native2ascii encoding="ISO-8859-1"
+                      src="."
+                      includes="*.properties"
+                      dest="tmp" />
+        <move file="tmp/messages.properties" todir="." />
+        <move file="tmp/messages_de.properties" todir="." />
+        <move file="tmp/messages_pl.properties" todir="." />
+        <delete dir="tmp" />
+    </target>
+</project>
