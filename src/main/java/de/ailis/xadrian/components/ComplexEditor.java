@@ -6,6 +6,7 @@ package de.ailis.xadrian.components;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.HyperlinkEvent;
@@ -134,10 +136,17 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         popupMenu.add(new ChangePricesAction(this));
         popupMenu.add(new JCheckBoxMenuItem(new ToggleBaseComplexAction(this)));
         SwingUtils.setPopupMenu(this.textPane, popupMenu);
+        
+        final HTMLDocument document = (HTMLDocument) this.textPane.getDocument();
 
         // Set the base URL of the text pane
-        ((HTMLDocument) this.textPane.getDocument()).setBase(Main.class
-            .getResource("templates/"));
+        document.setBase(Main.class.getResource("templates/"));
+        
+        // Modify the body style so it matches the system font
+        final Font font = UIManager.getFont("Label.font");
+        String bodyRule = "body { font-family: " + font.getFamily() + 
+            "; font-size: " + font.getSize() + "pt; }";
+        document.getStyleSheet().addRule(bodyRule);        
 
         // Create the scroll pane
         final JScrollPane scrollPane = new JScrollPane(this.textPane);

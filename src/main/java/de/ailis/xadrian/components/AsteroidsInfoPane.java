@@ -6,12 +6,14 @@ package de.ailis.xadrian.components;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
 import javax.swing.text.html.HTMLDocument;
 
 import de.ailis.xadrian.Main;
@@ -57,9 +59,18 @@ public class AsteroidsInfoPane extends JComponent implements SectorProvider
         textPane.setBorder(null);
         textPane.setContentType("text/html");
         textPane.setDoubleBuffered(true);
-        ((HTMLDocument) textPane.getDocument()).setBase(Main.class
-                .getResource("templates/"));
+        
+        final HTMLDocument document = (HTMLDocument) this.textPane.getDocument();
 
+        // Set the base URL of the text pane
+        document.setBase(Main.class.getResource("templates/"));
+        
+        // Modify the body style so it matches the system font
+        final Font font = UIManager.getFont("Label.font");
+        String bodyRule = "body { font-family: " + font.getFamily() + 
+            "; font-size: " + font.getSize() + "pt; }";
+        document.getStyleSheet().addRule(bodyRule);                
+        
         final JScrollPane scrollPane = new JScrollPane(textPane);
         add(scrollPane);
 

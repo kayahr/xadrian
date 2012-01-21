@@ -6,6 +6,7 @@ package de.ailis.xadrian.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
 import javax.swing.JTree;
+import javax.swing.UIManager;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.text.html.HTMLDocument;
@@ -123,10 +125,17 @@ public class AddFactoryDialog extends ModalDialog implements
         this.textPane.setContentType("text/html");
         this.textPane.setDoubleBuffered(true);
 
+        final HTMLDocument document = (HTMLDocument) this.textPane.getDocument();
+        
         // Set the base URL of the text pane
-        ((HTMLDocument) this.textPane.getDocument()).setBase(Main.class
-            .getResource("templates/"));
-
+        document.setBase(Main.class.getResource("templates/"));
+        
+        // Modify the body style so it matches the system font
+        final Font font = UIManager.getFont("Label.font");
+        String bodyRule = "body { font-family: " + font.getFamily() + 
+            "; font-size: " + font.getSize() + "pt; }";
+        document.getStyleSheet().addRule(bodyRule);                
+        
         // Create the split pane housing the factory pane and info pane
         this.splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
             factoryPane, infoPane);

@@ -1,24 +1,23 @@
 body
 {
-    font-family: Arial, sans-serif;
     color: #000000;       
     margin: 5px;
 }
 
 body.print
 {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
     font-size: 7px;
 }
 
 p
 {
     margin: 0 0 9px 0;
-    font-size: 100%;
 }
 
 h1, h2
 {
-    font-family: Times New Roman, serif;
     font-weight: bold;
     margin: 0 0 9px 0;
     width: 100%;
@@ -26,14 +25,16 @@ h1, h2
 
 h1
 {
-    font-size: 130%;
+    font-family: serif;
+    font-size: 120%;
     background: #dddddd;
     padding: 3px;
 }
 
 h2
 {
-    font-size: 120%;
+    font-family: serif;
+    font-size: 110%;
     padding: 2px;
     background: #eeeeee;
 }
