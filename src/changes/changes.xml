@@ -31,6 +31,11 @@
       <action dev="k" type="add" date="2012-01-21">
         Language can now be configured in the preferences dialog.
       </action>
+      <action dev="k" type="add" date="2012-01-21">
+        Error messages are now displayed in an error dialog if possible and
+        error message is copied to the clipboard to make error reporting
+        easier.
+      </action>
     </release>
     <release version="1.4.0" date="2012-01-15" description="Major update">
       <action dev="k" type="add" date="2012-01-14">

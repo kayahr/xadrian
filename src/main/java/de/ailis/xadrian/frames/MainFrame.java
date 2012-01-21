@@ -27,6 +27,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
@@ -848,5 +849,20 @@ public class MainFrame extends JFrame implements EditorStateListener,
     public Game getGame()
     {
         return ((GameProvider) getCurrentTab()).getGame();
+    }
+
+    /**
+     * Opens the splash screen.
+     */
+    public static void open()
+    {
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                new MainFrame().setVisible(true);
+            }
+        });
     }
 }

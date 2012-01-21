@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 
@@ -120,14 +121,6 @@ public class SplashFrame extends JFrame
     }
 
     /**
-     * Advances the progress by one step.
-     */
-    public void advanceProgress()
-    {
-        this.progressBar.setValue(this.progressBar.getValue() + 1);
-    }
-
-    /**
      * @see java.awt.Window#setVisible(boolean)
      */
     @Override
@@ -151,5 +144,51 @@ public class SplashFrame extends JFrame
     public void setNumberOfGames(int numberOfGames)
     {
         this.progressBar.setMaximum(numberOfGames * 10 + 6);
+    }
+    
+    /**
+     * Opens the splash screen.
+     */
+    public static void open()
+    {
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                getInstance().setVisible(true);
+            }
+        });
+    }
+        
+    /**
+     * Closes the splash screen.
+     */
+    public static void close()
+    {
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                getInstance().setVisible(false);
+            }
+        });
+    }
+
+    /**
+     * Advances the progress by one step.
+     */
+    public void advanceProgress()
+    {
+        final JProgressBar progressBar = this.progressBar;
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                progressBar.setValue(progressBar.getValue() + 1);
+            }
+        });
     }
 }
