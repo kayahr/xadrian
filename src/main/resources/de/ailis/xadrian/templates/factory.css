@@ -9,12 +9,13 @@ body
 p
 {
     margin: 0 0 9px 0;
+    font-size: 100%;
 }
 
 h1
 {
     font-family: Times New Roman, serif;
-    font-size: 133%;
+    font-size: 120%;
     font-weight: bold;
     margin: 0 0 9px 0;
     text-decoration: underline;

@@ -2,7 +2,7 @@ body
 {
     font-family: Arial, sans-serif;
     color: #000000;       
-    margin: 5px; 
+    margin: 5px;
 }
 
 body.print
@@ -13,6 +13,7 @@ body.print
 p
 {
     margin: 0 0 9px 0;
+    font-size: 100%;
 }
 
 h1, h2
@@ -25,14 +26,14 @@ h1, h2
 
 h1
 {
-    font-size: 155%;
+    font-size: 130%;
     background: #dddddd;
     padding: 3px;
 }
 
 h2
 {
-    font-size: 122%;
+    font-size: 120%;
     padding: 2px;
     background: #eeeeee;
 }
