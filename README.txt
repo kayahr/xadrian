@@ -1,2 +1,2 @@
-A factory complex calculator tool for X³: Terran Conflict and X³: Albion
+A factory complex calculator tool for X3: Terran Conflict and X3: Albion
 Prelude.
