@@ -26,8 +26,11 @@
         controlled by the operating system.
       </action>                 
       <action dev="k" type="fix" date="2012-01-21">
-        Made all dialogs resizable and sector map scalable. 
+        Made some dialogs resizable and sector map scalable. 
       </action>                 
+      <action dev="k" type="add" date="2012-01-21">
+        Language can now be configured in the preferences dialog.
+      </action>
     </release>
     <release version="1.4.0" date="2012-01-15" description="Major update">
       <action dev="k" type="add" date="2012-01-14">

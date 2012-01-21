@@ -158,8 +158,8 @@ public final class SwingUtils
      */
     public static void prepareLocale()
     {
-        final String language = System.getenv().get("XADRIAN_LANG");
-        if (language != null) Locale.setDefault(new Locale(language));
+        String locale = Config.getInstance().getLocale();
+        if (locale != null) Locale.setDefault(new Locale(locale));
     }
 
     /**

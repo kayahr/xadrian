@@ -44,6 +44,9 @@ public final class Config
     
     /** Config key for the theme */
     private static final String THEME = "theme";
+    
+    /** Config key for the locale */
+    private static final String LOCALE = "locale";
 
     /** The singleton instance. */
     private static final Config instance = new Config();
@@ -62,6 +65,9 @@ public final class Config
 
     /** The theme (LookAndFeel class name or null for system) */
     private String theme = null;
+    
+    /** The locale (Null for system locale) */
+    private String locale = null;
     
     /** The ID of the default game. Null if none. */
     private String defaultGame = null;
@@ -101,6 +107,7 @@ public final class Config
             SHOW_FACTORY_RESOURCES, true);
         this.playerSector = prefs.getInt(PLAYER_SECTOR, 0);
         this.theme = prefs.get(THEME, null);
+        this.locale = prefs.get(LOCALE, null);
         this.defaultGame = prefs.get(DEFAULT_GAME, null);
     }
 
@@ -145,6 +152,10 @@ public final class Config
             prefs.remove(THEME);
         else
             prefs.put(THEME, this.theme);
+        if (this.locale == null)
+            prefs.remove(LOCALE);
+        else
+            prefs.put(LOCALE, this.locale);
         if (this.defaultGame == null)
             prefs.remove(DEFAULT_GAME);
         else
@@ -359,6 +370,27 @@ public final class Config
     public void setTheme(String theme)
     {
         this.theme = theme;
+    }
+    
+    /**
+     * Returns the locale.
+     *
+     * @return The locale.
+     */
+    public String getLocale()
+    {
+        return this.locale;
+    }
+
+    /**
+     * Sets the locale.
+     *
+     * @param locale
+     *            The locale to set. Null for system locale.
+     */
+    public void setLocale(String locale)
+    {
+        this.locale = locale;
     }
     
     /**

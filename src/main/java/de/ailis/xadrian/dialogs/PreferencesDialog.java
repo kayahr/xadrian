@@ -9,11 +9,13 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -22,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import de.ailis.xadrian.components.ComboBoxEntry;
 import de.ailis.xadrian.components.LabelSeparator;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Race;
@@ -65,6 +68,9 @@ public class PreferencesDialog extends ModalDialog
     /** The theme combo box. */
     private JComboBox themeComboBox;
 
+    /** The locale combo box. */
+    private JComboBox localeComboBox;
+
     /**
      * Constructor
      */
@@ -88,8 +94,11 @@ public class PreferencesDialog extends ModalDialog
             .setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         contentPanel.add(createGeneralSettings());
+        contentPanel.add(Box.createVerticalStrut(10));
         contentPanel.add(createUsedRaces());
+        contentPanel.add(Box.createVerticalStrut(10));
         contentPanel.add(createX3TCSettings());
+        contentPanel.add(Box.createVerticalStrut(10));
         contentPanel.add(createViewSettings());
 
         add(contentPanel, BorderLayout.CENTER);
@@ -188,6 +197,7 @@ public class PreferencesDialog extends ModalDialog
         c.weightx = 1;
         c.gridx = 1;
         c.insets.left = 5;
+        c.fill = GridBagConstraints.HORIZONTAL;
         this.playerSectorComboBox = new JComboBox();
         Game x3tc = GameFactory.getInstance().getGame("x3tc");
         for (int i = 0; i < 5; i++)
@@ -196,6 +206,7 @@ public class PreferencesDialog extends ModalDialog
                 "sector.sec-20-2-" + i));
         }
         controlPanel.add(this.playerSectorComboBox, c);
+        c.fill = GridBagConstraints.NONE;
         panel.add(controlPanel);
         return panel;
     }
@@ -230,6 +241,7 @@ public class PreferencesDialog extends ModalDialog
         c.weightx = 1;
         c.gridx = 1;
         c.insets.left = 5;
+        c.fill = GridBagConstraints.HORIZONTAL;
         this.gamesComboBox = new JComboBox();
         this.gamesComboBox.addItem(I18N
             .getString("dialog.preferences.alwaysAsk"));
@@ -238,6 +250,7 @@ public class PreferencesDialog extends ModalDialog
             this.gamesComboBox.addItem(game);
         }
         controlPanel.add(this.gamesComboBox, c);
+        c.fill = GridBagConstraints.NONE;
         panel.add(controlPanel);
         return panel;
     }
@@ -262,8 +275,11 @@ public class PreferencesDialog extends ModalDialog
         final JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridBagLayout());
         controlPanel.setBorder(new EmptyBorder(2, 20, 5, 0));
+        panel.add(controlPanel);
         final GridBagConstraints c = new GridBagConstraints();
-        final JLabel label =
+        
+        // Create the theme controls
+        JLabel label =
             new JLabel(I18N.getString("dialog.preferences.theme"));
         c.anchor = GridBagConstraints.LINE_START;
         c.gridx = 0;
@@ -271,16 +287,38 @@ public class PreferencesDialog extends ModalDialog
         controlPanel.add(label, c);
         c.gridx = 1;
         c.insets.left = 5;
+        c.fill = GridBagConstraints.HORIZONTAL;
         this.themeComboBox = new JComboBox();
         for (Theme theme : ThemeFactory.getInstance().getThemes())
         {
             this.themeComboBox.addItem(theme);
         }
         controlPanel.add(this.themeComboBox, c);
-        panel.add(controlPanel);
+        c.insets.left = 0;
+        c.fill = GridBagConstraints.NONE;
 
+        // Create the theme controls
+        label =
+            new JLabel(I18N.getString("dialog.preferences.language"));
+        c.anchor = GridBagConstraints.LINE_START;
         c.gridx = 0;
         c.gridy = 1;
+        controlPanel.add(label, c);
+        c.gridx = 1;
+        c.insets.left = 5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        this.localeComboBox = new JComboBox();
+        for (String locale: I18N.getString("locale.locales").split(","))
+        {            
+            this.localeComboBox.addItem(new ComboBoxEntry(I18N
+                .getString("locale." + locale), locale));
+        }
+        controlPanel.add(this.localeComboBox, c);
+        c.insets.left = 0;
+        c.fill = GridBagConstraints.NONE;
+        
+        c.gridx = 0;
+        c.gridy = 2;
         c.gridwidth = 2;
         this.showFactoryResourcesCheckBox = new JCheckBox(
             I18N.getString("dialog.preferences.showFactoryResources"));
@@ -326,6 +364,8 @@ public class PreferencesDialog extends ModalDialog
             .isShowFactoryResources());
         this.themeComboBox.setSelectedItem(ThemeFactory.getInstance().getTheme(
             UIManager.getLookAndFeel().getClass().getName()));
+        this.localeComboBox.setSelectedItem(new ComboBoxEntry(null,
+            Locale.getDefault().toString()));
         this.playerSectorComboBox.setSelectedIndex(config.getPlayerSector());
 
         final String defaultGameId = config.getDefaultGame();
@@ -353,6 +393,8 @@ public class PreferencesDialog extends ModalDialog
                 .setPlayerSector(this.playerSectorComboBox.getSelectedIndex());
             config.setTheme(((Theme) this.themeComboBox.getSelectedItem())
                 .getClassName());
+            config.setLocale((String) ((ComboBoxEntry)
+                this.localeComboBox.getSelectedItem()).getValue());
             if (this.gamesComboBox.getSelectedIndex() == 0)
                 config.setDefaultGame(null);
             else
