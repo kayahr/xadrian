@@ -126,10 +126,51 @@
           <exclude>**/*.properties</exclude>
         </excludes>
       </resource>
+
+      <resource>
+        <directory>src/main/nsis</directory>
+        <targetPath>../nsis</targetPath>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.nsi</include>
+        </includes>
+      </resource>
     </resources>
+    
+    <pluginManagement>
+      <plugins>
+        
+        <!-- Tell m2e to ignore the copy-dependency goal -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <versionRange>[2.4,)</versionRange>
+                    <goals>
+                      <goal>copy-dependencies</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>    
+    </pluginManagement>
     
     <plugins>
     
+      <!-- Use Java 6 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -141,6 +182,7 @@
         </configuration>
       </plugin>
       
+      <!-- Build the web site -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId> 
@@ -153,10 +195,11 @@
         </configuration>
       </plugin>
     
+      <!-- Set main class and additional classpath entries -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.3.1</version>
+        <version>2.3.2</version>
         <configuration>
           <archive>
             <manifest>
@@ -171,15 +214,14 @@
         </configuration>
       </plugin>
       
+      <!-- Build binary artifacts for Unix and Mac OS X -->
       <plugin> 
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.2.1</version><!--$NO-MVN-MAN-VER$-->
+        <version>2.2.2</version>
         <configuration>
           <descriptors>
-            <descriptor>src/main/assembly/windows.xml</descriptor>
             <descriptor>src/main/assembly/unix.xml</descriptor>
             <descriptor>src/main/assembly/macosx.xml</descriptor>
-            <descriptor>src/main/assembly/src.xml</descriptor>
           </descriptors>
         </configuration>
         <executions>
@@ -192,10 +234,75 @@
           </execution>
         </executions> 
       </plugin>
+      
+      <!-- Unpack dependencies into nsis target directory -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/nsis/lib</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+     
+     <!-- Build EXE artifact with NSIS -->
+     <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <executable>makensis</executable>
+              <workingDirectory>${project.build.directory}/nsis</workingDirectory>
+              <arguments>
+                <argument>-V2</argument>
+                <argument>${project.artifactId}.nsi</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <!-- Attach EXE artifact so it gets deployed into repository -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${project.build.directory}/${project.artifactId}-${project.version}.exe</file>
+                  <type>exe</type>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
     </plugins>
   </build>
-  
-
   <repositories>
     <repository>
       <id>ailis-releases</id>
