@@ -11,12 +11,15 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -26,6 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
+import javax.swing.MenuElement;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -75,7 +79,7 @@ import de.ailis.xadrian.support.ModalDialog.Result;
 
 /**
  * The main frame.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class MainFrame extends JFrame implements EditorStateListener,
@@ -147,6 +151,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /** The welcome panel. */
     private JPanel welcomePanel;
 
+    /** The status bar. */
+    private JLabel statusBar;
+
     /**
      * Constructor
      */
@@ -168,10 +175,10 @@ public class MainFrame extends JFrame implements EditorStateListener,
         });
         setLocationRelativeTo(null);
 
+        createStatusBar();
         createMenuBar();
         createToolBar();
         createContent();
-        createStatusBar();
 
         pack();
 
@@ -223,6 +230,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
         // Create the 'Help' menu
         final JMenu helpMenu = I18N.createMenu(menuBar, "help");
         helpMenu.add(this.aboutAction);
+
+        installStatusHandler(menuBar);
     }
 
     /**
@@ -250,6 +259,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
         btn.setHideActionText(true);
         toolBar.add(btn);
         add(toolBar, BorderLayout.NORTH);
+
+        installStatusHandler(toolBar);
     }
 
     /**
@@ -262,17 +273,17 @@ public class MainFrame extends JFrame implements EditorStateListener,
         this.tabs.setPreferredSize(new Dimension(640, 480));
         this.tabs.addChangeListener(this);
 
-        JPanel welcomePanel = this.welcomePanel = new JPanel();
+        final JPanel welcomePanel = this.welcomePanel = new JPanel();
         welcomePanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        final GridBagConstraints c = new GridBagConstraints();
 
         welcomePanel.setPreferredSize(new Dimension(640, 480));
-        JPanel buttonPanel = new JPanel();
+        final JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridBagLayout());
         c.anchor = GridBagConstraints.CENTER;
         welcomePanel.add(buttonPanel, c);
 
-        JButton newButton = new JButton(this.newAction);
+        final JButton newButton = new JButton(this.newAction);
         newButton.setHorizontalAlignment(SwingConstants.LEFT);
         newButton.setIconTextGap(10);
         newButton.setText("<html><body><strong>" + newButton.getText() +
@@ -284,7 +295,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         c.insets.set(5, 5, 5, 5);
         buttonPanel.add(newButton, c);
 
-        JButton openButton = new JButton(this.openAction);
+        final JButton openButton = new JButton(this.openAction);
         openButton.setHorizontalAlignment(SwingConstants.LEFT);
         openButton.setIconTextGap(10);
         openButton.setText("<html><body><strong>" + openButton.getText() +
@@ -302,14 +313,66 @@ public class MainFrame extends JFrame implements EditorStateListener,
      */
     private void createStatusBar()
     {
-        final JLabel statusBar = new JLabel(" ");
+        final JLabel statusBar = this.statusBar = new JLabel(" ");
         statusBar.setBorder(new EmptyBorder(2, 5, 2, 5));
         add(statusBar, BorderLayout.SOUTH);
+
+        addWindowFocusListener(new WindowAdapter()
+        {
+            @Override
+            public void windowLostFocus(final WindowEvent e)
+            {
+                statusBar.setText(" ");
+            }
+        });
+    }
+
+    /**
+     * Installs status handler for the specified component an all its child
+     * components.
+     *
+     * @param component
+     *            The component to install the status handler for.
+     */
+    private void installStatusHandler(final JComponent component)
+    {
+        final JLabel statusBar = this.statusBar;
+        final String text = component.getToolTipText();
+        if (text != null && !text.isEmpty())
+        {
+            component.addMouseListener(new MouseAdapter()
+            {
+                @Override
+                public void mouseExited(final MouseEvent e)
+                {
+                    statusBar.setText(" ");
+                }
+
+                @Override
+                public void mouseEntered(final MouseEvent e)
+                {
+                    statusBar.setText(component.getToolTipText());
+                }
+            });
+        }
+        for (final Component child: component.getComponents())
+        {
+            if (!(child instanceof JComponent)) continue;
+            installStatusHandler((JComponent) child);
+        }
+        if (component instanceof JMenu)
+        {
+            for (final MenuElement menuElement: ((JMenu) component).getSubElements())
+            {
+                if (!(menuElement instanceof JComponent)) continue;
+                installStatusHandler((JComponent) menuElement);
+            }
+        }
     }
 
     /**
      * Adds a state listener.
-     * 
+     *
      * @param listener
      *            The state listener to add
      */
@@ -320,7 +383,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Removes a state listener.
-     * 
+     *
      * @param listener
      *            The state listener to remove
      */
@@ -350,11 +413,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
         // Try to read game from the configuration
         final Config config = Config.getInstance();
         final String defaultGameId = config.getDefaultGame();
-        GameFactory gameFactory = GameFactory.getInstance();
+        final GameFactory gameFactory = GameFactory.getInstance();
         Game game = defaultGameId == null ||
             !gameFactory.hasGame(defaultGameId) ? null
             : gameFactory.getGame(defaultGameId);
-        
+
         // If no default game is set then ask for it
         if (game == null)
         {
@@ -369,7 +432,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Creates a new factory complex tab with the specified complex editor in
      * it.
-     * 
+     *
      * @param editor
      *            The complex editor
      */
@@ -390,7 +453,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Creates a complex editor tab with a loaded complex.
-     * 
+     *
      * @param editor
      *            The complex editor
      */
@@ -406,7 +469,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the current tab component or null if no tab is currently present.
-     * 
+     *
      * @return The current tab component
      */
     public Component getCurrentTab()
@@ -418,7 +481,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
      * Closes the current tab. Prompts for saving unsaved changes before
      * closing. Returns true if the tab was closed or false if it was not
      * closed.
-     * 
+     *
      * @return True if tab was closed, false if not
      */
     public boolean closeCurrentTab()
@@ -462,7 +525,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Closes all open tabs. Prompts for unsaved changes. Returns true if all
      * tabs have been closed or false if at least one tab was not closed.
-     * 
+     *
      * @return True if all tabs were closed, false if not.
      */
     public boolean closeAllTabs()
@@ -488,7 +551,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     {
         if (PreferencesDialog.getInstance().open() == Result.OK)
         {
-            for (final Component component : getTabs().getComponents())
+            for (final Component component: getTabs().getComponents())
             {
                 if (component instanceof ComplexEditor)
                 {
@@ -501,7 +564,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the tabs.
-     * 
+     *
      * @return The tabs
      */
     public JTabbedPane getTabs()

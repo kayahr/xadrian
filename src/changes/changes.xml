@@ -36,6 +36,9 @@
         error message is copied to the clipboard to make error reporting
         easier.
       </action>
+      <action dev="k" type="fix" date="2012-01-22">
+        Fixed status bar in main window which never displayed anything.
+      </action>
     </release>
     <release version="1.4.0" date="2012-01-15" description="Major update">
       <action dev="k" type="add" date="2012-01-14">
