@@ -49,6 +49,7 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <releasesUrl>http://nexus.ailis.de/content/repositories/releases/de/ailis/${project.artifactId}/${project.artifactId}/${project.version}</releasesUrl>
   </properties>
   
   <scm>
@@ -97,15 +98,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changes-plugin</artifactId>
         <version>2.6</version>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>        
-        <version>2.4.0</version>
-        <configuration>
-          <effort>Max</effort>
-          <threshold>Low</threshold>        
-        </configuration>
       </plugin>
     </plugins>
   </reporting>

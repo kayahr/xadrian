@@ -17,13 +17,3 @@ FAQ - Häufig gestellte Fragen
   führen. Aber weniger Fabriken bedeutet auch weniger Zeitaufwand. Und Zeit
   ist Geld.
   
-* Wie stellt man die Sprache in Xadrian um?
-
-  Xadrian passt sich automatisch an die Sprache des Betriebssystems an,
-  daher ist es normalerweise nicht notwendig die Sprache manuell anzupassen.
-  Wenn es doch mal unbedingt notwendig sein sollte, kann man Xadrian
-  dazu zwingen, eine bestimmte Sprache zu verwenden, indem man die
-  Umgebungsvariable <<XADRIAN_LANG>> auf <<de>> oder <<en>> setzt. Wie man
-  Umgebungsvariablen setzt, sollte die Anleitung des verwendeten
-  Betriebssystems verraten.  
-  

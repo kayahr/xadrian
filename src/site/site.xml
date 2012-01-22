@@ -25,13 +25,10 @@
     </links>
     
     <menu name="Xadrian">
-      <item name="About" href="./index.html" />
-      <item name="Download" href="./download.html" />
-      <item name="Installation" href="./install.html" />
+      <item name="Info" href="./index.html" />
       <item name="Manual" href="./manual.html" />
       <item name="Modding" href="./modding.html" />
       <item name="FAQ" href="./faq.html" />
-      <item name="Report problems" href="./problems.html" />
     </menu>
     
     <menu ref="reports" />

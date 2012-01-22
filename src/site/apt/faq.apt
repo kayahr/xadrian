@@ -16,12 +16,3 @@ FAQ
   you have to build less factories which means spending less time. And time
   is money. 
     
-* How can I change the language of Xadrian?
-
-  Xadrian automatically uses the language of the operating system. If for
-  some reason you want to force Xadrian to use a specific language you can
-  set the environment variable <<XADRIAN_LANG>> to <<en>> or <<de>>. Consult
-  the manual of your operating system if you don't know how to set
-  environment variables.
-
-  

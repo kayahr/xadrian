@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <properties>
+    <title>Xadrian</title>
+  </properties>
+  <body>
+    <section name="What is Xadrian?">
+      <img src="images/teaser.png" style="float:right;margin-left:10px;margin-bottom:5px" />        
+      <p>
+        Xadrian is a factory complex calculator for the games
+        <a href="http://www.egosoft.com/games/x3tc/info_en.php">X³: Terran Conflict</a>
+        and
+        <a href="http://www.egosoft.com/games/x3ap/info_en.php">X³: Albion Prelude</a>.
+        With this tool you can plan your factory complexes before you build them
+        in-game.
+      </p>
+      <p>
+        Notable features:
+      </p>
+      <ul>
+        <li>
+          Knows all factories and sectors of a regular unmodified X3TC or X3AP game.
+          Also includes the X3TC bonus sector "Harmony Of Perpetuity".
+        </li>
+        <li>Optional automatic base complex calculation.</li>
+        <li>Load, save and print your complexes.</li>
+        <li>Sun power is configurable per complex.</li>
+        <li>
+          Complex can be connected to a sector for automatic sun power
+          configuration and calculation of next ship yards where the factories
+          can be bought.
+        </li>
+        <li>
+          Easy creation of mines. Just add a mine type and then enter 
+          as many asteroid yields as you want.
+        </li>
+        <li>
+          Cross-platform GUI application. Runs on any platform supporting
+          <a href="http://www.java.com/download/">Java SE 6</a> or higher.
+        </li>
+        <li>
+          Native look-and-feel on Windows, Linux and Mac OS X. Theme 
+          is configurable. 
+        </li>
+        <li>
+          Open Source (MIT License)
+        </li>    
+      </ul>
+      <div style="clear:both"></div>
+    </section>
+    <section name="Download">
+      <p>
+        Choose your platform:
+      </p>
+      <ul class="download">
+        <li><a href="${releasesUrl}/${project.artifactId}-${project.version}.exe"><img src="images/windows.png" align="center" /> Windows</a></li>
+        <li><a href="${releasesUrl}/${project.artifactId}-${project.version}-unix.tar.bz2"><img src="images/xorg.png" align="center" /> Unix / Linux</a></li>
+        <li><a href="${releasesUrl}/${project.artifactId}-${project.version}-macosx.zip"><img src="images/apple.png" align="center" /> Mac OS X</a></li>
+      </ul>
+      <p>
+        The source code is available on <a href="http://github.com/kayahr/${project.artifactId}/">Github</a>.        
+      </p>    
+      <p>
+        Xadrian is written in Java and you need at least the
+        <a href="http://www.java.com/download/">Java SE 6 Runtime Environment</a>.
+      </p>
+    </section>
+    <section name="Problems">
+      <p>
+        If you have any problems with ${project.name} or find bugs in the software or this
+        web site (even if it's just a typo) then please let me know by creating
+        an <a href="${project.issueManagement.url}">issue on GitHub</a>.
+      </p>
+    </section>    
+  </body>
+</document>
