@@ -39,7 +39,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Dialog for setting up the application preferences.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class PreferencesDialog extends ModalDialog
@@ -106,7 +106,7 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Creates and returns the panel with the races settings.
-     * 
+     *
      * @return The created panel
      */
     private JPanel createUsedRaces()
@@ -128,7 +128,7 @@ public class PreferencesDialog extends ModalDialog
 
         final GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.WEST;
+        c.anchor = GridBagConstraints.LINE_START;
         c.weightx = 1;
         c.gridx = 0;
         c.gridy = 0;
@@ -151,15 +151,15 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Creates and returns the list of ignorable races.
-     * 
+     *
      * @return The list of ignorable races.
      */
     private SortedSet<Race> getIgnorableRaces()
     {
-        SortedSet<Race> races = new TreeSet<Race>();
-        for (Game game : GameFactory.getInstance().getGames())
+        final SortedSet<Race> races = new TreeSet<Race>();
+        for (final Game game : GameFactory.getInstance().getGames())
         {
-            for (Race race : game.getRaceFactory().getManufacturerRaces())
+            for (final Race race : game.getRaceFactory().getManufacturerRaces())
             {
                 races.add(race);
             }
@@ -169,7 +169,7 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Creates and returns the panel with the game settings.
-     * 
+     *
      * @return The created panel
      */
     private JPanel createX3TCSettings()
@@ -189,17 +189,19 @@ public class PreferencesDialog extends ModalDialog
         final GridBagConstraints c = new GridBagConstraints();
         final JLabel label =
             new JLabel(I18N.getString("dialog.preferences.playerSector"));
-        c.anchor = GridBagConstraints.WEST;
+        c.anchor = GridBagConstraints.LINE_START;
         c.weightx = 0;
         c.gridx = 0;
         c.gridy = 0;
+        c.insets.top = 2;
+        c.insets.bottom = 2;
         controlPanel.add(label, c);
         c.weightx = 1;
         c.gridx = 1;
         c.insets.left = 5;
         c.fill = GridBagConstraints.HORIZONTAL;
         this.playerSectorComboBox = new JComboBox();
-        Game x3tc = GameFactory.getInstance().getGame("x3tc");
+        final Game x3tc = GameFactory.getInstance().getGame("x3tc");
         for (int i = 0; i < 5; i++)
         {
             this.playerSectorComboBox.addItem(I18N.getString(x3tc,
@@ -213,7 +215,7 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Creates and returns the panel with the general settings.
-     * 
+     *
      * @return The created panel
      */
     private JPanel createGeneralSettings()
@@ -234,6 +236,8 @@ public class PreferencesDialog extends ModalDialog
         final JLabel label =
             new JLabel(I18N.getString("dialog.preferences.game"));
         c.anchor = GridBagConstraints.WEST;
+        c.insets.top = 2;
+        c.insets.bottom = 2;
         c.weightx = 0;
         c.gridx = 0;
         c.gridy = 0;
@@ -245,7 +249,7 @@ public class PreferencesDialog extends ModalDialog
         this.gamesComboBox = new JComboBox();
         this.gamesComboBox.addItem(I18N
             .getString("dialog.preferences.alwaysAsk"));
-        for (Game game : GameFactory.getInstance().getGames())
+        for (final Game game : GameFactory.getInstance().getGames())
         {
             this.gamesComboBox.addItem(game);
         }
@@ -257,7 +261,7 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Creates and returns the panel with the view settings.
-     * 
+     *
      * @return The created panel
      */
     private JPanel createViewSettings()
@@ -277,11 +281,13 @@ public class PreferencesDialog extends ModalDialog
         controlPanel.setBorder(new EmptyBorder(2, 20, 5, 0));
         panel.add(controlPanel);
         final GridBagConstraints c = new GridBagConstraints();
-        
+
         // Create the theme controls
         JLabel label =
             new JLabel(I18N.getString("dialog.preferences.theme"));
         c.anchor = GridBagConstraints.LINE_START;
+        c.insets.top = 2;
+        c.insets.bottom = 2;
         c.gridx = 0;
         c.gridy = 0;
         controlPanel.add(label, c);
@@ -289,7 +295,7 @@ public class PreferencesDialog extends ModalDialog
         c.insets.left = 5;
         c.fill = GridBagConstraints.HORIZONTAL;
         this.themeComboBox = new JComboBox();
-        for (Theme theme : ThemeFactory.getInstance().getThemes())
+        for (final Theme theme : ThemeFactory.getInstance().getThemes())
         {
             this.themeComboBox.addItem(theme);
         }
@@ -308,15 +314,15 @@ public class PreferencesDialog extends ModalDialog
         c.insets.left = 5;
         c.fill = GridBagConstraints.HORIZONTAL;
         this.localeComboBox = new JComboBox();
-        for (String locale: I18N.getString("locale.locales").split(","))
-        {            
+        for (final String locale: I18N.getString("locale.locales").split(","))
+        {
             this.localeComboBox.addItem(new ComboBoxEntry(I18N
                 .getString("locale." + locale), locale));
         }
         controlPanel.add(this.localeComboBox, c);
         c.insets.left = 0;
         c.fill = GridBagConstraints.NONE;
-        
+
         c.gridx = 0;
         c.gridy = 2;
         c.gridwidth = 2;
@@ -336,7 +342,7 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Returns the singleton instance
-     * 
+     *
      * @return The singleton instance
      */
     public static PreferencesDialog getInstance()
@@ -365,7 +371,7 @@ public class PreferencesDialog extends ModalDialog
         this.themeComboBox.setSelectedItem(ThemeFactory.getInstance().getTheme(
             UIManager.getLookAndFeel().getClass().getName()));
         this.localeComboBox.setSelectedItem(new ComboBoxEntry(null,
-            Locale.getDefault().toString()));
+            Locale.getDefault().getLanguage().toString()));
         this.playerSectorComboBox.setSelectedIndex(config.getPlayerSector());
 
         final String defaultGameId = config.getDefaultGame();
@@ -406,13 +412,13 @@ public class PreferencesDialog extends ModalDialog
 
     /**
      * Test main method.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
      *             When something goes wrong.
      */
-    public static void main(String[] args) throws Exception
+    public static void main(final String[] args) throws Exception
     {
         SwingUtils.prepareGUI();
         new PreferencesDialog().open();
