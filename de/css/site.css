@@ -11,3 +11,8 @@
     padding-right: 150px;
 }
 
+ul.download
+{
+    list-style: none;
+    padding-left: 20px;
+}
