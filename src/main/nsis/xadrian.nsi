@@ -12,7 +12,6 @@
 Name "${project.name}"
 OutFile "${project.build.directory}\${project.artifactId}-${project.version}.exe"
 RequestExecutionLevel admin
-;XPStyle on
 SetCompressor bzip2
 InstallDir $PROGRAMFILES64\${project.name}
 
@@ -25,17 +24,11 @@ InstallDir $PROGRAMFILES64\${project.name}
 !insertmacro MUI_UNPAGE_INSTFILES
 !insertmacro MUI_UNPAGE_FINISH
 
-;UninstPage uninstConfirm
-;UninstPage instfiles
-
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "German"
 
 LangString JavaInstall ${LANG_ENGLISH} "${project.name} needs the Java Runtime Environment version ${JRE_VERSION} or newer but it is not installed on your system. Do you want to automatically download and install it? Press 'No' if you want to install Java manually later."
 LangString JavaInstall ${LANG_GERMAN} "${project.name} benötigt die Java Laufzeit Umgebung Version ${JRE_VERSION} oder neuer aber diese wurde nicht auf Ihrem System gefunden. Wollen Sie sie jetzt automatisch herunterladen und installieren? Klicken Sie 'Nein' um Java später selbst zu installieren."
-
-LangString Uninstall ${LANG_ENGLISH} "Uninstall"
-LangString Uninstall ${LANG_GERMAN} "Deinstallation"
 
 Function GetJRE
   MessageBox MB_YESNO|MB_ICONQUESTION $(JavaInstall) IDNO done
@@ -64,10 +57,6 @@ Section
   SetOutPath $INSTDIR
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   
-  CreateDirectory "$SMPROGRAMS\${project.name}"
-  CreateShortCut "$SMPROGRAMS\${project.name}\$(Uninstall).lnk" \
-    "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0 SW_SHOWNORMAL
-
   File ${basedir}\README.txt
   File ${basedir}\LICENSE.txt
   File ${basedir}\src\main\nsis\${project.name}.ico
@@ -76,7 +65,7 @@ Section
   File /oname=${project.artifactId}.jar ${project.build.directory}\${project.artifactId}-${project.version}.jar
   CreateShortCut "$INSTDIR\${project.name}.lnk" \
     "$SYSDIR\javaw.exe" "-jar $\"$INSTDIR\lib\${project.artifactId}.jar$\"" "$INSTDIR\${project.name}.ico" 0 SW_SHOWNORMAL
-  CreateShortCut "$SMPROGRAMS\${project.name}\${project.name}.lnk" \
+  CreateShortCut "$SMPROGRAMS\${project.name}.lnk" \
     "$SYSDIR\javaw.exe" "-jar $\"$INSTDIR\lib\${project.artifactId}.jar$\"" "$INSTDIR\${project.name}.ico" 0 SW_SHOWNORMAL
   CreateShortCut "$DESKTOP\${project.name}.lnk" \
     "$SYSDIR\javaw.exe" "-jar $\"$INSTDIR\lib\${project.artifactId}.jar$\"" "$INSTDIR\${project.name}.ico" 0 SW_SHOWNORMAL
@@ -104,9 +93,7 @@ Section "Uninstall"
   Delete "$INSTDIR\LICENSE.txt"
   Delete "$INSTDIR\Uninstall.exe"
   RMDir "$INSTDIR"
-  Delete "$SMPROGRAMS\${project.name}\$(Uninstall).lnk"
-  Delete "$SMPROGRAMS\${project.name}\${project.name}.lnk"
+  Delete "$SMPROGRAMS\${project.name}.lnk"
   Delete "$DESKTOP\${project.name}.lnk"
-  RMDir "$SMPROGRAMS\${project.name}"
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.name}"
 SectionEnd
