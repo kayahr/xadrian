@@ -25,7 +25,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Dialog for selecting the game.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class SelectGameDialog extends ModalDialog
@@ -53,7 +53,7 @@ public class SelectGameDialog extends ModalDialog
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance.
      */
     public static SelectGameDialog getInstance()
@@ -85,7 +85,7 @@ public class SelectGameDialog extends ModalDialog
         final JPanel contentPanel = new JPanel();
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         contentPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        final GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
@@ -110,6 +110,7 @@ public class SelectGameDialog extends ModalDialog
     @Override
     public Result open()
     {
+        this.rememberCheckBox.setSelected(false);
         this.gameComboBox.requestFocus();
         final Result result = super.open();
         return result;
@@ -117,17 +118,17 @@ public class SelectGameDialog extends ModalDialog
 
     /**
      * Returns the selected game.
-     * 
+     *
      * @return The selected game
      */
     public Game getGame()
     {
         return (Game) this.gameComboBox.getSelectedItem();
     }
-    
+
     /**
      * Checks if the remember checkbox is selected.
-     * 
+     *
      * @return True if checkbox is selected, false if not.
      */
     public boolean isRemember()
@@ -137,13 +138,13 @@ public class SelectGameDialog extends ModalDialog
 
     /**
      * Test main method.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
      *             When something goes wrong.
      */
-    public static void main(String[] args) throws Exception
+    public static void main(final String[] args) throws Exception
     {
         SwingUtils.prepareTheme();
         new SelectGameDialog().open();
