@@ -28,7 +28,7 @@ InstallDir $PROGRAMFILES64\${project.name}
 !insertmacro MUI_LANGUAGE "German"
 
 LangString JavaInstall ${LANG_ENGLISH} "${project.name} needs the Java Runtime Environment version ${JRE_VERSION} or newer but it is not installed on your system. Do you want to automatically download and install it? Press 'No' if you want to install Java manually later."
-LangString JavaInstall ${LANG_GERMAN} "${project.name} benötigt die Java Laufzeit Umgebung Version ${JRE_VERSION} oder neuer aber diese wurde nicht auf Ihrem System gefunden. Wollen Sie sie jetzt automatisch herunterladen und installieren? Klicken Sie 'Nein' um Java später selbst zu installieren."
+LangString JavaInstall ${LANG_GERMAN} "${project.name} braucht die Java Laufzeit Umgebung Version ${JRE_VERSION} oder neuer. Wollen Sie sie jetzt automatisch herunterladen und installieren? Klicken Sie 'Nein' um Java nach der Installation von ${project.name} selbst zu installieren."
 
 Function GetJRE
   MessageBox MB_YESNO|MB_ICONQUESTION $(JavaInstall) IDNO done
