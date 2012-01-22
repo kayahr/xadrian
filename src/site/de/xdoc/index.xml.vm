@@ -51,16 +51,20 @@
         Wähle dein Betriebssystem:
       </p>
       <ul class="download">
-        <li><a href="${releasesUrl}/${project.artifactId}-${project.version}.exe"><img src="../images/windows.png" align="center" /> Windows</a></li>
-        <li><a href="${releasesUrl}/${project.artifactId}-${project.version}-unix.tar.bz2"><img src="../images/xorg.png" align="center" /> Unix / Linux</a></li>
-        <li><a href="${releasesUrl}/${project.artifactId}-${project.version}-macosx.zip"><img src="../images/apple.png" align="center" /> Mac OS X</a></li>
+        <li><a href="${releasesUrl}/${project.version}/${project.artifactId}-${project.version}.exe"><img src="../images/windows.png" align="center" /> Windows</a></li>
+        <li><a href="${releasesUrl}/${project.version}/${project.artifactId}-${project.version}-unix.tar.bz2"><img src="../images/xorg.png" align="center" /> Unix / Linux</a></li>
+        <li><a href="${releasesUrl}/${project.version}/${project.artifactId}-${project.version}-macosx.zip"><img src="../images/apple.png" align="center" /> Mac OS X</a></li>
       </ul>
-      <p>
-        Der Quelltext ist auf <a href="http://github.com/kayahr/${project.artifactId}/">Github</a> verfügbar.        
-      </p>    
       <p>
         Xadrian ist in Java geschrieben und benötigt mindestens
         <a href="http://www.java.com/download/">Java SE 6 Runtime Environment</a>.
+      </p>
+      <p>
+        <a href="http://github.com/kayahr/${project.artifactId}/">Quelltext</a>
+        |        
+        <a href="${releasesUrl}/">Ältere Versionen</a>
+        |
+        <a href="${snapshotsUrl}/">Snapshots</a>
       </p>
     </section>
     <section name="Probleme">
