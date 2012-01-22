@@ -39,6 +39,9 @@
       <action dev="k" type="fix" date="2012-01-22">
         Fixed status bar in main window which never displayed anything.
       </action>
+      <action dev="k" type="add" date="2012-01-22">
+        Added donation button.
+      </action>
     </release>
     <release version="1.4.0" date="2012-01-15" description="Major update">
       <action dev="k" type="add" date="2012-01-14">
