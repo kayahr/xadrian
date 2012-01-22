@@ -46,6 +46,7 @@ import de.ailis.xadrian.actions.ChangeSunsAction;
 import de.ailis.xadrian.actions.CloseAction;
 import de.ailis.xadrian.actions.CloseAllAction;
 import de.ailis.xadrian.actions.CopyAction;
+import de.ailis.xadrian.actions.DonateAction;
 import de.ailis.xadrian.actions.ExitAction;
 import de.ailis.xadrian.actions.NewAction;
 import de.ailis.xadrian.actions.OpenAction;
@@ -121,6 +122,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /** The "about" action */
     private final Action aboutAction = new AboutAction(this);
+
+    /** The "donate" action */
+    private final Action donateAction = new DonateAction(this);
 
     /** The "preferences" action */
     private final Action preferencesAction = new PreferencesAction(this);
@@ -229,6 +233,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
         // Create the 'Help' menu
         final JMenu helpMenu = I18N.createMenu(menuBar, "help");
+        helpMenu.add(this.donateAction);
+        helpMenu.addSeparator();
         helpMenu.add(this.aboutAction);
 
         installStatusHandler(menuBar);
@@ -304,6 +310,21 @@ public class MainFrame extends JFrame implements EditorStateListener,
         openButton.setMargin(new Insets(5, 10, 5, 10));
         c.gridy++;
         buttonPanel.add(openButton, c);
+
+        final JPanel separator = new JPanel();
+        separator.setPreferredSize(new Dimension(20, 20));
+        c.gridy++;
+        buttonPanel.add(separator, c);
+
+        final JButton donateButton = new JButton(this.donateAction);
+        donateButton.setHorizontalAlignment(SwingConstants.LEFT);
+        donateButton.setIconTextGap(10);
+        donateButton.setText("<html><body><strong>" + donateButton.getText() +
+            "</strong><br />" + donateButton.getToolTipText() + "</body></html>");
+        donateButton.setToolTipText(null);
+        donateButton.setMargin(new Insets(5, 10, 5, 10));
+        c.gridy++;
+        buttonPanel.add(donateButton, c);
 
         add(welcomePanel, BorderLayout.CENTER);
     }

@@ -49,6 +49,9 @@ public final class Icons
     /** The INFO icon */
     public static final Icon INFO = createIcon("info");
 
+    /** The PAYPAL icon */
+    public static final Icon PAYPAL = createIcon("paypal");
+
     /** The OPEN icon */
     public static final Icon OPEN = createIcon("open");
 

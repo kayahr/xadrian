@@ -5,6 +5,7 @@
 
 package de.ailis.xadrian.utils;
 
+import java.awt.Desktop;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -13,6 +14,9 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Locale;
 
 import javax.swing.Action;
@@ -35,7 +39,7 @@ import de.ailis.xadrian.support.Config;
 
 /**
  * Static utility methods for common Swing tasks.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public final class SwingUtils
@@ -53,7 +57,7 @@ public final class SwingUtils
 
     /**
      * Gives a component a popup menu
-     * 
+     *
      * @param component
      *            The target component
      * @param popup
@@ -86,7 +90,7 @@ public final class SwingUtils
 
     /**
      * Installs a workaround for bug #4699955 in a JSpinner.
-     * 
+     *
      * @param spinner
      *            The spinner to fix
      */
@@ -139,7 +143,7 @@ public final class SwingUtils
     /**
      * Checks if the specified window (may it be a dialog or a frame) is
      * resizable.
-     * 
+     *
      * @param window
      *            The window
      * @return True if window is resizable, false if not
@@ -158,20 +162,20 @@ public final class SwingUtils
      */
     public static void prepareLocale()
     {
-        String locale = Config.getInstance().getLocale();
+        final String locale = Config.getInstance().getLocale();
         if (locale != null) Locale.setDefault(new Locale(locale));
     }
 
     /**
      * Prepares the theme. The theme can be overridden with the environment
      * variable XADRIAN_SYSTHEME. The default is the system look and feel.
-     * 
+     *
      * @throws Exception
      *             When theme could not be prepared
      */
     public static void prepareTheme() throws Exception
     {
-        String theme = Config.getInstance().getTheme();
+        final String theme = Config.getInstance().getTheme();
         if (theme != null)
         {
             try
@@ -179,7 +183,7 @@ public final class SwingUtils
                 UIManager.setLookAndFeel(theme);
                 return;
             }
-            catch (Exception e)
+            catch (final Exception e)
             {
                 LOG.warn("Can't set theme " + theme +
                     ". Falling back to system look-and-feel. Reason: " + e, e);
@@ -191,7 +195,7 @@ public final class SwingUtils
             UIManager
                 .setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         }
-        catch (Exception e)
+        catch (final Exception e)
         {
             LOG.warn("Can't set system look-and-feel. " +
                 "Falling back to default. Reason: " + e, e);
@@ -200,7 +204,7 @@ public final class SwingUtils
 
     /**
      * Prepares the Swing GUI.
-     * 
+     *
      * @throws Exception
      *             When GUI could not be prepared
      */
@@ -213,7 +217,7 @@ public final class SwingUtils
     /**
      * Runs the specified component in an empty test frame. This method is used
      * to test single components during development.
-     * 
+     *
      * @param component
      *            The component to test
      * @throws Exception
@@ -232,7 +236,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred height of the specified component.
-     * 
+     *
      * @param component
      *            The component
      * @param height
@@ -247,7 +251,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred width of the specified component.
-     * 
+     *
      * @param component
      *            The component
      * @param width
@@ -262,7 +266,7 @@ public final class SwingUtils
 
     /**
      * Adds a component action.
-     * 
+     *
      * @param component
      *            The compoennt to add the action to
      * @param action
@@ -279,5 +283,50 @@ public final class SwingUtils
             (KeyStroke) action.getValue(Action.ACCELERATOR_KEY);
         imap.put(ks, action.getValue(Action.NAME));
         amap.put(action.getValue(Action.NAME), action);
+    }
+
+    /**
+     * Opens a URL in the browser. It first tries to do this with the Desktop
+     * API. If this fails then it tries to use the FreeDesktop-API.
+     *
+     * @param uri
+     *            The URI to open.
+     */
+    public static void openBrowser(final URI uri)
+    {
+        try
+        {
+            try
+            {
+                Desktop.getDesktop().browse(uri);
+            }
+            catch (final UnsupportedOperationException e)
+            {
+                Runtime.getRuntime().exec("xdg-open '" + uri + "'");
+            }
+        }
+        catch (final IOException e)
+        {
+            LOG.error("Unable to external browser: " + e, e);
+        }
+    }
+
+    /**
+     * Opens a URL in the browser. It first tries to do this with the Desktop
+     * API. If this fails then it tries to use the FreeDesktop-API.
+     *
+     * @param url
+     *            The URL to open.
+     */
+    public static void openBrowser(final String url)
+    {
+        try
+        {
+            openBrowser(new URI(url));
+        }
+        catch (final URISyntaxException e)
+        {
+            LOG.error(e.toString(), e);
+        }
     }
 }

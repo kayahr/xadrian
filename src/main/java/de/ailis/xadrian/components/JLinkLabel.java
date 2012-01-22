@@ -6,20 +6,17 @@
 package de.ailis.xadrian.components;
 
 import java.awt.Cursor;
-import java.awt.Desktop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.net.URI;
 
 import javax.swing.JLabel;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Label component which styles the label as a hyperlink and opens a url in an
  * external browser when clicked.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class JLinkLabel extends JLabel
@@ -27,20 +24,17 @@ public class JLinkLabel extends JLabel
     /** Serial version UID */
     private static final long serialVersionUID = -6860272513583477660L;
 
-    /** The logger */
-    static final Log log = LogFactory.getLog(JLinkLabel.class);
-
     /**
      * Opens a URL on click.
      */
     private static class LinkClickHandler extends MouseAdapter
     {
         /** The URL to open. */
-        private String url;
+        private final String url;
 
         /**
          * Constructor.
-         * 
+         *
          * @param url
          *            The URL to open.
          */
@@ -55,20 +49,13 @@ public class JLinkLabel extends JLabel
         @Override
         public void mouseClicked(final MouseEvent event)
         {
-            try
-            {
-                Desktop.getDesktop().browse(new URI(this.url));
-            }
-            catch (final Exception e)
-            {
-                log.error("Unable to external browser: " + e, e);
-            }
+            SwingUtils.openBrowser(this.url);
         }
     }
 
     /**
      * Constructor
-     * 
+     *
      * @param text
      *            The label text
      * @param url
@@ -77,7 +64,7 @@ public class JLinkLabel extends JLabel
     public JLinkLabel(final String text, final String url)
     {
         super("<html><a href=\"#\">" + text + "</a></html>");
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        this.addMouseListener(new LinkClickHandler(url));
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        addMouseListener(new LinkClickHandler(url));
     }
 }
