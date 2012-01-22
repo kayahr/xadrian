@@ -167,7 +167,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         setName("mainFrame");
         setIconImages(Images.LOGOS);
 
-        setSize(800, 600);
+        setPreferredSize(new Dimension(960, 700));
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter()
         {
@@ -177,7 +177,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
                 exit();
             }
         });
-        setLocationRelativeTo(null);
 
         createStatusBar();
         createMenuBar();
@@ -185,6 +184,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
         createContent();
 
         pack();
+
+        setLocationRelativeTo(null);
 
         Config.restoreWindowState(this);
 
