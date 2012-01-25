@@ -99,6 +99,11 @@ tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
     width: 100%;
 }
 
+.print .factory, .print .ware
+{
+    white-space: normal;
+}
+
 .factory-resources
 {
     padding-left: 15px;
