@@ -638,7 +638,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Reads a new complex from the specified file and returns the complex
-     * editor or null if an error occured while reading the file.
+     * editor or null if an error occurred while reading the file.
      * 
      * @param file
      *            The file to open.
