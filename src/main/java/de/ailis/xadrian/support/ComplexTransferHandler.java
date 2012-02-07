@@ -15,7 +15,6 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
-import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.exceptions.DataException;
 import de.ailis.xadrian.frames.MainFrame;
 
@@ -85,9 +84,7 @@ public final class ComplexTransferHandler extends TransferHandler
                         if (!file.getName().toLowerCase().endsWith(".x3c"))
                             continue;
 
-                        ComplexEditor editor = ComplexEditor.open(file);
-                        if (editor != null)
-                            this.mainFrame.createLoadedComplexTab(editor);
+                        this.mainFrame.open(file);
                     }
                     return true;
                 }

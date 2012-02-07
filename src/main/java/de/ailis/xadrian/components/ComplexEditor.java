@@ -32,9 +32,6 @@ import javax.swing.text.html.HTMLDocument;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.actions.AddFactoryAction;
@@ -53,7 +50,6 @@ import de.ailis.xadrian.dialogs.AddFactoryDialog;
 import de.ailis.xadrian.dialogs.ChangePricesDialog;
 import de.ailis.xadrian.dialogs.ChangeQuantityDialog;
 import de.ailis.xadrian.dialogs.ChangeSunsDialog;
-import de.ailis.xadrian.dialogs.OpenComplexDialog;
 import de.ailis.xadrian.dialogs.SaveComplexDialog;
 import de.ailis.xadrian.dialogs.SelectSectorDialog;
 import de.ailis.xadrian.dialogs.SetYieldsDialog;
@@ -113,10 +109,25 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
      */
     public ComplexEditor(final Complex complex)
     {
+        this(complex, null);
+    }
+
+    /**
+     * Constructor
+     * 
+     * @param complex
+     *            The complex to edit
+     * @param file
+     *            The file from which the complex was loaded. Null if it not
+     *            loaded from a file.
+     */
+    public ComplexEditor(final Complex complex, File file)
+    {
         super();
         setLayout(new BorderLayout());
 
         this.complex = complex;
+        this.file = file;
 
         // Create the text pane
         this.textPane = new JTextPane();
@@ -599,7 +610,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public void saveAs()
     {
         final SaveComplexDialog dialog = SaveComplexDialog.getInstance();
-        dialog.setSelectedFile(getFile());
+        dialog.setSelectedFile(getSuggestedFile());
         File file = dialog.open();
         if (file != null)
         {
@@ -617,53 +628,6 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
             {
                 save(file);
             }
-        }
-    }
-
-    /**
-     * Prompts for a file name and opens a new complex from there. Returns the
-     * complex editor or null if no file was loaded.
-     * 
-     * @return The new complex editor or null if file was not loaded
-     */
-    public static ComplexEditor open()
-    {
-        final OpenComplexDialog dialog = OpenComplexDialog.getInstance();
-
-        dialog.setSelectedFile(null);
-        final File file = dialog.open();
-        if (file != null) open(file);
-        return null;
-    }
-
-    /**
-     * Reads a new complex from the specified file and returns the complex
-     * editor or null if an error occurred while reading the file.
-     * 
-     * @param file
-     *            The file to open.
-     * @return The new complex editor or null if file was not loaded.
-     */
-    public static ComplexEditor open(File file)
-    {
-        try
-        {
-            final SAXReader reader = new SAXReader();
-            Document document = reader.read(file);
-            final Complex complex = Complex.fromXML(document);
-            complex.setName(FileUtils.getNameWithoutExt(file));
-            final ComplexEditor editor = new ComplexEditor(complex);
-            editor.file = file;
-            return editor;
-        }
-        catch (final DocumentException e)
-        {
-            JOptionPane.showMessageDialog(null, I18N.getString(
-                "error.cantReadComplex", file, e.getMessage()), I18N
-                .getString("error.title"), JOptionPane.ERROR_MESSAGE);
-            log.error("Unable to load complex from file '" + file + "': "
-                + e, e);
-            return null;
         }
     }
 
@@ -995,7 +959,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
      * 
      * @return A suggested file name for saving.
      */
-    private File getFile()
+    private File getSuggestedFile()
     {
         if (this.file != null) return this.file;
         return new File(this.complex.getName() + ".x3c");
@@ -1067,7 +1031,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     {
         return this.complex.getGame();
     }
-    
+
     /**
      * @see JComponent#setTransferHandler(TransferHandler)
      */
@@ -1076,5 +1040,17 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     {
         super.setTransferHandler(transferHandler);
         this.textPane.setTransferHandler(transferHandler);
+    }
+
+    /**
+     * Returns the file from which the file was opened or to which it was
+     * saved.
+     * 
+     * @return The complex file. Null if file has not been loaded from a while
+     *         and it was not saved to a file yet.
+     */
+    public File getFile()
+    {
+        return this.file;
     }
 }

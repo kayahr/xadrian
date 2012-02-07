@@ -7,7 +7,6 @@ package de.ailis.xadrian.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.frames.MainFrame;
 import de.ailis.xadrian.resources.Icons;
 import de.ailis.xadrian.support.FrameAction;
@@ -39,10 +38,6 @@ public class OpenAction extends FrameAction<MainFrame>
     @Override
     public void actionPerformed(final ActionEvent e)
     {
-        final ComplexEditor complexEditor = ComplexEditor.open();
-        if (complexEditor != null)
-        {
-            this.frame.createLoadedComplexTab(complexEditor);
-        }
+        this.frame.open();
     }
 }

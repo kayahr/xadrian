@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.Action;
 import javax.swing.JButton;
@@ -39,6 +40,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.io.SAXReader;
 
 import de.ailis.xadrian.actions.AboutAction;
 import de.ailis.xadrian.actions.AddFactoryAction;
@@ -65,6 +72,7 @@ import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.dialogs.AboutDialog;
+import de.ailis.xadrian.dialogs.OpenComplexDialog;
 import de.ailis.xadrian.dialogs.PreferencesDialog;
 import de.ailis.xadrian.dialogs.SelectGameDialog;
 import de.ailis.xadrian.interfaces.ClipboardProvider;
@@ -80,6 +88,7 @@ import de.ailis.xadrian.support.ComplexTransferHandler;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
+import de.ailis.xadrian.utils.FileUtils;
 
 /**
  * The main frame.
@@ -92,6 +101,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
 {
     /** Serial version UID */
     private static final long serialVersionUID = 7989554637240491666L;
+
+    /** The logger. */
+    private static final Log LOG = LogFactory.getLog(MainFrame.class);
 
     /** The event listener list */
     private final EventListenerList listenerList = new EventListenerList();
@@ -160,7 +172,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /** The status bar. */
     private JLabel statusBar;
-    
+
     /** The transfer handler for dropping complex files into Xadrian. */
     private TransferHandler transferHandler = new ComplexTransferHandler(this);
 
@@ -188,7 +200,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         createMenuBar();
         createToolBar();
         createContent();
-        
+
         setTransferHandler(this.transferHandler);
 
         pack();
@@ -286,7 +298,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         this.tabs.setPreferredSize(new Dimension(640, 480));
         this.tabs.addChangeListener(this);
         this.tabs.setTransferHandler(this.transferHandler);
-        
+
         final JPanel welcomePanel = this.welcomePanel = new JPanel();
         welcomePanel.setTransferHandler(this.transferHandler);
 
@@ -474,9 +486,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
         // Replace the welcome panel with the complex tab control
         remove(this.welcomePanel);
         add(this.tabs, BorderLayout.CENTER);
-        
+
         editor.setTransferHandler(this.transferHandler);
-        
+
         this.tabs.addTab(editor.getComplex().getName(), editor);
         this.tabs.setSelectedComponent(editor);
 
@@ -966,11 +978,88 @@ public class MainFrame extends JFrame implements EditorStateListener,
                 for (String arg : args)
                 {
                     File file = new File(arg);
-                    ComplexEditor editor = ComplexEditor.open(file);
-                    if (editor != null) frame.createLoadedComplexTab(editor);
+                    frame.open(file);
                 }
                 frame.setVisible(true);
             }
         });
+    }
+
+    /**
+     * Prompts for a file name and opens this complex file.
+     */
+    public void open()
+    {
+        final OpenComplexDialog dialog = OpenComplexDialog.getInstance();
+
+        dialog.setSelectedFile(null);
+        final File file = dialog.open();
+        if (file != null) open(file);
+    }
+
+    /**
+     * Returns the complex editor for the specified file. If no complex
+     * editor is open for this file then null is returned.
+     * 
+     * @param file
+     *            The file
+     * @return The complex editor or null if none is open for this file.
+     */
+    public ComplexEditor getEditor(File file)
+    {
+        for (int i = this.tabs.getTabCount() - 1; i >= 0; i -= 1)
+        {
+            Component component = this.tabs.getComponentAt(i);
+            if (!(component instanceof ComplexEditor)) continue;
+            ComplexEditor editor = (ComplexEditor) component;
+            File editorFile = editor.getFile();
+            if (editorFile == null) continue;
+            try
+            {
+                if (file.getCanonicalFile().equals(editorFile.getCanonicalFile()))
+                    return editor;
+            }
+            catch (IOException e)
+            {
+                if (file.equals(editorFile)) return editor;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Reads a new complex from the specified file and returns the complex
+     * editor or null if an error occurred while reading the file.
+     * 
+     * @param file
+     *            The file to open.
+     */
+    public void open(File file)
+    {
+        // Select already open editor if possible
+        ComplexEditor editor = getEditor(file);
+        if (editor != null)
+        {
+            this.tabs.setSelectedComponent(editor);
+            return;
+        }
+        
+        try
+        {
+            final SAXReader reader = new SAXReader();
+            Document document = reader.read(file);
+            final Complex complex = Complex.fromXML(document);
+            complex.setName(FileUtils.getNameWithoutExt(file));
+            editor = new ComplexEditor(complex, file);
+            createLoadedComplexTab(editor);
+        }
+        catch (final DocumentException e)
+        {
+            JOptionPane.showMessageDialog(null, I18N.getString(
+                "error.cantReadComplex", file, e.getMessage()), I18N
+                .getString("error.title"), JOptionPane.ERROR_MESSAGE);
+            LOG.error("Unable to load complex from file '" + file + "': "
+                + e, e);
+        }
     }
 }
