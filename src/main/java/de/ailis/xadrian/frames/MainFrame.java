@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 import javax.swing.Action;
 import javax.swing.JButton;
@@ -32,6 +33,7 @@ import javax.swing.JToolBar;
 import javax.swing.MenuElement;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.TransferHandler;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
@@ -74,13 +76,14 @@ import de.ailis.xadrian.listeners.EditorStateListener;
 import de.ailis.xadrian.listeners.MainStateListener;
 import de.ailis.xadrian.listeners.StateListener;
 import de.ailis.xadrian.resources.Images;
+import de.ailis.xadrian.support.ComplexTransferHandler;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
 
 /**
  * The main frame.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class MainFrame extends JFrame implements EditorStateListener,
@@ -157,6 +160,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /** The status bar. */
     private JLabel statusBar;
+    
+    /** The transfer handler for dropping complex files into Xadrian. */
+    private TransferHandler transferHandler = new ComplexTransferHandler(this);
 
     /**
      * Constructor
@@ -182,14 +188,15 @@ public class MainFrame extends JFrame implements EditorStateListener,
         createMenuBar();
         createToolBar();
         createContent();
+        
+        setTransferHandler(this.transferHandler);
 
         pack();
-
-        setLocationRelativeTo(null);
 
         Config.restoreWindowState(this);
 
         this.tabs.requestFocus();
+
     }
 
     /**
@@ -276,11 +283,13 @@ public class MainFrame extends JFrame implements EditorStateListener,
     private void createContent()
     {
         this.tabs = new JTabbedPane();
-        // add(this.tabs, BorderLayout.CENTER);
         this.tabs.setPreferredSize(new Dimension(640, 480));
         this.tabs.addChangeListener(this);
-
+        this.tabs.setTransferHandler(this.transferHandler);
+        
         final JPanel welcomePanel = this.welcomePanel = new JPanel();
+        welcomePanel.setTransferHandler(this.transferHandler);
+
         welcomePanel.setLayout(new GridBagLayout());
         final GridBagConstraints c = new GridBagConstraints();
 
@@ -321,7 +330,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
         donateButton.setHorizontalAlignment(SwingConstants.LEFT);
         donateButton.setIconTextGap(10);
         donateButton.setText("<html><body><strong>" + donateButton.getText() +
-            "</strong><br />" + donateButton.getToolTipText() + "</body></html>");
+            "</strong><br />" + donateButton.getToolTipText() +
+            "</body></html>");
         donateButton.setToolTipText(null);
         donateButton.setMargin(new Insets(5, 10, 5, 10));
         c.gridy++;
@@ -352,7 +362,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Installs status handler for the specified component an all its child
      * components.
-     *
+     * 
      * @param component
      *            The component to install the status handler for.
      */
@@ -377,14 +387,15 @@ public class MainFrame extends JFrame implements EditorStateListener,
                 }
             });
         }
-        for (final Component child: component.getComponents())
+        for (final Component child : component.getComponents())
         {
             if (!(child instanceof JComponent)) continue;
             installStatusHandler((JComponent) child);
         }
         if (component instanceof JMenu)
         {
-            for (final MenuElement menuElement: ((JMenu) component).getSubElements())
+            for (final MenuElement menuElement : ((JMenu) component)
+                .getSubElements())
             {
                 if (!(menuElement instanceof JComponent)) continue;
                 installStatusHandler((JComponent) menuElement);
@@ -394,7 +405,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Adds a state listener.
-     *
+     * 
      * @param listener
      *            The state listener to add
      */
@@ -405,7 +416,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Removes a state listener.
-     *
+     * 
      * @param listener
      *            The state listener to remove
      */
@@ -454,7 +465,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Creates a new factory complex tab with the specified complex editor in
      * it.
-     *
+     * 
      * @param editor
      *            The complex editor
      */
@@ -463,7 +474,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
         // Replace the welcome panel with the complex tab control
         remove(this.welcomePanel);
         add(this.tabs, BorderLayout.CENTER);
-
+        
+        editor.setTransferHandler(this.transferHandler);
+        
         this.tabs.addTab(editor.getComplex().getName(), editor);
         this.tabs.setSelectedComponent(editor);
 
@@ -475,7 +488,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Creates a complex editor tab with a loaded complex.
-     *
+     * 
      * @param editor
      *            The complex editor
      */
@@ -491,7 +504,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the current tab component or null if no tab is currently present.
-     *
+     * 
      * @return The current tab component
      */
     public Component getCurrentTab()
@@ -503,7 +516,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
      * Closes the current tab. Prompts for saving unsaved changes before
      * closing. Returns true if the tab was closed or false if it was not
      * closed.
-     *
+     * 
      * @return True if tab was closed, false if not
      */
     public boolean closeCurrentTab()
@@ -547,7 +560,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Closes all open tabs. Prompts for unsaved changes. Returns true if all
      * tabs have been closed or false if at least one tab was not closed.
-     *
+     * 
      * @return True if all tabs were closed, false if not.
      */
     public boolean closeAllTabs()
@@ -573,7 +586,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     {
         if (PreferencesDialog.getInstance().open() == Result.OK)
         {
-            for (final Component component: getTabs().getComponents())
+            for (final Component component : getTabs().getComponents())
             {
                 if (component instanceof ComplexEditor)
                 {
@@ -586,7 +599,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the tabs.
-     *
+     * 
      * @return The tabs
      */
     public JTabbedPane getTabs()
@@ -938,15 +951,25 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Opens the splash screen.
+     * 
+     * @param args
+     *            Command line arguments (Filenames of complexes to open)
      */
-    public static void open()
+    public static void open(final String[] args)
     {
         SwingUtilities.invokeLater(new Runnable()
         {
             @Override
             public void run()
             {
-                new MainFrame().setVisible(true);
+                MainFrame frame = new MainFrame();
+                for (String arg : args)
+                {
+                    File file = new File(arg);
+                    ComplexEditor editor = ComplexEditor.open(file);
+                    if (editor != null) frame.createLoadedComplexTab(editor);
+                }
+                frame.setVisible(true);
             }
         });
     }

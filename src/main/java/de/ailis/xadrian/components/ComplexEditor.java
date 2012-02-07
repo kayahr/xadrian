@@ -2,6 +2,7 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information.
  */
+
 package de.ailis.xadrian.components;
 
 import java.awt.BorderLayout;
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.TransferHandler;
 import javax.swing.UIManager;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -74,7 +76,7 @@ import freemarker.template.Template;
 
 /**
  * Complex Editor component.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class ComplexEditor extends JComponent implements HyperlinkListener,
@@ -105,7 +107,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Constructor
-     *
+     * 
      * @param complex
      *            The complex to edit
      */
@@ -136,17 +138,18 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         popupMenu.add(new ChangePricesAction(this));
         popupMenu.add(new JCheckBoxMenuItem(new ToggleBaseComplexAction(this)));
         SwingUtils.setPopupMenu(this.textPane, popupMenu);
-        
-        final HTMLDocument document = (HTMLDocument) this.textPane.getDocument();
+
+        final HTMLDocument document =
+            (HTMLDocument) this.textPane.getDocument();
 
         // Set the base URL of the text pane
         document.setBase(Main.class.getResource("templates/"));
-        
+
         // Modify the body style so it matches the system font
         final Font font = UIManager.getFont("Label.font");
-        String bodyRule = "body { font-family: " + font.getFamily() + 
+        String bodyRule = "body { font-family: " + font.getFamily() +
             "; font-size: " + font.getSize() + "pt; }";
-        document.getStyleSheet().addRule(bodyRule);        
+        document.getStyleSheet().addRule(bodyRule);
 
         // Create the scroll pane
         final JScrollPane scrollPane = new JScrollPane(this.textPane);
@@ -160,7 +163,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Adds an editor state listener.
-     *
+     * 
      * @param listener
      *            The editor state listener to add
      */
@@ -171,7 +174,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Removes an editor state listener.
-     *
+     * 
      * @param listener
      *            The editor state listener to remove
      */
@@ -366,7 +369,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Builds the factory with the given id.
-     *
+     * 
      * @param id
      *            The ID of the factory to build
      */
@@ -379,7 +382,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Destroys the factory with the given id.
-     *
+     * 
      * @param id
      *            The ID of the factory to destroy
      */
@@ -442,7 +445,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Removes the factory with the specified index.
-     *
+     * 
      * @param index
      *            The index of the factory to remove
      */
@@ -455,7 +458,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Disables the factory with the specified index.
-     *
+     * 
      * @param index
      *            The index of the factory to disable
      */
@@ -468,7 +471,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Enables the factory with the specified index.
-     *
+     * 
      * @param index
      *            The index of the factory to enable
      */
@@ -481,7 +484,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Accepts an automatically created factory.
-     *
+     * 
      * @param index
      *            The index of the factory to accept
      */
@@ -494,7 +497,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Changes the quantity of the factory with the specified index.
-     *
+     * 
      * @param index
      *            The index of the factory to change
      */
@@ -512,7 +515,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Increases the quantity of the factory with the specified index.
-     *
+     * 
      * @param index
      *            The index of the factory to change
      */
@@ -527,7 +530,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Decreases the quantity of the factory with the specified index.
-     *
+     * 
      * @param index
      *            The index of the factory to change
      */
@@ -542,7 +545,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Changes the yield of the factory with the specified index.
-     *
+     * 
      * @param index
      *            The index of the factory to change
      */
@@ -620,7 +623,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     /**
      * Prompts for a file name and opens a new complex from there. Returns the
      * complex editor or null if no file was loaded.
-     *
+     * 
      * @return The new complex editor or null if file was not loaded
      */
     public static ComplexEditor open()
@@ -629,35 +632,44 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
         dialog.setSelectedFile(null);
         final File file = dialog.open();
-        if (file != null)
-        {
-            final SAXReader reader = new SAXReader();
-            Document document;
-            try
-            {
-                document = reader.read(file);
-                final Complex complex = Complex.fromXML(document);
-                complex.setName(FileUtils.getNameWithoutExt(file));
-                final ComplexEditor editor = new ComplexEditor(complex);
-                editor.file = file;
-                return editor;
-            }
-            catch (final DocumentException e)
-            {
-                JOptionPane.showMessageDialog(null, I18N.getString(
-                    "error.cantReadComplex", file, e.getMessage()), I18N
-                    .getString("error.title"), JOptionPane.ERROR_MESSAGE);
-                log.error("Unable to load complex from file '" + file + "': "
-                    + e, e);
-                return null;
-            }
-        }
+        if (file != null) open(file);
         return null;
     }
 
     /**
+     * Reads a new complex from the specified file and returns the complex
+     * editor or null if an error occured while reading the file.
+     * 
+     * @param file
+     *            The file to open.
+     * @return The new complex editor or null if file was not loaded.
+     */
+    public static ComplexEditor open(File file)
+    {
+        try
+        {
+            final SAXReader reader = new SAXReader();
+            Document document = reader.read(file);
+            final Complex complex = Complex.fromXML(document);
+            complex.setName(FileUtils.getNameWithoutExt(file));
+            final ComplexEditor editor = new ComplexEditor(complex);
+            editor.file = file;
+            return editor;
+        }
+        catch (final DocumentException e)
+        {
+            JOptionPane.showMessageDialog(null, I18N.getString(
+                "error.cantReadComplex", file, e.getMessage()), I18N
+                .getString("error.title"), JOptionPane.ERROR_MESSAGE);
+            log.error("Unable to load complex from file '" + file + "': "
+                + e, e);
+            return null;
+        }
+    }
+
+    /**
      * Save the complex in the specified file.
-     *
+     * 
      * @param file
      *            The file
      */
@@ -684,7 +696,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Returns the edited complex.
-     *
+     * 
      * @return The edited complex
      */
     public Complex getComplex()
@@ -694,7 +706,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Returns true if this editor has unsaved changes. False if not.
-     *
+     * 
      * @return True if this editor has unsaved changes. False if not.
      */
     public boolean isChanged()
@@ -751,7 +763,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     /**
      * Returns true if this editor is new (and can be replaced with an other
      * editor).
-     *
+     * 
      * @return True if editor is new
      */
     public boolean isNew()
@@ -780,7 +792,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Returns the selected text or null if none selected.
-     *
+     * 
      * @return The selected text or null if none
      */
     public String getSelectedText()
@@ -980,7 +992,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Returns the file under which the currently edited complex could be saved.
-     *
+     * 
      * @return A suggested file name for saving.
      */
     private File getFile()
@@ -1000,7 +1012,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Opens the change prices dialog. Focuses the specified ware (if not null).
-     *
+     * 
      * @param focusedWare
      *            The ware to focus (null for none)
      */
@@ -1054,5 +1066,15 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     public Game getGame()
     {
         return this.complex.getGame();
+    }
+    
+    /**
+     * @see JComponent#setTransferHandler(TransferHandler)
+     */
+    @Override
+    public void setTransferHandler(final TransferHandler transferHandler)
+    {
+        super.setTransferHandler(transferHandler);
+        this.textPane.setTransferHandler(transferHandler);
     }
 }
