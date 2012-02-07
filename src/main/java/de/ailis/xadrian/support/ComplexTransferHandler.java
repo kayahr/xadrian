@@ -57,7 +57,6 @@ public final class ComplexTransferHandler extends TransferHandler
             DataFlavor flavor = flavors[i];
             if (flavor.equals(DataFlavor.javaFileListFlavor))
                 return true;
-            System.out.println(flavor);
         }
         return false;
     }
@@ -79,6 +78,13 @@ public final class ComplexTransferHandler extends TransferHandler
                     for (File file : (List<File>) transferable
                         .getTransferData(DataFlavor.javaFileListFlavor))
                     {
+                        // Ignore non-files
+                        if (!file.isFile()) continue;
+
+                        // Ignore files which have no x3c extension
+                        if (!file.getName().toLowerCase().endsWith(".x3c"))
+                            continue;
+
                         ComplexEditor editor = ComplexEditor.open(file);
                         if (editor != null)
                             this.mainFrame.createLoadedComplexTab(editor);
