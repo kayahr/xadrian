@@ -1,3 +1,0 @@
-* Add Yes/no-to-all option in close all action.
-* Max-Complex calculation.
-
