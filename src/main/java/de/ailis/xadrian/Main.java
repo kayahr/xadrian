@@ -39,6 +39,9 @@ public class Main
     {
         try
         {
+            // Set the application name (needed for Gnome Shell for example)
+            SwingUtils.setAppName("Xadrian");
+            
             // Set theme and locale
             SwingUtils.prepareGUI();
     
@@ -59,7 +62,7 @@ public class Main
     
             // Close the splash screen and open the main window
             SplashFrame.close();
-            MainFrame.open();
+            MainFrame.open(args);
         }
         catch (Throwable t)
         {

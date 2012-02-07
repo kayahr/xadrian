@@ -9,12 +9,14 @@ import java.awt.Desktop;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Locale;
@@ -39,7 +41,7 @@ import de.ailis.xadrian.support.Config;
 
 /**
  * Static utility methods for common Swing tasks.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public final class SwingUtils
@@ -57,7 +59,7 @@ public final class SwingUtils
 
     /**
      * Gives a component a popup menu
-     *
+     * 
      * @param component
      *            The target component
      * @param popup
@@ -90,7 +92,7 @@ public final class SwingUtils
 
     /**
      * Installs a workaround for bug #4699955 in a JSpinner.
-     *
+     * 
      * @param spinner
      *            The spinner to fix
      */
@@ -143,7 +145,7 @@ public final class SwingUtils
     /**
      * Checks if the specified window (may it be a dialog or a frame) is
      * resizable.
-     *
+     * 
      * @param window
      *            The window
      * @return True if window is resizable, false if not
@@ -169,7 +171,7 @@ public final class SwingUtils
     /**
      * Prepares the theme. The theme can be overridden with the environment
      * variable XADRIAN_SYSTHEME. The default is the system look and feel.
-     *
+     * 
      * @throws Exception
      *             When theme could not be prepared
      */
@@ -204,7 +206,7 @@ public final class SwingUtils
 
     /**
      * Prepares the Swing GUI.
-     *
+     * 
      * @throws Exception
      *             When GUI could not be prepared
      */
@@ -217,7 +219,7 @@ public final class SwingUtils
     /**
      * Runs the specified component in an empty test frame. This method is used
      * to test single components during development.
-     *
+     * 
      * @param component
      *            The component to test
      * @throws Exception
@@ -236,7 +238,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred height of the specified component.
-     *
+     * 
      * @param component
      *            The component
      * @param height
@@ -251,7 +253,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred width of the specified component.
-     *
+     * 
      * @param component
      *            The component
      * @param width
@@ -266,7 +268,7 @@ public final class SwingUtils
 
     /**
      * Adds a component action.
-     *
+     * 
      * @param component
      *            The compoennt to add the action to
      * @param action
@@ -288,7 +290,7 @@ public final class SwingUtils
     /**
      * Opens a URL in the browser. It first tries to do this with the Desktop
      * API. If this fails then it tries to use the FreeDesktop-API.
-     *
+     * 
      * @param uri
      *            The URI to open.
      */
@@ -314,7 +316,7 @@ public final class SwingUtils
     /**
      * Opens a URL in the browser. It first tries to do this with the Desktop
      * API. If this fails then it tries to use the FreeDesktop-API.
-     *
+     * 
      * @param url
      *            The URL to open.
      */
@@ -327,6 +329,39 @@ public final class SwingUtils
         catch (final URISyntaxException e)
         {
             LOG.error(e.toString(), e);
+        }
+    }
+
+    /**
+     * Sets the application name. There is no API for this (See
+     * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6528430) so this
+     * method uses reflection to do this. This may fail if the Java
+     * implementation is changed but any exception here will be ignored.
+     * 
+     * The application name is currently only used for X11 desktops and only
+     * important for some window managers like Gnome Shell.
+     * 
+     * @param appName
+     *            The application name to set.
+     */
+    public static void setAppName(final String appName)
+    {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Class<?> cls = toolkit.getClass();
+
+        try
+        {
+            // When X11 toolkit is used then set the awtAppClassName field
+            if (cls.getName().equals("sun.awt.X11.XToolkit"))
+            {
+                Field field = cls.getDeclaredField("awtAppClassName");
+                field.setAccessible(true);
+                field.set(toolkit, appName);
+            }
+        }
+        catch (Exception e)
+        {
+            LOG.warn("Unable to set application name: " + e, e);
         }
     }
 }
