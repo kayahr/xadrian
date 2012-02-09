@@ -8,6 +8,7 @@ package de.ailis.xadrian.frames;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -47,6 +48,8 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
+import de.ailis.oneinstance.OneInstance;
+import de.ailis.oneinstance.OneInstanceListener;
 import de.ailis.xadrian.actions.AboutAction;
 import de.ailis.xadrian.actions.AddFactoryAction;
 import de.ailis.xadrian.actions.ChangePricesAction;
@@ -208,7 +211,36 @@ public class MainFrame extends JFrame implements EditorStateListener,
         Config.restoreWindowState(this);
 
         this.tabs.requestFocus();
-
+        
+        // Install application instance listener which decides if a new
+        // application instance is allowed to run.        
+        OneInstance.getInstance().addListener(new OneInstanceListener()
+        {
+            @Override
+            public boolean newInstanceCreated(final String[] args)
+            {
+                SwingUtilities.invokeLater(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        // Otherwise process the command line arguments and deny
+                        // the new application instance.
+                        MainFrame frame = MainFrame.this;
+                        frame.setExtendedState(Frame.NORMAL);
+                        frame.toFront();
+                        frame.requestFocus();
+                        frame.setVisible(true);
+                        for (String arg : args)
+                        {
+                            File file = new File(arg);
+                            MainFrame.this.open(file);
+                        }
+                    }
+                });
+                return false;
+            }
+        });
     }
 
     /**

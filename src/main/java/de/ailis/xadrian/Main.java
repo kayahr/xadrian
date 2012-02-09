@@ -5,6 +5,7 @@
 
 package de.ailis.xadrian;
 
+import de.ailis.oneinstance.OneInstance;
 import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.dialogs.AboutDialog;
 import de.ailis.xadrian.dialogs.ChangeQuantityDialog;
@@ -24,6 +25,9 @@ import de.ailis.xadrian.utils.SwingUtils;
  */
 public class Main
 {
+    /** The application name. */
+    private static final String APP_NAME = "Xadrian";
+
     /**
      * Opens the splash screen.
      */
@@ -37,20 +41,27 @@ public class Main
      */
     public static void main(final String[] args) throws Exception
     {
+        // If Xadrian is already running then focus the already running
+        // Xadrian and pass command line arguments to it. This allows us
+        // to open more complexes in the already running Xadrian by
+        // double-clicking the *.x3c files.
+        if (!OneInstance.getInstance().register(Main.class, args))
+            System.exit(0);
+
         try
         {
             // Set the application name (needed for Gnome Shell for example)
-            SwingUtils.setAppName("Xadrian");
-            
+            SwingUtils.setAppName(APP_NAME);
+
             // Set theme and locale
             SwingUtils.prepareGUI();
-    
+
             // Install the error handler
             ErrorHandler.install();
-    
+
             // Open the splash screen.
             SplashFrame.open();
-    
+
             // Preload everything
             GameFactory.getInstance().getGames();
             AboutDialog.getInstance();
@@ -59,7 +70,7 @@ public class Main
             ChangeQuantityDialog.getInstance();
             PreferencesDialog.getInstance();
             SelectGameDialog.getInstance();
-    
+
             // Close the splash screen and open the main window
             SplashFrame.close();
             MainFrame.open(args);
