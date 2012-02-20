@@ -367,6 +367,8 @@ public class SectorSelector extends JComponent implements MouseMotionListener,
     @Override
     public void mouseMoved(final MouseEvent e)
     {
+        if (this.buffer == null) return;
+        
         final int x = e.getX() - (this.getWidth() - this.buffer.getWidth()) / 2;
         final int y = e.getY() - (this.getHeight() - this.buffer.getHeight()) / 2;
         final int sx = Math.round(((x / this.scale) - 75) / 100);
