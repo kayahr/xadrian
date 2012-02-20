@@ -28,9 +28,9 @@ public class Main
     /** The application name. */
     private static final String APP_NAME = "Xadrian";
 
-    /**
-     * Opens the splash screen.
-     */
+    /** The application user model ID (For Windows 7 Taskbar). */
+    private static final String APP_USER_MODEL_ID = "Ailis.Xadrian";
+
     /**
      * Main method.
      * 
@@ -49,7 +49,10 @@ public class Main
             System.exit(0);
 
         try
-        {
+        {            
+            // Set the App user model ID (needed for Windows)
+            SwingUtils.setAppUserModelId(APP_USER_MODEL_ID);
+            
             // Set the application name (needed for Gnome Shell for example)
             SwingUtils.setAppName(APP_NAME);
 

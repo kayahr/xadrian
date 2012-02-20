@@ -37,6 +37,10 @@ import javax.swing.text.JTextComponent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.sun.jna.Native;
+import com.sun.jna.NativeLong;
+import com.sun.jna.WString;
+
 import de.ailis.xadrian.support.Config;
 
 /**
@@ -48,6 +52,22 @@ public final class SwingUtils
 {
     /** The logger. */
     private static final Log LOG = LogFactory.getLog(SwingUtils.class);
+
+    /** If platform has a shell32 library. */
+    private static boolean hasShell32;
+
+    static
+    {
+        try
+        {
+            Native.register("shell32");
+            hasShell32 = true;
+        }
+        catch (Throwable e)
+        {
+            hasShell32 = false;
+        }
+    }
 
     /**
      * Private constructor to prevent instantiation
@@ -364,4 +384,40 @@ public final class SwingUtils
             LOG.warn("Unable to set application name: " + e, e);
         }
     }
+
+    /**
+     * Sets the app user model id. This is needed for the Windows 7 taskbar
+     * so the application is correctly associated with the starter icon.
+     * The same app user model id must be set in the shortcut.
+     * 
+     * @param appId
+     *            The app user model id to set.
+     */
+    public static void setAppUserModelId(final String appId)
+    {
+        if (!hasShell32) return;
+        try
+        {
+            long errorCode =
+                SetCurrentProcessExplicitAppUserModelID(new WString(appId))
+                    .longValue();
+            if (errorCode != 0)
+                LOG.error("Unable to set appUserModelID. Error code " +
+                    errorCode);
+        }
+        catch (Throwable e)
+        {
+            LOG.error("Unable to set appUserModelID: " + e, e);
+        }
+    }
+
+    /**
+     * Native Windows function mapped via JNA.
+     * 
+     * @param appId
+     *            The app user model ID to set.
+     * @return Error code.
+     */
+    private static native NativeLong SetCurrentProcessExplicitAppUserModelID(
+        WString appId);
 }
