@@ -72,10 +72,10 @@ public class FactoryTreeModel implements TreeModel
         // Build the list with cheapest factories
         for (final Ware ware : game.getWareFactory().getWares())
         {
-            for (final FactorySize size : factoryFactory.getFactorySizes(ware))
+            for (final FactorySize size : factoryFactory.getFactorySizes(ware, false))
             {
                 final Factory factory = factoryFactory.getCheapestFactory(ware,
-                    size);
+                    size, false);
                 if (factory != null) this.cheapest.add(factory);
             }
         }
@@ -86,7 +86,7 @@ public class FactoryTreeModel implements TreeModel
         for (final Ware ware : game.getWareFactory().getWares())
         {
             final List<Factory> factories = game.getFactoryFactory()
-                .getFactories(ware);
+                .getFactories(ware, false);
             if (factories.size() > 0)
             {
                 this.byWareFactories.put(ware, factories);

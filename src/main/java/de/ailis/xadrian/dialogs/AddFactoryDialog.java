@@ -23,6 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.text.html.HTMLDocument;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
@@ -67,6 +68,9 @@ public class AddFactoryDialog extends ModalDialog implements
 
     /** The game. */
     private final Game game;
+    
+    /** The tree model. */
+    private TreeModel model;
 
     /**
      * Constructor.
@@ -92,7 +96,6 @@ public class AddFactoryDialog extends ModalDialog implements
 
         // Create the content controls
         this.factoriesTree = new JTree();
-        this.factoriesTree.setModel(new FactoryTreeModel(this.game));
         this.factoriesTree.setCellRenderer(new FactoryTreeCellRenderer());
         this.factoriesTree.setShowsRootHandles(true);
         this.factoriesTree.setRootVisible(false);
@@ -153,6 +156,29 @@ public class AddFactoryDialog extends ModalDialog implements
 
         redraw();
     }
+    
+    /**
+     * Returns (and creates if necessary) the factories tree model.
+     * 
+     * @return The factories tree model.
+     */
+    private TreeModel getFactoriesTreeModel()
+    {
+        if (this.model == null)
+        {
+            this.model = new FactoryTreeModel(this.game);
+        }
+        return this.model;
+    }
+    
+    /**
+     * Resets the factories tree model. Must be called when the criteria for
+     * displaying the tree model has changed.
+     */
+    public void resetFactoriesTreeModel()
+    {
+        this.model = null;
+    }
 
     /**
      * @see de.ailis.xadrian.support.ModalDialog#open()
@@ -160,6 +186,7 @@ public class AddFactoryDialog extends ModalDialog implements
     @Override
     public Result open()
     {
+        this.factoriesTree.setModel(getFactoriesTreeModel());
         Config.restoreSplitPaneState(this.splitPane);
         try
         {

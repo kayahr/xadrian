@@ -391,7 +391,11 @@ public class PreferencesDialog extends ModalDialog
             {
                 final Race race = entry.getKey();
                 final JCheckBox checkBox = entry.getValue();
-                config.setRaceIgnored(race, !checkBox.isSelected());
+                config.setRaceIgnored(race, !checkBox.isSelected());                
+            }
+            for (final Game game : GameFactory.getInstance().getGames())
+            {
+                game.getAddFactoryDialog().resetFactoriesTreeModel();
             }
             config.setShowFactoryResources(this.showFactoryResourcesCheckBox
                 .isSelected());

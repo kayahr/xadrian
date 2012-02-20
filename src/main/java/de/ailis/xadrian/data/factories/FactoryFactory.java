@@ -2,6 +2,7 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt file for licensing information.
  */
+
 package de.ailis.xadrian.data.factories;
 
 import java.io.Serializable;
@@ -35,7 +36,7 @@ import de.ailis.xadrian.support.Config;
 
 /**
  * Factory for Factory objects.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class FactoryFactory implements Serializable
@@ -47,7 +48,8 @@ public class FactoryFactory implements Serializable
     private final Game game;
 
     /** The factory map (for quick ID navigation) */
-    private final Map<String, Factory> factoryMap = new HashMap<String, Factory>();
+    private final Map<String, Factory> factoryMap =
+        new HashMap<String, Factory>();
 
     /** The factories (sorted) */
     private final SortedSet<Factory> factories = new TreeSet<Factory>();
@@ -57,7 +59,7 @@ public class FactoryFactory implements Serializable
 
     /**
      * Constructor.
-     *
+     * 
      * @param game
      *            The game for which this factory is responsible.
      */
@@ -137,9 +139,10 @@ public class FactoryFactory implements Serializable
                 for (final Object manuItem : manuItems)
                 {
                     final Element manuElement = (Element) manuItem;
-                    manufacturers[i] = this.game.getStationFactory().getStation(
-                        manuElement.attributeValue("station"),
-                        manuElement.attributeValue("sector"));
+                    manufacturers[i] =
+                        this.game.getStationFactory().getStation(
+                            manuElement.attributeValue("station"),
+                            manuElement.attributeValue("sector"));
                     i++;
                 }
                 Arrays.sort(resources);
@@ -160,7 +163,7 @@ public class FactoryFactory implements Serializable
 
     /**
      * Returns all factories.
-     *
+     * 
      * @return The factories
      */
     public SortedSet<Factory> getFactories()
@@ -170,7 +173,7 @@ public class FactoryFactory implements Serializable
 
     /**
      * Returns the factory with the specified id or null if not found.
-     *
+     * 
      * @param id
      *            The factory id
      * @return The factory or null if not found
@@ -182,7 +185,7 @@ public class FactoryFactory implements Serializable
 
     /**
      * Returns the factories of the specified race.
-     *
+     * 
      * @param race
      *            The race
      * @return The factories of the specified race
@@ -200,18 +203,34 @@ public class FactoryFactory implements Serializable
     /**
      * Returns the factories which produces the specified ware. This method only
      * uses factories which races are not set to be ignored.
-     *
+     * 
      * @param ware
      *            The ware
      * @return The factories which products the specified ware
      */
     public List<Factory> getFactories(final Ware ware)
     {
+        return getFactories(ware, true);
+    }
+
+    /**
+     * Returns the factories which produces the specified ware.
+     * 
+     * @param ware
+     *            The ware
+     * @param useIgnores
+     *            True to ignore factories from ignored races. False to
+     *            use them anyway.
+     * @return The factories which products the specified ware
+     */
+    public List<Factory> getFactories(final Ware ware, boolean useIgnores)
+    {
         final List<Factory> factories = new ArrayList<Factory>();
         for (final Factory factory : this.factories)
         {
             // Ignore factories of ignored races.
-            if (config.isRaceIgnored(factory.getRace())) continue;
+            if (useIgnores && config.isRaceIgnored(factory.getRace()))
+                continue;
 
             if (factory.getProduct().getWare().equals(ware))
                 factories.add(factory);
@@ -224,7 +243,7 @@ public class FactoryFactory implements Serializable
      * specified size and belongs to the specified race. This method only uses
      * factories which races are not set to be ignored. So if no factory was
      * matched then null is returned.
-     *
+     * 
      * @param ware
      *            The ware
      * @param size
@@ -236,7 +255,28 @@ public class FactoryFactory implements Serializable
     public Factory getFactory(final Ware ware, final FactorySize size,
         final Race race)
     {
-        for (final Factory factory : getFactories(ware, size))
+        return getFactory(ware, size, race, true);
+    }
+
+    /**
+     * Returns the factory which produces the specified ware and have the
+     * specified size and belongs to the specified race.
+     * 
+     * @param ware
+     *            The ware
+     * @param size
+     *            The factory size
+     * @param race
+     *            The owner race
+     * @param useIgnores
+     *            True to ignore factories from ignored races. False to
+     *            use them anyway.
+     * @return The matching factory or null if none matched
+     */
+    public Factory getFactory(final Ware ware, final FactorySize size,
+        final Race race, final boolean useIgnores)
+    {
+        for (final Factory factory : getFactories(ware, size, useIgnores))
         {
             if (factory.getRace().equals(race)) return factory;
         }
@@ -247,7 +287,7 @@ public class FactoryFactory implements Serializable
      * Returns the factories which produces the specified ware and have the
      * specified size. This method only uses factories which races are not set
      * to be ignored.
-     *
+     * 
      * @param ware
      *            The ware
      * @param size
@@ -256,11 +296,31 @@ public class FactoryFactory implements Serializable
      */
     public List<Factory> getFactories(final Ware ware, final FactorySize size)
     {
+        return getFactories(ware, size, true);
+    }
+
+    /**
+     * Returns the factories which produces the specified ware and have the
+     * specified size.
+     * 
+     * @param ware
+     *            The ware
+     * @param size
+     *            The factory size
+     * @param useIgnores
+     *            True to ignore factories from ignored races. False to
+     *            use them anyway.
+     * @return The matching factories
+     */
+    public List<Factory> getFactories(final Ware ware, final FactorySize size,
+        final boolean useIgnores)
+    {
         final List<Factory> factories = new ArrayList<Factory>();
         for (final Factory factory : this.factories)
         {
             // Ignore factories of ignored races.
-            if (config.isRaceIgnored(factory.getRace())) continue;
+            if (useIgnores && config.isRaceIgnored(factory.getRace()))
+                continue;
 
             if (factory.getProduct().getWare().equals(ware)
                 && factory.getSize().equals(size)) factories.add(factory);
@@ -271,7 +331,7 @@ public class FactoryFactory implements Serializable
     /**
      * Returns the available sizes of factories producing the specified ware.
      * This method only uses factories which races are not set to be ignored.
-     *
+     * 
      * @param ware
      *            The product id ware
      * @return The set with available factory sizes
@@ -282,10 +342,26 @@ public class FactoryFactory implements Serializable
     }
 
     /**
+     * Returns the available sizes of factories producing the specified ware.
+     * 
+     * @param ware
+     *            The product id ware
+     * @param useIgnores
+     *            True to ignore factories from ignored races. False to
+     *            use them anyway.
+     * @return The set with available factory sizes
+     */
+    public SortedSet<FactorySize> getFactorySizes(final Ware ware,
+        final boolean useIgnores)
+    {
+        return getFactorySizes(ware, null, useIgnores);
+    }
+
+    /**
      * Returns the available sizes of factories producing the specified ware and
      * belonging to the specified race. This method only uses factories which
      * races are not set to be ignored.
-     *
+     * 
      * @param ware
      *            The product id ware
      * @param race
@@ -295,6 +371,25 @@ public class FactoryFactory implements Serializable
     public SortedSet<FactorySize> getFactorySizes(final Ware ware,
         final Race race)
     {
+        return getFactorySizes(ware, race, true);
+    }
+
+    /**
+     * Returns the available sizes of factories producing the specified ware and
+     * belonging to the specified race.
+     * 
+     * @param ware
+     *            The product id ware
+     * @param race
+     *            Optional race to filter for. Maybe null
+     * @param useIgnores
+     *            True to ignore factories from ignored races. False to
+     *            use them anyway.
+     * @return The set with available factory sizes
+     */
+    public SortedSet<FactorySize> getFactorySizes(final Ware ware,
+        final Race race, final boolean useIgnores)
+    {
         final SortedSet<FactorySize> sizes = new TreeSet<FactorySize>();
 
         for (final Factory factory : this.factories)
@@ -303,7 +398,8 @@ public class FactoryFactory implements Serializable
             if (race != null && !factory.getRace().equals(race)) continue;
 
             // Ignore factories of ignored races.
-            if (config.isRaceIgnored(factory.getRace())) continue;
+            if (useIgnores && config.isRaceIgnored(factory.getRace()))
+                continue;
 
             if (factory.getProduct().getWare().equals(ware))
                 sizes.add(factory.getSize());
@@ -315,7 +411,7 @@ public class FactoryFactory implements Serializable
      * Returns the cheapest factory of the given size which produces the
      * specified ware. Returns null if none found. This method only uses
      * factories which races are not set to be ignored.
-     *
+     * 
      * @param ware
      *            The ware
      * @param size
@@ -324,14 +420,39 @@ public class FactoryFactory implements Serializable
      */
     public Factory getCheapestFactory(final Ware ware, final FactorySize size)
     {
+        return getCheapestFactory(ware, size, true);
+    }
+
+    /**
+     * Returns the cheapest factory of the given size which produces the
+     * specified ware. Returns null if none found.
+     * 
+     * @param ware
+     *            The ware
+     * @param size
+     *            The factory size
+     * @param useIgnores
+     *            True to ignore factories from ignored races. False to
+     *            use them anyway.
+     * @return The cheapest matching factory or null if none found.
+     */
+    public Factory getCheapestFactory(final Ware ware, final FactorySize size,
+        final boolean useIgnores)
+    {
         Factory cheapestFactory = null;
         int cheapestPrice = Integer.MAX_VALUE;
         for (final Factory factory : this.factories)
         {
+            final boolean isIgnored = config.isRaceIgnored(factory.getRace());
+            
             // Ignore factories of ignored races.
-            if (config.isRaceIgnored(factory.getRace())) continue;
+            if (useIgnores && isIgnored) continue;
 
-            final int price = factory.getPrice();
+            // Get the factory price. Make factories of ignored races more
+            // expensive.
+            int price = factory.getPrice();
+            if (isIgnored) price *= 100;
+            
             if (factory.getProduct().getWare().equals(ware)
                 && factory.getSize().equals(size) && price < cheapestPrice)
             {
@@ -346,7 +467,7 @@ public class FactoryFactory implements Serializable
      * Checks if the specified race has at least one factory which produces the
      * specified ware. If the race is ignored then this method always returns
      * false.
-     *
+     * 
      * @param race
      *            The race
      * @param ware
