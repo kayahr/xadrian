@@ -7,6 +7,37 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
+    <release version="1.4.2" date="2012-02-20" description="Minor update">
+      <action dev="k" type="add" date="2012-02-12">
+        Factory complex files can now specified on the command-line to open
+        them with Xadrian.
+      </action>      
+      <action dev="k" type="add" date="2012-02-12">
+        Only one instance of Xadrian can be started. A second call passes
+        control (and command-line arguments) over to the first instance.
+      </action>      
+      <action dev="k" type="add" date="2012-02-12">
+        Implemented awtAppClassName so Xadrian works correctly on modern
+        Linux window managers like Gnome Shell.
+      </action>      
+      <action dev="k" type="add" date="2012-02-20">
+        Implemented appUserModelId so Xadrian can be pinned to the
+        Windows 7 taskbar.
+      </action>      
+      <action dev="k" type="add" date="2012-02-20">
+        Registering file association for *.x3c on Windows so factory complex
+        files can be opened by double-clicking.
+      </action>      
+      <action dev="k" type="fix" date="2012-02-20">
+        Fixed Null-Pointer-Exception in sector selection dialog when moving
+        the mouse before the map is fully displayed.
+      </action>      
+      <action dev="k" type="fix" date="2012-02-20">
+        Factory tree now correctly honors ignored races. Factories of ignored
+        races are now still listed but have a lower priority in the cheapest
+        factory list.
+      </action>      
+    </release>             
     <release version="1.4.1" date="2012-01-20" description="Minor update">
       <action dev="k" type="fix" date="2012-01-20">
         Terran Shipyards are now considered for buying complex construction
