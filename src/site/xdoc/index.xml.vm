@@ -53,7 +53,7 @@
         Choose your platform:
       </p>
       <ul class="download">
-        <li><a href="${releasesUrl}/${project.version}/${project.artifactId}-${project.version}.exe"><img src="images/windows.png" align="center" /> Windows</a></li>
+        <li><a href="${releasesUrl}/${project.version}/${project.artifactId}-${project.version}-windows.exe"><img src="images/windows.png" align="center" /> Windows</a></li>
         <li><a href="${releasesUrl}/${project.version}/${project.artifactId}-${project.version}-unix.tar.bz2"><img src="images/xorg.png" align="center" /> Unix / Linux</a></li>
         <li><a href="${releasesUrl}/${project.version}/${project.artifactId}-${project.version}-macosx.zip"><img src="images/apple.png" align="center" /> Mac OS X</a></li>
       </ul>
