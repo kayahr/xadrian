@@ -37,6 +37,10 @@
         races are now still listed but have a lower priority in the cheapest
         factory list.
       </action>      
+      <action dev="k" type="add" date="2012-02-21">
+        Switched from manual javaw.exe start to a custom EXE launcher
+        created by launch4j.
+      </action>      
     </release>             
     <release version="1.4.1" date="2012-01-20" description="Minor update">
       <action dev="k" type="fix" date="2012-01-20">

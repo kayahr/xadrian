@@ -3,6 +3,8 @@
 !define JRE_VERSION "1.6"
 !define JRE_URL "http://javadl.sun.com/webapps/download/AutoDL?BundleId=58134"
 
+!define MyApp_AppUserModelId "Ailis.${project.name}"
+
 !include "FileFunc.nsh"
 !insertmacro GetFileVersion
 !insertmacro GetParameters
@@ -11,7 +13,7 @@
 !include Util.nsh
 
 Name "${project.name}"
-OutFile "${project.build.directory}\${project.artifactId}-${project.version}.exe"
+OutFile "${project.build.directory}\${project.artifactId}-${project.version}-windows.exe"
 RequestExecutionLevel admin
 SetCompressor bzip2
 InstallDir $PROGRAMFILES64\${project.name}
@@ -59,43 +61,36 @@ FunctionEnd
 !macro RegisterExtension Exe Ext Desc Icon
   Push $0
   Push $1
-
   ReadRegStr $1 HKCR ${Ext} ""  ; read current file association
   StrCmp "$1" "" NoBackup  ; is it empty
   StrCmp "$1" "${Desc}" NoBackup  ; is it our own
-    WriteRegStr HKCR ${Ext} "backup_val" "$1"  ; backup current value
+  WriteRegStr HKCR ${Ext} "backup_val" "$1"  ; backup current value
 NoBackup:
   WriteRegStr HKCR ${Ext} "" "${Desc}"  ; set our file association
- 
   ReadRegStr $0 HKCR ${Desc} ""
   StrCmp $0 "" 0 Skip
-    WriteRegStr HKCR "${Desc}" "" "${Desc}"
-    WriteRegStr HKCR "${Desc}\shell" "" "open"
-    WriteRegStr HKCR "${Desc}\DefaultIcon" "" "${Icon},0"
+  WriteRegStr HKCR "${Desc}" "" "${Desc}"
+  WriteRegStr HKCR "${Desc}\shell" "" "open"
+  WriteRegStr HKCR "${Desc}\DefaultIcon" "" "${Icon}"
 Skip:
   WriteRegStr HKCR "${Desc}\shell\open\command" "" '"${Exe}" "%1"'
-  /*WriteRegStr HKCR "${Desc}\shell\edit" "" "Edit ${Desc}"*/
-  /*WriteRegStr HKCR "${Desc}\shell\edit\command" "" '"${Exe}" "%1"'*/
 !macroend
  
 !macro UnRegisterExtension Ext Desc
   Push $0
   Push $1
- 
   ReadRegStr $1 HKCR ${Ext} ""
   StrCmp $1 ${Desc} 0 NoOwn ; only do this if we own it
   ReadRegStr $1 HKCR ${Ext} "backup_val"
   StrCmp $1 "" 0 Restore ; if backup="" then delete the whole key
   DeleteRegKey HKCR ${Ext}
+  DeleteRegKey HKCR ${Desc}
   Goto NoOwn
- 
 Restore:
   WriteRegStr HKCR ${Ext} "" $1
   DeleteRegValue HKCR ${Ext} "backup_val"
   DeleteRegKey HKCR ${Desc} ;Delete key with association name settings
- 
 NoOwn:
- 
   Pop $1
   Pop $0
 !macroend
@@ -107,20 +102,20 @@ Section
   
   File ${basedir}\README.txt
   File ${basedir}\LICENSE.txt
-  File ${basedir}\src\main\nsis\${project.name}.ico
+  File /oname=${project.name}.exe ${project.build.directory}\${project.artifactId}-${project.version}.exe
   SetOutPath $INSTDIR\lib
   File lib\*.jar
   File /oname=${project.artifactId}.jar ${project.build.directory}\${project.artifactId}-${project.version}.jar
-  CreateShortCut "$INSTDIR\${project.name}.lnk" \
-    "$SYSDIR\javaw.exe" "-jar $\"$INSTDIR\lib\${project.artifactId}.jar$\"" "$INSTDIR\${project.name}.ico" 0 SW_SHOWNORMAL
   CreateShortCut "$SMPROGRAMS\${project.name}.lnk" \
-    "$SYSDIR\javaw.exe" "-jar $\"$INSTDIR\lib\${project.artifactId}.jar$\"" "$INSTDIR\${project.name}.ico" 0 SW_SHOWNORMAL
+    "$INSTDIR\${project.name}.exe" "" "$INSTDIR\${project.name}.exe" 0 SW_SHOWNORMAL
   CreateShortCut "$DESKTOP\${project.name}.lnk" \
-    "$SYSDIR\javaw.exe" "-jar $\"$INSTDIR\lib\${project.artifactId}.jar$\"" "$INSTDIR\${project.name}.ico" 0 SW_SHOWNORMAL
-
+    "$INSTDIR\${project.name}.exe" "" "$INSTDIR\${project.name}.exe" 0 SW_SHOWNORMAL
+  WinShell::SetLnkAUMI "$SMPrograms\${project.name}.lnk" "${MyApp_AppUserModelId}"
+  WinShell::SetLnkAUMI "$DESKTOP\${project.name}.lnk" "${MyApp_AppUserModelId}"
+    
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.name}" "DisplayName" "${project.name}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.name}" "DisplayVersion" "${project.version}"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.name}" "DisplayIcon" "$INSTDIR\${project.name}.ico"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.name}" "DisplayIcon" "$INSTDIR\${project.name}.exe,0"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.name}" "UninstallString" "$INSTDIR\Uninstall.exe"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.name}" "Publisher" "${project.organization.name}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.name}" "HelpLink" "${project.url}"
@@ -131,14 +126,14 @@ Section
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
   IntFmt $0 "0x%08X" $0
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${project.name}" "EstimatedSize" $0
-  !insertmacro RegisterExtension "$INSTDIR\${project.name}.exe" ".x3c" "$(X3CExtension)" "$INSTDIR\${project.name}.ico"
+  !insertmacro RegisterExtension "$INSTDIR\${project.name}.exe" ".x3c" "$(X3CExtension)" "$INSTDIR\${project.name}.exe,0"
 SectionEnd
 
 Section "Uninstall"
+  WinShell::UninstAppUserModelId "${MyApp_AppUserModelId}"
   !insertmacro UnregisterExtension ".x3c" "$(X3CExtension)"
   RMDir /r "$INSTDIR\lib"
-  Delete "$INSTDIR\${project.name}.lnk"
-  Delete "$INSTDIR\${project.name}.ico"
+  Delete "$INSTDIR\${project.name}.exe"
   Delete "$INSTDIR\README.txt"
   Delete "$INSTDIR\LICENSE.txt"
   Delete "$INSTDIR\Uninstall.exe"

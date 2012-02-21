@@ -8,10 +8,7 @@
   <name>Xadrian</name>
   <version>1.4.2-SNAPSHOT</version>
   <url>http://kayahr.github.com/${project.artifactId}/</url>
-  <description>
-    A factory complex calculator tool for X³: Terran Conflict and
-    X³: Albion Prelude
-  </description>
+  <description>A factory complex calculator tool for X3: Terran Conflict and X3: Albion Prelude</description>
   <inceptionYear>2009</inceptionYear>
   <organization>
     <name>Klaus Reimer</name>
@@ -141,7 +138,7 @@
     <pluginManagement>
       <plugins>
         
-        <!-- Tell m2e to ignore the copy-dependency goal -->
+        <!-- Tell m2e to ignore or just execute some special plugins -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>
@@ -149,6 +146,19 @@
           <configuration>
             <lifecycleMappingMetadata>
               <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <versionRange>[1.7,)</versionRange>
+                    <goals>
+                      <goal>parse-version</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute />
+                  </action>
+                </pluginExecution>
                 <pluginExecution>
                   <pluginExecutionFilter>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -183,6 +193,22 @@
         </configuration>
       </plugin>
       
+      <!-- Parse the version number so we can access the version components
+           in the launch4j configuration -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>parse-version</id>
+            <goals>
+              <goal>parse-version</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
       <!-- Build the web site -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -213,6 +239,44 @@
             </manifestEntries>
           </archive>
         </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.bluestemsoftware.open.maven.plugin</groupId>
+        <artifactId>launch4j-plugin</artifactId>
+        <version>1.5.0.0</version>
+        <executions>
+          <execution>
+            <id>xadrian</id>
+            <phase>package</phase>
+            <goals><goal>launch4j</goal></goals>
+            <configuration>
+              <dontWrapJar>true</dontWrapJar>
+              <headerType>gui</headerType>
+              <jar>lib/${project.artifactId}.jar</jar>
+              <jarLocation>lib</jarLocation>
+              <outfile>${project.build.directory}/${project.artifactId}-${project.version}.exe</outfile>
+              <downloadUrl>http://java.com/download</downloadUrl>
+              <customProcName>true</customProcName>
+              <stayAlive>false</stayAlive>
+              <icon>src/main/icons/Xadrian.ico</icon>
+              <jre>
+                <minVersion>1.6.0</minVersion>
+              </jre>
+              <versionInfo>
+                <fileVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.0</fileVersion>
+                <txtFileVersion>${project.version}</txtFileVersion>
+                <fileDescription>${project.description}</fileDescription>
+                <copyright>Copyright (C) ${project.inceptionYear}-2012 Klaus Reimer</copyright>
+                <productVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.0</productVersion>
+                <txtProductVersion>${project.version}</txtProductVersion>
+                <productName>${project.name}</productName>
+                <internalName>${project.name}</internalName>
+                <originalFilename>${project.artifactId}.exe</originalFilename>
+              </versionInfo>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       
       <!-- Build binary artifacts for Unix and Mac OS X -->
@@ -296,7 +360,8 @@
             <configuration>
               <artifacts>
                 <artifact>
-                  <file>${project.build.directory}/${project.artifactId}-${project.version}.exe</file>
+                  <file>${project.build.directory}/${project.artifactId}-${project.version}-windows.exe</file>
+                  <classifier>windows</classifier>
                   <type>exe</type>
                 </artifact>
               </artifacts>
@@ -323,7 +388,7 @@
       <snapshots><enabled>true</enabled></snapshots>
     </repository>
   </repositories>
-   
+     
   <distributionManagement>
     <site>
       <id>project-website</id>
