@@ -5,7 +5,12 @@
 
 package de.ailis.xadrian;
 
+import java.io.File;
+
+import javax.swing.SwingUtilities;
+
 import de.ailis.oneinstance.OneInstance;
+import de.ailis.oneinstance.OneInstanceListener;
 import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.dialogs.AboutDialog;
 import de.ailis.xadrian.dialogs.ChangeQuantityDialog;
@@ -45,8 +50,24 @@ public class Main
         // Xadrian and pass command line arguments to it. This allows us
         // to open more complexes in the already running Xadrian by
         // double-clicking the *.x3c files.
-        if (!OneInstance.getInstance().register(Main.class, args))
-            System.exit(0);
+        OneInstance oneInstance = OneInstance.getInstance();
+        oneInstance.addListener(new OneInstanceListener()
+        {
+            @Override
+            public boolean newInstanceCreated(final File workingDir, final String[] args)
+            {
+                SwingUtilities.invokeLater(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        MainFrame.open(workingDir, args);
+                    }
+                });
+                return false;
+            }
+        });       
+        if (!oneInstance.register(Main.class, args)) System.exit(0);
 
         try
         {            
@@ -74,9 +95,19 @@ public class Main
             PreferencesDialog.getInstance();
             SelectGameDialog.getInstance();
 
-            // Close the splash screen and open the main window
+            // Close the splash screen
             SplashFrame.close();
-            MainFrame.open(args);
+            
+            // Start the main frame and open the files specified on the
+            // command line
+            SwingUtilities.invokeLater(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    MainFrame.start(args);
+                }
+            });
         }
         catch (Throwable t)
         {

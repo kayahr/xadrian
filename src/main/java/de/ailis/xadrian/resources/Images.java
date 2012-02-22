@@ -37,8 +37,8 @@ public final class Images
     public static final Image LOGO_128 = createImage("xadrian-128.png");
 
     /** The logos */
-    public static final List<Image> LOGOS = Arrays.asList(LOGO_16, LOGO_32,
-        LOGO_48, LOGO_64, LOGO_128);
+    public static final List<Image> LOGOS = Arrays.asList(LOGO_128, LOGO_64,
+        LOGO_48, LOGO_32, LOGO_16);
 
     /**
      * Private constructor to prevent instantiation.

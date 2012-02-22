@@ -18,6 +18,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Action;
 import javax.swing.JButton;
@@ -34,7 +36,6 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.MenuElement;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
@@ -48,8 +49,6 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
-import de.ailis.oneinstance.OneInstance;
-import de.ailis.oneinstance.OneInstanceListener;
 import de.ailis.xadrian.actions.AboutAction;
 import de.ailis.xadrian.actions.AddFactoryAction;
 import de.ailis.xadrian.actions.ChangePricesAction;
@@ -179,6 +178,12 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /** The transfer handler for dropping complex files into Xadrian. */
     private TransferHandler transferHandler = new ComplexTransferHandler(this);
 
+    /** The unprocessed files specified on the command line. */
+    private static List<File> unprocessedFiles = new ArrayList<File>();
+
+    /** The singleton instance . */
+    private static MainFrame instance;
+
     /**
      * Constructor
      */
@@ -211,36 +216,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
         Config.restoreWindowState(this);
 
         this.tabs.requestFocus();
-        
-        // Install application instance listener which decides if a new
-        // application instance is allowed to run.        
-        OneInstance.getInstance().addListener(new OneInstanceListener()
-        {
-            @Override
-            public boolean newInstanceCreated(final String[] args)
-            {
-                SwingUtilities.invokeLater(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        // Otherwise process the command line arguments and deny
-                        // the new application instance.
-                        MainFrame frame = MainFrame.this;
-                        frame.setExtendedState(Frame.NORMAL);
-                        frame.toFront();
-                        frame.requestFocus();
-                        frame.setVisible(true);
-                        for (String arg : args)
-                        {
-                            File file = new File(arg);
-                            MainFrame.this.open(file);
-                        }
-                    }
-                });
-                return false;
-            }
-        });
     }
 
     /**
@@ -994,27 +969,62 @@ public class MainFrame extends JFrame implements EditorStateListener,
     }
 
     /**
-     * Opens the splash screen.
+     * Opens the specified files. If the main frame is already started
+     * then the files are opened right away. Otherwise the file names are
+     * queued for later processing.
      * 
-     * @param args
-     *            Command line arguments (Filenames of complexes to open)
+     * @param directory
+     *            The directory from which to open the files. Needed to resolve
+     *            relative file names.
+     * @param fileNames
+     *            The names of the files to open.
      */
-    public static void open(final String[] args)
+    public static void open(final File directory, final String... fileNames)
     {
-        SwingUtilities.invokeLater(new Runnable()
+        synchronized (unprocessedFiles)
         {
-            @Override
-            public void run()
+            for (String fileName : fileNames)
             {
-                MainFrame frame = new MainFrame();
-                for (String arg : args)
-                {
-                    File file = new File(arg);
-                    frame.open(file);
-                }
-                frame.setVisible(true);
+                File file = new File(directory, fileName);
+                if (instance == null)
+                    unprocessedFiles.add(file);
+                else
+                    instance.open(file);
             }
-        });
+        }
+
+        // If main frame is already open then do lot of stuff to try to get
+        // it into the foreground.
+        if (instance != null)
+        {
+            instance.setExtendedState(Frame.NORMAL);
+            instance.toFront();
+            instance.requestFocus();
+            instance.setVisible(true);
+        }
+    }
+
+    /**
+     * Starts the main frame.
+     * 
+     * @param fileNames
+     *            The file names specified on the command line.
+     */
+    public static void start(String[] fileNames)
+    {
+        synchronized (unprocessedFiles)
+        {
+            instance = new MainFrame();
+            for (File file : unprocessedFiles)
+                instance.open(file);
+            unprocessedFiles.clear();
+            for (String fileName: fileNames)
+            {
+                File file = new File(fileName);
+                instance.open(file);
+            }
+        }
+        instance.setVisible(true);
     }
 
     /**
@@ -1048,7 +1058,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
             if (editorFile == null) continue;
             try
             {
-                if (file.getCanonicalFile().equals(editorFile.getCanonicalFile()))
+                if (file.getCanonicalFile().equals(
+                    editorFile.getCanonicalFile()))
                     return editor;
             }
             catch (IOException e)
@@ -1075,7 +1086,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
             this.tabs.setSelectedComponent(editor);
             return;
         }
-        
+
         try
         {
             final SAXReader reader = new SAXReader();
