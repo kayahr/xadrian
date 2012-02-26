@@ -1,0 +1,59 @@
+#!/bin/sh
+#
+# Installs the application into DESTDIR (Default: /usr/local)
+# Klaus Reimer <k@ailis.de>
+# ========================================================================
+
+# Abort on errors
+set -e
+
+# Change to directory where the install script is located
+cd $(dirname $0)
+
+# Use /usr/local as DESTDIR if not specified
+if [ "$DESTDIR" = "" ]; then DESTDIR=/usr/local; fi
+
+# Copy the Xadrian files into $DESTDIR/share/xadrian
+mkdir -p "$DESTDIR/share/xadrian"
+cp -r lib/*.jar "$DESTDIR/share/xadrian/"
+
+# Unpack the application
+jar xf lib/xadrian.jar de/ailis/xadrian/images/xadrian-64.png
+mv de/ailis/xadrian/images/xadrian-64.png "$DESTDIR/share/xadrian/xadrian.png"
+rm -rf "de"
+
+# Create the desktop file
+cat > "$DESTDIR/share/applications/xadrian.desktop" <<EOF
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Encoding=UTF-8
+StartupNotify=true
+Name=Xadrian
+Exec=${DESTDIR}/bin/xadrian
+Icon=${DESTDIR}/share/xadrian/xadrian.png
+Categories=Application;Game;
+EOF
+
+# Create the uninstall script
+cat > "$DESTDIR/share/xadrian/uninstall" <<EOF
+#!/bin/sh
+set -e
+rm -f "$DESTDIR/share/applications/xadrian.desktop"
+rm -f "$DESTDIR/bin/xadrian"
+rm -rf "$DESTDIR/share/xadrian"
+echo "Xadrian successfully uninstalled."
+EOF
+chmod +x "$DESTDIR/share/xadrian/uninstall"
+
+# Create the start script
+cat > "$DESTDIR/bin/xadrian" <<EOF
+#!/bin/sh
+exec java -jar "${DESTDIR}/share/xadrian/xadrian.jar" "\$@"
+EOF
+chmod +x "$DESTDIR/bin/xadrian"
+
+echo "Xadrian successfully installed."
