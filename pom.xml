@@ -6,7 +6,7 @@
   <artifactId>xadrian</artifactId>
   <packaging>jar</packaging>
   <name>Xadrian</name>
-  <version>1.4.2</version>
+  <version>1.4.3-SNAPSHOT</version>
   <url>http://kayahr.github.com/${project.artifactId}/</url>
   <description>A factory complex calculator tool for X3: Terran Conflict and X3: Albion Prelude</description>
   <inceptionYear>2009</inceptionYear>
