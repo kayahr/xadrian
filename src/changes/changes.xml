@@ -41,6 +41,10 @@
         Switched from manual javaw.exe start to a custom EXE launcher
         created by launch4j.
       </action>      
+      <action dev="k" type="add" date="2012-02-26">
+        Fixed problem with space characters in command line parameters on
+        Linux/Unix.
+      </action>      
     </release>             
     <release version="1.4.1" date="2012-01-20" description="Minor update">
       <action dev="k" type="fix" date="2012-01-20">
