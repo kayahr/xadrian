@@ -285,6 +285,7 @@
         <version>2.2.2</version>
         <configuration>
           <descriptors>
+            <descriptor>src/main/assembly/windows.xml</descriptor>
             <descriptor>src/main/assembly/unix.xml</descriptor>
             <descriptor>src/main/assembly/macosx.xml</descriptor>
           </descriptors>
