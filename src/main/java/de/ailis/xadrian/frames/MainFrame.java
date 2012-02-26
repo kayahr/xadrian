@@ -985,7 +985,9 @@ public class MainFrame extends JFrame implements EditorStateListener,
         {
             for (String fileName : fileNames)
             {
-                File file = new File(directory, fileName);
+                File file = new File(fileName);
+                if (!file.isAbsolute())
+                    file = new File(directory, fileName);
                 if (instance == null)
                     unprocessedFiles.add(file);
                 else
