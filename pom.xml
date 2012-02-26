@@ -257,7 +257,7 @@
               <jarLocation>lib</jarLocation>
               <outfile>${project.build.directory}/${project.artifactId}-${project.version}.exe</outfile>
               <downloadUrl>http://java.com/download</downloadUrl>
-              <customProcName>true</customProcName>
+              <customProcName>false</customProcName>
               <stayAlive>false</stayAlive>
               <icon>src/main/icons/Xadrian.ico</icon>
               <jre>
