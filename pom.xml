@@ -289,6 +289,12 @@
             <descriptor>src/main/assembly/unix.xml</descriptor>
             <descriptor>src/main/assembly/macosx.xml</descriptor>
           </descriptors>
+          <!-- Workaround for issue MASSEMBLY-449 -->        
+          <archiverConfig>
+            <fileMode>420</fileMode> <!-- 420(dec) = 644(oct) -->
+            <directoryMode>493</directoryMode> <!-- 493(dec) = 755(oct) -->
+            <defaultDirectoryMode>493</defaultDirectoryMode>
+          </archiverConfig>
         </configuration>
         <executions>
           <execution>
