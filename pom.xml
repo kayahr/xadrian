@@ -417,7 +417,7 @@
     <dependency>
       <groupId>de.ailis.oneinstance</groupId>
       <artifactId>oneinstance</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.1</version>
     </dependency>
     <dependency>
       <groupId>org.freemarker</groupId>
