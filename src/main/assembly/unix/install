@@ -23,6 +23,7 @@ mv de/ailis/xadrian/images/xadrian-64.png "$DESTDIR/share/xadrian/xadrian.png"
 rm -rf "de"
 
 # Create the desktop file
+mkdir -p "$DESTDIR/share/applications"
 cat > "$DESTDIR/share/applications/xadrian.desktop" <<EOF
 #!/usr/bin/env xdg-open
 
@@ -50,6 +51,7 @@ EOF
 chmod +x "$DESTDIR/share/xadrian/uninstall"
 
 # Create the start script
+mkdir -p "$DESTDIR/bin"
 cat > "$DESTDIR/bin/xadrian" <<EOF
 #!/bin/sh
 exec java -jar "${DESTDIR}/share/xadrian/xadrian.jar" "\$@"

@@ -7,6 +7,11 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
+    <release version="1.4.3" date="2012-03-19" description="Minor update">
+      <action dev="k" type="fix" date="2012-03-19">
+        Install script on Linux now creates missing directories.
+      </action>
+    </release>
     <release version="1.4.2" date="2012-02-20" description="Minor update">
       <action dev="k" type="add" date="2012-02-12">
         Factory complex files can now specified on the command-line to open
