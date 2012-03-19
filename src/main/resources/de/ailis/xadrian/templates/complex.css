@@ -92,6 +92,12 @@ tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
     color: #888888;
 }
 
+body.print tr.autoodd, body.print tr.autoeven,
+body.print tr.kitsodd, body.print tr.kitseven
+{
+    color: #000000;
+}
+
 .factory, .ware
 {
     text-align: left;
@@ -110,6 +116,11 @@ tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
     font-size: 90%;
     font-style: italic;
     color: #aaaaaa;
+}
+
+body.print .factory-resources
+{
+   color: #000000;
 }
 
 .yield, .race, .container

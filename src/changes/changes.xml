@@ -9,6 +9,9 @@
   <body>
     <release version="1.4.3" date="2012-03-19" description="Minor update">
       <action dev="k" type="fix" date="2012-03-19">
+        Changed light gray colors to black for printing.
+      </action>
+      <action dev="k" type="fix" date="2012-03-19">
         Install script on Linux now creates missing directories.
       </action>
     </release>
