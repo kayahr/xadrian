@@ -32,17 +32,10 @@
       <th class="race">[@message key="complex.race" /]</th>
       <th class="quantity">[@message key="complex.quantity" /]</th>
       [#if !print]
-        <th class="quantity">
-          <table class="layout"><tr>
-            <td>[@message key="complex.builtQuantity" /]&nbsp;&nbsp;</td>
-            <td><img src="../images/blank.png" width="12" height="12" /></td>          
-            <td><img src="../images/blank.png" width="12" height="12" /></td>
-          </tr></table>
-        </th>          
-        <th class="quantity">[@message key="complex.leftQuantity" /]</th>
+        <th class="built-quantity">[@message key="complex.builtQuantity" /]</th>          
+        <th class="price">[@message key="complex.price" /]</th>
       [/#if]
       <th class="volume">[@message key="complex.factoryVolume" /]</th>
-      <th class="volume">[@message key="complex.totalFactoryVolume" /]</th>
       [#if complex.sector??]
         <th class="manufacturer">[@message key="complex.nearestManufacturer" /]</th>
       [/#if]
@@ -68,14 +61,13 @@
                 <td><a href="file://buildFactory/${item.factory.id}"><img src="../images/up12.png" border="0" width="12" height="12" /></a></td>
                 <td><a href="file://destroyFactory/${item.factory.id}"><img src="../images/down12.png" border="0" width="12" height="12" /></a></td>
               </tr></table>
-            [#else]
-              ${item.quantityBuilt}
             [/#if]
           </td>
-          <td class="quantity">${item.quantityLeft}</td>
+          <td class="price">${item.restPrice} Cr</td>
+          <td class="volume">${item.restVolume}</td>
+        [#else]
+          <td class="volume">${item.totalVolume}</td>
         [/#if]
-        <td class="volume">${item.volume}</td>
-        <td class="volume">${item.totalVolume}</td>
         [#if complex.sector??]
           <td class="manufacturer">${item.nearestManufacturer.sector}</td>
         [/#if]
@@ -101,14 +93,13 @@
                 <td><a href="file://buildKit"><img src="../images/up12.png" border="0" width="12" height="12" /></a></td>
                 <td><a href="file://destroyKit"><img src="../images/down12.png" border="0" width="12" height="12" /></a></td>
               </tr></table>
-            [#else]
-              ${complex.shoppingList.kitQuantityBuilt}
             [/#if]
           </td>
-          <td class="quantity">${complex.shoppingList.kitQuantityLeft}</td>
+          <td class="price">${complex.shoppingList.restKitPrice} Cr</td>
+          <td class="volume">${complex.shoppingList.restKitVolume}</td>
+        [#else]
+          <td class="volume">${complex.shoppingList.totalKitVolume}</td>
         [/#if]
-        <td class="volume">${complex.shoppingList.kitVolume}</td>
-        <td class="volume">${complex.shoppingList.totalKitVolume}</td>
         [#if complex.sector??]            
           <td class="manufacturer">
             [#if complex.shoppingList.nearestKitSellingSector??]
@@ -133,10 +124,11 @@
             <td><img src="../images/blank.png" width="12" height="12" /></td>
           </tr></table>
         </td>          
-        <td class="quantity">${complex.shoppingList.totalQuantityLeft}</td>
+        <td class="price">${complex.shoppingList.totalRestPrice} Cr</td>
+        <td class="volume">${complex.shoppingList.totalRestVolume}</td>
+      [#else]
+        <td class="volume">${complex.shoppingList.totalVolume}</td>        
       [/#if]          
-      <td></td>      
-      <td class="volume">${complex.shoppingList.totalVolume}</td>
       [#if complex.sector??]
       <td></td>
       [/#if]      

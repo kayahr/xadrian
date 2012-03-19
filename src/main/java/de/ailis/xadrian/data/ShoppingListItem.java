@@ -140,6 +140,17 @@ public class ShoppingListItem implements Serializable,
     {
         return getVolume() * this.quantity;
     }
+    
+    /**
+     * Returns the rest volume of all factories which are not currently
+     * built.
+     * 
+     * @return The rest volume.
+     */
+    public int getRestVolume()
+    {
+        return getVolume() * getQuantityLeft();
+    }
 
     /**
      * Returns the price of a single factory.
@@ -149,6 +160,17 @@ public class ShoppingListItem implements Serializable,
     public int getPrice()
     {
         return this.factory.getPrice();
+    }
+
+    /**
+     * Returns the rest price of all factories which are not currently
+     * built.
+     * 
+     * @return The rest price.
+     */
+    public int getRestPrice()
+    {
+        return getPrice() * getQuantityLeft();
     }
 
     /**

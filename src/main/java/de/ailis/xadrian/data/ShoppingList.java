@@ -108,6 +108,19 @@ public class ShoppingList implements Serializable
     {
         return this.totalVolume + getTotalKitVolume();
     }
+    
+    /**
+     * Returns the total rest volume.
+     * 
+     * @return The total rest volume.
+     */
+    public int getTotalRestVolume()
+    {
+        int volume = getRestKitVolume();
+        for (ShoppingListItem item: this.items)
+            volume += item.getRestVolume();
+        return volume;
+    }
 
     /**
      * Returns the total quantity.
@@ -149,6 +162,18 @@ public class ShoppingList implements Serializable
         return this.totalPrice + getTotalKitPrice();
     }
 
+    /**
+     * Returns the total rest price.
+     * 
+     * @return The total rest price.
+     */
+    public int getTotalRestPrice()
+    {
+        int price = getRestKitPrice();
+        for (ShoppingListItem item: this.items)
+            price += item.getRestPrice();
+        return price;
+    }
     /**
      * Returns the kit quantity.
      *
@@ -228,5 +253,25 @@ public class ShoppingList implements Serializable
     public int getTotalKitVolume()
     {
         return getKitVolume() * getKitQuantity();
+    }
+    
+    /**
+     * Returns the rest volume of all kits which are not already built.
+     * 
+     * @return The rest kit volume.
+     */
+    public int getRestKitVolume()
+    {
+        return getKitVolume() * getKitQuantityLeft();
+    }
+
+    /**
+     * Returns the rest price of all kits which are not already built.
+     * 
+     * @return The rest kit price.
+     */
+    public int getRestKitPrice()
+    {
+        return getKitPrice() * getKitQuantityLeft();
     }
 }

@@ -137,6 +137,13 @@ body.print .factory-resources
     white-space: nowrap;
 }
 
+.built-quantity
+{
+    text-align: center;
+    margin: 0 0 0 10px;
+    white-space: nowrap;
+}
+
 .manufacturer
 {
     text-align: left;
