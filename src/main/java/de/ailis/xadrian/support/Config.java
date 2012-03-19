@@ -2,6 +2,7 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information.
  */
+
 package de.ailis.xadrian.support;
 
 import java.awt.Component;
@@ -13,16 +14,19 @@ import java.util.List;
 import java.util.Locale;
 import java.util.prefs.Preferences;
 
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
 import javax.swing.JSplitPane;
 
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.data.Race;
 import de.ailis.xadrian.exceptions.ConfigException;
+import de.ailis.xadrian.utils.ObjectUtils;
 import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * The configuration
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public final class Config
@@ -41,12 +45,15 @@ public final class Config
 
     /** Config key for default game */
     private static final String DEFAULT_GAME = "defaultgame";
-    
+
     /** Config key for the theme */
     private static final String THEME = "theme";
-    
+
     /** Config key for the locale */
     private static final String LOCALE = "locale";
+    
+    /** Config key for print attributes */
+    private static final String PRINT_ATTRIBUTES = "printAttributes";
 
     /** The singleton instance. */
     private static final Config instance = new Config();
@@ -65,13 +72,17 @@ public final class Config
 
     /** The theme (LookAndFeel class name or null for system) */
     private String theme = null;
-    
+
     /** The locale (Null for system locale) */
     private String locale = null;
-    
+
     /** The ID of the default game. Null if none. */
     private String defaultGame = null;
-    
+
+    /** The print attributes. */
+    private HashPrintRequestAttributeSet printAttributes =
+        new HashPrintRequestAttributeSet();
+
     /**
      * Private constructor to prevent instantiation
      */
@@ -82,7 +93,7 @@ public final class Config
 
     /**
      * Returns the singleton instance.
-     *
+     * 
      * @return The singleton instance
      */
     public static Config getInstance()
@@ -109,6 +120,14 @@ public final class Config
         this.theme = prefs.get(THEME, null);
         this.locale = prefs.get(LOCALE, null);
         this.defaultGame = prefs.get(DEFAULT_GAME, null);
+        
+        String printAttributes = prefs.get(PRINT_ATTRIBUTES, null);
+        if (printAttributes != null && !printAttributes.isEmpty())
+        {
+            this.printAttributes =
+                (HashPrintRequestAttributeSet) ObjectUtils
+                    .fromString(printAttributes);
+        }
     }
 
     /**
@@ -160,11 +179,13 @@ public final class Config
             prefs.remove(DEFAULT_GAME);
         else
             prefs.put(DEFAULT_GAME, this.defaultGame);
+        
+        prefs.put(PRINT_ATTRIBUTES, ObjectUtils.toString(this.printAttributes));
     }
 
     /**
      * Returns true if the specified race is ignored.
-     *
+     * 
      * @param race
      *            The race to check
      * @return True if the specified race is ignored
@@ -176,7 +197,7 @@ public final class Config
 
     /**
      * Checks if the factory resources should be displayed in the complex table.
-     *
+     * 
      * @return True if factory resources should be displayed, false if not
      */
     public boolean isShowFactoryResources()
@@ -186,7 +207,7 @@ public final class Config
 
     /**
      * Enables or disables the display of factory resources in complex table.
-     *
+     * 
      * @param showFactoryResources
      *            True if resources should be displayed, false if not
      */
@@ -197,7 +218,7 @@ public final class Config
 
     /**
      * Sets the ignore status of a race.
-     *
+     * 
      * @param race
      *            The race.
      * @param ignored
@@ -216,7 +237,7 @@ public final class Config
 
     /**
      * Returns the last file chooser path.
-     *
+     * 
      * @return The last file chooser path
      */
     public File getLastFileChooserPath()
@@ -226,7 +247,7 @@ public final class Config
 
     /**
      * Sets the last file chooser path.
-     *
+     * 
      * @param lastFileChooserPath
      *            The last file chooser path to set
      */
@@ -237,7 +258,7 @@ public final class Config
 
     /**
      * Saves the window preferences.
-     *
+     * 
      * @param window
      *            The window
      */
@@ -263,7 +284,7 @@ public final class Config
 
     /**
      * Restores the window state.
-     *
+     * 
      * @param window
      *            The window
      */
@@ -285,7 +306,7 @@ public final class Config
 
     /**
      * Saves the split pane preferences.
-     *
+     * 
      * @param splitPane
      *            The split pane
      */
@@ -298,7 +319,7 @@ public final class Config
 
     /**
      * Restores the split pane preferences.
-     *
+     * 
      * @param splitPane
      *            The split pane
      */
@@ -312,7 +333,7 @@ public final class Config
     /**
      * Returns the preferences name for the specified component and for the
      * specified key.
-     *
+     * 
      * @param component
      *            The component
      * @param key
@@ -327,12 +348,13 @@ public final class Config
             throw new ConfigException(
                 "Unable to save state of component with no name: "
                     + component);
-        return name.toLowerCase(Locale.getDefault()) + "." + key.toLowerCase(Locale.getDefault());
+        return name.toLowerCase(Locale.getDefault()) + "." +
+            key.toLowerCase(Locale.getDefault());
     }
 
     /**
      * Sets the player sector.
-     *
+     * 
      * @param playerSector
      *            The player sector to set
      */
@@ -343,7 +365,7 @@ public final class Config
 
     /**
      * Returns the index of the selected player sector.
-     *
+     * 
      * @return The player sector index
      */
     public int getPlayerSector()
@@ -353,7 +375,7 @@ public final class Config
 
     /**
      * Returns the theme.
-     *
+     * 
      * @return The theme.
      */
     public String getTheme()
@@ -363,7 +385,7 @@ public final class Config
 
     /**
      * Sets the theme.
-     *
+     * 
      * @param theme
      *            The theme to set. Null for system theme.
      */
@@ -371,10 +393,10 @@ public final class Config
     {
         this.theme = theme;
     }
-    
+
     /**
      * Returns the locale.
-     *
+     * 
      * @return The locale.
      */
     public String getLocale()
@@ -384,7 +406,7 @@ public final class Config
 
     /**
      * Sets the locale.
-     *
+     * 
      * @param locale
      *            The locale to set. Null for system locale.
      */
@@ -392,7 +414,7 @@ public final class Config
     {
         this.locale = locale;
     }
-    
+
     /**
      * Returns the ID of the default game.
      * 
@@ -402,7 +424,7 @@ public final class Config
     {
         return this.defaultGame;
     }
-    
+
     /**
      * Sets the ID of the default game.
      * 
@@ -411,6 +433,16 @@ public final class Config
      */
     public void setDefaultGame(final String defaultGame)
     {
-        this.defaultGame = defaultGame; 
+        this.defaultGame = defaultGame;
+    }
+
+    /**
+     * Returns the print attributes.
+     * 
+     * @return The print attributes.
+     */
+    public PrintRequestAttributeSet getPrintAttributes()
+    {
+        return this.printAttributes;
     }
 }

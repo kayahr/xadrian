@@ -713,7 +713,8 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         // Print the text pane
         try
         {
-            printPane.print();
+            printPane.print(null, null, true, null, Config.getInstance()
+                .getPrintAttributes(), true);
         }
         catch (final PrinterException e)
         {

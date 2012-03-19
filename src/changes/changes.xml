@@ -7,7 +7,10 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.4.3" date="2012-03-19" description="Minor update">
+    <release version="1.4.3" date="2012-03-20" description="Minor update">
+      <action dev="k" type="add" date="2012-03-20">
+        The print dialog now remembers its last settings. 
+      </action>
       <action dev="k" type="add" date="2012-03-19">
         Simplified shopping list. Volumes are now counted down depending on
         how many factories have been built. Added a price column to show how
