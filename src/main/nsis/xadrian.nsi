@@ -100,7 +100,6 @@ Section
   SetOutPath $INSTDIR
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   
-  File ${basedir}\README.txt
   File ${basedir}\LICENSE.txt
   File /oname=${project.name}.exe ${project.build.directory}\${project.artifactId}-${project.version}.exe
   SetOutPath $INSTDIR\lib
@@ -134,7 +133,6 @@ Section "Uninstall"
   !insertmacro UnregisterExtension ".x3c" "$(X3CExtension)"
   RMDir /r "$INSTDIR\lib"
   Delete "$INSTDIR\${project.name}.exe"
-  Delete "$INSTDIR\README.txt"
   Delete "$INSTDIR\LICENSE.txt"
   Delete "$INSTDIR\Uninstall.exe"
   RMDir "$INSTDIR"

@@ -10,7 +10,6 @@
       <directory></directory>
       <includes>
         <include>LICENSE.txt</include>
-        <include>README.txt</include>
       </includes>
       <fileMode>0644</fileMode>
       <lineEnding>unix</lineEnding>
