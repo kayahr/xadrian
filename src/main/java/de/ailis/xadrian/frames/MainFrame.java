@@ -59,6 +59,8 @@ import de.ailis.xadrian.actions.CloseAllAction;
 import de.ailis.xadrian.actions.CopyAction;
 import de.ailis.xadrian.actions.DonateAction;
 import de.ailis.xadrian.actions.ExitAction;
+import de.ailis.xadrian.actions.ExportTemplateCodeAction;
+import de.ailis.xadrian.actions.ImportTemplateCodeAction;
 import de.ailis.xadrian.actions.NewAction;
 import de.ailis.xadrian.actions.OpenAction;
 import de.ailis.xadrian.actions.PreferencesAction;
@@ -130,6 +132,12 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /** The "save as" action */
     private final Action saveAsAction = new SaveAsAction(this);
+
+    /** The "Export Template Code" action */
+    private final Action exportTemplateCodeAction = new ExportTemplateCodeAction(this);
+
+    /** The "Import Template Code" action */
+    private final Action importTemplateCodeAction = new ImportTemplateCodeAction(this);
 
     /** The "save all" action */
     private final Action saveAllAction = new SaveAllAction(this);
@@ -226,7 +234,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         // Create the menu bar
         final JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-
+        
         // Create the 'File' menu
         final JMenu fileMenu = I18N.createMenu(menuBar, "file");
         fileMenu.add(this.newAction);
@@ -240,6 +248,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
         fileMenu.add(this.saveAllAction);
         fileMenu.addSeparator();
         fileMenu.add(this.printAction);
+        fileMenu.addSeparator();
+        final JMenu exportMenu = I18N.createMenu(fileMenu, "export");
+        exportMenu.add(this.exportTemplateCodeAction);
+        final JMenu importMenu = I18N.createMenu(fileMenu, "import");
+        importMenu.add(this.importTemplateCodeAction);
         fileMenu.addSeparator();
         fileMenu.add(this.exitAction);
 
@@ -1039,6 +1052,19 @@ public class MainFrame extends JFrame implements EditorStateListener,
         dialog.setSelectedFile(null);
         final File file = dialog.open();
         if (file != null) open(file);
+    }
+    
+    /**
+     * Imports a new complex from the specified template code.
+     * 
+     * @param templateCode
+     *            The template code to import.
+     */
+    public void importFromTemplateCode(String templateCode)
+    {
+        final Complex complex = Complex.fromTemplateCode(templateCode);
+        ComplexEditor editor = new ComplexEditor(complex);
+        createLoadedComplexTab(editor);
     }
 
     /**

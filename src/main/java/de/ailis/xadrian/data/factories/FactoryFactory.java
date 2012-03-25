@@ -51,6 +51,10 @@ public class FactoryFactory implements Serializable
     private final Map<String, Factory> factoryMap =
         new HashMap<String, Factory>();
 
+    /** The factory map (for quick numeric ID navigation) */
+    private final Map<Integer, Factory> factoryNidMap =
+        new HashMap<Integer, Factory>();
+
     /** The factories (sorted) */
     private final SortedSet<Factory> factories = new TreeSet<Factory>();
 
@@ -90,6 +94,7 @@ public class FactoryFactory implements Serializable
             {
                 final Element element = (Element) item;
                 final String id = element.attributeValue("id");
+                final int nid = Integer.parseInt(element.attributeValue("nid"));
                 FactorySize size;
                 final String sizeStr = element.attributeValue("size");
                 if (sizeStr == null)
@@ -148,10 +153,11 @@ public class FactoryFactory implements Serializable
                 Arrays.sort(resources);
                 Arrays.sort(storage);
                 final Factory factory =
-                    new Factory(this.game, id, size, race, cycle,
+                    new Factory(this.game, nid, id, size, race, cycle,
                         product, price, volume, resources, storage,
                         manufacturers);
                 this.factories.add(factory);
+                this.factoryNidMap.put(nid, factory);
                 this.factoryMap.put(id, factory);
             }
         }
@@ -183,6 +189,18 @@ public class FactoryFactory implements Serializable
         return this.factoryMap.get(id);
     }
 
+    /**
+     * Returns the factory with the specified numeric id or null if not found.
+     * 
+     * @param nid
+     *            The numeric factory id
+     * @return The factory or null if not found
+     */
+    public Factory getFactory(final int nid)
+    {
+        return this.factoryNidMap.get(nid);
+    }
+    
     /**
      * Returns the factories of the specified race.
      * 
@@ -444,7 +462,7 @@ public class FactoryFactory implements Serializable
         for (final Factory factory : this.factories)
         {
             final boolean isIgnored = config.isRaceIgnored(factory.getRace());
-            
+
             // Ignore factories of ignored races.
             if (useIgnores && isIgnored) continue;
 
@@ -452,7 +470,7 @@ public class FactoryFactory implements Serializable
             // expensive.
             int price = factory.getPrice();
             if (isIgnored) price *= 100;
-            
+
             if (factory.getProduct().getWare().equals(ware)
                 && factory.getSize().equals(size) && price < cheapestPrice)
             {

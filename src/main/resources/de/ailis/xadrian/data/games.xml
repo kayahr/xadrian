@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE games>
 <games>
-  <game id="x3tc" default="true" />
-  <game id="x3ap" />
+  <game nid="0" id="x3tc" />
+  <game nid="1" id="x3ap" default="true" />
 </games>

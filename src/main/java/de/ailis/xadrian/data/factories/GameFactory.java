@@ -31,8 +31,11 @@ import de.ailis.xadrian.frames.SplashFrame;
  */
 public class GameFactory
 {
-    /** The game map (for quick ID navigation) */
+    /** The game map (for quick textual ID navigation) */
     private final Map<String, Game> gameMap = new HashMap<String, Game>();
+
+    /** The game map (for quick numeric ID navigation) */
+    private final Map<Integer, Game> gameNidMap = new HashMap<Integer, Game>();
 
     /** The games (sorted) */
     private final SortedSet<Game> games = new TreeSet<Game>();
@@ -78,8 +81,10 @@ public class GameFactory
             {
                 final Element element = (Element) item;
                 final String id = element.attributeValue("id");
-                final Game game = new Game(id);
+                final int nid = Integer.parseInt(element.attributeValue("nid"));
+                final Game game = new Game(nid, id);
                 this.games.add(game);
+                this.gameNidMap.put(nid, game);
                 this.gameMap.put(id, game);
                 if (this.defaultGame == null
                     || Boolean.parseBoolean(element
@@ -104,10 +109,10 @@ public class GameFactory
     }
 
     /**
-     * Returns the game with the specified id.
+     * Returns the game with the specified textual id.
      * 
      * @param id
-     *            The game id
+     *            The textual game id
      * @return The game.
      * @throws GameNotFoundException
      *             When game was not found.
@@ -116,6 +121,22 @@ public class GameFactory
     {
         Game game = this.gameMap.get(id);
         if (game == null) throw new GameNotFoundException(id);
+        return game;
+    }
+
+    /**
+     * Returns the game with the specified numeric id.
+     * 
+     * @param nid
+     *            The numeric game id
+     * @return The game.
+     * @throws GameNotFoundException
+     *             When game was not found.
+     */
+    public Game getGame(final int nid) throws GameNotFoundException
+    {
+        Game game = this.gameNidMap.get(nid);
+        if (game == null) throw new GameNotFoundException(nid);
         return game;
     }
 

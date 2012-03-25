@@ -2,6 +2,7 @@
  * Copyright (C) 2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information.
  */
+
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -23,7 +24,7 @@ import de.ailis.xadrian.support.I18N;
 
 /**
  * A game.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class Game implements Serializable, Comparable<Game>
@@ -31,8 +32,11 @@ public class Game implements Serializable, Comparable<Game>
     /** Serial version UID */
     private static final long serialVersionUID = 1477337332848671379L;
 
-    /** The race id */
+    /** The textual game id */
     private final String id;
+
+    /** The numeric game id. */
+    private final int nid;
 
     /** The message id */
     private final String messageId;
@@ -69,13 +73,16 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Constructor.
-     *
+     * 
+     * @param nid
+     *            The numeric game id.
      * @param id
-     *            The race id
+     *            The textual game id
      */
-    public Game(final String id)
+    public Game(final int nid, final String id)
     {
         this.id = id;
+        this.nid = nid;
         this.messageId = "game." + id;
         this.sunFactory = new SunFactory(this);
         this.raceFactory = new RaceFactory(this);
@@ -91,9 +98,9 @@ public class Game implements Serializable, Comparable<Game>
     }
 
     /**
-     * Return the id.
-     *
-     * @return The id
+     * Returns the textual game id.
+     * 
+     * @return The textual game id
      */
     public String getId()
     {
@@ -101,8 +108,18 @@ public class Game implements Serializable, Comparable<Game>
     }
 
     /**
+     * Returns the numeric game id.
+     * 
+     * @return The numeric game id
+     */
+    public int getNid()
+    {
+        return this.nid;
+    }
+
+    /**
      * Returns the name.
-     *
+     * 
      * @return The name
      */
     public String getName()
@@ -152,7 +169,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the sector factory for this game.
-     *
+     * 
      * @return The sector factory for this game.
      */
     public SectorFactory getSectorFactory()
@@ -162,7 +179,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the factory factory for this game.
-     *
+     * 
      * @return The factory factory for this game.
      */
     public FactoryFactory getFactoryFactory()
@@ -172,7 +189,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the race factory for this game.
-     *
+     * 
      * @return The race factory for this game.
      */
     public RaceFactory getRaceFactory()
@@ -182,7 +199,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the station factory for this game.
-     *
+     * 
      * @return The station factory for this game.
      */
     public StationFactory getStationFactory()
@@ -192,7 +209,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the sun factory for this game.
-     *
+     * 
      * @return The sun factory for this game.
      */
     public SunFactory getSunFactory()
@@ -202,7 +219,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the ware factory for this game.
-     *
+     * 
      * @return The ware factory for this game.
      */
     public WareFactory getWareFactory()
@@ -212,7 +229,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the add factory dialog.
-     *
+     * 
      * @return The add factory dialog.
      */
     public AddFactoryDialog getAddFactoryDialog()
@@ -222,7 +239,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the select sector dialog.
-     *
+     * 
      * @return The select sector dialog.
      */
     public SelectSectorDialog getSelectSectorDialog()
@@ -232,7 +249,7 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the change suns dialog.
-     *
+     * 
      * @return The change suns dialog.
      */
     public ChangeSunsDialog getChangeSunsDialog()
@@ -242,14 +259,14 @@ public class Game implements Serializable, Comparable<Game>
 
     /**
      * Returns the change prices dialog.
-     *
+     * 
      * @return The change prices dialog.
      */
     public ChangePricesDialog getChangePricesDialog()
     {
         return this.changePricesDialog;
     }
-    
+
     /**
      * Checks if the game is X3: Terrn Conflict.
      * 

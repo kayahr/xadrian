@@ -24,4 +24,16 @@ public final class GameNotFoundException extends XadrianException
     {
         super("No game with id " + id + " found");
     }
+
+
+    /**
+     * Constructor
+     *
+     * @param nid
+     *           The numeric ID of the game which was not found.
+     */
+    public GameNotFoundException(final int nid)
+    {
+        super("No game with numeric id " + nid + " found");
+    }
 }

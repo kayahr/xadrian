@@ -2,6 +2,7 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information.
  */
+
 package de.ailis.xadrian.data;
 
 import java.io.Serializable;
@@ -16,7 +17,7 @@ import de.ailis.xadrian.support.I18N;
 
 /**
  * A factory
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class Factory implements Serializable, Comparable<Factory>, GameProvider
@@ -29,6 +30,9 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /** The factory id */
     private final String id;
+
+    /** The numeric factory id. */
+    private final int nid;
 
     /** The manufacturer race */
     private final Race race;
@@ -62,9 +66,11 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Constructor
-     *
+     * 
      * @param game
      *            The game this factory belongs to. Must not be null.
+     * @param nid
+     *            The numeric factory id.
      * @param id
      *            The factory id
      * @param size
@@ -86,13 +92,16 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      * @param manufacturers
      *            The manufacturer stations
      */
-    public Factory(final Game game, final String id, final FactorySize size,
-        final Race race, final int cycle, final Product product,
-        final int price, final int volume, final Product[] resources,
-        final Capacity[] storage, final Station[] manufacturers)
+    public Factory(final Game game, final int nid, final String id,
+        final FactorySize size, final Race race, final int cycle,
+        final Product product, final int price, final int volume,
+        final Product[] resources, final Capacity[] storage,
+        final Station[] manufacturers)
     {
-        if (game == null) throw new IllegalArgumentException("game must be set");
+        if (game == null)
+            throw new IllegalArgumentException("game must be set");
         this.game = game;
+        this.nid = nid;
         this.id = id;
         this.size = size;
         this.race = race;
@@ -108,17 +117,27 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Return the factory id.
-     *
+     * 
      * @return The factory id
      */
     public String getId()
     {
         return this.id;
     }
+    
+    /**
+     * Returns the numeric factory id.
+     * 
+     * @return The numeric factory id.
+     */    
+    public int getNid()
+    {
+        return this.nid;
+    }
 
     /**
      * Return the factory size.
-     *
+     * 
      * @return The factory size
      */
     public FactorySize getSize()
@@ -128,7 +147,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns true if this factory is a mine.
-     *
+     * 
      * @return True if this factory is a mine. False if not.
      */
     public boolean isMine()
@@ -139,7 +158,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns true if this factory is a silicon mine.
-     *
+     * 
      * @return True if this factory is a silicon mine. False if not.
      */
     public boolean isSiliconMine()
@@ -150,7 +169,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns true if this factory is an ore mine.
-     *
+     * 
      * @return True if this factory is an ore mine. False if not.
      */
     public boolean isOreMine()
@@ -161,7 +180,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the factory name.
-     *
+     * 
      * @return The factory name
      */
     public String getName()
@@ -171,7 +190,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the race which manufactures this factory.
-     *
+     * 
      * @return The race
      */
     public Race getRace()
@@ -181,7 +200,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the production cycle.
-     *
+     * 
      * @return The production cycle
      */
     public int getCycle()
@@ -191,7 +210,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the production cycle as a human readable time string.
-     *
+     * 
      * @return The production cycle as a string
      */
     public String getCycleAsString()
@@ -208,7 +227,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the produces product per cycle.
-     *
+     * 
      * @return The product
      */
     public Product getProduct()
@@ -218,7 +237,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the factory price.
-     *
+     * 
      * @return The price
      */
     public int getPrice()
@@ -228,7 +247,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the factory volume.
-     *
+     * 
      * @return The volume
      */
     public int getVolume()
@@ -238,7 +257,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the needed resources per cycle.
-     *
+     * 
      * @return The resources
      */
     public Product[] getResources()
@@ -248,7 +267,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the storage capacities.
-     *
+     * 
      * @return The storage capacities
      */
     public Capacity[] getCapacities()
@@ -258,7 +277,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the manufacturer stations.
-     *
+     * 
      * @return The manufacturer stations
      */
     public Station[] getManufacturers()
@@ -332,7 +351,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     /**
      * Returns the real cycle of this factory by including the sun power and the
      * asteroid yield into the calculation.
-     *
+     * 
      * @param suns
      *            The sun power in percent
      * @param yield
@@ -369,7 +388,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     /**
      * Returns the real product of this factory by including the specified sun
      * power and asteroid yield into the calculation.
-     *
+     * 
      * @param suns
      *            The sun power in percent
      * @param yield
@@ -405,7 +424,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     /**
      * Returns the real resources of this factory by including the specified sun
      * power and asteroid yield into the calculation.
-     *
+     * 
      * @param suns
      *            The sun power in percent
      * @param yield
@@ -446,7 +465,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the product this factory produces in one hour.
-     *
+     * 
      * @param suns
      *            The sun power to use in the calculation (for solar power
      *            plants)
@@ -464,7 +483,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     /**
      * Returns the product this factory produces in one hour for a default yield
      * (100% for power plants, 25 for mines).
-     *
+     * 
      * @return The product produced per hour for a default yield
      */
     public Product getProductPerHour()
@@ -474,7 +493,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
 
     /**
      * Returns the resources this factory needs in our hour.
-     *
+     * 
      * @param suns
      *            The sun power to use in the calculation (for solar power
      *            plants)
@@ -499,18 +518,19 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     /**
      * Returns the resources this factory needs in one hour for a default yield
      * (100% for power plants, 25 for mines).
-     *
+     * 
      * @return The resources needed per hour for a default yield
      */
     public Collection<Product> getResourcesPerHour()
     {
-        return getResourcesPerHour(this.game.getSunFactory().getDefaultSun(), 25);
+        return getResourcesPerHour(this.game.getSunFactory().getDefaultSun(),
+            25);
     }
 
     /**
      * Returns the manufacturer station which is nearest to the specified
      * sector.
-     *
+     * 
      * @param sector
      *            The source sector
      * @return The nearest manufacturer station

@@ -2,8 +2,14 @@
  * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.TXT for licensing information.
  */
+
 package de.ailis.xadrian.data;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SortedSet;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -30,15 +38,18 @@ import de.ailis.xadrian.data.factories.SectorFactory;
 import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.dialogs.SetYieldsDialog;
+import de.ailis.xadrian.exceptions.TemplateCodeException;
 import de.ailis.xadrian.interfaces.GameProvider;
 import de.ailis.xadrian.support.Config;
+import de.ailis.xadrian.support.DynaByteInputStream;
+import de.ailis.xadrian.support.DynaByteOutputStream;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.support.ModalDialog.Result;
 import de.ailis.xadrian.support.MultiCollection;
 
 /**
  * A complex
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public class Complex implements Serializable, GameProvider
@@ -105,7 +116,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Constructor
-     *
+     * 
      * @param game
      *            The game this complex belongs to.
      */
@@ -116,7 +127,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Constructor
-     *
+     * 
      * @param game
      *            The game this complex belongs to.
      * @param name
@@ -135,7 +146,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns a new name for a complex.
-     *
+     * 
      * @return A new complex name
      */
     private static String createComplexName()
@@ -146,7 +157,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the name.
-     *
+     * 
      * @return The name
      */
     public String getName()
@@ -156,7 +167,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets the complex name.
-     *
+     * 
      * @param name
      *            The complex name to set
      */
@@ -167,7 +178,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total number of factories in the complex
-     *
+     * 
      * @return The total number of factories in the complex
      */
     public int getTotalQuantity()
@@ -182,7 +193,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total complex price.
-     *
+     * 
      * @return The total complex price
      */
     public long getTotalPrice()
@@ -199,7 +210,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * A immutable copy of the factories in this complex.
-     *
+     * 
      * @return The factories in this complex
      */
     public List<ComplexFactory> getFactories()
@@ -209,7 +220,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * A immutable copy of the automatically added factories in this complex.
-     *
+     * 
      * @return The automatically added factories in this complex
      */
     public List<ComplexFactory> getAutoFactories()
@@ -244,7 +255,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Removes the factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      */
@@ -257,7 +268,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Disables the factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      */
@@ -269,7 +280,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Disables the factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      */
@@ -281,7 +292,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Accepts the automatically added factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      */
@@ -293,7 +304,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the quantity of the factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      * @return The quantity
@@ -305,7 +316,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Increases the quantity of the factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      * @return True if quantity was changed, false if not.
@@ -323,7 +334,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Decreases the quantity of the factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      * @return True if quantity was changed, false if not.
@@ -342,7 +353,7 @@ public class Complex implements Serializable, GameProvider
     /**
      * Sets the quantity of the factory with the given index to the specified
      * quantity.
-     *
+     * 
      * @param index
      *            The factory index
      * @param quantity
@@ -361,7 +372,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the yield of the factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      * @return The yield
@@ -373,7 +384,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets the yields of the factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      * @param yields
@@ -389,7 +400,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the factory type of factory with the given index.
-     *
+     * 
      * @param index
      *            The factory index
      * @return The factory
@@ -401,7 +412,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets the suns in percent.
-     *
+     * 
      * @param suns
      *            The suns in percent to set
      */
@@ -413,7 +424,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the suns in percent.
-     *
+     * 
      * @return The suns in percent
      */
     public Sun getSuns()
@@ -424,7 +435,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Adds a factory to the complex.
-     *
+     * 
      * @param factory
      *            The factory to add
      */
@@ -438,7 +449,8 @@ public class Complex implements Serializable, GameProvider
             if (dialog.open() == Result.OK)
             {
                 setSector(dialog.getSector());
-                addFactory(new ComplexFactory(this.game, factory, dialog.getYields()));
+                addFactory(new ComplexFactory(this.game, factory,
+                    dialog.getYields()));
                 calculateBaseComplex();
                 updateShoppingList();
             }
@@ -453,7 +465,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Adds the specified factory/factories to the complex.
-     *
+     * 
      * @param complexFactory
      *            The factory/factories to add
      */
@@ -478,7 +490,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Converts the complex into XML and returns it.
-     *
+     * 
      * @return The complex as XML
      */
     public Document toXML()
@@ -560,7 +572,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Loads a complex from the specified XML document and returns it.
-     *
+     * 
      * @param document
      *            The XML document
      * @return The complex
@@ -683,7 +695,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns all factories (Manually and automatically added ones):
-     *
+     * 
      * @return All factories
      */
     @SuppressWarnings("unchecked")
@@ -695,7 +707,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the products this complex produces in one hour.
-     *
+     * 
      * @return The products per hour.
      */
     public Collection<Product> getProductsPerHour()
@@ -718,7 +730,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the resources this complex needs in one hour.
-     *
+     * 
      * @return The needed resources per hour.
      */
     public Collection<Product> getResourcesPerHour()
@@ -744,7 +756,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the list of complex wares (Produced and needed).
-     *
+     * 
      * @return The list of complex wares
      */
     public Collection<ComplexWare> getWares()
@@ -784,7 +796,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the profit of this complex.
-     *
+     * 
      * @return The profit
      */
     public double getProfit()
@@ -801,7 +813,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the number of needed complex construction kits in this complex.
-     *
+     * 
      * @return The number of needed complex construction kits.
      */
     public int getKitQuantity()
@@ -811,7 +823,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the price of a single complex construction kit.
-     *
+     * 
      * @return The price of a single complex construction kit
      */
     public int getKitPrice()
@@ -821,7 +833,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total price of all needed complex construction kits.
-     *
+     * 
      * @return The total price of all needed complex construction kits
      */
     public int getTotalKitPrice()
@@ -923,7 +935,7 @@ public class Complex implements Serializable, GameProvider
      * and adds the necessary factories for this. If a need was found (and
      * fixed) then this method returns true. If all needs are already fulfilled
      * then it returns false.
-     *
+     * 
      * @param crystalRace
      *            Optional race from which crystal fabs should be bought. If
      *            null then the cheapest fab is searched.
@@ -955,7 +967,7 @@ public class Complex implements Serializable, GameProvider
     /**
      * Adds the factories needed to fulfill the need of the specified complex
      * ware.
-     *
+     * 
      * @param complexWare
      *            The complex ware for which factories must be added
      * @param race
@@ -1057,7 +1069,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Enables or disabled base complex addition.
-     *
+     * 
      * @param addBaseComplex
      *            True if base complex should be added, false if not
      */
@@ -1068,7 +1080,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks whether a base complex was added or not.
-     *
+     * 
      * @return True if a base complex was added. False if not.
      */
     public boolean isAddBaseComplex()
@@ -1078,7 +1090,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the storage capacities.
-     *
+     * 
      * @return The storage capacities.
      */
     public Collection<Capacity> getCapacities()
@@ -1107,7 +1119,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total storage capacity
-     *
+     * 
      * @return The total storage capacity;
      */
     public long getTotalCapacity()
@@ -1120,7 +1132,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the total storage volume
-     *
+     * 
      * @return The total storage volume;
      */
     public long getTotalStorageVolume()
@@ -1133,7 +1145,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets the sector in which to build this complex
-     *
+     * 
      * @param sector
      *            The sector to set
      */
@@ -1150,7 +1162,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the sector in which this complex is build.
-     *
+     * 
      * @return The sector
      */
     public Sector getSector()
@@ -1160,7 +1172,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the factory shopping list.
-     *
+     * 
      * @return The factory shopping list
      */
     public ShoppingList getShoppingList()
@@ -1193,7 +1205,7 @@ public class Complex implements Serializable, GameProvider
      * Returns the price for the specified ware. If the price has a custom price
      * then this one is returned. If not then the standard average price of the
      * ware is returned.
-     *
+     * 
      * @param ware
      *            The ware
      * @return The price
@@ -1208,7 +1220,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the map with custom prices.
-     *
+     * 
      * @return The map with custom prices
      */
     public Map<Ware, Integer> getCustomPrices()
@@ -1218,7 +1230,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Sets a new map with custom prices.
-     *
+     * 
      * @param customPrices
      *            The new map with custom prices
      */
@@ -1230,7 +1242,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks if complex setup should be displayed.
-     *
+     * 
      * @return True if complex setup should be displayed, false if not
      */
     public boolean isShowingComplexSetup()
@@ -1248,7 +1260,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks if production stats should be displayed.
-     *
+     * 
      * @return True if production stats should be displayed, false if not
      */
     public boolean isShowingProductionStats()
@@ -1266,7 +1278,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks if storage capacities should be displayed.
-     *
+     * 
      * @return True if storage capacities should be displayed, false if not
      */
     public boolean isShowingStorageCapacities()
@@ -1284,7 +1296,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks if the shopping list should be displayed.
-     *
+     * 
      * @return True if the shopping list should be displayed, false if not
      */
     public boolean isShowingShoppingList()
@@ -1303,7 +1315,7 @@ public class Complex implements Serializable, GameProvider
     /**
      * Returns the maximum number of factories in the shopping list for the
      * specified factory id.
-     *
+     * 
      * @param id
      *            The id of the factory
      * @return The number of factories in the shopping list
@@ -1321,7 +1333,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Builds a factory with the specified id
-     *
+     * 
      * @param id
      *            The id of the factory to build
      */
@@ -1336,7 +1348,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Destroys a factory with the specified id.
-     *
+     * 
      * @param id
      *            The id of the factory to destroy
      */
@@ -1371,7 +1383,7 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Returns the number of built factories of the specified type.
-     *
+     * 
      * @param factory
      *            The factory type
      * @return The number of built factores of the specified type
@@ -1390,7 +1402,7 @@ public class Complex implements Serializable, GameProvider
     {
         return this.game;
     }
-    
+
     /**
      * Checks if the complex uses the specified ware as product or resource.
      * 
@@ -1400,11 +1412,11 @@ public class Complex implements Serializable, GameProvider
      */
     public boolean usesWare(final Ware ware)
     {
-        for (final ComplexFactory complexFactory: getAllFactories())
+        for (final ComplexFactory complexFactory : getAllFactories())
         {
             final Factory factory = complexFactory.getFactory();
             if (factory.getProduct().getWare().equals(ware)) return true;
-            for (final Product product: factory.getResources())
+            for (final Product product : factory.getResources())
                 if (product.getWare().equals(ware)) return true;
         }
         return false;
@@ -1412,11 +1424,140 @@ public class Complex implements Serializable, GameProvider
 
     /**
      * Checks if the complex is empty.
-     *
+     * 
      * @return True when the complex is empty, false if not.
      */
     public boolean isEmpty()
     {
         return this.factories.isEmpty();
+    }
+
+    /**
+     * Creates a complex from the specified template code.
+     * 
+     * @param templateCode
+     *            The template code
+     * @return The complex.
+     */
+    public static Complex fromTemplateCode(String templateCode)
+    {
+        try
+        {
+            // Decode base 64
+            byte[] data = DatatypeConverter.parseBase64Binary(templateCode);
+
+            InputStream stream =
+                new DynaByteInputStream(new ByteArrayInputStream(data));
+
+            // Read complex settings
+            int settings = stream.read();
+            boolean hasSector = (settings & 1) == 1;
+            int gameNid = (settings >> 1) & 7;
+
+            Game game = GameFactory.getInstance().getGame(gameNid);
+            Complex complex = new Complex(game);
+
+            // Read sector coordinates or sun power
+            if (hasSector)
+            {
+                int x = stream.read();
+                int y = stream.read();
+                complex.setSector(game.getSectorFactory().getSector(x, y));
+            }
+            else
+            {
+                int percent = stream.read();
+                complex.setSuns(game.getSunFactory().getSun(percent));
+            }
+
+            int factoryId;
+            while ((factoryId = stream.read()) != 0)
+            {
+                Factory factory =
+                    game.getFactoryFactory().getFactory(factoryId);
+                if (factory.isMine())
+                {
+                    List<Integer> yields = new ArrayList<Integer>();
+                    int yield;
+                    while ((yield = stream.read()) != 0)
+                        yields.add(yield);
+                    complex
+                        .addFactory(new ComplexFactory(game, factory, yields));
+                }
+                else
+                {
+                    int quantity = stream.read();
+                    complex.addFactory(new ComplexFactory(game, factory,
+                        quantity, 0));
+                }
+            }
+
+            return complex;
+        }
+        catch (IOException e)
+        {
+            throw new TemplateCodeException(e.toString(), e);
+        }
+    }
+
+    /**
+     * Returns the template code.
+     * 
+     * @return The template code.
+     */
+    public String getTemplateCode()
+    {
+        try
+        {
+            ByteArrayOutputStream arrayStream = new ByteArrayOutputStream();
+            OutputStream stream = new DynaByteOutputStream(arrayStream);
+
+            // Write the template settings bit mask.
+            int settings = this.sector == null ? 0 : 1;
+            settings |= this.game.getNid() << 1;
+            stream.write(settings);
+
+            // Write the sector coordinates
+            if (this.sector != null)
+            {
+                stream.write(this.sector.getX());
+                stream.write(this.sector.getY());
+            }
+
+            // Or else write the sun power
+            else
+            {
+                stream.write(this.suns.getPercent());
+            }
+
+            // Write the factories
+            for (ComplexFactory complexFactory : this.getAllFactories())
+            {
+                Factory factory = complexFactory.getFactory();
+                stream.write(factory.getNid());
+                if (factory.isMine())
+                {
+                    for (int yield : complexFactory.getYields())
+                        stream.write(yield + 1);
+                    stream.write(0);
+                }
+                else
+                    stream.write(complexFactory.getQuantity());
+            }
+
+            // Write end marker
+            stream.write(0);
+            stream.close();
+
+            // Get byte array from stream
+            byte[] data = arrayStream.toByteArray();
+
+            // Return base 64 encoded bytes
+            return DatatypeConverter.printBase64Binary(data);
+        }
+        catch (IOException e)
+        {
+            throw new TemplateCodeException(e.toString(), e);
+        }
     }
 }
