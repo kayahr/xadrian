@@ -24,6 +24,9 @@ public final class Images
     /** The 16x16 logo */
     public static final Image LOGO_16 = createImage("xadrian-16.png");
 
+    /** The 24x24 logo */
+    public static final Image LOGO_24 = createImage("xadrian-24.png");
+
     /** The 32x32 logo */
     public static final Image LOGO_32 = createImage("xadrian-32.png");
 
@@ -33,12 +36,12 @@ public final class Images
     /** The 64x64 logo */
     public static final Image LOGO_64 = createImage("xadrian-64.png");
 
-    /** The 128x128 logo */
-    public static final Image LOGO_128 = createImage("xadrian-128.png");
+    /** The 256x256 logo */
+    public static final Image LOGO_256 = createImage("xadrian-256.png");
 
     /** The logos */
-    public static final List<Image> LOGOS = Arrays.asList(LOGO_128, LOGO_64,
-        LOGO_48, LOGO_32, LOGO_16);
+    public static final List<Image> LOGOS = Arrays.asList(LOGO_256, LOGO_64,
+        LOGO_48, LOGO_32, LOGO_24, LOGO_16);
 
     /**
      * Private constructor to prevent instantiation.

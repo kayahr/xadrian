@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+  <defs>
+    <filter id="dropShadow" x="-8" y="-8" width="32" height="32">
+      <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.5555555555555556" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    </filter>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
+      <stop offset="0%" stop-color="#ffa000" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#ab4000" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <path filter="url(#dropShadow)" stroke-width="0.2222222222222222" stroke="black" fill="url(#gradient)"
+        d="M3.6666666666667 3.7777777777778
+           L6.2222222222222 7.7777777777778
+           L1.5 12.277777777778
+           L5.6666666666667 12.277777777778
+           L7.8333333333333 10.277777777778
+           L9.1666666666667 12.277777777778
+           L13.055555555556 12.277777777778
+           L10.277777777778 7.9444444444444
+           L14.444444444444 3.7777777777778
+           L10.5 3.7777777777778
+           L8.6666666666667 5.5
+           L7.5555555555556 3.7777777777778
+           Z" />
+</svg>
