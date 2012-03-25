@@ -16,6 +16,9 @@ do
       $OUTPUTDIR/xadrian-${SIZE}.png
 done
 
+icotool -c -o ../main/icons/Xadrian.ico $OUTPUTDIR/xadrian-*.png
+png2icns ../main/assembly/macosx/xadrian.icns $OUTPUTDIR/xadrian-256.png
+
 #for SIZE in 256 64 48 32 24 16
 #do
 #    convert -density $[$SIZE*72/16] -geometry ${SIZE}x${SIZE} \
