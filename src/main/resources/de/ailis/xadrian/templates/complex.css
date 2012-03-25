@@ -78,7 +78,7 @@ tr.sep td
 td, th
 {
     text-align: left;
-    vertical-align: center;
+    vertical-align: middle;
     padding-left: 0;
 }
 
