@@ -7,7 +7,10 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.4.3" date="2012-03-20" description="Minor update">
+    <release version="1.4.3" date="2012-03-25" description="Minor update">
+      <action dev="k" type="add" date="2012-03-25">
+        Implemented export to template code and import from template code. 
+      </action>
       <action dev="k" type="add" date="2012-03-20">
         The print dialog now remembers its last settings. 
       </action>
