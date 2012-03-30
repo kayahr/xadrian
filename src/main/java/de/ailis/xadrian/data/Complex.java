@@ -34,9 +34,6 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-import de.ailis.xadrian.asciitable.Table;
-import de.ailis.xadrian.asciitable.TableCell;
-import de.ailis.xadrian.asciitable.TableCell.Align;
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.data.factories.RaceFactory;
@@ -711,19 +708,6 @@ public class Complex implements Serializable, GameProvider
     {
         return new MultiCollection<ComplexFactory>(this.factories,
             this.autoFactories);
-    }
-
-    /**
-     * Returns the number of disabled factories.
-     *
-     * @return The number of disabled factories.
-     */
-    private int getDisabledFactrories()
-    {
-        int disabled = 0;
-        for (final ComplexFactory factory: this.factories)
-            if (factory.isDisabled()) disabled += 1;
-        return disabled;
     }
 
     /**
@@ -1709,50 +1693,38 @@ public class Complex implements Serializable, GameProvider
         out.print(": ");
         out.println(getTemplateCode());
 
-        // Print empty line
         out.println();
 
-        final boolean hasMines = hasMines();
-        final Collection<ComplexFactory> complexFactories = getAllFactories();
-        final Table table =
-            new Table(complexFactories.size() + 1 - getDisabledFactrories(),
-                hasMines ? 4 : 3);
-
-        // Add table headers
-        table.setCell(0, 0, new TableCell(I18N.getString("complex.factory")));
-        table.setCell(0, 1, new TableCell(I18N.getString("complex.race")));
-        table.setCell(0, 2, new TableCell(I18N.getString("complex.quantity"),
-            Align.RIGHT));
-        if (hasMines)
-            table.setCell(0, 3, new TableCell(I18N.getString("complex.yield"),
-                Align.RIGHT));
-        table.addSeparator(0);
-
-        // Add the factories
-        int row = 1;
-        for (final ComplexFactory complexFactory: complexFactories)
+        // Print factories
+        out.print(I18N.getString("complex.factories"));
+        out.println(":");
+        for (final ComplexFactory complexFactory: getAllFactories())
         {
             if (complexFactory.isDisabled()) continue;
             final Factory factory = complexFactory.getFactory();
 
-            table.setCell(row, 0, new TableCell(factory.getName()));
-            table.setCell(row, 1, new TableCell(factory.getRace().getName()));
-            table.setCell(row, 2,
-                new TableCell("" + complexFactory.getQuantity(),
-                    Align.RIGHT));
-            if (hasMines && factory.isMine())
+            out.print(complexFactory.getQuantity());
+            out.print("x ");
+            out.print(factory.getName());
+            out.print(" (");
+            out.print(factory.getRace().getName());
+            if (factory.isMine())
             {
-                table.setCell(row, 3, new TableCell(
-                    (complexFactory.isHomogenousYield() ? "" : "~") +
-                        complexFactory.getYield(), Align.RIGHT));
+                out.print(", ");
+                out.print(I18N.getString("complex.yield"));
+                out.print(": ");
+                boolean first = true;
+                for (final int yield: complexFactory.getYields())
+                {
+                    if (!first)
+                        out.print(", ");
+                    out.print(yield);
+                    first = false;
+                }
             }
-            row += 1;
+            out.println(")");
         }
 
-        // Print complex table
-        out.print(table.toString());
-
-        // Print empty line
         out.println();
 
         // Print total complex price
