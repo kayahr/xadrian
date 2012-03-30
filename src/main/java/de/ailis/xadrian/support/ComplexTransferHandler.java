@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 IP Labs GmbH <http://www.iplabs.de/>
+ * Copyright (C) 2010-2012 Klaus Reimer <k@ailis.de>
  * See LICENSE.txt for licensing information.
  */
 
@@ -21,9 +21,8 @@ import de.ailis.xadrian.frames.MainFrame;
 /**
  * ComplexTransferHandler
  * 
- * @author Klaus Reimer (k.reimer@iplabs.de)
+ * @author Klaus Reimer (k@ailis.de)
  */
-
 public final class ComplexTransferHandler extends TransferHandler
 {
     /** Serial version UID. */
