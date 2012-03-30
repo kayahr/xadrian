@@ -400,7 +400,8 @@ public class MainFrame extends JFrame implements EditorStateListener,
         c.insets.top = 50;
         c.gridy++;
         buttonPanel.add(socialPane, c);
-
+        installStatusHandler(buttonPanel);
+        
         add(welcomePanel, BorderLayout.CENTER);
     }
 
