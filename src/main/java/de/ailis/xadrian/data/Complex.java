@@ -1500,7 +1500,7 @@ public class Complex implements Serializable, GameProvider
                     final List<Integer> yields = new ArrayList<Integer>();
                     int yield;
                     while ((yield = stream.read()) != 0)
-                        yields.add(yield);
+                        yields.add(yield - 1);
                     complex
                         .addFactory(new ComplexFactory(game, factory, yields));
                 }
