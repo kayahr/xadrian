@@ -1090,7 +1090,6 @@ public class MainFrame extends JFrame implements EditorStateListener,
     {
         final OpenComplexDialog dialog = OpenComplexDialog.getInstance();
 
-        dialog.setSelectedFile(null);
         final File file = dialog.open();
         if (file != null) open(file);
     }
