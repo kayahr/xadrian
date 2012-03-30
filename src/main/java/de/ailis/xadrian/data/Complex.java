@@ -1554,6 +1554,7 @@ public class Complex implements Serializable, GameProvider
             // Write the factories
             for (final ComplexFactory complexFactory: getAllFactories())
             {
+                if (complexFactory.isDisabled()) continue;
                 final Factory factory = complexFactory.getFactory();
                 stream.write(factory.getNid());
                 if (factory.isMine())
