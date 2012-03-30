@@ -93,6 +93,10 @@ public final class SwingUtils
             @Override
             public void mousePressed(final MouseEvent e)
             {
+                // Ignore mouse buttons outside of the normal range. This
+                // fixes problems with trackpad scrolling.
+                if (e.getButton() > MouseEvent.BUTTON3) return;
+                
                 if (e.isPopupTrigger())
                 {
                     popup.show(component, e.getX(), e.getY());
@@ -102,6 +106,10 @@ public final class SwingUtils
             @Override
             public void mouseReleased(final MouseEvent e)
             {
+                // Ignore mouse buttons outside of the normal range. This
+                // fixes problems with trackpad scrolling.
+                if (e.getButton() > MouseEvent.BUTTON3) return;
+
                 if (e.isPopupTrigger())
                 {
                     popup.show(component, e.getX(), e.getY());
