@@ -51,22 +51,28 @@ public class ImportTemplateCodeAction extends FrameAction<MainFrame> implements
     @Override
     public void actionPerformed(final ActionEvent e)
     {
+        int imported = 0;
         final Clipboard clipboard = this.frame.getToolkit().getSystemClipboard();
         final Transferable transferable = clipboard.getContents(null);
         if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor))
         {
             try
             {
-                final String code = transferable.getTransferData(DataFlavor.stringFlavor)
+                final String text = transferable.getTransferData(DataFlavor.stringFlavor)
                     .toString();
-                if (Complex.isValidTemplateCode(code))
+                for (final String code: text.split("\\s+"))
                 {
-                    this.frame.importFromTemplateCode(code);
+                    if (Complex.isValidTemplateCode(code))
+                    {
+                        this.frame.importFromTemplateCode(code);
+                        imported += 1;
+                    }
                 }
-                else
+
+                if (imported == 0)
                 {
                     JOptionPane.showMessageDialog(null, I18N.getString(
-                        "error.invalidTemplateCode"), I18N
+                        "error.noTemplateCodeFound"), I18N
                         .getString("error.title"), JOptionPane.ERROR_MESSAGE);
                 }
             }

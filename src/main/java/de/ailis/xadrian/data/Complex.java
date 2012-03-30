@@ -1525,7 +1525,7 @@ public class Complex implements Serializable, GameProvider
 
             return true;
         }
-        catch (final IOException e)
+        catch (final Exception e)
         {
             return false;
         }
