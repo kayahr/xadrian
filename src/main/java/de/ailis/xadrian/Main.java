@@ -25,7 +25,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * Main class.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class Main
@@ -38,7 +38,7 @@ public class Main
 
     /**
      * Main method.
-     * 
+     *
      * @param args
      *            Command line arguments
      * @throws Exception
@@ -50,7 +50,7 @@ public class Main
         // Xadrian and pass command line arguments to it. This allows us
         // to open more complexes in the already running Xadrian by
         // double-clicking the *.x3c files.
-        OneInstance oneInstance = OneInstance.getInstance();
+        final OneInstance oneInstance = OneInstance.getInstance();
         oneInstance.addListener(new OneInstanceListener()
         {
             @Override
@@ -66,14 +66,14 @@ public class Main
                 });
                 return false;
             }
-        });       
+        });
         if (!oneInstance.register(Main.class, args)) System.exit(0);
 
         try
-        {            
+        {
             // Set the App user model ID (needed for Windows)
             SwingUtils.setAppUserModelId(APP_USER_MODEL_ID);
-            
+
             // Set the application name (needed for Gnome Shell for example)
             SwingUtils.setAppName(APP_NAME);
 
@@ -97,7 +97,7 @@ public class Main
 
             // Close the splash screen
             SplashFrame.close();
-            
+
             // Start the main frame and open the files specified on the
             // command line
             SwingUtilities.invokeLater(new Runnable()
@@ -109,7 +109,7 @@ public class Main
                 }
             });
         }
-        catch (Throwable t)
+        catch (final Throwable t)
         {
             ErrorHandler.showError(t);
             System.exit(1);
