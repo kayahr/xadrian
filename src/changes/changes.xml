@@ -9,6 +9,9 @@
   <body>
     <release version="1.4.3" date="2012-03-30" description="Minor update">
       <action dev="k" type="add" date="2012-03-30">
+        Implemented night mode.
+      </action>
+      <action dev="k" type="add" date="2012-03-30">
         Implemented export to plain text.
       </action>
       <action dev="k" type="add" date="2012-03-30">
