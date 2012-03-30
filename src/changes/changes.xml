@@ -9,6 +9,10 @@
   <body>
     <release version="1.4.3" date="2012-03-30" description="Minor update">
       <action dev="k" type="add" date="2012-03-30">
+        Added configuration option to display production statistics per
+        minute instead of per hour.
+      </action>
+      <action dev="k" type="add" date="2012-03-30">
         Added System locale to combo box in preference dialog.
       </action>
       <action dev="k" type="add" date="2012-03-30">

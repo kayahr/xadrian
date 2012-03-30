@@ -225,6 +225,11 @@
             <img src="../images/[#if complex.showingProductionStats]expanded[#else]collapsed[/#if].png" border="0" width="16" height="14" />
           [/#if]
           [@message key="complex.productionStats" /]
+          [#if config.prodStatsPerMinute]
+            ([@message key="complex.perMinute" /])
+          [#else]
+            ([@message key="complex.perHour" /])
+          [/#if]
         </a>
       </h2>
       [#if complex.showingProductionStats || print]
@@ -250,8 +255,8 @@
             [/#if]
             <tr class="${class}">
               <td class="ware">${complexWare.ware.name}</td>
-              <td class="units">${complexWare.produced?round}</td>
-              <td class="units">${complexWare.needed?round}</td>
+              <td class="units">${(complexWare.produced*config.prodStatsFactor)?string(config.prodStatsFormat)}</td>
+              <td class="units">${(complexWare.needed*config.prodStatsFactor)?string(config.prodStatsFormat)}</td>
               [#assign surplus = complexWare.produced - complexWare.needed]
               [#if surplus > 0]
                 [#assign class="surplus"]
@@ -260,7 +265,7 @@
               [#else]
                 [#assign class="balanced"]
               [/#if]
-              <td class="${class}">${surplus?round}</td>
+              <td class="${class}">${(surplus*config.prodStatsFactor)?string(config.prodStatsFormat)}</td>
               <td class="price">
                 [#if surplus lt 0]
                   <a href="file://changePrice/${complexWare.ware.id}">[#if complexWare.price gt 0]${complexWare.price} Cr[#else][@message key="complex.noTrade" /][/#if]</a>
@@ -275,7 +280,7 @@
                   -
                 [/#if]
               </td>          
-              <td class="profit">${complexWare.profit?round} Cr</td>
+              <td class="profit">${(complexWare.profit*config.prodStatsFactor)?round} Cr</td>
             </tr>
           [/#list]
           <tr>
@@ -284,7 +289,7 @@
           </tr>
           <tr>
             <th class="profit" colspan="6">[@message key="complex.total" /]</th>
-            <td class="profit">${complex.profit?round} Cr</td>          
+            <td class="profit">${(complex.profit*config.prodStatsFactor)?round} Cr</td>          
           </tr>        
         </table>
       [/#if]

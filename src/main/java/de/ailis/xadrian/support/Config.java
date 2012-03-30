@@ -58,7 +58,14 @@ public final class Config
     /** Config key for night mode */
     private static final String NIGHT_MODE = "nightMode";
 
-    /** The singleton instance. */
+    /**
+     * Config key for production stats per minute.
+     */
+    private static final String PROD_STATS_PER_MINUTE = "prodStatPerMinute";
+
+    /**
+     * The singleton instance.
+     */
     private static final Config instance = new Config();
 
     /** The ignored manufacturer races */
@@ -84,6 +91,12 @@ public final class Config
 
     /** If night mode is enabled or not. */
     private boolean nightMode = false;
+
+    /**
+     * If production statistics should be displayed per minute instead of per
+     * hour.
+     */
+    private boolean prodStatsPerMinute = false;
 
     /** The print attributes. */
     private HashPrintRequestAttributeSet printAttributes =
@@ -127,6 +140,7 @@ public final class Config
         this.locale = prefs.get(LOCALE, null);
         this.defaultGame = prefs.get(DEFAULT_GAME, null);
         this.nightMode = prefs.getBoolean(NIGHT_MODE, false);
+        this.prodStatsPerMinute = prefs.getBoolean(PROD_STATS_PER_MINUTE, false);
 
         final String printAttributes = prefs.get(PRINT_ATTRIBUTES, null);
         if (printAttributes != null && !printAttributes.isEmpty())
@@ -187,6 +201,7 @@ public final class Config
         else
             prefs.put(DEFAULT_GAME, this.defaultGame);
         prefs.putBoolean(NIGHT_MODE, this.nightMode);
+        prefs.putBoolean(PROD_STATS_PER_MINUTE, this.prodStatsPerMinute);
 
         prefs.put(PRINT_ATTRIBUTES, ObjectUtils.toString(this.printAttributes));
     }
@@ -473,5 +488,49 @@ public final class Config
     public void setNightMode(final boolean nightMode)
     {
         this.nightMode = nightMode;
+    }
+
+    /**
+     * Checks if production statistics should be displayed per minute.
+     *
+     * @return True if production statistics should be displayed per minute,
+     *         false if per hour.
+     */
+    public boolean isProdStatsPerMinute()
+    {
+        return this.prodStatsPerMinute;
+    }
+
+    /**
+     * Enables or disables to display of production statistics per minute.
+     *
+     * @param prodStatsPerMinute
+     *            True to display the production statistics per minute, false to
+     *            display them per hour.
+     */
+    public void setProdStatsPerMinute(final boolean prodStatsPerMinute)
+    {
+        this.prodStatsPerMinute = prodStatsPerMinute;
+    }
+
+    /**
+     * Returns the production stats factor (Depends on per hour or per minute)
+     *
+     * @return The production stats factor.
+     */
+    public double getProdStatsFactor()
+    {
+        return isProdStatsPerMinute() ? (1d / 60d) : 1d;
+    }
+
+    /**
+     * Returns the production stats number format (Depends on per hour or per
+     * minute).
+     *
+     * @return The production stats number format.
+     */
+    public String getProdStatsFormat()
+    {
+        return isProdStatsPerMinute() ? ",##0.000" : ",##0";
     }
 }

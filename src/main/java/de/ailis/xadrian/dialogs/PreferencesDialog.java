@@ -75,6 +75,9 @@ public class PreferencesDialog extends ModalDialog
     /** The locale combo box. */
     private JComboBox localeComboBox;
 
+    /** The production statistics combo box. */
+    private JComboBox prodStatsComboBox;
+
     /**
      * Constructor
      */
@@ -329,6 +332,26 @@ public class PreferencesDialog extends ModalDialog
         c.insets.left = 0;
         c.fill = GridBagConstraints.NONE;
 
+        // Create the theme controls
+        label =
+            new JLabel(I18N.getString("dialog.preferences.prodStats"));
+        c.anchor = GridBagConstraints.LINE_START;
+        c.gridx = 0;
+        c.gridy++;
+        controlPanel.add(label, c);
+        c.gridx = 1;
+        c.insets.left = 5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        this.prodStatsComboBox = new JComboBox();
+        this.prodStatsComboBox.addItem(new ComboBoxEntry(I18N
+            .getString("dialog.preferences.prodStats.perHour"), false));
+        this.prodStatsComboBox.addItem(new ComboBoxEntry(I18N
+            .getString("dialog.preferences.prodStats.perMinute"), true));
+        controlPanel.add(this.prodStatsComboBox, c);
+        c.insets.left = 0;
+        c.fill = GridBagConstraints.NONE;
+
+        // Create the "show factory resources" controls
         this.showFactoryResourcesCheckBox = new JCheckBox(
             I18N.getString("dialog.preferences.showFactoryResources"));
         this.showFactoryResourcesCheckBox.setToolTipText(
@@ -339,6 +362,7 @@ public class PreferencesDialog extends ModalDialog
         c.gridwidth = 2;
         controlPanel.add(this.showFactoryResourcesCheckBox, c);
 
+        // Create the "night mode" controls
         this.nightModeCheckBox = new JCheckBox(
             I18N.getString("dialog.preferences.nightMode"));
         this.nightModeCheckBox.setToolTipText(
@@ -384,6 +408,8 @@ public class PreferencesDialog extends ModalDialog
             UIManager.getLookAndFeel().getClass().getName()));
         this.localeComboBox.setSelectedItem(new ComboBoxEntry(null,
             config.getLocale()));
+        this.prodStatsComboBox.setSelectedItem(new ComboBoxEntry(null,
+            config.isProdStatsPerMinute()));
         this.playerSectorComboBox.setSelectedIndex(config.getPlayerSector());
 
         final String defaultGameId = config.getDefaultGame();
@@ -418,6 +444,8 @@ public class PreferencesDialog extends ModalDialog
                 .getClassName());
             config.setLocale((String) ((ComboBoxEntry)
                 this.localeComboBox.getSelectedItem()).getValue());
+            config.setProdStatsPerMinute((Boolean) ((ComboBoxEntry)
+                this.prodStatsComboBox.getSelectedItem()).getValue());
             if (this.gamesComboBox.getSelectedIndex() == 0)
                 config.setDefaultGame(null);
             else
