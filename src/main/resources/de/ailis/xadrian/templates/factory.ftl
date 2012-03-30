@@ -18,15 +18,15 @@
         <strong>[@message key="factoryInfo.price" /]:</strong> ${factory.price} Cr<br />
         <strong>[@message key="factoryInfo.volume" /]:</strong> ${factory.volume}<br />
         <strong>[@message key="factoryInfo.size" /]:</strong> ${factory.size}<br />
-        <strong>[@message key="factoryInfo.cycle" /]:</strong> ${factory.cycleAsString}<br />
+        <strong>[@message key="factoryInfo.cycle" /]:</strong> ${factory.defaultCycleAsString}<br />
         <br />
         
         <strong>[@message key="factoryInfo.product" /]:</strong><br />
-        ${factory.product.quantity} ${factory.product.ware.name}<br />
+        ${factory.defaultProduct.quantity} ${factory.defaultProduct.ware.name}<br />
         <br />
         
         <strong>[@message key="factoryInfo.resources" /]:</strong><br />
-        [#list factory.resources as resource]
+        [#list factory.defaultResources as resource]
           ${resource.quantity} ${resource.ware.name}<br />
         [/#list]
         <br />

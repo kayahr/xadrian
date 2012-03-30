@@ -124,12 +124,12 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     {
         return this.id;
     }
-    
+
     /**
      * Returns the numeric factory id.
      * 
      * @return The numeric factory id.
-     */    
+     */
     public int getNid()
     {
         return this.nid;
@@ -199,6 +199,27 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     }
 
     /**
+     * Returns the sun power which is used as default for the cycle of
+     * a solar power plant.
+     * 
+     * @return The default sun power.
+     */
+    public Sun getDefaultSun()
+    {
+        return this.game.getSunFactory().getDefaultSun();
+    }
+
+    /**
+     * Returns the yield which is used as default for the cycle of mines.
+     * 
+     * @return The default asteroid yield.
+     */
+    public int getDefaultYield()
+    {
+        return 26;
+    }
+
+    /**
      * Returns the production cycle.
      * 
      * @return The production cycle
@@ -213,9 +234,9 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      * 
      * @return The production cycle as a string
      */
-    public String getCycleAsString()
+    public String getDefaultCycleAsString()
     {
-        final int cycle = this.cycle;
+        final int cycle = getDefaultCycle();
         if (cycle >= 60 * 60)
             return String.format("%d:%02d:%02d", cycle / 60 / 60, cycle
                 % (60 * 60) / 60, cycle % 60);
@@ -346,6 +367,39 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     public String toString()
     {
         return getName();
+    }
+
+    /**
+     * Returns the default cycle. This is only used for displaying and not for
+     * any calculation.
+     * 
+     * @return The default cycle.
+     */
+    public int getDefaultCycle()
+    {
+        return getRealCycle(getDefaultSun(), getDefaultYield());
+    }
+
+    /**
+     * Returns the default product. This is only used for displaying and not
+     * for any calculation.
+     * 
+     * @return The default product.
+     */
+    public Product getDefaultProduct()
+    {
+        return getRealProduct(getDefaultSun(), getDefaultYield());
+    }
+
+    /**
+     * Returns the default resources of this factory. This is only used for
+     * displaying and not for any calculation.
+     * 
+     * @return The resources
+     */
+    public Product[] getDefaultResources()
+    {
+        return getRealResources(getDefaultSun(), getDefaultYield());
     }
 
     /**
