@@ -9,11 +9,14 @@
   <body>
     <release version="1.4.3" date="2012-03-30" description="Minor update">
       <action dev="k" type="add" date="2012-03-30">
+        Implemented export to plain text.
+      </action>
+      <action dev="k" type="add" date="2012-03-30">
         Added links to homepage, forum, Twitter page, Google Plus and
         Github page.
       </action>
       <action dev="k" type="fix" date="2012-03-30">
-        Fixed bogus popup menu opening when scrolling with two-fingers on
+        Fixed bogus popup menu opening when scrolling with two fingers on
         a trackpad.
       </action>
       <action dev="k" type="add" date="2012-03-25">
