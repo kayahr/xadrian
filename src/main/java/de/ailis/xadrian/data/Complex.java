@@ -44,6 +44,8 @@ import de.ailis.xadrian.data.factories.SectorFactory;
 import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.dialogs.SetYieldsDialog;
+import de.ailis.xadrian.exceptions.DataException;
+import de.ailis.xadrian.exceptions.GameNotFoundException;
 import de.ailis.xadrian.exceptions.TemplateCodeException;
 import de.ailis.xadrian.interfaces.GameProvider;
 import de.ailis.xadrian.support.Config;
@@ -1452,6 +1454,84 @@ public class Complex implements Serializable, GameProvider
     }
 
     /**
+     * Checks if the specified code is a valid template code.
+     *
+     * @param templateCode The template code to check.
+     * @return True if code is valid, false if not.
+     */
+    public static boolean isValidTemplateCode(final String templateCode)
+    {
+        try
+        {
+            // Decode base 64
+            final byte[] data =
+                DatatypeConverter.parseBase64Binary(templateCode.trim());
+
+            final InputStream stream =
+                new DynaByteInputStream(new ByteArrayInputStream(data));
+
+            // Read complex settings
+            final int settings = stream.read();
+            final boolean hasSector = (settings & 1) == 1;
+            final int gameNid = (settings >> 1) & 7;
+
+            final Game game;
+            try
+            {
+                game = GameFactory.getInstance().getGame(gameNid);
+            }
+            catch (final GameNotFoundException e)
+            {
+                return false;
+            }
+
+            // Read sector coordinates or sun power
+            if (hasSector)
+            {
+                final int x = stream.read();
+                final int y = stream.read();
+                if (game.getSectorFactory().getSector(x, y) == null) return false;
+            }
+            else
+            {
+                final int percent = stream.read();
+                try
+                {
+                    game.getSunFactory().getSun(percent);
+                }
+                catch (final DataException e)
+                {
+                    return false;
+                }
+            }
+
+            int factoryId;
+            while ((factoryId = stream.read()) != 0)
+            {
+                final Factory factory =
+                    game.getFactoryFactory().getFactory(factoryId);
+                if (factory == null) return false;
+                if (factory.isMine())
+                {
+                    int yield;
+                    while ((yield = stream.read()) != 0)
+                        if (yield > 256) return false;
+                }
+                else
+                {
+                    stream.read();
+                }
+            }
+
+            return true;
+        }
+        catch (final IOException e)
+        {
+            return false;
+        }
+    }
+
+    /**
      * Creates a complex from the specified template code.
      *
      * @param templateCode
@@ -1464,7 +1544,7 @@ public class Complex implements Serializable, GameProvider
         {
             // Decode base 64
             final byte[] data =
-                DatatypeConverter.parseBase64Binary(templateCode);
+                DatatypeConverter.parseBase64Binary(templateCode.trim());
 
             final InputStream stream =
                 new DynaByteInputStream(new ByteArrayInputStream(data));

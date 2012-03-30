@@ -13,14 +13,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
+import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.exceptions.TemplateCodeException;
 import de.ailis.xadrian.frames.MainFrame;
 import de.ailis.xadrian.listeners.MainStateListener;
 import de.ailis.xadrian.support.FrameAction;
+import de.ailis.xadrian.support.I18N;
 
 /**
  * Imports from a complex template code in clipboard.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class ImportTemplateCodeAction extends FrameAction<MainFrame> implements
@@ -31,7 +35,7 @@ public class ImportTemplateCodeAction extends FrameAction<MainFrame> implements
 
     /**
      * Constructor
-     * 
+     *
      * @param frame
      *            The frame
      */
@@ -47,21 +51,30 @@ public class ImportTemplateCodeAction extends FrameAction<MainFrame> implements
     @Override
     public void actionPerformed(final ActionEvent e)
     {
-        Clipboard clipboard = this.frame.getToolkit().getSystemClipboard();
-        Transferable transferable = clipboard.getContents(null);
+        final Clipboard clipboard = this.frame.getToolkit().getSystemClipboard();
+        final Transferable transferable = clipboard.getContents(null);
         if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor))
         {
             try
             {
-                String code = transferable.getTransferData(DataFlavor.stringFlavor)
+                final String code = transferable.getTransferData(DataFlavor.stringFlavor)
                     .toString();
-                this.frame.importFromTemplateCode(code);
+                if (Complex.isValidTemplateCode(code))
+                {
+                    this.frame.importFromTemplateCode(code);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, I18N.getString(
+                        "error.invalidTemplateCode"), I18N
+                        .getString("error.title"), JOptionPane.ERROR_MESSAGE);
+                }
             }
-            catch (UnsupportedFlavorException ex)
+            catch (final UnsupportedFlavorException ex)
             {
                 throw new TemplateCodeException(ex.toString(), ex);
             }
-            catch (IOException ex)
+            catch (final IOException ex)
             {
                 throw new TemplateCodeException(ex.toString(), ex);
             }
@@ -72,7 +85,7 @@ public class ImportTemplateCodeAction extends FrameAction<MainFrame> implements
      * @see MainStateListener#mainStateChanged(MainFrame)
      */
     @Override
-    public void mainStateChanged(MainFrame sender)
+    public void mainStateChanged(final MainFrame sender)
     {
         // Empty
     }
