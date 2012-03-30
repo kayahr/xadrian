@@ -60,6 +60,9 @@ import de.ailis.xadrian.actions.CopyAction;
 import de.ailis.xadrian.actions.DonateAction;
 import de.ailis.xadrian.actions.ExitAction;
 import de.ailis.xadrian.actions.ExportTemplateCodeAction;
+import de.ailis.xadrian.actions.ForumAction;
+import de.ailis.xadrian.actions.GooglePlusAction;
+import de.ailis.xadrian.actions.HomepageAction;
 import de.ailis.xadrian.actions.ImportTemplateCodeAction;
 import de.ailis.xadrian.actions.NewAction;
 import de.ailis.xadrian.actions.OpenAction;
@@ -70,6 +73,7 @@ import de.ailis.xadrian.actions.SaveAllAction;
 import de.ailis.xadrian.actions.SaveAsAction;
 import de.ailis.xadrian.actions.SelectAllAction;
 import de.ailis.xadrian.actions.ToggleBaseComplexAction;
+import de.ailis.xadrian.actions.TwitterAction;
 import de.ailis.xadrian.components.ComplexEditor;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.data.Game;
@@ -150,6 +154,18 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /** The "donate" action */
     private final Action donateAction = new DonateAction(this);
+
+    /** The "homepage" action */
+    private final Action homepageAction = new HomepageAction(this);
+
+    /** The "forum" action */
+    private final Action forumAction = new ForumAction(this);
+
+    /** The "googlePlus" action */
+    private final Action googlePlusAction = new GooglePlusAction(this);
+
+    /** The "twitter" action */
+    private final Action twitterAction = new TwitterAction(this);
 
     /** The "preferences" action */
     private final Action preferencesAction = new PreferencesAction(this);
@@ -274,6 +290,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
         // Create the 'Help' menu
         final JMenu helpMenu = I18N.createMenu(menuBar, "help");
         helpMenu.add(this.donateAction);
+        helpMenu.addSeparator();
+        helpMenu.add(this.homepageAction);
+        helpMenu.add(this.forumAction);
+        helpMenu.add(this.twitterAction);
+        helpMenu.add(this.googlePlusAction);
         helpMenu.addSeparator();
         helpMenu.add(this.aboutAction);
 

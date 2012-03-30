@@ -8,6 +8,9 @@
   </properties>
   <body>
     <release version="1.4.3" date="2012-03-30" description="Minor update">
+      <action dev="k" type="add" date="2012-03-30">
+        Added links to homepage, forum, Twitter page and Google Plus page.
+      </action>
       <action dev="k" type="fix" date="2012-03-30">
         Fixed bogus popup menu opening when scrolling with two-fingers on
         a trackpad.

@@ -16,8 +16,14 @@ import javax.swing.ImageIcon;
  */
 public final class Icons
 {
-    /** The logo icon (Used in about dialog) */
-    public static final Icon LOGO = createIcon("xadrian-64");
+    /** The logo icon */
+    public static final Icon LOGO = createIcon("xadrian-16");
+
+    /** The large logo icon (Used in about dialog) */
+    public static final Icon LOGO_LARGE = createIcon("xadrian-64");
+
+    /** The forum icon */
+    public static final Icon FORUM = createIcon("forum");
 
     /** The EXIT icon */
     public static final Icon EXIT = createIcon("exit");
@@ -51,6 +57,18 @@ public final class Icons
 
     /** The PAYPAL icon */
     public static final Icon PAYPAL = createIcon("paypal");
+
+    /** The TWITTER icon */
+    public static final Icon TWITTER = createIcon("twitter");
+
+    /** The large TWITTER icon */
+    public static final Icon TWITTER_LARGE = createIcon("twitter-64");
+
+    /** The GOOGLE PLUS icon */
+    public static final Icon GOOGLE_PLUS = createIcon("google-plus");
+
+    /** The large GOOGLE PLUS icon */
+    public static final Icon GOOGLE_PLUS_LARGE = createIcon("google-plus-64");
 
     /** The OPEN icon */
     public static final Icon OPEN = createIcon("open");

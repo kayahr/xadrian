@@ -53,7 +53,7 @@ public class SplashFrame extends JFrame
         setUndecorated(true);
 
         // Create the logo
-        final JLabel logoLabel = new JLabel(Icons.LOGO);
+        final JLabel logoLabel = new JLabel(Icons.LOGO_LARGE);
 
         // Create the labels in the content panel
         final JLabel titleLabel = new JLabel(I18N.getString("title") + " "
