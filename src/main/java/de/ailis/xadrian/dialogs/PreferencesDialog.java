@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -319,6 +318,8 @@ public class PreferencesDialog extends ModalDialog
         c.insets.left = 5;
         c.fill = GridBagConstraints.HORIZONTAL;
         this.localeComboBox = new JComboBox();
+        this.localeComboBox.addItem(new ComboBoxEntry(I18N
+            .getString("locale.system"), null));
         for (final String locale: I18N.getString("locale.locales").split(","))
         {
             this.localeComboBox.addItem(new ComboBoxEntry(I18N
@@ -382,7 +383,7 @@ public class PreferencesDialog extends ModalDialog
         this.themeComboBox.setSelectedItem(ThemeFactory.getInstance().getTheme(
             UIManager.getLookAndFeel().getClass().getName()));
         this.localeComboBox.setSelectedItem(new ComboBoxEntry(null,
-            Locale.getDefault().getLanguage().toString()));
+            config.getLocale()));
         this.playerSectorComboBox.setSelectedIndex(config.getPlayerSector());
 
         final String defaultGameId = config.getDefaultGame();

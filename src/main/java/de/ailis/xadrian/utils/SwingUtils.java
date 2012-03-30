@@ -45,7 +45,7 @@ import de.ailis.xadrian.support.Config;
 
 /**
  * Static utility methods for common Swing tasks.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public final class SwingUtils
@@ -63,7 +63,7 @@ public final class SwingUtils
             Native.register("shell32");
             hasShell32 = true;
         }
-        catch (Throwable e)
+        catch (final Throwable e)
         {
             hasShell32 = false;
         }
@@ -79,7 +79,7 @@ public final class SwingUtils
 
     /**
      * Gives a component a popup menu
-     * 
+     *
      * @param component
      *            The target component
      * @param popup
@@ -96,7 +96,7 @@ public final class SwingUtils
                 // Ignore mouse buttons outside of the normal range. This
                 // fixes problems with trackpad scrolling.
                 if (e.getButton() > MouseEvent.BUTTON3) return;
-                
+
                 if (e.isPopupTrigger())
                 {
                     popup.show(component, e.getX(), e.getY());
@@ -120,7 +120,7 @@ public final class SwingUtils
 
     /**
      * Installs a workaround for bug #4699955 in a JSpinner.
-     * 
+     *
      * @param spinner
      *            The spinner to fix
      */
@@ -173,7 +173,7 @@ public final class SwingUtils
     /**
      * Checks if the specified window (may it be a dialog or a frame) is
      * resizable.
-     * 
+     *
      * @param window
      *            The window
      * @return True if window is resizable, false if not
@@ -186,9 +186,7 @@ public final class SwingUtils
     }
 
     /**
-     * Prepares the locale. The language can be overridden with the environment
-     * variable XADRIAN_LANG. Set it to "de" to enforce German language for
-     * example. The default is the system locale.
+     * Prepares the locale. The default is the system locale.
      */
     public static void prepareLocale()
     {
@@ -199,7 +197,7 @@ public final class SwingUtils
     /**
      * Prepares the theme. The theme can be overridden with the environment
      * variable XADRIAN_SYSTHEME. The default is the system look and feel.
-     * 
+     *
      * @throws Exception
      *             When theme could not be prepared
      */
@@ -234,7 +232,7 @@ public final class SwingUtils
 
     /**
      * Prepares the Swing GUI.
-     * 
+     *
      * @throws Exception
      *             When GUI could not be prepared
      */
@@ -247,7 +245,7 @@ public final class SwingUtils
     /**
      * Runs the specified component in an empty test frame. This method is used
      * to test single components during development.
-     * 
+     *
      * @param component
      *            The component to test
      * @throws Exception
@@ -266,7 +264,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred height of the specified component.
-     * 
+     *
      * @param component
      *            The component
      * @param height
@@ -281,7 +279,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred width of the specified component.
-     * 
+     *
      * @param component
      *            The component
      * @param width
@@ -296,7 +294,7 @@ public final class SwingUtils
 
     /**
      * Adds a component action.
-     * 
+     *
      * @param component
      *            The compoennt to add the action to
      * @param action
@@ -318,7 +316,7 @@ public final class SwingUtils
     /**
      * Opens a URL in the browser. It first tries to do this with the Desktop
      * API. If this fails then it tries to use the FreeDesktop-API.
-     * 
+     *
      * @param uri
      *            The URI to open.
      */
@@ -344,7 +342,7 @@ public final class SwingUtils
     /**
      * Opens a URL in the browser. It first tries to do this with the Desktop
      * API. If this fails then it tries to use the FreeDesktop-API.
-     * 
+     *
      * @param url
      *            The URL to open.
      */
@@ -365,29 +363,29 @@ public final class SwingUtils
      * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6528430) so this
      * method uses reflection to do this. This may fail if the Java
      * implementation is changed but any exception here will be ignored.
-     * 
+     *
      * The application name is currently only used for X11 desktops and only
      * important for some window managers like Gnome Shell.
-     * 
+     *
      * @param appName
      *            The application name to set.
      */
     public static void setAppName(final String appName)
     {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Class<?> cls = toolkit.getClass();
+        final Toolkit toolkit = Toolkit.getDefaultToolkit();
+        final Class<?> cls = toolkit.getClass();
 
         try
         {
             // When X11 toolkit is used then set the awtAppClassName field
             if (cls.getName().equals("sun.awt.X11.XToolkit"))
             {
-                Field field = cls.getDeclaredField("awtAppClassName");
+                final Field field = cls.getDeclaredField("awtAppClassName");
                 field.setAccessible(true);
                 field.set(toolkit, appName);
             }
         }
-        catch (Exception e)
+        catch (final Exception e)
         {
             LOG.warn("Unable to set application name: " + e, e);
         }
@@ -397,7 +395,7 @@ public final class SwingUtils
      * Sets the app user model id. This is needed for the Windows 7 taskbar
      * so the application is correctly associated with the starter icon.
      * The same app user model id must be set in the shortcut.
-     * 
+     *
      * @param appId
      *            The app user model id to set.
      */
@@ -406,14 +404,14 @@ public final class SwingUtils
         if (!hasShell32) return;
         try
         {
-            long errorCode =
+            final long errorCode =
                 SetCurrentProcessExplicitAppUserModelID(new WString(appId))
                     .longValue();
             if (errorCode != 0)
                 LOG.error("Unable to set appUserModelID. Error code " +
                     errorCode);
         }
-        catch (Throwable e)
+        catch (final Throwable e)
         {
             LOG.error("Unable to set appUserModelID: " + e, e);
         }
@@ -421,7 +419,7 @@ public final class SwingUtils
 
     /**
      * Native Windows function mapped via JNA.
-     * 
+     *
      * @param appId
      *            The app user model ID to set.
      * @return Error code.
