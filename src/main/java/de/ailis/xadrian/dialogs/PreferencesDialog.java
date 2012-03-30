@@ -54,10 +54,15 @@ public class PreferencesDialog extends ModalDialog
     private Map<Race, JCheckBox> racesCheckBoxes;
 
     /**
-     * The checkbox for enable Factory description (resources needed) in Complex
-     * table
+     * The checkbox to enable factory description (resources needed) in Complex
+     * table.
      */
     private JCheckBox showFactoryResourcesCheckBox;
+
+    /**
+     * The night mode checkbox.
+     */
+    private JCheckBox nightModeCheckBox;
 
     /** The player sector combo box */
     private JComboBox playerSectorComboBox;
@@ -323,18 +328,22 @@ public class PreferencesDialog extends ModalDialog
         c.insets.left = 0;
         c.fill = GridBagConstraints.NONE;
 
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 2;
         this.showFactoryResourcesCheckBox = new JCheckBox(
             I18N.getString("dialog.preferences.showFactoryResources"));
         this.showFactoryResourcesCheckBox.setToolTipText(
             I18N.getToolTip("dialog.preferences.showFactoryResources"));
         c.weightx = 1;
-        c.gridy++;
         c.gridx = 0;
+        c.gridy++;
         c.gridwidth = 2;
         controlPanel.add(this.showFactoryResourcesCheckBox, c);
+
+        this.nightModeCheckBox = new JCheckBox(
+            I18N.getString("dialog.preferences.nightMode"));
+        this.nightModeCheckBox.setToolTipText(
+            I18N.getToolTip("dialog.preferences.nightMode"));
+        c.gridy++;
+        controlPanel.add(this.nightModeCheckBox, c);
 
         panel.add(controlPanel);
         return panel;
@@ -368,6 +377,8 @@ public class PreferencesDialog extends ModalDialog
         }
         this.showFactoryResourcesCheckBox.setSelected(config
             .isShowFactoryResources());
+        this.nightModeCheckBox.setSelected(config
+            .isNightMode());
         this.themeComboBox.setSelectedItem(ThemeFactory.getInstance().getTheme(
             UIManager.getLookAndFeel().getClass().getName()));
         this.localeComboBox.setSelectedItem(new ComboBoxEntry(null,
@@ -391,7 +402,7 @@ public class PreferencesDialog extends ModalDialog
             {
                 final Race race = entry.getKey();
                 final JCheckBox checkBox = entry.getValue();
-                config.setRaceIgnored(race, !checkBox.isSelected());                
+                config.setRaceIgnored(race, !checkBox.isSelected());
             }
             for (final Game game : GameFactory.getInstance().getGames())
             {
@@ -399,6 +410,7 @@ public class PreferencesDialog extends ModalDialog
             }
             config.setShowFactoryResources(this.showFactoryResourcesCheckBox
                 .isSelected());
+            config.setNightMode(this.nightModeCheckBox.isSelected());
             config
                 .setPlayerSector(this.playerSectorComboBox.getSelectedIndex());
             config.setTheme(((Theme) this.themeComboBox.getSelectedItem())

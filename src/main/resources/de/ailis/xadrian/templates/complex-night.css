@@ -1,0 +1,55 @@
+body
+{
+    color: #dddddd;
+    background: #000000;
+}
+
+a
+{
+    color: #0088ff;
+}
+
+h1
+{
+    background: #222222;
+}
+
+h2
+{
+    background: #333333;
+}
+
+h2 a
+{
+    color: #ffffff;
+}
+
+tr.odd, tr.autoodd, tr.kitsodd
+{
+    background-color: #101010;
+}
+
+tr.autoodd, tr.autoeven, tr.kitsodd, tr.kitseven
+{
+    color: #888888;
+}
+
+.factory-resources
+{
+    color: #666666;
+}
+
+td.missing
+{
+    color: #ff0000;
+}
+
+td.surplus
+{
+    color: #00cc00;
+}
+
+.sep
+{
+    background: #888888;
+}

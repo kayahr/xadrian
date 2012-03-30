@@ -26,7 +26,7 @@ import de.ailis.xadrian.utils.SwingUtils;
 
 /**
  * The configuration
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public final class Config
@@ -51,9 +51,12 @@ public final class Config
 
     /** Config key for the locale */
     private static final String LOCALE = "locale";
-    
+
     /** Config key for print attributes */
     private static final String PRINT_ATTRIBUTES = "printAttributes";
+
+    /** Config key for night mode */
+    private static final String NIGHT_MODE = "nightMode";
 
     /** The singleton instance. */
     private static final Config instance = new Config();
@@ -79,6 +82,9 @@ public final class Config
     /** The ID of the default game. Null if none. */
     private String defaultGame = null;
 
+    /** If night mode is enabled or not. */
+    private boolean nightMode = false;
+
     /** The print attributes. */
     private HashPrintRequestAttributeSet printAttributes =
         new HashPrintRequestAttributeSet();
@@ -93,7 +99,7 @@ public final class Config
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance
      */
     public static Config getInstance()
@@ -110,7 +116,7 @@ public final class Config
             .userNodeForPackage(Main.class);
         final String races = prefs.get(IGNORED_RACES, null);
         if (races != null)
-            for (final String raceId : races.split(" "))
+            for (final String raceId: races.split(" "))
                 this.ignoredRaces.add(raceId);
         final String tmp = prefs.get(LAST_FILE_CHOOSER_PATH, null);
         this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
@@ -120,8 +126,9 @@ public final class Config
         this.theme = prefs.get(THEME, null);
         this.locale = prefs.get(LOCALE, null);
         this.defaultGame = prefs.get(DEFAULT_GAME, null);
-        
-        String printAttributes = prefs.get(PRINT_ATTRIBUTES, null);
+        this.nightMode = prefs.getBoolean(NIGHT_MODE, false);
+
+        final String printAttributes = prefs.get(PRINT_ATTRIBUTES, null);
         if (printAttributes != null && !printAttributes.isEmpty())
         {
             this.printAttributes =
@@ -153,7 +160,7 @@ public final class Config
         else
         {
             final StringBuilder builder = new StringBuilder();
-            for (final String raceId : this.ignoredRaces)
+            for (final String raceId: this.ignoredRaces)
             {
                 if (builder.length() > 0) builder.append(' ');
                 builder.append(raceId);
@@ -179,13 +186,14 @@ public final class Config
             prefs.remove(DEFAULT_GAME);
         else
             prefs.put(DEFAULT_GAME, this.defaultGame);
-        
+        prefs.putBoolean(NIGHT_MODE, this.nightMode);
+
         prefs.put(PRINT_ATTRIBUTES, ObjectUtils.toString(this.printAttributes));
     }
 
     /**
      * Returns true if the specified race is ignored.
-     * 
+     *
      * @param race
      *            The race to check
      * @return True if the specified race is ignored
@@ -197,7 +205,7 @@ public final class Config
 
     /**
      * Checks if the factory resources should be displayed in the complex table.
-     * 
+     *
      * @return True if factory resources should be displayed, false if not
      */
     public boolean isShowFactoryResources()
@@ -207,7 +215,7 @@ public final class Config
 
     /**
      * Enables or disables the display of factory resources in complex table.
-     * 
+     *
      * @param showFactoryResources
      *            True if resources should be displayed, false if not
      */
@@ -218,13 +226,13 @@ public final class Config
 
     /**
      * Sets the ignore status of a race.
-     * 
+     *
      * @param race
      *            The race.
      * @param ignored
      *            If the race should be ignored or not
      */
-    public void setRaceIgnored(Race race, final boolean ignored)
+    public void setRaceIgnored(final Race race, final boolean ignored)
     {
         // Do nothing if state is not changed
         if (isRaceIgnored(race) == ignored) return;
@@ -237,7 +245,7 @@ public final class Config
 
     /**
      * Returns the last file chooser path.
-     * 
+     *
      * @return The last file chooser path
      */
     public File getLastFileChooserPath()
@@ -247,7 +255,7 @@ public final class Config
 
     /**
      * Sets the last file chooser path.
-     * 
+     *
      * @param lastFileChooserPath
      *            The last file chooser path to set
      */
@@ -258,7 +266,7 @@ public final class Config
 
     /**
      * Saves the window preferences.
-     * 
+     *
      * @param window
      *            The window
      */
@@ -284,7 +292,7 @@ public final class Config
 
     /**
      * Restores the window state.
-     * 
+     *
      * @param window
      *            The window
      */
@@ -306,7 +314,7 @@ public final class Config
 
     /**
      * Saves the split pane preferences.
-     * 
+     *
      * @param splitPane
      *            The split pane
      */
@@ -319,7 +327,7 @@ public final class Config
 
     /**
      * Restores the split pane preferences.
-     * 
+     *
      * @param splitPane
      *            The split pane
      */
@@ -333,7 +341,7 @@ public final class Config
     /**
      * Returns the preferences name for the specified component and for the
      * specified key.
-     * 
+     *
      * @param component
      *            The component
      * @param key
@@ -354,7 +362,7 @@ public final class Config
 
     /**
      * Sets the player sector.
-     * 
+     *
      * @param playerSector
      *            The player sector to set
      */
@@ -365,7 +373,7 @@ public final class Config
 
     /**
      * Returns the index of the selected player sector.
-     * 
+     *
      * @return The player sector index
      */
     public int getPlayerSector()
@@ -375,7 +383,7 @@ public final class Config
 
     /**
      * Returns the theme.
-     * 
+     *
      * @return The theme.
      */
     public String getTheme()
@@ -385,18 +393,18 @@ public final class Config
 
     /**
      * Sets the theme.
-     * 
+     *
      * @param theme
      *            The theme to set. Null for system theme.
      */
-    public void setTheme(String theme)
+    public void setTheme(final String theme)
     {
         this.theme = theme;
     }
 
     /**
      * Returns the locale.
-     * 
+     *
      * @return The locale.
      */
     public String getLocale()
@@ -406,18 +414,18 @@ public final class Config
 
     /**
      * Sets the locale.
-     * 
+     *
      * @param locale
      *            The locale to set. Null for system locale.
      */
-    public void setLocale(String locale)
+    public void setLocale(final String locale)
     {
         this.locale = locale;
     }
 
     /**
      * Returns the ID of the default game.
-     * 
+     *
      * @return The ID of the default game or null if none.
      */
     public String getDefaultGame()
@@ -427,7 +435,7 @@ public final class Config
 
     /**
      * Sets the ID of the default game.
-     * 
+     *
      * @param defaultGame
      *            The ID of the default game to set. Null to unset.
      */
@@ -438,11 +446,32 @@ public final class Config
 
     /**
      * Returns the print attributes.
-     * 
+     *
      * @return The print attributes.
      */
     public PrintRequestAttributeSet getPrintAttributes()
     {
         return this.printAttributes;
+    }
+
+    /**
+     * Checks if night mode is enabled.
+     *
+     * @return True if night mode is enabled, false if not.
+     */
+    public boolean isNightMode()
+    {
+        return this.nightMode;
+    }
+
+    /**
+     * Enables or disables the night mode.
+     *
+     * @param nightMode
+     *            True to enable night mode, false to disable it.
+     */
+    public void setNightMode(final boolean nightMode)
+    {
+        this.nightMode = nightMode;
     }
 }

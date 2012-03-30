@@ -3,7 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>${complex.name}</title>
-    <link rel="stylesheet" type="text/css" href="complex.css" />    
+    <link rel="stylesheet" type="text/css" href="complex.css" />
+    [#if config.nightMode && !print]
+    <link rel="stylesheet" type="text/css" href="complex-night.css" />
+    [/#if]
   </head>
   [#if print]
     [#assign class="print"]

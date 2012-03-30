@@ -6,7 +6,6 @@
 package de.ailis.xadrian.components;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.print.PrinterException;
 import java.io.File;
@@ -72,7 +71,7 @@ import freemarker.template.Template;
 
 /**
  * Complex Editor component.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class ComplexEditor extends JComponent implements HyperlinkListener,
@@ -103,7 +102,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Constructor
-     * 
+     *
      * @param complex
      *            The complex to edit
      */
@@ -114,14 +113,14 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Constructor
-     * 
+     *
      * @param complex
      *            The complex to edit
      * @param file
      *            The file from which the complex was loaded. Null if it not
      *            loaded from a file.
      */
-    public ComplexEditor(final Complex complex, File file)
+    public ComplexEditor(final Complex complex, final File file)
     {
         super();
         setLayout(new BorderLayout());
@@ -132,7 +131,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
         // Create the text pane
         this.textPane = new JTextPane();
         this.textPane.setEditable(false);
-        this.textPane.setBackground(Color.WHITE);
+        this.textPane.setBorder(null);
         this.textPane.setContentType("text/html");
         this.textPane.setDoubleBuffered(true);
         this.textPane.addHyperlinkListener(this);
@@ -158,7 +157,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
         // Modify the body style so it matches the system font
         final Font font = UIManager.getFont("Label.font");
-        String bodyRule = "body { font-family: " + font.getFamily() +
+        final String bodyRule = "body { font-family: " + font.getFamily() +
             "; font-size: " + font.getSize() + "pt; }";
         document.getStyleSheet().addRule(bodyRule);
 
@@ -174,7 +173,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Adds an editor state listener.
-     * 
+     *
      * @param listener
      *            The editor state listener to add
      */
@@ -185,7 +184,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Removes an editor state listener.
-     * 
+     *
      * @param listener
      *            The editor state listener to remove
      */
@@ -380,7 +379,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Builds the factory with the given id.
-     * 
+     *
      * @param id
      *            The ID of the factory to build
      */
@@ -393,7 +392,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Destroys the factory with the given id.
-     * 
+     *
      * @param id
      *            The ID of the factory to destroy
      */
@@ -456,7 +455,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Removes the factory with the specified index.
-     * 
+     *
      * @param index
      *            The index of the factory to remove
      */
@@ -469,7 +468,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Disables the factory with the specified index.
-     * 
+     *
      * @param index
      *            The index of the factory to disable
      */
@@ -482,7 +481,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Enables the factory with the specified index.
-     * 
+     *
      * @param index
      *            The index of the factory to enable
      */
@@ -495,7 +494,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Accepts an automatically created factory.
-     * 
+     *
      * @param index
      *            The index of the factory to accept
      */
@@ -508,7 +507,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Changes the quantity of the factory with the specified index.
-     * 
+     *
      * @param index
      *            The index of the factory to change
      */
@@ -526,7 +525,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Increases the quantity of the factory with the specified index.
-     * 
+     *
      * @param index
      *            The index of the factory to change
      */
@@ -541,7 +540,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Decreases the quantity of the factory with the specified index.
-     * 
+     *
      * @param index
      *            The index of the factory to change
      */
@@ -556,7 +555,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Changes the yield of the factory with the specified index.
-     * 
+     *
      * @param index
      *            The index of the factory to change
      */
@@ -633,7 +632,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Save the complex in the specified file.
-     * 
+     *
      * @param file
      *            The file
      */
@@ -660,7 +659,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Returns the edited complex.
-     * 
+     *
      * @return The edited complex
      */
     public Complex getComplex()
@@ -670,7 +669,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Returns true if this editor has unsaved changes. False if not.
-     * 
+     *
      * @return True if this editor has unsaved changes. False if not.
      */
     public boolean isChanged()
@@ -728,7 +727,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     /**
      * Returns true if this editor is new (and can be replaced with an other
      * editor).
-     * 
+     *
      * @return True if editor is new
      */
     public boolean isNew()
@@ -757,7 +756,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Returns the selected text or null if none selected.
-     * 
+     *
      * @return The selected text or null if none
      */
     public String getSelectedText()
@@ -957,7 +956,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Returns the file under which the currently edited complex could be saved.
-     * 
+     *
      * @return A suggested file name for saving.
      */
     private File getSuggestedFile()
@@ -977,7 +976,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
 
     /**
      * Opens the change prices dialog. Focuses the specified ware (if not null).
-     * 
+     *
      * @param focusedWare
      *            The ware to focus (null for none)
      */
@@ -1046,7 +1045,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     /**
      * Returns the file from which the file was opened or to which it was
      * saved.
-     * 
+     *
      * @return The complex file. Null if file has not been loaded from a while
      *         and it was not saved to a file yet.
      */
