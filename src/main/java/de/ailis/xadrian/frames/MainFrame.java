@@ -59,6 +59,7 @@ import de.ailis.xadrian.actions.CloseAllAction;
 import de.ailis.xadrian.actions.CopyAction;
 import de.ailis.xadrian.actions.DonateAction;
 import de.ailis.xadrian.actions.ExitAction;
+import de.ailis.xadrian.actions.ExportASCIIAction;
 import de.ailis.xadrian.actions.ExportTemplateCodeAction;
 import de.ailis.xadrian.actions.ForumAction;
 import de.ailis.xadrian.actions.GithubAction;
@@ -102,7 +103,7 @@ import de.ailis.xadrian.utils.FileUtils;
 
 /**
  * The main frame.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class MainFrame extends JFrame implements EditorStateListener,
@@ -139,11 +140,17 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /** The "save as" action */
     private final Action saveAsAction = new SaveAsAction(this);
 
+    /** The "Export ASCIIe" action */
+    private final Action exportASCIIAction =
+        new ExportASCIIAction(this);
+
     /** The "Export Template Code" action */
-    private final Action exportTemplateCodeAction = new ExportTemplateCodeAction(this);
+    private final Action exportTemplateCodeAction =
+        new ExportTemplateCodeAction(this);
 
     /** The "Import Template Code" action */
-    private final Action importTemplateCodeAction = new ImportTemplateCodeAction(this);
+    private final Action importTemplateCodeAction =
+        new ImportTemplateCodeAction(this);
 
     /** The "save all" action */
     private final Action saveAllAction = new SaveAllAction(this);
@@ -205,7 +212,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     private JLabel statusBar;
 
     /** The transfer handler for dropping complex files into Xadrian. */
-    private TransferHandler transferHandler = new ComplexTransferHandler(this);
+    private final TransferHandler transferHandler = new ComplexTransferHandler(this);
 
     /** The unprocessed files specified on the command line. */
     private static List<File> unprocessedFiles = new ArrayList<File>();
@@ -255,7 +262,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         // Create the menu bar
         final JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        
+
         // Create the 'File' menu
         final JMenu fileMenu = I18N.createMenu(menuBar, "file");
         fileMenu.add(this.newAction);
@@ -271,6 +278,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         fileMenu.add(this.printAction);
         fileMenu.addSeparator();
         final JMenu exportMenu = I18N.createMenu(fileMenu, "export");
+        exportMenu.add(this.exportASCIIAction);
         exportMenu.add(this.exportTemplateCodeAction);
         final JMenu importMenu = I18N.createMenu(fileMenu, "import");
         importMenu.add(this.importTemplateCodeAction);
@@ -395,13 +403,13 @@ public class MainFrame extends JFrame implements EditorStateListener,
         donateButton.setMargin(new Insets(5, 10, 5, 10));
         c.gridy++;
         buttonPanel.add(donateButton, c);
-        
+
         final SocialPane socialPane = new SocialPane();
         c.insets.top = 50;
         c.gridy++;
         buttonPanel.add(socialPane, c);
         installStatusHandler(buttonPanel);
-        
+
         add(welcomePanel, BorderLayout.CENTER);
     }
 
@@ -427,7 +435,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Installs status handler for the specified component an all its child
      * components.
-     * 
+     *
      * @param component
      *            The component to install the status handler for.
      */
@@ -452,14 +460,14 @@ public class MainFrame extends JFrame implements EditorStateListener,
                 }
             });
         }
-        for (final Component child : component.getComponents())
+        for (final Component child: component.getComponents())
         {
             if (!(child instanceof JComponent)) continue;
             installStatusHandler((JComponent) child);
         }
         if (component instanceof JMenu)
         {
-            for (final MenuElement menuElement : ((JMenu) component)
+            for (final MenuElement menuElement: ((JMenu) component)
                 .getSubElements())
             {
                 if (!(menuElement instanceof JComponent)) continue;
@@ -470,7 +478,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Adds a state listener.
-     * 
+     *
      * @param listener
      *            The state listener to add
      */
@@ -481,7 +489,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Removes a state listener.
-     * 
+     *
      * @param listener
      *            The state listener to remove
      */
@@ -530,7 +538,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Creates a new factory complex tab with the specified complex editor in
      * it.
-     * 
+     *
      * @param editor
      *            The complex editor
      */
@@ -553,7 +561,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Creates a complex editor tab with a loaded complex.
-     * 
+     *
      * @param editor
      *            The complex editor
      */
@@ -569,7 +577,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the current tab component or null if no tab is currently present.
-     * 
+     *
      * @return The current tab component
      */
     public Component getCurrentTab()
@@ -581,7 +589,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
      * Closes the current tab. Prompts for saving unsaved changes before
      * closing. Returns true if the tab was closed or false if it was not
      * closed.
-     * 
+     *
      * @return True if tab was closed, false if not
      */
     public boolean closeCurrentTab()
@@ -625,7 +633,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Closes all open tabs. Prompts for unsaved changes. Returns true if all
      * tabs have been closed or false if at least one tab was not closed.
-     * 
+     *
      * @return True if all tabs were closed, false if not.
      */
     public boolean closeAllTabs()
@@ -651,7 +659,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     {
         if (PreferencesDialog.getInstance().open() == Result.OK)
         {
-            for (final Component component : getTabs().getComponents())
+            for (final Component component: getTabs().getComponents())
             {
                 if (component instanceof ComplexEditor)
                 {
@@ -664,7 +672,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Returns the tabs.
-     * 
+     *
      * @return The tabs
      */
     public JTabbedPane getTabs()
@@ -1015,10 +1023,10 @@ public class MainFrame extends JFrame implements EditorStateListener,
     }
 
     /**
-     * Opens the specified files. If the main frame is already started
-     * then the files are opened right away. Otherwise the file names are
-     * queued for later processing.
-     * 
+     * Opens the specified files. If the main frame is already started then the
+     * files are opened right away. Otherwise the file names are queued for
+     * later processing.
+     *
      * @param directory
      *            The directory from which to open the files. Needed to resolve
      *            relative file names.
@@ -1029,7 +1037,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
     {
         synchronized (unprocessedFiles)
         {
-            for (String fileName : fileNames)
+            for (final String fileName: fileNames)
             {
                 File file = new File(fileName);
                 if (!file.isAbsolute())
@@ -1054,21 +1062,21 @@ public class MainFrame extends JFrame implements EditorStateListener,
 
     /**
      * Starts the main frame.
-     * 
+     *
      * @param fileNames
      *            The file names specified on the command line.
      */
-    public static void start(String[] fileNames)
+    public static void start(final String[] fileNames)
     {
         synchronized (unprocessedFiles)
         {
             instance = new MainFrame();
-            for (File file : unprocessedFiles)
+            for (final File file: unprocessedFiles)
                 instance.open(file);
             unprocessedFiles.clear();
-            for (String fileName: fileNames)
+            for (final String fileName: fileNames)
             {
-                File file = new File(fileName);
+                final File file = new File(fileName);
                 instance.open(file);
             }
         }
@@ -1086,36 +1094,36 @@ public class MainFrame extends JFrame implements EditorStateListener,
         final File file = dialog.open();
         if (file != null) open(file);
     }
-    
+
     /**
      * Imports a new complex from the specified template code.
-     * 
+     *
      * @param templateCode
      *            The template code to import.
      */
-    public void importFromTemplateCode(String templateCode)
+    public void importFromTemplateCode(final String templateCode)
     {
         final Complex complex = Complex.fromTemplateCode(templateCode);
-        ComplexEditor editor = new ComplexEditor(complex);
+        final ComplexEditor editor = new ComplexEditor(complex);
         createLoadedComplexTab(editor);
     }
 
     /**
-     * Returns the complex editor for the specified file. If no complex
-     * editor is open for this file then null is returned.
-     * 
+     * Returns the complex editor for the specified file. If no complex editor
+     * is open for this file then null is returned.
+     *
      * @param file
      *            The file
      * @return The complex editor or null if none is open for this file.
      */
-    public ComplexEditor getEditor(File file)
+    public ComplexEditor getEditor(final File file)
     {
         for (int i = this.tabs.getTabCount() - 1; i >= 0; i -= 1)
         {
-            Component component = this.tabs.getComponentAt(i);
+            final Component component = this.tabs.getComponentAt(i);
             if (!(component instanceof ComplexEditor)) continue;
-            ComplexEditor editor = (ComplexEditor) component;
-            File editorFile = editor.getFile();
+            final ComplexEditor editor = (ComplexEditor) component;
+            final File editorFile = editor.getFile();
             if (editorFile == null) continue;
             try
             {
@@ -1123,7 +1131,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
                     editorFile.getCanonicalFile()))
                     return editor;
             }
-            catch (IOException e)
+            catch (final IOException e)
             {
                 if (file.equals(editorFile)) return editor;
             }
@@ -1134,11 +1142,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
     /**
      * Reads a new complex from the specified file and returns the complex
      * editor or null if an error occurred while reading the file.
-     * 
+     *
      * @param file
      *            The file to open.
      */
-    public void open(File file)
+    public void open(final File file)
     {
         // Select already open editor if possible
         ComplexEditor editor = getEditor(file);
@@ -1151,7 +1159,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         try
         {
             final SAXReader reader = new SAXReader();
-            Document document = reader.read(file);
+            final Document document = reader.read(file);
             final Complex complex = Complex.fromXML(document);
             complex.setName(FileUtils.getNameWithoutExt(file));
             editor = new ComplexEditor(complex, file);
