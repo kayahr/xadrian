@@ -7,9 +7,8 @@ package de.ailis.xadrian.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.ailis.xadrian.frames.MainFrame;
 import de.ailis.xadrian.resources.Icons;
-import de.ailis.xadrian.support.FrameAction;
+import de.ailis.xadrian.support.BaseAction;
 import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.utils.SwingUtils;
 
@@ -18,20 +17,17 @@ import de.ailis.xadrian.utils.SwingUtils;
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-public class HomepageAction extends FrameAction<MainFrame>
+public class HomepageAction extends BaseAction
 {
     /** Serial version UID */
     private static final long serialVersionUID = 1L;
 
     /**
      * Constructor
-     *
-     * @param frame
-     *            The frame
      */
-    public HomepageAction(final MainFrame frame)
+    public HomepageAction()
     {
-        super(frame, "homepage", Icons.LOGO);
+        super("homepage", Icons.LOGO);
     }
 
     /**

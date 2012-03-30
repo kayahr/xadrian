@@ -13,11 +13,11 @@ import de.ailis.xadrian.support.I18N;
 import de.ailis.xadrian.utils.SwingUtils;
 
 /**
- * Opens the Xadrian forum in the browser.
+ * Opens the Github page of Xadrian in the browser.
  *
  * @author Klaus Reimer (k@ailis.de)
  */
-public class ForumAction extends BaseAction
+public class GithubAction extends BaseAction
 {
     /** Serial version UID */
     private static final long serialVersionUID = 1L;
@@ -25,9 +25,9 @@ public class ForumAction extends BaseAction
     /**
      * Constructor
      */
-    public ForumAction()
+    public GithubAction()
     {
-        super("forum", Icons.FORUM);
+        super("github", Icons.GITHUB);
     }
 
     /**
@@ -36,6 +36,6 @@ public class ForumAction extends BaseAction
     @Override
     public void actionPerformed(final ActionEvent e)
     {
-        SwingUtils.openBrowser(I18N.getString("forum"));
+        SwingUtils.openBrowser(I18N.getString("github"));
     }
 }

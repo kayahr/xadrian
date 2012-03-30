@@ -58,6 +58,12 @@ public final class Icons
     /** The PAYPAL icon */
     public static final Icon PAYPAL = createIcon("paypal");
 
+    /** The GITHUB icon */
+    public static final Icon GITHUB = createIcon("github");
+
+    /** The large GITHUB icon */
+    public static final Icon GITHUB_LARGE = createIcon("github-64");
+
     /** The TWITTER icon */
     public static final Icon TWITTER = createIcon("twitter");
 

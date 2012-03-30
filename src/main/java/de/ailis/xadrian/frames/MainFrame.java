@@ -61,6 +61,7 @@ import de.ailis.xadrian.actions.DonateAction;
 import de.ailis.xadrian.actions.ExitAction;
 import de.ailis.xadrian.actions.ExportTemplateCodeAction;
 import de.ailis.xadrian.actions.ForumAction;
+import de.ailis.xadrian.actions.GithubAction;
 import de.ailis.xadrian.actions.GooglePlusAction;
 import de.ailis.xadrian.actions.HomepageAction;
 import de.ailis.xadrian.actions.ImportTemplateCodeAction;
@@ -75,6 +76,7 @@ import de.ailis.xadrian.actions.SelectAllAction;
 import de.ailis.xadrian.actions.ToggleBaseComplexAction;
 import de.ailis.xadrian.actions.TwitterAction;
 import de.ailis.xadrian.components.ComplexEditor;
+import de.ailis.xadrian.components.SocialPane;
 import de.ailis.xadrian.data.Complex;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
@@ -153,19 +155,22 @@ public class MainFrame extends JFrame implements EditorStateListener,
     private final Action aboutAction = new AboutAction(this);
 
     /** The "donate" action */
-    private final Action donateAction = new DonateAction(this);
+    private final Action donateAction = new DonateAction();
 
     /** The "homepage" action */
-    private final Action homepageAction = new HomepageAction(this);
+    private final Action homepageAction = new HomepageAction();
 
     /** The "forum" action */
-    private final Action forumAction = new ForumAction(this);
+    private final Action forumAction = new ForumAction();
 
     /** The "googlePlus" action */
-    private final Action googlePlusAction = new GooglePlusAction(this);
+    private final Action googlePlusAction = new GooglePlusAction();
 
     /** The "twitter" action */
-    private final Action twitterAction = new TwitterAction(this);
+    private final Action twitterAction = new TwitterAction();
+
+    /** The "github" action */
+    private final Action githubAction = new GithubAction();
 
     /** The "preferences" action */
     private final Action preferencesAction = new PreferencesAction(this);
@@ -295,6 +300,7 @@ public class MainFrame extends JFrame implements EditorStateListener,
         helpMenu.add(this.forumAction);
         helpMenu.add(this.twitterAction);
         helpMenu.add(this.googlePlusAction);
+        helpMenu.add(this.githubAction);
         helpMenu.addSeparator();
         helpMenu.add(this.aboutAction);
 
@@ -389,6 +395,11 @@ public class MainFrame extends JFrame implements EditorStateListener,
         donateButton.setMargin(new Insets(5, 10, 5, 10));
         c.gridy++;
         buttonPanel.add(donateButton, c);
+        
+        final SocialPane socialPane = new SocialPane();
+        c.insets.top = 50;
+        c.gridy++;
+        buttonPanel.add(socialPane, c);
 
         add(welcomePanel, BorderLayout.CENTER);
     }
