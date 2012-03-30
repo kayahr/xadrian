@@ -48,9 +48,9 @@ public class ExportTemplateCodeAction extends FrameAction<MainFrame> implements
         final Component component = this.frame.getCurrentTab();
         if (component instanceof ComplexEditor)
         {
-            ComplexEditor editor = (ComplexEditor) component;
-            String templateCode = editor.getComplex().getTemplateCode();
-            Clipboard clipboard = editor.getToolkit().getSystemClipboard();
+            final ComplexEditor editor = (ComplexEditor) component;
+            final String templateCode = editor.getComplex().getTemplateCode();
+            final Clipboard clipboard = editor.getToolkit().getSystemClipboard();
             clipboard.setContents(new StringSelection(templateCode), null);
         }
     }
@@ -62,6 +62,6 @@ public class ExportTemplateCodeAction extends FrameAction<MainFrame> implements
     public void mainStateChanged(final MainFrame sender)
     {
         final ComplexEditor editor = (ComplexEditor) sender.getCurrentTab();
-        setEnabled(editor != null);
+        setEnabled(editor != null && !editor.getComplex().isEmpty());
     }
 }

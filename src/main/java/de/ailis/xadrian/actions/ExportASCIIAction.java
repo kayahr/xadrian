@@ -62,6 +62,6 @@ public class ExportASCIIAction extends FrameAction<MainFrame> implements
     public void mainStateChanged(final MainFrame sender)
     {
         final ComplexEditor editor = (ComplexEditor) sender.getCurrentTab();
-        setEnabled(editor != null);
+        setEnabled(editor != null && !editor.getComplex().isEmpty());
     }
 }
