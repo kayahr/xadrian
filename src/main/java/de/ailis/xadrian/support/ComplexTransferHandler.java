@@ -19,7 +19,7 @@ import de.ailis.xadrian.exceptions.DataException;
 import de.ailis.xadrian.frames.MainFrame;
 
 /**
- * ComplexTransferHandler
+ * Transfer handler for complex data.
  * 
  * @author Klaus Reimer (k@ailis.de)
  */
