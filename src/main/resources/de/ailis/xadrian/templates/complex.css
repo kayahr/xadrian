@@ -192,6 +192,7 @@ table.layout
 table.layout td
 {
     padding: 0;
+    white-space: nowrap;
 }
 
 .sep

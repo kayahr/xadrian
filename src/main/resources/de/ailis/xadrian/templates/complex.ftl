@@ -116,8 +116,10 @@
               [#if !print]
               <td>
                 <table class="layout"><tr>       
+                  <td><img src="../images/blank.png" width="8" height="1" /></td>
                   <td><a href="file://removeFactory/${complexFactory_index}"><img src="../images/close.png" border="0" width="16" height="16" /></a></td>
-                  [#if complexFactory.disabled]
+                  <td><img src="../images/blank.png" width="8" height="1" /></td>
+                  [#if complexFactory.disabled]                  
                     <td><a href="file://enableFactory/${complexFactory_index}"><img src="../images/start.png" border="0" width="16" height="16" /></a></td>
                   [#else]
                     <td><a href="file://disableFactory/${complexFactory_index}"><img src="../images/pause.png" border="0" width="16" height="16" /></a></td>
