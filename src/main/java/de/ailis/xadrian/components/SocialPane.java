@@ -4,12 +4,10 @@
  */
 package de.ailis.xadrian.components;
 
-import java.awt.Cursor;
 import java.awt.FlowLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
-import javax.swing.JMenuItem;
 
 import de.ailis.xadrian.actions.GithubAction;
 import de.ailis.xadrian.actions.GooglePlusAction;
@@ -35,32 +33,10 @@ public class SocialPane extends JComponent
         super();
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        
-        Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
        
-        JMenuItem twitterButton = new JMenuItem(new TwitterAction());
-        twitterButton.setIcon(Icons.TWITTER_LARGE);
-        twitterButton.setText("");
-        twitterButton.setCursor(cursor);
-        twitterButton.setBorderPainted(false);
-        twitterButton.setBorder(null);
-        add(twitterButton);
-        
-        JMenuItem googlePlusButton = new JMenuItem(new GooglePlusAction());
-        googlePlusButton.setIcon(Icons.GOOGLE_PLUS_LARGE);
-        googlePlusButton.setText("");
-        googlePlusButton.setCursor(cursor);
-        googlePlusButton.setBorderPainted(false);
-        googlePlusButton.setBorder(null);
-        add(googlePlusButton);
-        
-        JMenuItem githubButton = new JMenuItem(new GithubAction());
-        githubButton.setIcon(Icons.GITHUB_LARGE);
-        githubButton.setText("");
-        githubButton.setCursor(cursor);
-        githubButton.setBorderPainted(false);
-        githubButton.setBorder(null);
-        add(githubButton);
+        add(new IconButton(new TwitterAction(), Icons.TWITTER_LARGE));
+        add(new IconButton(new GooglePlusAction(), Icons.GOOGLE_PLUS_LARGE));
+        add(new IconButton(new GithubAction(), Icons.GITHUB_LARGE));
     }
 
     /**
