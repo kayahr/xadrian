@@ -35,6 +35,10 @@
           beliebig viele Asteroiden-Ausbeuten für diesen Typ eingeben.
         </li>
         <li>
+          Export als Text und Export/Import als Template Code zum einfachen
+          Austausch von Komplex-Daten via E-Mail oder Forum.
+        </li>
+        <li>
           Plattform-unabhängige Applikation. Läuft auf jeder Platform die
           <a href="http://www.java.com/download/">Java SE 6</a> oder höher unterstützt.
         </li>
