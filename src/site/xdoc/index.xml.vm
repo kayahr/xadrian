@@ -52,6 +52,40 @@
       </ul>
       <div style="clear:both"></div>
     </section>
+    <section name="News">
+      <p>
+        <em>(2012-03-31)</em> Xadrian version 1.4.3 is now available! It contains various 
+        bug fixes but also some notable new features:
+      </p>
+      <ul>
+      <li>
+        <strong>Export/Import</strong>: Complex data can now be exported to 
+        plain text to post it in a forum for example. It is also possible to 
+        export the complex data into a short template code from which the 
+        complex can also be imported. The export only contains the basic
+        complex data, no special settings like price modifications and disabled
+        factories.
+      </li>
+      <li>
+        <strong>Nightmode</strong>: You can now enable nightmode in the 
+        preferences. The complex data is then displayed with light colors on 
+        dark background. Useful when using Xadrian on a second machine while 
+        playing the game in a dark room.
+      </li>
+      <li>
+        <strong>Production stats per minute</strong>: Production statistics 
+        can now also be displayed per minute instead of per hour to match the 
+        display of the commercial agent in-game. Numbers in Xadrian are not
+        exactly the same as in-game. I guess the production stats display
+        in-game has some issues with floating point math because the numbers
+        displayed there do not match the cycle information data of the
+        factories.
+      </li>
+      </ul>
+      <p>
+        The full list of changes can be found <a href="changes-report.html">here</a>.
+      </p>
+    </section>
     <section name="Download">
       <p>
         Choose your platform:
