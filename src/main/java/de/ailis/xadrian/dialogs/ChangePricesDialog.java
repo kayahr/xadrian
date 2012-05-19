@@ -82,7 +82,7 @@ final public class ChangePricesDialog extends ModalDialog
             throw new IllegalArgumentException("game must be set");
         this.game = game;
         init("changePrices", Result.OK, Result.CANCEL);
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

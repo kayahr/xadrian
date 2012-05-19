@@ -55,7 +55,7 @@ public class RaceFactory implements Serializable
     {
         this.game = game;
         readData();
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

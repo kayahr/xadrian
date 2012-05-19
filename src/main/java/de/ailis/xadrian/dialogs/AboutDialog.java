@@ -44,7 +44,7 @@ public class AboutDialog extends ModalDialog
     private AboutDialog()
     {
         init("about", Result.OK);
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

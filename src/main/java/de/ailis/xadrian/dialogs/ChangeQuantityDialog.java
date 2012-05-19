@@ -42,7 +42,7 @@ public class ChangeQuantityDialog extends ModalDialog
     private ChangeQuantityDialog()
     {
         init("changeQuantity", Result.OK, Result.CANCEL);
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

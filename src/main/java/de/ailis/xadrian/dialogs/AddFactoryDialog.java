@@ -82,7 +82,7 @@ public class AddFactoryDialog extends ModalDialog implements
     {
         this.game = game;
         init("addFactory", Result.OK, Result.CANCEL);
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

@@ -78,7 +78,7 @@ public class SectorFactory implements Serializable
             throw new IllegalArgumentException("game must be set");
         this.game = game;
         readData();
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

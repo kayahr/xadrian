@@ -36,7 +36,7 @@ public class OpenComplexDialog extends JFileChooser
             .getString("dialog.openComplex.filter"), "x3c"));
         setMultiSelectionEnabled(false);
         setFileSelectionMode(FILES_ONLY);
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

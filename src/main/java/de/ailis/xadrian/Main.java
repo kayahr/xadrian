@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 
 import de.ailis.oneinstance.OneInstance;
 import de.ailis.oneinstance.OneInstanceListener;
+import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.factories.GameFactory;
 import de.ailis.xadrian.dialogs.AboutDialog;
 import de.ailis.xadrian.dialogs.ChangeQuantityDialog;
@@ -87,13 +88,19 @@ public class Main
             SplashFrame.open();
 
             // Preload everything
-            GameFactory.getInstance().getGames();
+            for (Game game: GameFactory.getInstance().getGames())
+            {
+                game.getAddFactoryDialog();
+                game.getChangePricesDialog();
+                game.getChangeSunsDialog();
+                game.getSelectSectorDialog();
+            }
             AboutDialog.getInstance();
             OpenComplexDialog.getInstance();
             SaveComplexDialog.getInstance();
             ChangeQuantityDialog.getInstance();
             PreferencesDialog.getInstance();
-            SelectGameDialog.getInstance();
+            SelectGameDialog.getInstance();           
 
             // Close the splash screen
             SplashFrame.close();

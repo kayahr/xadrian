@@ -60,16 +60,16 @@ public class Game implements Serializable, Comparable<Game>
     private final WareFactory wareFactory;
 
     /** The add factory dialog. */
-    private final AddFactoryDialog addFactoryDialog;
+    private AddFactoryDialog addFactoryDialog;
 
     /** The select sector dialog. */
-    private final SelectSectorDialog selectSectorDialog;
+    private SelectSectorDialog selectSectorDialog;
 
     /** The change suns dialog. */
-    private final ChangeSunsDialog changeSunsDialog;
+    private ChangeSunsDialog changeSunsDialog;
 
     /** The change prices dialog. */
-    private final ChangePricesDialog changePricesDialog;
+    private ChangePricesDialog changePricesDialog;
 
     /**
      * Constructor.
@@ -90,11 +90,6 @@ public class Game implements Serializable, Comparable<Game>
         this.sectorFactory = new SectorFactory(this);
         this.stationFactory = new StationFactory(this);
         this.factoryFactory = new FactoryFactory(this);
-
-        this.addFactoryDialog = new AddFactoryDialog(this);
-        this.selectSectorDialog = new SelectSectorDialog(this);
-        this.changeSunsDialog = new ChangeSunsDialog(this);
-        this.changePricesDialog = new ChangePricesDialog(this);
     }
 
     /**
@@ -232,8 +227,10 @@ public class Game implements Serializable, Comparable<Game>
      * 
      * @return The add factory dialog.
      */
-    public AddFactoryDialog getAddFactoryDialog()
+    public synchronized AddFactoryDialog getAddFactoryDialog()
     {
+        if (this.addFactoryDialog == null)
+            this.addFactoryDialog = new AddFactoryDialog(this);
         return this.addFactoryDialog;
     }
 
@@ -242,8 +239,10 @@ public class Game implements Serializable, Comparable<Game>
      * 
      * @return The select sector dialog.
      */
-    public SelectSectorDialog getSelectSectorDialog()
+    public synchronized SelectSectorDialog getSelectSectorDialog()
     {
+        if (this.selectSectorDialog == null)
+            this.selectSectorDialog = new SelectSectorDialog(this);
         return this.selectSectorDialog;
     }
 
@@ -252,8 +251,10 @@ public class Game implements Serializable, Comparable<Game>
      * 
      * @return The change suns dialog.
      */
-    public ChangeSunsDialog getChangeSunsDialog()
+    public synchronized ChangeSunsDialog getChangeSunsDialog()
     {
+        if (this.changeSunsDialog == null)
+            this.changeSunsDialog = new ChangeSunsDialog(this);
         return this.changeSunsDialog;
     }
 
@@ -262,8 +263,10 @@ public class Game implements Serializable, Comparable<Game>
      * 
      * @return The change prices dialog.
      */
-    public ChangePricesDialog getChangePricesDialog()
+    public synchronized ChangePricesDialog getChangePricesDialog()
     {
+        if (this.changePricesDialog == null)
+            this.changePricesDialog = new ChangePricesDialog(this);
         return this.changePricesDialog;
     }
 

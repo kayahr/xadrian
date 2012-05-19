@@ -84,7 +84,7 @@ public class PreferencesDialog extends ModalDialog
     private PreferencesDialog()
     {
         init("preferences", Result.OK, Result.CANCEL);
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

@@ -49,7 +49,7 @@ public class ChangeSunsDialog extends ModalDialog
         if (game == null) throw new IllegalArgumentException("game must be set");
         this.game = game;
         init("changeSuns", Result.OK, Result.CANCEL);
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

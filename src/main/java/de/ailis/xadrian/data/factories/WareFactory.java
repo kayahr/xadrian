@@ -53,7 +53,7 @@ public class WareFactory implements Serializable
     {
         this.game = game;
         readData();
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

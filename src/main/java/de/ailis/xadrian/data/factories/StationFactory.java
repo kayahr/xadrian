@@ -37,7 +37,7 @@ public class StationFactory implements Serializable
     public StationFactory(final Game game)
     {
         this.game = game;
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

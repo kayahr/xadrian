@@ -76,7 +76,7 @@ public class GameFactory
         {
             final Document document = reader.read(url);
             List<Object> games = document.getRootElement().elements("game");
-            SplashFrame.getInstance().setNumberOfGames(games.size());
+            SplashFrame.setNumberOfGames(games.size());
             for (final Object item : games)
             {
                 final Element element = (Element) item;

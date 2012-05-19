@@ -55,7 +55,7 @@ public class SunFactory implements Serializable
     {
         this.game = game;
         readData();
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

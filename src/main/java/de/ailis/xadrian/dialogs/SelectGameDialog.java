@@ -48,7 +48,7 @@ public class SelectGameDialog extends ModalDialog
     private SelectGameDialog()
     {
         init("selectGame", Result.OK, Result.CANCEL);
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**

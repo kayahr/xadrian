@@ -35,7 +35,7 @@ public class SplashFrame extends JFrame
     private static final long serialVersionUID = -1;
 
     /** The singleton instance. */
-    private static final SplashFrame instance = new SplashFrame();
+    private static SplashFrame instance;
 
     /** The progress bar. */
     private JProgressBar progressBar;
@@ -117,6 +117,7 @@ public class SplashFrame extends JFrame
      */
     public static SplashFrame getInstance()
     {
+        if (instance == null) instance = new SplashFrame();
         return instance;
     }
 
@@ -141,9 +142,10 @@ public class SplashFrame extends JFrame
      * @param numberOfGames
      *            The number of games.
      */
-    public void setNumberOfGames(int numberOfGames)
+    public static void setNumberOfGames(int numberOfGames)
     {
-        this.progressBar.setMaximum(numberOfGames * 10 + 6);
+        if (instance == null) return;
+        instance.progressBar.setMaximum(numberOfGames * 10 + 6);
     }
     
     /**
@@ -151,12 +153,13 @@ public class SplashFrame extends JFrame
      */
     public static void open()
     {
+        final SplashFrame instance = getInstance();
         SwingUtilities.invokeLater(new Runnable()
         {
             @Override
             public void run()
             {
-                getInstance().setVisible(true);
+                instance.setVisible(true);
             }
         });
     }
@@ -170,7 +173,7 @@ public class SplashFrame extends JFrame
         {
             @Override
             public void run()
-            {
+            {              
                 getInstance().setVisible(false);
             }
         });
@@ -179,9 +182,10 @@ public class SplashFrame extends JFrame
     /**
      * Advances the progress by one step.
      */
-    public void advanceProgress()
+    public static void advanceProgress()
     {
-        final JProgressBar progressBar = this.progressBar;
+        if (instance == null) return;
+        final JProgressBar progressBar = instance.progressBar;
         SwingUtilities.invokeLater(new Runnable()
         {
             @Override

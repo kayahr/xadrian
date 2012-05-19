@@ -36,7 +36,7 @@ public class SaveComplexDialog extends JFileChooser
             .getString("dialog.saveComplex.filter"), "x3c"));
         setMultiSelectionEnabled(false);
         setFileSelectionMode(FILES_ONLY);
-        SplashFrame.getInstance().advanceProgress();
+        SplashFrame.advanceProgress();
     }
 
     /**
