@@ -241,6 +241,7 @@
         </configuration>
       </plugin>
       
+      <!-- Build the EXE file for Windows -->
       <plugin>
         <groupId>org.bluestemsoftware.open.maven.plugin</groupId>
         <artifactId>launch4j-plugin</artifactId>
@@ -278,8 +279,8 @@
           </execution>
         </executions>
       </plugin>
-      
-      <!-- Build binary artifacts for Unix and Mac OS X -->
+
+      <!-- Build binary artifacts for Unix, Mac OS X and Windows -->
       <plugin> 
         <artifactId>maven-assembly-plugin</artifactId>
         <version>2.2.2</version>
@@ -306,77 +307,22 @@
           </execution>
         </executions> 
       </plugin>
-      
-      <!-- Unpack dependencies into nsis target directory -->
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.4</version>
-        <executions>
-          <execution>
-            <id>copy-dependencies</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/nsis/lib</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
      
-     <!-- Build EXE artifact with NSIS -->
-     <plugin>
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>1.2.1</version>
-        <configuration>
-          <mainClass>${project.groupId}.Main</mainClass>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <executable>makensis</executable>
-              <workingDirectory>${project.build.directory}/nsis</workingDirectory>
-              <arguments>
-                <argument>-V2</argument>
-                <argument>${project.artifactId}.nsi</argument>
-              </arguments>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
       
-      <!-- Attach EXE artifact so it gets deployed into repository -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-          <execution>
-            <id>attach-artifacts</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-            <configuration>
-              <artifacts>
-                <artifact>
-                  <file>${project.build.directory}/${project.artifactId}-${project.version}-windows.exe</file>
-                  <classifier>windows</classifier>
-                  <type>exe</type>
-                </artifact>
-              </artifacts>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
-      
+
     </plugins>
   </build>
   <repositories>
@@ -412,6 +358,92 @@
       <url>http://nexus.ailis.de/content/repositories/snapshots</url>
     </snapshotRepository>    
   </distributionManagement>
+  
+  <profiles>
+    <profile>
+      <id>nsis</id>
+      <activation>
+        <file>
+          <exists>/usr/share/nsis/Plugins/WinShell.dll</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+
+          <!-- Unpack dependencies into nsis target directory -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.4</version>
+            <executions>
+              <execution>
+                <id>copy-dependencies</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/nsis/lib</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+         
+         <!-- Build EXE artifact with NSIS -->
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2.1</version>
+            <configuration>
+              <mainClass>${project.groupId}.Main</mainClass>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>package</phase>
+                <configuration>
+                  <executable>makensis</executable>
+                  <workingDirectory>${project.build.directory}/nsis</workingDirectory>
+                  <arguments>
+                    <argument>-V2</argument>
+                    <argument>${project.artifactId}.nsi</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          
+          <!-- Attach EXE artifact so it gets deployed into repository -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <id>attach-artifacts</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>attach-artifact</goal>
+                </goals>
+                <configuration>
+                  <artifacts>
+                    <artifact>
+                      <file>${project.build.directory}/${project.artifactId}-${project.version}-windows.exe</file>
+                      <classifier>windows</classifier>
+                      <type>exe</type>
+                    </artifact>
+                  </artifacts>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
   
   <dependencies>
     <dependency>

@@ -39,6 +39,11 @@ Build instructions
 Just run `mvn package` to compile Xadrian. If everything works well then 
 you'll find the Xadrian packages for all platforms in the `target` directory.
 
+The Windows Setup is only built automatically on Linux when the file
+`/usr/share/nsis/Plugins/WinShell.dll` was detected. If your NSIS installation
+is not in this standard directory or you are building on Windows and you
+are sure that you have configured NSIS correctly then you can force the
+NSIS build with `mvn package -P nsis`.
 
  
 Factory Complex Template Codes 
