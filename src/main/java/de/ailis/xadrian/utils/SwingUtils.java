@@ -17,6 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Locale;
@@ -27,9 +28,11 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.KeyStroke;
+import javax.swing.LookAndFeel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.text.JTextComponent;
@@ -45,7 +48,7 @@ import de.ailis.xadrian.support.Config;
 
 /**
  * Static utility methods for common Swing tasks.
- *
+ * 
  * @author Klaus Reimer (k@ailis.de)
  */
 public final class SwingUtils
@@ -79,7 +82,7 @@ public final class SwingUtils
 
     /**
      * Gives a component a popup menu
-     *
+     * 
      * @param component
      *            The target component
      * @param popup
@@ -119,8 +122,107 @@ public final class SwingUtils
     }
 
     /**
+     * Called internally by installGtkPopupBugWorkaround to fix the thickness
+     * of a GTK style field by setting it to a minimum value of 1.
+     * 
+     * @param style
+     *            The GTK style object.
+     * @param fieldName
+     *            The field name.
+     * @throws Exception
+     *             When reflection fails.
+     */
+    private static void fixGtkThickness(Object style, String fieldName)
+        throws Exception
+    {
+        Field field = style.getClass().getDeclaredField(fieldName);
+        boolean accessible = field.isAccessible();
+        field.setAccessible(true);
+        field.setInt(style, Math.max(1, field.getInt(style)));
+        field.setAccessible(accessible);
+    }
+
+    /**
+     * Called internally by installGtkPopupBugWorkaround. Returns a specific
+     * GTK style object.
+     * 
+     * @param styleFactory
+     *            The GTK style factory.
+     * @param component
+     *            The target component of the style.
+     * @param regionName
+     *            The name of the target region of the style.
+     * @return The GTK style.
+     * @throws Exception
+     *             When reflection fails.
+     */
+    private static Object getGtkStyle(Object styleFactory,
+        JComponent component, String regionName) throws Exception
+    {
+        // Create the region object
+        Class<?> regionClass = Class.forName("javax.swing.plaf.synth.Region");
+        Field field = regionClass.getField(regionName);
+        Object region = field.get(regionClass);
+
+        // Get and return the style
+        Class<?> styleFactoryClass = styleFactory.getClass();
+        Method method = styleFactoryClass.getMethod("getStyle",
+            new Class<?>[] { JComponent.class, regionClass });
+        boolean accessible = method.isAccessible();
+        method.setAccessible(true);
+        Object style = method.invoke(styleFactory, component, region);
+        method.setAccessible(accessible);
+        return style;
+    }
+
+    /**
+     * Swing menus are looking pretty bad on Linux when the GTK LaF is used (See
+     * bug #6925412). It will most likely never be fixed anytime soon so this
+     * method provides a workaround for it. It uses reflection to change the GTK
+     * style objects of Swing so popup menu borders have a minimum thickness of
+     * 1 and menu separators have a minimum vertical thickness of 1.
+     */
+    public static void installGtkPopupBugWorkaround()
+    {
+        // Get current look-and-feel implementation class
+        LookAndFeel laf = UIManager.getLookAndFeel();
+        Class<?> lafClass = laf.getClass();
+
+        // Do nothing when not using the problematic LaF
+        if (!lafClass.getName().equals(
+            "com.sun.java.swing.plaf.gtk.GTKLookAndFeel")) return;
+
+        // We do reflection from here on. Failure is silently ignored. The
+        // workaround is simply not installed when something goes wrong here
+        try
+        {
+            // Access the GTK style factory
+            Field field = lafClass.getDeclaredField("styleFactory");
+            boolean accessible = field.isAccessible();
+            field.setAccessible(true);
+            Object styleFactory = field.get(laf);
+            field.setAccessible(accessible);
+
+            // Fix the horizontal and vertical thickness of popup menu style
+            Object style = getGtkStyle(styleFactory, new JPopupMenu(),
+                "POPUP_MENU");
+            fixGtkThickness(style, "yThickness");
+            fixGtkThickness(style, "xThickness");
+
+            // Fix the vertical thickness of the popup menu separator style
+            style = getGtkStyle(styleFactory, new JSeparator(),
+                "POPUP_MENU_SEPARATOR");
+            fixGtkThickness(style, "yThickness");
+        }
+        catch (Exception e)
+        {
+            // Silently ignored. Workaround can't be applied.
+        }
+    }
+
+    /**
      * Installs a workaround for bug #4699955 in a JSpinner.
-     *
+     * 
      * @param spinner
      *            The spinner to fix
      */
@@ -173,7 +275,7 @@ public final class SwingUtils
     /**
      * Checks if the specified window (may it be a dialog or a frame) is
      * resizable.
-     *
+     * 
      * @param window
      *            The window
      * @return True if window is resizable, false if not
@@ -197,7 +299,7 @@ public final class SwingUtils
     /**
      * Prepares the theme. The theme can be overridden with the environment
      * variable XADRIAN_SYSTHEME. The default is the system look and feel.
-     *
+     * 
      * @throws Exception
      *             When theme could not be prepared
      */
@@ -209,6 +311,7 @@ public final class SwingUtils
             try
             {
                 UIManager.setLookAndFeel(theme);
+                installGtkPopupBugWorkaround();
                 return;
             }
             catch (final Exception e)
@@ -222,6 +325,7 @@ public final class SwingUtils
         {
             UIManager
                 .setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            installGtkPopupBugWorkaround();
         }
         catch (final Exception e)
         {
@@ -232,7 +336,7 @@ public final class SwingUtils
 
     /**
      * Prepares the Swing GUI.
-     *
+     * 
      * @throws Exception
      *             When GUI could not be prepared
      */
@@ -245,7 +349,7 @@ public final class SwingUtils
     /**
      * Runs the specified component in an empty test frame. This method is used
      * to test single components during development.
-     *
+     * 
      * @param component
      *            The component to test
      * @throws Exception
@@ -264,7 +368,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred height of the specified component.
-     *
+     * 
      * @param component
      *            The component
      * @param height
@@ -279,7 +383,7 @@ public final class SwingUtils
 
     /**
      * Sets the preferred width of the specified component.
-     *
+     * 
      * @param component
      *            The component
      * @param width
@@ -294,9 +398,9 @@ public final class SwingUtils
 
     /**
      * Adds a component action.
-     *
+     * 
      * @param component
-     *            The compoennt to add the action to
+     *            The compoenet to add the action to
      * @param action
      *            The action to add
      */
@@ -316,7 +420,7 @@ public final class SwingUtils
     /**
      * Opens a URL in the browser. It first tries to do this with the Desktop
      * API. If this fails then it tries to use the FreeDesktop-API.
-     *
+     * 
      * @param uri
      *            The URI to open.
      */
@@ -342,7 +446,7 @@ public final class SwingUtils
     /**
      * Opens a URL in the browser. It first tries to do this with the Desktop
      * API. If this fails then it tries to use the FreeDesktop-API.
-     *
+     * 
      * @param url
      *            The URL to open.
      */
@@ -363,10 +467,10 @@ public final class SwingUtils
      * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6528430) so this
      * method uses reflection to do this. This may fail if the Java
      * implementation is changed but any exception here will be ignored.
-     *
+     * 
      * The application name is currently only used for X11 desktops and only
      * important for some window managers like Gnome Shell.
-     *
+     * 
      * @param appName
      *            The application name to set.
      */
@@ -395,7 +499,7 @@ public final class SwingUtils
      * Sets the app user model id. This is needed for the Windows 7 taskbar
      * so the application is correctly associated with the starter icon.
      * The same app user model id must be set in the shortcut.
-     *
+     * 
      * @param appId
      *            The app user model id to set.
      */
@@ -419,7 +523,7 @@ public final class SwingUtils
 
     /**
      * Native Windows function mapped via JNA.
-     *
+     * 
      * @param appId
      *            The app user model ID to set.
      * @return Error code.
