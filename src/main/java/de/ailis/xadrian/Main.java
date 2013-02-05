@@ -42,10 +42,8 @@ public class Main
      *
      * @param args
      *            Command line arguments
-     * @throws Exception
-     *             When something goes wrong
      */
-    public static void main(final String[] args) throws Exception
+    public static void main(final String[] args)
     {
         // If Xadrian is already running then focus the already running
         // Xadrian and pass command line arguments to it. This allows us
