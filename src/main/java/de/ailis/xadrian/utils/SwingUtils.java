@@ -333,11 +333,8 @@ public final class SwingUtils
 
     /**
      * Prepares the Swing GUI.
-     * 
-     * @throws Exception
-     *             When GUI could not be prepared
      */
-    public static void prepareGUI() throws Exception
+    public static void prepareGUI()
     {
         prepareLocale();
         prepareTheme();

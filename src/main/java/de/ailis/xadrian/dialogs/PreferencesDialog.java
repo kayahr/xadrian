@@ -460,10 +460,8 @@ public class PreferencesDialog extends ModalDialog
      *
      * @param args
      *            Command line arguments
-     * @throws Exception
-     *             When something goes wrong.
      */
-    public static void main(final String[] args) throws Exception
+    public static void main(final String[] args)
     {
         SwingUtils.prepareGUI();
         new PreferencesDialog().open();
