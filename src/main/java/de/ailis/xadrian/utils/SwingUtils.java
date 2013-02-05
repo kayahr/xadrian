@@ -299,11 +299,8 @@ public final class SwingUtils
     /**
      * Prepares the theme. The theme can be overridden with the environment
      * variable XADRIAN_SYSTHEME. The default is the system look and feel.
-     * 
-     * @throws Exception
-     *             When theme could not be prepared
      */
-    public static void prepareTheme() throws Exception
+    public static void prepareTheme()
     {
         final String theme = Config.getInstance().getTheme();
         if (theme != null)
