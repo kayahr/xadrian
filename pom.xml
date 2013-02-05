@@ -41,9 +41,15 @@
       <name>Milan Gvoždík</name>
       <email>tmp27@centrum.cz</email>
       <timezone>+1</timezone>
+      <roles>
+        <role>Polish translation</role>
+      </roles>
     </contributor>
     <contributor>
       <name>Lea Flamma</name>
+      <roles>
+        <role>Polish translation</role>
+      </roles>
     </contributor>
   </contributors>
   
