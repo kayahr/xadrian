@@ -33,23 +33,30 @@ public class DynaByteInputStreamTest
     {
         ByteArrayOutputStream arrayStream = new ByteArrayOutputStream();
         OutputStream stream = new DynaByteOutputStream(arrayStream);
-        stream.write(0);
-        stream.write(126);
-        stream.write(127);
-        stream.write(16256);
-        stream.write(0);
-        stream.write(2113665);
-        byte[] data = arrayStream.toByteArray();
-        assertEquals(10, data.length);
-        assertEquals(0, data[0]);
-        assertEquals(126, data[1]);
-        assertEquals(127, data[2]);
-        assertEquals((byte) 128, data[3]);
-        assertEquals(127, data[4]);
-        assertEquals(0, data[5]);
-        assertEquals((byte) 129, data[6]);
-        assertEquals((byte) 129, data[7]);
-        assertEquals((byte) 129, data[8]);
-        assertEquals(1, data[9]);
+        try
+        {
+            stream.write(0);
+            stream.write(126);
+            stream.write(127);
+            stream.write(16256);
+            stream.write(0);
+            stream.write(2113665);
+            byte[] data = arrayStream.toByteArray();
+            assertEquals(10, data.length);
+            assertEquals(0, data[0]);
+            assertEquals(126, data[1]);
+            assertEquals(127, data[2]);
+            assertEquals((byte) 128, data[3]);
+            assertEquals(127, data[4]);
+            assertEquals(0, data[5]);
+            assertEquals((byte) 129, data[6]);
+            assertEquals((byte) 129, data[7]);
+            assertEquals((byte) 129, data[8]);
+            assertEquals(1, data[9]);
+        }
+        finally
+        {
+            stream.close();
+        }
     }
 }

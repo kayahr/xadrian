@@ -1451,63 +1451,69 @@ public class Complex implements Serializable, GameProvider
             final byte[] data =
                 DatatypeConverter.parseBase64Binary(templateCode.trim());
 
-            final InputStream stream =
-                new DynaByteInputStream(new ByteArrayInputStream(data));
-
-            // Read complex settings
-            final int settings = stream.read();
-            final boolean hasSector = (settings & 1) == 1;
-            final int gameNid = (settings >> 1) & 7;
-
-            final Game game;
+            final InputStream stream = new DynaByteInputStream(
+                new ByteArrayInputStream(data));
             try
             {
-                game = GameFactory.getInstance().getGame(gameNid);
-            }
-            catch (final GameNotFoundException e)
-            {
-                return false;
-            }
-
-            // Read sector coordinates or sun power
-            if (hasSector)
-            {
-                final int x = stream.read();
-                final int y = stream.read();
-                if (game.getSectorFactory().getSector(x, y) == null) return false;
-            }
-            else
-            {
-                final int percent = stream.read();
+                // Read complex settings
+                final int settings = stream.read();
+                final boolean hasSector = (settings & 1) == 1;
+                final int gameNid = (settings >> 1) & 7;
+    
+                final Game game;
                 try
                 {
-                    game.getSunFactory().getSun(percent);
+                    game = GameFactory.getInstance().getGame(gameNid);
                 }
-                catch (final DataException e)
+                catch (final GameNotFoundException e)
                 {
                     return false;
                 }
-            }
-
-            int factoryId;
-            while ((factoryId = stream.read()) != 0)
-            {
-                final Factory factory =
-                    game.getFactoryFactory().getFactory(factoryId);
-                if (factory == null) return false;
-                if (factory.isMine())
+    
+                // Read sector coordinates or sun power
+                if (hasSector)
                 {
-                    int yield;
-                    while ((yield = stream.read()) != 0)
-                        if (yield > 256) return false;
+                    final int x = stream.read();
+                    final int y = stream.read();
+                    if (game.getSectorFactory().getSector(x, y) == null) return false;
                 }
                 else
                 {
-                    stream.read();
+                    final int percent = stream.read();
+                    try
+                    {
+                        game.getSunFactory().getSun(percent);
+                    }
+                    catch (final DataException e)
+                    {
+                        return false;
+                    }
                 }
+    
+                int factoryId;
+                while ((factoryId = stream.read()) != 0)
+                {
+                    final Factory factory =
+                        game.getFactoryFactory().getFactory(factoryId);
+                    if (factory == null) return false;
+                    if (factory.isMine())
+                    {
+                        int yield;
+                        while ((yield = stream.read()) != 0)
+                            if (yield > 256) return false;
+                    }
+                    else
+                    {
+                        stream.read();
+                    }
+                }
+    
+                return true;
             }
-
-            return true;
+            finally
+            {
+                stream.close();
+            }
         }
         catch (final Exception e)
         {
@@ -1530,53 +1536,59 @@ public class Complex implements Serializable, GameProvider
             final byte[] data =
                 DatatypeConverter.parseBase64Binary(templateCode.trim());
 
-            final InputStream stream =
-                new DynaByteInputStream(new ByteArrayInputStream(data));
-
-            // Read complex settings
-            final int settings = stream.read();
-            final boolean hasSector = (settings & 1) == 1;
-            final int gameNid = (settings >> 1) & 7;
-
-            final Game game = GameFactory.getInstance().getGame(gameNid);
-            final Complex complex = new Complex(game);
-
-            // Read sector coordinates or sun power
-            if (hasSector)
+            final InputStream stream = new DynaByteInputStream(
+                new ByteArrayInputStream(data));
+            try
             {
-                final int x = stream.read();
-                final int y = stream.read();
-                complex.setSector(game.getSectorFactory().getSector(x, y));
-            }
-            else
-            {
-                final int percent = stream.read();
-                complex.setSuns(game.getSunFactory().getSun(percent));
-            }
-
-            int factoryId;
-            while ((factoryId = stream.read()) != 0)
-            {
-                final Factory factory =
-                    game.getFactoryFactory().getFactory(factoryId);
-                if (factory.isMine())
+                // Read complex settings
+                final int settings = stream.read();
+                final boolean hasSector = (settings & 1) == 1;
+                final int gameNid = (settings >> 1) & 7;
+    
+                final Game game = GameFactory.getInstance().getGame(gameNid);
+                final Complex complex = new Complex(game);
+    
+                // Read sector coordinates or sun power
+                if (hasSector)
                 {
-                    final List<Integer> yields = new ArrayList<Integer>();
-                    int yield;
-                    while ((yield = stream.read()) != 0)
-                        yields.add(yield - 1);
-                    complex
-                        .addFactory(new ComplexFactory(game, factory, yields));
+                    final int x = stream.read();
+                    final int y = stream.read();
+                    complex.setSector(game.getSectorFactory().getSector(x, y));
                 }
                 else
                 {
-                    final int quantity = stream.read();
-                    complex.addFactory(new ComplexFactory(game, factory,
-                        quantity, 0));
+                    final int percent = stream.read();
+                    complex.setSuns(game.getSunFactory().getSun(percent));
                 }
+    
+                int factoryId;
+                while ((factoryId = stream.read()) != 0)
+                {
+                    final Factory factory =
+                        game.getFactoryFactory().getFactory(factoryId);
+                    if (factory.isMine())
+                    {
+                        final List<Integer> yields = new ArrayList<Integer>();
+                        int yield;
+                        while ((yield = stream.read()) != 0)
+                            yields.add(yield - 1);
+                        complex
+                            .addFactory(new ComplexFactory(game, factory, yields));
+                    }
+                    else
+                    {
+                        final int quantity = stream.read();
+                        complex.addFactory(new ComplexFactory(game, factory,
+                            quantity, 0));
+                    }
+                }
+    
+                return complex;
             }
-
-            return complex;
+            finally
+            {
+                stream.close();
+            }
         }
         catch (final IOException e)
         {
