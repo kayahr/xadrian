@@ -7,7 +7,11 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.4.4" date="2013-02-05" description="Minor update">
+    <release version="1.4.4" date="2013-03-11" description="Minor update">
+      <action dev="k" type="add" date="2013-03-11">
+        Added context menus to text panes to allow copy/cut/paste with the
+        mouse.
+      </action>
       <action dev="k" type="add" date="2013-02-05">
         More polish translations (Thanks to Lea Flamma)
       </action>
