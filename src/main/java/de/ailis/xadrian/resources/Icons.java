@@ -43,6 +43,12 @@ public final class Icons
     /** The COPY icon */
     public static final Icon COPY = createIcon("copy");
 
+    /** The CUT icon */
+    public static final Icon CUT = createIcon("cut");
+
+    /** The PASTE icon */
+    public static final Icon PASTE = createIcon("paste");
+
     /** The DELETE icon */
     public static final Icon DELETE = createIcon("delete");
 

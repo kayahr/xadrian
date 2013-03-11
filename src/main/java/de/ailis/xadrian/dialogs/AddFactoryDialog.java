@@ -29,6 +29,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 import de.ailis.xadrian.Main;
 import de.ailis.xadrian.components.FactoryTreeCellRenderer;
+import de.ailis.xadrian.components.JTextPanePopupMenu;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.factories.GameFactory;
@@ -37,6 +38,7 @@ import de.ailis.xadrian.freemarker.TemplateFactory;
 import de.ailis.xadrian.models.FactoryTreeModel;
 import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.ModalDialog;
+import de.ailis.xadrian.utils.SwingUtils;
 import freemarker.template.Template;
 
 /**
@@ -127,6 +129,8 @@ public class AddFactoryDialog extends ModalDialog implements
         this.textPane.setEditable(false);
         this.textPane.setContentType("text/html");
         this.textPane.setDoubleBuffered(true);
+        SwingUtils.setPopupMenu(this.textPane,
+            new JTextPanePopupMenu(this.textPane));
 
         final HTMLDocument document = (HTMLDocument) this.textPane.getDocument();
         

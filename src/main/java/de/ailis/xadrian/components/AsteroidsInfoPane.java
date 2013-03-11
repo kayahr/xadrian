@@ -59,7 +59,8 @@ public class AsteroidsInfoPane extends JComponent implements SectorProvider
         textPane.setBorder(null);
         textPane.setContentType("text/html");
         textPane.setDoubleBuffered(true);
-        
+        SwingUtils.setPopupMenu(textPane, new JTextPanePopupMenu(textPane));
+ 
         final HTMLDocument document = (HTMLDocument) this.textPane.getDocument();
 
         // Set the base URL of the text pane

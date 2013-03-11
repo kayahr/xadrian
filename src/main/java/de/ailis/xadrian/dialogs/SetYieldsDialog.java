@@ -21,6 +21,7 @@ import javax.swing.event.DocumentListener;
 
 import de.ailis.xadrian.actions.ChangeSectorAction;
 import de.ailis.xadrian.components.AsteroidsInfoPane;
+import de.ailis.xadrian.components.JTextPanePopupMenu;
 import de.ailis.xadrian.data.Factory;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Sector;
@@ -96,7 +97,9 @@ public class SetYieldsDialog extends ModalDialog
 
         // Create the content controls
         final JTextPane input = this.inputPane = new JTextPane();
-        input.getDocument().addDocumentListener(new DocumentListener()
+        SwingUtils.setPopupMenu(this.inputPane, 
+            new JTextPanePopupMenu(this.inputPane));
+         input.getDocument().addDocumentListener(new DocumentListener()
         {
             @Override
             public void removeUpdate(final DocumentEvent e)

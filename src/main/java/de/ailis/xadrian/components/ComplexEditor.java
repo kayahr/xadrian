@@ -780,6 +780,7 @@ public class ComplexEditor extends JComponent implements HyperlinkListener,
     {
         this.textPane.requestFocus();
         this.textPane.selectAll();
+        fireClipboardState();
     }
 
     /**
