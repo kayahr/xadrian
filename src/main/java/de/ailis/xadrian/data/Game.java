@@ -13,7 +13,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import de.ailis.xadrian.data.factories.FactoryFactory;
 import de.ailis.xadrian.data.factories.RaceFactory;
 import de.ailis.xadrian.data.factories.SectorFactory;
-import de.ailis.xadrian.data.factories.StationFactory;
 import de.ailis.xadrian.data.factories.SunFactory;
 import de.ailis.xadrian.data.factories.WareFactory;
 import de.ailis.xadrian.dialogs.AddFactoryDialog;
@@ -50,9 +49,6 @@ public class Game implements Serializable, Comparable<Game>
     /** The race factory. */
     private final RaceFactory raceFactory;
 
-    /** The station factory. */
-    private final StationFactory stationFactory;
-
     /** The sun factory. */
     private final SunFactory sunFactory;
 
@@ -88,7 +84,6 @@ public class Game implements Serializable, Comparable<Game>
         this.raceFactory = new RaceFactory(this);
         this.wareFactory = new WareFactory(this);
         this.sectorFactory = new SectorFactory(this);
-        this.stationFactory = new StationFactory(this);
         this.factoryFactory = new FactoryFactory(this);
     }
 
@@ -193,16 +188,6 @@ public class Game implements Serializable, Comparable<Game>
     }
 
     /**
-     * Returns the station factory for this game.
-     * 
-     * @return The station factory for this game.
-     */
-    public StationFactory getStationFactory()
-    {
-        return this.stationFactory;
-    }
-
-    /**
      * Returns the sun factory for this game.
      * 
      * @return The sun factory for this game.
@@ -279,4 +264,13 @@ public class Game implements Serializable, Comparable<Game>
     {
         return this.id.equals("x3tc");
     }
-}
+
+    /**
+     * Checks if the game is X3: Albion Prelude.
+     * 
+     * @return True if game is X3AP, false if not.
+     */
+    public boolean isX3AP()
+    {
+        return this.id.equals("x3ap");
+    }}

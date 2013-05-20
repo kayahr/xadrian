@@ -153,7 +153,12 @@ public class Sector implements Serializable, Comparable<Sector>
      * @return The name
      */
     public String getName()
-    {
+    {        
+        if (this.game.isX3AP() && "sec-12-4".equals(this.id))
+        {
+            return I18N.getString(this.game, this.messageId + "-" 
+                + Config.getInstance().getX3APPlayerSector()); 
+        }
         return I18N.getString(this.game, this.messageId);
     }
 

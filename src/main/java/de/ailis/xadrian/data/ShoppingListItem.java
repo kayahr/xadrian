@@ -28,7 +28,7 @@ public class ShoppingListItem implements Serializable,
     private final int quantity;
 
     /** The nearest manufacturer of this factory */
-    private final Station nearestManufacturer;
+    private final Sector nearestManufacturer;
 
     /** The number of built factories */
     private final int quantityBuilt;
@@ -46,7 +46,7 @@ public class ShoppingListItem implements Serializable,
      *            The number of built factories
      */
     public ShoppingListItem(final Factory factory, final int quantity,
-        final Station nearestManufacturer, final int quantityBuilt)
+        final Sector nearestManufacturer, final int quantityBuilt)
     {
         this.factory = factory;
         this.quantity = quantity;
@@ -79,7 +79,7 @@ public class ShoppingListItem implements Serializable,
      * 
      * @return The nearest manufacturer
      */
-    public Station getNearestManufacturer()
+    public Sector getNearestManufacturer()
     {
         return this.nearestManufacturer;
     }

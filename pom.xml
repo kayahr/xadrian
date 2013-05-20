@@ -6,7 +6,7 @@
   <artifactId>xadrian</artifactId>
   <packaging>jar</packaging>
   <name>Xadrian</name>
-  <version>1.4.4-SNAPSHOT</version>
+  <version>1.5.0-SNAPSHOT</version>
   <url>http://kayahr.github.com/${project.artifactId}/</url>
   <description>A factory complex calculator tool for X3: Terran Conflict and X3: Albion Prelude</description>
   <inceptionYear>2009</inceptionYear>
@@ -325,11 +325,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-      </plugin>
-      
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.1.1</version>
       </plugin>
 
     </plugins>

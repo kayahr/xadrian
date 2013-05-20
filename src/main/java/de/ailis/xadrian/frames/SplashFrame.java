@@ -145,7 +145,7 @@ public class SplashFrame extends JFrame
     public static void setNumberOfGames(int numberOfGames)
     {
         if (instance == null) return;
-        instance.progressBar.setMaximum(numberOfGames * 10 + 6);
+        instance.progressBar.setMaximum(numberOfGames * 10 + 4);
     }
     
     /**

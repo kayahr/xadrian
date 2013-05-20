@@ -7,311 +7,318 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.4.4" date="2013-03-11" description="Minor update">
-      <action dev="k" type="add" date="2013-03-11">
+    <release version="1.5.0" date="2013-05-20" description="Major update">
+      <action dev="kayahr" type="add" date="2013-05-20">
+        Implement player sector and new factories from X3AP 3.0.
+      </action>
+      <action dev="kayahr" type="add" date="2013-05-20">
+        Shopping list now prefers shipyards from races which are enabled
+        in the preferences.
+      </action>
+      <action dev="kayahr" type="add" date="2013-03-11">
         Added context menus to text panes to allow copy/cut/paste with the
         mouse.
       </action>
-      <action dev="k" type="add" date="2013-02-05">
+      <action dev="kayahr" type="add" date="2013-02-05">
         More polish translations (Thanks to Lea Flamma)
       </action>
     </release>
     <release version="1.4.3" date="2012-03-30" description="Minor update">
-      <action dev="k" type="add" date="2012-03-30">
+      <action dev="kayahr" type="add" date="2012-03-30">
         Added configuration option to display production statistics per
         minute instead of per hour.
       </action>
-      <action dev="k" type="add" date="2012-03-30">
+      <action dev="kayahr" type="add" date="2012-03-30">
         Added System locale to combo box in preference dialog.
       </action>
-      <action dev="k" type="add" date="2012-03-30">
+      <action dev="kayahr" type="add" date="2012-03-30">
         Implemented night mode.
       </action>
-      <action dev="k" type="add" date="2012-03-30">
+      <action dev="kayahr" type="add" date="2012-03-30">
         Implemented export to plain text.
       </action>
-      <action dev="k" type="add" date="2012-03-30">
+      <action dev="kayahr" type="add" date="2012-03-30">
         Added links to homepage, forum, Twitter page, Google Plus and
         Github page.
       </action>
-      <action dev="k" type="fix" date="2012-03-30">
+      <action dev="kayahr" type="fix" date="2012-03-30">
         Fixed bogus popup menu opening when scrolling with two fingers on
         a trackpad.
       </action>
-      <action dev="k" type="add" date="2012-03-25">
+      <action dev="kayahr" type="add" date="2012-03-25">
         Implemented export to template code and import from template code. 
       </action>
-      <action dev="k" type="add" date="2012-03-20">
+      <action dev="kayahr" type="add" date="2012-03-20">
         The print dialog now remembers its last settings. 
       </action>
-      <action dev="k" type="add" date="2012-03-19">
+      <action dev="kayahr" type="add" date="2012-03-19">
         Simplified shopping list. Volumes are now counted down depending on
         how many factories have been built. Added a price column to show how
         much money is still needed to complete the complex. 
       </action>
-      <action dev="k" type="fix" date="2012-03-19">
+      <action dev="kayahr" type="fix" date="2012-03-19">
         Changed light gray colors to black for printing.
       </action>
-      <action dev="k" type="fix" date="2012-03-19">
+      <action dev="kayahr" type="fix" date="2012-03-19">
         Install script on Linux now creates missing directories.
       </action>
     </release>
     <release version="1.4.2" date="2012-02-20" description="Minor update">
-      <action dev="k" type="add" date="2012-02-12">
+      <action dev="kayahr" type="add" date="2012-02-12">
         Factory complex files can now specified on the command-line to open
         them with Xadrian.
       </action>      
-      <action dev="k" type="add" date="2012-02-12">
+      <action dev="kayahr" type="add" date="2012-02-12">
         Only one instance of Xadrian can be started. A second call passes
         control (and command-line arguments) over to the first instance.
       </action>      
-      <action dev="k" type="add" date="2012-02-12">
+      <action dev="kayahr" type="add" date="2012-02-12">
         Implemented awtAppClassName so Xadrian works correctly on modern
         Linux window managers like Gnome Shell.
       </action>      
-      <action dev="k" type="add" date="2012-02-20">
+      <action dev="kayahr" type="add" date="2012-02-20">
         Implemented appUserModelId so Xadrian can be pinned to the
         Windows 7 taskbar.
       </action>      
-      <action dev="k" type="add" date="2012-02-20">
+      <action dev="kayahr" type="add" date="2012-02-20">
         Registering file association for *.x3c on Windows so factory complex
         files can be opened by double-clicking.
       </action>      
-      <action dev="k" type="fix" date="2012-02-20">
+      <action dev="kayahr" type="fix" date="2012-02-20">
         Fixed Null-Pointer-Exception in sector selection dialog when moving
         the mouse before the map is fully displayed.
       </action>      
-      <action dev="k" type="fix" date="2012-02-20">
+      <action dev="kayahr" type="fix" date="2012-02-20">
         Factory tree now correctly honors ignored races. Factories of ignored
         races are now still listed but have a lower priority in the cheapest
         factory list.
       </action>      
-      <action dev="k" type="add" date="2012-02-21">
+      <action dev="kayahr" type="add" date="2012-02-21">
         Switched from manual javaw.exe start to a custom EXE launcher
         created by launch4j.
       </action>      
-      <action dev="k" type="fix" date="2012-02-26">
+      <action dev="kayahr" type="fix" date="2012-02-26">
         Fixed problem with space characters in command line parameters on
         Linux/Unix.
       </action>      
-      <action dev="k" type="add" date="2012-02-26">
+      <action dev="kayahr" type="add" date="2012-02-26">
         Added install script in Unix assembly. This script installs Xadrian
         globally on Linux/Unix.
       </action>      
     </release>             
     <release version="1.4.1" date="2012-01-20" description="Minor update">
-      <action dev="k" type="fix" date="2012-01-20">
+      <action dev="kayahr" type="fix" date="2012-01-20">
         Terran Shipyards are now considered for buying complex construction
         kits in X3: Albion Prelude.
       </action>                 
-      <action dev="k" type="add" date="2012-01-20">
+      <action dev="kayahr" type="add" date="2012-01-20">
         The change-prices dialog now only displays the wares which are used
         by the current complex. This also solves the missing Ice problem
         in X3: Albion Prelude.
       </action>                 
-      <action dev="k" type="add" date="2012-01-20">
+      <action dev="kayahr" type="add" date="2012-01-20">
         Game can now be configured in the preferences to avoid asking for
         it every time a new complex is created.
       </action>                 
-      <action dev="k" type="fix" date="2012-01-20">
+      <action dev="kayahr" type="fix" date="2012-01-20">
         Removed fixed font sizes in HTML text panes so font size can be
         controlled by the operating system.
       </action>                 
-      <action dev="k" type="fix" date="2012-01-21">
+      <action dev="kayahr" type="fix" date="2012-01-21">
         Made some dialogs resizable and sector map scalable. 
       </action>                 
-      <action dev="k" type="add" date="2012-01-21">
+      <action dev="kayahr" type="add" date="2012-01-21">
         Language can now be configured in the preferences dialog.
       </action>
-      <action dev="k" type="add" date="2012-01-21">
+      <action dev="kayahr" type="add" date="2012-01-21">
         Error messages are now displayed in an error dialog if possible and
         error message is copied to the clipboard to make error reporting
         easier.
       </action>
-      <action dev="k" type="fix" date="2012-01-22">
+      <action dev="kayahr" type="fix" date="2012-01-22">
         Fixed status bar in main window which never displayed anything.
       </action>
-      <action dev="k" type="add" date="2012-01-22">
+      <action dev="kayahr" type="add" date="2012-01-22">
         Added donation button.
       </action>
     </release>
     <release version="1.4.0" date="2012-01-15" description="Major update">
-      <action dev="k" type="add" date="2012-01-14">
+      <action dev="kayahr" type="add" date="2012-01-14">
         Added multi-game feature to support X3TC and X3AP in the same
         application.          
       </action>
-      <action dev="k" type="add" date="2012-01-15">
+      <action dev="kayahr" type="add" date="2012-01-15">
         Added splash screen displaying the application loading progress.
       </action>
-      <action dev="k" type="add" date="2012-01-15">
+      <action dev="kayahr" type="add" date="2012-01-15">
         Theme (Java LookAndFeel) can now be configured in the preferences dialog.
       </action>
     </release>
     <release version="1.3.3" date="2011-08-06" description="Minor update">
-      <action dev="k" type="add" date="2011-08-06">
+      <action dev="kayahr" type="add" date="2011-08-06">
         Added the new bonus sector "Harmony Of Perpetuity". 
       </action>
-      <action dev="k" type="add" date="2011-01-17">
+      <action dev="kayahr" type="add" date="2011-01-17">
         Added new suns.xml data file which replaces the hardcoded sun data.
       </action>
-      <action dev="k" type="add" date="2011-01-15">
+      <action dev="kayahr" type="add" date="2011-01-15">
         messages.properties and the XML files are now also read from
         the lib/data directory for easier modification.
       </action>
     </release>
     <release version="1.3.2" date="2010-08-25" description="Minor update">
-      <action dev="k" type="fix" date="2010-07-03">
+      <action dev="kayahr" type="fix" date="2010-07-03">
         Added two missing asteroids in Guiding Star.
       </action>
     </release>
     <release version="1.3.1" date="2010-06-09" description="Minor update">
-      <action dev="k" type="fix" date="2010-06-09">
+      <action dev="kayahr" type="fix" date="2010-06-09">
         Fixed printing.
       </action>
-      <action dev="k" type="fix" date="2010-06-09">
+      <action dev="kayahr" type="fix" date="2010-06-09">
         Fixed some layout problems in complex table.
       </action>
-      <action dev="k" type="fix" date="2010-06-09">
+      <action dev="kayahr" type="fix" date="2010-06-09">
         Fixed Null-Pointer-Exception which occured when adding a factory which
         is already in the complex.
       </action>
-      <action dev="k" type="fix" date="2010-06-08">
+      <action dev="kayahr" type="fix" date="2010-06-08">
         Added some missing german translations.
       </action>
-      <action dev="k" type="fix" date="2010-06-08">
+      <action dev="kayahr" type="fix" date="2010-06-08">
         Made factory resource info gray to make the factory name more important
         in the complex table.
       </action>
     </release>
     <release version="1.3.0" date="2010-06-08" description="Major update">
-      <action dev="k" type="add" date="2009-11-10">
+      <action dev="kayahr" type="add" date="2009-11-10">
         Added Polish translation. Thanks to Mariusz and sorry that it took
         a year until it was finally published...
       </action>      
-      <action dev="k" type="add" date="2010-05-22">
+      <action dev="kayahr" type="add" date="2010-05-22">
         Added up/down buttons to control factory quantities without opening
         the quantity dialog.
       </action>
-      <action dev="k" type="add" date="2010-05-22">
+      <action dev="kayahr" type="add" date="2010-05-22">
         Improved shopping list. You can now use up/down counters to note which
         factories you have already built. 
       </action>
-      <action dev="k" type="add" date="2010-05-22">
+      <action dev="kayahr" type="add" date="2010-05-22">
         Applied nicer style to complex data. Sections can now be collapsed
         and expanded by clicking the section headers.
       </action>
-      <action dev="k" type="fix" date="2010-05-22">
+      <action dev="kayahr" type="fix" date="2010-05-22">
         Fixed error which occured sometimes when loading the same complex two
         times.
       </action>
-      <action dev="k" type="add" date="2010-05-26">
+      <action dev="kayahr" type="add" date="2010-05-26">
         Added new preference for displaying factory resources in complex table.
         (Patch contributed by Milan Gvoždík)
       </action>
-      <action dev="k" type="add" date="2010-06-05">
+      <action dev="kayahr" type="add" date="2010-06-05">
         Implemented better asteroid yield selection for mines.
       </action>
-      <action dev="k" type="fix" date="2010-06-05">
+      <action dev="kayahr" type="fix" date="2010-06-05">
         Fixed Ion/Tracker mine bug which was fixed also in X3TC 2.7.
       </action>
-      <action dev="k" type="add" date="2010-06-08">
+      <action dev="kayahr" type="add" date="2010-06-08">
         Added player sector.
       </action>
     </release>
     <release version="1.2.2" date="2009-06-14" description="Minor update">
-      <action dev="k" type="add" date="2009-06-14">
+      <action dev="kayahr" type="add" date="2009-06-14">
         Added missing Protein Paste Blending Facility L which was introduced in
         X3TC 2.1.        
       </action>
     </release>
     <release version="1.2.1" date="2009-06-11" description="Minor update">
-      <action dev="k" type="add" date="2009-06-11">
+      <action dev="kayahr" type="add" date="2009-06-11">
         Added Crystal fabs of size L for all races which were added in
         X3TC 2.1.        
       </action>
     </release>
     <release version="1.2.0" date="2009-04-16" description="Major update">
-      <action dev="k" type="add" date="2009-04-16">
+      <action dev="kayahr" type="add" date="2009-04-16">
         Updated database to X3 Terran Conflict 2.0.        
       </action>
-      <action dev="k" type="add" date="2009-04-16">
+      <action dev="kayahr" type="add" date="2009-04-16">
         Improved base-complex calculation: Xadriannow also considers crystal
         fabs from other races instead of always using the cheapest one.        
       </action>
-      <action dev="k" type="fix" date="2009-04-02">
+      <action dev="kayahr" type="fix" date="2009-04-02">
         Fixed german translation of "Silicon".
       </action>
-      <action dev="k" type="add" date="2009-03-22">
+      <action dev="kayahr" type="add" date="2009-03-22">
         Implemented possibility to change the buy/sell prices of wares in
         a complex. It's also possible to completely disable trading with a
         ware.
       </action>
-      <action dev="k" type="add" date="2009-03-22">
+      <action dev="kayahr" type="add" date="2009-03-22">
         All window locations and sizes are now saved and restored.
         AddFactory dialog can now be resized and splitter position is also
         saved and restored.
       </action>
-      <action dev="k" type="update" date="2009-03-22">
+      <action dev="kayahr" type="update" date="2009-03-22">
         Fixed scroll behavior in complex view (When view is repainted then
         the previous scroll position is restored. 
       </action>
-      <action dev="k" type="update" date="2009-03-22">
+      <action dev="kayahr" type="update" date="2009-03-22">
         Added a workaround for Java bug #4699955 which prevented correct
         focus on spinner controls.
       </action>
-      <action dev="k" type="update" date="2009-03-21">
+      <action dev="kayahr" type="update" date="2009-03-21">
         Improved loading/saving of complexes. Complex names are now used as
         suggested filenames (For Save-As) and the last selected directory in
         file chooser is now remembered.
       </action>
     </release>
     <release version="1.1.0" date="2009-03-14" description="Minor update">
-      <action dev="k" type="add" date="2009-03-14">
+      <action dev="kayahr" type="add" date="2009-03-14">
         Implemented shopping list in complex view. It lists the factories 
         which must be bought, their volumes and the nearest shipyard where they
         can be buyed (If complex is connected to a sector).
       </action>
-      <action dev="k" type="add" date="2009-03-14">
+      <action dev="kayahr" type="add" date="2009-03-14">
         Complex can now be connected to a sector. The suns are then determined
         automatically.
       </action>
-      <action dev="k" type="add" date="2009-03-14">
+      <action dev="kayahr" type="add" date="2009-03-14">
         Quantity of mines can now be changed.
       </action>
-      <action dev="k" type="add" date="2009-03-09">
+      <action dev="kayahr" type="add" date="2009-03-09">
         Added storage capacity information to add-factory dialog and added
         storage capacity statistics to complex view.
       </action>
-      <action dev="k" type="update" date="2009-03-08">
+      <action dev="kayahr" type="update" date="2009-03-08">
         The suns dialog now no longer makes a difference between 300% and 400%
         because the game handles everything above or equal than 300 as the
         same. Also added the 200% which is not used in X3TC but may show  up
         later (At least it was present in Reunion).        
       </action>
-      <action dev="k" type="add" date="2009-03-08">
+      <action dev="kayahr" type="add" date="2009-03-08">
         Added factory listing grouped by product and cheapest factories to
         add-factory-dialog.
       </action>
-      <action dev="k" type="add" date="2009-03-08">
+      <action dev="kayahr" type="add" date="2009-03-08">
         Added popup menu to complex editor.
       </action>
-      <action dev="k" type="add" date="2009-03-08">
+      <action dev="kayahr" type="add" date="2009-03-08">
         Added copy/selectAll menu items.
       </action>
-      <action dev="k" type="add" date="2009-03-08">
+      <action dev="kayahr" type="add" date="2009-03-08">
         Added preferences dialog to set the used races.
       </action>
-      <action dev="k" type="fix" date="2009-03-07">
+      <action dev="kayahr" type="fix" date="2009-03-07">
         Closing the unsaved-changes-warning on exit now performs a
         cancel instead of closing the application.
       </action>
-      <action dev="k" type="fix" date="2009-03-05">
+      <action dev="kayahr" type="fix" date="2009-03-05">
         Fixed conflict with LANG variable of unix locale system. Language
         can now be enforced with the XADRIAN_LANG variable instead.
       </action>
     </release>
     <release version="1.0.0" date="2009-03-04" description="Initial release">
-      <action dev="k" type="add" date="2009-03-04">
+      <action dev="kayahr" type="add" date="2009-03-04">
         Initial release.
       </action>
     </release>

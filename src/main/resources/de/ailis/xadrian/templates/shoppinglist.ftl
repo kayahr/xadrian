@@ -69,7 +69,7 @@
           <td class="volume">${item.totalVolume}</td>
         [/#if]
         [#if complex.sector??]
-          <td class="manufacturer">${item.nearestManufacturer.sector}</td>
+          <td class="manufacturer">${item.nearestManufacturer}</td>
         [/#if]
       </tr>
     [/#list]

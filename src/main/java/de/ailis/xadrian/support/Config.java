@@ -40,8 +40,11 @@ public final class Config
     /** Config key for displaying factory resources in complex table */
     private static final String SHOW_FACTORY_RESOURCES = "showfactoryresources";
 
-    /** Config key for the index of the chosen player sector */
-    private static final String PLAYER_SECTOR = "playerSector";
+    /** Config key for the index of the chosen player sector in X3TC. */
+    private static final String X3TC_PLAYER_SECTOR = "playerSector";
+
+    /** Config key for the index of the chosen player sector in X3AP. */
+    private static final String X3AP_PLAYER_SECTOR = "x3apPlayerSector";
 
     /** Config key for default game */
     private static final String DEFAULT_GAME = "defaultgame";
@@ -77,8 +80,11 @@ public final class Config
     /** The Factory Description flag */
     private boolean showFactoryResources = true;
 
-    /** The index of the chosen player sector */
-    private int playerSector = 0;
+    /** The index of the chosen player sector in X3TC. */
+    private int x3tcPlayerSector = 0;
+
+    /** The index of the chosen player sector in X3AP. */
+    private int x3apPlayerSector = 0;
 
     /** The theme (LookAndFeel class name or null for system) */
     private String theme = null;
@@ -135,7 +141,8 @@ public final class Config
         this.lastFileChooserPath = tmp != null ? new File(tmp) : null;
         this.showFactoryResources = prefs.getBoolean(
             SHOW_FACTORY_RESOURCES, true);
-        this.playerSector = prefs.getInt(PLAYER_SECTOR, 0);
+        this.x3tcPlayerSector = prefs.getInt(X3TC_PLAYER_SECTOR, 0);
+        this.x3apPlayerSector = prefs.getInt(X3AP_PLAYER_SECTOR, 0);
         this.theme = prefs.get(THEME, null);
         this.locale = prefs.get(LOCALE, null);
         this.defaultGame = prefs.get(DEFAULT_GAME, null);
@@ -187,7 +194,8 @@ public final class Config
         else
             prefs.remove(LAST_FILE_CHOOSER_PATH);
         prefs.putBoolean(SHOW_FACTORY_RESOURCES, this.showFactoryResources);
-        prefs.putInt(PLAYER_SECTOR, this.playerSector);
+        prefs.putInt(X3TC_PLAYER_SECTOR, this.x3tcPlayerSector);
+        prefs.putInt(X3AP_PLAYER_SECTOR, this.x3apPlayerSector);
         if (this.theme == null)
             prefs.remove(THEME);
         else
@@ -376,24 +384,45 @@ public final class Config
     }
 
     /**
-     * Sets the player sector.
+     * Sets the X3TC player sector.
      *
      * @param playerSector
      *            The player sector to set
      */
-    public void setPlayerSector(final int playerSector)
+    public void setX3TCPlayerSector(final int playerSector)
     {
-        this.playerSector = playerSector;
+        this.x3tcPlayerSector = playerSector;
     }
 
     /**
-     * Returns the index of the selected player sector.
+     * Returns the index of the selected player sector in X3TC.
      *
-     * @return The player sector index
+     * @return The player sector index.
      */
-    public int getPlayerSector()
+    public int getX3TCPlayerSector()
     {
-        return this.playerSector;
+        return this.x3tcPlayerSector;
+    }
+
+    /**
+     * Sets the X3AP player sector.
+     *
+     * @param playerSector
+     *            The player sector to set
+     */
+    public void setX3APPlayerSector(final int playerSector)
+    {
+        this.x3apPlayerSector = playerSector;
+    }
+
+    /**
+     * Returns the index of the selected player sector in X3AP.
+     *
+     * @return The player sector index.
+     */
+    public int getX3APPlayerSector()
+    {
+        return this.x3apPlayerSector;
     }
 
     /**

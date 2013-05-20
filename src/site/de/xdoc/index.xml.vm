@@ -52,41 +52,11 @@
     </section>
     <section name="Neuigkeiten">
       <p>
-        <em>(31.03.2012)</em> Xadrian Version 1.4.3 ist nun verfügbar! Neben
-        einigen Fehlerkorrekturen gibt es folgende erwähnenswerte neue
-        Funktionen:
+        <em>(20.05.2013)</em> Xadrian Version 1.5.0 enthält nun den neuen
+        Spieler-Sektor und die neuen Fabriken aus X³: Albion Prelude 3.0.
       </p>
-      <ul>
-      <li>
-        <strong>Export/Import</strong>: Komplex Daten können nun als Text
-        exportiert werden, um diesen z.B. in einem Forum zu posten. Es ist
-        auch möglich die Komplex Daten als kurzen Template Code zu exportieren
-        und die Daten über diesen auch wieder zu importieren. So kann man
-        leicht den grundlegenden Komplex-Aufbau an jemand anderen übermitteln.
-        Natürlich werden nicht sämtliche Einstellungen des Komplexes 
-        (Deaktivierte Fabriken, Preis-Einstellungen und so) exportiert. Für
-        diesen Zweck kann man aber ja auch einfach die entsprechende x3c-Datei
-        z.B. per E-Mail versenden. 
-      </li>
-      <li>
-        <strong>Nachtmodus</strong>: Im Einstellungs-Dialog kann man nun einen
-        Nachtmodus aktivieren. Die Komplex-Daten werden dann mit heller 
-        Schrift auf dunklem Hintergrund angezeigt. Dies ist nützlich, wenn man
-        Xadrian auf einem zweiten Rechner nebenher verwendet, während man das
-        Spiel im Dunkeln spielt.
-      </li>
-      <li>
-        <strong>Produktions-Statistiken pro Minute</strong>: Produktions-Statistiken
-        können nun auch pro Minute anstatt pro Stunde angezeigt werden. Die
-        Anzeige in Xadrian ist dann in etwa so, wie die vom Commercial Agent
-        im Spiel. Leider weichen die Zahlen leicht von einander ab. Meine
-        Recherchen haben bisher ergeben, dass das an Rundungsfehlern in der
-        Anzeige im Spiel selbst liegen muss, da die Produktions-Daten im CAG
-        nicht exakt mit den Cycle-Informationen der Stationen übereinstimmen.
-      </li>
-      </ul>
       <p>
-        Die komplette Liste (in Englisch) aller Änderung gibt es 
+        Die komplette Liste aller Änderung (in Englisch) gibt es 
         <a href="../changes-report.html">hier</a>.
       </p>
     </section>    

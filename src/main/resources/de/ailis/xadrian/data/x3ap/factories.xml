@@ -6,2131 +6,2279 @@
     <resource ware="energyCells" quantity="210" storage="5000" />
     <resource ware="ore" quantity="35" storage="832" />
     <resource ware="bofu" quantity="35" storage="832" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="2" id="crystalFabL-boron" race="boron" volume="20500" price="6622236" cycle="480" size="L">
     <product ware="crystals" quantity="40" storage="1660" />
     <resource ware="energyCells" quantity="600" storage="25000" />
     <resource ware="bofu" quantity="100" storage="4160" />
     <resource ware="siliconWafers" quantity="25" storage="1040" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="3" id="stottMixeryM-boron" race="boron" volume="12500" price="1103708" cycle="60" size="M">
     <product ware="stottSpices" quantity="20" storage="6664" />
     <resource ware="energyCells" quantity="30" storage="10000" />
     <resource ware="plankton" quantity="30" storage="10000" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="4" id="planktonFarmM-boron" race="boron" volume="9000" price="320008" cycle="60" size="M">
     <product ware="plankton" quantity="30" storage="10000" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="5" id="crystalFabM-boron" race="boron" volume="15000" price="2973516" cycle="480" size="M">
     <product ware="crystals" quantity="16" storage="664" />
     <resource ware="energyCells" quantity="240" storage="10000" />
     <resource ware="bofu" quantity="40" storage="1664" />
     <resource ware="siliconWafers" quantity="10" storage="416" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="6" id="oreMineM-boron" race="boron" volume="8000" price="549972" cycle="60" size="M">
     <product ware="ore" quantity="8" storage="1664" />
     <resource ware="energyCells" quantity="48" storage="10000" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="7" id="impulseRayEmitterForge-boron" race="boron" volume="14500" price="2572804" cycle="96" size="S">
     <product ware="impulseRayEmitter" quantity="1" storage="276" />
     <resource ware="energyCells" quantity="24" storage="5000" />
     <resource ware="ore" quantity="4" storage="832" />
     <resource ware="bofu" quantity="4" storage="832" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
+    <manufacturer sector="sec-0-0" />
   </factory>
   <factory nid="8" id="solarPowerPlantM-boron" race="boron" volume="10500" price="4401840" cycle="305" size="M">
     <product ware="energyCells" quantity="1106" storage="10000" />
     <resource ware="crystals" quantity="8" storage="664" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="9" id="bofuChemicalLabL-boron" race="boron" volume="15000" price="2024976" cycle="72" size="L">
     <product ware="bofu" quantity="15" storage="4160" />
     <resource ware="energyCells" quantity="90" storage="25000" />
     <resource ware="bogas" quantity="5" storage="1380" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="10" id="bioGasFactoryL-boron" race="boron" volume="16500" price="561528" cycle="72" size="L">
     <product ware="bogas" quantity="5" storage="1380" />
     <resource ware="energyCells" quantity="90" storage="25000" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="11" id="siliconMineM-boron" race="boron" volume="9500" price="623268" cycle="118" size="M">
     <product ware="siliconWafers" quantity="4" storage="416" />
     <resource ware="energyCells" quantity="96" storage="10000" />
-    <manufacturer station="BSYFF-80" sector="sec-0-0" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-0" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="12" id="lowYieldSidearmsFab-teladi" race="teladi" volume="15000" price="2246368" cycle="480" size="S">
     <product ware="lowYieldSidearms" quantity="1" storage="40" />
     <resource ware="energyCells" quantity="120" storage="5000" />
     <resource ware="ore" quantity="20" storage="832" />
     <resource ware="nostropOil" quantity="80" storage="3332" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-19-7" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="13" id="blissPlaceM-teladi" race="teladi" volume="9500" price="1584144" cycle="1080" size="M">
     <product ware="spaceWeed" quantity="10" storage="164" />
     <resource ware="energyCells" quantity="540" storage="10000" />
     <resource ware="swampPlant" quantity="72" storage="1332" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-3-11" />
+    <manufacturer sector="sec-0-9" />
   </factory>
   <factory nid="14" id="mosquitoMissileFactory-teladi" race="teladi" volume="10000" price="525884" cycle="72" size="S">
     <product ware="mosquitoMissile" quantity="18" storage="3332" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="nostropOil" quantity="12" storage="3332" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
   </factory>
   <factory nid="15" id="teladianiumFoundryL-teladi" race="teladi" volume="18000" price="811548" cycle="60" size="L">
     <product ware="teladianium" quantity="10" storage="3330" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="16" id="weaponComponentFactory-teladi" race="teladi" volume="12000" price="655732" cycle="72" size="S">
     <product ware="warheads" quantity="8" storage="2500" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="clothRimes" quantity="3" storage="832" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
   </factory>
   <factory nid="17" id="oreMineM-teladi" race="teladi" volume="8000" price="424992" cycle="60" size="M">
     <product ware="ore" quantity="8" storage="1664" />
     <resource ware="energyCells" quantity="48" storage="10000" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-19-7" />
   </factory>
   <factory nid="18" id="dreamFarmL-teladi" race="teladi" volume="13500" price="687480" cycle="60" size="L">
     <product ware="swampPlant" quantity="10" storage="3330" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-0-9" />
   </factory>
   <factory nid="19" id="siliconMineM-teladi" race="teladi" volume="9500" price="449988" cycle="118" size="M">
     <product ware="siliconWafers" quantity="4" storage="416" />
     <resource ware="energyCells" quantity="96" storage="10000" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-10-8" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="20" id="solarPowerPlantM-teladi" race="teladi" volume="10500" price="4648552" cycle="305" size="M">
     <product ware="energyCells" quantity="1106" storage="10000" />
     <resource ware="crystals" quantity="8" storage="664" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-19-7" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="21" id="sunOilRefineryM-teladi" race="teladi" volume="12000" price="849984" cycle="60" size="M">
     <product ware="nostropOil" quantity="20" storage="6664" />
     <resource ware="energyCells" quantity="30" storage="10000" />
     <resource ware="sunriseFlowers" quantity="30" storage="10000" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-10-8" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="22" id="flowerFarmM-teladi" race="teladi" volume="11000" price="360004" cycle="60" size="M">
     <product ware="sunriseFlowers" quantity="30" storage="10000" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-19-7" />
   </factory>
   <factory nid="23" id="mobileDrillingSystemFactory-teladi" race="teladi" volume="18500" price="3682484" cycle="1728" size="S">
     <product ware="mobileDrillingSystem" quantity="1" storage="16" />
     <resource ware="energyCells" quantity="432" storage="5000" />
     <resource ware="ore" quantity="72" storage="832" />
     <resource ware="nostropOil" quantity="288" storage="3332" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
   </factory>
   <factory nid="24" id="concussionImpulseGeneratorForge-teladi" race="teladi" volume="21000" price="8997476" cycle="8232" size="S">
     <product ware="concussionImpulseGenerator" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="2058" storage="5000" />
     <resource ware="ore" quantity="343" storage="832" />
     <resource ware="nostropOil" quantity="1372" storage="3332" />
-    <manufacturer station="TSYZE-76" sector="sec-5-1" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
+    <manufacturer sector="sec-5-1" />
+    <manufacturer sector="sec-5-4" />
   </factory>
   <factory nid="25" id="poltergeistMissileFabricationFacility-terran" race="terran" volume="17500" price="2934560" cycle="120" size="S">
     <product ware="poltergeistMissile" quantity="2" storage="166" />
     <resource ware="energyCells" quantity="30" storage="5000" />
     <resource ware="ore" quantity="5" storage="832" />
     <resource ware="terranMre" quantity="5" storage="832" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="26" id="wraithMissileProductionPlant-terran" race="terran" volume="20000" price="10952660" cycle="600" size="S">
     <product ware="wraithMissile" quantity="1" storage="16" />
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="terranMre" quantity="25" storage="832" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
   </factory>
   <factory nid="27" id="empcForge-terran" race="terran" volume="18500" price="8563460" cycle="5976" size="S">
     <product ware="electroMagneticPlasmaCannon" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="1494" storage="5000" />
     <resource ware="ore" quantity="249" storage="832" />
     <resource ware="terranMre" quantity="249" storage="832" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
   </factory>
   <factory nid="28" id="waterPurificationPlantM-terran" race="terran" volume="8500" price="402528" cycle="72" size="M">
     <product ware="water" quantity="48" storage="6664" />
     <resource ware="energyCells" quantity="36" storage="10000" />
     <resource ware="ice" quantity="6" storage="1664" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
   </factory>
   <factory nid="29" id="solarPowerPlantXl-terran" race="terran" volume="24000" price="17607360" cycle="305" size="XL">
     <product ware="energyCells" quantity="5530" storage="50000" />
     <resource ware="crystals" quantity="40" storage="10000" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
   </factory>
   <factory nid="30" id="pointSingularityProjectorForge-terran" race="terran" volume="24500" price="15971276" cycle="18576" size="M">
     <product ware="pointSingularityProjector" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="4644" storage="10000" />
     <resource ware="ore" quantity="774" storage="1666" />
     <resource ware="terranMre" quantity="774" storage="1666" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
   </factory>
   <factory nid="31" id="oreMineM-terran" race="terran" volume="8500" price="402528" cycle="60" size="M">
     <product ware="ore" quantity="8" storage="1664" />
     <resource ware="energyCells" quantity="48" storage="10000" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="32" id="crystalFabL-terran" race="terran" volume="21000" price="6258664" cycle="480" size="L">
     <product ware="crystals" quantity="40" storage="1660" />
     <resource ware="energyCells" quantity="600" storage="25000" />
     <resource ware="siliconWafers" quantity="25" storage="1040" />
     <resource ware="terranMre" quantity="100" storage="4160" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
   </factory>
   <factory nid="33" id="siliconMineM-terran" race="terran" volume="8500" price="402528" cycle="118" size="M">
     <product ware="siliconWafers" quantity="4" storage="416" />
     <resource ware="energyCells" quantity="96" storage="10000" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
   </factory>
   <factory nid="34" id="shadowMissileConstructionFacility-terran" race="terran" volume="17500" price="2934560" cycle="1800" size="S">
     <product ware="shadowMissile" quantity="2" storage="10" />
     <resource ware="energyCells" quantity="450" storage="5000" />
     <resource ware="ore" quantity="75" storage="832" />
     <resource ware="terranMre" quantity="75" storage="832" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="35" id="uscFoodSupplyFactoryL-terran" race="terran" volume="20000" price="2074320" cycle="72" size="L">
     <product ware="terranMre" quantity="15" storage="4160" />
     <resource ware="energyCells" quantity="90" storage="25000" />
     <resource ware="proteinPaste" quantity="60" storage="16660" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="36" id="carboCakeFactoryM-terran" race="terran" volume="12500" price="325008" cycle="60" size="M">
     <product ware="carboCake" quantity="20" storage="6664" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="37" id="proteinPasteBlendingFacilityM-terran" race="terran" volume="12500" price="325008" cycle="60" size="M">
     <product ware="proteinPaste" quantity="20" storage="6664" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="ESYXE-07" sector="sec-11-1" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="38" id="massomMillL-split" race="split" volume="16500" price="2012512" cycle="60" size="L">
     <product ware="massomPowder" quantity="100" storage="33330" />
     <resource ware="energyCells" quantity="75" storage="25000" />
     <resource ware="scruffinFruits" quantity="75" storage="25000" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="39" id="scruffinFarmL-split" race="split" volume="15000" price="799992" cycle="60" size="L">
     <product ware="scruffinFruits" quantity="75" storage="25000" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="40" id="ammunitionFactory-split" race="split" volume="12000" price="2830680" cycle="840" size="S">
     <product ware="massDriverAmmunition" quantity="40" storage="832" />
     <resource ware="energyCells" quantity="210" storage="5000" />
     <resource ware="ore" quantity="35" storage="832" />
     <resource ware="rastarOil" quantity="21" storage="500" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="41" id="silkwormMissileFactory-split" race="split" volume="13000" price="3012468" cycle="360" size="S">
     <product ware="silkwormMissile" quantity="4" storage="110" />
     <resource ware="energyCells" quantity="90" storage="5000" />
     <resource ware="ore" quantity="15" storage="832" />
     <resource ware="rastarOil" quantity="9" storage="500" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="42" id="rastarRefineryM-split" race="split" volume="13500" price="1116692" cycle="80" size="M">
     <product ware="rastarOil" quantity="4" storage="1000" />
     <resource ware="energyCells" quantity="40" storage="10000" />
     <resource ware="cheltsMeat" quantity="8" storage="2000" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="43" id="weaponComponentFactory-split" race="split" volume="12000" price="688192" cycle="72" size="S">
     <product ware="warheads" quantity="8" storage="2500" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="clothRimes" quantity="3" storage="832" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="44" id="oreMineL-split" race="split" volume="12000" price="818040" cycle="60" size="L">
     <product ware="ore" quantity="20" storage="4160" />
     <resource ware="energyCells" quantity="120" storage="25000" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="45" id="cheltSpaceAquariumL-split" race="split" volume="18750" price="592496" cycle="60" size="L">
     <product ware="cheltsMeat" quantity="15" storage="5000" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="46" id="siliconMineM-split" race="split" volume="9500" price="499980" cycle="118" size="M">
     <product ware="siliconWafers" quantity="4" storage="416" />
     <resource ware="energyCells" quantity="96" storage="10000" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="47" id="solarPowerPlantL-split" race="split" volume="15750" price="12124536" cycle="305" size="L">
     <product ware="energyCells" quantity="2765" storage="25000" />
     <resource ware="crystals" quantity="20" storage="3330" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="48" id="impulseRayEmitterForge-split" race="split" volume="15000" price="2362060" cycle="480" size="S">
     <product ware="impulseRayEmitter" quantity="5" storage="276" />
     <resource ware="energyCells" quantity="120" storage="5000" />
     <resource ware="ore" quantity="20" storage="832" />
     <resource ware="rastarOil" quantity="12" storage="500" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="49" id="lowYieldSidearmsFab-split" race="split" volume="15000" price="2246368" cycle="480" size="S">
     <product ware="lowYieldSidearms" quantity="1" storage="40" />
     <resource ware="energyCells" quantity="120" storage="5000" />
     <resource ware="ore" quantity="20" storage="832" />
     <resource ware="rastarOil" quantity="12" storage="500" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-2-12" />
   </factory>
   <factory nid="50" id="satelliteFactory-split" race="split" volume="16500" price="967364" cycle="1056" size="S">
     <product ware="navigationRelaySatellite" quantity="4" storage="82" />
     <resource ware="energyCells" quantity="264" storage="5000" />
     <resource ware="siliconWafers" quantity="11" storage="208" />
     <resource ware="majaglit" quantity="352" storage="6666" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="51" id="advancedDroneFactory-split" race="split" volume="14500" price="3035320" cycle="960" size="S">
     <product ware="fighterDroneMkii" quantity="1" storage="20" />
     <resource ware="energyCells" quantity="240" storage="5000" />
     <resource ware="siliconWafers" quantity="10" storage="208" />
     <resource ware="rastarOil" quantity="24" storage="500" />
-    <manufacturer station="SSYRE-95" sector="sec-7-2" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-7-2" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="52" id="lasertowerFactory-split" race="split" volume="18500" price="1103708" cycle="5640" size="S">
     <product ware="lasertower" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="1410" storage="5000" />
     <resource ware="ore" quantity="235" storage="832" />
     <resource ware="rastarOil" quantity="141" storage="500" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="53" id="oreMineM-split" race="split" volume="8000" price="409020" cycle="60" size="M">
     <product ware="ore" quantity="8" storage="1664" />
     <resource ware="energyCells" quantity="48" storage="10000" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="54" id="ionShardRailgunForge-split" race="split" volume="13500" price="10065800" cycle="40440" size="S">
     <product ware="ionShardRailgun" quantity="5" storage="8" />
     <resource ware="energyCells" quantity="10110" storage="20000" />
     <resource ware="ore" quantity="1685" storage="3332" />
     <resource ware="rastarOil" quantity="1011" storage="2000" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="55" id="quantumTubeFab-split" race="split" volume="13500" price="4590120" cycle="2400" size="S">
     <product ware="quantumTubes" quantity="24" storage="166" />
     <resource ware="energyCells" quantity="600" storage="5000" />
     <resource ware="siliconWafers" quantity="25" storage="208" />
     <resource ware="rastarOil" quantity="60" storage="500" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="56" id="droneFactory-split" race="split" volume="14500" price="3035320" cycle="1056" size="S">
     <product ware="fighterDrone" quantity="8" storage="138" />
     <resource ware="energyCells" quantity="264" storage="5000" />
     <resource ware="siliconWafers" quantity="11" storage="208" />
     <resource ware="massomPowder" quantity="352" storage="6666" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="57" id="solarPowerPlantM-split" race="split" volume="10500" price="5388684" cycle="305" size="M">
     <product ware="energyCells" quantity="1106" storage="10000" />
     <resource ware="crystals" quantity="8" storage="664" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="58" id="scruffinFarmM-split" race="split" volume="10000" price="320008" cycle="60" size="M">
     <product ware="scruffinFruits" quantity="30" storage="10000" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="59" id="siliconMineL-split" race="split" volume="14250" price="1022552" cycle="118" size="L">
     <product ware="siliconWafers" quantity="10" storage="1040" />
     <resource ware="energyCells" quantity="240" storage="25000" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="60" id="squashMineFactory-split" race="split" volume="15000" price="2019132" cycle="2040" size="S">
     <product ware="squashMine" quantity="6" storage="54" />
     <resource ware="energyCells" quantity="510" storage="5000" />
     <resource ware="ore" quantity="85" storage="832" />
     <resource ware="rastarOil" quantity="51" storage="500" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="61" id="massomMillM-split" race="split" volume="11000" price="804992" cycle="60" size="M">
     <product ware="massomPowder" quantity="40" storage="13332" />
     <resource ware="energyCells" quantity="30" storage="10000" />
     <resource ware="scruffinFruits" quantity="30" storage="10000" />
-    <manufacturer station="SSYRE-68" sector="sec-8-2" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYIE-07" sector="sec-14-3" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYWA-45" sector="sec-2-12" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-8-2" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-14-3" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-2-12" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="62" id="proteinPasteBlendingFacilityL-terran" race="terran" volume="18500" price="811548" cycle="60" size="L">
     <product ware="proteinPaste" quantity="50" storage="16660" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
+    <manufacturer sector="sec-13-2" />
   </factory>
   <factory nid="63" id="waterPurificationPlantL-terran" race="terran" volume="12500" price="856996" cycle="72" size="L">
     <product ware="water" quantity="120" storage="16660" />
     <resource ware="energyCells" quantity="90" storage="25000" />
     <resource ware="ice" quantity="15" storage="4160" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="64" id="crystalFabM-terran" race="terran" volume="15500" price="3129332" cycle="480" size="M">
     <product ware="crystals" quantity="16" storage="664" />
     <resource ware="energyCells" quantity="240" storage="10000" />
     <resource ware="siliconWafers" quantity="10" storage="416" />
     <resource ware="terranMre" quantity="40" storage="1664" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="65" id="uscFoodSupplyFactoryM-terran" race="terran" volume="13500" price="921920" cycle="72" size="M">
     <product ware="terranMre" quantity="6" storage="1664" />
     <resource ware="energyCells" quantity="36" storage="10000" />
     <resource ware="proteinPaste" quantity="24" storage="6664" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
   </factory>
   <factory nid="66" id="solarPowerPlantM-terran" race="terran" volume="11000" price="6998796" cycle="305" size="M">
     <product ware="energyCells" quantity="1106" storage="10000" />
     <resource ware="crystals" quantity="8" storage="664" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="67" id="carboCakeFactoryL-terran" race="terran" volume="18500" price="811548" cycle="60" size="L">
     <product ware="carboCake" quantity="50" storage="16660" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
+    <manufacturer sector="sec-13-2" />
   </factory>
   <factory nid="68" id="solarPowerPlantL-terran" race="terran" volume="17500" price="9904140" cycle="305" size="L">
     <product ware="energyCells" quantity="2765" storage="25000" />
     <resource ware="crystals" quantity="20" storage="3330" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="69" id="matterAntiMatterLauncherForge-terran" race="terran" volume="20500" price="11965472" cycle="16440" size="M">
     <product ware="matterAntiMatterLauncher" quantity="2" storage="8" />
     <resource ware="energyCells" quantity="4110" storage="10000" />
     <resource ware="ore" quantity="685" storage="1666" />
     <resource ware="terranMre" quantity="685" storage="1666" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
   </factory>
   <factory nid="70" id="starburstShockwaveCannonForge-terran" race="terran" volume="15500" price="14237808" cycle="12600" size="S">
     <product ware="starburstShockwaveCannon" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="3150" storage="5000" />
     <resource ware="ore" quantity="525" storage="832" />
     <resource ware="terranMre" quantity="525" storage="832" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="71" id="oreMineL-terran" race="terran" volume="16500" price="805056" cycle="60" size="L">
     <product ware="ore" quantity="20" storage="4160" />
     <resource ware="energyCells" quantity="120" storage="25000" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYIE-27" sector="sec-12-3" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
   </factory>
   <factory nid="72" id="kerisDroneFactoryM-terran" race="terran" volume="9500" price="3129332" cycle="288" size="M">
     <product ware="keris" quantity="2" storage="136" />
     <resource ware="energyCells" quantity="144" storage="10000" />
     <resource ware="siliconWafers" quantity="6" storage="416" />
     <resource ware="terranMre" quantity="24" storage="1664" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
+    <manufacturer sector="sec-13-2" />
   </factory>
   <factory nid="73" id="siliconMineL-terran" race="terran" volume="16500" price="805056" cycle="118" size="L">
     <product ware="siliconWafers" quantity="10" storage="1040" />
     <resource ware="energyCells" quantity="240" storage="25000" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="74" id="phantomMissileFabricationFacility-terran" race="terran" volume="13500" price="2889112" cycle="1200" size="S">
     <product ware="phantomMissile" quantity="3" storage="24" />
     <resource ware="energyCells" quantity="300" storage="5000" />
     <resource ware="ore" quantity="50" storage="832" />
     <resource ware="terranMre" quantity="50" storage="832" />
-    <manufacturer station="ESYQE-56" sector="sec-13-2" />
-    <manufacturer station="ESYDB-11" sector="sec-15-10" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-15-10" />
   </factory>
   <factory nid="75" id="cattleRanchM-argon" race="argon" volume="11500" price="275016" cycle="60" size="M">
     <product ware="argnuBeef" quantity="6" storage="2000" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="76" id="crystalFabL-argon" race="argon" volume="20500" price="6492388" cycle="480" size="L">
     <product ware="crystals" quantity="40" storage="1660" />
     <resource ware="energyCells" quantity="600" storage="25000" />
     <resource ware="siliconWafers" quantity="25" storage="1040" />
     <resource ware="meatsteakCahoonas" quantity="400" storage="16660" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="77" id="particleAcceleratorCannonForge-argon" race="argon" volume="16500" price="4196680" cycle="840" size="S">
     <product ware="particleAcceleratorCannon" quantity="1" storage="32" />
     <resource ware="energyCells" quantity="210" storage="5000" />
     <resource ware="ore" quantity="35" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="140" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="78" id="shieldProdFacility1Mj-argon" race="argon" volume="11500" price="1630888" cycle="1560" size="S">
     <product ware="1MjShield" quantity="12" storage="250" />
     <resource ware="energyCells" quantity="390" storage="5000" />
     <resource ware="ore" quantity="65" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="260" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="79" id="lowYieldSidearmsFab-argon" race="argon" volume="15000" price="2246368" cycle="480" size="S">
     <product ware="lowYieldSidearms" quantity="1" storage="40" />
     <resource ware="energyCells" quantity="120" storage="5000" />
     <resource ware="ore" quantity="20" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="80" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="80" id="chipPlant-argon" race="argon" volume="16000" price="5599036" cycle="1440" size="S">
     <product ware="microchips" quantity="4" storage="40" />
     <resource ware="energyCells" quantity="360" storage="5000" />
     <resource ware="siliconWafers" quantity="15" storage="208" />
     <resource ware="meatsteakCahoonas" quantity="240" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="81" id="rimesFactM-argon" race="argon" volume="13000" price="799992" cycle="72" size="M">
     <product ware="clothRimes" quantity="6" storage="1664" />
     <resource ware="energyCells" quantity="36" storage="10000" />
     <resource ware="delexianWheat" quantity="24" storage="6664" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="82" id="advancedDroneFactory-argon" race="argon" volume="14500" price="2898204" cycle="960" size="S">
     <product ware="fighterDroneMkii" quantity="1" storage="20" />
     <resource ware="energyCells" quantity="240" storage="5000" />
     <resource ware="siliconWafers" quantity="10" storage="208" />
     <resource ware="meatsteakCahoonas" quantity="160" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="83" id="siliconMineL-argon" race="argon" volume="14250" price="1139416" cycle="118" size="L">
     <product ware="siliconWafers" quantity="10" storage="1040" />
     <resource ware="energyCells" quantity="240" storage="25000" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="84" id="weaponComponentFactory-argon" race="argon" volume="12000" price="720656" cycle="72" size="S">
     <product ware="warheads" quantity="8" storage="2500" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="clothRimes" quantity="3" storage="832" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="85" id="cahoonaBakeryM-argon" race="argon" volume="11500" price="874980" cycle="60" size="M">
     <product ware="meatsteakCahoonas" quantity="20" storage="6664" />
     <resource ware="energyCells" quantity="30" storage="10000" />
     <resource ware="argnuBeef" quantity="6" storage="2000" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="86" id="highEnergyPlasmaThrowerForge-argon" race="argon" volume="18000" price="6850768" cycle="2880" size="S">
     <product ware="highEnergyPlasmaThrower" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="720" storage="5000" />
     <resource ware="ore" quantity="120" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="480" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="87" id="cahoonaBakeryL-argon" race="argon" volume="17250" price="2187480" cycle="60" size="L">
     <product ware="meatsteakCahoonas" quantity="50" storage="16660" />
     <resource ware="energyCells" quantity="75" storage="25000" />
     <resource ware="argnuBeef" quantity="15" storage="5000" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="88" id="spaceFuelDistilleryL-argon" race="argon" volume="12000" price="5500028" cycle="96" size="L">
     <product ware="spaceFuel" quantity="10" storage="1660" />
     <resource ware="energyCells" quantity="120" storage="25000" />
     <resource ware="delexianWheat" quantity="80" storage="16660" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-0-9" />
   </factory>
   <factory nid="89" id="fireflyMissileFactory-argon" race="argon" volume="11500" price="714164" cycle="72" size="S">
     <product ware="fireflyMissile" quantity="12" storage="2500" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="12" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="90" id="oreMineM-argon" race="argon" volume="8000" price="449988" cycle="60" size="M">
     <product ware="ore" quantity="8" storage="1664" />
     <resource ware="energyCells" quantity="48" storage="10000" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="91" id="solarPowerPlantM-argon" race="argon" volume="10500" price="4895260" cycle="305" size="M">
     <product ware="energyCells" quantity="1106" storage="10000" />
     <resource ware="crystals" quantity="8" storage="664" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="92" id="crystalFabM-argon" race="argon" volume="15000" price="3129332" cycle="480" size="M">
     <product ware="crystals" quantity="16" storage="664" />
     <resource ware="energyCells" quantity="240" storage="10000" />
     <resource ware="siliconWafers" quantity="10" storage="416" />
     <resource ware="meatsteakCahoonas" quantity="160" storage="6664" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="93" id="phasedRepeaterGunForge-argon" race="argon" volume="16500" price="4856308" cycle="3072" size="S">
     <product ware="phasedRepeaterGun" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="768" storage="5000" />
     <resource ware="ore" quantity="128" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="512" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="94" id="mosquitoMissileFactory-argon" race="argon" volume="10000" price="603792" cycle="72" size="S">
     <product ware="mosquitoMissile" quantity="18" storage="3332" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="12" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="95" id="ammunitionFactory-argon" race="argon" volume="12000" price="2830680" cycle="168" size="S">
     <product ware="massDriverAmmunition" quantity="8" storage="832" />
     <resource ware="energyCells" quantity="42" storage="5000" />
     <resource ware="ore" quantity="7" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="28" storage="3332" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="96" id="wheatFarmM-argon" race="argon" volume="10000" price="367016" cycle="60" size="M">
     <product ware="delexianWheat" quantity="20" storage="6664" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="ASYNE-10" sector="sec-1-3" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-1-3" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-0-9" />
   </factory>
   <factory nid="97" id="cheltSpaceAquariumM-split" race="split" volume="12500" price="236972" cycle="60" size="M">
     <product ware="cheltsMeat" quantity="6" storage="2000" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="98" id="advancedSatelliteFactory-split" race="split" volume="18000" price="3389028" cycle="864" size="S">
     <product ware="advancedSatellite" quantity="2" storage="40" />
     <resource ware="energyCells" quantity="216" storage="5000" />
     <resource ware="siliconWafers" quantity="9" storage="208" />
     <resource ware="majaglit" quantity="288" storage="6666" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="99" id="thunderboltMissileFactory-split" race="split" volume="16500" price="3025452" cycle="600" size="S">
     <product ware="thunderboltMissile" quantity="4" storage="66" />
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="rastarOil" quantity="15" storage="500" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="100" id="crystalFabL-split" race="split" volume="20500" price="6583284" cycle="480" size="L">
     <product ware="crystals" quantity="40" storage="1660" />
     <resource ware="energyCells" quantity="600" storage="25000" />
     <resource ware="siliconWafers" quantity="25" storage="1040" />
     <resource ware="rastarOil" quantity="60" storage="2500" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="101" id="crystalFabM-split" race="split" volume="15000" price="3285148" cycle="480" size="M">
     <product ware="crystals" quantity="16" storage="664" />
     <resource ware="energyCells" quantity="240" storage="10000" />
     <resource ware="siliconWafers" quantity="10" storage="416" />
     <resource ware="rastarOil" quantity="24" storage="1000" />
-    <manufacturer station="SSYKE-37" sector="sec-9-3" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-9-3" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="102" id="solarPowerPlantXl-boron" race="boron" volume="22000" price="17607360" cycle="305" size="XL">
     <product ware="energyCells" quantity="5530" storage="50000" />
     <resource ware="crystals" quantity="40" storage="10000" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="103" id="ionCannonForge-boron" race="boron" volume="19000" price="14096276" cycle="17688" size="M">
     <product ware="ionCannon" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="4422" storage="10000" />
     <resource ware="ore" quantity="737" storage="1666" />
     <resource ware="bofu" quantity="737" storage="1666" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="104" id="quantumTubeFab-boron" race="boron" volume="13500" price="5051080" cycle="2400" size="S">
     <product ware="quantumTubes" quantity="24" storage="166" />
     <resource ware="energyCells" quantity="600" storage="5000" />
     <resource ware="bofu" quantity="100" storage="832" />
     <resource ware="siliconWafers" quantity="25" storage="208" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="105" id="mosquitoMissileFactory-boron" race="boron" volume="10000" price="551852" cycle="72" size="S">
     <product ware="mosquitoMissile" quantity="18" storage="3332" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="bofu" quantity="3" storage="832" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="106" id="planktonFarmL-boron" race="boron" volume="13500" price="799992" cycle="60" size="L">
     <product ware="plankton" quantity="75" storage="25000" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="107" id="bofuChemicalLabM-boron" race="boron" volume="10000" price="809992" cycle="72" size="M">
     <product ware="bofu" quantity="6" storage="1664" />
     <resource ware="energyCells" quantity="36" storage="10000" />
     <resource ware="bogas" quantity="2" storage="552" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="108" id="bioGasFactoryM-boron" race="boron" volume="11000" price="224636" cycle="72" size="M">
     <product ware="bogas" quantity="2" storage="552" />
     <resource ware="energyCells" quantity="36" storage="10000" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="109" id="oreMineL-boron" race="boron" volume="12000" price="1139416" cycle="60" size="L">
     <product ware="ore" quantity="20" storage="4160" />
     <resource ware="energyCells" quantity="120" storage="25000" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="110" id="satelliteFactory-boron" race="boron" volume="16500" price="876472" cycle="1056" size="S">
     <product ware="navigationRelaySatellite" quantity="4" storage="82" />
     <resource ware="energyCells" quantity="264" storage="5000" />
     <resource ware="siliconWafers" quantity="11" storage="208" />
     <resource ware="majaglit" quantity="352" storage="6666" />
-    <manufacturer station="BSYFE-42" sector="sec-18-3" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-18-3" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="111" id="flowerFarmL-teladi" race="teladi" volume="16500" price="899976" cycle="60" size="L">
     <product ware="sunriseFlowers" quantity="75" storage="25000" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-10-8" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="112" id="teladianiumFoundryM-teladi" race="teladi" volume="12000" price="325008" cycle="60" size="M">
     <product ware="teladianium" quantity="4" storage="1332" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-19-7" />
+    <manufacturer sector="sec-10-8" />
   </factory>
   <factory nid="113" id="dreamFarmM-teladi" race="teladi" volume="9000" price="275016" cycle="60" size="M">
     <product ware="swampPlant" quantity="4" storage="1332" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-19-7" />
+    <manufacturer sector="sec-10-8" />
+    <manufacturer sector="sec-3-11" />
+    <manufacturer sector="sec-0-9" />
   </factory>
   <factory nid="114" id="solarPowerPlantL-teladi" race="teladi" volume="15750" price="10459240" cycle="305" size="L">
     <product ware="energyCells" quantity="2765" storage="25000" />
     <resource ware="crystals" quantity="20" storage="3330" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
   </factory>
   <factory nid="115" id="highEnergyPlasmaThrowerForge-teladi" race="teladi" volume="18000" price="6439672" cycle="2880" size="S">
     <product ware="highEnergyPlasmaThrower" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="720" storage="5000" />
     <resource ware="ore" quantity="120" storage="832" />
     <resource ware="nostropOil" quantity="480" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-10-8" />
   </factory>
   <factory nid="116" id="solarPowerPlantXl-teladi" race="teladi" volume="22000" price="18594200" cycle="305" size="XL">
     <product ware="energyCells" quantity="5530" storage="50000" />
     <resource ware="crystals" quantity="40" storage="10000" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-10-8" />
   </factory>
   <factory nid="117" id="silkwormMissileFactory-teladi" race="teladi" volume="13000" price="2739788" cycle="360" size="S">
     <product ware="silkwormMissile" quantity="4" storage="110" />
     <resource ware="energyCells" quantity="90" storage="5000" />
     <resource ware="ore" quantity="15" storage="832" />
     <resource ware="nostropOil" quantity="60" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
   </factory>
   <factory nid="118" id="squashMineFactory-teladi" race="teladi" volume="15000" price="2473600" cycle="2040" size="S">
     <product ware="squashMine" quantity="6" storage="54" />
     <resource ware="energyCells" quantity="510" storage="5000" />
     <resource ware="ore" quantity="85" storage="832" />
     <resource ware="nostropOil" quantity="340" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="119" id="crystalFabM-teladi" race="teladi" volume="15000" price="3129332" cycle="480" size="M">
     <product ware="crystals" quantity="16" storage="664" />
     <resource ware="energyCells" quantity="240" storage="10000" />
     <resource ware="siliconWafers" quantity="10" storage="416" />
     <resource ware="nostropOil" quantity="160" storage="6664" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
   </factory>
   <factory nid="120" id="gaussCannonForge-teladi" race="teladi" volume="21000" price="12091424" cycle="13752" size="M">
     <product ware="gaussCannon" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="3438" storage="10000" />
     <resource ware="ore" quantity="573" storage="1666" />
     <resource ware="nostropOil" quantity="2292" storage="6666" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
+    <manufacturer sector="sec-5-4" />
   </factory>
   <factory nid="121" id="cycloneMissileFactory-teladi" race="teladi" volume="14000" price="4161620" cycle="360" size="S">
     <product ware="cycloneMissile" quantity="1" storage="26" />
     <resource ware="energyCells" quantity="90" storage="5000" />
     <resource ware="ore" quantity="15" storage="832" />
     <resource ware="nostropOil" quantity="60" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
+    <manufacturer sector="sec-5-4" />
   </factory>
   <factory nid="122" id="tomahawkMissileManufacturingPlant-teladi" race="teladi" volume="13000" price="2876128" cycle="1200" size="S">
     <product ware="tomahawkHeavyMissile" quantity="3" storage="24" />
     <resource ware="energyCells" quantity="300" storage="5000" />
     <resource ware="ore" quantity="50" storage="832" />
     <resource ware="nostropOil" quantity="200" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
+    <manufacturer sector="sec-5-4" />
   </factory>
   <factory nid="123" id="typhoonMissileFactory-teladi" race="teladi" volume="17500" price="9141284" cycle="600" size="S">
     <product ware="typhoonMissile" quantity="1" storage="16" />
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="nostropOil" quantity="100" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-19-7" />
   </factory>
   <factory nid="124" id="quantumTubeFab-teladi" race="teladi" volume="13500" price="4135652" cycle="2400" size="S">
     <product ware="quantumTubes" quantity="24" storage="166" />
     <resource ware="energyCells" quantity="600" storage="5000" />
     <resource ware="siliconWafers" quantity="25" storage="208" />
     <resource ware="nostropOil" quantity="400" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-19-7" />
   </factory>
   <factory nid="125" id="oreMineL-teladi" race="teladi" volume="12000" price="849984" cycle="60" size="L">
     <product ware="ore" quantity="20" storage="4160" />
     <resource ware="energyCells" quantity="120" storage="25000" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-10-8" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="126" id="shieldProdFacility1Mj-teladi" race="teladi" volume="11500" price="1485460" cycle="1560" size="S">
     <product ware="1MjShield" quantity="12" storage="250" />
     <resource ware="energyCells" quantity="390" storage="5000" />
     <resource ware="ore" quantity="65" storage="832" />
     <resource ware="nostropOil" quantity="260" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-10-8" />
   </factory>
   <factory nid="127" id="hammerTorpedoFabricationFacility-teladi" race="teladi" volume="13000" price="2876128" cycle="1800" size="S">
     <product ware="hammerHeavyTorpedo" quantity="2" storage="10" />
     <resource ware="energyCells" quantity="450" storage="5000" />
     <resource ware="ore" quantity="75" storage="832" />
     <resource ware="nostropOil" quantity="300" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
+    <manufacturer sector="sec-5-4" />
   </factory>
   <factory nid="128" id="crystalFabL-teladi" race="teladi" volume="20500" price="6557312" cycle="480" size="L">
     <product ware="crystals" quantity="40" storage="1660" />
     <resource ware="energyCells" quantity="600" storage="25000" />
     <resource ware="siliconWafers" quantity="25" storage="1040" />
     <resource ware="nostropOil" quantity="400" storage="16660" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
   </factory>
   <factory nid="129" id="shieldProdFacility5Mj-teladi" race="teladi" volume="12500" price="2041208" cycle="3000" size="S">
     <product ware="5MjShield" quantity="6" storage="62" />
     <resource ware="energyCells" quantity="750" storage="5000" />
     <resource ware="ore" quantity="125" storage="832" />
     <resource ware="nostropOil" quantity="500" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="130" id="sunOilRefineryL-teladi" race="teladi" volume="18000" price="2125024" cycle="60" size="L">
     <product ware="nostropOil" quantity="50" storage="16660" />
     <resource ware="energyCells" quantity="75" storage="25000" />
     <resource ware="sunriseFlowers" quantity="75" storage="25000" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-19-7" />
   </factory>
   <factory nid="131" id="satelliteFactory-teladi" race="teladi" volume="16500" price="831024" cycle="1056" size="S">
     <product ware="navigationRelaySatellite" quantity="4" storage="82" />
     <resource ware="energyCells" quantity="264" storage="5000" />
     <resource ware="siliconWafers" quantity="11" storage="208" />
     <resource ware="majaglit" quantity="352" storage="6666" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-19-7" />
   </factory>
   <factory nid="132" id="chipPlant-teladi" race="teladi" volume="16000" price="5599036" cycle="1440" size="S">
     <product ware="microchips" quantity="4" storage="40" />
     <resource ware="energyCells" quantity="360" storage="5000" />
     <resource ware="siliconWafers" quantity="15" storage="208" />
     <resource ware="nostropOil" quantity="240" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-10-8" />
   </factory>
   <factory nid="133" id="flakArtilleryArrayForge-teladi" race="teladi" volume="15000" price="11390248" cycle="12600" size="S">
     <product ware="flakArtilleryArray" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="3150" storage="5000" />
     <resource ware="ore" quantity="525" storage="832" />
     <resource ware="nostropOil" quantity="2100" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
   </factory>
   <factory nid="134" id="blissPlaceL-teladi" race="teladi" volume="14250" price="3564320" cycle="1080" size="L">
     <product ware="spaceWeed" quantity="25" storage="410" />
     <resource ware="energyCells" quantity="1350" storage="25000" />
     <resource ware="swampPlant" quantity="180" storage="3330" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-19-7" />
+    <manufacturer sector="sec-10-8" />
+    <manufacturer sector="sec-0-9" />
   </factory>
   <factory nid="135" id="flailMissileProductionFacility-teladi" race="teladi" volume="13000" price="2876128" cycle="600" size="S">
     <product ware="flailBarrageMissile" quantity="1" storage="16" />
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="nostropOil" quantity="100" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
+    <manufacturer sector="sec-5-4" />
   </factory>
   <factory nid="136" id="siliconMineL-teladi" race="teladi" volume="14250" price="905688" cycle="118" size="L">
     <product ware="siliconWafers" quantity="10" storage="1040" />
     <resource ware="energyCells" quantity="240" storage="25000" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-19-7" />
   </factory>
   <factory nid="137" id="computerPlant-teladi" race="teladi" volume="14000" price="1415340" cycle="96" size="S">
     <product ware="computerComponents" quantity="2" storage="416" />
     <resource ware="energyCells" quantity="24" storage="5000" />
     <resource ware="siliconWafers" quantity="1" storage="208" />
     <resource ware="nostropOil" quantity="16" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="138" id="impulseRayEmitterForge-teladi" race="teladi" volume="15000" price="2565792" cycle="96" size="S">
     <product ware="impulseRayEmitter" quantity="1" storage="276" />
     <resource ware="energyCells" quantity="24" storage="5000" />
     <resource ware="ore" quantity="4" storage="832" />
     <resource ware="nostropOil" quantity="16" storage="3332" />
-    <manufacturer station="TSYBE-03" sector="sec-5-4" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
+    <manufacturer sector="sec-5-4" />
+    <manufacturer sector="sec-10-8" />
   </factory>
   <factory nid="139" id="chipPlant-split" race="split" volume="16000" price="6487196" cycle="1440" size="S">
     <product ware="microchips" quantity="4" storage="40" />
     <resource ware="energyCells" quantity="360" storage="5000" />
     <resource ware="siliconWafers" quantity="15" storage="208" />
     <resource ware="rastarOil" quantity="36" storage="500" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="140" id="pulsedBeamEmitterForge-split" race="split" volume="18000" price="9068568" cycle="4800" size="S">
     <product ware="pulsedBeamEmitter" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="1200" storage="5000" />
     <resource ware="ore" quantity="200" storage="832" />
     <resource ware="rastarOil" quantity="120" storage="500" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="141" id="rastarRefineryL-split" race="split" volume="20250" price="2512556" cycle="80" size="L">
     <product ware="rastarOil" quantity="10" storage="2500" />
     <resource ware="energyCells" quantity="100" storage="25000" />
     <resource ware="cheltsMeat" quantity="20" storage="5000" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="142" id="highEnergyPlasmaThrowerForge-split" race="split" volume="17500" price="6987760" cycle="2880" size="S">
     <product ware="highEnergyPlasmaThrower" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="720" storage="5000" />
     <resource ware="ore" quantity="120" storage="832" />
     <resource ware="rastarOil" quantity="72" storage="500" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="143" id="shieldProdFacility25Mj-split" race="split" volume="14000" price="3427980" cycle="1920" size="S">
     <product ware="25MjShield" quantity="1" storage="14" />
     <resource ware="energyCells" quantity="480" storage="5000" />
     <resource ware="ore" quantity="80" storage="832" />
     <resource ware="rastarOil" quantity="48" storage="500" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="144" id="waspMissileFactory-split" race="split" volume="11500" price="1675036" cycle="120" size="S">
     <product ware="waspMissile" quantity="5" storage="416" />
     <resource ware="energyCells" quantity="30" storage="5000" />
     <resource ware="ore" quantity="5" storage="832" />
     <resource ware="rastarOil" quantity="3" storage="500" />
-    <manufacturer station="SSYWD-79" sector="sec-16-4" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-16-4" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="145" id="waspMissileFactory-argon" race="argon" volume="11500" price="1525712" cycle="72" size="S">
     <product ware="waspMissile" quantity="3" storage="416" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="12" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="146" id="silkwormMissileFactory-argon" race="argon" volume="13000" price="2876128" cycle="360" size="S">
     <product ware="silkwormMissile" quantity="4" storage="110" />
     <resource ware="energyCells" quantity="90" storage="5000" />
     <resource ware="ore" quantity="15" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="60" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="147" id="rimesFactL-argon" race="argon" volume="19500" price="1999980" cycle="72" size="L">
     <product ware="clothRimes" quantity="15" storage="4160" />
     <resource ware="energyCells" quantity="90" storage="25000" />
     <resource ware="delexianWheat" quantity="60" storage="16660" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="148" id="shieldProdFacility2Gj-argon" race="argon" volume="21000" price="12268020" cycle="15360" size="M">
     <product ware="2GjShield" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="3840" storage="10000" />
     <resource ware="ore" quantity="640" storage="1666" />
     <resource ware="meatsteakCahoonas" quantity="2560" storage="6666" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="149" id="spaceFuelDistilleryM-argon" race="argon" volume="8000" price="1999980" cycle="96" size="M">
     <product ware="spaceFuel" quantity="4" storage="664" />
     <resource ware="energyCells" quantity="48" storage="10000" />
     <resource ware="delexianWheat" quantity="32" storage="6664" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-0-9" />
   </factory>
   <factory nid="150" id="clusterFlakArrayForge-argon" race="argon" volume="21000" price="12039488" cycle="12864" size="S">
     <product ware="clusterFlakArray" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="3216" storage="5000" />
     <resource ware="ore" quantity="536" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="2144" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="151" id="oreMineL-argon" race="argon" volume="12000" price="905688" cycle="60" size="L">
     <product ware="ore" quantity="20" storage="4160" />
     <resource ware="energyCells" quantity="120" storage="25000" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="152" id="tomahawkMissileManufacturingPlant-argon" race="argon" volume="13000" price="2876128" cycle="1200" size="S">
     <product ware="tomahawkHeavyMissile" quantity="3" storage="24" />
     <resource ware="energyCells" quantity="300" storage="5000" />
     <resource ware="ore" quantity="50" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="200" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="153" id="lasertowerFactory-argon" race="argon" volume="18500" price="1220568" cycle="5640" size="S">
     <product ware="lasertower" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="1410" storage="5000" />
     <resource ware="ore" quantity="235" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="940" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="154" id="wheatFarmL-argon" race="argon" volume="15000" price="917504" cycle="60" size="L">
     <product ware="delexianWheat" quantity="50" storage="16660" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-0-9" />
   </factory>
   <factory nid="155" id="quantumTubeFab-argon" race="argon" volume="13500" price="4135652" cycle="2400" size="S">
     <product ware="quantumTubes" quantity="24" storage="166" />
     <resource ware="energyCells" quantity="600" storage="5000" />
     <resource ware="siliconWafers" quantity="25" storage="208" />
     <resource ware="meatsteakCahoonas" quantity="400" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="156" id="droneFactory-argon" race="argon" volume="14500" price="2898204" cycle="1056" size="S">
     <product ware="fighterDrone" quantity="8" storage="138" />
     <resource ware="energyCells" quantity="264" storage="5000" />
     <resource ware="siliconWafers" quantity="11" storage="208" />
     <resource ware="massomPowder" quantity="352" storage="6666" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="157" id="cattleRanchL-argon" race="argon" volume="17250" price="687480" cycle="60" size="L">
     <product ware="argnuBeef" quantity="15" storage="5000" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="158" id="photonPulseCannonForge-argon" race="argon" volume="24000" price="12777020" cycle="17280" size="M">
     <product ware="photonPulseCannon" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="4320" storage="10000" />
     <resource ware="ore" quantity="720" storage="1666" />
     <resource ware="meatsteakCahoonas" quantity="2880" storage="6666" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="159" id="hammerTorpedoFabricationFacility-argon" race="argon" volume="13000" price="2876128" cycle="1800" size="S">
     <product ware="hammerHeavyTorpedo" quantity="2" storage="10" />
     <resource ware="energyCells" quantity="450" storage="5000" />
     <resource ware="ore" quantity="75" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="300" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="160" id="firestormTorpedoFactory-argon" race="argon" volume="19500" price="10952660" cycle="1440" size="S">
     <product ware="firestormTorpedo" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="360" storage="5000" />
     <resource ware="ore" quantity="60" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="240" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="161" id="flailMissileProductionFacility-argon" race="argon" volume="13000" price="2876128" cycle="600" size="S">
     <product ware="flailBarrageMissile" quantity="1" storage="16" />
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="100" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="162" id="advancedSatelliteFactory-argon" race="argon" volume="18000" price="3233208" cycle="864" size="S">
     <product ware="advancedSatellite" quantity="2" storage="40" />
     <resource ware="energyCells" quantity="216" storage="5000" />
     <resource ware="siliconWafers" quantity="9" storage="208" />
     <resource ware="majaglit" quantity="288" storage="6666" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="163" id="solarPowerPlantXl-argon" race="argon" volume="22000" price="19581044" cycle="305" size="XL">
     <product ware="energyCells" quantity="5530" storage="50000" />
     <resource ware="crystals" quantity="40" storage="10000" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYZB-22" sector="sec-7-7" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-7-7" />
+    <manufacturer sector="sec-8-7" />
   </factory>
   <factory nid="164" id="shieldProdFac200Mj-argon" race="argon" volume="16000" price="6336572" cycle="3240" size="S">
     <product ware="200MjShield" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="810" storage="5000" />
     <resource ware="ore" quantity="135" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="540" storage="3332" />
-    <manufacturer station="ASYUD-63" sector="sec-2-5" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
-    <manufacturer station="ASYYB-81" sector="sec-8-7" />
-    <manufacturer station="ASYQB-53" sector="sec-14-8" />
+    <manufacturer sector="sec-2-5" />
+    <manufacturer sector="sec-13-6" />
+    <manufacturer sector="sec-8-7" />
+    <manufacturer sector="sec-14-8" />
   </factory>
   <factory nid="165" id="energyBoltChaingunAmmunitionForge-teladi" race="teladi" volume="12000" price="3538352" cycle="264" size="S">
     <product ware="energyBoltChaingunAmmunition" quantity="12" storage="416" />
     <resource ware="energyCells" quantity="66" storage="5000" />
     <resource ware="ore" quantity="11" storage="832" />
     <resource ware="nostropOil" quantity="44" storage="3332" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-19-7" />
+    <manufacturer sector="sec-10-8" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="166" id="gaussCannonAmmunitionForge-teladi" race="teladi" volume="12000" price="4187592" cycle="840" size="S">
     <product ware="gaussCannonAmmunition" quantity="4" storage="82" />
     <resource ware="energyCells" quantity="210" storage="5000" />
     <resource ware="ore" quantity="35" storage="832" />
     <resource ware="nostropOil" quantity="140" storage="3332" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-19-7" />
+    <manufacturer sector="sec-10-8" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="167" id="droneFactory-teladi" race="teladi" volume="14500" price="2617732" cycle="960" size="S">
     <product ware="freightDrone" quantity="1" storage="20" />
     <resource ware="energyCells" quantity="240" storage="5000" />
     <resource ware="siliconWafers" quantity="10" storage="208" />
     <resource ware="massomPowder" quantity="320" storage="6666" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-19-7" />
   </factory>
   <factory nid="168" id="energyBoltChaingunForge-teladi" race="teladi" volume="16500" price="6396300" cycle="3024" size="S">
     <product ware="energyBoltChaingun" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="756" storage="5000" />
     <resource ware="ore" quantity="126" storage="832" />
     <resource ware="nostropOil" quantity="504" storage="3332" />
-    <manufacturer station="TSYQD-03" sector="sec-11-5" />
-    <manufacturer station="TSYVB-53" sector="sec-19-7" />
-    <manufacturer station="TSYSB-19" sector="sec-10-8" />
-    <manufacturer station="TSYAB-67" sector="sec-3-11" />
+    <manufacturer sector="sec-11-5" />
+    <manufacturer sector="sec-19-7" />
+    <manufacturer sector="sec-10-8" />
+    <manufacturer sector="sec-3-11" />
   </factory>
   <factory nid="169" id="solarPowerPlantXl-split" race="split" volume="22000" price="21554732" cycle="305" size="XL">
     <product ware="energyCells" quantity="5530" storage="50000" />
     <resource ware="crystals" quantity="40" storage="10000" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="170" id="dragonflyMissileFactory-split" race="split" volume="11000" price="954380" cycle="360" size="S">
     <product ware="dragonflyMissile" quantity="20" storage="554" />
     <resource ware="energyCells" quantity="90" storage="5000" />
     <resource ware="ore" quantity="15" storage="832" />
     <resource ware="rastarOil" quantity="9" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="171" id="shieldProdFacility1gj-split" race="split" volume="19500" price="9063376" cycle="5760" size="S">
     <product ware="1GjShield" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="1440" storage="5000" />
     <resource ware="ore" quantity="240" storage="832" />
     <resource ware="rastarOil" quantity="144" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="172" id="disintegratorRiflesFab-split" race="split" volume="15000" price="2246368" cycle="960" size="S">
     <product ware="disintegratorRifles" quantity="1" storage="20" />
     <resource ware="energyCells" quantity="240" storage="5000" />
     <resource ware="ore" quantity="40" storage="832" />
     <resource ware="rastarOil" quantity="24" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="173" id="tomahawkMissileManufacturingPlant-split" race="split" volume="13000" price="2876128" cycle="1200" size="S">
     <product ware="tomahawkHeavyMissile" quantity="3" storage="24" />
     <resource ware="energyCells" quantity="300" storage="5000" />
     <resource ware="ore" quantity="50" storage="832" />
     <resource ware="rastarOil" quantity="30" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="174" id="tornadoMissileFactory-split" race="split" volume="18000" price="5810688" cycle="600" size="S">
     <product ware="tornadoMissile" quantity="2" storage="32" />
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="rastarOil" quantity="15" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="175" id="photonPulseCannonForge-split" race="split" volume="23000" price="13032560" cycle="17280" size="M">
     <product ware="photonPulseCannon" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="4320" storage="10000" />
     <resource ware="ore" quantity="720" storage="1666" />
     <resource ware="rastarOil" quantity="432" storage="1000" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="176" id="hammerTorpedoFabricationFacility-split" race="split" volume="13000" price="2876128" cycle="1800" size="S">
     <product ware="hammerHeavyTorpedo" quantity="2" storage="10" />
     <resource ware="energyCells" quantity="450" storage="5000" />
     <resource ware="ore" quantity="75" storage="832" />
     <resource ware="rastarOil" quantity="45" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="177" id="flailMissileProductionFacility-split" race="split" volume="13000" price="2876128" cycle="600" size="S">
     <product ware="flailBarrageMissile" quantity="1" storage="16" />
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="rastarOil" quantity="15" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="178" id="computerPlant-split" race="split" volume="14000" price="1655560" cycle="480" size="S">
     <product ware="computerComponents" quantity="10" storage="416" />
     <resource ware="energyCells" quantity="120" storage="5000" />
     <resource ware="siliconWafers" quantity="5" storage="208" />
     <resource ware="rastarOil" quantity="12" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="179" id="massDriverForge-split" race="split" volume="17500" price="4212260" cycle="12840" size="S">
     <product ware="massDriver" quantity="5" storage="10" />
     <resource ware="energyCells" quantity="3210" storage="5000" />
     <resource ware="ore" quantity="535" storage="832" />
     <resource ware="rastarOil" quantity="321" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="180" id="trackerMineFab-split" race="split" volume="15000" price="2246368" cycle="2040" size="S">
     <product ware="trackerMine" quantity="6" storage="54" />
     <resource ware="energyCells" quantity="510" storage="5000" />
     <resource ware="ore" quantity="85" storage="832" />
     <resource ware="rastarOil" quantity="51" storage="500" />
-    <manufacturer station="SSYDD-84" sector="sec-20-5" />
-    <manufacturer station="SSYZA-83" sector="sec-4-11" />
-    <manufacturer station="SSYKA-61" sector="sec-14-15" />
+    <manufacturer sector="sec-20-5" />
+    <manufacturer sector="sec-4-11" />
+    <manufacturer sector="sec-14-15" />
   </factory>
   <factory nid="181" id="solarPowerPlantM-paranid" race="paranid" volume="10500" price="5141972" cycle="305" size="M">
     <product ware="energyCells" quantity="1106" storage="10000" />
     <resource ware="crystals" quantity="8" storage="664" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="182" id="spaceJewelleryM-paranid" race="paranid" volume="9000" price="1181616" cycle="60" size="M">
     <product ware="majaglit" quantity="40" storage="13332" />
     <resource ware="energyCells" quantity="30" storage="10000" />
     <resource ware="majaSnails" quantity="4" storage="1332" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="183" id="crystalFabL-paranid" race="paranid" volume="20500" price="6531344" cycle="480" size="L">
     <product ware="crystals" quantity="40" storage="1660" />
     <resource ware="energyCells" quantity="600" storage="25000" />
     <resource ware="sojaHusk" quantity="80" storage="3330" />
     <resource ware="siliconWafers" quantity="25" storage="1040" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="184" id="hornetMissileFactory-paranid" race="paranid" volume="17000" price="2934560" cycle="360" size="S">
     <product ware="hornetMissile" quantity="2" storage="54" />
     <resource ware="energyCells" quantity="90" storage="5000" />
     <resource ware="ore" quantity="15" storage="832" />
     <resource ware="sojaHusk" quantity="12" storage="666" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="185" id="highEnergyPlasmaThrowerForge-paranid" race="paranid" volume="18100" price="6713716" cycle="2880" size="S">
     <product ware="highEnergyPlasmaThrower" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="720" storage="5000" />
     <resource ware="ore" quantity="120" storage="832" />
     <resource ware="sojaHusk" quantity="96" storage="666" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="186" id="lowYieldSidearmsFab-paranid" race="paranid" volume="15000" price="2246368" cycle="480" size="S">
     <product ware="lowYieldSidearms" quantity="1" storage="40" />
     <resource ware="energyCells" quantity="120" storage="5000" />
     <resource ware="ore" quantity="20" storage="832" />
     <resource ware="sojaHusk" quantity="16" storage="666" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-11-14" />
   </factory>
   <factory nid="187" id="mobileDrillingSystemFactory-paranid" race="paranid" volume="18500" price="4264200" cycle="8640" size="S">
     <product ware="mobileDrillingSystem" quantity="5" storage="16" />
     <resource ware="energyCells" quantity="2160" storage="5000" />
     <resource ware="ore" quantity="360" storage="832" />
     <resource ware="sojaHusk" quantity="288" storage="666" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="188" id="soyeryL-paranid" race="paranid" volume="15750" price="2087496" cycle="60" size="L">
     <product ware="sojaHusk" quantity="10" storage="3330" />
     <resource ware="energyCells" quantity="75" storage="25000" />
     <resource ware="sojaBeans" quantity="60" storage="20000" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="189" id="phasedShockwaveGeneratorForge-paranid" race="paranid" volume="15000" price="8917944" cycle="11400" size="S">
     <product ware="phasedShockwaveGenerator" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="2850" storage="5000" />
     <resource ware="ore" quantity="475" storage="832" />
     <resource ware="sojaHusk" quantity="380" storage="666" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="190" id="siliconMineL-paranid" race="paranid" volume="14250" price="1227060" cycle="118" size="L">
     <product ware="siliconWafers" quantity="10" storage="1040" />
     <resource ware="energyCells" quantity="240" storage="25000" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="191" id="concussionImpulseGeneratorForge-paranid" race="paranid" volume="19750" price="9380204" cycle="41160" size="S">
     <product ware="concussionImpulseGenerator" quantity="5" storage="8" />
     <resource ware="energyCells" quantity="10290" storage="20000" />
     <resource ware="ore" quantity="1715" storage="3332" />
     <resource ware="sojaHusk" quantity="1372" storage="2666" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="192" id="soyfarmM-paranid" race="paranid" volume="10500" price="479984" cycle="60" size="M">
     <product ware="sojaBeans" quantity="24" storage="8000" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="193" id="computerPlant-paranid" race="paranid" volume="14000" price="1733468" cycle="480" size="S">
     <product ware="computerComponents" quantity="10" storage="416" />
     <resource ware="energyCells" quantity="120" storage="5000" />
     <resource ware="sojaHusk" quantity="16" storage="666" />
     <resource ware="siliconWafers" quantity="5" storage="208" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="194" id="crystalFabM-paranid" race="paranid" volume="15000" price="3440968" cycle="480" size="M">
     <product ware="crystals" quantity="16" storage="664" />
     <resource ware="energyCells" quantity="240" storage="10000" />
     <resource ware="sojaHusk" quantity="32" storage="1332" />
     <resource ware="siliconWafers" quantity="10" storage="416" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="195" id="shieldProdFacility25Mj-paranid" race="paranid" volume="14000" price="3999312" cycle="1920" size="S">
     <product ware="25MjShield" quantity="1" storage="14" />
     <resource ware="energyCells" quantity="480" storage="5000" />
     <resource ware="ore" quantity="80" storage="832" />
     <resource ware="sojaHusk" quantity="64" storage="666" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="196" id="snailRanchM-paranid" race="paranid" volume="12000" price="300012" cycle="60" size="M">
     <product ware="majaSnails" quantity="4" storage="1332" />
     <resource ware="energyCells" quantity="30" storage="10000" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="197" id="oreMineM-paranid" race="paranid" volume="8000" price="494980" cycle="60" size="M">
     <product ware="ore" quantity="8" storage="1664" />
     <resource ware="energyCells" quantity="48" storage="10000" />
-    <manufacturer station="PSYCD-93" sector="sec-1-6" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYNA-11" sector="sec-11-14" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-1-6" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-11-14" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="198" id="satelliteFactory-argon" race="argon" volume="16500" price="746624" cycle="1056" size="S">
     <product ware="navigationRelaySatellite" quantity="4" storage="82" />
     <resource ware="energyCells" quantity="264" storage="5000" />
     <resource ware="siliconWafers" quantity="11" storage="208" />
     <resource ware="majaglit" quantity="352" storage="6666" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
+    <manufacturer sector="sec-13-6" />
   </factory>
   <factory nid="199" id="siliconMineM-argon" race="argon" volume="9500" price="549972" cycle="118" size="M">
     <product ware="siliconWafers" quantity="4" storage="416" />
     <resource ware="energyCells" quantity="96" storage="10000" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
+    <manufacturer sector="sec-13-6" />
   </factory>
   <factory nid="200" id="computerPlant-argon" race="argon" volume="14000" price="1733468" cycle="96" size="S">
     <product ware="computerComponents" quantity="2" storage="416" />
     <resource ware="energyCells" quantity="24" storage="5000" />
     <resource ware="siliconWafers" quantity="1" storage="208" />
     <resource ware="meatsteakCahoonas" quantity="16" storage="3332" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
+    <manufacturer sector="sec-13-6" />
   </factory>
   <factory nid="201" id="impulseRayEmitterForge-argon" race="argon" volume="15000" price="2721092" cycle="96" size="S">
     <product ware="impulseRayEmitter" quantity="1" storage="276" />
     <resource ware="energyCells" quantity="24" storage="5000" />
     <resource ware="ore" quantity="4" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="16" storage="3332" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
+    <manufacturer sector="sec-13-6" />
   </factory>
   <factory nid="202" id="solarPowerPlantL-argon" race="argon" volume="15750" price="11014336" cycle="305" size="L">
     <product ware="energyCells" quantity="2765" storage="25000" />
     <resource ware="crystals" quantity="20" storage="3330" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
+    <manufacturer sector="sec-13-6" />
   </factory>
   <factory nid="203" id="concussionImpulseGeneratorForge-argon" race="argon" volume="20000" price="9572120" cycle="8232" size="S">
     <product ware="concussionImpulseGenerator" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="2058" storage="5000" />
     <resource ware="ore" quantity="343" storage="832" />
     <resource ware="meatsteakCahoonas" quantity="1372" storage="3332" />
-    <manufacturer station="ASYKH-31" sector="sec-13-6" />
+    <manufacturer sector="sec-13-6" />
   </factory>
   <factory nid="204" id="oreMineL-paranid" race="paranid" volume="12000" price="993336" cycle="60" size="L">
     <product ware="ore" quantity="20" storage="4160" />
     <resource ware="energyCells" quantity="120" storage="25000" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="205" id="photonPulseCannonForge-paranid" race="paranid" volume="24000" price="12521480" cycle="17280" size="M">
     <product ware="photonPulseCannon" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="4320" storage="10000" />
     <resource ware="ore" quantity="720" storage="1666" />
     <resource ware="sojaHusk" quantity="576" storage="1332" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="206" id="quantumTubeFab-paranid" race="paranid" volume="13500" price="4590120" cycle="2400" size="S">
     <product ware="quantumTubes" quantity="24" storage="166" />
     <resource ware="energyCells" quantity="600" storage="5000" />
     <resource ware="sojaHusk" quantity="80" storage="666" />
     <resource ware="siliconWafers" quantity="25" storage="208" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="207" id="solarPowerPlantL-paranid" race="paranid" volume="15750" price="11569436" cycle="305" size="L">
     <product ware="energyCells" quantity="2765" storage="25000" />
     <resource ware="crystals" quantity="20" storage="3330" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="208" id="spaceJewelleryL-paranid" race="paranid" volume="13500" price="2658632" cycle="60" size="L">
     <product ware="majaglit" quantity="100" storage="33330" />
     <resource ware="energyCells" quantity="75" storage="25000" />
     <resource ware="majaSnails" quantity="10" storage="3330" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="209" id="auroraMissileFactory-paranid" race="paranid" volume="13500" price="2155472" cycle="120" size="S">
     <product ware="auroraMissile" quantity="3" storage="276" />
     <resource ware="energyCells" quantity="30" storage="5000" />
     <resource ware="ore" quantity="5" storage="832" />
     <resource ware="sojaHusk" quantity="4" storage="666" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="210" id="soyeryM-paranid" race="paranid" volume="12861" price="1077736" cycle="60" size="M">
     <product ware="sojaHusk" quantity="4" storage="1332" />
     <resource ware="energyCells" quantity="30" storage="10000" />
     <resource ware="sojaBeans" quantity="24" storage="8000" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="211" id="fragmentationBombLauncherForge-paranid" race="paranid" volume="13500" price="5126392" cycle="20640" size="M">
     <product ware="fragmentationBombLauncher" quantity="5" storage="8" />
     <resource ware="energyCells" quantity="5160" storage="10000" />
     <resource ware="ore" quantity="860" storage="1666" />
     <resource ware="sojaHusk" quantity="688" storage="1332" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="212" id="shieldProdFacility2Gj-paranid" race="paranid" volume="21000" price="13561300" cycle="15360" size="M">
     <product ware="2GjShield" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="3840" storage="10000" />
     <resource ware="ore" quantity="640" storage="1666" />
     <resource ware="sojaHusk" quantity="512" storage="1332" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="213" id="siliconMineM-paranid" race="paranid" volume="9500" price="545360" cycle="118" size="M">
     <product ware="siliconWafers" quantity="4" storage="416" />
     <resource ware="energyCells" quantity="96" storage="10000" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="214" id="advancedSatelliteFactory-paranid" race="paranid" volume="18000" price="2616432" cycle="864" size="S">
     <product ware="advancedSatellite" quantity="2" storage="40" />
     <resource ware="energyCells" quantity="216" storage="5000" />
     <resource ware="siliconWafers" quantity="9" storage="208" />
     <resource ware="majaglit" quantity="288" storage="6666" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="215" id="squashMineFactory-paranid" race="paranid" volume="15000" price="2246368" cycle="2040" size="S">
     <product ware="squashMine" quantity="6" storage="54" />
     <resource ware="energyCells" quantity="510" storage="5000" />
     <resource ware="ore" quantity="85" storage="832" />
     <resource ware="sojaHusk" quantity="68" storage="666" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="216" id="soyfarmL-paranid" race="paranid" volume="15750" price="1199988" cycle="60" size="L">
     <product ware="sojaBeans" quantity="60" storage="20000" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="217" id="snailRanchL-paranid" race="paranid" volume="18000" price="750000" cycle="60" size="L">
     <product ware="majaSnails" quantity="10" storage="3330" />
     <resource ware="energyCells" quantity="75" storage="25000" />
-    <manufacturer station="PSYNB-87" sector="sec-3-9" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-3-9" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="218" id="shieldProdFac200Mj-boron" race="boron" volume="16000" price="5386084" cycle="3240" size="S">
     <product ware="200MjShield" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="810" storage="5000" />
     <resource ware="ore" quantity="135" storage="832" />
     <resource ware="bofu" quantity="135" storage="832" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="219" id="dragonflyMissileFactory-boron" race="boron" volume="11000" price="1045276" cycle="72" size="S">
     <product ware="dragonflyMissile" quantity="4" storage="554" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="bofu" quantity="3" storage="832" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="220" id="stottMixeryL-boron" race="boron" volume="18750" price="2483340" cycle="60" size="L">
     <product ware="stottSpices" quantity="50" storage="16660" />
     <resource ware="energyCells" quantity="75" storage="25000" />
     <resource ware="plankton" quantity="75" storage="25000" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="221" id="chipPlant-boron" race="boron" volume="16000" price="5012124" cycle="1440" size="S">
     <product ware="microchips" quantity="4" storage="40" />
     <resource ware="energyCells" quantity="360" storage="5000" />
     <resource ware="bofu" quantity="60" storage="832" />
     <resource ware="siliconWafers" quantity="15" storage="208" />
-    <manufacturer station="BSYMB-35" sector="sec-6-9" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-6-9" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="222" id="particleAcceleratorCannonForge-paranid" race="paranid" volume="16000" price="4112732" cycle="840" size="S">
     <product ware="particleAcceleratorCannon" quantity="1" storage="32" />
     <resource ware="energyCells" quantity="210" storage="5000" />
     <resource ware="ore" quantity="35" storage="832" />
     <resource ware="sojaHusk" quantity="28" storage="666" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="223" id="solarPowerPlantXl-paranid" race="paranid" volume="22000" price="20567888" cycle="305" size="XL">
     <product ware="energyCells" quantity="5530" storage="50000" />
     <resource ware="crystals" quantity="40" storage="10000" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="224" id="waspMissileFactory-paranid" race="paranid" volume="11500" price="1447804" cycle="120" size="S">
     <product ware="waspMissile" quantity="5" storage="416" />
     <resource ware="energyCells" quantity="30" storage="5000" />
     <resource ware="ore" quantity="5" storage="832" />
     <resource ware="sojaHusk" quantity="4" storage="666" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="225" id="weaponComponentFactory-paranid" race="paranid" volume="12000" price="623268" cycle="72" size="S">
     <product ware="warheads" quantity="8" storage="2500" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="clothRimes" quantity="3" storage="832" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="226" id="tractorBeamFactory-paranid" race="paranid" volume="23999" price="14200152" cycle="69960" size="S">
     <product ware="tractorBeam" quantity="5" storage="8" />
     <resource ware="energyCells" quantity="17490" storage="30000" />
     <resource ware="ore" quantity="2915" storage="5000" />
     <resource ware="sojaHusk" quantity="2332" storage="4000" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="227" id="hurricaneMissileFactory-paranid" race="paranid" volume="16000" price="2447632" cycle="360" size="S">
     <product ware="hurricaneMissile" quantity="5" storage="138" />
     <resource ware="energyCells" quantity="90" storage="5000" />
     <resource ware="ore" quantity="15" storage="832" />
     <resource ware="sojaHusk" quantity="12" storage="666" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="228" id="lasertowerFactory-paranid" race="paranid" volume="18500" price="1220568" cycle="5640" size="S">
     <product ware="lasertower" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="1410" storage="5000" />
     <resource ware="ore" quantity="235" storage="832" />
     <resource ware="sojaHusk" quantity="188" storage="666" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="229" id="tomahawkMissileManufacturingPlant-paranid" race="paranid" volume="13000" price="2876128" cycle="1200" size="S">
     <product ware="tomahawkHeavyMissile" quantity="3" storage="24" />
     <resource ware="energyCells" quantity="300" storage="5000" />
     <resource ware="ore" quantity="50" storage="832" />
     <resource ware="sojaHusk" quantity="40" storage="666" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="230" id="hammerTorpedoFabricationFacility-paranid" race="paranid" volume="13000" price="2876128" cycle="1800" size="S">
     <product ware="hammerHeavyTorpedo" quantity="2" storage="10" />
     <resource ware="energyCells" quantity="450" storage="5000" />
     <resource ware="ore" quantity="75" storage="832" />
     <resource ware="sojaHusk" quantity="60" storage="666" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="231" id="shieldProdFacility5Mj-paranid" race="paranid" volume="12500" price="2150280" cycle="3000" size="S">
     <product ware="5MjShield" quantity="6" storage="62" />
     <resource ware="energyCells" quantity="750" storage="5000" />
     <resource ware="ore" quantity="125" storage="832" />
     <resource ware="sojaHusk" quantity="100" storage="666" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="232" id="chipPlant-paranid" race="paranid" volume="16000" price="6778056" cycle="1440" size="S">
     <product ware="microchips" quantity="4" storage="40" />
     <resource ware="energyCells" quantity="360" storage="5000" />
     <resource ware="sojaHusk" quantity="48" storage="666" />
     <resource ware="siliconWafers" quantity="15" storage="208" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYRA-43" sector="sec-9-13" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-9-13" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="233" id="flailMissileProductionFacility-paranid" race="paranid" volume="13000" price="2876128" cycle="600" size="S">
     <product ware="flailBarrageMissile" quantity="1" storage="16" />
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="sojaHusk" quantity="20" storage="666" />
-    <manufacturer station="PSYYA-73" sector="sec-7-11" />
-    <manufacturer station="PSYLA-09" sector="sec-10-15" />
+    <manufacturer sector="sec-7-11" />
+    <manufacturer sector="sec-10-15" />
   </factory>
   <factory nid="234" id="siliconMineL-boron" race="boron" volume="14250" price="1402356" cycle="118" size="L">
     <product ware="siliconWafers" quantity="10" storage="1040" />
     <resource ware="energyCells" quantity="240" storage="25000" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="235" id="ionPulseGeneratorForge-boron" race="boron" volume="18000" price="10434568" cycle="8760" size="S">
     <product ware="ionPulseGenerator" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="2190" storage="5000" />
     <resource ware="ore" quantity="365" storage="832" />
     <resource ware="bofu" quantity="365" storage="832" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="236" id="computerPlant-boron" race="boron" volume="14000" price="1415340" cycle="96" size="S">
     <product ware="computerComponents" quantity="2" storage="416" />
     <resource ware="energyCells" quantity="24" storage="5000" />
     <resource ware="bofu" quantity="4" storage="832" />
     <resource ware="siliconWafers" quantity="1" storage="208" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="237" id="tempestMissileFactory-boron" race="boron" volume="15500" price="7706464" cycle="240" size="S">
     <product ware="tempestMissile" quantity="1" storage="40" />
     <resource ware="energyCells" quantity="60" storage="5000" />
     <resource ware="ore" quantity="10" storage="832" />
     <resource ware="bofu" quantity="10" storage="832" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="238" id="shieldProdFacility1gj-boron" race="boron" volume="19500" price="8159636" cycle="5760" size="S">
     <product ware="1GjShield" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="1440" storage="5000" />
     <resource ware="ore" quantity="240" storage="832" />
     <resource ware="bofu" quantity="240" storage="832" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="239" id="solarPowerPlantL-boron" race="boron" volume="15750" price="9904140" cycle="305" size="L">
     <product ware="energyCells" quantity="2765" storage="25000" />
     <resource ware="crystals" quantity="20" storage="3330" />
-    <manufacturer station="BSYTA-59" sector="sec-0-13" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-0-13" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="240" id="photonPulseCannonForge-boron" race="boron" volume="23500" price="12265940" cycle="17280" size="M">
     <product ware="photonPulseCannon" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="4320" storage="10000" />
     <resource ware="ore" quantity="720" storage="1666" />
     <resource ware="bofu" quantity="720" storage="1666" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="241" id="ionDisruptorForge-boron" race="boron" volume="13500" price="10461836" cycle="5160" size="S">
     <product ware="ionDisruptor" quantity="1" storage="8" />
     <resource ware="energyCells" quantity="1290" storage="5000" />
     <resource ware="ore" quantity="215" storage="832" />
     <resource ware="bofu" quantity="215" storage="832" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="242" id="weaponComponentFactory-boron" race="boron" volume="12000" price="655732" cycle="72" size="S">
     <product ware="warheads" quantity="8" storage="2500" />
     <resource ware="energyCells" quantity="18" storage="5000" />
     <resource ware="ore" quantity="3" storage="832" />
     <resource ware="clothRimes" quantity="3" storage="832" />
-    <manufacturer station="BSYQA-03" sector="sec-2-14" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-2-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="243" id="reconDroneConstructionFacility-boron" race="boron" volume="14500" price="2349724" cycle="12000" size="M">
     <product ware="reconDrone" quantity="12" storage="20" />
     <resource ware="energyCells" quantity="3000" storage="10000" />
     <resource ware="bofu" quantity="500" storage="1666" />
     <resource ware="siliconWafers" quantity="125" storage="416" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="244" id="tomahawkMissileManufacturingPlant-boron" race="boron" volume="13000" price="2876128" cycle="1200" size="S">
     <product ware="tomahawkHeavyMissile" quantity="3" storage="24" />
     <resource ware="energyCells" quantity="300" storage="5000" />
     <resource ware="ore" quantity="50" storage="832" />
     <resource ware="bofu" quantity="50" storage="832" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="245" id="cycloneMissileFactory-boron" race="boron" volume="12500" price="8823156" cycle="360" size="S">
     <product ware="cycloneMissile" quantity="1" storage="26" />
     <resource ware="energyCells" quantity="90" storage="5000" />
     <resource ware="ore" quantity="15" storage="832" />
     <resource ware="bofu" quantity="15" storage="832" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="246" id="hammerTorpedoFabricationFacility-boron" race="boron" volume="13000" price="2876128" cycle="1800" size="S">
     <product ware="hammerHeavyTorpedo" quantity="2" storage="10" />
     <resource ware="energyCells" quantity="450" storage="5000" />
     <resource ware="ore" quantity="75" storage="832" />
     <resource ware="bofu" quantity="75" storage="832" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="247" id="flailMissileProductionFacility-boron" race="boron" volume="13000" price="2876128" cycle="600" size="S">
     <product ware="flailBarrageMissile" quantity="1" storage="16" />
     <resource ware="energyCells" quantity="150" storage="5000" />
     <resource ware="ore" quantity="25" storage="832" />
     <resource ware="bofu" quantity="25" storage="832" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-17-14" />
   </factory>
   <factory nid="248" id="ionMineFab-boron" race="boron" volume="15000" price="2246368" cycle="2040" size="S">
     <product ware="ionMine" quantity="3" storage="26" />
     <resource ware="energyCells" quantity="510" storage="5000" />
     <resource ware="ore" quantity="85" storage="832" />
     <resource ware="bofu" quantity="85" storage="832" />
-    <manufacturer station="BSYNA-00" sector="sec-17-14" />
+    <manufacturer sector="sec-17-14" />
+  </factory>
+  <factory nid="249" id="empRifleAssemblyFacility-terran" race="terran" volume="15000" price="2246368" cycle="1920" size="S">
+    <product ware="terranEmpRifles" quantity="1" storage="10" />
+    <resource ware="energyCells" quantity="480" storage="5000" />
+    <resource ware="ore" quantity="80" storage="832" />
+    <resource ware="terranMre" quantity="80" storage="832" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="250" id="flavourPackProductionFacilityL-terran" race="terran" volume="18500" price="811548" cycle="60" size="L">
+    <product ware="flavourPack" quantity="15" storage="5000" />
+    <resource ware="energyCells" quantity="75" storage="25000" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="251" id="flavourPackProductionFacilityM-terran" race="terran" volume="12500" price="325008" cycle="60" size="M">
+    <product ware="flavourPack" quantity="6" storage="2000" />
+    <resource ware="energyCells" quantity="30" storage="10000" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="252" id="foodPreparationFacilityL-terran" race="terran" volume="17250" price="2337260" cycle="60" size="L">
+    <product ware="cRation" quantity="50" storage="16660" />
+    <resource ware="energyCells" quantity="75" storage="25000" />
+    <resource ware="carboCake" quantity="50" storage="16660" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="253" id="foodPreparationFacilityM-terran" race="terran" volume="11500" price="1038784" cycle="60" size="M">
+    <product ware="cRation" quantity="20" storage="6664" />
+    <resource ware="energyCells" quantity="30" storage="10000" />
+    <resource ware="carboCake" quantity="20" storage="6664" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="254" id="ghoulMissileManufacturingPlant-terran" race="terran" volume="19500" price="10952660" cycle="600" size="S">
+    <product ware="ghoulMissile" quantity="1" storage="16" />
+    <resource ware="energyCells" quantity="150" storage="5000" />
+    <resource ware="ore" quantity="25" storage="832" />
+    <resource ware="terranMre" quantity="25" storage="832" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="255" id="hullPlatingProductionFacilityM-terran" race="terran" volume="15000" price="3129332" cycle="72" size="M">
+    <product ware="hullPlating" quantity="16" storage="5000" />
+    <resource ware="energyCells" quantity="36" storage="10000" />
+    <resource ware="ore" quantity="6" storage="1664" />
+    <resource ware="terranMre" quantity="6" storage="1664" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="256" id="iceHarvestingFacilityL-terran" race="terran" volume="16500" price="805056" cycle="60" size="L">
+    <product ware="ice" quantity="20" storage="4160" />
+    <resource ware="energyCells" quantity="120" storage="25000" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="257" id="iceHarvestingFacilityM-terran" race="terran" volume="8500" price="402528" cycle="60" size="M">
+    <product ware="ice" quantity="8" storage="1664" />
+    <resource ware="energyCells" quantity="48" storage="10000" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="258" id="mAMWarheadProductionFabM-terran" race="terran" volume="15000" price="3129332" cycle="72" size="M">
+    <product ware="matterAntiMatterWarhead" quantity="4" storage="1248" />
+    <resource ware="energyCells" quantity="36" storage="10000" />
+    <resource ware="ore" quantity="6" storage="1664" />
+    <resource ware="terranMre" quantity="6" storage="1664" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="259" id="matterAntiMatterMineFab-terran" race="terran" volume="15000" price="2246368" cycle="2040" size="S">
+    <product ware="matterAntiMatterMine" quantity="3" storage="26" />
+    <resource ware="energyCells" quantity="510" storage="5000" />
+    <resource ware="ore" quantity="85" storage="832" />
+    <resource ware="terranMre" quantity="85" storage="832" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="260" id="spectreMissileManufacturingFacility-terran" race="terran" volume="13000" price="2876128" cycle="840" size="S">
+    <product ware="spectreMissile" quantity="6" storage="70" />
+    <resource ware="energyCells" quantity="210" storage="5000" />
+    <resource ware="ore" quantity="35" storage="832" />
+    <resource ware="terranMre" quantity="35" storage="832" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="261" id="vitaKaiProductionPlantL-terran" race="terran" volume="18500" price="811548" cycle="60" size="L">
+    <product ware="vitaKai" quantity="15" storage="5000" />
+    <resource ware="energyCells" quantity="75" storage="25000" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="262" id="vitaKaiProductionPlantM-terran" race="terran" volume="12500" price="325008" cycle="60" size="M">
+    <product ware="vitaKai" quantity="6" storage="2000" />
+    <resource ware="energyCells" quantity="30" storage="10000" />
+    <manufacturer sector="sec-11-1" />
+    <manufacturer sector="sec-13-2" />
+    <manufacturer sector="sec-12-3" />
+    <manufacturer sector="sec-15-10" />
+  </factory>
+  <factory nid="263" id="incendiaryBombLauncherForge-yaki" race="yaki" volume="23500" price="11372068" cycle="15840" size="M">
+    <product ware="incendiaryBombLauncher" quantity="1" storage="8" />
+    <resource ware="energyCells" quantity="3960" storage="10000" />
+    <resource ware="ore" quantity="660" storage="1666" />
+    <resource ware="nostropOil" quantity="2640" storage="6666" />
+    <manufacturer sector="sec-0-9" />
+  </factory>
+  <factory nid="264" id="plasmaBurstGeneratorForge-yaki" race="yaki" volume="13500" price="6946856" cycle="2520" size="S">
+    <product ware="plasmaBurstGenerator" quantity="1" storage="10" />
+    <resource ware="energyCells" quantity="630" storage="5000" />
+    <resource ware="ore" quantity="105" storage="832" />
+    <resource ware="nostropOil" quantity="420" storage="3332" />
+    <manufacturer sector="sec-0-9" />
   </factory>
 </factories>

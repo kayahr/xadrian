@@ -39,7 +39,7 @@
         
         <strong>[@message key="factoryInfo.manufacturers" /]:</strong><br />
         [#list factory.manufacturers as manufacturer]
-          ${manufacturer.sector.name}<br />
+          ${manufacturer.name}<br />
         [/#list]
         <br />
         

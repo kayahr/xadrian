@@ -71,7 +71,7 @@ public class PlayerSector extends Sector
     @Override
     public String getName()
     {
-        final int playerSector = Config.getInstance().getPlayerSector();
+        final int playerSector = Config.getInstance().getX3TCPlayerSector();
         return I18N.getString(this.game, "sector." + this.id + "-" + playerSector);
     }
 
@@ -83,7 +83,7 @@ public class PlayerSector extends Sector
     @Override
     public Asteroid[] getAsteroids()
     {
-        final int playerSector = Config.getInstance().getPlayerSector();
+        final int playerSector = Config.getInstance().getX3TCPlayerSector();
         return this.asteroids[playerSector];
     }
     

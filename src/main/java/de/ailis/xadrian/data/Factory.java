@@ -13,6 +13,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import de.ailis.xadrian.interfaces.GameProvider;
+import de.ailis.xadrian.support.Config;
 import de.ailis.xadrian.support.I18N;
 
 /**
@@ -52,8 +53,8 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     /** The resources this factory needs in one cycle to produce its product */
     private final Product[] resources;
 
-    /** The manufacturer stations */
-    private final Station[] manufacturers;
+    /** The manufacturer sectors */
+    private final Sector[] manufacturers;
 
     /** The ware storage */
     private final Capacity[] capacities;
@@ -96,7 +97,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
         final FactorySize size, final Race race, final int cycle,
         final Product product, final int price, final int volume,
         final Product[] resources, final Capacity[] storage,
-        final Station[] manufacturers)
+        final Sector[] manufacturers)
     {
         if (game == null)
             throw new IllegalArgumentException("game must be set");
@@ -301,7 +302,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      * 
      * @return The manufacturer stations
      */
-    public Station[] getManufacturers()
+    public Sector[] getManufacturers()
     {
         return this.manufacturers.clone();
     }
@@ -582,27 +583,52 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     }
 
     /**
-     * Returns the manufacturer station which is nearest to the specified
+     * Returns the manufacturer sector which is nearest to the specified
      * sector.
      * 
      * @param sector
      *            The source sector
-     * @return The nearest manufacturer station
+     * @return The nearest manufacturer sector
      */
-    public Station getNearestManufacturer(final Sector sector)
+    public Sector getNearestManufacturer(final Sector sector)
     {
-        int distance = 0;
-        Station nearest = null;
+        return getNearestManufacturer(sector, false);
+    }
 
-        for (final Station station : this.manufacturers)
+    /**
+     * Returns the manufacturer sector which is nearest to the specified
+     * sector.
+     * 
+     * @param sector
+     *            The source sector
+     * @param allRaces
+     *            True to use shipyards of all races, false to ignore the
+     *            shipyards of disabled races.
+     * @return The nearest manufacturer sector
+     */
+    public Sector getNearestManufacturer(final Sector sector, final boolean
+        allRaces)
+    {
+        final Config config = Config.getInstance(); 
+        int distance = 0;
+        Sector nearest = null;
+
+        for (final Sector manufacturer : this.manufacturers)
         {
-            final int curDistance = sector.getDistance(station.getSector());
-            if (nearest == null || curDistance < distance)
+            final int curDistance = sector.getDistance(manufacturer);
+            if (nearest == null || curDistance < distance && 
+                (!config.isRaceIgnored(manufacturer.getRace()) || allRaces))
             {
-                nearest = station;
+                nearest = manufacturer;
                 distance = curDistance;
             }
         }
+        
+        // When we did not find a manufacturer owned by an allowed race then
+        // check again for all races.
+        if (nearest == null && !allRaces)
+            return getNearestManufacturer(sector, true);
+        
         return nearest;
     }
 

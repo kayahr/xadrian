@@ -28,7 +28,7 @@ import de.ailis.xadrian.data.FactorySize;
 import de.ailis.xadrian.data.Game;
 import de.ailis.xadrian.data.Product;
 import de.ailis.xadrian.data.Race;
-import de.ailis.xadrian.data.Station;
+import de.ailis.xadrian.data.Sector;
 import de.ailis.xadrian.data.Ware;
 import de.ailis.xadrian.exceptions.DataException;
 import de.ailis.xadrian.frames.SplashFrame;
@@ -139,14 +139,12 @@ public class FactoryFactory implements Serializable
                 }
 
                 final List<?> manuItems = element.elements("manufacturer");
-                final Station[] manufacturers = new Station[manuItems.size()];
+                final Sector[] manufacturers = new Sector[manuItems.size()];
                 i = 0;
                 for (final Object manuItem : manuItems)
                 {
                     final Element manuElement = (Element) manuItem;
-                    manufacturers[i] =
-                        this.game.getStationFactory().getStation(
-                            manuElement.attributeValue("station"),
+                    manufacturers[i] = this.game.getSectorFactory().getSector(
                             manuElement.attributeValue("sector"));
                     i++;
                 }

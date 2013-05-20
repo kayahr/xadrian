@@ -117,4 +117,6 @@
   <ware id="massDriver" minPrice="102841" avgPrice="116864" maxPrice="130887" volume="1" container="S" />
   <ware id="hornetMissile" minPrice="8896" avgPrice="10108" maxPrice="11320" volume="4" container="M" />
   <ware id="hurricaneMissile" minPrice="3357" avgPrice="4044" maxPrice="4731" volume="1" container="S" />
+  <ware id="flavourPack" minPrice="42" avgPrice="104" maxPrice="166" volume="4" container="S" />
+  <ware id="vitaKai" minPrice="42" avgPrice="104" maxPrice="166" volume="4" container="S" />
 </wares>

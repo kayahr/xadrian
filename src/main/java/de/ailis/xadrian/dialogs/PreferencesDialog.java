@@ -63,8 +63,11 @@ public class PreferencesDialog extends ModalDialog
      */
     private JCheckBox nightModeCheckBox;
 
-    /** The player sector combo box */
-    private JComboBox playerSectorComboBox;
+    /** The X3TC player sector combo box */
+    private JComboBox x3tcPlayerSectorComboBox;
+
+    /** The X3AP player sector combo box */
+    private JComboBox x3apPlayerSectorComboBox;
 
     /** The games combo box */
     private JComboBox gamesComboBox;
@@ -105,6 +108,8 @@ public class PreferencesDialog extends ModalDialog
         contentPanel.add(createUsedRaces());
         contentPanel.add(Box.createVerticalStrut(10));
         contentPanel.add(createX3TCSettings());
+        contentPanel.add(Box.createVerticalStrut(10));
+        contentPanel.add(createX3APSettings());
         contentPanel.add(Box.createVerticalStrut(10));
         contentPanel.add(createViewSettings());
 
@@ -175,7 +180,7 @@ public class PreferencesDialog extends ModalDialog
     }
 
     /**
-     * Creates and returns the panel with the game settings.
+     * Creates and returns the panel with the X3TC game settings.
      *
      * @return The created panel
      */
@@ -207,19 +212,65 @@ public class PreferencesDialog extends ModalDialog
         c.gridx = 1;
         c.insets.left = 5;
         c.fill = GridBagConstraints.HORIZONTAL;
-        this.playerSectorComboBox = new JComboBox();
+        this.x3tcPlayerSectorComboBox = new JComboBox();
         final Game x3tc = GameFactory.getInstance().getGame("x3tc");
         for (int i = 0; i < 5; i++)
         {
-            this.playerSectorComboBox.addItem(I18N.getString(x3tc,
+            this.x3tcPlayerSectorComboBox.addItem(I18N.getString(x3tc,
                 "sector.sec-20-2-" + i));
         }
-        controlPanel.add(this.playerSectorComboBox, c);
+        controlPanel.add(this.x3tcPlayerSectorComboBox, c);
         c.fill = GridBagConstraints.NONE;
         panel.add(controlPanel);
         return panel;
     }
 
+    /**
+     * Creates and returns the panel with the X3AP game settings.
+     *
+     * @return The created panel
+     */
+    private JPanel createX3APSettings()
+    {
+        final JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+
+        // Create the separator
+        final LabelSeparator separator =
+            new LabelSeparator(I18N.getString("game.x3ap"));
+        panel.add(separator);
+
+        // Create the control panel
+        final JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new GridBagLayout());
+        controlPanel.setBorder(new EmptyBorder(2, 20, 5, 0));
+        final GridBagConstraints c = new GridBagConstraints();
+        final JLabel label =
+            new JLabel(I18N.getString("dialog.preferences.playerSector"));
+        c.anchor = GridBagConstraints.LINE_START;
+        c.weightx = 0;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.insets.top = 2;
+        c.insets.bottom = 2;
+        controlPanel.add(label, c);
+        c.weightx = 1;
+        c.gridx = 1;
+        c.insets.left = 5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        this.x3apPlayerSectorComboBox = new JComboBox();
+        final Game x3ap = GameFactory.getInstance().getGame("x3ap");
+        for (int i = 0; i < 6; i++)
+        {
+            this.x3apPlayerSectorComboBox.addItem(I18N.getString(x3ap,
+                "sector.sec-12-4-" + i));
+        }
+        controlPanel.add(this.x3apPlayerSectorComboBox, c);
+        c.fill = GridBagConstraints.NONE;
+        panel.add(controlPanel);
+        return panel;
+    }
+    
     /**
      * Creates and returns the panel with the general settings.
      *
@@ -410,7 +461,8 @@ public class PreferencesDialog extends ModalDialog
             config.getLocale()));
         this.prodStatsComboBox.setSelectedItem(new ComboBoxEntry(null,
             config.isProdStatsPerMinute()));
-        this.playerSectorComboBox.setSelectedIndex(config.getPlayerSector());
+        this.x3tcPlayerSectorComboBox.setSelectedIndex(config.getX3TCPlayerSector());
+        this.x3apPlayerSectorComboBox.setSelectedIndex(config.getX3APPlayerSector());
 
         final String defaultGameId = config.getDefaultGame();
         final GameFactory gameFactory = GameFactory.getInstance();
@@ -438,8 +490,10 @@ public class PreferencesDialog extends ModalDialog
             config.setShowFactoryResources(this.showFactoryResourcesCheckBox
                 .isSelected());
             config.setNightMode(this.nightModeCheckBox.isSelected());
-            config
-                .setPlayerSector(this.playerSectorComboBox.getSelectedIndex());
+            config.setX3TCPlayerSector(
+                this.x3tcPlayerSectorComboBox.getSelectedIndex());
+            config.setX3APPlayerSector(
+                this.x3apPlayerSectorComboBox.getSelectedIndex());
             config.setTheme(((Theme) this.themeComboBox.getSelectedItem())
                 .getClassName());
             config.setLocale((String) ((ComboBoxEntry)
