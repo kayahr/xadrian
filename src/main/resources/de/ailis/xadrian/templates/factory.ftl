@@ -18,14 +18,14 @@
         <strong>[@message key="factoryInfo.price" /]:</strong> ${factory.price} Cr<br />
         <strong>[@message key="factoryInfo.volume" /]:</strong> ${factory.volume}<br />
         <strong>[@message key="factoryInfo.size" /]:</strong> ${factory.size}<br />
-        <strong>[@message key="factoryInfo.cycle" /]:</strong> ${factory.defaultCycleAsString}<br />
+        <strong>[@message key="factoryInfo.cycle" /][#if factory.mine] ([@message key="yield" /] ${factory.defaultYield})[/#if]:</strong> ${factory.defaultCycleAsString}<br />
         <br />
         
-        <strong>[@message key="factoryInfo.product" /]:</strong><br />
+        <strong>[@message key="factoryInfo.product" /][#if factory.mine] ([@message key="yield" /] ${factory.defaultYield})[/#if]:</strong><br />
         ${factory.defaultProduct.quantity} ${factory.defaultProduct.ware.name}<br />
         <br />
         
-        <strong>[@message key="factoryInfo.resources" /]:</strong><br />
+        <strong>[@message key="factoryInfo.resources" /][#if factory.mine] ([@message key="yield" /] ${factory.defaultYield})[/#if]:</strong><br />
         [#list factory.defaultResources as resource]
           ${resource.quantity} ${resource.ware.name}<br />
         [/#list]

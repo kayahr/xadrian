@@ -952,8 +952,7 @@ public class Complex implements Serializable, GameProvider
         for (final ComplexWare ware: getWares())
         {
             // We are not going to add mines
-            if (ware.getWare().getId().equals("siliconWafers")) continue;
-            if (ware.getWare().getId().equals("ore")) continue;
+            if (ware.getWare().isMineral()) continue;
 
             // If the current ware has missing units then add the necessary
             // factories for this ware and then restart the adding of factories

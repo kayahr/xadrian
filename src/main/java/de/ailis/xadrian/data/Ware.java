@@ -86,6 +86,56 @@ public class Ware implements Serializable, Comparable<Ware>
     {
         return this.id;
     }
+    
+    /**
+     * Checks if this ware is ice.
+     * 
+     * @return True if this ware is ice, false if not.
+     */
+    public boolean isIce()
+    {
+        return "ice".equals(this.id);
+    }
+
+    /**
+     * Checks if this ware is ore.
+     * 
+     * @return True if this ware is ore, false if not.
+     */
+    public boolean isOre()
+    {
+        return "ore".equals(this.id);
+    }
+
+    /**
+     * Checks if this ware is silicon wafers.
+     * 
+     * @return True if this ware is silicon wafers, false if not.
+     */
+    public boolean isSiliconWafers()
+    {
+        return "siliconWafers".equals(this.id);
+    }
+
+    /**
+     * Checks if this ware is silicon wafers.
+     * 
+     * @return True if this ware is silicon wafers, false if not.
+     */
+    public boolean isNividium()
+    {
+        return "nividium".equals(this.id);
+    }
+    
+    /**
+     * Checks if this ware is a mineral.
+     * 
+     * @return True if this ware is a mineral, false if not.
+     */
+    public boolean isMineral()
+    {
+        return isOre() || isSiliconWafers() || isIce() || isNividium();
+    }
 
     /**
      * Returns the name.

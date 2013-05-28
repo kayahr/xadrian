@@ -153,8 +153,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      */
     public boolean isMine()
     {
-        final String wareId = this.product.getWare().getId();
-        return wareId.equals("siliconWafers") || wareId.equals("ore");
+        return isSiliconMine() || isOreMine() || isIceMine();
     }
 
     /**
@@ -164,8 +163,7 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      */
     public boolean isSiliconMine()
     {
-        final String wareId = this.product.getWare().getId();
-        return wareId.equals("siliconWafers");
+        return this.product.getWare().isSiliconWafers();
     }
 
     /**
@@ -175,8 +173,28 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      */
     public boolean isOreMine()
     {
+        return this.product.getWare().isOre();
+    }
+
+    /**
+     * Returns true if this factory is an ice mine.
+     * 
+     * @return True if this factory is an ice mine. False if not.
+     */
+    public boolean isIceMine()
+    {
+        return this.product.getWare().isIce();
+    }
+    
+    /**
+     * Checks if this factory is a solar power plant.
+     * 
+     * @return True if factory is a solar power plant, false if not.
+     */
+    public boolean isSolarPowerPlant()
+    {
         final String wareId = this.product.getWare().getId();
-        return wareId.equals("ore");
+        return wareId.equals("energyCells");
     }
 
     /**
@@ -415,27 +433,25 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      */
     private int getRealCycle(final Sun suns, final int yield)
     {
-        final String wareId = this.product.getWare().getId();
-
         // Handle solar power plants
-        if (wareId.equals("energyCells")) return suns.getCycle();
+        if (isSolarPowerPlant()) return suns.getCycle();
 
         // Handle silicon mines
-        if (wareId.equals("siliconWafers"))
+        if (isSiliconMine())
         {
             final int basetime = 2400 / (yield + 1) + 1;
             final int multiple = (int) Math.floor(59.9 / basetime) + 1;
             return basetime * multiple;
         }
 
-        // Handle ore mines
-        if (wareId.equals("ore"))
+        // Handle ore and ice mines
+        if (isOreMine() || isIceMine())
         {
             final int basetime = 600 / (yield + 1) + 1;
             final int multiple = (int) Math.floor(59.9 / basetime) + 1;
             return basetime * multiple;
         }
-
+        
         // Normal factories use normal cycle
         return this.cycle;
     }
@@ -453,18 +469,17 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
     private Product getRealProduct(final Sun suns, final int yield)
     {
         final Ware ware = this.product.getWare();
-        final String wareId = ware.getId();
 
         // Handle silicon mines
-        if (wareId.equals("siliconWafers"))
+        if (isSiliconMine())
         {
             final int baseTime = 2400 / (yield + 1) + 1;
             final int multiple = (int) Math.floor(59.9 / baseTime) + 1;
             return new Product(ware, multiple * this.product.getQuantity() / 2);
         }
 
-        // Handle ore mines
-        if (wareId.equals("ore"))
+        // Handle ore and ice mines
+        if (isOreMine() || isIceMine())
         {
             final int baseTime = 600 / (yield + 1) + 1;
             final int multiple = (int) Math.floor(59.9 / baseTime) + 1;
@@ -488,10 +503,8 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
      */
     private Product[] getRealResources(final Sun suns, final int yield)
     {
-        final String wareId = this.product.getWare().getId();
-
         // Handle silicon mines
-        if (wareId.equals("siliconWafers"))
+        if (isSiliconMine())
         {
             final Product resources[] = new Product[1];
             final Product resource = this.resources[0];
@@ -502,8 +515,8 @@ public class Factory implements Serializable, Comparable<Factory>, GameProvider
             return resources;
         }
 
-        // Handle ore mines
-        if (wareId.equals("ore"))
+        // Handle ore and ice mines
+        if (isOreMine() || isIceMine())
         {
             final Product resources[] = new Product[1];
             final Product resource = this.resources[0];
