@@ -26,10 +26,10 @@ public class ShoppingList implements Serializable
     private int totalQuantity = 0;
 
     /** The total volume */
-    private int totalVolume = 0;
+    private long totalVolume = 0;
 
     /** The total price */
-    private int totalPrice = 0;
+    private long totalPrice = 0;
 
     /** The total built factories */
     private int totalBuilt = 0;
@@ -104,7 +104,7 @@ public class ShoppingList implements Serializable
      *
      * @return The total volume
      */
-    public int getTotalVolume()
+    public long getTotalVolume()
     {
         return this.totalVolume + getTotalKitVolume();
     }
@@ -114,9 +114,9 @@ public class ShoppingList implements Serializable
      * 
      * @return The total rest volume.
      */
-    public int getTotalRestVolume()
+    public long getTotalRestVolume()
     {
-        int volume = getRestKitVolume();
+        long volume = getRestKitVolume();
         for (ShoppingListItem item: this.items)
             volume += item.getRestVolume();
         return volume;
@@ -157,7 +157,7 @@ public class ShoppingList implements Serializable
      *
      * @return The total price
      */
-    public int getTotalPrice()
+    public long getTotalPrice()
     {
         return this.totalPrice + getTotalKitPrice();
     }
@@ -167,9 +167,9 @@ public class ShoppingList implements Serializable
      * 
      * @return The total rest price.
      */
-    public int getTotalRestPrice()
+    public long getTotalRestPrice()
     {
-        int price = getRestKitPrice();
+        long price = getRestKitPrice();
         for (ShoppingListItem item: this.items)
             price += item.getRestPrice();
         return price;
@@ -219,9 +219,9 @@ public class ShoppingList implements Serializable
      *
      * @return The total kit price
      */
-    public int getTotalKitPrice()
+    public long getTotalKitPrice()
     {
-        return getKitPrice() * getKitQuantity();
+        return ((long) getKitPrice()) * getKitQuantity();
     }
 
     /**
@@ -250,9 +250,9 @@ public class ShoppingList implements Serializable
      *
      * @return The total kit volume
      */
-    public int getTotalKitVolume()
+    public long getTotalKitVolume()
     {
-        return getKitVolume() * getKitQuantity();
+        return ((long) getKitVolume()) * getKitQuantity();
     }
     
     /**
@@ -260,9 +260,9 @@ public class ShoppingList implements Serializable
      * 
      * @return The rest kit volume.
      */
-    public int getRestKitVolume()
+    public long getRestKitVolume()
     {
-        return getKitVolume() * getKitQuantityLeft();
+        return ((long) getKitVolume()) * getKitQuantityLeft();
     }
 
     /**
@@ -270,8 +270,8 @@ public class ShoppingList implements Serializable
      * 
      * @return The rest kit price.
      */
-    public int getRestKitPrice()
+    public long getRestKitPrice()
     {
-        return getKitPrice() * getKitQuantityLeft();
+        return ((long) getKitPrice()) * getKitQuantityLeft();
     }
 }

@@ -52,8 +52,8 @@
     </section>
     <section name="Neuigkeiten">
       <p>
-        <em>(20.05.2013)</em> Xadrian Version 1.5.1 unterstützt nun
-        die Eis-Minen aus X³: Albion Prelude 3.0 korrekt.
+        <em>(20.05.2013)</em> Xadrian Version 1.5.2 behebt einen Integer-Overflow
+        Fehler in der Einkaufsliste.
       </p>
       <p>
         Die komplette Liste aller Änderung (in Englisch) gibt es 

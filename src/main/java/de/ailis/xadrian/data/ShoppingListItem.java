@@ -136,9 +136,9 @@ public class ShoppingListItem implements Serializable,
      * 
      * @return The total volume of all factories
      */
-    public int getTotalVolume()
+    public long getTotalVolume()
     {
-        return getVolume() * this.quantity;
+        return ((long) getVolume()) * this.quantity;
     }
     
     /**
@@ -147,9 +147,9 @@ public class ShoppingListItem implements Serializable,
      * 
      * @return The rest volume.
      */
-    public int getRestVolume()
+    public long getRestVolume()
     {
-        return getVolume() * getQuantityLeft();
+        return ((long) getVolume()) * getQuantityLeft();
     }
 
     /**
@@ -168,9 +168,9 @@ public class ShoppingListItem implements Serializable,
      * 
      * @return The rest price.
      */
-    public int getRestPrice()
+    public long getRestPrice()
     {
-        return getPrice() * getQuantityLeft();
+        return ((long) getPrice()) * getQuantityLeft();
     }
 
     /**
@@ -178,9 +178,9 @@ public class ShoppingListItem implements Serializable,
      * 
      * @return The total price of all factories
      */
-    public int getTotalPrice()
+    public long getTotalPrice()
     {
-        return getPrice() * this.quantity;
+        return ((long) getPrice()) * this.quantity;
     }
 
     /**

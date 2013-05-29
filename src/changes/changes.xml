@@ -7,7 +7,12 @@
     <author email="k@ailis.de">Klaus Reimer</author>
   </properties>
   <body>
-    <release version="1.5.1" date="2013-05-208" description="Minor update">
+    <release version="1.5.2" date="2013-05-29" description="Minor update">
+      <action dev="kayahr" type="fix" date="2013-05-29">
+        Fix integer-overflow in shopping list.
+      </action>
+    </release>
+    <release version="1.5.1" date="2013-05-28" description="Minor update">
       <action dev="kayahr" type="fix" date="2013-05-28">
         Ice mines are now working correctly.
       </action>
