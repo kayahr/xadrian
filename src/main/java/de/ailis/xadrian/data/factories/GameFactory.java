@@ -26,7 +26,7 @@ import de.ailis.xadrian.frames.SplashFrame;
 
 /**
  * Factory for Game objects.
- * 
+ *
  * @author Klaus Reimer (k@ailis.de)
  */
 public class GameFactory
@@ -56,7 +56,7 @@ public class GameFactory
 
     /**
      * Returns the singleton instance.
-     * 
+     *
      * @return The singleton instance
      */
     public static final GameFactory getInstance()
@@ -75,7 +75,7 @@ public class GameFactory
         try
         {
             final Document document = reader.read(url);
-            List<Object> games = document.getRootElement().elements("game");
+            List<Element> games = document.getRootElement().elements("game");
             SplashFrame.setNumberOfGames(games.size());
             for (final Object item : games)
             {
@@ -100,7 +100,7 @@ public class GameFactory
 
     /**
      * Returns all games.
-     * 
+     *
      * @return The games
      */
     public SortedSet<Game> getGames()
@@ -110,7 +110,7 @@ public class GameFactory
 
     /**
      * Returns the game with the specified textual id.
-     * 
+     *
      * @param id
      *            The textual game id
      * @return The game.
@@ -126,7 +126,7 @@ public class GameFactory
 
     /**
      * Returns the game with the specified numeric id.
-     * 
+     *
      * @param nid
      *            The numeric game id
      * @return The game.
@@ -142,7 +142,7 @@ public class GameFactory
 
     /**
      * Returns the number of games.
-     * 
+     *
      * @return The number of games
      */
     public int countGames()
@@ -152,7 +152,7 @@ public class GameFactory
 
     /**
      * Returns the default game.
-     * 
+     *
      * @return The default game.
      */
     public Game getDefaultGame()
@@ -162,7 +162,7 @@ public class GameFactory
 
     /**
      * Checks if a game with the specified id exists.
-     * 
+     *
      * @param id
      *            The game ID to check.
      * @return True if game exists, false if not.
