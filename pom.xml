@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  
+
   <groupId>de.ailis.xadrian</groupId>
   <artifactId>xadrian</artifactId>
   <packaging>jar</packaging>
@@ -14,7 +14,7 @@
     <name>Klaus Reimer</name>
     <url>https://github.com/kayahr/</url>
   </organization>
-  
+
   <licenses>
     <license>
       <name>MIT License</name>
@@ -22,7 +22,7 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  
+
   <developers>
     <developer>
       <id>kayahr</id>
@@ -33,9 +33,9 @@
       </roles>
       <timezone>+1</timezone>
       <url>https://github.com/kayahr/</url>
-    </developer>        
+    </developer>
   </developers>
-  
+
   <contributors>
     <contributor>
       <name>Milan Gvoždík</name>
@@ -52,24 +52,24 @@
       </roles>
     </contributor>
   </contributors>
-  
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <releasesUrl>http://nexus.ailis.de/content/repositories/releases/de/ailis/${project.artifactId}/${project.artifactId}/</releasesUrl>
     <snapshotsUrl>http://nexus.ailis.de/content/repositories/snapshots/de/ailis/${project.artifactId}/${project.artifactId}/</snapshotsUrl>
   </properties>
-  
+
   <scm>
     <connection>scm:git:git://github.com/kayahr/${project.artifactId}.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/kayahr/${project.artifactId}.git</developerConnection>
     <url>http://github.com/kayahr/${project.artifactId}</url>
   </scm>
-       
+
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/kayahr/${project.artifactId}/issues</url>
   </issueManagement>
-  
+
   <ciManagement>
     <system>jenkins</system>
     <url>https://ci.ailis.de/job/${project.artifactId}/</url>
@@ -83,7 +83,7 @@
         <version>2.4</version>
         <configuration>
           <dependencyDetailEnabled>false</dependencyDetailEnabled>
-          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>                
+          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
         </configuration>
         <reportSets>
           <reportSet>
@@ -97,7 +97,7 @@
               <report>dependencies</report>
               <report>plugins</report>
               <report>plugin-management</report>
-            </reports>            
+            </reports>
           </reportSet>
         </reportSets>
       </plugin>
@@ -108,7 +108,7 @@
       </plugin>
     </plugins>
   </reporting>
-  
+
   <build>
     <resources>
       <resource>
@@ -143,10 +143,10 @@
         </excludes>
       </resource>
     </resources>
-    
+
     <pluginManagement>
       <plugins>
-        
+
         <!-- Tell m2e to ignore or just execute some special plugins -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
@@ -185,23 +185,23 @@
             </lifecycleMappingMetadata>
           </configuration>
         </plugin>
-      </plugins>    
+      </plugins>
     </pluginManagement>
-    
+
     <plugins>
-    
+
       <!-- Use Java 6 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>7</source>
+          <target>7</target>
           <encoding>${project.build.sourceEncoding}</encoding>
         </configuration>
       </plugin>
-      
+
       <!-- Parse the version number so we can access the version components
            in the launch4j configuration -->
       <plugin>
@@ -217,11 +217,11 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- Build the web site -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId> 
+        <artifactId>maven-site-plugin</artifactId>
         <version>3.0</version>
         <configuration>
           <chmod>false</chmod>
@@ -230,7 +230,7 @@
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
         </configuration>
       </plugin>
-    
+
       <!-- Set main class and additional classpath entries -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -241,7 +241,7 @@
             <manifest>
               <mainClass>de.ailis.xadrian.Main</mainClass>
               <packageName>de.ailis.xadrian</packageName>
-              <addClasspath>true</addClasspath>              
+              <addClasspath>true</addClasspath>
             </manifest>
             <manifestEntries>
               <Class-Path>data/</Class-Path>
@@ -249,7 +249,7 @@
           </archive>
         </configuration>
       </plugin>
-      
+
       <!-- Build the EXE file for Windows -->
       <plugin>
         <groupId>org.bluestemsoftware.open.maven.plugin</groupId>
@@ -290,7 +290,7 @@
       </plugin>
 
       <!-- Build binary artifacts for Unix, Mac OS X and Windows -->
-      <plugin> 
+      <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <version>2.2.2</version>
         <configuration>
@@ -299,7 +299,7 @@
             <descriptor>src/main/assembly/unix.xml</descriptor>
             <descriptor>src/main/assembly/macosx.xml</descriptor>
           </descriptors>
-          <!-- Workaround for issue MASSEMBLY-449 -->        
+          <!-- Workaround for issue MASSEMBLY-449 -->
           <archiverConfig>
             <fileMode>420</fileMode> <!-- 420(dec) = 644(oct) -->
             <directoryMode>493</directoryMode> <!-- 493(dec) = 755(oct) -->
@@ -314,14 +314,14 @@
               <goal>attached</goal>
             </goals>
           </execution>
-        </executions> 
+        </executions>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
       </plugin>
-     
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -338,7 +338,7 @@
       <releases><enabled>true</enabled></releases>
       <snapshots><enabled>false</enabled></snapshots>
     </repository>
-    <repository> 
+    <repository>
       <id>ailis-snapshots</id>
       <name>Ailis Maven Snapshots</name>
       <url>http://nexus.ailis.de/content/groups/public-snapshots/</url>
@@ -346,7 +346,7 @@
       <snapshots><enabled>true</enabled></snapshots>
     </repository>
   </repositories>
-     
+
   <distributionManagement>
     <site>
       <id>project-website</id>
@@ -361,9 +361,9 @@
       <id>ailis-snapshots</id>
       <name>Ailis Maven Snapshots</name>
       <url>http://nexus.ailis.de/content/repositories/snapshots</url>
-    </snapshotRepository>    
+    </snapshotRepository>
   </distributionManagement>
-  
+
   <profiles>
     <profile>
       <id>nsis</id>
@@ -393,7 +393,7 @@
               </execution>
             </executions>
           </plugin>
-         
+
          <!-- Build EXE artifact with NSIS -->
          <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -419,7 +419,7 @@
               </execution>
             </executions>
           </plugin>
-          
+
           <!-- Attach EXE artifact so it gets deployed into repository -->
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -449,13 +449,8 @@
       </build>
     </profile>
   </profiles>
-  
+
   <dependencies>
-    <dependency>
-      <groupId>de.ailis.oneinstance</groupId>
-      <artifactId>oneinstance</artifactId>
-      <version>1.0.1</version>
-    </dependency>
     <dependency>
       <groupId>org.freemarker</groupId>
       <artifactId>freemarker</artifactId>
@@ -485,7 +480,22 @@
     <dependency>
       <groupId>net.java.dev.jna</groupId>
       <artifactId>jna</artifactId>
-      <version>3.4.0</version> 
+      <version>3.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-core</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>2.3.0</version>
     </dependency>
   </dependencies>
 </project>
